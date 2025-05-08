@@ -1,0 +1,78 @@
+[[Rice's theorem]]
+
+CATEGORIES: Articles containing proofs, Articles with inconsistent citation formats, Mathematical theorems in theoretical computer science, Theorems in the foundations of mathematics, Theory of computation
+
+In computability theory, Rice's theorem states that, for any non-trivial property of partial functions, there is no general and effective method to decide whether an algorithm computes a partial function with that property. Here, a property of partial functions is called trivial if it holds for all partial computable functions or for none, and an effective decision method is called general if it decides correctly for every algorithm.
+The theorem is named after Henry Gordon Rice, and is also known as the Rice-Myhill-Shapiro theorem after Rice, John Myhill, and Norman Shapiro.
+
+Introduction
+
+Another way of stating Rice's theorem that is more useful in computability theory follows.
+Let S be a set of languages that is nontrivial, meaning
+Then, it is undecidable to determine whether the language decided by an arbitrary Turing machine lies in S.
+In practice, this means that there is no machine that can always decide whether the language of a given Turing machine has a particular nontrivial property. Special cases include the undecidability of whether a Turing machine accepts a particular string, whether a Turing machine recognizes a particular recognizable language, and whether the language recognized by a Turing machine could be recognized by a nontrivial simpler machine, such as a finite automaton.
+It is important to note that Rice's theorem does not say anything about those properties of machines or programs that are not also properties of functions and languages.  For example, whether a machine runs for more than 100 steps on some input is a decidable property, even though it is non-trivial.  Implementing exactly the same language, two different machines might require a different number of steps to recognize the same input.  Similarly, whether a machine has more than 5 states is a decidable property of the machine, as the number of states can simply be counted. Where a property is of the kind that either of the two machines may or may not have it, while still implementing exactly the same language, the property is of the machines and not of the language, and Rice's Theorem does not apply.
+Using Rogers' characterization of acceptable programming systems, Rice's Theorem may essentially be generalized from Turing machines to most computer programming languages: there exists no automatic method that decides with generality non-trivial questions on the behavior of computer programs.
+As an example, consider the following variant of the halting problem. Let P be the following property of partial functions F of one argument: P(F) means that F is defined for the argument '1'.  It is obviously non-trivial, since there are partial functions that are defined at 1, and others that are undefined at 1.  The 1-halting problem is the problem of deciding of any algorithm whether it defines a function with this property,
+i.e., whether the algorithm halts on input 1. By Rice's theorem, the 1-halting problem is undecidable. Similarly the question of whether a Turing machine T terminates on an initially empty tape (rather than with an initial word w given as second argument in addition to a description of T, as in the full halting problem) is still undecidable.
+
+Formal statement
+
+Examples
+
+According to Rice's theorem, if there is at least one computable function in a particular class C of computable functions  and another computable function not in C then the problem of deciding whether a particular program computes a function in C is undecidable.  For example, Rice's theorem shows that each of the following sets of computable functions is undecidable:
+
+Proof by Kleene's recursion theorem
+
+Proof by reduction from the halting problem
+
+Proof sketch
+
+Suppose, for concreteness, that we have an algorithm for examining a program p and determining infallibly whether p is an implementation of the squaring function, which takes an integer d and returns d2.  The proof works just as well if we have an algorithm for deciding any other nontrivial property of programs, and will be given in general below.
+The claim is that we can convert our algorithm for identifying squaring programs into one which identifies functions that halt.  We will describe an algorithm which takes inputs a and i and determines whether program a halts when given input i.
+The algorithm for deciding this is conceptually simple: it constructs (the description of) a new program t taking an argument n which (1) first executes program a on input i (both a and i being hard-coded into the definition of t), and (2) then returns the square of n. If a(i) runs forever, then t will never get to step (2), regardless of n. Then clearly,  t is a function for computing squares if and only if step (1) terminates.  Since we've assumed that we can infallibly identify programs for computing squares, we can determine whether t, which depends on a and i, is such a program, and that for every a and i; thus we have obtained a program that decides whether program a halts on input i.  Note that our halting-decision algorithm never executes t, but only passes its description to the squaring-identification program, which by assumption always terminates; since the construction of the description of t can also be done in a way that always terminates, the halting-decision cannot fail to halt either.
+  halts (a,i) {
+    define t(n) {
+      a(i)
+      '''return''' n×n
+    }
+    '''return''' is_a_squaring_function(t)
+  }
+This method doesn't depend specifically on being able to recognize functions that compute squares; as long as some program can do what we're trying to recognize, we can add a call to a to obtain our t. We could have had a method for recognizing programs for computing square roots, or programs for computing the monthly payroll, or programs that halt when given the input "Abraxas", or programs that commit array bounds errors; in each case, we would be able to solve the halting problem similarly.
+
+Formal proof
+
+For the formal proof, algorithms are presumed to define partial functions over strings and are themselves represented by strings. The partial function computed by the algorithm represented by a string a is denoted Fa. This proof proceeds by reductio ad absurdum: we assume that there is a non-trivial property that is decided by an algorithm, and then show that it follows that we can decide the halting problem, which is not possible, and therefore a contradiction.
+Let us now assume that P(a) is an algorithm that decides some non-trivial property of Fa. Without loss of
+generality we may assume that P(no-halt) = "no", with no-halt being the representation of an algorithm that never halts. If this is not true, then this will hold for the negation of the property. Since P decides a non-trivial property, it follows that there is a string b that represents an algorithm and P(b) = "yes".  We can then define an algorithm H(a, i) as follows:
+We can now show that H decides the halting problem:
+Since the halting problem is known to be undecidable, this is a contradiction and the assumption that there is an algorithm P(a) that decides a non-trivial property for the function represented by a must be false.
+
+Rice's theorem and index sets
+
+Rice's theorem can be succinctly stated in terms of index sets:
+
+An analogue of Rice's theorem for recursive sets
+
+One can regard Rice's theorem as asserting the impossibility of effectively deciding for any recursively enumerable set
+The result for recursively enumerable sets can be obtained from that for (partial) computable functions by
+recursively enumerable sets.[/ref]
+In this section, we give an analogue of Rice's theorem for recursive sets, instead of recursively enumerable sets.[ref]A recursively enumerable
+Roughly speaking, the analogue says that if one can effectively determine for any recursive set  whether it has a certain property,
+then finitely many integers determine whether a recursive set has the property.
+This result is analogous to the original Rice's theorem because both assert that a property is "decidable"
+We can now state the following analogue of Rice's theorem
+(Kreisel, Lacombe, and Shoenﬁeld, 1959,):
+This result has been applied to foundational problems in computational social choice (more broadly, algorithmic game theory).
+For instance, Kumabe and Mihara (2008, 2008)
+apply this result to an investigation of the Nakamura numbers for simple games in cooperative game theory and social choice theory.
+
+
+
+Notes
+
+
+
+
+
+

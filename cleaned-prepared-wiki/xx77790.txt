@@ -1,0 +1,127 @@
+[[EMV]]
+
+CATEGORIES: EMV
+
+EMV stands for Europay, MasterCard and Visa, a global standard for inter-operation of integrated circuit cards (IC cards or "chip cards") and IC card capable point of sale (POS) terminals and automated teller machines (ATMs), for authenticating credit and debit card transactions.
+It is a joint effort initially conceived between Europay, MasterCard and Visa to ensure the security and global interoperability of chip-based payment cards. Europay International SA was absorbed into MasterCard in 2002. The standard is now defined and managed by the public corporation EMVCo LLC. JCB (formerly Japan Credit Bureau) joined the organization in December 2004, and American Express joined in February 2009. In May 2013 China UnionPay was announced as its latest member IC card systems based on the EMV specification are being phased in across the world, under names such as "IC Credit" and "Chip and PIN".
+The EMV standards define the interaction at the physical, electrical, data and application levels between IC cards and IC card processing devices for financial transactions. There are standards based on ISO/IEC 7816 for contact cards, and standards based on ISO/IEC 14443 for contactless cards (PayPass, payWave, ExpressPay).
+The first standard for payment cards was the Carte Bancaire M4 from Bull-CP8 deployed in France in 1986 followed by the B4B0' (compatible with the M4) deployed in 1989. Geldkarte in Germany also predates EMV. EMV was designed to allow cards and terminals to be backwardly compatible with these standards. France has since migrated all its card and terminal infrastructure to EMV.
+The most widely known chip card implementations of EMV standard are:
+Visa and MasterCard have also developed standards for using EMV cards in devices to support card-not-present transactions over the telephone and Internet. MasterCard has the Chip Authentication Program (CAP) for secure e-commerce. Its implementation is known as EMV-CAP and supports a number of modes. Visa has the Dynamic Password Authentication (DPA) scheme, which is their implementation of CAP using different default values.
+In February 2010, computer scientists from Cambridge University demonstrated that an implementation of EMV PIN entry is vulnerable to a man-in-the-middle attack; however, the way PINs are processed depends on the capabilities of the card and the terminal.
+
+Differences and benefits of EMV
+
+The purpose and goal of the EMV standard is to specify interoperability between EMV-compliant IC cards and EMV-compliant credit card payment terminals throughout the world. There are two major benefits to moving to smart-card-based credit card payment systems: improved security (with associated fraud reduction), and the possibility for finer control of "offline" credit-card transaction approvals. One of the original goals of EMV was to allow for multiple applications to be held on a card: for a credit and debit card application or an e-purse.
+EMV chip card transactions improve security against fraud compared to magnetic stripe card transactions that rely on the holder's signature and visual inspection of the card to check for features such as hologram. The use of a PIN and cryptographic algorithms such as DES, Triple-DES, RSA and SHA provide authentication of the card to the processing terminal and the card issuer's host system.  The processing time is comparable to online transactions, in which communications delay accounts for the majority of the time, while cryptographic operations take comparatively little time. The supposed increased protection from fraud has allowed banks and credit card issuers to push through a 'liability shift' such that merchants are now liable (as from 1 January 2005 in the EU region) for any fraud that results from transactions on systems that are not EMV capable.
+Although not the only possible method, the majority of implementations of EMV cards and terminals confirm the identity of the cardholder by requiring the entry of a PIN (Personal Identification Number) rather than signing a paper receipt. Whether or not PIN authentication takes place depends upon the capabilities of the terminal and programming of the card. For more details of this (specifically, the system being implemented in the UK) see Chip and PIN.
+
+EMV commands
+
+ISO/IEC 7816-3 defines the transmission protocol between chip cards and readers.  Using this protocol, data is exchanged in application protocol data units (APDUs). This comprises sending a command to a card, the card processing it, and sending a response.  EMV uses the following commands:
+Commands followed by "7816-4" are defined in ISO/IEC 7816-4 and are interindustry commands used for many chip card applications such as GSM SIM cards.
+
+EMV transaction flow
+
+An EMV transaction has the following steps:
+
+Application selection
+
+ISO/IEC 7816 defines a process for application selection. The intent of application selection was to allow cards to contain completely different applications, for example GSM and EMV. EMV however took application selection to be a way of identifying the type of product, so that all product issuers (Visa, MasterCard, etc.) have to have their own application. The way application selection as prescribed in EMV is a frequent source of interoperability problems between cards and terminals. Book 1 of the EMV standard devotes 15 pages to describing the application selection process.
+An application identifier (AID) is used to address an application in the card. An AID consists of a registered application provider identifier (RID) of five bytes, which is issued by the ISO/IEC 7816-5 registration authority. This is followed by a proprietary application identifier extension (PIX) which enables the application provider to differentiate between the different applications offered. The AID is printed on all EMV cardholder receipts.
+
+Initiate application processing
+
+The terminal sends the get processing options command to the card. When issuing this command, the terminal supplies the card with any data elements requested by the card in the processing options data objects list (PDOL). The PDOL (a list of tags and lengths of data elements) is optionally provided by the card to the terminal during application selection. The card responds with the application interchange profile (AIP), a list of functions to be performed in processing the transaction. The card also provides the application file locator (AFL), a list of files and records that the terminal needs to read from the card.
+
+Read application data
+
+Smart cards store data in files. The AFL contains the files that contain EMV data. These all need to be read using the read record command.  EMV does not specify which files data is stored in, so all the files need to be read.  Data in these files is stored in BER TLV format. EMV defines tag values for all data used in card processing.
+
+Processing restrictions
+
+The purpose of the processing restrictions is to see if the card should be used.  Three data elements read in the previous step are checked.
+If any of these checks fails, the card is not necessarily declined. The terminal sets the appropriate bit in the terminal verification results (TVR), the components of which form the basis of an accept/decline decision later in the transaction flow. This feature allows, for example, card issuers to permit their cardholders to continue to use expired cards after their expiry date, but for all transactions made with an expired card to be performed on-line.
+
+Offline data authentication
+
+Offline data authentication is a cryptographic check to validate the card using public-key cryptography.  There are three different processes that can be undertaken depending on the card:
+
+Cardholder verification
+
+Cardholder verification is used to evaluate whether the person presenting the card is the legitimate cardholder. There are many cardholder verification methods (CVMs) supported in EMV. They are:
+The terminal uses a CVM list read from the card to determine the type of verification to be performed. The CVM list establishes a priority of CVMs to be used relative to the capabilities of the terminal. Different terminals support different CVMs.  ATMs generally support online PIN.  POS terminals vary in their support of CVM depending on their type and in which country they are located.
+
+=Chip and PIN vs. Chip and signature=
+
+According to issuer preference, some EMV cards are "chip and PIN" cards that require the customer to supply a 4-to-6 digit personal identification number (PIN) when making a purchase at PIN-capable terminals. The chips in these cards feature "PIN" at the top of the list of possible cardholder verification methods (CVM), but with a fallback option to signature (or even no verification at unattended terminals).
+Other EMV cards are either signature-only or prefer signature over PIN in their CVM list (i.e., signature at the POS, but PIN at unattended terminals or ATMs). These are often called "chip and signature" cards."Chip-and-PIN vs. Chip-and-Signature", CardHub.
+Signature-only cards will not work in POS that allow no CVM other than PIN, such as some unattended ticket kiosks in Europe, whereas signature-preferring cards might work. Attended POS which are staffed by merchant personnel are required by the credit card agreement to accept magnetic stripe cards, as well as chip and signature cards.  Chip and PIN cards have not been adopted in the US as of 2012 for a variety of reasons, including lack of PIN management features in ATM machines.
+As of 2012, chip and signature cards are more common in the US, Australia, New Zealand and some European countries (such as Germany and Austria), whereas chip and PIN cards are more common in other European countries (e.g., the UK, Ireland, France and the Netherlands) as well as in Canada.
+
+Terminal risk management
+
+Terminal risk management is only performed in devices where there is a decision to be made whether a transaction should be authorised on-line or offline.  If transactions are always carried out on-line (e.g., ATMs) or always off-line, this step can be missed.
+Terminal risk management checks the transaction amount against an offline ceiling limit (above which transactions should be processed on-line).  It is also possible to have a 1 in n online counter, and a check against a hot card list (which is only necessary for off-line transaction). If the result of any of these tests is positive, the terminal sets the appropriate bit in the terminal verification results (TVR).
+
+Terminal action analysis
+
+The results of previous processing steps are used to determine whether a transaction should be approved offline, sent online for
+authorization, or declined offline. This is done using a combination of Terminal action codes (TACs) which are held in the terminal and Issuer action codes (IACs) which are read from the card.
+An online-only device such as an ATM always attempts to go on-line with the authorization request, unless declined off-line due to Issuer action codes—Denial settings. During IAC—Denial and TAC—Denial processing, for an online only device, the only relevant Terminal verification results bit is "Service not allowed".
+When an online-only device performs IAC—Online and TAC—Online processing the only relevant TVR bit is "Transaction value exceeds the floor limit". Because the floor limit is set to zero, the transaction should always go online and all other values in TAC—Online or IAC—Online are
+irrelevant.
+Online-only devices do not need to perform IAC-default processing.
+
+First card action analysis
+
+One of the data objects read from the card in the Read application data stage is CDOL1 (Card Data object List).  This object is a list of tags that the card wants to be sent to it to make a decision on whether to approve or decline a transaction (including transaction amount, but many other data objects too).  The terminal sends this data and requests a cryptogram using the generate application cryptogram command. Depending on the terminal′s decision (offline, online, decline), the terminal requests one of the following cryptograms from the card:
+This step gives the card the opportunity to accept the terminal's action analysis or to decline a transaction or force a transaction on-line. The card cannot return a TC when an ARQC has been asked for, but can return an ARQC when a TC has been asked for.
+
+Online transaction authorisation
+
+Transactions go online when an ARQC has been requested.  The ARQC is sent in the authorisation message.  The card generates the ARQC. Its format depends on the card application. EMV does not specify the contents of the ARQC.  The ARQC created by the card application is a digital signature of the transaction details which can be checked in real time by the card issuer.  This provides a strong cryptographic check that the card is genuine. The issuer responds to an authorisation request with a response code (accepting or declining the transaction), an authorisation response cryptogram (ARPC) and optionally an issuer script (a string of commands to be sent to the card).
+
+Second card action analysis
+
+CDOL2 (Card data object list) contains a list of tags that the card wants to be sent following online transaction authorisation (response code ARPC, etc.). Even if for any reason the terminal could not go online (e.g., communication failure), the terminal should send this data to the card again using the generate authorisation cryptogram command.  This lets the card know the issuer's response.  The card application may then reset offline usage limits.
+
+Issuer script processing
+
+If a card issuer wants to update a card post issuance it can send commands to the card using issuer script processing.  Issuer scripts are encrypted between the card and the issuer, so are meaningless to the terminal.  Issuer script can be used to block cards, or change card parameters.
+
+Control of the EMV standard
+
+The first version of EMV standard was published in 1995. Now the standard is defined and managed by the public corporation EMVCo LLC. The current members of EMVCo are JCB International, American Express, MasterCard Worldwide, China UnionPay, Discover Financial Services and Visa, Inc. Each of these organizations owns an equal share of EMVCo and has representatives in the EMVCo organization and EMVCo working groups.
+Recognition of compliance with the EMV standard (i.e., device certification) is issued by EMVCo following submission of results of testing performed by an accredited testing house.
+EMV Compliance testing has two levels: EMV Level 1, which covers physical, electrical and transport level interfaces, and EMV Level 2, which covers payment application selection and credit financial transaction processing.
+After passing common EMVCo tests, the software must be certified by payment brands to comply with proprietary EMV implementations such as Visa VSDC, American Express AEIPS, MasterCard MChip, JCB JSmart, or EMV-compliant implementations of non-EMVCo members such as LINK in the UK, or Interac in Canada.
+The EMVCo standards have been integrated into the broader electronic payment security standards being developed by the Secure POS Vendor Alliance, with a specific effort to develop a common interpretation of EMVCo's place relative to, and interactions with, other existing security standards, such as PCI-DSS.
+
+List of EMV documents and standards
+
+Since version 4.0, the official EMV standard documents that define all the components in an EMV payment system are published as four "books" and some additional documents:
+
+Versions
+
+First EMV standard came into view in 1995 as EMV 2.0. This was upgraded to EMV 3.0 in 1996 (sometimes referred to as EMV '96) with later amendments to EMV 3.1.1 in 1998. This was further amended to version 4.0 in December 2000 (sometimes referred to as EMV 2000).
+
+Vulnerabilities
+
+Opportunities to harvest PINs and clone magnetic stripes
+
+In addition to the track-two data on the magnetic stripe, EMV cards generally have identical data encoded on the chip which is read as part of the normal EMV transaction process.  If an EMV reader is compromised to the extent that the conversation between the card and the terminal is intercepted, then the attacker may be able to recover both the track-two data and the PIN, allowing construction of a magnetic stripe card which, while not usable in a chip and PIN terminal, can be used, for example, in terminal devices which permit fallback to magstripe processing for foreign customers without chip cards, and defective cards. This attack is possible only where (a) the offline PIN is presented in plaintext by the PIN entry device to the card, where (b) magstripe fallback is permitted by the card issuer and (c) where geographic and behavioural checking may not be carried out by the card issuer. It was claimed
+
+=Successful attacks=
+
+Conversation-capturing is the form of attack which was reported to have taken place against Shell terminals in May 2006, when they were forced to disable all EMV authentication in their petrol stations after more than £1 million was stolen from customers.
+In October 2008 it was reported that hundreds of EMV card readers for use in Britain, Ireland, the Netherlands, Denmark, and Belgium had been expertly tampered with in China during or shortly after manufacture so that details and PINs of credit and debit cards were sent during the 9 months before over mobile phone networks to criminals in Lahore, Pakistan. US National Counterintelligence Executive Joel Brenner said, "Previously only a nation state's intelligence service would have been capable of pulling off this type of operation. It's scary." Data were typically used a couple of months after the card transactions to make it harder for investigators to pin down the vulnerability. After the fraud was discovered it was found that tampered-with terminals could be identified as the additional circuitry increased their weight by about 100 g. Tens of millions of pounds sterling are believed to have been stolen.
+
+=Demonstration of PIN harvesting and stripe cloning=
+
+Cambridge University researchers Steven Murdoch and Saar Drimer demonstrated in a February 2008 BBC Newsnight programme one example attack, to illustrate that Chip and PIN is not secure enough to justify passing the liability to prove fraud from the banks onto customers.bbc.co.shtml The Cambridge University exploit allowed the experimenters to obtain both card data to create a magnetic stripe and the PIN.
+APACS, the UK payments association, disagreed with the majority of the report, saying: "The types of attack on PIN entry devices detailed in this report are difficult to undertake and not currently economically viable for a fraudster to carry out." The fraud reported in October 2008 to have operated for 9 months (see above) was probably in operation at the time, but was not discovered for many months.
+
+2010: Hidden hardware disables PIN checking on stolen card
+
+On 11 February 2010 Murdoch and Drimer's team at Cambridge University announced that they had found "a flaw in chip and PIN so serious they think it shows that the whole system needs a re-write" that was "so simple that it shocked them".[ref]

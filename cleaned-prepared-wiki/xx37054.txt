@@ -1,0 +1,47 @@
+[[8VSB]]
+
+CATEGORIES: Radio modulation modes, Digital television
+
+8VSB is the modulation method used for broadcast in the ATSC digital television standard.  ATSC and 8VSB modulation is used primarily in North America; in contrast, the DVB-T standard uses COFDM.  
+A modulation method specifies how the radio signal fluctuates to convey information.  ATSC and DVB-T specify the modulation used for over-the-air digital television; by comparison, QAM is the modulation method used for cable.  The specifications for a cable-ready television, then, might state that it supports 8VSB (for broadcast TV) and QAM (for cable TV).
+8VSB is an 8-level vestigial sideband modulation. In essence, it converts a binary stream into an octal representation by amplitude modulating a sinusoidal carrier to one of eight levels. 8VSB is capable of transmitting three bits (23=8) per symbol; in ATSC, each symbol includes two bits from the MPEG transport stream which are trellis modulated to produce a three-bit figure. The resulting signal is then band-pass filtered with a Nyquist filter to remove redundancies in the side lobes, and then shifted up to the broadcast frequency.
+
+Modulation Technique
+
+Vestigial sideband modulation (VSB) is a modulation method which attempts to eliminate the spectral redundancy of pulse amplitude modulated (PAM) signals. Modulating a carrier by a data sequence results in a sum and a difference frequency, resulting in two symmetrical carrier side-bands. The symmetry means that  one of the sidebands is redundant, so removing one sideband still allows for demodulation. As filters with zero transition bandwidth cannot be realized, the filtering implemented leaves a vestige of the redundant sideband, hence the name "VSB".
+
+Throughput
+
+In the 6 MHz (megahertz) channel used for broadcast ATSC, 8VSB carries a symbol rate of 10.76 Mbaud, a gross bit rate of 32 Mbit/s, and a net bit rate of 19.39 Mbit/s of usable data.  The net bit rate is lower due to the addition of forward error correction codes.  The eight signal levels are selected with the use of a trellis encoder.  There are also similar modulations 2VSB, 4VSB, and 16VSB.  16VSB was notably intended to be used for ATSC digital cable, but quadrature amplitude modulation (QAM) has become the de facto industry standard instead as it is cheap and readily available.
+
+Power saving advantages
+
+A significant advantage of 8VSB for broadcasters is that it requires much less power to cover an area comparable to that of the earlier NTSC system, and it is reportedly better at this than the most common alternative system, COFDM. Part of the advantage is the lower peak to average power ratio needed compared to COFDM. An 8VSB transmitter needs to have a peak power capability of 6 db (four times) its average power. 8VSB is also more resistant to impulse noise. Some stations can cover the same area while transmitting at an effective radiated power of approximately 25% of analog broadcast power. While NTSC and most other analog television systems also use a vestigial sideband technique, the unwanted sideband is filtered much more effectively in ATSC 8VSB transmissions. 8VSB uses a Nyquist filter to achieve this. Reed–Solomon error correction is the primary system used to retain data integrity.
+In summer of 2005, the ATSC published standards for Enhanced VSB, or E-VSB  Using forward error correction, the E-VSB standard  will allow DTV reception on low power handheld receivers with smaller antennas in much the same way DVB-H does in Europe, but still using 8VSB transmission.
+
+Disputes over ATSC's use
+
+For some period of time, there had been a continuing lobby for changing the modulation for ATSC to COFDM, the way DVB-T is transmitted in Europe, and ISDB-T in Japan.  However, the FCC has always held that 8VSB is the better modulation for use in U.S. digital television broadcasting.  In a 1999 report, the Commission found that 8VSB has better threshold or carrier-to-noise (C/N) performance, has a higher data rate capability, requires less transmitter power for equivalent coverage, and is more robust to impulse and phase noise.[ref]
+, September 30, 1999.
+[/ref]  As a result, it denied in 2000 a petition for rulemaking from Sinclair Broadcast Group requesting that broadcasters be allowed to choose between 8VSB or COFDM as is most appropriate for their area of coverage.[ref]
+, Oct 11, 1999.
+[/ref]
+The FCC report also acknowledged that COFDM would "generally be expected to perform better in situations where there is dynamic multipath," such as mobile operation or in the presence of trees that are moving in high winds. However, with the introduction of 5th Generation demodulators in 2005 and subsequent improvements in generations 6 and 7, the equalization span is now about -60 to +75 microseconds (a 135 microsecond spread) and has virtually eliminated multipath, both static and dynamic, in 8-VSB reception.  In comparison, the equalization span in COFDM is -100 to +100 microseconds (200 microsecond spread), but the application of this much guard band space for COFDM substantially reduces its useful payload.  In fact, much of Europe has adopted 1280 x 720p as its HD standard for DVB because of its reduced payload capacity.  The introduction of DVT-T2 is meant to increase the ability of terrestrial transmissions to carry 1920 x 1080p content.  1920 x 1080i has always been part of the 8-VSB scheme from its inception, and its improved demodulators have had no effect on its innate payload capacity.
+Because of continued adoption of the 8VSB-based ATSC standard in the U.S., and a large growing ATSC receiver population, a switch to COFDM is now essentially impossible. Most analog terrestrial transmissions in the US were turned off in June 2009, and 8VSB tuners are common to all new TVs, further complicating a future transition to COFDM.
+
+8VSB vs COFDM
+
+The previously cited FCC Report also found that COFDM has better performance in dynamic and high level static multipath situations, and offers advantages for single frequency networks and mobile reception.  Nonetheless, in  2001, a technical report compiled by the COFDM Technical Group concluded that COFDM did not offer any significant advantages over 8VSB.  The report recommended in conclusion that receivers be linked to outdoor antennas raised to roughly 30 feet (9 m) in height.  Neither 8VSB nor COFDM performed acceptably in most indoor test installations. 8VSB/COFDM Comparison Report
+However, there were questions whether the COFDM receiver selected for these tests − a transmitter monitor  Retests that were performed using the same COFDM receivers with the addition of a front end band pass filter gave much improved results for the DVB-T receiver, but further testing was not pursued.sbgi.pdf
+The debate over 8VSB versus COFDM modulation is still ongoing. Proponents of COFDM argue that it resists multipath far better than 8VSB. This is important property of the modulation for receiving HDTV in e.g. moving vehicles that is not possible with 8VSB. Early 8VSB DTV (digital television) receivers often had difficulty receiving a signal in urban environments. Newer 8VSB receivers, however, are better at dealing with multipath, but a moving receiver can still not receive the signal. Moreover, 8VSB modulation requires less power to transmit a signal the same distance. In less populated areas, 8VSB may outperform COFDM because of this.  However, in some urban areas, as well as for mobile use, COFDM may offer better reception than 8VSB. Several "enhanced" VSB systems were in development, most notably E-VSB, A-VSB, and MPH.  The deficiencies in 8VSB in regards to multipath reception can be dealt with by using additional forward error-correcting codes which decreases the useful bit rate, such as that used by ATSC-M/H for Mobile/Handheld reception.
+It should also be noted that the vast majority of USA TV stations use COFDM for their studio to transmitter links and news gathering operations.
+It should also be noted that these are point-to-point communication links and not broadcast transmissions.
+In Europe most broadcaster are considering moving to DVB-T2 which further optimizes performance beyond today.
+
+
+
+
+
+
+
+

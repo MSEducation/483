@@ -1,0 +1,64 @@
+[[Punched tape]]
+
+CATEGORIES: Computer storage tape media
+
+Punched tape or perforated paper tape is a form of data storage, consisting of a long strip of paper in which holes are punched to store data. Now effectively obsolete, it was widely used during much of the twentieth century for teleprinter communication, for input to computers of the 1950s and 1960s, and later as a storage medium for minicomputers and CNC machine tools.
+
+==Origin==
+
+The earliest forms of punched tape come from weaving looms and embroidery, where cards with simple instructions about a machine's intended movements were first fed individually as instructions, then controlled by instruction cards, and later were fed as a string of connected cards. (See Jacquard loom).
+This led to the concept of communicating data not as a stream of individual cards, but one "continuous card", or a tape. Many professional embroidery operations still refer to those individuals who create the designs and machine patterns as "punchers", even though punched cards and paper tape were eventually phased out, after many years of use, in the 1990s.
+In 1846, Alexander Bain used punched tape to send telegrams.
+
+==Tape formats==
+
+Data was represented by the presence or absence of a hole at a particular location. Tapes originally had five rows of holes for data. Later tapes had 6, 7 and 8 rows. An early electro-mechanical calculating machine, the Automatic Sequence Controlled Calculator or Harvard Mark I, used paper tape with 24 rows.[tpl] Citation | last = Dalakov | first = Georgi | title = History of computers: The MARK computers of Howard Aiken | url = http://history-computer.com/ModernComputer/Relays/Aiken.html | accessdate = 2011-01-12 [/tpl] A row of narrower holes that were always punched served to feed the tape, originally using a wheel with radial teeth called a sprocket wheel. Later optical readers used the sprocket holes to generate timing pulses.
+Text was encoded in several ways. The earliest standard character encoding was Baudot, which dates back to the nineteenth century and had 5 holes. The Baudot code was never used in teleprinters. Instead, modifications such as the Murray code (which added carriage return and line feed), Western Union code, International Telegraphic Alphabet #2 (ITA 2), and American Teletypewriter code (USTTY), were used. Other standards, such as Teletypesetter (TTS), Fieldata and Flexowriter, had 6 holes. In the early 1960s, the American Standards Association led a project to develop a universal code for data processing, which became known as ASCII. This 7-level code was adopted by some teleprinter users, including AT&T (Teletype). Others, such as Telex, stayed with the earlier codes.
+
+===Dimensions===
+
+Tape for punching was 0.00394 inches (0.1 mm) thick. The two most common widths were 11/16 inch (17.46 mm) for five bit codes, and 1 inch (25.4 mm) for tapes with six or more bits. Hole spacing was 0.1 inch (2.54 mm) in both directions. Data holes were 0.072 inches (1.83 mm) in diameter; feed holes were 0.046 inches (1.17 mm).ECMA 10, Standard for Data Interchange on Punched Tape, November 1965 Paper tape rolls in both widths are still commercially available as of 2012.http://www.wncsupply.com/paper-tape-rolls.html
+
+===Chadless Tape===
+
+Most tape-punching equipment used solid punches to create holes in the tape. This process inevitably created "chad", or small circular pieces of paper. Managing the disposal of chad was an annoying and complex problem, as the tiny paper pieces had a tendency to escape and interfere with the other electromechanical parts of the teleprinter equipment.
+One variation on the tape punch was a device called a Chadless Printing Reperforator. This machine would punch a received teleprinter signal into tape and print the message on it at the same time, using a printing mechanism similar to that of an ordinary page printer. The tape punch, rather than punching out the usual round holes, would instead punch little U-shaped cuts in the paper, so that no chad would be produced; the "hole" was still filled with a little paper trap-door. By not fully punching out the hole, the printing on the paper remained intact and legible. This enabled operators to read the tape without having to decipher the holes, which would facilitate relaying the message on to another station in the network. Also, of course, there was no "chad box" to empty from time to time. A disadvantage to this mechanism was that chadless tape, once punched, did not roll up well, because the protruding flaps of paper would catch on the next layer of tape, so it could not be rolled up tightly. Another disadvantage, as seen over time, was that there was no reliable way to read chadless tape by optical means employed by later high-speed readers. However, the mechanical tape readers used in most standard-speed equipment had no problem with chadless tape, because it sensed the holes by means of blunt spring-loaded sensing pins, which easily pushed the paper flaps out of the way.
+
+==Applications==
+
+===Communications===
+
+Punched tape was used as a way of storing messages for teletypewriters. Operators typed in the message to the paper tape, and then sent the message at the maximum line speed from the tape. This permitted the operator to prepare the message "off-line" at the operator's best typing speed, and permitted the operator to correct any error prior to transmission. An experienced operator could prepare a message at 135WPM (words per minute) or more for short periods.
+The line typically operated at 75WPM, but it operated continuously. By preparing the tape "off-line" and then sending the message with a tape reader, the line could operate continuously rather than depending on continuous "on-line" typing by a single operator. Typically, a single 75WPM line  supported three or more teletype operators working offline. Tapes punched at the receiving end could be used to relay messages to another station. Large store and forward networks were developed using these techniques.
+Paper tape could be read into computers at up to 1000 characters per second.[tpl]Citation | last = Hult | first = Ture | title = Presentation of a new high speed paper tape reader | journal = BIT Numerical Mathematics | volume = 3 | issue = 2 | pages = 93–96 | year = 1963 | doi = 10.1007/BF01935575 [/tpl]
+
+===Minicomputers===
+
+When the first minicomputers were being released, most manufacturers turned to the existing mass-produced ASCII teleprinters (primarily the Teletype Model 33, capable of 10 ASCII characters per second throughput) as a low-cost solution for keyboard input and printer output. The commonly specified Model 33 ASR included a paper tape punch/reader, where ASR stands for "Automatic Send/Receive" as opposed to the punchless/readerless KSR - Keyboard Send/Receive and RO - Receive Only models. As a side effect, punched tape became a popular medium for low cost minicomputer data and program storage, and it was common to find a selection of tapes containing useful programs in most minicomputer installations. Faster optical readers were also common.
+Binary data transfer to or from these minicomputers was often accomplished using a doubly encoded technique to compensate for the relatively high error rate of punches / readers. The low-level encoding was typically ASCII, further encoded and framed in various schemes such as Intel Hex - in which a binary value of "01011010" would be represented by the ASCII characters "5A". Framing, addressing and checksum (primarily in ASCII hex characters) information provided error detection capabilities. Efficiencies of such an encoding scheme are on the order of 35-40% (e.g., 36% from 44 8-bit ASCII characters being needed to represent 16 bytes of binary data per frame).
+ 
+
+===Data transfer for ROM and EPROM programming===
+
+In the 1970s through the early 1980s, paper tape was commonly used to transfer binary data for incorporation in either mask-programmable read-only memory (ROM) chips or their erasable counterparts - EPROMs. A significant variety of encoding formats were developed for use in computer and ROM/EPROM data transfer.[tpl]cite web|url=ftp://ftp.dataio.com/main/Manuals/UniFam/Translation%20Formats.pdf |title=Translation File Formats |publisher=Data I/O Corporation |date= |accessdate=2010-08-30[/tpl] Encoding formats commonly used were primarily driven by those formats that EPROM programming devices supported and included various ASCII hex variants as well as a number of computer-proprietary formats.
+A much more primitive as well as a much longer high-level encoding scheme was also used - BNPF (Begin-Negative-Positive-Finish). In BNPF encoding, a single byte (8 bits) would be represented by a highly redundant character framing sequence starting with a single ASCII "B", eight ASCII characters where a "0" would be represented by a "N" and a "1" would be represented by a "P", followed by an ending ASCII "F". These ten-character ASCII sequences were separated by one or more whitespace characters, therefore using at least 11 ASCII characters for each byte stored (9% efficiency). The ASCII "N" and "P" characters differ in four bit positions, providing excellent protection from single punch errors. Alternative schemes were also available where "H" and "L" or "0" and "1" were also available to represent data bits, but in both of these encoding schemes, the two data-bearing ASCII characters differ in only one bit position, providing very poor single punch error detection.
+
+===Cash registers===
+
+National Cash Register or NCR (Dayton Ohio) made cash registers around 1970 that would punch paper tape. The tape could then be read into a computer and not only could sales information be summarized, billings could be done on charge transactions.
+
+===Newspaper industry===
+
+Punched paper tape was used by the newspaper industry until the mid-1970s or later. Newspapers were typically set in hot lead by devices such as a linotype. With the wire services coming into a device that would punch paper tape, rather than the linotype operator having to retype all the incoming wire stories, the paper tape could be put into a paper tape reader on the linotype and it would create the lead slugs without the operator re-typing the stories. This also allowed newspapers to use devices, such as the Friden Flexowriter, to convert typing to lead type via tape. Even after the demise of the Linotype/hot lead, many early "offset" devices had paper tape readers on them to produce the news-story copy.
+
+===Automated machinery===
+
+In the 1970s, computer-aided manufacturing equipment often used paper tape. Paper tape was a very important storage medium for computer-controlled wire-wrap machines, for example. A paper tape reader was smaller and much less expensive than hollerith card or magnetic tape readers. Premium black waxed and lubricated long-fiber papers, and Mylar film tape were invented so that production tapes for these machines would last longer.
+
+===Cryptography===
+
+Paper tape was the basis of the Vernam cipher, invented in 1917. During the last third of the 20th century, the National Security Agency used punched paper tape to distribute cryptographic keys. The 8-level paper tapes  were distributed under strict accounting controls and were read by a fill device, such as the hand held KOI-18, that was temporarily connected to each security device that needed new keys. NSA has been trying to replace this method with a more secure electronic key management system (EKMS), but paper tape is apparently still being employed.
+
+====Paper tape canister====
+
+The paper tape canister is a tamper resistant container from which the contents may manually be dispensed but which prohibits reinsertion of a tape once removed. It was used to securely distribute cryptographic keys. Distributing cryptographic keys in the open left the keys vulnerable.  “Putting tape in canisters solved a lot of the security problem by narrowing the vulnerability to the point of use rather than the whole time in inventory”, said Whitfield Diffie. The canister was invented to prevent the ability to tamper with the paper tape once placed inside the canister. One of the primary users of the Paper Tape Canister was the National Security Agency. The NSA needed the ability to transfer crytographic keys in a way that cleary showed if the keys had been compromised.

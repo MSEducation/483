@@ -1,0 +1,265 @@
+[[Finite strain theory]]
+
+CATEGORIES: Tensors, Continuum mechanics, Elasticity (physics), Non-Newtonian fluids, Solid mechanics
+
+In continuum mechanics, the finite strain theory—also called large strain theory, or large deformation theory—deals with deformations in which both rotations and strains are arbitrarily large, i.e. invalidates the assumptions inherent in infinitesimal strain theory.  In this case, the undeformed and deformed configurations of the continuum are significantly different and a clear distinction has to be made between them. This is commonly the case with elastomers, plastically-deforming materials and other fluids and biological soft tissue.
+
+==Displacement==
+
+The displacement of a body has two components: a rigid-body displacement and a deformation.
+A change in the configuration of a continuum body can be described by a displacement field. A displacement field is a vector field of all displacement vectors for all particles in the body, which relates the deformed configuration with the undeformed configuration. Relative displacement between particles occurs if and only if deformation has occurred. If displacement occurs without deformation, then it is deemed a rigid-body displacement.
+
+===Material coordinates (Lagrangian description)===
+
+Expressed in terms of the material coordinates, the displacement field is:
+
+===Spatial coordinates (Eulerian description)===
+
+Expressed in terms of spatial coordinates, the displacement field is:
+
+===Relationship between the material and spatial coordinate systems===
+
+Knowing that
+then
+
+===Combining the coordinate systems of deformed and undeformed configurations===
+
+Thus in material (deformed) coordinates, the displacement may be expressed as:
+And in spatial (undeformed) coordinates, the displacement may be expressed as:
+
+==Deformation gradient tensor==
+
+| last = Lubliner
+| first = Jacob
+| title = Plasticity Theory (Revised Edition)
+| publisher = Dover Publications
+| year = 2008
+| url = http://www.ce.berkeley.edu/~coby/plas/pdf/book.pdf
+
+===Relative displacement vector===
+
+====Taylor approximation====
+
+===Time-derivative of the deformation gradient===
+
+Calculations that involve the time-dependent deformation of a body often require a time derivative of the deformation gradient to be calculated.  A geometrically consistent definition of such a derivative requires an excursion into differential geometryA. Yavari, J.E. Marsden, and M. Ortiz, On spatial and material covariant balance laws in elasticity, Journal of Mathematical Physics, 47, 2006, 042903; pp. 1-53. but we avoid those issues in this article.
+Related quantities often used in continuum mechanics are the rate of deformation tensor and the spin tensor defined, respectively, as:
+The rate of deformation tensor gives the rate of stretching of line elements while the spin tensor indicates the rate of rotation or vorticity of the motion.
+
+==Transformation of a surface and volume element==
+
+To transform quantities that are defined with respect to areas in a deformed configuration to those relative to areas in a reference configuration, and vice versa, we use Nanson's relation, expressed as
+The corresponding formula for the transformation of the volume element is 
+!Derivation of Nanson's relation
+|-
+|To see how this formula is derived, we start with the oriented area elements
+in the reference and current configurations:
+The reference and current volumes of an element are
+Therefore,
+or,
+so,
+So we get
+or,
+|}
+
+==Polar decomposition of the deformation gradient tensor==
+
+It can be shown that,
+
+==Deformation tensors==
+
+Several rotation-independent deformation tensors are used in mechanics.  In solid mechanics, the most popular of these are the right and left Cauchy-Green deformation tensors.
+
+===The Right Cauchy-Green deformation tensor===
+
+In 1839, George Green introduced a deformation tensor known as the right Cauchy-Green deformation tensor or Green's deformation tensor,  defined as:The IUPAC recommends that this tensor be called the Cauchy strain tensor.
+
+===The Finger deformation tensor===
+
+===The Left Cauchy-Green or Finger deformation tensor===
+
+Reversing the order of multiplication in the formula for the right Green-Cauchy deformation tensor leads to the left Cauchy-Green deformation tensor which is defined as:
+The left Cauchy-Green deformation tensor is often called the Finger deformation tensor, named after Josef Finger (1894).Eduardo N. Dvorkin, Marcela B. Goldschmit, 2006 Nonlinear Continua, p. 25, Springer ISBN 3-540-24985-0.The IUPAC recommends that this tensor be called the Green strain tensor.
+For nearly incompressible materials, a slightly different set of invariants is used:
+
+===The Cauchy deformation tensor===
+
+===Spectral representation===
+
+Furthermore,
+Observe that
+In a similar vein, 
+!Examples
+|-
+|Uniaxial extension of an incompressible material
+Simple shear
+Rigid body rotation
+|}
+
+===Derivatives of stretch===
+
+Derivatives of the stretch with respect to the right Cauchy-Green deformation tensor are used to  derive the stress-strain relations of many solids, particularly hyperelastic materials.  These derivatives are
+and follow from the observations that
+
+===Physical interpretation of deformation tensors===
+
+The undeformed length of the curve is given by
+After deformation, the length becomes
+Note that the right Cauchy-Green deformation tensor is defined as
+Hence,
+
+==Finite strain tensors==
+
+The concept of strain is used to evaluate how much a given displacement differs locally from a rigid body displacement. One of such strains for large deformations is the Lagrangian finite strain tensor, also called the Green-Lagrangian strain tensor or Green – St-Venant strain tensor, defined as
+or as a function of the displacement gradient tensor
+or
+The Eulerian-Almansi finite strain tensor, referenced to the deformed configuration, i.e. Eulerian description, is defined as
+or as a function of the displacement gradients we have
+!Derivation of the Lagrangian and Eulerian finite strain tensors
+|-
+In the Lagrangian description, using the material coordinates as the frame of reference, the linear transformation between the differential lines is
+Then we have,
+or
+In the Eulerian description, using the spatial coordinates as the frame of reference, the linear transformation between the differential lines is
+or
+Replacing this equation into the expression for the Lagrangian finite strain tensor we have
+or
+Similarly, the Eulerian-Almansi finite strain tensor can be expressed as
+|}
+
+===Seth-Hill family of generalized strain tensors===
+
+B. R. Seth from the Indian Institute of Technology, Kharagpur was the first to show that the Green and Almansi strain tensors are special cases of a more general strain measure.[tpl]Citation|last=Seth|first=B. R.|year=1961|title=Generalized strain measure with applications to physical problems|journal=MRC Technical Summary Report #248|publisher=Mathematics Research Center, United States Army, University of Wisconsin|pages=1–18.|url=http://www.dtic.mil/cgi-bin/GetTRDoc?AD=AD0266913[/tpl][tpl]Citation|last=Seth|first=B. R.|year=1962|title=Generalized strain measure with applications to physical problems|journal=IUTAM Symposium on Second Order Effects in Elasticity, Plasticity and Fluid Mechanics, Haifa, 1962.[/tpl] The idea was further expanded upon by Rodney Hill in 1968.[tpl]Citation|last=Hill|first=R.|year=1968|title=On constitutive inequalities for simple materials—I|journal=Journal of the Mechanics and Physics of Solids|volume=16|number=4|pages=229–242.[/tpl] The Seth-Hill family of strain measures can be expressed as
+
+==Stretch ratio==
+
+The stretch ratio is a measure of the extensional or normal strain of a differential line element, which can be defined at either the undeformed configuration or the deformed configuration.
+This equation implies that the normal strain is zero, i.e. no deformation, when the stretch is equal to unity. Some materials, such as elastometers can sustain stretch ratios of 3 or 4 before they fail, whereas traditional engineering materials, such as concrete or steel, fail at much lower stretch ratios, perhaps of the order of 1.001 (reference?)
+
+==Physical interpretation of the finite strain tensor==
+
+Under certain circumstances, i.e. small displacements and small displacement rates, the components of the Lagrangian finite strain tensor may be approximated by the components of the infinitesimal strain tensor
+!Derivation of the physical interpretation of the Lagrangian and Eulerian finite strain tensors
+|-
+The square of the stretch ratio is defined as
+Knowing that
+we have
+thus,
+then
+or
+|}
+
+==Deformation tensors in curvilinear coordinates==
+
+The Christoffel symbols of the first kind can be expressed as
+To see how the Christoffel symbols are related to the Right Cauchy-Green deformation tensor let us define two sets of bases
+
+===The deformation gradient in curvilinear coordinates===
+
+Using the definition of the gradient of a vector field in curvilinear coordinates, the deformation gradient can be written as
+
+===The right Cauchy-Green tensor in curvilinear coordinates===
+
+The right Cauchy-Green deformation tensor is given by
+Therefore 
+and the Christoffel symbol of the first kind may be written in the following form.
+
+===Some relations between deformation measures and Christoffel symbols===
+
+Then,
+Noting that
+Define
+Hence
+Define
+Then
+Define the Christoffel symbols of the second kind as
+Then
+Therefore
+The invertibility of the mapping implies that
+
+==Compatibility conditions==
+
+The problem of compatibility in continuum mechanics involves the determination of allowable single-valued continuous fields on bodies.  These allowable conditions leave the body without unphysical gaps or overlaps after a deformation.  Most such conditions apply to simply-connected bodies.  Additional conditions are required for the internal boundaries of multiply connected bodies.
+
+===Compatibility of the deformation gradient===
+
+===Compatibility of the right Cauchy-Green deformation tensor===
+
+===Compatibility of the left Cauchy-Green deformation tensor===
+
+==See also==
+
+==References==
+
+==Further reading==
+
+| last = Dill | first = Ellis Harold
+| title =Continuum Mechanics: Elasticity, Plasticity, Viscoelasticity
+| publisher = CRC Press
+| year = 2006
+| location = Germany 
+| url = http://books.google.com/?id=Nn4kztfbR3AC
+| isbn = 0-8493-9779-0}}
+| last = Dimitrienko | first = Yuriy
+| title = Nonlinear Continuum Mechanics and Large Inelastic Deformations
+| publisher = Springer
+| year = 2011
+| location = Germany 
+| url = http://books.google.com/books?as_isbn=9789400700338
+| isbn = 978-94-007-0033-8}}
+| last = Hutter | first = Kolumban
+|author2=Klaus Jöhnk
+| title = Continuum Methods of Physical Modeling
+| publisher = Springer
+| year = 2004
+| location = Germany 
+| url = http://books.google.com/?id=B-dxx724YD4C
+| isbn = 3-540-20619-1}}
+| last = Lubarda
+| first = Vlado A.
+| title = Elastoplasticity Theory
+| publisher = CRC Press
+| year = 2001
+| url = http://books.google.com/?id=1P0LybL4oAgC
+| isbn = 0-8493-1138-1 }}
+| last = Macosko
+| first = C. W.
+| authorlink = 
+| title = Rheology: principles, measurement and applications
+| publisher = VCH Publishers
+| year = 1994
+| isbn = 1-56081-579-5}}
+| last = Mase
+| first = George E.
+| title = Continuum Mechanics
+| publisher = McGraw-Hill Professional
+| year = 1970
+| url = http://books.google.com/?id=bAdg6yxC0xUC
+| isbn = 0-07-040663-4 }}
+| last = Mase
+| first = G. Thomas
+|author2=George E. Mase
+| title = Continuum Mechanics for Engineers
+| publisher = CRC Press
+| year = 1999
+|edition= Second
+| url = http://books.google.com/?id=uI1ll0A8B_UC
+| isbn = 0-8493-1855-6 }}
+| last = Nemat-Nasser
+| first = Sia
+| title = Plasticity: A Treatise on Finite Deformation of Heterogeneous Inelastic Materials
+| publisher = Cambridge University Press
+| year = 2006
+| location = Cambridge
+| url = http://books.google.com/?id=5nO78Rt0BtMC
+| isbn = 0-521-83979-3}}
+| last = Rees | first = David
+| title = Basic Engineering Plasticity – An Introduction with Engineering and Manufacturing Applications
+| publisher = Butterworth-Heinemann
+| year = 2006
+| url = http://books.google.com/?id=4KWbmn_1hcYC
+| isbn = 0-7506-8025-3}}
+
+==External links==
+
+

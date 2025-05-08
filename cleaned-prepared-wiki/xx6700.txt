@@ -1,0 +1,210 @@
+[[Lazy evaluation]]
+
+CATEGORIES: Evaluation strategy, Compiler optimizations, Implementation of functional programming languages, Articles with example Haskell code
+
+In programming language theory, lazy evaluation, or call-by-need
+The benefits of lazy evaluation include: 
+Lazy evaluation is often combined with memoization, as described in Jon Bentley's Writing Efficient Programs. Writing Efficient Programs. Prentice-Hall, 1985. ISBN 978-0139702440 After a function's value is computed for that parameter or set of parameters, the result is stored in a lookup table that is indexed by the values of those parameters; the next time the function is called, the table is consulted to determine whether the result for that combination of parameter values is already available. If so, the stored result is simply returned. If not, the function is evaluated and another entry is added to the lookup table for reuse.
+Lazy evaluation can lead to reduction in memory footprint, since values are created when needed.
+The opposite of lazy evaluation is eager evaluation, sometimes known as strict evaluation. Eager evaluation is commonly the default behavior used in most programming languages.
+
+History
+
+Lazy evaluation was introduced for the lambda calculus by 
+
+Applications
+
+Delayed evaluation is used particularly in functional programming languages. When using delayed evaluation, an expression is not evaluated as soon as it gets bound to a variable, but when the evaluator is forced to produce the expression's value. That is, a statement such as x:=expression; (i.e. the assignment of the result of an expression to a variable) clearly calls for the expression to be evaluated and the result placed in x, but what actually is in x is irrelevant until there is a need for its value via a reference to x in some later expression whose evaluation could itself be deferred, though eventually the rapidly growing tree of dependencies would be pruned to produce some symbol rather than another for the outside world to see.
+Delayed evaluation has the advantage of being able to create calculable infinite lists without infinite loops or size matters interfering in computation. For example, one could create a function that creates an infinite list (often called a stream) of Fibonacci numbers. The calculation of the n-th Fibonacci number would be merely the extraction of that element from the infinite list, forcing the evaluation of only the first n members of the list.
+For example, in the Haskell programming language, the list of all Fibonacci numbers can be written as:
+In Haskell syntax, ":" prepends an element to a list, tail returns a list without its first element, and zipWith uses a specified function (in this case addition) to combine corresponding elements of two lists to produce a third.
+Provided the programmer is careful, only the values that are required to produce a particular result are evaluated. However, certain calculations may result in the program attempting to evaluate an infinite number of elements; for example, requesting the length of the list or trying to sum the elements of the list with a fold operation would result in the program either failing to terminate or running out of memory.
+
+Control structures
+
+In many common "eager" languages, if statements evaluate in a lazy fashion.
+ if a then b else c
+evaluates (a), then if and only if (a) evaluates to true does it evaluate (b), otherwise it evaluates (c). That is, either (b) or (c) will not be evaluated. Conversely, in an eager language the expected behavior is that
+ define f(x, y) = 2 * x
+ set k = f(d, e)
+will still evaluate (d) and (e) when computing (k) even though y is unused in function f. However, user-defined control structures depend on exact syntax, so for example
+ define g(a, b, c) = if a then b else c
+ l = g(h, i, j)
+(i) and (j) would both be evaluated in an eager language.  While in
+ l' = if h then i else j
+(i) or (j) would be evaluated, but never both.
+Lazy evaluation allows control structures to be defined normally, and not as primitives or compile-time techniques. If (i) or (j) have side effects or introduce run time errors, the subtle differences between (l) and (l') can be complex. As most programming languages are Turing-complete, it is possible to introduce user-defined lazy control structures in eager languages as functions, though they may depart from the language's syntax for eager evaluation: Often the involved code bodies (like (i) and (j)) need to be wrapped in a function value, so that they are executed only when called.
+Short-circuit evaluation of Boolean control structures is sometimes called lazy.
+
+Working with infinite data structures
+
+Many languages offer the notion of infinite data-structures. These allow definitions of data to be given in terms of infinite ranges, or unending recursion, but the actual values are only computed when needed. Take for example this trivial program in Haskell:
+In the function numberFromInfiniteList, the value of infinity is an infinite range, but until an actual value (or more specifically, a specific value at a certain index) is needed, the list is not evaluated, and even then it is only evaluated as needed (that is, until the desired index.)
+
+List-of-successes pattern
+
+Other uses
+
+In computer windowing systems, the painting of information to the screen is driven by expose events which drive the display code at the last possible moment. By doing this, windowing systems avoid computing unnecessary display content updates.Lazy and Speculative Execution Butler Lampson Microsoft Research OPODIS, Bordeaux, France 12 December 2006
+Another example of laziness in modern computer systems is copy-on-write page allocation or demand paging, where memory is allocated only when a value stored in that memory is changed.
+Laziness can be useful for high performance scenarios. An example is the Unix mmap function, which provides demand driven loading of pages from disk, so that only those pages actually touched are loaded into memory, and unneeded memory is not allocated.
+MATLAB implements copy on edit, where arrays which are copied have their actual memory storage replicated only when their content is changed, possibly leading to an out of memory error when updating an element afterwards instead of during the copy operation.MATLAB Central - Out of memory when assigning values to existing arrays?
+
+Implementation
+
+Some programming languages delay evaluation of expressions by default, and some others provide functions or special syntax to delay evaluation. In Miranda and Haskell, evaluation of function arguments is delayed by default. In many other languages, evaluation can be delayed by explicitly suspending the computation using special syntax (as with Scheme's "delay" and "force" and OCaml's "lazy" and "Lazy. The object representing such an explicitly delayed evaluation is called a lazy future. Perl 6 uses lazy evaluation of lists, so one can assign infinite lists to variables and use them as arguments to functions, but unlike Haskell and Miranda, Perl 6 doesn't use lazy evaluation of arithmetic operators and functions by default.
+
+Laziness and eagerness
+
+Controlling eagerness in lazy languages
+
+In lazy programming languages such as Haskell, although the default is to evaluate expressions only when they are demanded, it is possible in some cases to make code more eager—or conversely, to make it more lazy again after it has been made more eager. This can be done by explicitly coding something which forces evaluation (which may make the code more eager) or avoiding such code (which may make the code more lazy). Strict evaluation usually implies eagerness, but they are technically different concepts.
+However, there is an optimisation implemented in some compilers called strictness analysis, which, in some cases, allows the compiler to infer that a value will always be used. In such cases, this may render the programmer's choice of whether to force that particular value or not, irrelevant, because strictness analysis will force strict evaluation.
+In Haskell, marking constructor fields strict means that their values will always be demanded immediately. The seq function can also be used to demand a value immediately and then pass it on, which is useful if a constructor field should generally be lazy. However, neither of these techniques implements recursive strictness—for that, a function called deepSeq was invented.
+Also, pattern matching in Haskell 98 is strict by default, so the ~ qualifier has to be used to make it lazy. 
+
+Simulating laziness in eager languages
+
+In Python 2.x the range() function The entire list is stored in memory when the first assignment statement is evaluated, so this is an example of eager or immediate evaluation:
+In Python 3.x the range() function Elements of the range object are only generated when they are needed (e.g., when print(r3) is evaluated in the following example), so this is an example of lazy or deferred evaluation:
+From version 2.2 forward, Python manifests lazy evaluation by implementing iterators (lazy sequences) unlike tuple or list sequences. For instance (Python 2):
+In the .Lazy.microsoft.aspx The class can be easily exploited in F# using the lazy keyword, while the force method will force the evaluation. There are also specialized collections like Microsoft.Collections. 
+
+let fibonacci = Seq.unfold (fun (x, y) -> Some(x, (y, x + y))) (0I,1I)
+fibonacci |> Seq.nth 1000
+
+In C# and VB.Lazy is directly used. 
+
+public int Sum()
+{
+    int a = 0;
+    int b = 0; 
+    Lazy<int> x = new Lazy<int>(() => a + b);
+    a = 3;
+    b = 5;
+    return x.Value; // returns 8
+}
+
+Or with a more practical example: 
+
+// recursive calculation of the n'th fibonacci number
+public int Fib(int n)
+{
+   return (n == 1)? 1 : (n == 2)? 1 : Fib(n-1) + Fib(n-2);
+}
+public void Main()
+{
+    Console.WriteLine("Which Fibonacci number do you want to calculate?");
+    int n = Int32.Readline()); 
+    Lazy<int> fib = new Lazy<int>(() => Fib(n)); // function is prepared, but not executed
+    bool execute; 
+    if(n > 100)
+    {
+        Console. Do you really want to calculate this large number? [y/n]");
+        execute = (Console.Readline() == "y"); 
+    }
+    else execute = true;
+    if(execute) Console.Value); // number is only calculated if needed
+}
+
+Another way is to use the yield keyword: 
+
+// eager evaluation 
+public IEnumerable Fibonacci(int x)
+{
+    IList<int> fibs = new List<int>();
+    int prev = -1;
+    int next = 1;
+    for (int i = 0; i < x; i++)
+    {
+     int sum = prev + next;
+        prev = next;
+        next = sum;
+        fibs.Add(sum); 
+    }
+    return fibs;
+}
+// lazy evaluation 
+public IEnumerable LazyFibonacci(int x)
+{
+    int prev = -1;
+    int next = 1;
+    for (int i = 0; i < x; i++)
+    {
+        int sum = prev + next;
+        prev = next;
+        next = sum;
+        yield return sum;
+    }
+}
+
+
+
+Notes
+
+
+
+| title = Conception, Evolution, and Application of Functional Programming Languages
+| url = 
+| first = Paul
+| last = Hudak
+| authorlink = Paul Hudak
+| journal = ACM Computing Surveys
+| volume = 21
+| issue = 3
+| date = September 1989
+| year = 1989
+| pages = 383–385
+| ref = harv
+}}
+
+Further reading
+
+| last = Wadsworth
+| first = Christopher P.
+| authorlink = Christopher P. Wadsworth
+| year = 1971
+| title = Semantics and Pragmatics of the Lambda Calculus
+| ref = harv
+}} PhD thesis, Oxford University
+| title = A Lazy Evaluator
+| url = 
+| first1 = Peter
+| last1 = Henderson
+| authorlink1 = Peter Henderson (computer scientist)
+| first2 = James H.
+| last2 = Morris
+| authorlink2 = James H. Morris
+| journal = Conference Record of the Third ACM symposium on Principles of Programming Languages
+| date = January 1976
+| year = 1976
+| ref = harv
+}}
+| title = Cons should not evaluate its arguments
+| url = 
+| first1 = D. P.
+| last1 = Friedman
+| authorlink1 = Daniel P. Friedman
+| first2 = David S.
+| last2 = Wise
+| authorlink2 = David S. Wise
+| journal = Automata Languages and Programming Third International Colloquium
+| editors = S. Michaelson and R. Milner
+| publisher = Edinburgh University Press
+| year =  1976
+| ref = harv
+}}
+|url=
+|first=John
+|last=Launchbury
+|authorlink=John Launchbury
+|title= A Natural Semantics for Lazy Evaluation
+|journal=Proceedings of the 20th ACM SIGPLAN-SIGACT symposium on Principles of programming languages (POPL '93)
+|year=1993
+|doi=10.1145/158511.158618
+|ref=harv
+}}
+
+
+
+

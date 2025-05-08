@@ -1,0 +1,40 @@
+[[SAP NetWeaver Development Infrastructure]]
+
+CATEGORIES: SAP NetWeaver
+
+The SAP NetWeaver Development Infrastructure ("NWDI") combines the characteristics and advantages of local development environments – as usually provided in a Java environment – with a server-based development landscape that centrally provides a consistent development environment to development teams and supports the software development through the entire lifecycle of a product.
+The Developer Infrastructure mimics the functionality of ABAP Change and Transport System (CTS). The aim is to control deployment of components in the system landscape in a standardized manner. NWDI can be used to import Business Packages from SAP and enables development teams to modify standard applications.
+SAP NWDI is also known as SAP JDI (Java Development Infrastructure). The latter term is considered to be obsolete.
+
+==Components==
+
+NWDI consists of
+Sometimes people also count the following as part of NWDI
+The concept of the NWDI starts with a product and a software component (SC). The normal case is to have a one to one relationship between product and software component, one product is being developed and the relations between the components comprising the product are kept within a software component.
+A software component comprises one or more development components (DC). A development component consists of a normal project created with the Netweaver Developer Studio, i.e. a Dynpro application. The software component can also have dependencies to other SCs.
+All relations are defined in a SLD.
+Since all DCs that makes a product is kept inside a software component, the relations between the DCs are intact and versions of the different DCs are always consistent in the SC.
+To be able to develop a DC inside a SC, a track has to be set up in the NWDI to support that development.
+
+==Design Time Repository (DTR)==
+
+The DTR resembles a filesystem and can be accessed via WebDAV. File and folder permissions can be configured for users or groups.
+Each file is version controlled and it's possible to branch or merge files.
+The main repository folder (ws) contains folders representing tracks in the NWDI. The files checked into the NWDI are files with no local dependencies. For example, the classpath file in a project refers to local jar files and are of no use for the Component Build Service when the project is built on the server.
+
+==Component Build Service (CBS)==
+
+When a file is changed in the Netweaver Developer Studio, an activity is created together with a request. When the changes are done, the request is checked in to the DTR, the activity is then activated, which triggers the CBS to build the DC on the NWDI. Usually an ear or war file is created. When the activity is released from the Netweaver Developer Studio, the ear or war file is deployed to a development system via the CMS.
+When the CBS finds dependencies between DCs inside the Track, all dependent DCs are rebuilt automatically.
+It is possible to use the CBS to rebuild a DC or even a full SC.
+
+==Change Management Service (CMS)==
+
+Change Management Service is used to maintain tracks and keep track of what version is deployed on different servers in the landscape. CMS can also transfer code between tracks. This is often used when creating tracks supporting development of general components, development of main components and finally maintaining deployment of full solutions.
+Transferring code between tracks in order to achieve merge and joins between deployed production versions.
+The CMS consists of layers on each track.
+Each layer have a history and the possibility to go back to an earlier state.
+
+==External links==
+
+

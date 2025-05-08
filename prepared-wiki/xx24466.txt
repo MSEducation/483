@@ -1,0 +1,56 @@
+[[Locality of reference]]
+
+CATEGORIES: Computer memory, Software optimization
+
+In computer science, locality of reference, also known as the principle of locality, is a phenomenon describing the same value, or related storage locations, being frequently accessed. There are two basic types of reference locality[tpl]snd[/tpl] temporal and spatial locality. Temporal locality refers to the reuse of specific data, and/or resources, within a relatively small time duration. Spatial locality refers to the use of data elements within relatively close storage locations. Sequential locality, a special case of spatial locality, occurs when data elements are arranged and accessed linearly, such as, traversing the elements in a one-dimensional array.
+Locality is merely one type of predictable behavior that occurs in computer systems. Systems that exhibit strong locality of reference are great candidates for performance optimization through the use of techniques such as the cache, instruction prefetch technology for memory, or the advanced branch predictor at the pipelining of processors.
+
+==Types of locality==
+
+There are several different types of locality of reference:
+In order to benefit from the very frequently occurring temporal and spatial kind of locality, most of the information storage systems are hierarchical; see below.  The equidistant locality is usually supported by the diverse nontrivial increment instructions of the processors.  For the case of branch locality, the contemporary processors have sophisticated branch predictors, and on the base of this prediction the memory manager of the processor tries to collect and preprocess the data of the plausible alternatives.
+
+==Reasons for locality==
+
+There are several reasons for locality.  These reasons are either goals to achieve or circumstances to accept, depending on the aspect.  The reasons below are not disjoint; in fact, the list below goes from the most general case to special cases:
+
+==General locality usage==
+
+If most of the time the substantial portion of the references aggregate into clusters, and if the shape of this system of clusters can be well predicted, then it can be used for speed optimization.  There are several ways to benefit from locality using optimization techniques. Common techniques are:
+
+==Spatial and temporal locality usage==
+
+===Hierarchical memory===
+
+Hierarchical memory is a hardware optimization that takes the benefits of spatial and temporal locality and can be used on several levels of the memory hierarchy. Paging obviously benefits from temporal and spatial locality.  A cache is a simple example of exploiting temporal locality, because it is a specially designed faster but smaller memory area, generally used to keep recently referenced data and data near recently referenced data, which can lead to potential performance increases.
+Data in a cache does not necessarily correspond to data that is spatially close in the main memory; however, data elements are brought into cache one cache line at a time. This means that spatial locality is again important: if one element is referenced, a few neighboring elements will also be brought into cache. Finally, temporal locality plays a role on the lowest level, since results that are referenced very closely together can be kept in the machine registers. Programming languages such as C allow the programmer to suggest that certain variables be kept in registers.
+Data locality is a typical memory reference feature of regular programs (though many irregular memory access patterns exist). It makes the hierarchical memory layout profitable. In computers, memory is divided up into a hierarchy in order to speed up data accesses.  The lower levels of the memory hierarchy tend to be slower, but larger.  Thus, a program will achieve greater performance if it uses memory while it is cached in the upper levels of the memory hierarchy and avoids bringing other data into the upper levels of the hierarchy that will displace data that will be used shortly in the future.  This is an ideal, and sometimes cannot be achieved.
+Typical memory hierarchy (access times and cache sizes are approximations of typical values used [tpl]As of|2013|lc=on[/tpl] for the purpose of discussion; actual values and actual numbers of levels in the hierarchy vary):
+Modern machines tend to read blocks of lower memory into the next level of the memory hierarchy.  If this displaces used memory, the operating system tries to predict which data will be accessed least (or latest) and move it down the memory hierarchy.  Prediction algorithms tend to be simple to reduce hardware complexity, though they are becoming somewhat more complicated.
+
+===Matrix multiplication===
+
+A common example is matrix multiplication:
+ for i in 0..n
+   for j in 0..m
+     for k in 0..p
+       C[i][j] = C[i][j] + A[i][k] * B[k][j];
+When dealing with large matrices, this algorithm tends to shuffle data around too much.  Since memory is pulled up the hierarchy in consecutive address blocks, in the C programming language it would be advantageous to refer to several memory addresses that share the same row (spatial locality).  By keeping the row number fixed, the second element changes more rapidly.  In C and C++, this means the memory addresses are used more consecutively.
+One can see that since j affects the column reference of both matrices C and B, it should be iterated in the innermost loop (this will fix the row iterators, i and k, while j moves across each column in the row).  This will not change the mathematical result, but it improves efficiency.  By switching the looping order for j and k, the speedup in large matrix multiplications becomes dramatic.  (In this case, 'large' means, approximately, more than 100,000 elements in each matrix, or enough addressable memory such that the matrices will not fit in L1 and L2 caches.)
+Temporal locality can also be improved in the above example by using a technique called blocking.  The larger matrix can be divided into evenly-sized sub-matrices, so that the smaller blocks can be referenced (multiplied) several times while in memory.
+ for (ii = 0; ii < SIZE; ii += BLOCK_SIZE)
+   for (kk = 0; kk < SIZE; kk += BLOCK_SIZE)
+     for (jj = 0; jj < SIZE; jj += BLOCK_SIZE)
+       for (i = ii; i < ii + BLOCK_SIZE && i < SIZE; i++)
+         for (k = kk; k < kk + BLOCK_SIZE && k < SIZE; k++)
+           for (j = jj; j < jj + BLOCK_SIZE && j < SIZE; j++)
+             C[i][j] = C[i][j] + A[i][k] * B[k][j];
+The temporal locality of the above solution is provided because a block can be used several times before moving on, so that it is moved in and out of memory less often.  Spatial locality is improved because elements with consecutive memory addresses tend to be pulled up the memory hierarchy together.
+
+==See also==
+
+==Bibliography==
+
+==References==
+
+

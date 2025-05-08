@@ -1,0 +1,57 @@
+[[5ESS switch]]
+
+CATEGORIES: Alcatel-Lucent, Telephone exchange equipment
+
+The 5ESS Switch is a Class 5 telephone electronic switching system developed by Western Electric and now sold by Western Electric's descendant, Alcatel-Lucent. This digital central office telephone circuit switching system is used by many telecommunications service providers.
+
+==History==
+
+The 5ESS Class 5 Switch first appeared in Seneca, Illinois (815 Area Code) in 1982, and slowly replaced the 1ESS switch and other electromechanical and analog systems in the 1980s and 1990s.  The 5ESS was also used as a Class 4 telephone switch or as a mixed Class 4/5 in markets too small for a 4ESS switch.  Approximately half of all US telephone exchanges are serviced by 5ESS switches.  The 5ESS is also exported internationally, and manufactured outside of the US under license.
+The development effort for 5ESS required 5000 employees, producing 100 million lines of code, with 100 million lines of header and makefiles. Evolution of the system took place over 20 years, while three releases were often being developed simultaneously (each taking about three years to develop).
+A 5ESS-2000 version, introduced in the 1990s, increased the capacity of the switching module (SM), with more peripheral modules and more optical links per SM to the communications module (CM; see below).  A follow-on version, the 5ESS-R/E, was in development during the late 1990s but did not reach market.
+Lucent Technologies (now part of Alcatel-Lucent) was formerly the AT&T Network Systems division of AT&T, which in turn was formerly known as Western Electric. The 5ESS came to market as the Western Electric No. 5 ESS, later 5ESS, 5ESS-2000, 5E-XC and is marketed as the Alcatel-Lucent 5ESS.
+
+==Architecture==
+
+5ESS has three main kinds of Module: AM is Administrative Module, which contains the central computers.  CM is Communications Module, which is the central time-divided switch of the system.  SM is Switching Module which in most exchanges is the majority of equipment.  SM performs multiplexing, analog/digital coding, and other work to interface with the outside world.  Each has a controller, a small computer whose CPUs and memories, like most common equipment of the exchange, are duplicated for redundancy.  Distributed system lessens the load on the Central Administrative Module (AM) or main computer.  
+Power for all circuitry is distributed as −48VDC (nominal) and converted locally to logic or telephone voltages.
+
+===Switching Module (SM)===
+
+Each SM handles several hundred to few thousand telephone lines or several hundred trunks or mixture thereof.  Each has its own processors, also called Module Controllers, which perform most call handling processes, using their own memory boards.  Originally the peripheral processors were to be Intel 8086, but those proved inadequate and the system was introduced with Motorola 68000 series processors.  The name of the cabinet that houses this equipment was changed at the same time from Interface Module to Switching Module.  
+Peripheral units are on shelves in the SM.  In most exchanges the majority are Line Units (LU) and Digital Line Trunk Units (DLTU).  Each SM has Local Digital Service Units (LDSU) to provide various services to lines and trunks in the SM, including tone generation and detection.  Global Digital Service Units (GDSU) provide less-frequently used services to the entire exchange.  The Time Slot Interchanger (TSI) in the SM uses random-access memory to delay each speech sample to fit into a time slot which will carry its call through the exchange to another or, in some cases, the same SM.  
+T-carrier spans are terminated, originally one per card but in later models usually two, in Digital Line Trunk Units (DLTU) which concentrate their DS0 channels into the TSI.  These may serve either interoffice trunks or, using Integrated Subscriber Loop Carrier, subscriber lines. Larger DS3 signals can also have their DS0 signals switched in Digital Network Unit SONET (DNUS) units, without demultiplexing them into DS1. 
+Newer SM's have DNUS (DS3) and Optical OIU interfaces OC12 with a large amount of capacity. The switch keep getting more powerful as time goes on. 
+SMs have Dual Link Interface (DLI) cards to connect them by multi-mode optical fibers to the Communications Modules for time-divided switching to other SMs.  These links may be short, for example within the same building, or may connect to SMs in remote locations.  Calls among the lines and trunks of a particular SM needn't go through CM, and an SM located remotely can act as distributed switching, administered from the central AM.  Each SM has two Module Controller/Time Slot Interchange (MCTSI) circuits for redundancy.  
+In contrast to Nortel's DMS-100 which uses individual line cards with a codec, most lines are on two-stage analog space-division concentrators or Line Units, which connect as many as 512 lines, as needed, to the 8 Channel cards that each contain 8 codecs, and to high-level service circuits for ringing and testing.  Both stages of concentration are included on the same GDX (Gated Diode Access) board.  Each GDX board serves 32 lines, 16 A links and 32 B links.  Limited availability saves money with incompletely filled matrixes.  The Line Unit can have up to 16 GDX boards connecting to the channel boards by shared B links, but in offices with heavier traffic for lines a lesser number of GDX boards are equipped.
+ISDN lines are served by individual line cards in an ISLU (Integrated Services Line Unit).
+
+===Administrative Module (AM)===
+
+AM is a dual processor mini main frame computer of the AT&T 3B series, running UNIX-RTR.  AM contains the hard drives and tape drives used to load and backup the central and peripheral processor software and translations.  Disk drives were originally several 300 megabyte SMD multiplatter units in a separate frame. Now they consist of several redundant multi-gigabyte SCSI drives that each reside on a card.  Tape drives were originally half inch open reel at 6250 bits per inch, which were replaced in the early 1990s with 4 mm Digital Audio Tape cassettes.
+The Administrative Module is built on the 3B21D platform and is used to load software to the many microprocessors throughout the switch and to provide high speed control functions.  It provides messaging and interface to control terminals.  The AM of a 5ESS consists of the 3B20x or 3B21D processor unit, including I/O, disks, and tape drive units.  Once the 3B21D has loaded the software into the 5ESS and the switch is activated, packet switching takes place without further action by the 3B21D.  Because the processor has duplex hardware, one active side, and one standby side, a failure of one side of the processor will not necessarily result in a loss of switching.
+
+===Communication Module (CM)===
+
+The oddly named Communications Modules form the central time switch of the exchange.  5ESS runs on a Time-Space-Time (TST) topology in which the Time-Slot-Interchangers (TSI) in the Switching Modules (SM) assign each phone call to a time slot for routing through the CM.
+CMs perform time-divided switching and are provided in pairs; each module (cabinet) belonging to Office Network and Timing Complex (ONTC) 0 or 1, roughly corresponding to the switch planes of other designs.  Each SM has four optical fiber links, two connecting to a CM belonging to ONTC 0 and two to ONTC 1.  Each optical link consists of two multimode optical fibers with ST connectors to plug into transceivers plugged into backplane wiring at each end.  CMs receive time-multiplexed signals on the receive fiber and send them to the appropriate destination SM on the send fiber.
+
+===Very Compact Digital Exchange===
+
+The VCDX (Very Compact Digital eXchange) was marketed to small telephone companies and was used in some instances as a large PBX.  It consisted of a single Switching Module, had no Communications Module, and used a Sun Microsystems workstation, which was actually running a 3B20 processor emulation as its Administrative Module.
+
+===Signaling===
+
+The 5ESS has two different signaling architectures Common Network Interface (CNI) Ring and Packet Switching Unit (PSU) Based SS7 Signaling.
+
+==OAMP==
+
+The system is administered through an assortment of teletypewriter "Channels" (also called the system console) such as the TEST channel and Maintenance channel. Typically provisioning is done either through a command line interface (CLI) called RCV:APPTEXT, or through the menu-driven RCV:MENU,APPRC program. RCV stands for Recent Change/Verification, and can be accessed through Switching Control Center System. Most service orders, however, are administered through Recent Change Memory Administration Center (RCMAC).  In the international market, this terminal interface has localization to provide locale specific language and command name variations on the screen and printer output.
+
+==See also==
+
+==External links==
+
+==References==
+
+

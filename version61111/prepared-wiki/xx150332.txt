@@ -1,0 +1,31 @@
+[[McCarthy Formalism]]
+
+CATEGORIES: Computability theory
+
+In computer science and recursion theory the McCarthy Formalism (1963) of computer scientist John McCarthy clarifies the notion of recursive functions by use of the IF-THEN-ELSE construction common to computer science, together with four of the operators of primitive recursive functions: zero, successor, equality of numbers and composition. The conditional operator replaces both primitive recursion and the mu-operator.
+
+==Introduction==
+
+===McCarthy's notion of conditional expression===
+
+McCarthy (1960)The 1963 reference has not been located. described his formalism this way:
+
+===Minsky's explanation of the "formalism"===
+
+In his 1967 Computation: Finite and Infinite Machines, Marvin Minsky in his §10.6 Conditional Expressions: The McCarthy Formalism describes the "formalism" as follows:
+Minsky uses the following operators in his demonstrations:Minsky (1967) does not include the identity operator in his description of primitive recursive functions. Why this is the case is not known.
+From these he shows how to derive the predecessor function (i.e. DECREMENT); with this tool he derives the minimization operator necessary for "general" recursion, as well as primitive-recursive definitions.
+
+===Expansion of IF-THEN-ELSE to the CASE operator===
+
+In his 1952 Introduction of Meta-Mathematics Stephen Kleene provides a definition of what it means to be a primitive recursive function:
+In other words, given a "basis" function (it can be a constant such as 0), primitive recursion uses either the base or the previous value of the function to produce the value of the function; primitive recursion is sometimes called mathematical induction
+Minsky (above) is describing a two-CASE operator. A demonstration that the nested IF-THEN-ELSE—the "case statement" (or "switch statement")--is primitive recursive can be found in Kleene 1952:229[ref]Kleene's 5 primitive recursion "schema" include the following:
+Boolos-Burgess-Jeffrey 2002 observe that in a particular instance the CASE operator, or a sequence of nested IF-THEN-ELSE statements, must be both mutually exclusive, meaning that only one "case" holds (is true), and collectively exhaustive, meaning every possible situation or "case" is "covered". These requirements are a consequence of the determinacy of Propositional logic; the correct implementation requires the use of truth tables and Karnaugh maps to specify and simplify the cases; see more at Propositional formula. The authors point out the power of "definition by cases":
+They prove, in particular, that the processes of substitution, graph relation (similar to the identity relation that plucks out (the value of) a particular variable from a list of variables), negation (logical NOT), conjunction (logical AND), disjunction (logical OR), bounded universal quantification, or bounded existential quantification can be used together with definition by cases to create new primitive recursive functions (cf Boolos-Burgess-Jeffrey 2002:74-77).
+
+==Notes==
+
+==References==
+
+

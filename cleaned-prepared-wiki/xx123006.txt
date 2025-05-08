@@ -1,0 +1,50 @@
+[[Sandcastle (software)]]
+
+CATEGORIES: Free documentation generators, Microsoft Visual Studio
+
+Sandcastle is a documentation generator from Microsoft that automatically produces MSDN style reference documentation out of reflection information of .  It can also be used to produce compiled user documentation from Microsoft Assistance Markup Language (MAML) with the same look and feel as reference documentation.
+
+
+
+Sandcastle is a set of command line programs, configuration files, build components and XSLT transformation files that work together to convert XML-based documentation into help topics that are fit for viewing in a help system.  Sandcastle is typically used to automatically generate web-ready, XML-compliant HTML documentation in one of three built-in presentation styles from .  The resulting HTML files are then used as input to tools such as the HTML Help Workshop to produce compiled help for distribution with a software application.
+Sandcastle currently features a lightweight graphical user interface (GUI) as an alternative to the MSBuild project, batch script and Windows PowerShell scripts that are also provided.  Several community GUI tools are also available for Sandcastle, providing additional features and simplifying its usage.Sandcastle GUIs from CommunitySandcastle Help
+The Visual Studio SDKs for 2005 and 2008 include older CTP versions of Sandcastle,Announcing Sandcastle: Sandcastle blog although the latest release is available on CodePlex.
+
+Sandcastle tools
+
+Sandcastle consists of several programs, not all of which are used in the typical help build process.  Commonly used tools are listed below.
+
+Community tools
+
+Because in its current state Sandcastle by itself is rather complex to use, people have come up with tools and scripts that can automate the task for them. This section contains a list of such tools and scripts.
+
+Output
+
+Sandcastle produces XML-based HTML files in a chosen presentation style.  (This does not mean, however, that the files are XHTML compliant.)  The HTML is defined by XSL transformation files that are included in the particular presentation style being used.  A build normally uses only one presentation style at a time.
+The HTML files that Sandcastle produces are either conceptual (user) documentation, being the result of a transformation from Microsoft Assistance Markup Language (MAML) topics, or they are reference documentation, which is automatically generated from reflection data and XML documentation comments.  These two different types of HTML output share the same presentation style and may be compiled together to produce mixed user/reference documentation.
+The processes for building conceptual documentation and reference documentation are similar, with one of the main differences being that conceptual documentation does not require the MRefBuilder program to be used.
+Conceptual documentation consists of topics written using a MAML document type schema such as how to, walk-through, troubleshooting and several others.  Sandcastle provides a conceptual build component stack (conceptual.
+Reference documentation is generated automatically for managed Application Programming Interfaces (APIs) from reflection data and XML documentation comments.  A "doc model" XSL transformation, provided by the chosen presentation style, is applied to define the files that will be generated.  Sandcastle provides a reference build component stack (sandcastle.
+
+Compiled help
+
+Sandcastle does not produce compiled help output itself; although, the HTML files that it produces can be used as input to HTML help compilers such as the HTML Help Workshop and Microsoft Help 2.
+For example, the typical Help 1.x build process starts by running MrefBuilder.  The reflection file is then processed by the XslTransform.  Next, an XML-based topic manifest is generated and used by the BuildAssembler.  An XML-based table of contents (TOC) file is generated and used by CHMBuilder.  Finally, the HTML Help workshop is used to generate a compiled help file (.
+Some tools are used multiple times during a single build, like XslTransform and BuildAssembler.  Depending upon the requirements, other tools and XSL transformations may be used at various stages during the process to modify Sandcastle's output.
+
+Background
+
+The Sandcastle application was developed by Microsoft to create a scalable and performing documentation generator for their API documentation.  Microsoft released Sandcastle as a Community Technology Preview (CTP) version in July 2006, a few days before NDoc was declared dead Sandcastle - Microsoft CTP of a Help CHM file generator on the tails of the death of NDocNDoc 2 is Officially Dead The author of NDoc, Kevin Downs, cited in an email sent through his mailing list reasons for discontinuing development of his popular tool as a lack of community support, both financially and as development contributions, an automated mail-bomb attack on his public email address and the NDoc2 mailing list address, and also his impression that Sandcastle "will become the de-facto standard and that NDoc will slowly become a stagnant side-water."
+Sandcastle averaged 217 downloads per day Sandcastle stats during the month of September 2010, making it one of the top 25 most downloaded projects on CodePlex.
+On June 6, 2008 the SandCastle project was removed from CodePlex websiteSandcastle project removed from Codeplex after a discussion thread on the CodePlex site pointed out that source code was not available; despite CodePlex requiring this and the SandCastle project being touted as "open source".
+
+History
+
+
+
+
+
+
+
+
+

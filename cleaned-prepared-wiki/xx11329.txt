@@ -1,0 +1,116 @@
+[[Sed]]
+
+CATEGORIES: Cross-platform software, Free compilers and interpreters, Pattern matching programming languages, Scripting languages, Standard Unix programs, Text-oriented programming languages, Unix text processing utilities, Unix SUS2008 utilities
+
+sed (stream editor) is a Unix utility that parses and transforms text, using a simple, compact programming language. sed was developed from 1973 to 1974 by Lee E. McMahon of Bell Labs,
+and is available today for most operating systems. sed was based on the scripting features of the interactive editor ed ("editor", 1971) and the earlier qed ("quick editor", 1965–66). sed was one of the earliest tools to support regular expressions, and remains in use for text processing, most notably with the substitution command. Other options for doing "stream editing" include AWK and Perl.
+
+History of sed
+
+sed is one of the very early Unix commands built for command line processing of data files.  It evolved as the natural successor to the popular grep command. The original motivation was an analog of grep (g/re/p) for substitution, hence "g/re/s". Foreseeing that further special-purpose programs for each command would also arise, such as g/re/d, McMahon wrote a general-purpose line-oriented stream editor, which became sed. The syntax for sed, notably the use of / for pattern matching, and s/// for substitution, originated with ed, the precursor to sed, which was in common use at the time, and the regular expression syntax has influenced other languages, notably ECMAScript and Perl. Later the more powerful language AWK developed, and these functioned as cousins, allowing powerful text processing to be done by shell scripts. sed and AWK are often cited as progenitors and inspiration for Perl, and influenced Perl's syntax and semantics, notably in the matching and substitution operators.
+GNU sed added several new features, of which the best-known is in-place editing of files. Super-sed is an extended version of sed that includes regular expressions compatible with Perl. Another variant of sed is minised, originally reverse-engineered from 4.1BSD sed by Eric S. Raymond and currently maintained by René Rebe. minised was used by the GNU Project until the GNU Project wrote a new version of sed based on the new GNU regular expression library. The current minised contains some extensions to BSD sed but is not as feature-rich as GNU sed. Its advantage is that it is very fast and uses little memory.
+
+Mode of operation
+
+sed is a line-oriented text processing utility: it reads text, line by line, from an input stream or file, into an internal buffer called the pattern space. Each line read starts a cycle. To the pattern space, sed applies one or more operations which have been specified via a sed script. sed implements a programming language with about 25 commands that specify the operations on the text. For each line, after running the script sed ordinarily outputs the pattern space (the input line as modified by the script) and begins the cycle again with the next line.  Other end-of-script behaviors are available through sed options and script commands, e.g. d to delete the pattern space, q to quit,  N to add the next line to the pattern space immediately, and so on.  Thus a sed script corresponds to the body of a loop that iterates through the lines of a stream, where the loop itself and the loop variable (the current line number) are implicit and maintained by sed.
+The sed script can either be specified on the command line (-e option) or read from a separate file (-f option). Commands in the sed script may take an optional address, in terms of line numbers or regular expressions. The address determines when the command is run. For example, 2d would only run the d (delete) command on the second input line (printing all lines but the second), while /^ /d would delete all lines beginning with a space. A separate special buffer, the hold space, may be used by a few sed commands to hold and accumulate text between cycles. sed's command language has only two variables (the "hold space" and the "pattern space") and GOTO-like branching functionality; nevertheless, the language is Turing-complete, and esoteric sed scripts exist for games such as sokoban, arkanoid,  chess,
+A main loop executes for each line of the input stream, evaluating the sed script on each line of the input. Lines of a sed script are each a pattern-action pair, indicating what pattern to match and which action to perform, which can be recast as a conditional statement. Because the main loop, working variables (pattern space and hold space), input and output streams, and default actions (copy line to pattern space, print pattern space) are implicit, it is possible to write terse one-liner programs. For example, the sed program given by:
+ 10q
+will print the first 10 lines of input, then stop.
+
+Usage
+
+Substitution command
+
+The following example shows a typical, and the most common, use of sed, for substitution; this usage was indeed the original motivation for sed:
+In some versions of sed, the expression must be preceded by a -e to indicate that an expression follows. The s stands for substitute, while the g stands for global, which means that all matching occurrences in the line would be replaced. The regular expression (i.e. pattern) to be searched is placed after the first delimiting symbol (slash here) and the replacement follows the second symbol. Slash (/) is the conventional symbol, originating in the character for "search" in ed, but any other could be used to make syntax more readable if it does not occur in the pattern or replacement (see below); this is useful to avoid "leaning toothpick syndrome".
+The substitution command, which originates in search-and-replace in ed, implements simple parsing and templating. The regexp provides both pattern matching and saving text via sub-expressions, while the replacement can be either literal text, or a format string containing the characters & for "entire match" or the special escape sequences \1 through \9 for the nth saved sub-expression. For example, sed -r "s/(cat|dog)s?/\1s/g" replaces all occurrences of "cat" or "dog" with "cats" or "dogs", without duplicating an existing "s": (cat|dog) is the 1st (and only) saved sub-expression in the regexp, and \1 in the format string substitutes this into the output.
+
+Other sed commands
+
+Besides substitution, other forms of simple processing are possible, using some 25 sed commands. For example, the following uses the d command to delete lines that are either blank or only contain spaces:
+This example uses some of the following regular expression metacharacters (sed supports the full range of regular expressions):
+Complex sed constructs are possible, allowing it to serve as a simple, but highly specialised, programming language. Flow of control, for example, can be managed by the use of a label (a colon followed by a string) and the branch instruction b. An instruction b followed by a valid label name will move processing to the block following that label.
+
+sed used as a filter
+
+Under Unix, sed is often used as a filter in a pipeline:
+That is, a program such as "generate_data" generates data, and then sed makes the small change of replacing x with y.
+In command line use, the quotes around the expression are not required, and are only necessary if the shell would otherwise not interpret the expression as a single word (token). For the expression s/x/y/g there is no ambiguity, and the following is also allowed:
+However, quotes are usually included for clarity, and since they are often necessary, notably for whitespace (e.g., 's/x x/y y/'). Most often single quotes are used, to avoid having the shell interpret $ as a shell variable. Double quotes are used, such as "s/$1/$2/g", to allow the shell to substitute for a command line argument or other shell variable.
+
+File-based sed scripts
+
+It is often useful to put several sed commands, one command per line, into a script file such as subst.sed, and then use the -f option to run the commands (such as s/x/y/g) from the file:
+Any number of commands may be placed into the script file, and using a script file also avoids problems with shell escaping or substitutions.
+Alternatively, by adding a "shebang line" and making the script file executable, a sed script can be directly executed. For example, a file subst.sed can be created with contents:
+The file can then be executed directly:
+
+In-place editing
+
+The -i option, introduced in GNU sed, allows in-place editing of files (actually, a temporary output file is created in the background, and then the original file is replaced by the temporary file). For example:
+
+Examples
+
+Hello, world! example
+
+This "Hello, world!" script is in a file (e.g., script.txt infile", where "infile" is the input text file. The script changes "infile" line #1 to "Hello, world!" and then quits, printing the result before sed exits. Any input lines past line #1 are not read, and not printed. So the sole output is "Hello, world!".
+The example emphasizes many key characteristics of sed:
+
+Other simple examples
+
+Below follow various sed scripts; these can be executed by passing as an argument to sed, or put in a separate file and executed via -f or by making the script itself executable.
+To replace any instance of a certain word in a file with "REDACTED", such as an IRC password, and save the result:
+To delete any line containing the word "yourword" (the address is '/yourword/'):
+To delete all instances of the word "yourword":
+To delete two words from a file simultaneously:
+To express the previous example on one line, such as when entering at the command line, one may join two commands via the semicolon:
+
+Multiline processing example
+
+In the next example, sed, which usually only works on one line, removes newlines from sentences where the second line starts with one space.
+Consider the following text:
+ This is my cat,
+  whose name is Betty.
+ This is my dog,
+  whose name is Frank.
+ This is my fish,
+ whose name is George.
+ This is my goat,
+  whose name is Adam.
+The sed script below will turn the text above into the following text. Note that the script affects only the input lines that start with a space:
+ This is my cat, whose name is Betty.
+ This is my dog, whose name is Frank.
+ This is my fish,
+ whose name is George.
+ This is my goat, whose name is Adam.
+The script is:
+ N
+ s/\n / /
+ P
+ D
+This is explained as:
+This can be expressed on a single line via semicolons:
+ sed 
+
+Limitations and alternatives
+
+While simple and limited, sed is sufficiently powerful for a large number of purposes. For more sophisticated processing, more powerful languages such as awk or Perl are used instead. These are particularly used if transforming a line in a way more complicated than a regex extracting and template replacement, though arbitrarily complicated transforms are in principle possible by using the hold buffer.
+Conversely, for simpler operations, specialized Unix utilities such as grep (print lines matching a pattern), head (print the first part of a file), tail (print the last part of a file), and tr (translate or delete characters) are often preferable. For the specific tasks they are designed to carry out, such specialized utilities are usually simpler, clearer, and faster than a more general solution such as sed.
+The ed/sed commands and syntax continue to be used in descendent programs, such as the text editors vi and vim. An analog to ed/sed is sam/ssam, where sam is the Plan 9 editor, and ssam is a stream interface to it, yielding functionality similar to sed.
+
+
+
+
+
+Further reading
+
+
+
+Tutorials
+
+Examples
+
+Other links
+
+

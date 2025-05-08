@@ -1,0 +1,75 @@
+[[Zilog Z800]]
+
+CATEGORIES: Zilog microprocessors
+
+The Zilog Z800 was a 16-bit microprocessor designed by Zilog to be released in 1985. It was instruction compatible with their existing Z80, and differed primarily in having on chip cache and MMU for a 16 MB address range, and also a huge number of new more orthogonal instructions and addressing modes. However, Zilog essentially ignored the Z800 in favour of their 32-bit Z80000 and the Z800 never entered mass production. After more than five years had elapsed since it was originally introduced, the effort was redubbed the Z280 in 1986.
+
+Short description
+
+There was no expansion of the register set but the registers and instructions were significantly orthogonalized in order to make them more general purpose and powerful. Many new 8-bit and 16-bit operations were added, and the HL, IX, and IY registers were upgraded from their rather limited possibilities as accumulators in the Z80 to more versatile accumulators. In addition to the register operands possible in the Z80, they could be used with immediate data, direct address, register indirect, or indexed operands, even program counter-relative. Eight-bit operations had even more possibilities, including stack pointer-relative addressing and a choice of 8-bit or 16-bits immediate offsets.
+The address bus was expanded to 24-bits to address 16 MB of memory. The chip was offered with either a 19-bit external bus for 512kB RAM, or a full 24-bit bus for 16MB RAM, the advantage to the smaller bus was a smaller 40-pin package. Like the Z80 before it, the Z800 retained the internal DRAM controller and clock, but added 256 bytes of RAM that could be used either as "scratchpad" RAM, or as a cache. When used in cache mode the programmer could configure it as a data or instruction cache, or both, and the internal memory controller then used it to reduce access to (slower) external memory.
+There were also ambitious provisions for multiprocessing and either loosely or tightly coupled slave processors, with or without shared global memory. This was known as the extended processing architecture and extended processing units (EPU).
+Another change was the addition of an optional 16-bit data bus, which doubled the rate at which it could access memory if set up properly. Combined with the two address bus sizes this meant that the chip was offered in a total of four versions:
+
+Reason for the failure
+
+The Z800 was, in most ways, a mini computer inspired "super Z80" that would run existing, and larger, programs at considerably higher speeds. However the address and data buses were multiplexed and the chip was, also in other respects, somewhat complicated to program and interface to. Calculation of exact execution times was also very much harder to do than for the Z80. Moreover, the plain Z80 were good enough for most applications at the time so the extra computing power was, in many cases, not worth the added complexity. Bad marketing seems to have hurt the product as well. Hitachi developed the HD64180, which is a less ambitious Z80 derivative that has had great success, probably because it is almost as simple to program and interface to as the original Z80.
+A slightly different variant of the same design, the Z180, has been sold by Zilog for over twenty years, still maintained and developed.
+
+More successful Z80 derivatives (from Zilog)
+
+Apart from the successful Z180 (developed largely by Hitachi) other attempts were made to extend the Z80 architecture, the 32-bit Z380 (introduced 1994) was a commercial disappointment but is still in production for some specific telecom applications. On the other hand, the fast 24-bit eZ80 (introduced 2001) has been both commercially successful and won engineering awards. Unlike the Z800, Z280, and Z380, the eZ80 does not introduce many new instructions or addressing modes, in comparison to the original Z80, but instead primarily extends the 16-bit registers of the Z80 to 24 bits wide. This enables it to reach 256 times as much memory, and adds a fully pipelined execution unit that executes Z80 opcodes 4× as fast as the original.
+
+Notes
+
+
+
+| title       = Z800 MPU Family Preliminary Product Specification (00-2259-01)
+|date=September 1983
+| publisher   = Zilog
+| location    = San Jose, California
+}}
+| url         = 
+| title       = Zilog Z800 microprocessor chip quick description
+| accessdate  = 2009-07-16
+| last        = Olsen
+| first       = Dave
+| authorlink  = 
+| date        = 1985-01-08
+}}
+| url         = 
+| title       = Z800 preliminary specs
+| accessdate  = 2009-07-16
+| last        = Skot
+| first       = Jeff
+| authorlink  = 
+| date        = 1985-05-16
+}}
+
+Further reading
+
+| url         = 
+| title       = R800 additional opcodes over Z80
+| accessdate  = 2009-07-16
+| last        = Harston
+| first       = J.G.
+| authorlink  = 
+| date        = 2008-06-04
+}}
+| url         = 
+| title       = Z80 Opcode Map
+| accessdate  = 2009-07-16
+| last        = Harston
+| first       = J.G.
+| authorlink  = 
+| date        = 1997-09-09
+}}
+| url         = 
+| title       = Full Z80 Opcode List Including Undocumented Opcodes
+| accessdate  = 2009-07-16
+| last        = Harston
+| first       = J.G.
+| authorlink  = 
+| date        = 1998-04-15
+}}
+

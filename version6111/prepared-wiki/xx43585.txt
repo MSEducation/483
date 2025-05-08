@@ -1,0 +1,20 @@
+[[Rc]]
+
+CATEGORIES: Plan 9 from Bell Labs, Inferno (operating system), Free system software, Unix shells, Scripting languages, Text-oriented programming languages, Procedural programming languages, Programming languages created in 1989
+
+rc is the command line interpreter for Version 10 Unix and Plan 9 from Bell Labs operating systems. It resembles the Bourne shell, but its syntax is somewhat simpler. It was created by Tom Duff, who is better known for an unusual C programming language construct ("Duff's device").
+A port of the original rc to Unix is part of Plan 9 from User Space.  A rewrite of rc for Unix-like operating systems by Byron Rakitzis is also available but includes some incompatible changes.
+Rc uses C-like control structures instead of ALGOL-like, as the original Bourne shell uses, except that it uses a construct if not instead of else and has a Bourne-like for loop to iterate over lists. In rc all variables are lists of strings, which eliminates the need for constructs like "$@".
+==Influences== 
+
+===es===
+
+es (for "extensible shell") is an Open source, command line interpreter developed by Rakitzis and Paul Haahr,[tpl]cite book | url=http://books.google.com.au/books?id=iEK6eQQwOF0C&pg=PA43&redir_esc=y#v=onepage&q&f=false | title=Spatial Analytical Perspectives on GIS[/tpl] that uses a scripting language syntactically similar  to the rc shell.[tpl]cite web | url=http://manpages.ubuntu.com/manpages/hardy/man1/es.1.html |title=Ubuntu Manpage: es - extensible shell |publisher=Manpages.ubuntu.com |date=1992-03-05 |accessdate=2012-08-24[/tpl][tpl]cite web | url=http://foldoc.org/Extensible+Shell |title=Extensible Shell |publisher=FOLDOC |date= |accessdate=2012-08-24[/tpl]  It was originally based on code from Byron Rakitzis's clone of rc for Unix[tpl]cite web | url=http://luv.asn.au/overheads/shells-talk.html |title=Shells Available for Linux |publisher=LUV |date= |accessdate=2012-08-24[/tpl][tpl]cite web|last=Jones|first=Tim|title=Evolution of shells in Linux|url=http://www.ibm.com/developerworks/library/l-linux-shells/|publisher=IBM|accessdate=14 March 2014[/tpl]
+Extensible shell is intended to provide a fully functional programming language as a Unix shell.[tpl]cite web | url=http://nnc3.com/lj/LJ/LJ12/0062.html |title=Linux Journal 12: What's GNU |date= |accessdate=2012-08-24[/tpl]  The bulk of es development occurred in the early 1990s, after the shell was introduced at the Winter 1993 USENIX conference in San Diego,Es: A shell with higher-order functions by Byron Rakitzis, NetApp, Inc, and Paul Haahr, Adobe Systems Incorporated; Archived at Archive.Org.  Official releases appear to have ceased after 0.9-beta-1 in 1997, and standard es lacks features as compared to more popular shells, such as zsh and bash.[tpl]cite web | url=http://www.faqs.org/faqs/unix-faq/shell/shell-differences/ |title=UNIX shell differences| publisher=Faqs.org |date= | accessdate=2012-08-24[/tpl]
+
+==Examples==
+
+For example, the Bourne shell script
+is expressed in rc as
+Because if and if not are two different statements, they must be grouped in order to be used in certain situations.
+Rc also supports more dynamic piping:

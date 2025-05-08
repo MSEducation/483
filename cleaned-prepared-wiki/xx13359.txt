@@ -1,0 +1,27 @@
+[[10BASE2]]
+
+CATEGORIES: Ethernet
+
+10BASE2 (also known as cheapernet, thin Ethernet, thinnet, and thinwire) is a variant of Ethernet that uses thin coaxial cable (RG-58A/U or similar, as opposed to the thicker RG-8 cable used in 10BASE5 networks), terminated with BNC connectors. During the mid to late 1980s this was the dominant 10 Mbit/s Ethernet standard, but due to the immense demand for high speed networking, the low cost of Category 5 Ethernet cable, and the popularity of 802.11 wireless networks, both 10BASE2 and 10BASE5 have become increasingly obsolete, though they still exist in some locations.
+
+Name origination
+
+The name 10BASE2 is derived from several characteristics of the physical medium. The 10 comes from the maximum transmission speed of 10 Mbit/s (millions of bits per second).  The BASE stands for baseband signalling, and the 2 supposedly refers to the maximum segment length of 200 meters, though in practical use it can only run up to 185 meters. (The IEEE rounded 185 up to 200 to come up with the name 10BASE2, for consistency with the general standard).
+
+Network design
+
+10BASE2 coax cables have a maximum length of 185 meters (607 ft). The maximum practical number of nodes that can be connected to a 10BASE2 segment is limited to 30. In a 10BASE2 network, each segment of cable is connected to the transceiver (which is usually built into the network adaptor) using a BNC T-connector, with one segment connected to each female connector of the T. The T-connector must be plugged directly into the network adaptor with no cable in between.
+As is the case with most other high-speed buses, Ethernet segments have to be terminated with a resistor at each end. Each end of the cable has a 50 ohm (Ω) resistor attached. Typically this resistor is built into a male BNC and attached to the last device on the bus. This is most commonly connected directly to the T-connector on a workstation though it does not technically have to be. A few devices such as Digital's DEMPR and DESPR had a built-in terminator and so could only be used at one physical end of the cable run. If termination is missing, or if there is a break in the cable, the AC signal on the bus is reflected, rather than dissipated, when it reaches the end. This reflected signal is indistinguishable from a collision, and so no communication would be able to take place.
+Some terminators have a metallic chain attached to them for grounding purposes, however many people never understood how to properly ground cabling and thus grounded the terminators at both ends rather than just one end.  This caused many of the grounding loop problems during that era which caused network outages and/or data corruption when swells of electricity traversed the coaxial cabling's outer shield on its path to the ground with the least resistance.
+When wiring a 10BASE2 network, special care has to be taken to ensure that cables are properly connected to all T-connectors, and appropriate terminators are installed. One, and only one, terminator must be connected to ground via a ground wire. Bad contacts or shorts are especially difficult to diagnose, though a time-domain reflectometer will find most problems quickly. A failure at any point of the network cabling tends to prevent all communications. For this reason, 10BASE2 networks could be difficult to maintain and were often replaced by 10BASE-T networks, which (provided category 5 cable or better was used) also provided a good upgrade path to 100BASE-TX. An alternative, more reliable connection was established by the introduction of EAD-sockets.
+
+Comparisons to 10BASE-T
+
+10BASE2 networks cannot generally be extended without breaking service temporarily for existing users and the presence of many joints in the cable also makes them very vulnerable to accidental or malicious disruption. There were proprietary wallport/cable systems that claimed to avoid these problems (e.g. SaferTap) but these never became widespread, possibly due to a lack of standardization.
+10BASE2 systems do have a number of advantages over 10BASE-T. They do not need the 10BASE-T hub, so the hardware cost is very low, and wiring can be particularly easy since only a single wire run is needed, which can be sourced from the nearest computer. These characteristics mean that 10BASE2 is ideal for a small network of two or three machines, perhaps in a home where easily concealed wiring may be an advantage. For a larger complex office network the difficulties of tracing poor connections make it impractical. Unfortunately for 10BASE2, by the time multiple home computer networks became common, the format had already been practically superseded. It is becoming very difficult to find 10BASE2-compatible network cards as distinct pieces of equipment, and integrated LAN controllers on motherboards don't have the connector, although the underlying logic may still be present.
+
+
+
+
+
+

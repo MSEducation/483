@@ -1,0 +1,160 @@
+[[Eval]]
+
+CATEGORIES: Control flow, Unix SUS2008 utilities
+
+In some programming languages, eval is a function which evaluates a string as though it were an expression and returns a result; in others, it executes multiple lines of code as though they had been included instead of the line including the eval. The input to eval is not necessarily a string; in languages that support syntactic abstractions (like Lisp), eval's input will consist of abstract syntactic forms.
+
+Security risks
+
+Special care must be taken when using eval with data from an untrusted source. For instance, assuming that the get_data() function gets data from the Internet, this Python code is insecure:
+An attacker could supply the program with the string "session. To remedy this, all data which will be used with eval must be escaped, or it must be run without access to potentially harmful functions.
+
+Uses
+
+A call to eval is sometimes used by inexperienced programmers for all sorts of things. In most cases, there are alternatives which are more flexible and do not require the speed penalty of parsing code.
+For instance, eval is sometimes used for a simple mail merge facility, as in this PHP example:
+Although this works, it can cause some security problems (see security risks), and will be much slower than other possible solutions. A faster and more secure solution would be changing the last line to echo $template; and removing the single quotes from the previous line, or using printf.
+eval is also sometimes used in applications needing to evaluate math expressions, such as spreadsheets. This is much easier than writing an expression parser, but finding or writing one would often be a wiser choice. Besides the fixable security risks, using the language's evaluation features would most likely be slower, and wouldn't be as customizable.
+Perhaps the best use of eval is in bootstrapping a new language (as with Lisp), and in tutoring programs for languages which allow users to run their own programs in a controlled environment.
+For the purpose of expression evaluation, the major advantage of eval over expression parsers is that, in most programming environments where eval is supported, the expression may be arbitrarily complex, and may include calls to functions written by the user that could not have possibly been known in advance by the parser's creator. This capability allows you to effectively augment the eval() engine with a library of functions that you can enhance as needed, without having to continually maintain an expression parser. If, however, you do not need this ultimate level of flexibility, expression parsers are far more efficient and lightweight.
+
+Implementation
+
+In interpreted languages, eval is almost always implemented with the same interpreter as normal code. In compiled languages, the same compiler used to compile programs may be embedded in programs using the eval function; separate interpreters are sometimes used, though this results in code duplication.
+
+Programming languages
+
+ECMAScript
+
+=JavaScript=
+
+In JavaScript, eval is something of a hybrid between an expression evaluator and a statement executor. It returns the result of the last expression evaluated.
+Example as an expression evaluator:
+Example as a statement executor:
+One use of JavaScript's eval is to parse JSON text, perhaps as part of an Ajax framework.  However, modern browsers provide JSON.
+
+=ActionScript=
+
+In ActionScript (Flash's programming language), eval cannot be used to evaluate arbitrary expressions. According to the Flash 8 documentation, its usage is limited to expressions which represent "the name of a variable, property, object, or movie clip to retrieve. This parameter can be either a String or a direct reference to the object instance."
+ActionScript 3 does not support eval.
+The ActionScript 3 Eval LibraryActionScript 3 Eval Library and the D.eval API are ongoing development projects to create equivalents to eval in ActionScript 3.
+
+Lisp
+
+Lisp was the original language to make use of an eval function.  In fact, definition of the eval function led to the first implementation of the language interpreter.John McCarthy, "History of Lisp - The Implementation of Lisp"
+Before the eval function was defined, Lisp functions were manually compiled to assembly language statements. However, once the eval function had been manually compiled it was then used as part of a simple read-eval-print loop which formed the basis of the first Lisp interpreter.
+Later versions of the Lisp eval function have also been implemented as compilers.
+The eval function in Lisp expects a form to be evaluated and executed as argument. The return value of the given form will be the return value of the call to eval.
+This is an example Lisp code:
+Lisp is well known to be very flexible and so is the eval function. For example, to evaluate the content of a string, the string would first have to be converted into a Lisp form using the read-from-string function and then the resulting form would have to be passed to eval:
+One major point of confusion is the question, in which context the symbols in the form will be evaluated. In the above example, form1 contains the symbol +. Evaluation of this symbol must yield the function for addition to make the example work as intended. Thus some dialects of lisp allow an additional parameter for eval to specify the context of evaluation (similar to the optional arguments to Python's eval function - see below). An example in the Scheme dialect of Lisp (R5RS and later):
+
+Perl
+
+In Perl, the eval function is something of a hybrid between an expression evaluator and a statement executor. It returns the result of the last expression evaluated (all statements are expressions in Perl programming), and allows the final semicolon to be left off.
+Example as an expression evaluator:
+Example as a statement executor:
+(Beware about the quoting of strings. Note that single quotes were used above to quote the string. If double quotes were used, then it would interpolate the value of the variable into the string before passing it to "eval", defeating the purpose of the "eval", and possibly causing syntax errors, in the case of assignment.)
+Perl also has eval blocks, which serves as its exception handling mechanism (see Exception handling syntax#Perl). This differs from the above use of eval with strings in that code inside eval blocks is interpreted at compile-time instead of run-time, so it is not the meaning of eval used in this article.
+
+PHP
+
+In PHP, eval executes code in a string almost exactly as if it had been put in the file instead of the call to eval(). The only exception is that errors are reported as coming from a call to eval(), and return statements become the result of the function.
+Unlike some languages, the argument to eval must be a string of one or more complete statements, not just expressions; however, one can get the "expression" form of eval by putting the expression in a return statement, which causes eval to return the result of that expression.
+Example using echo:
+Example returning a value:
+
+Lua
+
+In Lua 5.1, loadstring compiles Lua code into an anonymous function.
+Example as an expression evaluator:
+Example to do the evaluation in two steps:
+Lua 5.2 deprecates loadstring in favor of the existing load function, which has been augmented to accept strings. In addition, it allows providing the function's environment directly, as environments are now upvalues.
+
+PostScript
+
+PostScript's exec operator takes an operand — if it is a simple literal it pushes it back on the stack. If one takes a string containing a PostScript expression however, one can convert the string to an executable which then can be executed by the interpreter, for example:
+ ((Hello World) =) cvx exec
+converts the PostScript expression
+ (Hello World) =
+which pops the string "Hello World" off the stack and displays it on the screen, to have an executable type, then is executed.
+PostScript's run operator is similar in functionality but instead the interpreter interprets PostScript expressions in a file, itself.
+
+Python
+
+In Python, the eval function in its simplest form evaluates a single expression.
+eval example (interactive shell):
+The eval function takes two optional arguments, global and locals, which allow the programmer to set up a restricted environment for the evaluation of the expression.
+The exec statement (or the exec function in Python 3.x) executes statements:
+exec example (interactive shell):
+The most general form for evaluating statements/expressions is using code objects. Those can be created by invoking the compile() function and by telling it what kind of input it has to compile: an "exec" statement, an "eval" statement or a "single" statement:
+compile example (interactive shell):
+
+D
+
+D is a statically compiled language and therefore does not include an "eval" statement in the traditional sense, but does include the related "mixin" statement.  The difference is that, where "eval" interprets a string as code at runtime, with a "mixin" the string is statically compiled like ordinary code and must be known at compile time.  For example:
+The above example will compile to exactly the same assembly language instructions as if "num++;" had been written directly instead of mixed in.
+
+ColdFusion
+
+ColdFusion's evaluate function lets you evaluate a string expression at runtime.
+It is particularly useful when you need to programatically choose the variable you want to read from.
+
+Ruby
+
+The Ruby programming language interpreter offers an eval function similar to Python or Perl, and also allows a scope, or binding, to be specified.
+Aside from specifying a function's binding, eval may also be used to evaluate an expression within a specific class definition binding or object instance binding, allowing classes to be extended with new methods specified in strings.
+
+Forth
+
+Most standard implementations of Forth have two variants of eval: EVALUATE and INTERPRET.
+Win32FORTH code example:
+  S" 2 2 + ." EVALUATE \ Outputs "4"
+
+BASIC
+
+=REALbasic=
+
+In REALbasic, there is a class called RBScript which can execute REALbasic code at runtime. RBScript is very sandboxed—only the most core language features are there, you have to allow it access to things you want it to have. You can optionally assign an object to the context property. This allows for the code in RBScript to call functions and use properties of the context object. However, it is still limited to only understanding the most basic types, so if you have a function that returns a Dictionary or MySpiffyObject, RBScript will be unable to use it. You can also communicate with your RBScript through the Print and Input events.
+
+=VBScript=
+
+Microsoft's VBScript, which is an interpreted language, has two constructs. Eval is a function evaluator that can include calls to user-defined functions. (These functions may have side-effects such as changing the values of global variables.) Execute executes one or more colon-separated statements, which can change global state.
+Both VBScript and JavaScript eval are available to developers of compiled Windows applications (written in languages which do not support Eval) through an ActiveX control called the Microsoft Script Control, whose Eval method can be called by application code. To support calling of user-defined functions, one must first initialize the control with the AddCode method, which loads a string (or a string resource) containing a library of user-defined functions defined in the language of one's choice, prior to calling Eval.
+
+=Visual Basic for Applications=
+
+Visual Basic for Applications (VBA), the programming language of Microsoft Office, is a virtual machine language where the runtime environment compiles and runs p-code. Its flavor of Eval supports only expression evaluation, where the expression may include user-defined functions and objects (but not user-defined variable names). Of note, the evaluator is different from VBS, and invocation of certain user-defined functions may work differently in VBA than the identical code in VBScript.
+
+Smalltalk
+
+As Smalltalk's compiler classes are part of the standard class library and usually present at run time, these can be used to evaluate a code string.
+Because class and method definitions are also implemented by message-sends (to class objects), even code changes are possible:
+
+Command-line interpreters
+
+Unix shells
+
+The eval command is present in all Unix shells, including the original "sh" (Bourne shell). It concatenates all the arguments with spaces, then re-parses and executes the result as a command. 
+
+Windows PowerShell
+
+In Windows PowerShell, the Invoke-Expression Cmdlet serves the same purpose as the eval function in programming languages like JavaScript, PHP and Python.
+The Cmdlet runs any Windows PowerShell expression that is provided as a command parameter in the form of a string and outputs the result of the specified expression.
+Usually, the output of the Cmdlet is of the same type as the result of executing the expression. However, if the result is an empty array, it outputs $null. In case the result is a single-element array, it outputs that single element. Similar to JavaScript, Windows PowerShell allows the final semicolon to be left off.
+Example as an expression evaluator:
+Example as a statement executor:
+
+Theory
+
+In theoretical computer science, a careful distinction is commonly made between eval and apply. Eval is understood to be the step of converting a quoted string into a callable function and its arguments, whereas apply is the actual call of the function with a given set of arguments. The distinction is particularly noticeable in functional languages, and languages based on lambda calculus, such as LISP and Scheme.  Thus, for example, in Scheme, the distinction is between
+where the form (f x) is to be evaluated, and
+where the function f is to be called with argument x.
+Eval and apply are the two interdependent components of the eval-apply cycle, which is the essence of evaluating Lisp, described in SICP.1)
+In category theory, the eval morphism is used to define the closed monoidal category.  Thus, for example, the category of sets, with functions taken as morphisms, and the cartesian product taken as the product, forms a Cartesian closed category.  Here, eval (or, properly speaking, apply) together with its right adjoint, currying, form the  simply typed lambda calculus, which can be interpreted to be the morphisms of Cartesian closed categories.
+
+
+
+
+
+

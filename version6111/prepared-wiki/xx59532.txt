@@ -1,0 +1,37 @@
+[[HAL/S]]
+
+CATEGORIES: Spacecraft components, Embedded systems, Avionics programming languages, High Integrity Programming Language
+
+HAL/S (''High-order Assembly Language/Shuttle'')[tpl]cite web|title=STS Software|url=http://science.ksc.nasa.gov/shuttle/technology/sts-newsref/sts-av.html#sts-dps-software|work=NSTS 1988 News Reference Manual|publisher=NASA|accessdate=2011-03-30[/tpl]  is a real-time aerospace programming language, best known for its use in the Space Shuttle program.http://www.sqlite.org/talks/wroclaw-20090310.pdf  It was designed by Intermetrics in the 1970s for NASA. HAL/S is written in XPL, a dialect of PL/I.
+
+==Goals and principles==
+
+The three key principles in designing the language were reliability, efficiency, and machine-independence. The language is designed to allow aerospace-related tasks (such as vector/matrix arithmetic) to be accomplished in a way that is easily understandable by people who have spaceflight knowledge, but may not necessarily have proficiency with computer programming.
+HAL/S was designed not to include some constructs that are thought to be the cause of errors. For instance, there is no support for dynamic memory allocation. The language provides special support for real-time execution environments. 
+Some features, such as "GOTO" were provided chiefly to ease mechanical translations from other languages.Programming in HAL/S, page 82
+On the Preface page of the HAL/S Language Specification,HAL/S Language Specification it says,
+"HAL" was suggested as the name of the new language by Ed Copps, a founding director of Intermetrics, to honor Hal Laning, a colleague at MIT.
+A proposal for a NASA standard ground-based version of HAL named HAL/G for "ground" was proposed, but the coming emergence of the soon to be named Ada programming language contributed to Intermetrics' lack of interest in continuing this work. Instead, Intermetrics would place emphasis on what would be the "Red" finalist which would not be selected.
+
+==Syntax==
+
+HAL/S is a mostly free-form language: statements may begin anywhere on a line and may spill over the next lines, and multiple statements may be fit onto the same line if required. However, non-space characters in the first column of a program line may have special significance. For instance, the letter 'C' in the first column indicates that the whole line is a comment and should be ignored by the compiler.
+One particularly interesting feature of HAL/S is that it supports, in addition to a normal single line text format, an optional three-line input format in which three source code lines are used for each statement. In this format, the first and third lines are usable for superscripts (exponents) and subscripts (indices). The multi-line format was designed to permit writing of HAL/S code that is similar to mathematical notation. 
+
+ X = A ** 2 + B$(I) ** 2 </code>
+ E       2     2
+ M  X = A  + B
+ S            I </code>
+In the example, the base line of the statement is indicated by an 'M' in the first column, the exponent line is indicated by an 'E', and the subscript line is indicated by an 'S'.
+
+==Data types==
+
+HAL/S has native support for integers, floating point scalars, vector, matrices, booleans and strings of 8-bit characters, limited to a maximum length of 255. Structured types may be composed using a DECLARE STRUCT statement.
+
+==See also==
+
+==References==
+
+==External links==
+
+

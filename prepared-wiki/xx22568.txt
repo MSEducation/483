@@ -1,0 +1,57 @@
+[[ElGamal encryption]]
+
+CATEGORIES: Public-key encryption schemes
+
+In cryptography, the ElGamal encryption system is an asymmetric key encryption algorithm for public-key cryptography which is based on the Diffie–Hellman key exchange. It was described by Taher Elgamal in 1985.[tpl]cite journal |author=Taher ElGamal |title=A Public-Key Cryptosystem and a Signature Scheme Based on Discrete Logarithms |journal=IEEE Transactions on Information Theory |volume=31 |issue=4 |year=1985 |pages=469–472 |doi=10.1109/TIT.1985.1057074 |url=http://caislab.kaist.ac.kr/lecture/2010/spring/cs548/basic/B02.pdf[/tpl] (conference version appeared in CRYPTO'84, pp. 10–18) ElGamal encryption is used in the free GNU Privacy Guard software, recent versions of PGP, and other cryptosystems.  The Digital Signature Algorithm is a variant of the ElGamal signature scheme, which should not be confused with ElGamal encryption.
+
+==The algorithm==
+
+ElGamal encryption consists of three components: the key generator, the encryption algorithm, and the decryption algorithm.
+
+===Key generation===
+
+The key generator works as follows:
+
+===Encryption===
+
+===Decryption===
+
+The decryption algorithm produces the intended message, since
+
+===Practical use===
+
+The ElGamal cryptosystem is usually used in a hybrid cryptosystem. I.e., the message itself is encrypted using a symmetric cryptosystem and ElGamal is then used
+to encrypt the key used for the symmetric cryptosystem. This is because asymmetric cryptosystems like Elgamal are usually slower than symmetric ones for the same level of security, so it is faster to encrypt the symmetric key (which most of the time is quite small if compared to the size of the message) with Elgamal and the message (which can be arbitrarily large) with a symmetric cypher.
+
+==Security==
+
+ElGamal achieves semantic security. Semantic security is not implied by the computational Diffie–Hellman assumption alone.M. Abdalla, M. Bellare, P. Rogaway, "DHAES, An encryption scheme based on the Diffie–Hellman Problem" (Appendix A) See decisional Diffie–Hellman assumption for a discussion of groups where the assumption is believed to hold.
+To achieve chosen-ciphertext security, the scheme must be further modified, or an appropriate padding scheme must be used. Depending on the modification, the DDH assumption may or may not be necessary.
+Other schemes related to ElGamal which achieve security against chosen ciphertext attacks have also been proposed.
+
+==Efficiency==
+
+ElGamal encryption is probabilistic, meaning that a single plaintext can be encrypted to many possible ciphertexts, with the consequence that a general ElGamal encryption produces a 2:1 expansion in size from plaintext to ciphertext.
+Encryption under ElGamal requires two exponentiations; however, these exponentiations are independent of the message and can be computed ahead of time if need be. Decryption only requires one exponentiation:
+
+===Decryption===
+
+The decryption algorithm produces the intended message, since
+
+==See also==
+
+==References==
+
+  | first = Taher 
+  | last = ElGamal
+  | title = A public key cryptosystem and a signature scheme based on discrete logarithms
+  | booktitle = Advances in cryptology: Proceedings of CRYPTO 84
+  | pages = 10–18
+  | volume = 196
+  | series = Lecture Notes in Computer Science
+  | publisher = Springer-Verlag
+  | year = 1985
+  | location = Santa Barbara, California, United States
+  | url = http://groups.csail.mit.edu/cis/crypto/classes/6.857/papers/elgamal.pdf
+  | doi = 10.1007/3-540-39568-7_2}}
+

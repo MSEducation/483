@@ -1,0 +1,37 @@
+[[Ramm.x]]
+
+CATEGORIES: Metadata, Semantic Web, Semantic HTML, Knowledge representation, XML-based standards
+
+ramm.x (RDFa-deployed Multimedia Metadata) is an initiative to deploy multimedia metadata on the Semantic Web using RDFa.
+Many multimedia metadata formats (as ID3, Exif, MPEG-7, etc.) are available to describe, on various levels, what a multimedia asset is about, who has produced it and so on. With the dissemination of User Generated Content, a need for deploying these metadata in (conventional) HTML pages found in blogs, wikis and so forth arises. To enable the deployment of multimedia metadata on the web, one valid approach is to use the RDF data model for a generic deployment (description) of an arbitrary multimedia metadata format. The step of RDFizing is called 'formalisation'. To actually deliver the metadata along with the content being served, a new W3C Semantic Web standard, RDFa,is utilised together with a light-weight vocabulary. This allows a Semantic Web agent to determine the formalisation steps in order to, for example perform a validation, or carry out inference.
+
+==Overview==
+
+ramm.x targets at self-descriptive media asset descriptions allowing to apply the follow-your-nose principle. To meet the requirements, ramm.x (i) utilises RDFa to deploy metadata, (ii) reuses formalisations of existing multimedia metadata formats, and finally (iii) offers a light-weight vocabulary to enable tools to convert, validate, and exchange the metadata.
+
+==Example==
+
+Imagine we have a still image along with some Exif metadata. 
+The ramm.x code snippet below now states that this image has a description #sample_mad referring to the native Exif metadata
+embedded in the image. Using the formalisation #exif_formal, the full formal description can be obtained. The formal description conforms to the schema http://www.kanzaki.com/ns/exif, and can be generated using http://www.kanzaki.com/test/exif2rdf.
+
+ <div about="#exif_formal" href="[ramm:Formalisation]" rel="rdf:type"> 
+   <span rel="ramm:schemaURI" href="http://www.kanzaki.com/ns/exif" />
+   <span rel="ramm:toRDF" href="http://www.kanzaki.com/test/exif2rdf" />
+ </div>
+ <div about="#sample_mad" href="[ramm:MediaAssetDescriptionByRef]" rel="rdf:type">
+   <span about="http://sw.joanneum.at/rammx/spec/example/exif_example.jpg" 
+         href="[ramm:MediaAsset]" rel="rdf:type">
+     <img src="http://sw.joanneum.at/rammx/spec/example/exif_example.jpg" 
+          alt="An example still image." style="border: solid black 1px;" />			 
+     <span rel="ramm:hasDescription" href="#sample_mad" />		
+     <p property="dc:title" datatype="xsd:string">An example still image.
+   </span>	  
+   <span property="dcterms:created" content="2007-07-22T22:23:00Z" datatype="xsd:date" />    
+   <span rel="ramm:nativeDescription" href="http://sw.joanneum.at/rammx/spec/example/exif_example.jpg" />  
+   <span rel="ramm:using" href="#exif_formal" />
+ </div></span>
+
+==References==
+
+

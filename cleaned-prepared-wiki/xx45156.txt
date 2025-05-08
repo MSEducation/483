@@ -1,0 +1,23 @@
+[[SQL Slammer]]
+
+CATEGORIES: Exploit-based worms, Denial-of-service attacks
+
+SQL Slammer is a computer worm that caused a denial of service on some Internet hosts and dramatically slowed down general Internet traffic, starting at 05:30 UTC on January 25, 2003. It spread rapidly, infecting most of its 75,000 victims within ten minutes. So named by Christopher J. Rouland, the CTO of ISS, Slammer was first brought to the attention of the public by Michael Bacarella (see notes below). Although titled "SQL slammer worm", the program did not use the SQL language; it exploited a buffer overflow bug in Microsoft's flagship SQL Server and Desktop Engine database products, for which a patch had been released six months earlier in MS02-039. Other names include W32.Worm, DDOS.A, the Sapphire Worm, SQL_HEL, W32/SQLSlammer and Helkern.
+
+Technical details
+
+The worm was based on proof of concept code demonstrated at the Black Hat Briefings by David Litchfield, who had initially discovered the buffer overflow vulnerability that the worm exploited. It is a small piece of code that does little other than generate random IP addresses and send itself out to those addresses. If a selected address happens to belong to a host that is running an unpatched copy of Microsoft SQL Server Resolution Service, the host immediately becomes infected and begins spraying the Internet with more copies of the worm program.
+Home PCs are generally not vulnerable to this worm unless they have MSDE installed. The worm is so small that it does not contain code to write itself to disk, so it only stays in memory, and it is easy to remove. For example, Symantec provides a free removal utility (see external link below), or it can even be removed by restarting SQL Server (although the machine would likely be reinfected immediately).
+The worm was made possible by a software security vulnerability in SQL Server first reported by Microsoft on July 24, 2002. A patch had been available from Microsoft for six months prior to the worm's launch, but many installations had not been patched – including many at Microsoft.
+The slowdown was caused by the collapse of numerous routers under the burden of extremely high bombardment traffic from infected servers. Normally, when traffic is too high for routers to handle, the routers are supposed to delay or temporarily stop network traffic. Instead, some routers crashed (became unusable), and the "neighbour" routers would notice that these routers had stopped and should not be contacted (aka "removed from the routing table"). Routers started sending notices to this effect to other routers they knew about. The flood of routing table update notices caused some additional routers to fail, compounding the problem. Eventually the crashed routers' maintainers restarted them, causing them to announce their status, leading to another wave of routing table updates. Soon a significant portion of Internet bandwidth was consumed by routers communicating with each other to update their routing tables, and ordinary data traffic slowed down or in some cases stopped altogether. Ironically, because the SQL Slammer worm was so small in size, sometimes it was able to get through when legitimate traffic was not.
+Two key aspects contributed to SQL Slammer's rapid propagation. The worm infected new hosts over UDP, and the entire worm (only 376 bytes) fits inside a single packet. As a result, each infected host could instead simply "fire and forget" packets as rapidly as possible (generally hundreds per second).
+
+Notes
+
+There is contention as to who found "Slammer" first. This is almost impossible to determine. However, in terms of who first alerted the general public, this can be attributed to Michael Bacarella, who posted a message to the Bugtraq security mailing list entitled "MS SQL WORM IS DESTROYING INTERNET BLOCK PORT 1434!".
+
+
+
+
+
+

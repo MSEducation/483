@@ -1,0 +1,28 @@
+[[Massively parallel processor array]]
+
+CATEGORIES: Parallel computing
+
+A Massively Parallel Processor Array or Massively Parallel Processing Array or Multi Purpose Processor Array (MPPA) is a type of integrated circuit which has a massively parallel array of hundreds or thousands of CPUs and RAM memories. These processors pass work to one another through a reconfigurable interconnect of channels. By harnessing a large number of processors working in parallel, an MPPA chip can accomplish more demanding tasks than conventional chips.  MPPAs are based on a software parallel programming model for developing high-performance embedded system applications.
+
+==Architecture==
+
+MPPA is a MIMD (Multiple Instruction streams, Multiple Data) architecture, with distributed memory accessed locally, not shared globally. Each processor is strictly encapsulated, accessing only its own code and memory. Point-to-point communication between processors is directly realized in the configurable interconnect.Mike Butts, "Synchronization through Communication in a Massively Parallel Processor Array", IEEE Micro, vol. 27, no. 5, September/October 2007, IEEE Computer Society
+The MPPA's massive parallelism and its distributed memory MIMD architecture distinguishes it from multicore and manycore architectures, which have fewer processors and an SMP or other shared memory architecture, mainly intended for general-purpose computing. It's also distinguished from GPGPUs with SIMD architectures, used for HPC applications.[ref]Mike Butts, "Multicore and Massively Parallel Platforms
+and Moore's Law Scalability", Proceedings of the Embedded Systems Conference - Silicon Valley, April 2008[/ref]
+
+==Programming==
+
+An MPPA application is developed by expressing it as a hierarchical block diagram or workflow, whose basic objects run in parallel, each on their own processor.  Likewise, large data objects may be broken up and distributed into local memories with parallel access. Objects communicate over a parallel structure of dedicated channels. The objective is to maximize aggregate throughput while minimizing local latency, optimizing performance and efficiency.  An MPPA's model of computation is similar to a Kahn process network or Communicating sequential processes (CSP).Mike Butts, Brad Budlong, Paul Wasson, Ed White, "Reconfigurable Work Farms on a Massively Parallel Processor Array", Proceedings of FCCM, April 2008, IEEE Computer Society
+
+==Applications==
+
+MPPAs are used in high-performance embedded systems and hardware acceleration of desktop computer and server applications, such as video compression,Laurent Bonetto, "Massively parallel processing arrays (MPPAs) for embedded HD video and imaging (Part 1)", Video/Imaging DesignLine, May 16, 2008 http://www.eetimes.com/document.asp?doc_id=1273823Laurent Bonetto, "Massively parallel processing arrays (MPPAs) for embedded HD video and imaging (Part 2)", Video/Imaging DesignLine, July 18, 2008 http://www.eetimes.com/document.asp?doc_id=1273830 image processing,Paul Chen, "Multimode sensor processing using Massively Parallel Processor Arrays (MPPAs)", Programmable Logic DesignLine, March 18, 2008 http://www.pldesignline.com/howto/206904379 medical imaging, network processing, software defined radio and other compute-intensive streaming media applications, which otherwise would use FPGA, DSP and/or ASIC chips.
+
+==Examples==
+
+MPPAs include commercial devices from several companies such as: Ambric, PicoChip, IntellaSys, ASOCS, Tilera, Kalray, Coherent Logic, Tabula.
+The PARO-design system at the University of Erlangen-Nuremberg is another example, which targets mainly DSP algorithms and image processing. The advantage of PARO is retargetable compilation of a high-level description of an algorithm to a highly optimized ASICPARO project, http://webdigg.net/Massively/Massively-parallel-processor-array/ (Dead Link as of 2013/08/10) or reconfigurable architectureCoMap project, http://www12.informatik.uni-erlangen.de/research/comap/ efficiently.
+
+==References==
+
+

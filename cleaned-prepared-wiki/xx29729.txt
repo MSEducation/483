@@ -1,0 +1,96 @@
+[[ICL VME]]
+
+CATEGORIES: ICL operating systems
+
+VME (Virtual Machine Environment) is a mainframe operating system developed by the UK company International Computers Limited (ICL, now part of the Fujitsu group). Originally developed in the 1970s (as VME/B, later VME 2900) to drive ICL's then new 2900 Series mainframes, the operating system is now known as OpenVME incorporating a Unix subsystem, and runs on ICL Series 39 and Trimetra whitepaper
+
+Origins
+
+The development program for the New Range system started on the merger of International Computers and Tabulators (ICT) and English Electric Computers in 1968. One of the fundamental decisions was that it would feature a new operating system. A number of different feasibility and design studies were carried out within ICL, the three most notable being:
+The chief architect of VME/B was Brian Warboys, who subsequently became professor of software engineering at the University of Manchester.  A number of influences can be seen in its design, for example Multics and ICL's earlier George 3 operating system; however it was essentially designed from scratch.
+
+Comparisons
+
+VME was viewed as primarily competing with the System/360 IBM mainframe as a commercial operating system, and adopted the EBCDIC character encoding.
+As a creation of the mid-1970s, with no constraints to be compatible with earlier operating systems, VME is in many ways more modern in its architecture than today's Unix derivatives (Unix was designed in the 1960s) or Microsoft Windows (which started as an operating system for single-user computers, and still betrays those origins).
+
+Nomenclature
+
+When New Range was first launched in October 1974, its operating system was referred to as "System B". By the time it was first delivered it had become "VME/B".
+VME/K was developed independently (according to Campbell-Kelly, "on a whim of Ed Mack"), and was delivered later with the smaller mainframes such as the 2960.
+Following a financial crisis in 1980, new management was brought into ICL (Christopher Laidlaw as chairman, and Robb Wilmot as managing director). An early decision of the new management was to drop VME/K. Thus in July 1981 "VME2900" was launched: although presented to the customer base as a merger of VME/B and VME/K, it was in reality the VME/B base with a few selected features from VME/K grafted on. This provided the opportunity to drop some obsolescent features, which remained available to customers who needed them in the form of the "BONVME" option.
+The "2900" suffix was dropped at System Version 213 (SV213) when ICL launched Series 39 in 1985 as the successor to the original 2900 series; and the "Open" prefix was added after SV294. VME became capable of hosting applications written originally for Unix through a UNIX System V Release 3 based subsystem, called VME/X, adapted to run under VME and using the ASCII character encoding.
+The most recent incarnations of VME run as a hosted subsystem, called superNova, within Microsoft Windows, or SUSE or Red Hat Enterprise Linux on x86-64 hardware.
+
+Architecture
+
+VME is structured as a set of layers, each layer having access to resources at different levels of abstraction. Virtual resources provided by one layer are constructed from the virtual resources offered by the layer below. Access to the resources of each layer is controlled through a set of Access Levels: in order for a process to use a resource at a particular access level, it must have an access key offering access to that level. The concept is similar to the "rings of protection" in Multics. The architecture allows 16 access levels, of which the outer 6 are reserved for user-level code.
+Orthogonally to the access levels, the operating system makes resources available to applications in the form of a Virtual Machine. A Virtual Machine can run multiple processes. In practice, a VME Virtual Machine is closer to the concept of a process on other operating systems, while a VME process is more like a thread. The allocation of resources to a virtual machine uses a stack model:
+when the stack is popped, all resources allocated at that stack level are released. Calls from an application to the operating system are therefore made by a call that retains the same process stack, but with a change in protection level; the resulting efficiency of system calls is one of the features that makes the architecture competitive.
+Communication between Virtual Machines is achieved by means of Events (named communication channels) and shared memory areas. The hardware architecture also provides semaphore instructions INCT (increment-and-test) and TDEC (test-and-decrement).
+Files and other persistent objects are recorded in a repository called the Catalogue. Unlike other operating systems, the file naming hierarchy is independent of the location of a file on a particular tape or disk volume. In days where there was more need for offline storage, this made it easy to keep track of files regardless of their location, and to move files between locations without renaming them. As well as files, the Catalogue keeps track of users and user groups, volumes, devices, network connections, and many other resources. Metadata for files can be held in an object called a File Description.
+Interrupts are handled by creating a new stack frame on the stack for the relevant process, handling the interrupt using this new environment, and then popping the stack to return to the interrupted process.
+
+OMF
+
+Compiled object code is maintained in a format called OMF (Object Module Format). Unlike in many other operating systems, this is also the format used by the loader.  Various compilers are available, as well as utilities, notably the Collector, which links the code in several OMF modules into a single module, for more efficient loading at run-time, and the Module Amender, which allows patching of the instructions in an OMF module to fix bugs, using assembly language syntax.
+
+SCL
+
+The command language for VME is known as SCL (System Control Language). 
+This is much more recognizably a typed high-level programming language than the job control or shell languages found in most other operating systems: it can be likened to scripting languages such as JavaScript, though its surface syntax is derived from Algol 68. 
+SCL is designed to allow both line-at-a-time interactive use from a console or from a command file, and creation of executable scripts or programs (when the language is compiled into object module format in the same way as any other VME programming language). The declaration of a procedure within SCL also acts as the definition of a simple form or template allowing the procedure to be invoked from an interactive terminal, with fields validated according to the data types of the underlying procedure parameters or using the default procedure parameter values.
+The built-in command vocabulary uses a consistent naming convention with an imperative verb followed by a noun: for example DELETE_FILE or DISPLAY_LIBRARY_DETAILS. The command can be written in full, or can use an abbreviated form that combines standard abbreviations for the verb and noun: for example XF (X for DELETE, F for FILE) or DLBD (D for DISPLAY, LB for LIBRARY, D for DETAILS). 
+SCL is block-structured, with begin/end blocks serving the dual and complementary roles of defining the lexical scope of variable declarations, and defining the points at which resources acquired from the operating system should be released. Variables in the language (which are accessible from applications in the form of environment variables) can have a number of simple types such as strings, superstrings (sequences of strings), booleans, and integers, and are also used to contain references to system resources such as files and network connections.
+A simple code example can be seen on the 99 bottles of beer website.SCL code example on the 99 bottles of beer website
+A more realistic example, where SCL is used to compile a program written in S3, is shown below. This example is taken from the Columbia University Archive of implementations of Kermit.
+Commands illustrated in this fragment include WHENEVER (declares error handling policy), ASSIGN_LIBRARY (binds a local name for a file directory), DELETE_FILE (does what it says), S3_COMPILE (compiles a program written in S3: this command breaks the usual verb-noun convention), NEW_MESSAGE_TEXT_MODULE (creates a module containing parameterized error messages suitable for localization) and COMPILE_SCL, which compiles an SCL program into object code. 
+The COLLECT command combines different object code modules into a single module, and is driven by its own local command file which is incorporated inline in the SCL between the delimiters "----" and "++++". The sub-commands INPUT and NEWMODULE identify the names of the input and output modules; SUPPRESS and RETAIN determine the external visibility of named procedures within the collected module; and LISTMODULE requests a report describing the output module.
+Note that "." is used to separate the parts of a hierarchic file name. A leading asterisk denotes a local name for a library, bound using the ASSIGN_LIBRARY command. The number in parentheses after a file name is a version number. The operating system associates a version number with every file, and requests for a file get the latest version unless specified otherwise. Creating a new file will by default create the next version and leave the previous version intact; this program however is deliberately choosing to create version 101, to identify a public release.
+
+Enhanced security variants
+
+As a result of ICL's heavy involvement with delivery of computer services to the UK Public Sector, in particular those with special security requirements such as OPCON CCIS, it was an early entrant into the market for Secure Systems.
+VME formed a core of ICL's activities in the Secure Systems arena.  It had the advantage that as the last large-scale operating system ever designed, and one built from scratch, its underlying architecture encompassed many of the primitives needed to develop a Secure System, in particular the hardware assisted Access Control Registers (ACR) to limit to privileges that could be taken by any process (including Users).
+This led to the UK Government's Central Computing and Telecommunications Agency (CCTA) funding Project Spaceman in the mid 1980s for ICL Defence Technology Centre (DTC) to develop an enhanced security variant of VME. ICL launched this as a pair of complementary products, with the commercial release being called High Security Option (HSO), and the public sector release, including Government Furnished Encryption (GFE) technologies, being called Government Security Option (GSO).
+HSO and GSO were formally tested under the CESG UK (Security) Evaluation Scheme, one of the predecessors to ITSEC and Common Criteria, and in doing so became the first mainstream operating system to be formally Certified.
+
+Series 39
+
+The Series 39 range introduced Nodal Architecture, a novel implementation of distributed shared memory that can be seen as a hybrid of a multiprocessor system and a cluster design. Each machine consists of a number of nodes, and each node contains its own order-code processor (CPU) and main memory. Virtual machines are typically located (at any one time) on one node, but have the capability to run on any node and to be relocated from one node to another. Discs and other peripherals are shared between nodes. Nodes are connected using a high-speed optical bus, which is used to provide applications with a virtual shared memory. Memory segments that are marked as shared (public or global segments) are replicated to each node, with updates being broadcast over the inter-node network. Processes which use unshared memory segments (nodal or local) run in complete isolation from other nodes and processes.
+
+Development process
+
+VME was originally written almost entirely in S3, a specially-designed system programming language based on Algol 68R (however, VME/K was written primarily in the SFL assembly language). Although a high-level language is used, the operating system is not designed to be independent of the underlying hardware architecture: on the contrary, the software and hardware architecture are closely integrated.
+From the early 1990s onwards, some entirely new VME subsystems were written partly or wholly in the C programming language.
+From its earliest days, VME was developed with the aid of a software engineering repository known as CADES, built for the purpose using an underlying IDMS database. CADES is not merely a version control system for code modules: it manages all aspects of the software lifecycle from requirements capture through to field maintenance. 
+CADES was used in VME module development to hold separate definitions of data structures (Modes), constants (Literals), procedural interfaces and the core algorithms. Multiple versions ('Lives') of each of these components could exist. The algorithms were written in System Development Language (SDL), which was then converted to S3 source by a pre-processor. Multiple versions of the same modules could be generated.
+
+Application development tools
+
+The application development tools offered with VME fall into two categories:
+The toolset on VME is unusually homogeneous, with most customers using the same core set of languages and tools. As a result, the tools are also very well integrated. Third-party tools have made relatively little impression.
+For many years the large majority of VME users wrote applications in COBOL, usually making use of the IDMS database and the TPMS transaction processing monitor. Other programming languages included Fortran, Pascal, ALGOL 68R, Coral 66 and RPG2, but these served minority interests. Later, in the mid 1980s, compilers for C became available, both within and outside the Unix subsystem, largely to enable porting of software such as relational database systems. 
+The compilers developed within ICL share a common architecture, and in some cases share components such as code-generators. Many of the compilers used a module named ALICE Language Internal Common Environment and produced an early form of precompiled code (P-Code) termed ROSE, making compiled Object Module Format (OMF) libraries loadable on any machine in the range. .
+
+System Programming Languages: S3 and SFL
+
+The primary language used for developing both the VME operating system itself and other system software such as compilers and transaction processing monitors is S3. This is a high level language based in many ways on Algol 68, but with data types and low-level functions and operators aligned closely with the architecture of the 2900 series.
+An assembly language SFL (System Function Language) is also available. This was used for the development of VME/K, whose designers were not confident that a high-level language could give adequate performance, and also for the IDMS database system on account of its origins as a third-party product. SFL was originally called Macro Assembler Programming LanguagE (MAPLE), but as the 2900 architecture was being positioned as consisting of high level language machines the name was changed at the request of ICL Marketing. It had been developed as a part of the toolkit for System D, which was subsequently cancelled. Related families of assemblers for other architectures (CALM-xx running under VME, PALM-xx developed in Pascal and running on various hosts) were developed for internal use.
+Neither S3 nor SFL was ever promoted as a development tool for end-user applications; neither was delivered as a standard part of the operating system, nor were they marketed as products in their own right, though in practice they were made available to users and third parties who needed them.
+
+QuickBuild
+
+The QuickBuild application development environment on VME has been highly successful despite the fact that applications are largely locked into the VME environment. This environment is centred on the Data Dictionary System (DDS, also called OpenDDS), an early and very successful attempt to build a comprehensive repository supporting all the other tools, with full support for the development lifecycle. As well as database schemas and file and record descriptions, the dictionary keeps track of objects such as reports and queries, screen designs, and 4GL code; it also supports a variety of models at the requirements capture level, such as entity-relationship models and process models.
+The QuickBuild 4GL is packaged in two forms: 
+Both are high-level declarative languages, using Jackson Structured Programming as their design paradigm. ApplicationMaster is unusual in its approach to application design in that it focuses on the user session as if it were running in a single conversational process, completely hiding the complexity of maintaining state across user interactions. Because the 4GL and other tools such as the screen designer work only with the DDS dictionary, which also holds the database schemas, there is considerable reuse of metadata that is rarely achieved with other 4GLs.
+
+
+
+VME at Fujitsu UK.
+
+
+
+Sources
+
+

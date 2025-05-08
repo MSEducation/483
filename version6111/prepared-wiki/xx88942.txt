@@ -1,0 +1,28 @@
+[[Ps (Unix)]]
+
+CATEGORIES: Unix SUS2008 utilities, Unix process and task management-related software
+
+In most Unix-like operating systems, the ps program (short for "process status") displays the currently-running processes.  A related Unix utility named top provides a real-time view of the running processes.
+In Windows PowerShell, ps is a predefined command alias for the Get-Process cmdlet which essentially serves the same purpose.
+
+==Examples==
+
+For example:
+Users can also utilize the ps command in conjunction with the grep (see the pgrep and pkill commands) command to find information about one process, such as its process id:
+and the easier and non-racy version with pgrep:
+To see every process running as root in user format:
+
+==Break Down==
+
+==Options==
+
+ps has many options. On operating systems that support the SUS and POSIX standards, ps commonly runs with the options -ef, where "-e" selects every process and "-f" chooses the "full" output format. Another common option on these systems is -l, which specifies the "long" output format.
+Most systems derived from BSD fail to accept the SUS and POSIX standard options because of historical conflicts
+(for example, the "e" or "-e" option will cause the display of environment variables).
+On such systems, ps commonly runs with the non-standard options aux, where "a" lists all processes on a terminal, including those of other users, "x" lists all processes without controlling terminals and "u" adds a column for the controlling user for each process. Note that, for maximum compatibility when using this syntax, there is no "-" in front of the "aux". Also you can add 'ww' after aux, like "ps auxww" for complete information about the process including all parameters.
+
+==See also==
+
+==External links==
+
+

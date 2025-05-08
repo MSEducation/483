@@ -1,0 +1,87 @@
+[[Workbench (AmigaOS)]]
+
+CATEGORIES: AmigaOS, Desktop environments, Graphical user interfaces
+
+Workbench is the graphical file manager of AmigaOS developed by Commodore International for their Amiga line of computers. Workbench provides the user with a graphical interface to work with file systems and launch applications. It uses a workbench metaphor (in place of the more common desktop metaphor) for representing file system organisation. 
+Confusingly, "Workbench" was also the name originally given to the entire Amiga operating system up until version 3.1. From release 3.5 the operating system was renamed "AmigaOS" and subsequently "Workbench" refers to the native file manager only.
+
+==Overview==
+
+The Amiga Workbench uses the metaphor of a workbench (i.e. a workbench of manual labor), rather than the now standard desktop metaphor, for representing file system organization. The desktop itself is called Workbench and uses the following representations: drawers (instead of folders) for directories, tools for executable programs, projects for data files; and a trash can as a  folder intended to contain deleted files. These representations may be considered somewhat unusual by a modern user, but at the time there were no commonly accepted metaphors and Commodore chose to use different idioms from their competitors (Apple had already pursued legal action to prevent other software companies from offering graphical user interfaces similar to its own). Additionally, in 1985 computer graphics capabilities were more common in high end "workstations", and the Amiga was a multimedia/'creative' machine rather than an office machine, which may have provided further inspiration for the metaphor.
+Workbench is a spatial file manager in the sense that it uses a spatial metaphor to represent files and folders as if they are real physical objects. Under this concept, each drawer (folder) opens in its own window, rather than within a single browser under the now more common navigational concept.
+Workbench utilizes the Amiga's native windowing system called Intuition to provide the graphical user interface. Intuition manages the rendering of screens, windows and gadgets (graphical elements, equivalent to widgets). Later versions of AmigaOS enhanced the interface with more complex object-oriented widget systems, such as gadtools.library and BOOPSI (AmigaOS 2.0 and later) and ReAction (AmigaOS 3.5 and later). Intuition also handles user input events, such as, input from the keyboard and mouse. Workbench requires a two button mouse, where right click operates pull-down menus and left click is used for all other purposes.
+The underlying AmigaOS allows the Workbench to launch multiple applications that can execute concurrently. This is achieved through Exec, the Amiga's multi-tasking kernel, which handles memory management, message passing, and task scheduling. Applications launched from Workbench could report their success back to Workbench, but this was not a requirement and few actually did.
+Workbench itself has always been a disk-based component, though much of the underlying functionality is stored in the Amiga's Kickstart firmware, usually stored in ROM. As a consequence, it is necessary to boot from a system disk to launch Workbench. This setup streamlines the process of launching games (which typically do not require Workbench) and ensures that memory is not used unnecessarily by the OS in memory-limited systems.
+Workbench was shipped with all Amiga models from Commodore. Workbench was provided either on floppy disk or later (as part of AmigaOS) on CD-ROM. Initially, Workbench was designed to be launched and operate from floppy disk (or other removable media). Later versions could be installed on hard disk, for which an installer was developed for use with AmigaOS 2.0 and later. AmigaOS (including Workbench) often came pre-installed on systems shipped with hard disks.
+
+==Versions==
+
+Up until release 3.1 of the Amiga's operating system, Commodore used Workbench to refer to the entire Amiga operating system. As a consequence Workbench was commonly used to refer to both the operating system and the file manager component. For end users Workbench was often synonymous with AmigaOS. From version 3.5 the OS was renamed "AmigaOS" and pre-3.5 versions were also retroactively referred to as "AmigaOS" (rather than Workbench). Subsequently, "Workbench" refers to the native graphical file manager only.
+From its inception, Workbench offered a highly customizable interface. The user could change the aspect of program icons replacing it with newer ones with different color combinations. Users could also take a "snapshot" of icons and windows so the icons will remain on the desktop at coordinates chosen by user and windows will open at the desired size.
+
+===Workbench 1.x===
+
+Workbench 1.0 was released with the first Amiga, the Amiga 1000, in 1985. The 1.x versions of Workbench used a garish blue and orange color scheme, designed to give high contrast on even the worst of television screens (the colors can be changed by the user). Versions 1.1 consists mostly of bug fixes and, like version 1.0, was distributed for the Amiga 1000 only.
+The display was highly customizable for the era. The user was free to create and modify system and user icons, while Atari TOS featured only default system icons whose appearance could not be modified and customizing icons on the Macintosh required using ResEdit. Icons can be of arbitrary size and design and can have two image states to produce a pseudo-animated effect when selected. Users could customize four display colours and choose from two resolutions: [tpl]nowrap|640×200[/tpl] or [tpl]nowrap|640×400[/tpl] (interlaced) on NTSC, or [tpl]nowrap|640×256[/tpl] or [tpl]nowrap|640×512[/tpl] on PAL systems. In later revisions, the TV or monitor overscan could be adjusted.
+Several features were deprecated in later versions. For example, the gauge meter showing the free space on a file system was replaced with a percentage in Workbench 2.0. Under Workbench 1.x, right clicking on icons opens a display of the files metadata, whereas from Workbench 2.0 right clicking activates pull-down menus only. The default "busy" pointer (a comic balloon showing "Zzz...") was replaced with a stopwatch in later versions.
+
+===Workbench 2.0, 2.1===
+
+Workbench 2.0 was released with the launch of the Amiga 3000 in 1990. Until AmigaOS 2.0 there was no unified look and feel design standard and application developers had to write their own widgets (both buttons and menus) if they wished to enhance the already-meager selection of standard basic widgets provided by Intuition. With Workbench 2.0 gadtools.library was created, which provided standard widget sets. The Amiga User Interface Style Guide,Commodore-Amiga 1991 was published which explained how applications should be laid out for consistency. Intuition was improved with BOOPSI (Basic Object Oriented Programming system for Intuition) which enhanced the system with an object-oriented interface to define a system of classes in which every class individuate a single widget or describes an interface event. It can be used to program object oriented interfaces into Amiga at any level.
+Workbench 2.0 also added support for public screens. Instead of the Workbench screen being the only shareable screen, applications could create their own named screens to share with other applications.
+Workbench 2.0 introduced AmigaGuide, a simple text-only hypertext markup scheme and browser, for providing online help inside applications. It also introduced Installer, a standard software installation program, driven by a LISP-like scripting language.
+Finally, Workbench 2.0 rectified the problem of applications hooking directly into the input-events stream to capture keyboard and mouse movements, sometimes locking up the whole system. Workbench 2.0 provided Commodities, a standard interface for modifying or scanning input events. This included a standard method for specifying global "hotkey" key-sequences, and a Commodities Exchange registry for the user to see which commodities were running.
+
+===Workbench 3.0, 3.1===
+
+Version 3.0 was originally shipped with the Amiga 1200 and Amiga 4000 computers. Version 3.0 added datatypes support and Workbench could load any background image in any format if required datatype was installed. This feature was also used in Multiview. Its capabilities were directly related to the datatypes installed in Devs:Datatypes.
+The established AmigaGuide hypertext system gained more usability by using document links pointing to mediafiles, for example pictures or sounds, all recognized by the datatypes.
+
+===Workbench 3.5, 3.9===
+
+Following Commodore's demise and around six years after Workbench 3.1 was released, Haage & Partner were commissioned to update AmigaOS, which was released in 1999 as a software-only update for existing systems.
+The Workbench look and feel, though still largely based on the earlier 3.1 release was revised somewhat, with an improved user interface based on ReAction, improved icon rendering and official support for true color backdrops. These releases included support for existing third-party GUI enhancements, such as NewIcons, by integrating these patches into the system. The 3.5 and 3.9 releases included a new set of 256 color icons and a choice of desktop wallpaper. These replaced the default all-metal gray 4/8 color scheme used on AmigaOS from release 2.0 to 3.1.
+The 3.9 release of Workbench was again developed by Haage&Partner and released in 2000. The main improvements were the introduction of a program start bar called AmiDock, revised user interfaces for system settings and improved utility programs.
+
+===Workbench 4.0, 4.1===
+
+This new Workbench, called Workbench 4.0[tpl]Ref label|Workbench 4.0 image for fair use|1[/tpl], has been rewritten to become fully PowerPC compatible. It was part of AmigaOS 4.0, and released in 2006.
+Since the fourth Developer Pre-Release Update a new technique is adopted and the screens are draggable in any direction.AmigaOS 4.0 - the fourth pre-release update. Drag and drop of Workbench icons between different screens is possible too.
+Also in Workbench 4.0 were new version of Amidock, TrueType/OpenType fonts and movie player with DivX and MPEG-4 support.
+In AmigaOS 4.1, a new Startup preferences feature was added which replaced WBStartup drawer. Additional enhancements were a new icon set to complement higher screen resolutions, new window themes including drop shadows, AmiDock with true transparency, scalable icons and Workbench with auto-update feature.AmigaOS 4.1 Update 1 release
+
+==Workbench icons==
+
+The icons that Workbench uses to represent the files in a volume or a drawer are stored in special .info files, with the name of the .info file matching the name of the file it represents. For example, the icon for NotePad, a text editor, is found in the file NotePad.info. This .info extension is the only file extension required by AmigaOS.
+The .info file contains the icon image and its spatial position within its parent window. The icon also specifies the type of the file, as used by Workbench. Workbench recognises five different file types:Ryan 1990
+An additional three file types are available and are intended for future expansion:
+Of these three file types, only "App Icons" currently are used by any part of Workbench/AmigaOS.
+While an icon may represent or suggest a file type, the type of the related file is specified by its very own properties along with the restrictions(AmigaDOS: protection flags) given to this file. You may add a tool icon to a text document file, the AmigaOS will tell you the file "is not executable" or "is not of required type" as it has no 'e'-protection-flag (AmigaDOS: Hidden, Script, Pure, Archived, Read, Writeable, Executable, Deletable) nor does it have the startup header of an executable. Also, stripping an 'application' from its counterpart icon file ('application'.info) will not render this application useless; it still remains executable, it will run, only missing the (required) options and arguments delivered from workbench via icons "tool types", e.g. stack size, public screen etc..
+A file without a .info counterpart (such as a file on non-native media) is represented by the default system icon for one of the five types listed above. These default icons are also customizable.
+Tool (application) files can include "tool types" in the .info file. These are used as configuration options for the program. Each tool type is a single line of text, which can optionally include parameters, written after an = sign. Tool types can be commented out by writing them in parentheses. For example, the tooltype "CX_POPKEY=ctrl alt f1" defines that the application (a Commodity) will activate the user interface in response to the key sequence Ctrl-Alt-F1.
+The colours used in the icon are normally only stored as indices to the Amiga Workbench screen's current palette. Because of this, the icons' colour scheme is inherently tied to the chosen hues in the screen's palette, and choosing non-standard colours can give the icons an ugly appearance. This problem was party solved by a third-party system called NewIcons, which adds additional features to the standard .info files. Unlike normal Workbench icons, NewIcons include actual RGB colour information, and the system tries its best to match the icons' colour hues to those in the screen palette.
+Since AmigaOS 3.5, Workbench supports icons with up to 256 colors. This release of AmigaOS features the GlowIcons icon set by Matt Chaput. With AmigaOS 3.5, a screen-palette-independent system is used. The 4.0 icons, designed by Martin Merz, can use a palette of 24 bit each.
+Both AROS and MorphOS support PNG icons natively. PNG allows using full 24-bit palette with alpha blending. On Amiga Workbench PNG icons are supported through plugins.
+
+==Comparison to other file managers==
+
+In comparison to the competing Mac OS and Atari, the early Amiga Workbench (pre-Workbench 2.04) featured, as the default, a 4 color blue desktop screen with color icons at [tpl]nowrap|640 x 200[/tpl] NTSC American standard or [tpl]nowrap|640 x 256[/tpl] on European PAL television sets. This is in contrast to the [tpl]nowrap|512 x 342[/tpl] black and white interface presented by the Mac, and the Amiga user was also free to create and modify system and program icons, while, in the same time Atari TOS featured only default system icons whose appearance could not be modified.
+Workbench contributed many other unique features/philosophies to intuitive GUI design (starting with version 2.04/2.1):
+
+==Criticisms==
+
+The freedom in customization and the multitude of color settings and aspects available to the user was sometimes seen as chaotic. Customization permitted icons of unusual size and quite different from the original system ones. Before Workbench 2.0, there was also no obliged user interface design guidelines regarding fixed menu options and these could be different from one application to the next (i.e. the layout of basic items like Load, Save, Open, Close, Quit, etc.). This fact was argued as a diminishing feature of Amiga by its detractors. Some historical GUI sites like guidebook galleryAmiga OS GUIs - GUIdebook: Graphical User Interface gallery presented Amiga Workbench as:  "Unique (if slightly chaotic) GUI for Amiga machines". 
+
+==Use in fictional media==
+
+The Ren'py visual novel, Digital: A Love Story uses an Amiga Workbench 1.0 Design (Known as Amie Workbench in-game).
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

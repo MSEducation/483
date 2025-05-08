@@ -1,0 +1,56 @@
+</ref> This presentation was about the development of software for [[Semi Automatic Ground Environment|SAGE]]. In 1983 the paper was republished<ref>
+</ref> with a foreword by Benington pointing out that the process was not in fact performed in a strict top-down fashion, but depended on a prototype.
+The first formal description of the waterfall model is often cited as a 1970 article by Winston W. Royce,Wasserfallmodell > Entstehungskontext, Markus Rerych, Institut für Gestaltungs- und Wirkungsforschung, TU-Wien.  Retrieved on 2007-11-28 from http://cartoon.iguw.tuwien.ac.at/fit/fit01/wasserfall/entstehung.html.
+although Royce did not use the term "waterfall" in this article. Royce presented this model as an example of a flawed, non-working model.[ref]
+</ref> 
+This, in fact, is how the term is generally used in writing about software development—to describe a critical view of a commonly used software development practice.Conrad Weisert, Waterfall methodology: there's no such thing!
+The earliest use of the term "waterfall" may have been a 1976 paper by Bell and Thayer.Bell, Thomas E., and T. A. Thayer. Software requirements: Are they really a problem? Proceedings of the 2nd international conference on Software engineering. IEEE Computer Society Press, 1976.
+
+==Model==
+
+In Royce's original waterfall model, the following phases are followed in order:
+Thus the waterfall model maintains that one should move to a phase only when its preceding phase is reviewed and verified.
+Various modified waterfall models (including Royce's final model), however, can include slight or major variations on this process.[tpl]citation needed|date=August 2012[/tpl]
+
+==Supporting arguments==
+
+Time spent early in the software production cycle can lead to greater economy at later stages.  McConnell shows that a bug found in the early stages (such as requirements specification or design) is cheaper in money, effort, and time to fix than the same bug found later on in the process.McConnell (1996), p. 72, estimates that "...a requirements defect that is left undetected until construction or maintenance will cost 50 to 200 times as much to fix as it would have cost to fix at requirements time".  To take an extreme example, if a program design turns out to be impossible to implement, it is easier to fix the design at the design stage than to realize months later, when program components are being integrated, that all the work done so far has to be scrapped because of a broken design.[tpl]citation needed|date=August 2012[/tpl]
+This is the central idea behind Big Design Up Front and the waterfall model: time spent early on making sure requirements and design are correct saves much time and effort later. Thus, the thinking of those who follow the waterfall process goes, make sure each phase is 100% complete and absolutely correct before proceeding to the next phase. Program requirements should be set in stone before design begins (otherwise work put into a design based on incorrect requirements is wasted). The program's design should be perfect before people begin to implement the design (otherwise they implement the wrong design and their work is wasted), etc.
+A further argument for the waterfall model is that it places emphasis on documentation (such as requirements documents and design documents) as well as source code. In less thoroughly designed and documented methodologies, knowledge is lost if team members leave before the project is completed, and it may be difficult for a project to recover from the loss. If a fully working design document is present (as is the intent of Big Design Up Front and the waterfall model), new team members or even entirely new teams should be able to familiarize themselves by reading the documents.[tpl]cite news | author=Arcisphere technologies | title=Tutorial: The Software Development Life Cycle (SDLC) | url=http://softwarelifecyclepros.com/wp-content/uploads/2012/05/Tutorial-Software-Development-LifeCycle-SDLC.pdf | year=2012 | accessdate=2012-11-13[/tpl]
+Some waterfall proponents prefer the waterfall model for its simple approach and argue that it is more disciplined.  The waterfall model provides a structured approach; the model itself progresses linearly through discrete, easily understandable and explainable phases and thus is easy to understand; it also provides easily identifiable milestones in the development process.  It is perhaps for this reason that the waterfall model is used as a beginning example of a development model in many software engineering texts and courses.[tpl]citation needed|date=August 2012[/tpl]
+It is argued that the waterfall model and Big Design up Front in general can be suited to software projects that are stable (especially those projects with unchanging requirements, such as with shrink wrap software) and where it is possible and likely that designers will be able to fully predict problem areas of the system and produce a correct design before implementation is started.  The waterfall model also requires that implementers follow the well-made, complete design accurately, ensuring that the integration of the system proceeds smoothly.[tpl]citation needed|date=August 2012[/tpl]
+
+==Criticism==
+
+Advocates of Agile software development argue the waterfall model is a bad idea in practice—believing it impossible for any non-trivial project to finish a phase of a software product's lifecycle perfectly before moving to the next phases and learning from them.[tpl]citation needed|date=August 2012[/tpl]
+For example, clients may not know exactly what requirements they need before reviewing a working prototype and commenting on it. They may change their requirements constantly. Designers and programmers may have little control over this. If clients change their requirements after the design is finalized, the design must be modified to accommodate the new requirements. This effectively means invalidating a good deal of working hours, which means increased cost, especially if a large amount of the project's resources has already been invested in Big Design Up Front.[tpl]citation needed|date=August 2012[/tpl]
+Designers may not be aware of future implementation difficulties when writing a design for an unimplemented software product.  That is, it may become clear in the implementation phase that a particular area of program functionality is extraordinarily difficult to implement. In this case, it is better to revise the design than persist in a design based on faulty predictions, and that does not account for the newly discovered problems.[tpl]citation needed|date=August 2012[/tpl]
+In Code Complete (a book that criticizes widespread use of the waterfall model), Steve McConnell refers to design as a "wicked problem"—a problem whose requirements and limitations cannot be entirely known before completion.  The implication of this is that it is impossible to perfect one phase of software development, thus it is impossible if using the waterfall model to move on to the next phase.[tpl]citation needed|date=August 2012[/tpl]
+David Parnas, in A Rational Design Process: How and Why to Fake It, writes:"A Rational Design Process: How and Why to Fake It", David Parnas (PDF file)
+ “Many of the system's details only become known to us as we progress in the system's implementation.  Some of the things that we learn invalidate our design and we must backtrack.” 
+Expanding the concept above, the project stakeholders (non-IT personnel) may not be fully aware of the capabilities of the technology being implemented. This can lead to what they "think is possible" defining expectations and requirements. This can lead to a design that does not use the full potential of what the new technology can deliver, or simply replicates the existing application or process with the new technology. This can cause substantial changes to the implementation requirements once the stakeholders become more aware of the functionality available from the new technology. An example is where an organization migrates from a paper-based process to an electronic process. While key deliverables of the paper process must be maintained, benefits of real-time data input validation, traceability, and automated decision point routing may not be anticipated at the early planning stages of the project.[tpl]citation needed|date=August 2012[/tpl]
+The idea behind the waterfall model may be "measure twice; cut once," and those opposed to the waterfall model argue that this idea tends to fall apart when the problem constantly changes due to requirement modifications and new realizations about the problem itself. A potential solution is for an experienced developer to spend time up front on refactoring to consolidate the software, and to prepare it for a possible update, no matter if such is planned already. Another approach is to use a design targeting modularity with interfaces to increase the flexibility of the software with respect to the design.[tpl]citation needed|date=August 2012[/tpl]
+Due to the types of criticisms discussed above, some organizations, such as the US Department of Defense, now have a preference against waterfall type methodologies, starting with MIL-STD-498 "clearly encouraging evolutionary acquisition and IID".Iterative and Incremental Development: A Brief History, Craig Larman and Victor Basili, IEEE Computer, June 2003
+
+==Modified models==
+
+In response to the perceived problems with the pure waterfall model, many modified waterfall models have been introduced.  These models may address some or all of the criticisms of the pure waterfall model.[tpl]Citation needed|date=June 2009[/tpl]  Many different models are covered by Steve McConnell in the "Lifecycle Planning" chapter of his book Rapid Development: Taming Wild Software Schedules.McConnell, Rapid Development: Taming Wild Software Schedules (1996), pp. 143-147, describes three modified waterfalls: Sashimi (Waterfall with Overlapping Phases), Waterfall with Subprojects, and Waterfall with Risk Reduction.
+While all software development models bear some similarity to the waterfall model, as all software development models incorporate at least some phases similar to those used in the waterfall model, this section deals with those closest to the waterfall model.  For models that apply further differences to the waterfall model, or for radically different models seek general information on the software development process.[tpl]citation needed|date=August 2012[/tpl]
+
+==See also==
+
+==References==
+
+==Bibliography==
+
+ | surname=Royce
+ | given=Winston
+ | title=Managing the Development of Large Software Systems
+ | journal=Proceedings of IEEE WESCON
+ | volume=26
+ | issue=August | year=1970 | pages=1–9
+ | url=http://www.cs.umd.edu/class/spring2003/cmsc838p/Process/waterfall.pdf }}.
+
+==External links==
+
+

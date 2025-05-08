@@ -1,0 +1,171 @@
+  [[File:CPT-LinkedLists-addingnode.svg|center]]
+  '''function''' insertAfter(''Node'' node, ''Node'' newNode) ''// insert newNode after node''
+      newNode.next := node.next
+      node.next    := newNode
+Inserting at the beginning of the list requires a separate function. This requires updating firstNode.
+  '''function''' insertBeginning(''List'' list, ''Node'' newNode) ''// insert node before current first node''
+      newNode.next   := list.firstNode
+      list.firstNode := newNode
+Similarly, we have functions for removing the node after a given node, and for removing a node from the beginning of the list. The diagram demonstrates the former. To find and remove a particular node, one must again keep track of the previous element.
+  '''function''' removeAfter(''Node'' node) ''// remove node past this one''
+      obsoleteNode := node.next
+      node.next := node.next.next
+      destroy obsoleteNode
+  '''function''' removeBeginning(''List'' list) ''// remove first node''
+      obsoleteNode := list.firstNode
+      list.firstNode := list.firstNode.next ''// point past deleted node''
+      destroy obsoleteNode
+Notice that removeBeginning() sets list.firstNode to null when removing the last node in the list.
+Since we can't iterate backwards, efficient insertBefore or removeBefore operations are not possible.
+Many of the special cases of linked list operations can be eliminated by including a dummy element at the front of the list.  This ensures that there are no special cases for the beginning of the list and renders both insertBeginning() and removeBeginning() unnecessary. In this case, the first useful data in the list will be found at list.firstNode.next.
+
+===Circularly linked list===
+
+In a circularly linked list, all nodes are linked in a continuous circle, without using null. For lists with a front and a back (such as a queue), one stores a reference to the last node in the list. The next node after the last node is the first node. Elements can be added to the back of the list and removed from the front in constant time.
+Circularly linked lists can be either singly or doubly linked.
+Both types of circularly linked lists benefit from the ability to traverse the full list beginning at any given node. This often allows us to avoid storing firstNode and lastNode, although if the list may be empty we need a special representation for the empty list, such as a lastNode variable which points to some node in the list or is null if it's empty; we use such a lastNode here.  This representation significantly simplifies adding and removing nodes with a non-empty list, but empty lists are then a special case.
+
+====Algorithms====
+
+Assuming that someNode is some node in a non-empty circular singly linked list, this code iterates through that list starting with someNode:
+  '''function''' iterate(someNode)
+    '''if''' someNode ≠ '''null'''
+      node := someNode
+      '''do'''
+        do something with node.value
+        node := node.next
+      '''while''' node ≠ someNode
+Notice that the test "while node ≠ someNode" must be at the end of the loop. If the test was moved to the beginning of the loop, the procedure would fail whenever the list had only one node.
+This function inserts a node "newNode" into a circular linked list after a given node "node".  If "node" is null, it assumes that the list is empty.
+  '''function''' insertAfter(''Node'' node, ''Node'' newNode)
+      '''if''' node = '''null'''
+        newNode.next := newNode
+      '''else'''
+        newNode.next := node.next
+        node.next := newNode
+Suppose that "L" is a variable pointing to the last node of a circular linked list (or null if the list is empty).  To append "newNode" to the end of the list, one may do
+  insertAfter(L, newNode)
+  L := newNode
+To insert "newNode" at the beginning of the list, one may do
+  insertAfter(L, newNode)
+  '''if''' L = '''null'''
+    L := newNode
+
+==Linked lists using arrays of nodes==
+
+Languages that do not support any type of reference can still create links by replacing pointers with array indices. The approach is to keep an array of records, where each record has integer fields indicating the index of the next (and possibly previous) node in the array. Not all nodes in the array need be used. If records are also not supported, parallel arrays can often be used instead.
+As an example, consider the following linked list record that uses arrays instead of pointers:
+  '''record''' ''Entry'' {
+     ''integer'' next; ''// index of next entry in array''
+     ''integer'' prev; ''// previous entry (if double-linked)''
+     ''string'' name;
+     ''real'' balance;
+  }
+By creating an array of these structures, and an integer variable to store the index of the first element, a linked list can be built:
+ ''integer'' listHead
+ ''Entry'' Records[1000]
+Links between elements are formed by placing the array index of the next (or previous) cell into the Next or Prev field within a given element.  For example:
+In the above example, ListHead would be set to 2, the location of the first entry in the list.  Notice that entry 3 and 5 through 7 are not part of the list.  These cells are available for any additions to the list.  By creating a ListFree integer variable, a free list could be created to keep track of what cells are available.  If all entries are in use, the size of the array would have to be increased or some elements would have to be deleted before new entries could be stored in the list.
+The following code would traverse the list and display names and account balance:
+ i := listHead
+ '''while''' i ≥ 0 ''// loop through the list''
+      print i, Records[i].name, Records[i].balance ''// print entry''
+      i := Records[i].next
+When faced with a choice, the advantages of this approach include:
+This approach has one main disadvantage, however: it creates and manages a private memory space for its nodes. This leads to the following issues:
+For these reasons, this approach is mainly used for languages that do not support dynamic memory allocation. These disadvantages are also mitigated if the maximum size of the list is known at the time the array is created.
+
+==Language support==
+
+Many programming languages such as Lisp and Scheme have singly linked lists built in. In many functional languages, these lists are constructed from nodes, each called a cons or cons cell. The cons has two fields: the car, a reference to the data for that node, and the cdr, a reference to the next node. Although cons cells can be used to build other data structures, this is their primary purpose.
+In languages that support abstract data types or templates, linked list ADTs or templates are available for building linked lists.  In other languages, linked lists are typically built using references together with records.
+
+==Internal and external storage==
+
+When constructing a linked list, one is faced with the choice of whether to store the data of the list directly in the linked list nodes, called internal storage, or merely to store a reference to the data, called external storage. Internal storage has the advantage of making access to the data more efficient, requiring less storage overall, having better locality of reference, and simplifying memory management for the list (its data is allocated and deallocated at the same time as the list nodes).
+External storage, on the other hand, has the advantage of being more generic, in that the same data structure and machine code can be used for a linked list no matter what the size of the data is. It also makes it easy to place the same data in multiple linked lists. Although with internal storage the same data can be placed in multiple lists by including multiple next references in the node data structure, it would then be necessary to create separate routines to add or delete cells based on each field.  It is possible to create additional linked lists of elements that use internal storage by using external storage, and having the cells of the additional linked lists store references to the nodes of the linked list containing the data.
+In general, if a set of data structures needs to be included in multiple linked lists, external storage is the best approach.  If a set of data structures need to be included in only one linked list, then internal storage is slightly better, unless a generic linked list package using external storage is available.  Likewise, if different sets of data that can be stored in the same data structure are to be included in a single linked list, then internal storage would be fine.
+Another approach that can be used with some languages involves having different data structures, but all have the initial fields, including the next (and prev if double linked list) references in the same location.  After defining separate structures for each type of data, a generic structure can be defined that contains the minimum amount of data shared by all the other structures and contained at the top (beginning) of the structures.  Then generic routines can be created that use the minimal structure to perform linked list type operations, but separate routines can then handle the specific data.  This approach is often used in message parsing routines, where several types of messages are received, but all start with the same set of fields, usually including a field for message type.  The generic routines are used to add new messages to a queue when they are received, and remove them from the queue in order to process the message.  The message type field is then used to call the correct routine to process the specific type of message.
+
+===Example of internal and external storage===
+
+Suppose you wanted to create a linked list of families and their members.  Using internal storage, the structure might look like the following:
+  '''record''' ''member'' { ''// member of a family''
+      ''member'' next;
+      ''string'' firstName;
+      ''integer'' age;
+  }
+  '''record''' ''family'' { ''// the family itself''
+      ''family'' next;
+      ''string'' lastName;
+      ''string'' address;
+      ''member'' members ''// head of list of members of this family''
+  }
+To print a complete list of families and their members using internal storage, we could write:
+  aFamily := Families ''// start at head of families list''
+  '''while''' aFamily ≠ '''null''' ''// loop through list of families''
+      print information about family
+      aMember := aFamily.members ''// get head of list of this family's members''
+      '''while''' aMember ≠ '''null''' ''// loop through list of members''
+          print information about member
+          aMember := aMember.next
+      aFamily := aFamily.next
+Using external storage, we would create the following structures:
+  '''record''' ''node'' { ''// generic link structure''
+      ''node'' next;
+      ''pointer'' data ''// generic pointer for data at node''
+  }
+  '''record''' ''member'' { ''// structure for family member''
+      ''string'' firstName;
+      ''integer'' age
+  }
+  '''record''' ''family'' { ''// structure for family''
+      ''string'' lastName;
+      ''string'' address;
+      ''node'' members ''// head of list of members of this family''
+  }
+To print a complete list of families and their members using external storage, we could write:
+  famNode := Families ''// start at head of families list''
+  '''while''' famNode ≠ '''null''' ''// loop through list of families''
+      aFamily := (family) famNode.data ''// extract family from node''
+      print information about family
+      memNode := aFamily.members ''// get list of family members''
+      '''while''' memNode ≠ '''null''' ''// loop through list of members''
+          aMember := (member)memNode.data ''// extract member from node''
+          print information about member
+          memNode := memNode.next
+      famNode := famNode.next
+Notice that when using external storage, an extra step is needed to extract the record from the node and cast it into the proper data type.  This is because both the list of families and the list of members within the family are stored in two linked lists using the same data structure (node), and this language does not have parametric types.
+As long as the number of families that a member can belong to is known at compile time, internal storage works fine. If, however, a member needed to be included in an arbitrary number of families, with the specific number known only at run time, external storage would be necessary.
+
+===Speeding up search===
+
+Finding a specific element in a linked list, even if it is sorted, normally requires O(n) time (linear search).  This is one of the primary disadvantages of linked lists over other data structures.  In addition to the variants discussed above, below are two simple ways to improve search time.
+In an unordered list, one simple heuristic for decreasing average search time is the move-to-front heuristic, which simply moves an element to the beginning of the list once it is found. This scheme, handy for creating simple caches, ensures that the most recently used items are also the quickest to find again.
+Another common approach is to "index" a linked list using a more efficient external data structure. For example, one can build a red-black tree or hash table whose elements are references to the linked list nodes. Multiple such indexes can be built on a single list. The disadvantage is that these indexes may need to be updated each time a node is added or removed (or at least, before that index is used again).
+
+===Random access lists===
+
+A random access list is a list with support for fast random access to read or modify any element in the list. One possible implementation is a skew binary random access list using the skew binary number system, which involves a list of trees with special properties; this allows worst-case constant time head/cons operations, and worst-case logarithmic time random access to an element by index. Random access lists can be implemented as persistent data structures.
+Random access lists can be viewed as immutable linked lists in that they likewise support the same O(1) head and tail operations.
+A simple extension to random access lists is the min-list, which provides an additional operation that yields the minimum element in the entire list in constant time (without[tpl]clarify|r=should be "disregarding"?|date=October 2011[/tpl] mutation complexities).C Okasaki, "Purely Functional Random-Access Lists"
+
+==Related data structures==
+
+Both stacks and queues are often implemented using linked lists, and simply restrict the type of operations which are supported.
+The skip list is a linked list augmented with layers of pointers for quickly jumping over large numbers of elements, and then descending to the next layer.  This process continues down to the bottom layer, which is the actual list.
+A binary tree can be seen as a type of linked list where the elements are themselves linked lists of the same nature. The result is that each node may include a reference to the first node of one or two other linked lists, which, together with their contents, form the subtrees below that node.
+An unrolled linked list is a linked list in which each node contains an array of data values. This leads to improved cache performance, since more list elements are contiguous in memory, and reduced memory overhead, because less metadata needs to be stored for each element of the list.
+A hash table may use linked lists to store the chains of items that hash to the same position in the hash table.
+A heap shares some of the ordering properties of a linked list, but is almost always implemented using an array. Instead of references from node to node, the next and previous data indexes are calculated using the current data's index.
+A self-organizing list rearranges its nodes based on some heuristic which reduces search times for data retrieval by keeping commonly accessed nodes at the head of the list.
+
+==Notes==
+
+==Footnotes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,69 @@
+[[Concurrent Versions System]]
+
+CATEGORIES: 1990 software, Free software programmed in C, Concurrent Versions System, Free revision control software, Unix archivers and compression-related utilities
+
+The Concurrent Versions System (CVS), also known as the Concurrent Versioning System, is a client-server free software revision control system in the field of software development. A version control system keeps track of all work and all changes in a set of files, and allows several developers (potentially widely separated in space and time) to collaborate. Dick Grune developed CVS as a series of shell scripts in July 1986.[tpl]cite web|url=http://ximbiot.com/cvs/manual/cvs-1.12.12/cvs_1.html|title=CVS--Concurrent Versions System v1.12.12.1: Overview|publisher=ximbiot.com - Per Cederqvist|accessdate=9 December 2011[/tpl]
+In addition to commercial software developers, CVS became popular with the open source software world and was released under the GNU General Public License.  While there was regular development to add features and fix bugs in the past,[tpl]cite web|url=http://lists.nongnu.org/archive/html/cvs-cvs/|title=CVS Change Log|accessdate=February 22, 2011[/tpl] including regular builds and test results,[tpl]cite web|url=http://lists.nongnu.org/archive/html/cvs-test-results/|title=CVS Test Results|accessdate=February 22, 2011[/tpl] there have been no new releases since 2008. The product is mature: new releases are not produced until there are requests for new features[tpl]cite web|url=http://savannah.nongnu.org/bugs/?group=cvs|title=Open requests for fixes/features|accessdate=February 22, 2011[/tpl] or bug reports.[tpl]cite web|url=http://lists.nongnu.org/archive/html/info-cvs/|title=Requests for fixes/features|accessdate=February 22, 2011[/tpl]
+
+==Features==
+
+CVS uses a client–server architecture: a server stores the current version(s) of a project and its history, and clients connect to the server in order to "check out" a complete copy of the project, work on this copy and then later "check in" their changes. Typically, the client and server connect over a LAN or over the Internet, but client and server may both run on the same machine if CVS has the task of keeping track of the version history of a project with only local developers. The server software normally runs on Unix (although at least the CVSNT server also supports various flavours of Microsoft Windows), while CVS clients may run on any major operating-system  platform.
+Several developers may work on the same project concurrently, each one editing files within their own "working copy" of the project, and sending (or checking in) their modifications to the server.  To avoid the possibility of people stepping on each other's toes, the server only accepts changes made to the most recent version of a file.  Developers are therefore expected to keep their working copy up-to-date by incorporating other people's changes on a regular basis.  This task is mostly handled automatically by the CVS client, requiring manual intervention only when an edit conflict arises between a checked-in modification and the yet-unchecked local version of a file.
+If the check in operation succeeds, then the version numbers of all files involved automatically increment, and the CVS-server writes a user-supplied description line, the date and the author's name to its log files.  CVS can also run external, user-specified log processing scripts following each commit.  These scripts are installed by an entry in CVS's loginfo file, which can trigger email notification or convert the log data into a Web-based format.
+Clients can also compare versions, request a complete history of changes, or check out a historical snapshot of the project as of a given date or as of a revision number.
+
+===Anonymous CVS===
+
+Many open-source projects allow "anonymous read access", a feature pioneered by OpenBSD. This means that clients may check out and compare versions with either a blank or simple published password (e.g., "anoncvs"); only the check-in of changes requires a personal account and password in these scenarios.
+Clients can also use the "update" command to bring their local copies up-to-date with the newest version on the server. This eliminates the need for repeated downloading of the whole project.
+CVS can also maintain different "branches" of a project. For instance, a released version of the software project may form one branch, used for bug fixes, while a version under current development, with major changes and new features, can form a separate branch.
+CVS uses delta compression for efficient storage of different versions of the same file.  This works great with large text files with few changes from one version to the next. This is usually the case for source code files. On the other hand, when CVS is told to store a file as binary, it will keep each individual version on the server. Storing files as binary is important in order to avoid corruption of binary files.
+
+==Terminology==
+
+CVS labels a single project (set of related files) that it manages as a module. A CVS server stores the modules it manages in its repository. Programmers acquire copies of modules by checking out. The checked-out files serve as a working copy, sandbox or workspace.  Changes to the working copy are reflected in the repository by committing them.  To update is to  acquire or merge the changes in the repository with the working copy.
+
+==History and status==
+
+CVS developed from an earlier versioning-system called Revision Control System (RCS) ([tpl]As of|2008|alt= still[/tpl] in use) that manages individual files but not whole projects.  Dick Grune provides some brief historical notes about CVS on his site.  To quote:
+
+Grune publicly released the code to mod.sources on June 23, 1986: Google Groups continues to archive and serve the original usenet post.
+The code that eventually evolved into the current version of CVS started with Brian Berliner in April 1989, with later input from Jeff Polk and many other contributors. Brian Berliner wrote a paper introducing his improvements to the CVS program—which describes how the tool was extended and used internally by Prisma, a third-party developer working on the SunOS kernel, and was released for the benefit of the community under the GPL. On November 19, 1990, CVS version 1.0 was submitted to the Free Software Foundation for development and distribution.initial release of version 1.0; CVS NEWS file
+CVS introduced the implementation of branching into version control systems.CVS II: Parallelizing Software Development article by Brian Berliner   Whilst RCS did incorporate the concept of branches - they were for individual files only.
+CVS has always solidly supported distributed, multi-site and offline operations due to the unreliability of the few computer networks that existed at the time CVS evolved.
+
+===Development status===
+
+There have been no official recent announcements indicating the project status.
+Development of the Microsoft Windows, Linux, Solaris, HPUX, I5os and Mac OS X port of CVS has split off into a separate project named CVSNT, which is under current, active development.[tpl]cite web | url=http://www.evscm.org/about/ | title=About the CVSNT Project | publisher=March Hare Software | work=History | accessdate=January 15, 2013 | quote=CVS Suite 2009R2 was released in July 2011 with improved support for versioning PL/SQL triggers/procedures etc, and CVS Suite 2010 is currently being prepared for release.  A major upgrade: CVS Suite 2012 is in final planning stages and is expected to be released in early 2012.[/tpl]
+
+===Relationship with GNU===
+
+Historically, the relationship between CVS and the GNU project could appear somewhat ambiguous: the GNU Web site distributed the program, labelling it "GNU package" on one page and "other GPL-licensed project" on another.  Clarification came [tpl]As of|2008|alt= recently[/tpl] when CVS development moved from cvshome.org to savannah.nongnu.org, with CVS officially assigned to the non-gnu category.  On the FTP site, the program has traditionally resided in the /non-gnu/ directory and still does.
+The GNU project specifically states that it does not maintain ownership of CVS.[tpl]cite web | url=https://savannah.nongnu.org/projects/cvs/ | title=Concurrent Versions System - Summary | accessdate=January 15, 2013 | quote=This project is not part of the GNU Project.[/tpl]
+
+===Successors===
+
+Over time, developers have created new version control systems based on CVS in order to add features, alter the operational model, and improve developers' productivity.  This has occurred frequently enough to lead to the phrase YACC: "Yet Another CVS Clone" (a play on the Unix command named yacc, which stands for "yet another compiler compiler"). CVS replacement projects include CVSNT (first released 1998), Subversion[tpl]cite web|url=http://subversion.apache.org/faq.html#why|title=Subversion FAQ: Why does this project exist?|publisher=Subversion (software)|accessdate=September 21, 2009[/tpl][tpl]cite web|url=http://www.red-bean.com/sussman/svn-anti-fud.html|title=Dispelling Subversion FUD|publisher=Ben Collins-Sussman|accessdate=June 30, 2010[/tpl] (initially released in 2004Subversion released 26th February 2004: and the CHANGELOG proof can be found here), EVS (first released 2008), OpenCVS  (not released as of 3 May 2012[tpl]cite web|url=http://www.opencvs.org/|title=OpenCVS|publisher=OpenCVS|accessdate=May 3, 2012[/tpl]), and numerous systems that support distributed revision control.
+
+==Criticism==
+
+Several characteristics of CVS have been frequently criticized.[tpl]by whom|date=January 2013[/tpl] Defenders[tpl]who|date=January 2013[/tpl] argue that many of these are the result of deliberate design decisions, some of which were made at a time when the software and hardware landscape were different than they are now. They also point to the existence of workarounds or approaches to the development process that can mitigate problems.
+
+==See also==
+
+| last = Barrett
+| first = Arthur
+| title = Anonymous or Developer checkout with TortoiseCVS
+| accessdate = 2010-07-10
+| date = 2010-06-25
+| url = http://drupal.org/node/22293
+}}[/ref]
+
+===IDEs with support for CVS===
+
+==Notes==
+
+==References==
+
+ | author = David Thomas

@@ -1,0 +1,89 @@
+[[Memory management]]
+
+CATEGORIES: Memory management, Computer architecture
+
+Memory management is the act of managing computer memory. The essential requirement of memory management is to provide ways to dynamically allocate portions of memory to programs at their request, and free it for reuse when no longer needed. This is critical to any advanced computer system where more than a single process might be underway at any time.
+Several methods have been devised that increase the effectiveness of memory management. Virtual memory systems separate the memory addresses used by a process from actual physical addresses, allowing separation of processes and increasing the effectively available amount of RAM using paging or swapping to secondary storage. The quality of the virtual memory manager can have an extensive effect on overall system performance.
+
+Dynamic memory allocation
+
+Details
+
+The task of fulfilling an allocation request consists of locating a block of unused memory of sufficient size. Memory requests are satisfied by allocating portions from a large pool of memory called the heap or free store. At any given time, some parts of the heap are in use, while some are "free" (unused) and thus available for future allocations. Several issues complicate implementation, such as external fragmentation, which arises when there are many small gaps between allocated memory blocks, which invalidates their use for an allocation request. The allocator's metadata can also inflate the size of (individually) small allocations. This is managed often by chunking. The memory management system must track outstanding allocations to ensure that they do not overlap and that no memory is ever "lost" as a memory leak.
+
+Efficiency
+
+The specific dynamic memory allocation algorithm implemented can impact performance significantly. A study conducted in 1994 by Digital Equipment Corporation illustrates the overheads involved for a variety of allocators. The lowest average instruction path length required to allocate a single memory slot was 52 (as measured with an instruction level profiler on a variety of software).eecs.edu/~robby/uc-courses/15400-2008-spring/spe895.pdf
+
+Implementations
+
+Since the precise location of the allocation is not known in advance, the memory is accessed indirectly, usually through a pointer reference. The specific algorithm used to organize the memory area and allocate and deallocate chunks is interlinked with the kernel, and may use any of the following methods:
+
+=Fixed-size blocks allocation=
+
+Fixed-size blocks allocation, also called memory pool allocation, uses a free list of fixed-size blocks of memory (often all of the same size). This works well for simple embedded systems where no large objects need to be allocated, but suffers from fragmentation, especially with long memory addresses. However, due to the significantly reduced overhead this method can substantially improve performance for objects that need frequent allocation / de-allocation and is often used in video games.
+
+=Buddy blocks=
+
+In this system, memory is allocated into several pools of memory instead of just one, where each pool represents blocks of memory of a certain power of two in size. All blocks of a particular size are kept in a sorted linked list or tree and all new blocks that are formed during allocation are added to their respective memory pools for later use. If a smaller size is requested than is available, the smallest available size is selected and halved. One of the resulting halves is selected, and the process repeats until the request is complete. When a block is allocated, the allocator will start with the smallest sufficiently large block to avoid needlessly breaking blocks. When a block is freed, it is compared to its buddy. If they are both free, they are combined and placed in the next-largest size buddy-block list.
+
+Systems with virtual memory
+
+Virtual memory is a method of decoupling the memory organization from the physical hardware. The applications operate memory via virtual addresses. Each time an attempt to access stored data is made, virtual memory data orders translate the virtual address to a physical address.  In this way addition of virtual memory enables granular control over memory systems and methods of access.
+
+Protection
+
+In virtual memory systems the operating system limits how a process can access the memory. This feature can be used to disallow a process to read or write to memory that is not allocated to it, preventing malicious or malfunctioning code in one program from interfering with the operation of another.
+
+Sharing
+
+Even though the memory allocated for specific processes is normally isolated, processes sometimes need to be able to share information. Shared memory is one of the fastest techniques for inter-process communication.
+
+Physical organization
+
+Memory is usually classed by access rate as with primary storage and secondary storage. Memory management systems handle moving information between these two levels of memory.
+
+
+
+Notes
+
+
+
+ | author = Wilson, P.R.
+ | coauthors = Johnstone, M.S.; Neely, M.; Boles, D.
+ | year = 1995
+ | title = Dynamic Storage Allocation: A Survey and Critical Review
+ | journal = Memory Management: International Workshop, Iwmm'95, Kinross, Uk, September 27–29, 1995: Proceedings
+ | url = 
+ | accessdate = 2008-01-06
+ | publisher = Springer
+ | isbn = 978-3-540-60368-9
+}}
+ | author = Berger, E.D.
+ | coauthors = Zorn, B.G.; McKinley, K.S.
+ | year = 2001
+ | title = Composing high-performance memory allocators
+ | journal = ACM SIGPLAN Notices
+ | volume = 36
+ | issue = 5
+ | pages = 114–124
+ | url = 
+ | doi = 10.1145/381694
+}}
+ | author = Berger, E.D.
+ | coauthors = Zorn, B.G.; McKinley, K.S.
+ | year = 2002
+ | title = Reconsidering custom memory allocation
+ | conference =
+ | booktitle = Proceedings of the 17th ACM SIGPLAN conference on Object-oriented programming, systems, languages, and applications
+ | pages = 1–12
+ | publisher = ACM Press New York, NY, USA
+ | url = 
+ | conferenceurl =
+}}
+
+Further reading
+
+
+
+

@@ -1,0 +1,117 @@
+[[DOS/360 and successors]]
+
+CATEGORIES: Disk operating systems, IBM mainframe operating systems, Software written in assembly language
+
+Disk Operating System/360, also DOS/360, or simply DOS, was an operating system for IBM mainframes. It was announced by IBM on the last day of 1964, and it was first delivered in June 1966.E.W. Pugh, L.R. Johnson, and John H. Palmer, IBM's 360 and early 370 systems, MIT Press, Cambridge MA and London, ISBN 0-262-16123-0 – extensive (819 pp.) treatment of IBM's offerings during this period  In its time DOS was the most widely used operating system in the world. cit., p. 331 – most widely used OS
+Although their names are similar, there are no technical similarities between DOS/360 of the 1960s and the x86-DOS of the 1980s.
+
+DOS versions
+
+TOS/360
+
+TOS/360 (Tape Operating System/360) was an IBM operating system for the System/360, used in the early days around 1965 to support the IBM 360 model 30 and similar platforms. TOS shared most of the code base and some manuals with IBM's DOS/360. 
+TOS went through 14 releases but died out as disks such as the IBM 2311 and IBM 2314 became common with the System/360, whereas they had been an expensive luxury on the IBM 7090. So, TOS is now pretty uncommon with some of the computers.
+
+DOS/360
+
+DOS/360 was the primary operating system for most S/360 installations.
+
+DOS/VS
+
+DOS/VS was released in 1972.  The first DOS/VS release was numbered "Release 28" to signify an incremental upgrade from DOS/360. It added virtual memory in support of the new System/370 series hardware.  It used a fixed page table which mapped a single address space of up to 16 megabytes for all partitions combined.
+DOS/VS increased the number of partitions (separate simultaneous programs) from three (named Background, Foreground 1 and Foreground 2) to five (BG and F1 through F4) and allowed a system wide total of fifteen subtasks .
+DOS/VS was succeeded by DOS/VSE through z/VSE.
+
+DOS/VSE
+
+DOS/VSE was introduced in 1979 as an "extended" version of DOS/VS to support the new 4300 processors.
+The 4300 systems included a feature called ECPS:VSE that provided a single-level storage for both the processor and the I/O channels.[ref]
+</ref> DOS/VSE provided support for ECPS:VSE, but could also run on a System/370 without that feature. VSE was the last free version of DOS.
+
+SSX/VSE
+
+SSX/VSE ("Small System Executive") was an attempt by IBM to simplify purchase and installation of VSE by providing a pre-generated system containing the OS and the most popular products.  SSX was released in 1982, and later replaced by VSE/SP.
+
+VSE/SP
+
+In 1986 IBM released VSE/SP ("System Product") in conjunction with the announcement of the 9370 processors.  VSE/SP replaced SSX/VSE and bundled VSE with the most popular VSE program products such as VSE/AF, ACF/VTAM, CICS, and POWER/VS. VSE/SP supported only 24-bit addresses, despite customer requests to provide an XA (31 bit) version.
+
+VSE/ESA
+
+VSE/ESA was a 31-bit DOS/VSE version, but it would only run in S/370-ESA mode, not in the older XA mode. Though it can run in the newer versions that support it.
+
+z/VSE
+
+z/VSE was released in 1990 with support for up to 384 MB of real storage. It provided up to twelve static partitions and allowed VSE/POWER and ACF/VTAM to be run in private address spaces. It introduced a new feature called dynamic partitions which could allow up to 150 concurrent jobs, each in its own address space..Jerry Johnston, VSE: A Look at the Past 40 Years (2005)
+
+History
+
+When developing a new hardware generation of unified System/360 (or S/360) computers, IBM had originally committed to delivering a single operating system, OS/360, also compatible with low-end machines; but hardware was already available and the OS/360 project fell further and further behind schedule, as described at length by Fred Brooks. IBM was forced to quickly develop four additional systems: 
+When OS/360 was finally released, a year late, it required at least 64 KB of memory. DOS was designed to use little memory, and could run on 16 kB machines, a configuration available on the low-end S/360 model 30. Unlike OS/360, DOS/360 was initially a single-job system which did not support multitasking.  A version with multitasking, supporting up to three memory partitions, requiring 32 kB of memory was later released. Despite its limitations, DOS/360 became the most widely used operating system for processors with less than 256 KB of memoryRay Saunders, "MVS... And Before OS/360 ?" because: System/360 hardware sold very well; DOS/360 ran well on System/360 processors which medium-sized organizations could afford; and it was better than the "operating systems" these customers had before.
+DOS/360 was the operating system which filled the time gap between the announcement of the System/360 and the availability of the intended operating system, OS/360. As a result of the delay, a number of customers implemented DOS systems and committed significant investments to run them.  IBM expected that DOS/360 users would soon upgrade to OS/360, but as a result of those investments, they were reluctant to commit to such conversion. IBM then needed to continue to offer DOS/360 as an additional operating system. The Hacker's Jargon File incorrectly states that GECOS (also known as GCOS) was copied from DOS/360, which was not the case.
+
+Hardware requirements
+
+DOS/360 required a System/360 CPU (model 25 and above) with the standard instruction set (decimal and floating-point instruction sets optional).  The minimum memory requirement was 16KB; storage protection was required only if multiprogramming was used.  A 1052 Model 7DOS/360 on a S/370 used a 3210 or a 3215 rather than a 1052-7 printer-keyboard, either a selector or multiplexor channel, and at least one disk drive was required — initially a 2311 holding 7.25MB.  A card reader, card punch and line printer were usually included, but magnetic tape drives could be substituted.  
+A typical configuration might consist of a S/360 model 30 with 32KB memory and the decimal instruction set, an IBM 2540 card reader/card punch, an IBM 1403 printer, two or three IBM 2311 disks, two IBM 2415 magnetic tape drives, and the 1052-7 console.
+
+Technical details
+
+The following description applies to DOS/360 except as otherwise noted.  Later versions offer additional functionality.
+Because DOS/360 was designed to run on low-end System/360 models memory usage was a concern.  It was possible to generate a DOS supervisor, the resident portion of the operating system, as small as 5902 bytes.  Detailed charts listed memory requirements for each sysgen option, often as little as 100 bytes.  A minimum system would leave just over 10KB of storage available for a single batch partition which was enough to run utilities and all compilers except COBOL and full FORTRAN IV.   To keep memory usage as small as possible, DOS was coded entirely in assembly language.
+
+Transients
+
+To further reduce memory usage the supervisor employed overlays called transients that were read into one of two reserved transient areas as required.  Two types of transient routines, called physical transients and logical transients handled hardware exceptions and provided program services such as OPEN/CLOSE respectively.  Transient module names all began with $$A or $$B which sped up loading by storing their names first in the directory. They were often referred to as "A-Transients" or "B-transients."
+
+Multiprogramming
+
+Like all System/360 operating software initial releases of DOS could run only one program at a time. Later versions of "real" DOS were able to run up to three programs concurrently, in separate memory partitions, supported by the same hardware memory protection features of the more scalable OS/360 operating system. These were identified as BG (background), F1 (foreground 1) and F2 (foreground 2).  Multiprogramming was an optional feature of DOS/360, selectable at system generation.
+  Another SYSGEN option allowed batch operation run in either FG partition.  Otherwise foreground programs had to be manually started by the computer operator.  
+DOS-VS allowed up to seven concurrent programs, although five or six was a more common number due to the smaller scale of the hardware usually hosting DOS systems. Both DOS and DOS-VS allow the number of partitions to be set at IPL (Initial Program Load), the IBM term for Boot load.
+
+Program libraries
+
+Executable programs were stored in a Core Image Library. While running, DOS could not reclaim space as programs were deleted or replaced with newer versions. When the Core Image Library became full, it had to be compressed by one of the utility programs, and this could halt development work for as much as half a day. Many shops simply froze changes for a day, compressed the CIL "off-line", and IPLed with the new Core Image Library at the beginning of a business day.  A relocatable library for linkable object programs and a source statement library for assembler macros and include text were also supported.  Installations could define additional private relocatable and source statement libraries on other disk volumes.
+
+Utilities
+
+DOS/360 had a good set of utility programs, an Assembler, and compilers for FORTRAN, COBOL and eventually PL/I. And it supported a useful range of file organizations with access methods to help in using them:
+Sequential and ISAM files could store either fixed-length or variable-length records, and all types could occupy more than one disk volume.
+
+Telecommunications
+
+DOS/360 also offered BTAM, a data communications facility which was primitive and hard to use by later standards. However, BTAM could communicate with almost any type of terminal, which was a big advantage at a time when there was little standardization of communications protocols. The simplicity of its API also allowed the relatively easy interface of external communications processors, which facilitated DOS/360 machines becoming nodes in the multi-tier networks of large organizations.
+
+Job control
+
+In the description that follows the character "␢" represents a single blank.
+All DOS job control statements began with "//" in card columns one and two except end-of-job which was "/&␢", end-of-data, "/*␢", and comments, "*␢".
+
+Differences from OS/360
+
+Job control language
+
+DOS JCL was designed for speed, and the resulting positional syntax was significantly more cryptic than OS/360 keyword-driven job control.
+
+Spooling
+
+Early DOS included no spooling sub-system to improve the efficiency of punched card and line printer I/O. By the late 1960s both IBM and aftermarket vendors began filling this void. IBM's spooler was an option called POWER, and Software Design, Inc, an independent software company, sold a spooler called GRASP.
+
+Program loading
+
+DOS/360 had no relocating loader, so programmers had to link edit a separate executable version of each program for each partition, or address space, in which the program was likely to be run. Alternatively assembler-language programs could be written as self-relocating, but that imposed a size penalty, albeit a small one. Large DOS shops with multiple machines and multiple partition layouts often wrote their own relocating loader to circumvent this issue.
+
+Application programming interface
+
+The DOS/360 application programming interface was incompatible with OS/360.  High level language programs written for DOS needed to be compiled and linked before they could be used with OS/360. Minor differences between compilers of DOS as opposed to OS sometimes required modifications to programs. The port in the other direction however was more challenging. Since OS/360 had significantly more features supported in its API, any use of those features would have to be removed from programs being ported to DOS. This was less of a problem for programmers working in high level languages such as COBOL.  Assembler programs, on the other hand tended to utilize those very features more often and usually needed greater modification to run on DOS.
+
+Notes
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+[[Apache Subversion]]
+
+CATEGORIES: Apache Software Foundation, Subversion, Collaborative software, Free revision control software, Free software programmed in C, Cross-platform free software, Concurrent Versions System, Unix archivers and compression-related utilities, Software using the Apache license
+
+Apache Subversion (often abbreviated SVN, after the command name svn) is a software versioning and revision control system distributed as free software under the Apache License. Developers use Subversion to maintain current and historical versions of files such as source code, web pages, and documentation.  Its goal is to be a mostly compatible successor to the widely used Concurrent Versions System (CVS).
+The free software community has used Subversion widely: for example in projects such as Apache Software Foundation, Free Pascal, FreeBSD, GCC, Mono and SourceForge. Google Code also provides Subversion hosting for their free software projects. CodePlex offers access to Subversion as well as to other types of clients.
+The corporate world has also started to adopt Subversion. A 2007 report by Forrester Research recognized Subversion as the sole leader in the Standalone Software Configuration Management (SCM) category and as a strong performer in the Software Configuration and Change Management (SCCM) category.
+Subversion was created by CollabNet Inc. in 2000, and is now a top-level Apache project being built and used by a global community of contributors.
+
+History
+
+CollabNet founded the Subversion project in 2000 as an effort to write an open-source version-control system which operated much like CVS but which fixed the bugs and supplied some features missing in CVS. By 2001, Subversion had advanced sufficiently to host its own source code,
+
+Features
+
+Repository types
+
+Subversion offers two types of repository storage.
+
+=Berkeley DB (deprecated
+
+The original development of Subversion used the Berkeley DB package.
+Subversion has some limitations with Berkeley DB usage when a program that accesses the database crashes or terminates forcibly. No data loss or corruption occurs, but the repository remains offline while Berkeley DB replays the journal and cleans up any outstanding locks. The safest way to use Subversion with a Berkeley DB repository involves a single server-process running as one user (instead of through a shared filesystem).
+
+=FSFS=
+
+In 2004, a new storage subsystem was developed and named FSFS.
+It works faster than the Berkeley DB backend on directories with a large number of files and takes less disk space,
+due to less logging.
+Beginning with Subversion 1.2, FSFS became the default data store for new repositories.
+The etymology of "FSFS" is based on Subversion's use of the term "filesystem" for its repository storage system.
+FSFS stores its contents directly within the operating system's filesystem, rather than a structured system like Berkeley DB.
+Thus, it is a "Subversion FileSystem atop the FileSystem".
+
+Repository access
+
+Access to Subversion repositories can take place by:
+All three means can access both FSFS and Berkeley DB repositories.
+Any 1.x version of a client can work with any 1.x server. Newer clients and servers have additional features and performance capabilities, but have fallback support for older clients/servers.5 release notes
+
+Layers
+
+Internally, a Subversion system comprises several libraries arranged as layers. Each performs a specific task and allows developers to create their own tools at the desired level of complexity and specificity.
+
+Filesystem
+
+One can view the Subversion filesystem as "two-dimensional".Basic Merging Two coordinates are used to unambiguously address filesystem items:
+Each revision in a Subversion filesystem has its own root, which is used to access contents at that revision. Files are stored as links to the most recent change; thus a Subversion repository is quite compact. The system consumes storage space proportional to the number of changes made, not to the number of revisions.
+The Subversion filesystem uses transactions to keep changes atomic. A transaction operates on a specified revision of the filesystem, not necessarily the latest. The transaction has its own root, on which changes are made. It is then either committed and becomes the latest revision, or is aborted. The transaction is actually a long-lived filesystem object; a client does not need to commit or abort a transaction itself, rather it can also begin a transaction, exit, and then can re-open the transaction and continue using it. Multiple clients can access the same transaction and work together on an atomic change, though no existing clients expose this capability.
+
+Properties
+
+One important feature of the Subversion filesystem is properties: simple name=value pairs of text. Properties occur on filesystem entries (i.e., files and directories). These are versioned just like other changes to the filesystem. Users can add any property they wish, and the Subversion client uses a set of properties, which it prefixes with 'svn:'.
+Subversion also uses properties on revisions themselves. Like the above properties on filesystem entries the names are completely arbitrary, with the Subversion client using certain properties prefixed with 'svn:'. However, these properties are not versioned and can be changed later.
+
+Branching and tagging
+
+Subversion uses the inter-file branching model from PerforceInter-File Branching: A Practical Method for Representing Variants to implement branches and tagging. A branch is a separate line of development. In Subversion, the only difference between branches and tags is how they are used.
+A new branch or tag is set up by using the "svn copy" command, which should be used in place of the native operating system mechanism. The copied directory is linked to the original in the repository to preserve its history, and the copy takes very little extra space in the repository.
+All the versions in each branch maintain the history of the file up to the point of the copy, plus any changes made since. One can "merge" changes back into the trunk or between branches.
+
+Limitations and problems
+
+A known problem in Subversion affects the implementation of the file and directory rename operation. , Subversion implements the renaming of files and directories as a "copy" to the new name followed by a "delete" of the old name. Only the names change, all data relating to the edit history remains the same, and Subversion will still use the old name in older revisions of the "tree". However, Subversion may become confused when a move conflicts with edits made elsewhere,Implement true renames both for regular commits and when merging branches.5 release addressed some of these scenarios while others remained problematic.5 The Subversion 1.8 release finally addressed these problems by making moves a first-class operation.8
+, Subversion lacks some repository-administration and management features. For instance, someone may wish to edit the repository to permanently remove all historical records of certain data. Subversion does not have built-in support to achieve this simply.
+Subversion stores additional copies of data on the local machine, which can become an issue with very large projects or files, or if developers work on multiple branches simultaneously. In versions prior to 1.7 these . Subversion uses a single centralized .Working Copy Metadata Storage Improvements (client)
+Subversion does not store the modification times of files. As such, a file checked out of a Subversion repository will have the 'current' date (instead of the modification time in the repository), and a file checked into the repository will have the date of the check-in (instead of the modification time of the file being checked in). This might not always be what is wanted.org
+[/ref]
+To mitigate this third-party tools exist that allow for preserving modification time and other filesystem meta-data.FreezeAttrib (saves/restores file attributes using properties)
+FSVS (Fast System VerSioning)
+However, giving checked out files a current date is important as well — this is how tools like make(1) will take notice of a changed file for rebuilding it.
+Subversion uses a centralized revision control model. Ben Collins-Sussman, one of the designers of Subversion, believes a centralised model would help prevent "insecure programmers" from hiding their work from other team members.
+While Subversion stores filenames as Unicode, it does not specify if precomposition or decomposition is used for certain accented characters (such as é). Thus, files added in SVN clients running on some operating systems (such as ) use decomposition encoding, while clients running on other operating systems (such as GNU/Linux) use precomposition encoding, with the consequence that those accented characters do not display correctly if the local SVN client is not using the same encoding as the client used to add the files.subversion: Issue 2464SmartSVN - Subversion/SVN Client: Problems with umlauts in file names on Mac OS X
+
+Subversion tags and branches
+
+Revision numbers are difficult to remember in any version-control system. For this reason, most systems offer symbolic tags as user-friendly references to them. Subversion does not have such a feature and what its documentation recommends to use instead is very different in nature. Instead of implementing tags as references to points in history, Subversion recommends making snapshot copies into a well-known subdirectory ("tags/") in the space of the repository tree. Only a few predefined references are available: HEAD, BASE, PREV and COMMITTED.
+This history-to-space projection has multiple issues:
+1. When a snapshot is taken, the system does not assign any special meaning to the name of the tag/snapshot. This is the difference between a copy and a reference. The revision is recorded and the snapshot can be accessed by URL. This makes some operations less convenient and others impossible. For instance, a naïve svn diff -r tag1:tag2 myfile does not work; it is slightly more complicated than that to achieve, requiring the user to know and input URL/paths to the snapshots instead of just the names: svn diff /myfile /myfile. Other operations like for instance svn log -r tag1:tag2 myfile are just impossible.
+2. When two (ideally independent) object types live in the repository tree, a "fight to the top" can ensue. In other words, it is often difficult to decide at which level to create the "tags/" subdirectory:
+3. Tags, by their conventional definition are both read-only and light-weight, on the repository and client.  Subversion copies are not read-only, and while they are light-weight on the repository, they are incredibly heavy-weight on the client.
+To address such issues, posters on the Subversion mailing lists have suggested a new feature called "labels" or "aliases".Subversion mailing lists
+SVN labels would more closely resemble the "tags" of other systems such as CVS or Git. The fact that Subversion has global revision numbers opens the way to a very simple label->revision implementation. Yet as of 2013, no progress has been made and symbolic tags are not in the list of the most wanted features.Subversion Roadmap
+
+Development and implementation
+
+CollabNet has continued its involvement with Subversion, but the project runs as an independent open source community. In November 2009, the project was accepted into the Apache Incubator, aiming to become part of the Apache Software Foundation's efforts.open.net/news/press/2009/svn-asf.Collabnet Press Release regarding Apache subversion
+In October 2009, WANdisco announced the hiring of core Subversion committers as the company moved to become a major corporate sponsor of the project. This included Hyrum Wright, president of the Subversion Corporation and release manager for the Subversion project since early 2008, who joined the company to lead its open source team.
+The Subversion open-source community does not provide binaries, but potential users can download binaries from volunteers. While the Subversion project does not include an official graphical user interface (GUI) for use with Subversion, third parties have developed a number of different GUIs, along with a wide variety of additional ancillary software.
+Work announced in 2009 included SubversionJ (a Java API) and implementation of the Obliterate command, similar to that provided by Perforce. Both of these enhancements were sponsored by WANdisco.
+The Subversion committers normally have at least one or two new features under active development at any one time. The 1.7 release of Subversion in October 2011 included a streamlined HTTP transport to improve performance and a rewritten working-copy library.
+
+
+
+Notes
+
+
+
+Further reading
+
+
+
+

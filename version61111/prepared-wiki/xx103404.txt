@@ -1,0 +1,20 @@
+[[Diff3]]
+
+CATEGORIES: Free file comparison tools
+
+diff3 is a Unix utility to compare three files and show any differences among them. diff3 can also merge files,
+implementing the so called three-way merge.
+
+==Merging from a common ancestor==
+
+When two people have made changes to copies of the same file, diff3 can produce a merged output that contains both sets of changes together with warnings about conflicts. diff3 can merge three or more sets of changes to a file by merging two change sets at a time. 
+diff3 can incorporate changes from two modified versions into a common preceding version. This enables users to merge the sets of changes represented by the two newer files. This can be enabled using a command like this: diff3 mine older yours.
+This is like subtracting the file older from the file yours and adding the result to the file mine, or as merging into mine the changes that would turn older into yours. This merging is well-defined as long as mine and older match in the neighborhood of each such change. This fails to be true when all three input files differ or when only older differs; this is a conflict. When all three input files differ, the conflict is an overlap. 
+diff3 has several methods to handle overlaps and conflicts. It can omit overlaps or conflicts, or select only overlaps, or mark conflicts with special '>>>>>>' lines. 
+diff3 can output the merge results as an ed script that can be applied to the first file to yield the merged output. However, directly generating the merged output bypasses some problems with ed.
+
+==See also==
+
+==External links==
+
+

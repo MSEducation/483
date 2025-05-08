@@ -1,0 +1,70 @@
+[[UUCP]]
+
+CATEGORIES: Network file transfer protocols, Network protocols, Usenet, Unix SUS2008 utilities
+
+UUCP is an abbreviation of Unix-to-Unix Copy. The term generally refers to a suite of computer programs and protocols allowing remote execution of commands and transfer of files, email and netnews between computers. Specifically, a command named uucp is one of the programs in the suite; it provides a user interface for requesting file copy operations.  The UUCP suite also includes uux (user interface for remote command execution), uucico (the communication program that performs the file transfers), uustat (reports statistics on recent activity), uuxqt (execute commands sent from remote machines), and uuname (reports the UUCP name of the local system).  Some versions of the suite include uuencode/uudecode (convert 8-bit binary files to 7-bit text format and vice versa).
+Although UUCP was originally developed on Unix in the 1970s and 1980s, and is most closely associated with Unix-like systems, UUCP implementations exist for several non-Unix-like operating systems, including Microsoft's MS-DOS, Digital's VAX/VMS, Commodore's AmigaOS, classic Mac OS, and even CP/M.
+
+Technology
+
+UUCP can use several different types of physical connections and link layer protocols, but was most commonly used over dial-up connections. Before the widespread availability of Internet access, computers were only connected by smaller private networks within a company or organization. They were also often equipped with modems so they could be used remotely from character-mode terminals via dial-up telephone lines.  UUCP used the computers' modems to dial out to other computers, establishing temporary, point-to-point links between them.  Each system in a UUCP network has a list of neighbor systems, with phone numbers, login names and passwords, etc.  When work (file transfer or command execution requests) is queued for a neighbor system, the uucico program typically calls that system to process the work. The uucico program can also poll its neighbors periodically to check for work queued on their side; this permits neighbors without dial-out capability to participate.
+Today, UUCP is rarely used over dial-up links, but is occasionally used over TCP/IP. 
+The number of systems involved, as of early 2006, ran between 1500 and 2000 sites across 60 enterprises. UUCP's longevity can be attributed to its low cost, extensive logging, native failover to dialup, and persistent queue management.
+
+History
+
+UUCP was originally written at AT&T Bell Laboratories by Mike Lesk.  By 1978 it was in use on 82 UNIX machines inside the Bell system, primarily for software distribution.  It was released in 1979 as part of Version 7 Unix. A. Nowitz, and "A Dial-Up Network of UNIX Systems" by D. A. Nowitz and M. E. Lesk  The original UUCP was rewritten by AT&T researchers Peter Honeyman, David A. Nowitz, and Brian E. Redman around 1983.  The rewrite is referred to as HDB or HoneyDanBer uucp, which was later enhanced, bug fixed, and repackaged as BNU UUCP ("Basic Network Utilities").
+Each of these versions was distributed as proprietary software, which inspired Ian Lance Taylor to write a new free software version from scratch in 1991.
+Taylor UUCP was released under the GNU General Public License.  Taylor UUCP addressed security holes which allowed some of the original network worms to remotely execute unexpected shell commands. Taylor UUCP also incorporated features of all previous versions of UUCP, allowing it to communicate with any other version and even use similar config file formats from other versions.
+UUCP was also implemented for non-UNIX operating systems, most-notably MS-DOS systems. Packages such as UUSLAVE/GNUUCP (John Gilmore, Garry Paxinos, Tim Pozar), UUPC (Drew Derbyshire) and FSUUCP (Christopher Ambler of IODesign), brought early Internet connectivity to personal computers, expanding the network beyond the interconnected university systems. FSUUCP formed the basis for many bulletin board system (BBS) packages such as Galacticomm's Major BBS and Mustang Software's Wildcat! BBS to connect to the UUCP network and exchange email and Usenet traffic.  As an example, UFGATE (John Galvin, Garry Paxinos, Tim Pozar) was a package that provided a gateway between networks running Fidonet and UUCP protocols.
+FSUUCP was the only other implementation of Taylor's enhanced 'i' protocol, a significant improvement over the standard 'g' protocol used by most UUCP implementations.
+
+Mail routing
+
+The uucp and uuxqt capabilities could be used to send email between machines, with suitable mail user interfaces and delivery agent programs.  A simple UUCP mail address was formed from the adjacent machine name, an exclamation mark (often pronounced bang), followed by the user name on the adjacent machine.  For example, the address barbox!user would refer to user user on adjacent machine barbox.
+Mail could furthermore be routed through the network, traversing any number of intermediate nodes before arriving at its destination.  Initially, this had to be done by specifying the complete path, with a list of intermediate host names separated by bangs.  For example, if machine barbox is not connected to the local machine, but it is known that barbox is connected to machine foovax which does communicate with the local machine, the appropriate address to send mail to would be foovax!barbox!user.
+User barbox!user might publish their UUCP email address in a form such as …!bigsite!foovax!barbox!user.  This directs people to route their mail to machine bigsite (presumably a well-known and well-connected machine accessible to everybody) and from there through the machine foovax to the account of user user on barbox. Many users would suggest multiple routes from various large well-known sites, providing even better and perhaps faster connection service from the mail sender.
+
+Bang path
+
+An email address of this form was known as a bang path.
+Bang paths of eight to ten machines (or hops) were not uncommon in 1981, and late-night dial-up UUCP links would cause week-long transmission times. Bang paths were often selected by both transmission time and reliability, as messages would often get lost.  Some hosts went so far as to try to "rewrite" the path, sending mail via "faster" routes—this practice tended to be frowned upon.
+The "pseudo-domain" ending .  This would not have made sense anyway, because the DNS system is only appropriate for hosts reachable directly by TCP/IP. Additionally, the uucp community administered itself and did not mesh well with the administration methods and regulations governing the DNS; .uucp address is recognized on an incoming SMTP connection
+Usenet traffic was originally transmitted over the UUCP protocol using bang paths. These are still in use within Usenet message format Path header lines. They now have only an informational purpose, and are not used for routing, although they can be used to ensure that loops do not occur.
+In general, this form of e-mail address has now been superseded by the "@ notation", even by sites still using UUCP.
+
+UUCPNET and mapping
+
+UUCPNET was the name for the totality of the network of computers connected through UUCP. This network was very informal, maintained in a spirit of mutual cooperation between systems owned by thousands of private companies, universities, and so on.  Often, particularly in the private sector, UUCP links were established without official approval from the companies' upper management.  The UUCP network was constantly changing as new systems and dial-up links were added, others were removed, etc.
+The UUCP Mapping Project was a volunteer, largely successful effort to build a map of the connections between machines that were open mail relays and establish a managed namespace. Each system administrator would submit, by e-mail, a list of the systems to which theirs would connect, along with a ranking for each such connection.  These submitted map entries were processed by an automatic program that combined them into a single set of files describing all connections in the network.  These files were then published monthly in a newsgroup dedicated to this purpose.  The UUCP map files could then be used by software such as "pathalias" to compute the best route path from one machine to another for mail, and to supply this route automatically.  The UUCP maps also listed contact information for the sites, and so gave sites seeking to join UUCPNET an easy way to find prospective neighbors.
+
+Connections with the Internet
+
+Many UUCP hosts, particularly those at universities, were also connected to the Internet in its early years, and e-mail gateways between Internet SMTP-based mail and UUCP mail were developed. A user at a system with UUCP connections could thereby exchange mail with Internet users, and the Internet links could be used to bypass large portions of the slow UUCP network.  A "UUCP zone" was defined within the Internet domain namespace to facilitate these interfaces.
+With this infrastructure in place, UUCP's strength was that it permitted a site to gain Internet e-mail and Usenet connectivity with only a dial-up modem link to another cooperating computer.  This was at a time when true Internet access required a leased data line providing a connection to an Internet Point of Presence, both of which were expensive and difficult to arrange.  By contrast, a link to the UUCP network could usually be established with a few phone calls to the administrators of prospective neighbor systems. Neighbor systems were often close enough to avoid all but the most basic charges for telephone calls.
+
+Remote commands
+
+uux is remote command execution over UUCP. The uux command is used to execute a command on a remote system, or to execute a command on the local system using files from remote systems. The command is run by the uucico daemon which is not instant.
+
+Decline
+
+UUCP usage began to die out with the rise of Internet service providers offering inexpensive SLIP and PPP services. The UUCP Mapping Project was formally shut down late in 2000.
+The UUCP protocol has now mostly been replaced by the Internet TCP/IP based protocols SMTP for mail and NNTP for Usenet news.
+In July 2012, Dutch Internet provider XS4ALL closed down its UUCP service, claiming it was "probably one of the last providers in the world that still offered it"; it still had 13 users at that time, and new users had been refused for several years already. 
+
+Last uses and legacy
+
+One surviving feature of UUCP is the chat file format, largely inherited by the Expect software package.
+UUCP was in use over special-purpose high cost links (e.g. marine satellite links) long after its disappearance elsewhere, and still remains in legacy use.
+In the mid 2000s, UUCP over TCP/IP (often encrypted, using the SSH protocol) was proposed for use when a computer does not have any fixed IP addresses but is still willing to run a standard mail transfer agent (MTA) like Sendmail or Postfix.
+Bang paths are still in use within the Usenet network, though not for routing; they are used to record the nodes through which a message has passed, rather than to direct where it will go next. "Bang path" is also used as an expression for any explicitly specified routing path between network hosts. That usage is not necessarily limited to UUCP, IP routing, email messaging, or Usenet.
+The concept of delay-tolerant networking protocols was revisited in the early 2000s. Similar techniques as those used by UUCP can apply to other networks that experience delay or significant disruption.
+
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+[[Erlang (programming language)]]
+
+CATEGORIES: Declarative programming languages, Functional languages, Concurrent programming languages, Erlang programming language, Register-based virtual machines, Ericsson, Articles with example Erlang code, Software by programming language, Programming languages created in 1986, Programming languages created in the 1980s, Pattern matching programming languages
+
+Erlang ([tpl]IPAc-en|ˈ|ɜr|l|æ|ŋ[/tpl] [tpl]respell|ER|lang[/tpl]) is a general-purpose concurrent, garbage-collected programming language and runtime system. The sequential subset of Erlang is a functional language, with eager evaluation, single assignment, and dynamic typing. It was designed by Ericsson to support distributed, fault-tolerant, soft-real-time, non-stop applications. It supports hot swapping, so that code can be changed without stopping a system.[tpl]cite web|author=Joe Armstrong, Bjarne Däcker, Thomas Lindgren, Håkan Millroth|title=Open-source Erlang - White Paper|url=http://ftp.sunet.se/pub/lang/erlang/white_paper.html|accessdate=31 July 2011[/tpl]
+While threads require external library support in most languages, Erlang provides language-level features for creating and managing processes with the aim of simplifying concurrent programming. Though all concurrency is explicit in Erlang, processes communicate using message passing instead of shared variables, which removes the need for explicit locks (a locking scheme is still used internally by the VM[tpl]cite web|title=Lock-free message queue|url=http://erlang.2086793.n4.nabble.com/Lock-free-message-queue-td2550221.html|accessdate=23 December 2013[/tpl]).
+The first version was developed by Joe Armstrong in 1986.Joe Armstrong, "History of Erlang", in HOPL III: Proceedings of the third ACM SIGPLAN conference on History of programming languages, 2007, ISBN 978-1-59593-766-7 It was originally a proprietary language within Ericsson, but was released as open source in 1998.
+
+==History==
+
+The name "Erlang", attributed to Bjarne Däcker, has been understood[tpl]by whom?|date=February 2014[/tpl] as a reference to Danish mathematician and engineer Agner Krarup Erlang, and (initially at least) simultaneously as a syllabic abbreviation of "Ericsson Language".Erlang, the mathematician?
+Erlang was designed with the aim of improving the development of telephony applications. The initial version of Erlang was implemented in Prolog and was influenced by the programming language PLEX used in earlier Ericsson exchanges. According to Armstrong, the language went from lab product to real applications following the collapse of the next-generation AXE exchange named AXE-N in 1995. As a result, Erlang was chosen for the next ATM exchange AXD.
+In 1998 Ericsson announced the AXD301 switch, containing over a million lines of Erlang and reported to achieve a reliability of nine "9"s. Shortly thereafter, Ericsson Radio Systems banned the in-house use of Erlang for new products, citing a preference for non-proprietary languages. The ban caused Armstrong and others to leave Ericsson. The implementation was open-sourced at the end of the year. Ericsson eventually lifted the ban; it re-hired Armstrong in 2004.[tpl]cite web|url=http://erlang.org/pipermail/erlang-questions/2006-July/021368.html|title=question about Erlang's future|date=6 July 2010[/tpl]
+In 2006, native symmetric multiprocessing support was added to the runtime system and virtual machine.
+
+===Philosophy===
+
+Quoting[ref][tpl]cite book|title=Programming Erlang |url=http://books.google.co.uk/books?id=Qr_WuvfTSpEC&pg=PA14&lpg=PP1#v=onepage&q&f=false[/tpl]
+[/ref] Mike Williams, one of the three inventors of Erlang:[tpl]cite web|title=Erlang FAQ, Academic and Historical Questions |url=http://www.erlang.org/faq/academic.html[/tpl]
+
+==Functional programming examples==
+
+A factorial algorithm implemented in Erlang:
+A sorting algorithm (similar to quicksort):
+The above example recursively invokes the function qsort until nothing remains to be sorted. The expression || Front  is a list comprehension, meaning “Construct a list of elements Front such that Front is a member of Rest, and Front is less than Pivot.” ++ is the list concatenation operator.
+A comparison function can be used for more complicated structures for the sake of readability.
+The following code would sort lists according to length:
+Here again, a Pivot is taken from the first parameter given to qsort() and the rest of Lists is named Rest. Note that the expression
+|| X 
+is no different in form from
+|| Front 
+(in the previous example) except for the use of a comparison function in the last part, saying “Construct a list of elements X such that X is a member of Rest, and Smaller is true", with Smaller being defined earlier as
+fun(A,B) -> A 
+Note also that the anonymous function is named Smaller in the parameter list of the second definition of qsort so that it can be referenced by that name within that function. It is not named in the first definition of qsort, which deals with the base case of an empty list and thus has no need of this function, let alone a name for it.
+
+==Data types==
+
+Erlang has eight primitive data types:
+And two compound data types:
+Two forms of syntactic sugar are provided:
+Erlang has no method of defining classes, although there are external libraries available.Erlang Class Transformation project
+
+==Concurrency and distribution orientation==
+
+Erlang's main strength is support for concurrency. It has a small but powerful set of primitives to create processes and communicate among them. Processes are the primary means to structure an Erlang application. Erlang's concurrency implementation is the Actor model. They are neither operating system processes nor operating system threads, but lightweight processes. Like operating system processes (but unlike operating system threads), they share no state with each other. The estimated minimal overhead for each is 300 words.[tpl]cite web|title=Erlang Efficiency Guide - Processes|url=http://www.erlang.org/doc/efficiency_guide/processes.html[/tpl] Thus, many processes can be created without degrading performance. A benchmark with 20 million processes has been successfully performed.[tpl]cite web|author=Ulf Wiger|title=Stress-testing erlang| url=http://groups.google.com/group/comp.lang.functional/msg/33b7a62afb727a4f?dmode=source| work=comp.lang.functional.misc|accessdate=25 August 2006|date=14 November 2005[/tpl] Erlang has supported symmetric multiprocessing since release R11B of May 2006.
+Inter-process communication works via a shared-nothing asynchronous message passing system: every process has a “mailbox”, a queue of messages that have been sent by other processes and not yet consumed. A process uses the receive primitive to retrieve messages that match desired patterns. A message-handling routine tests messages in turn against each pattern, until one of them matches. When the message is consumed and removed from the mailbox the process resumes execution. A message may comprise any Erlang structure, including primitives (integers, floats, characters, atoms), tuples, lists, and functions.
+The code example below shows the built-in support for distributed processes:
+As the example shows, processes may be created on remote nodes, and communication with them is transparent in the sense that communication with remote processes works exactly as communication with local processes.
+Concurrency supports the primary method of error-handling in Erlang. When a process crashes, it neatly exits and sends a message to the controlling process which can take action.[tpl]cite web|author=Joe Armstrong|title=Erlang robustness|url=http://www.erlang.org/doc/getting_started/robustness.html|accessdate=15 July 2010[/tpl][tpl]cite web|title=Erlang Supervision principles|url=http://www.erlang.org/doc/design_principles/sup_princ.html|accessdate=15 July 2010[/tpl] This way of error handling increases maintainability and reduces complexity of code.[tpl]Citation needed|date=April 2010[/tpl]
+
+==Implementation==
+
+The Ericsson Erlang implementation loads virtual machine bytecode which is converted to threaded code at load time. It also includes a native code compiler on most platforms, developed by the High Performance Erlang Project (HiPE) at Uppsala University. Since October 2001 the HiPE system is fully integrated in Ericsson's Open Source Erlang/OTP system.[tpl]cite web|title=High Performance Erlang|url=http://www.it.uu.se/research/group/hipe/|accessdate=26 March 2011[/tpl] It also supports interpreting, directly from source code via abstract syntax tree, via script as of R11B-5 release of Erlang.
+
+==Hot code loading and modules==
+
+Erlang supports language-level Dynamic Software Updating. To implement this, code is loaded and managed as "module" units; the module is a compilation unit. The system can keep two versions of a module in memory at the same time, and processes can concurrently run code from each. The versions are referred to as the "new" and the "old" version. A process will not move into the new version until it makes an external call to its module.
+An example of the mechanism of hot code loading:
+For the second version, we add the possibility to reset the count to zero.
+Only when receiving a message consisting of the atom 'code_switch' will the loop execute an external call to codeswitch/1 (?MODULE is a preprocessor macro for the current module). If there is a new version of the "counter" module in memory, then its codeswitch/1 function will be called. The practice of having a specific entry-point into a new version allows the programmer to transform state to what is required in the newer version. In our example we keep the state as an integer.
+In practice, systems are built up using design principles from the Open Telecom Platform which leads to more code upgradable designs. Successful hot code loading is a tricky subject; Code needs to be written to make use of Erlang's facilities.
+
+==Distribution==
+
+In 1998, Ericsson released Erlang as open source to ensure its independence from a single vendor and to increase awareness of the language. Erlang, together with libraries and the real-time distributed database Mnesia, forms the Open Telecom Platform (OTP) collection of libraries. Ericsson and a few other companies offer commercial support for Erlang.
+Since the open source release, Erlang has been used by several firms worldwide, including Nortel and T-Mobile.[tpl]cite web|title=Who uses Erlang for product development?|work=Frequently asked questions about Erlang|url=http://www.erlang.org/faq/faq.html#AEN50|accessdate=16 July 2007|quote=The largest user of Erlang is (surprise!) Ericsson. Ericsson use it to write software used in telecommunications systems. Many dozens of projects have used it, a particularly large one is the extremely scalable AXD301 ATM switch. Other commercial users listed as part of the FAQ include: Nortel, Deutsche Flugsicherung (the German national air traffic control organisation), and T-Mobile.[/tpl] Although Erlang was designed to fill a niche and has remained an obscure language for most of its existence, its popularity is growing due to demand for concurrent services.[tpl]cite web|title=Programming Erlang|url=http://www.ddj.com/linux-open-source/201001928?cid=RSSfeed_DDJ_OpenSource|accessdate=13 December 2008|quote=Virtually all language use shared state concurrency. This is very difficult and leads to terrible problems when you handle failure and scale up the system...Some pretty fast-moving startups in the financial world have latched onto Erlang; for example, the Swedish www.kreditor.se.[/tpl][tpl]cite web|title=Erlang, the next Java|url=http://www.cincomsmalltalk.com/userblogs/ralph/blogView?showComments=true&entry=3364027251|accessdate=8 October 2008|quote=I do not believe that other languages can catch up with Erlang anytime soon. It will be easy for them to add language features to be like Erlang. It will take a long time for them to build such a high-quality VM and the mature libraries for concurrency and reliability. So, Erlang is poised for success. If you want to build a multicore application in the next few years, you should look at Erlang.[/tpl]
+Erlang has found some use in fielding MMORPG servers.
+
+===Projects using Erlang===
+
+Projects using Erlang include:
+
+===Companies using Erlang===
+
+Companies using Erlang in their production systems include:
+
+==Variants==
+
+==References==
+
+==Further reading==
+
+| first1 = Joe
+| last1 = Armstrong
+| first2 = Robert
+| last2 = Virding
+| first3 = Mike
+| last3 = Williams
+| first4 = Claes
+| last4 = Wikstrom
+| title = Concurrent Programming in Erlang
+| publisher = Prentice Hall
+| edition = 2nd
+| date = 16 January 1996
+| page = 358
+| isbn = 978-0-13-508301-7
+| url = http://www.erlang.org/erlang_book_toc.html
+}}
+| first1 = Joe
+| last1 = Armstrong
+| title = Programming Erlang: Software for a Concurrent World
+| publisher = Pragmatic Bookshelf
+| edition = 1st
+| date = 11 July 2007
+| page = 536
+| isbn = 978-1-934356-00-5
+| url = http://pragprog.com/titles/jaerlang/programming-erlang
+}}
+| first1 = Simon J.
+| last1 = Thompson
+| first2 = Francesco
+| last2 = Cesarini
+| title = Erlang Programming: A Concurrent Approach to Software Development
+| publisher = O'Reilly Media, Inc
+| edition = 1st
+| date = 19 June 2009
+| page = 496
+| location = Sebastopol, California
+| isbn = 978-0-596-51818-9
+| url = http://www.erlangprogramming.org
+}}
+| first1 = Martin
+| last1 = Logan
+| first2 = Eric
+| last2 = Merritt
+| first3 = Richard
+| last3 = Carlsson
+| title = Erlang and OTP in Action
+| publisher = Manning Publications
+| edition = 1st
+| date = 28 May 2010
+| page = 500
+| location = Greenwich, CT
+| isbn = 978-1-933988-78-8
+| url =
+}}
+| last = Martin
+| first = Brown
+| title = Introduction to programming in Erlang, Part 1: The basics
+| work = developerWorks
+| publisher = IBM
+| date = 10 May 2011
+| url = http://www.ibm.com/developerworks/opensource/library/os-erlang1/index.html
+| accessdate =10 May 2011
+}}
+| last = Martin
+| first = Brown
+| title = Introduction to programming in Erlang, Part 2: Use advanced features and functionality
+| work = developerWorks
+| publisher = IBM
+| date = 17 May 2011
+| url = http://www.ibm.com/developerworks/opensource/library/os-erlang2/index.html
+| accessdate =17 May 2011}}
+
+==External links==
+
+

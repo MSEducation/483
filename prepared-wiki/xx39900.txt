@@ -1,0 +1,68 @@
+[[Network Time Protocol]]
+
+CATEGORIES: Network time-related software, Internet Standards, Internet protocols, Application layer protocols
+
+Network Time Protocol (NTP) is a networking protocol for clock synchronization between computer systems over packet-switched, variable-latency data networks.
+In operation since before 1985, NTP is one of the oldest Internet protocols in use. NTP was originally designed by David L. Mills of the University of Delaware, who still develops and maintains it with a team of volunteers.
+
+==Overview==
+
+NTP is intended to synchronize all participating computers to within a few milliseconds of Coordinated Universal Time (UTC).[tpl]rp|3[/tpl] It uses a modified version of Marzullo's algorithm to select accurate time servers and is designed to mitigate the effects of variable network latency. NTP can usually maintain time to within tens of milliseconds over the public Internet, and can achieve better than one millisecond accuracy in local area networks under ideal conditions. Asymmetric routes and network congestion can cause errors of 100 ms or more.[tpl]cite web |url=http://www.eecis.udel.edu/~mills/exec.html |title=Executive Summary: Computer Network Time Synchronization |accessdate=2011-11-21[/tpl][tpl]cite web |url=http://www.ntp.org/ntpfaq/NTP-s-algo.htm#Q-ACCURATE-CLOCK |title=NTP FAQ |publisher=The NTP Project |accessdate=2011-08-27[/tpl]
+The protocol is usually described in terms of a client-server model, but can as easily be used in peer-to-peer relationships where both peers consider the other to be a potential time source.[tpl]Rp|20[/tpl] Implementations send and receive timestamps using the User Datagram Protocol (UDP) on port number 123.[tpl]cite web |url= http://www.iana.org/assignments/port-numbers |title=Port Numbers |publisher= The Internet Assigned Numbers Authority (IANA)[/tpl]Page 16 They can also use broadcasting or multicasting, where clients passively listen to time updates after an initial round-trip calibrating exchange. NTP supplies a warning of any impending leap second adjustment, but no information about local time zones or daylight saving time is transmitted.
+[tpl]As of|June 2010[/tpl], the current protocol is version 4 (NTPv4), which is a proposed standard as documented in RFC 5905. It is backward compatible with version 3, specified in RFC 1305.
+
+==Clock strata==
+
+NTP uses a hierarchical, semi-layered system of time sources. Each level of this hierarchy is termed a "stratum" and is assigned a number starting with zero at the top. The number represents the distance from the reference clock and is used to prevent cyclical dependencies in the hierarchy. Stratum is not always an indication of quality or reliability; it is common to find stratum 3 time sources that are higher quality than other stratum 2 time sources. Telecommunication systems use a different definition for clock strata.
+Only strata 0 to 15 are valid; stratum 16 is used to indicate that a device is unsynchronized. The NTP algorithms on each computer interact to construct a Bellman-Ford shortest-path spanning tree, to minimize the accumulated round-trip delay to the stratum 1 servers for all the clients.[tpl]rp|20[/tpl]
+
+==Timestamps==
+
+The 64-bit timestamps used by NTP consist of a 32-bit part for seconds and a 32-bit part for fractional second, giving a time scale that rolls over every 232 seconds (136 years) and a theoretical resolution of 2−32 seconds (233 picoseconds). NTP uses an epoch of January 1, 1900. The first rollover occurs in 2036,Implementations can determine whether rollover has occurred using a knowledge of the approximate time from other sources. Since NTP only works with the differences between timestamps and never their absolute values, the 2036 rollover is invisible as long as the timestamps are within 68 years of each other. This means that the rollover will be invisible for most running systems, since they will have the correct time to within a very small tolerance. However, systems that are starting up need to know the date within no more than 68 years. Given the large allowed error, it is not expected that this is too onerous a requirement. One suggested method is to set the clock to no earlier than the system build date. Many systems use a battery powered hardware clock to avoid this problem. prior to the UNIX year 2038 problem.
+Future versions of NTP may extend the time representation to 128 bits: 64 bits for the second and 64 bits for the fractional-second. The current NTPv4 format has support for Era Number and Era Offset, that when used properly should aid fixing date rollover issues. According to Mills, "the 64 bit value for the fraction is enough to resolve the amount of time it takes a photon to pass an electron at the speed of light. The 64 bit second value is enough to provide unambiguous time representation until the universe goes dim."University of Delaware Digital Systems Seminar presentation by David Mills, 2006-04-262−64 seconds is about 54 zeptoseconds (light would travel 16.26 picometres, or approximately 0.31 × Bohr radius), and 264 seconds is about 585 billion years.
+
+==Clock synchronization algorithm==
+
+A typical NTP client will regularly poll three or more servers on diverse networks. To synchronize its clock with a remote server, the client must compute the round-trip delay time and the offset. The round-trip delay δ is computed as
+where
+Therefore
+The offset θ is given by[tpl]Citation |last=Mills |first=David L. |year=2005 |title=NTP Clock Discipline Modelling and Analysis |page=10 |url=http://www.eecis.udel.edu/~mills/database/brief/algor/algor.pdf |accessdate=2011-07-13 [/tpl]
+The calculated δ and θ are passed through filters and subjected to statistical analysis. Outliers are discarded and an estimate of time offset is derived from the best three remaining candidates. The clock frequency is then adjusted to steadily reduce the offset, creating a feedback loop.[tpl]cite book|author=David L. Mills|title=Computer Network Time Synchronization: The Network Time Protocol|url=http://books.google.com/books?id=pdTcJBfnbq8C&pg=PA12|date=12 December 2010|publisher=Taylor & Francis|isbn=978-0-8493-5805-0|pages=12–[/tpl][tpl]rp|20[/tpl]
+The synchronization is correct when both the incoming and outgoing routes between the client and the server have symmetrical nominal delay. If the routes do not have a common nominal delay, the synchronization has a systematic bias of half the difference between the forward and backward travel times.[tpl]cite conference |last1=Gotoh |first1=T. |last2=Imamura |first2=K. |last3=Kaneko |first3=A. |title=Improvement of NTP time offset under the asymmetric network with double packets method |conference=Conference on Precision Electromagnetic Measurements |pages=448–449 |year=2002 |doi=10.1109/CPEM.2002.1034915 |isbn=0-7803-7242-5[/tpl]
+
+==Software implementations==
+
+===Reference implementation===
+
+The NTP reference implementation, along with the protocol, has been continuously developed for over 20 years. Backwards compatibility has been maintained as new features have been added. It contains several sensitive algorithms, especially to discipline  the clock, that can misbehave when synchronized to servers that use different algorithms. The software has been ported to almost every computing platform, including PCs.[tpl]rp|13[/tpl] It runs as a daemon called ntpd under unix or as a service under Windows.[tpl]rp|15[/tpl] Reference clocks are supported and their offsets are filtered and analysed in the same way as remote servers, although they are usually polled more frequently.[tpl]rp|19[/tpl]
+
+===SNTP===
+
+A less complex implementation of NTP, using the same protocol but without requiring the storage of state over extended periods of time,[tpl]Cite web | url = https://tools.ietf.org/html/rfc5905#section-14 | title = Network Time Protocol Version 4: Protocol and Algorithms Specification | date = June 2010 | page = 54 | quote = Primary servers and clients complying with a subset of NTP, called the Simple Network Time Protocol (SNTPv4) ..., do not need to implement the mitigation algorithms ... The fully developed NTPv4 implementation is intended for ... servers with multiple upstream servers and multiple downstream servers ... Other than these considerations, NTP and SNTP servers and clients are completely interoperable and can be intermixed ... | accessdate = 2012-08-26[/tpl] is known as the Simple Network Time Protocol (SNTP). It is used in some embedded devices and in applications where high accuracy timing is not required.RFC 4330RFC 5905
+
+===Windows Time service===
+
+All Microsoft Windows versions since Windows 2000 and Windows XP include the Windows Time service ("W32Time"),[tpl]cite web|url=http://technet.microsoft.com/en-us/library/cc773061%28WS.10%29.aspx |title=Windows Time Service Technical Reference |publisher=technet.microsoft.com |date=2011-08-17 |accessdate=2011-09-19[/tpl] which has the ability to sync the computer clock to an NTP server. The version in Windows 2000 and Windows XP only implements Simple NTP, and violates several aspects of the NTP version 3 standard.[tpl]cite web|url=http://support.ntp.org/bin/view/Support/WindowsTimeService |title=Windows Time Service page at NTP.org |publisher=Support.ntp.org |date=2008-02-25 |accessdate=2011-01-12[/tpl] Beginning with Windows Server 2003 and Windows Vista, a compliant implementation of full NTP is included.[tpl]cite web|url=http://technet.microsoft.com/en-us/library/cc773013%28WS.10%29.aspx |title=How the Windows Time Service Works |publisher=technet.microsoft.com |date=2010-03-12 |accessdate=2011-09-19[/tpl]
+
+==Leap seconds==
+
+On the day of a leap second event, ntpd receives notification from either a configuration file, an attached reference clock or a remote server. Because of the requirement that time must appear to be monotonically increasing, a leap second is inserted with the sequence 23:59:59, 23:59:60, 00:00:00. Although the clock is actually halted during the event, any processes that query the system time cause it to increase by a tiny amount, preserving the order of events. If it should ever become necessary, a leap second would be deleted by skipping 23:59:59.[tpl]cite web |url=http://www.eecis.udel.edu/~mills/leap.html |title=The NTP Timescale and Leap Seconds |author=David Mills |accessdate=15 October 2013[/tpl]
+
+==Security concerns==
+
+NTP servers are susceptible to man-in-the-middle attacks unless packets are cryptographically signed for authentication. The computational overhead involved can make this impractical on busy servers, particularly during denial of service attacks.[tpl]cite web| url=http://www.eecis.udel.edu/~mills/security.html| title=NTP Security Analysis| accessdate=11 October 2013[/tpl]
+Only a few security problems have been identified in the reference implementation of the NTP codebase in its 25+ year history.[tpl]cite web|url=http://support.ntp.org/security |title=Security Notice |publisher=Support.ntp.org |date=2009-12-10 |accessdate=2011-01-12[/tpl]results returned by a search on "Network Time Protocol" at http://cert.org[tpl]or|date=May 2013[/tpl] The protocol has been undergoing revision and review over its entire history. As of January 2011, there are no security revisions in the NTP specification and no reports at CERT.in RFC 778, RFC 891, RFC 956, RFC 958, RFC 1305, RFC 5905, and the NTPv4 specification The current codebase for the reference implementation has been undergoing security audits from several sources for several years now, and there are no known high-risk vulnerabilities in the current released software.[tpl]cite web|url=http://support.ntp.org/Main/CodeAudit |title=Code Audit |publisher=Support.ntp.org |date=2009-06-13 |accessdate=2011-01-12[/tpl]
+Several NTP server misuse and abuse practices exist which cause damage or degradation to a Network Time Protocol (NTP) server.
+NTP has been used to facilitate DDoS attacks.[tpl]cite web|last=Goodin |first=Dan |url=http://arstechnica.com/security/2014/01/new-dos-attacks-taking-down-game-sites-deliver-crippling-100-gbps-floods/ |title=New DoS attacks taking down game sites deliver crippling 100Gbps floods |publisher=Ars Technica |date=2014-01-13 |accessdate=2014-01-25[/tpl][tpl]cite web|last=Lee |first=Dave |url=http://www.bbc.co.uk/news/technology-26136774 |title=Huge hack 'ugly sign of future' for internet threats |publisher=BBC |date=2014-02-11 |accessdate=2014-02-12[/tpl] Similar to a DNS amplification attack, an attacker sends a small command to the NTP server (typically the MON_GETLIST command) with a spoofed return address. This requires that the originating network does not do egress filtering, allowing spoofing. The NTP server then responds with a much larger packet, allowing an attacker to substantially amplify the amount of data being sent to the target. This attack can be mitigated using "noquery" to disable all querying or "disable monitor" to disable just the attack vector, or by upgrading to a patched version.[tpl]cite web|url=http://support.ntp.org/bin/view/Main/SecurityNotice#DRDoS_Amplification_Attack_using|title=DRDoS / Amplification Attack using ntpdc monlist command|publisher=support.ntp.org|date=2010-04-24|accessdate=2014-02-19[/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+==Relevant RFCs==
+
+==External links==
+
+

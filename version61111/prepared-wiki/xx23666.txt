@@ -1,0 +1,50 @@
+[[Defensive programming]]
+
+CATEGORIES: Programming paradigms, Programming principles
+
+Defensive programming is a form of defensive design intended to ensure the continuing function of a piece of software under unforeseen circumstances. The idea can be viewed as reducing or eliminating the prospect of Finagle's Law having effect. Defensive programming techniques are used especially when a piece of software could be misused.
+Defensive programming is an approach to improve software and source code, in terms of:
+
+==Secure programming==
+
+Defensive programming is sometimes referred to as secure programming by computer scientists who state this approach minimizes bugs[tpl]Citation needed|date=May 2007[/tpl]. Software bugs can be potentially used by a cracker for a code injection, denial-of-service attack or other attack.
+A difference between defensive programming and normal practices is that few assumptions are made by the programmer, who attempts to handle all possible error states. In short, the programmer never assumes a particular function call or library will work as advertised, and so handles it in the code. An example follows:
+The function will crash when the input is over 1000 characters. Some novice programmers may not feel that this is a problem, supposing that no user will enter such a long input.  A programmer practicing defensive programming would not allow the bug, because if the application contains a known bug, Murphy's Law dictates that the bug will occur in use. This particular bug demonstrates a vulnerability which enables buffer overflow exploits. Here is a solution to this example:
+
+==Techniques==
+
+Here are some defensive programming techniques:
+
+===Intelligent source code reuse===
+
+If existing code is tested and known to work, reusing it may reduce the chance of bugs being introduced.
+However, reusing code is not always a good practice, particularly when business logic is involved.  Reuse in this case may cause serious business process bugs.
+
+====Legacy problems====
+
+Before reusing old source code, libraries, APIs, configurations and so forth, it must be considered if the old work is valid for reuse, or if it is likely to be prone to legacy problems.
+Legacy problems are problems inherent when old designs are expected to work with today's requirements, especially when the old designs were not developed or tested with those requirements in mind.
+Many software products have experienced problems with old legacy source code, for example:
+Notable examples of the legacy problem:
+
+===Secure input and output handling===
+
+===Canonicalization===
+
+Crackers are likely to invent new kinds of representations of incorrect data.
+For example, if you checked if a requested file is not "/etc/passwd", a cracker might pass another variant of this file name, like "/etc/./passwd".
+To avoid bugs due to non-canonical input, employ canonicalization libraries.
+
+===Low tolerance against "potential" bugs===
+
+Assume that code constructs that appear to be problem prone (similar to known vulnerabilities, etc.) are bugs and potential security flaws.  The basic rule of thumb is: "I'm not aware of all types of security exploits.  I must protect against those I do know of and then I must be proactive!".
+
+===Other techniques===
+
+==See also==
+
+==Further reading==
+
+==External links==
+
+

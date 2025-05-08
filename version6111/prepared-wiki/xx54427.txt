@@ -1,0 +1,37 @@
+[[Burnside's lemma]]
+
+CATEGORIES: Lemmas, Group theory
+
+Burnside's lemma, sometimes also called Burnside's counting theorem, the Cauchy-Frobenius lemma or the orbit-counting theorem, is a result in group theory which is often  useful in taking account of symmetry when counting mathematical objects.  Its various eponyms include William Burnside, George Pólya, Augustin Louis Cauchy, and Ferdinand Georg Frobenius. The result is not due to Burnside himself, who merely quotes it in his book 'On the Theory of Groups of Finite Order', attributing it instead to [tpl]harvtxt|Frobenius|1887[/tpl].[tpl]harvnb|Burnside|1897|loc=§119[/tpl]
+In the following, let G be a finite group that acts on a set X. For each g in G let Xg denote the set of elements in X that are fixed by g. Burnside's lemma asserts the following formula for the number of orbits, denoted |X/G|:[tpl]harvnb|Rotman|1995|loc=Chapter 3[/tpl]
+Thus the number of orbits (a natural number or +∞) is equal to the average number of points fixed by an element of G (which is also a natural number or infinity). If G is infinite, the division by |G| may not be well-defined; in this case the following statement in cardinal arithmetic holds:
+
+==Example application==
+
+The number of rotationally distinct colourings of the faces of a cube using three colours can be determined from this formula as follows.
+Let X be the set of 36 possible face colour combinations that can be applied to a cube in one particular orientation, and let the rotation group G of the cube act on X in the natural manner. Then two elements of X belong to the same orbit precisely when one is simply a rotation of the other. The number of rotationally distinct colourings is thus the same as the number of orbits and can be found by counting the sizes of the fixed sets for the 24 elements of G.
+A detailed examination of these automorphisms may be found
+here.
+The average fix size is thus
+Hence there are 57 rotationally distinct colourings of the faces of a cube in three colours. In general, the number of rotationally distinct colorings of the faces of a cube in n colors is given by
+
+==Proof==
+
+The first step in the proof is to re-express the sum over the group elements g ∈ G as an equivalent sum over the set elements x ∈ X:
+(Here Xg = {x ∈ X | g.x = x} is the subset of all points of X fixed by g ∈ G, whereas Gx = {g ∈ G | g.x = x} is the stabilizer subgroup of G that fixes the point x ∈ X.)
+The orbit-stabilizer theorem says that there is a natural bijection for each x ∈ X between the orbit of x, G.x = {g.x | g ∈ G} ⊆ X, and the set of left cosets G/Gx of its stabalizer subgroup Gx. With Lagrange's theorem this implies
+Our sum over the set X may therefore be rewritten as
+Finally, notice that X is the disjoint union of all its orbits in X/G, which means the sum over X may be broken up into separate sums over each individual orbit.
+Putting everything together gives the desired result:
+
+==History: the lemma that is not Burnside's==
+
+William Burnside stated and proved this lemma, attributing it to [tpl]harvnb|Frobenius|1887[/tpl] in his 1897 book on finite groups.  But even prior to Frobenius, the formula was known to Cauchy in 1845. In fact, the lemma was apparently so well known that Burnside simply omitted to attribute it to Cauchy. Consequently, this lemma is sometimes referred to as the lemma that is not Burnside's.[tpl]harvnb|Neumann|1979[/tpl] (see also Stigler's law of eponymy) This is less ambiguous than it may seem: Burnside contributed many lemmas to this field.
+
+==See also==
+
+==Notes==
+
+==References==
+
+

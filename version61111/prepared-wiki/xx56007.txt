@@ -1,0 +1,27 @@
+[[Presentation Manager]]
+
+CATEGORIES: OS/2, Graphical user interfaces
+
+Presentation Manager (PM) is the graphical user interface (GUI) that IBM and Microsoft introduced in version 1.1 of their operating system OS/2 in late 1988.
+
+==History==
+
+Presentation Manager was codenamed Winthorn and co-developed by Microsoft and IBM's Hursley Lab in the UK in 1987-1988. It was a cross between Microsoft Windows and IBM's mainframe graphical system (GDDM).[tpl]cite journal|last=Miller|first=Michael J.|title=IBM's OS/2 to Become Operating System of Choice, but Not for Some Time|journal=InfoWorld|date=April 1987|pages=46[/tpl] Like Windows, it was message based and many of the messages were even identical, but there were a number of significant differences as well. Although Presentation Manager was designed to be very similar to the upcoming Windows 2.0 from the user's point of view, and Presentation Manager application structure was nearly identical to Windows application structure, source compatibility with Windows was not an objective. For Microsoft, the development of Presentation Manager was an opportunity to clean up some of the design mistakes of Windows.[tpl]cite journal|last=Vellon|first=Manny|title=OS/2 Windows Presentation Manager|journal=Microsoft Systems Journal|year=1987|volume=2|issue=2[/tpl]
+One of the most significant differences was the coordinate system. While in Windows the 0,0 coordinate was located in the upper left corner, in PM it was in the lower left corner. Another difference was that all drawing operations went to the Device Context (DC) in Windows. PM also used DCs but there was an added level of abstraction called Presentation Space (PS). OS/2 also had more powerful drawing functions in its Graphics Programming Interface (GPI). Some of the GPI concepts (like viewing transforms) were later incorporated into Windows NT. The OS/2 programming model was thought to be cleaner, since there was no need to explicitly export the window procedure, no WinMain, and no non-standard function prologs and epilogs.
+
+===Parting ways===
+
+One of the most-cited reasons for the split was the divergence of the APIs between Presentation Manager and Windows, which was probably driven by IBM. Initially, Presentation Manager was based on Windows GUI code, and often had developments performed in advance, like the support for proportional fonts (which appeared in Windows only in 1990). One of the divergences regarded the position of coordinate (0,0), which was at the top-left in Windows, but at bottom-left (as in Cartesian coordinates) in Presentation Manager. In practice it became impossible to recompile a GUI program to run on the other system; an automated source code conversion tool was promised at some point. Both companies were hoping that at some point users would migrate to OS/2.
+In 1990, version 3.0 of Windows was beginning to sell in volume, and Microsoft began to lose interest in OS/2, especially since even earlier, market interest in OS/2 was always much smaller than in Windows.
+The companies parted ways, and IBM took over all of subsequent development. Microsoft took OS/2 3.0, which it renamed Windows NT; as such, it inherited certain characteristics of Presentation Manager. IBM continued to develop Presentation Manager. In subsequent versions of OS/2, it was used as a base for the object-oriented interface Workplace Shell. In latest versions, IBM has commissioned SciTech Software with writing the graphics drivers for the majority of the cards that don't support OS/2 officially.
+There is a significant integration of the GUI layer with the rest of the system, but it is still possible to run certain parts of OS/2 from a text-console or X window, and it is possible to boot OS/2 into a command-line environment without Presentation Manager (e.g. using TSHELL[tpl]cite web|title=TSHELL non-GUI shell for OS/2|url=http://www.os2site.com/sw/ews/tshell.txt|accessdate=17 April 2011[/tpl] ).
+
+==Technical details==
+
+PM follows the Common User Access interface conventions.
+It also supports mouse chording for copying and pasting text.
+An important problem was that of the single input queue: a non-responsive application could block the processing of user-interface messages, thus freezing the graphical interface. This problem has been solved in Windows NT, where such an application would just become a dead rectangle on the screen; in later versions it became possible to move or hide it. In OS/2 it was solved in a FixPack, using a timer to determine when an application was not responding to events.
+
+==References==
+
+

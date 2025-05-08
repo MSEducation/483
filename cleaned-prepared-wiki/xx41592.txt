@@ -1,0 +1,117 @@
+[[Composite pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code, Articles with example C Sharp code
+
+In software engineering, the composite pattern is a partitioning design pattern.  The composite pattern describes that a group of objects are to be treated in the same way as a single instance of an object.  The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.  Implementing the composite pattern lets clients treat individual objects and compositions uniformly.[ref]
+</ref>
+
+Motivation
+
+When dealing with Tree-structured data, programmers often have to discriminate between a leaf-node and a branch. This makes code more complex, and therefore, error prone. The solution is an interface that allows treating complex and primitive objects uniformly. In object-oriented programming, a composite is an object designed as a composition of one-or-more similar objects, all exhibiting similar functionality. This is known as a "has-a" relationship between objects. The key concept is that you can manipulate a single instance of the object just as you would manipulate a group of them. The operations you can perform on all the composite objects often have a least common denominator relationship. For example, if defining a system to portray grouped shapes on a screen, it would be useful to define resizing a group of shapes to have the same effect (in some sense) as resizing a single shape.
+
+When to use
+
+Composite should be used when clients should ignore the difference between compositions of objects and individual objects.  If programmers find that they are using multiple objects in the same way, and often have nearly identical code to handle each of them, then composite is a good choice; it is less complex in this situation to treat primitives and composites as homogeneous.
+
+Structure
+
+Variation
+
+As it is described in Design Patterns, the pattern also involves including the child-manipulation methods in the main Component interface, not just the Composite subclass. More recent descriptions sometimes omit these methods.
+
+Example
+
+The following example, written in Java, implements a graphic class, which can be either an ellipse or a composition of several graphics. Every graphic can be printed. In Backus-Naur form,
+        Graphic = ellipse | GraphicList
+        GraphicList = empty | Graphic GraphicList
+It could be extended to implement several other shapes (rectangle, etc.) and methods (translate, etc.).
+The following example, written in C#. 
+
+namespace CompositePattern
+{
+    using System;
+    using System.Generic;
+    using System.Linq;
+    //Client
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // initialize variables
+            var compositeGraphic = new CompositeGraphic();
+            var compositeGraphic1 = new CompositeGraphic();
+            var compositeGraphic2 = new CompositeGraphic();
+            //Add 1 Graphic to compositeGraphic1
+            compositeGraphic1.Add(new Ellipse());
+            //Add 2 Graphic to compositeGraphic2
+            compositeGraphic2.AddRange(new Ellipse(), 
+                new Ellipse());
+            /*Add 1 Graphic, compositeGraphic1, and 
+              compositeGraphic2 to compositeGraphic */
+            compositeGraphic.AddRange(new Ellipse(), 
+                compositeGraphic1, 
+                compositeGraphic2);
+            /*Prints the complete graphic 
+            (four times the string "Ellipse").*/
+            compositeGraphic.Print();
+            Console.ReadLine();
+        }
+    }
+    //Component
+    public interface IGraphic
+    {
+        void Print();
+    }
+    //Leaf
+    public class Ellipse : IGraphic
+    {
+        //Prints the graphic
+    	public void Print()
+        {
+            Console.WriteLine("Ellipse");
+        }
+    }
+    //Composite
+    public class CompositeGraphic : IGraphic
+    {
+        //Collection of Graphics.
+        private readonly List<IGraphic> graphics;
+        //Constructor 
+        public CompositeGraphic()
+        {
+            //initialize generic Collection(Composition)
+            graphics = new List<IGraphic>();
+        }
+        //Adds the graphic to the composition
+        public void Add(IGraphic graphic)
+        {
+            graphics.Add(graphic);
+        }
+        //Adds multiple graphics to the composition
+        public void AddRange(params IGraphic[] graphic)
+        {
+            graphics.AddRange(graphic);
+        }
+        //Removes the graphic from the composition
+        public void Delete(IGraphic graphic)
+        {
+            graphics.Remove(graphic);
+        }
+        //Prints the graphic.
+        public void Print()
+        {
+            foreach (var childGraphic in graphics)
+            {
+                childGraphic.Print();
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+

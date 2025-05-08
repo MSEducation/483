@@ -1,0 +1,30 @@
+[[Bump mapping]]
+
+CATEGORIES: Demo effects, Texture mapping, Virtual reality
+
+Bump mapping is a technique in computer graphics for simulating bumps and wrinkles on the surface of an object. This is achieved by perturbing the surface normals of the object and using the perturbed normal during lighting calculations. The result is an apparently bumpy surface rather than a smooth surface although the surface of the underlying object is not actually changed. Bump mapping was introduced by Blinn in 1978.Blinn, James F. "Simulation of Wrinkled Surfaces", Computer Graphics, Vol. 12 (3), pp. 286-292 SIGGRAPH-ACM (August 1978)
+Normal mapping is the most common variation of bump mapping used.Mikkelsen, Morten. Simulation of Wrinkled Surfaces Revisited, 2008 (PDF)
+
+==Bump mapping basics==
+
+Bump mapping is a technique in computer graphics to make a rendered surface look more realistic by simulating  small displacements of the surface. However, unlike traditional displacement mapping, the surface geometry is not modified. Instead only the surface normal is modified as if the surface had been displaced. The modified surface normal is then used for lighting calculations as usual, typically using the Phong reflection model or similar, giving the appearance of detail instead of a smooth surface.
+Bump mapping is much faster and consumes less resources for the same level of detail compared to displacement mapping because the geometry remains unchanged.
+There are primarily two methods to perform bump mapping. The first uses a height map for simulating the surface displacement yielding the modified normal. This is the method invented by Blinn and is usually what is referred to as bump mapping unless specified. The steps of this method are summarized as follows.
+Before lighting a calculation is performed for each visible point (or pixel) on the object's surface:
+The result is a surface that appears to have real depth. The algorithm also ensures that the surface appearance changes as lights in the scene are moved around.
+The other method is to specify a normal map which contains the modified normal for each point on the surface directly. Since the normal is specified directly instead of derived from a height map this method usually leads to more predictable results. This makes it easier for artists to work with, making it the most common method of bump mapping today.
+There are also extensions which modify other surface features in addition to increasing the sense of depth. Parallax mapping is one such extension.
+The primary limitation with bump mapping is that it perturbs only the surface normals without changing the underlying surface itself.Real-Time Bump Map Synthesis, Jan Kautz1, Wolfgang Heidrichy2 and Hans-Peter Seidel1, (1Max-Planck-Institut für Informatik, 2University of British Columbia) Silhouettes and shadows therefore remain unaffected, which is especially noticeable for larger simulated displacements. This limitation can be overcome by techniques including the displacement mapping where bumps are actually applied to the surface or using an isosurface.
+
+==Realtime bump mapping techniques==
+
+Realtime 3D graphics programmers often use variations of the technique in order to simulate bump mapping at a lower computational cost. 
+One typical way was to use a fixed geometry, which allows one to use the heightmap surface normal almost directly. Combined with a precomputed lookup table for the lighting calculations the method could be implemented with a very simple and fast loop, allowing for a full-screen effect. This method was a common visual effect when bump mapping was first introduced.
+
+==See also==
+
+==References==
+
+==External links==
+
+

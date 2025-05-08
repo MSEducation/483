@@ -1,0 +1,144 @@
+[[Pearson product-moment correlation coefficient]]
+
+CATEGORIES: Covariance and correlation, Parametric statistics, Statistical ratios, Statistical dependence
+
+In statistics, the Pearson product-moment correlation coefficient ([tpl]IPAc-en|ˈ|p|ɪər|s|ɨ|n[/tpl]) (sometimes referred to as the PPMCC or PCC,"The human disease network", Albert Barabasi et al., Plos.org or Pearson's ''r) is a measure of the linear correlation (dependence) between two variables X and Y'', giving a value between +1 and −1 inclusive, where 1 is total positive correlation, 0 is no correlation, and −1 is total negative correlation. It is widely used in the sciences as a measure of the degree of linear dependence between two variables. It was developed by Karl Pearson from a related idea introduced by Francis Galton in the 1880s.[ref]See:
+
+==Definition==
+
+Pearson's correlation coefficient between two variables is defined as the covariance of the two variables divided by the product of their standard deviations.  The form of the definition involves a "product moment", that is, the mean (the first moment about the origin) of the product of the mean-adjusted random variables; hence the modifier product-moment in the name.
+
+===For a population===
+
+Pearson's correlation coefficient when applied to a population is commonly represented by the Greek letter ρ (rho) and may be referred to as the population correlation coefficient or the population Pearson correlation coefficient. The formula for ρ is:
+
+===For a sample===
+
+Pearson's correlation coefficient when applied to a sample is commonly represented by the letter r and may be referred to as the sample correlation coefficient or the sample Pearson correlation coefficient. We can obtain a formula for r by substituting estimates of the covariances and variances based on a sample into the formula above. That formula for r is:
+An equivalent expression gives the correlation coefficient as the mean of the products of the standard scores. Based on a sample of paired data (Xi, Yi), the sample Pearson correlation coefficient is
+where
+are the standard score, sample mean, and sample standard deviation, respectively.
+
+==Mathematical properties==
+
+The absolute values of both the sample and population Pearson correlation coefficients are less than or equal to 1.  Correlations equal to 1 or −1 correspond to data points lying exactly on a line (in the case of the sample correlation), or to a bivariate distribution entirely supported on a line (in the case of the population correlation).  The Pearson correlation coefficient is symmetric: corr(X,Y) = corr(Y,X).
+A key mathematical property of the Pearson correlation coefficient is that it is invariant (up to a sign) to separate changes in location and scale in the two variables.  That is, we may transform X to a + bX and transform Y to c + dY, where a, b, c, and d are constants, without changing the correlation coefficient (this fact holds for both the population and sample Pearson correlation coefficients). Note that more general linear transformations do change the correlation: see a later section for an application of this.
+The Pearson correlation can be expressed in terms of uncentered moments.  Since μX = E(X), σX2 = E(X − E(X))2 = E(X2) − E2(X) and
+likewise for Y, and since
+the correlation can also be written as
+Alternative formulae for the sample Pearson correlation coefficient are also available:
+The second formula above needs to be corrected for a sample: 
+The above formula suggests a convenient single-pass algorithm for calculating sample correlations, but, depending on the numbers involved, it can sometimes be numerically unstable.
+
+==Interpretation==
+
+The correlation coefficient ranges from −1 to 1. A value of 1 implies that a linear equation describes the relationship between X and Y perfectly, with all data points lying on a line for which Y increases as X increases. A value of −1 implies that all data points lie on a line for which Y decreases as X increases. A value of 0 implies that there is no linear correlation between the variables.
+More generally, note that (Xi − X)(Yi − Y) is positive if and only if Xi and Yi lie on the same side of their respective means.  Thus the correlation coefficient is positive if Xi and Yi tend to be simultaneously greater than, or simultaneously less than, their respective means.  The correlation coefficient is negative if Xi and Yi tend to lie on opposite sides of their respective means.
+
+===Geometric interpretation===
+
+Both the uncentered (non-Pearson-compliant) and centered correlation coefficients can be determined for a dataset. As an example, suppose five countries are found to have gross national products of 1, 2, 3, 5, and 8 billion dollars, respectively. Suppose these same five countries (in the same order) are found to have 11%, 12%, 13%, 15%, and 18% poverty. Then let x and y be ordered 5-element vectors containing the above data: x = (1, 2, 3, 5, 8) and y = (0.11, 0.12, 0.13, 0.15, 0.18).
+Note that the above data were deliberately chosen to be perfectly correlated: y = 0.10 + 0.01 x. The Pearson correlation coefficient must therefore be exactly one. Centering the data (shifting x by E(x) = 3.8 and y by E(y) = 0.138) yields x = (−2.8, −1.8, −0.8, 1.2, 4.2) and y = (−0.028, −0.018, −0.008, 0.012, 0.042), from which
+as expected.
+
+===Interpretation of the size of a correlation===
+
+Several authorsA. Buda and A.Jarynowski (2010) Life-time of correlations and its applications vol.1, Wydawnictwo Niezalezne: 5–21, December 2010, ISBN 978-83-915272-9-0 have offered guidelines for the interpretation of a correlation coefficient. However, all such criteria are in some ways arbitrary and should not be observed too strictly.Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.)   The interpretation of a correlation coefficient depends on the context and purposes.  A correlation of 0.8 may be very low if one is verifying a physical law using high-quality instruments, but may be regarded as very high in the social sciences where there may be a greater contribution from complicating factors.
+
+===Pearson’s distance===
+
+A distance metric for two variables X and Y known as Pearson's distance can be defined from their correlation coefficient asFulekar (Ed.), M.H. (2009) Bioinformatics: Applications in Life and Environmental Sciences, Springer (pp. 110) ISBN 1-4020-8879-5
+Considering that the Pearson correlation coefficient falls between 1, the Pearson distance lies in 2.
+
+==Inference==
+
+300px|right|thumb|A graph showing the minimum value of Pearson's correlation coefficient that is significantly different from zero at the 0.05 level, for a given sample size.Statistical inference based on Pearson's correlation coefficient often focuses on one of the following two aims:  
+We discuss methods of achieving one or both of these aims below.
+
+===Use a permutation test===
+
+Permutation tests provide a direct approach to performing hypothesis tests and constructing confidence intervals.  A permutation test for Pearson's correlation coefficient involves the following two steps: 
+To perform the permutation test, repeat steps (1) and (2) a large number of times.  The p-value for the permutation test is the proportion of the r values generated in step (2) that are larger than the Pearson correlation coefficient that was calculated from the original data.  Here "larger" can mean either that the value is larger in magnitude, or larger in signed value, depending on whether a two-sided or one-sided test is desired.
+
+===Use a bootstrap===
+
+The bootstrap can be used to construct confidence intervals for Pearson's correlation coefficient.  In the "non-parametric" bootstrap, n pairs (xi, yi) are resampled "with replacement" from the observed set of n pairs, and the correlation coefficient r is calculated based on the resampled data.  This process is repeated a large number of times, and the empirical distribution of the resampled r values are used to approximate the sampling distribution of the statistic.  A 95% confidence interval for ρ can be defined as the interval spanning from the 2.5th to the 97.5th percentile of the resampled r values.
+
+===Testing using Student's t-distribution===
+
+For pairs from an uncorrelated bivariate normal distribution, the sampling distribution of Pearson's correlation coefficient follows Student's t-distribution with degrees of freedom n − 2.  Specifically, if the underlying variables have a bivariate normal distribution, the variable
+has a Student's t-distribution in the null case (zero correlation).Rahman, N.A. (1968) A Course in Theoretical Statistics, Charles Griffin and Company, 1968 This also holds approximately even if the observed values are non-normal, provided sample sizes are not very small.Kendall, M.G., Stuart, A. (1973) The Advanced Theory of Statistics, Volume 2: Inference and Relationship, Griffin. ISBN 0-85264-215-6 (Section 31.19)  For determining the critical values for r the inverse of this transformation is also needed:
+Alternatively, large sample approaches can be used.
+Early work on the distribution of the sample correlation coefficient was carried out by R. A. Fisher
+and A. K. Gayen.
+Another early paperSoper, H.E., Young, A.W., Cave, B.M., Lee, A., Pearson, K. (1917). "On the distribution of the correlation coefficient in small samples. Appendix II to the papers of "Student" and R. A. Fisher. A co-operative study", Biometrika, 11, 328–413. [tpl]doi|10.1093/biomet/11.4.328[/tpl] provides graphs and tables for general values of ρ, for small sample sizes, and discusses computational approaches.
+
+===Use the exact distribution===
+
+For data that follows a bivariate normal distribution, the exact density function for the sample correlation of a normal bivariate isKenney, J. F. and Keeping, E. S., Mathematics of Statistics, Pt. 2, 2nd ed. Princeton, NJ: Van Nostrand, 1951.Correlation Coefficient – Bivariate Normal Distribution
+
+===Use the Fisher transformation===
+
+In practice, confidence intervals and hypothesis tests relating to ρ are usually carried out using the Fisher transformation:
+If F(r) is the Fisher transformation of r, and n is the sample size, then F(r) approximately follows a normal distribution with
+Thus, a z-score is
+
+The inverse Fisher transformation bring the interval back to the correlation scale.
+
+For example, suppose we observe r = 0.3 with a sample size of n=50, and we wish to obtain a 95% confidence interval for ρ.  The transformed value is arctanh(r) = 0.30952, so the confidence interval on the transformed scale is 0.30952 ± 1.96/√47, or (0.023624, 0.595415).  Converting back to the correlation scale yields (0.024, 0.534).
+
+==Pearson's correlation and least squares regression analysis==
+
+The square of the sample correlation coefficient, typically denoted r2 and called the coefficient of determination, estimates the fraction of the variance in Y that is explained by X in a simple linear regression. As a starting point, the total variation in the Yi around their average value can be decomposed as follows
+The two summands above are the fraction of variance in Y that is explained by X (right) and that is unexplained by X (left).
+Thus
+is the proportion of variance in Y explained by a linear function of X.
+
+==Sensitivity to the data distribution==
+
+===Existence===
+
+The population Pearson correlation coefficient is defined in terms of moments, and therefore exists for any bivariate probability distribution for which the population covariance is defined and the marginal population variances are defined and are non-zero.  Some probability distributions such as the Cauchy distribution have undefined variance and hence ρ is not defined if X or Y follows such a distribution.  In some practical applications, such as those involving data suspected to follow a heavy-tailed distribution, this is an important consideration.  However, the existence of the correlation coefficient is usually not a concern; for instance, if the range of the distribution is bounded, ρ is always defined.
+
+===Large sample properties===
+
+In the case of the bivariate normal distribution, the sample correlation coefficient is the maximum likelihood estimate of the population correlation coefficient, and is asymptotically unbiased and efficient, which roughly means that it is impossible to construct a more accurate estimate than the sample correlation coefficient if the data are normal and the sample size is moderate or large. For non-normal populations, the sample correlation coefficient remains approximately unbiased, but may not be efficient.  The sample correlation coefficient is a consistent estimator of the population correlation coefficient as long as the sample means, variances, and covariance are consistent (which is guaranteed when the law of large numbers can be applied).
+
+===Robustness===
+
+Like many commonly used statistics, the sample statistic r is not robust,[tpl]Cite book| title=Introduction to robust estimation and hypothesis testing | last = Wilcox | first = Rand R. | publisher= Academic Press | year=2005[/tpl] so its value can be misleading if outliers are present.[tpl]Cite journal| title= Robust Estimation and Outlier Detection with Correlation Coefficients | last= Devlin | first = Susan J | coauthors = Gnanadesikan, R; Kettenring J.R. | journal= Biometrika | volume= 62 |  issue= 3 |year=1975 | pages=531–545 | doi= 10.1093/biomet/62.3.531 | jstor=2335508[/tpl][tpl]Cite book| title=Robust Statistics | last = Huber | first = Peter. J.| publisher= Wiley | year=2004[/tpl][tpl]Page needed|date=September 2010[/tpl] Specifically, the PMCC is neither distributionally robust,[tpl]Citation needed|date=November 2009[/tpl] nor outlier resistant (see Robust statistics#Definition). Inspection of the scatterplot between X and Y will typically reveal a situation where lack of robustness might be an issue, and in such cases it may be advisable to use a robust measure of association. Note however that while most robust estimators of association measure statistical dependence in some way, they are generally not interpretable on the same scale as the Pearson correlation coefficient.
+Statistical inference for Pearson's correlation coefficient is sensitive to the data distribution.  Exact tests, and asymptotic tests based on the Fisher transformation can be applied if the data are approximately normally distributed, but may be misleading otherwise.  In some situations, the bootstrap can be applied to construct confidence intervals, and permutation tests can be applied to carry out hypothesis tests.  These non-parametric approaches may give more meaningful results in some situations where bivariate normality does not hold.  However the standard versions of these approaches rely on exchangeability of the data, meaning that there is no ordering or grouping of the data pairs being analyzed that might affect the behavior of the correlation estimate.
+A stratified analysis is one way to either accommodate a lack of bivariate normality, or to isolate the correlation resulting from one factor while controlling for another.  If W represents cluster membership or another factor that it is desirable to control, we can stratify the data based on the value of W, then calculate a correlation coefficient within each stratum.  The stratum-level estimates can then be combined to estimate the overall correlation while controlling for W.Katz., Mitchell H. (2006) Multivariable Analysis – A Practical Guide for Clinicians. 2nd Edition.  Cambridge University Press. ISBN 978-0-521-54985-1. ISBN 0-521-54985-X [tpl]DOI|10.2277/052154985X[/tpl]
+
+==Calculating a weighted correlation==
+
+Suppose observations to be correlated have differing degrees of importance that can be expressed with a weight vector w. To calculate the correlation between vectors x and y with the weight vector w (all of length n),http://sci.tech-archive.net/Archive/sci.stat.math/2006-02/msg00171.htmlA MATLAB Toolbox for computing Weighted Correlation Coefficients
+
+==Removing correlation==
+
+It is always possible to remove the correlation between random variables with a linear transformation, even if the relationship between the variables is nonlinear. A presentation of this result for population distributions is given by Cox & Hinkley.Cox, D.R., Hinkley, D.V. (1974) Theoretical Statistics, Chapman & Hall (Appendix 3) ISBN 0-412-12420-3
+where an exponent of −1/2 represents the matrix square root of the inverse of a matrix.  The covariance matrix of T will be the identity matrix.  If a new data sample x is a row vector of n elements, then the same transform can be applied to x to get the transformed vectors d and t:
+This decorrelation is related to principal components analysis for multivariate data.
+
+==Reflective correlation==
+
+The reflective correlation is a variant of Pearson's correlation in which the data are not centered around their mean values.[tpl]Citation needed|date=January 2011[/tpl] The population reflective correlation is
+The reflective correlation is symmetric, but it is not invariant under translation:
+The sample reflective correlation is
+The weighted version of the sample reflective correlation is
+
+==Scaled correlation==
+
+Scaled correlation is a variant of Pearson's correlation in which the range of the data is restricted intentionally and in a controlled manner to reveal correlations between fast components in time series.Nikolić D, Muresan RC, Feng W, Singer W (2012) Scaled correlation analysis: a better way to compute a cross-correlogram. European Journal of Neuroscience, pp. 1–21, [tpl]doi|10.1111/j.1460-9568.2011.07987.x[/tpl] http://www.danko-nikolic.com/wp-content/uploads/2012/03/Scaled-correlation-analysis.pdf Scaled correlation is defined as average correlation across short segments of data.
+
+==Heavy noise conditions==
+
+Under heavy noise conditions, extracting the correlation coefficient between two sets of stochastic variables is nontrivial, in particular where Canonical Correlation Analysis reports on degraded correlation values due to the heavy noise contributions. A generalization of the approach is given elsewhere.
+
+==See also==
+
+==References==
+
+==External links==
+
+

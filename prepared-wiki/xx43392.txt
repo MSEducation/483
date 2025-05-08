@@ -1,0 +1,26 @@
+[[Phong shading]]
+
+CATEGORIES: Computer graphics algorithms, Shading, Vietnamese inventions
+
+Phong shading refers to an interpolation technique for surface shading in 3D computer graphics. It is also called Phong interpolation[tpl]cite book|last=Watt|first=Alan H.|title=Advanced Animation and Rendering Techniques: Theory and Practice|year=1992|publisher=Addison-Wesley Professional|isbn=978-0-201-54412-1|pages=21–26|coauthors=Watt, Mark[/tpl] or normal-vector interpolation shading.[tpl]cite book|last=Foley|first=James D.|title=Computer Graphics: Principles and Practice. (2nd ed. in C)|year=1996|publisher=Addison-Wesley Publishing Company|isbn=0-201-84840-6|coauthors=van Dam, Andries; Feiner, Steven K.; Hughes, John F.|pages=738 and 739[/tpl] Specifically, it interpolates surface normals across rasterized polygons and computes pixel colors based on the interpolated normals and a reflection model. Phong shading may also refer to the specific combination of Phong interpolation and the Phong reflection model.
+
+==History==
+
+Phong shading and the Phong reflection model were developed at the University of Utah by Bui Tuong Phong, who published them in his 1973 Ph.D. dissertation.B. T. Phong, Illumination for computer generated pictures, Communications of ACM 18 (1975), no. 6, 311–317.University of Utah School of Computing, http://www.cs.utah.edu/school/history/#phong-ref Phong's methods were considered radical at the time of their introduction, but have since become the de facto baseline shading method for many rendering applications. Phong's methods have proven popular due to their generally efficient use of computation time per rendered pixel.
+
+==Phong interpolation==
+
+Phong shading improves upon Gouraud shading and provides a better approximation of the shading of a smooth surface. Phong shading assumes a smoothly varying surface normal vector. The Phong interpolation method works better than Gouraud shading when applied to a reflection model that has small specular highlights such as the Phong reflection model.
+The most serious problem with Gouraud shading occurs when specular highlights are found in the middle of a large polygon.  Since these specular highlights are absent from the polygon's vertices and Gouraud shading interpolates based on the vertex colors, the specular highlight will be missing from the polygon's interior. This problem is fixed by Phong shading.
+Unlike Gouraud shading, which interpolates colors across polygons, in Phong shading a normal vector is linearly interpolated across the surface of the polygon from the polygon's vertex normals. The surface normal is interpolated and normalized at each pixel and then used in a reflection model, e.g. the Phong reflection model, to obtain the final pixel color.  Phong shading is more computationally expensive than Gouraud shading since the reflection model must be computed at each pixel instead of at each vertex.
+In modern graphics hardware, variants of this algorithm are implemented using pixel or fragment shaders.
+
+==Phong reflection model==
+
+Phong shading may also refer to the specific combination of Phong interpolation and the Phong reflection model, which is an empirical model of local illumination. It describes the way a surface reflects light as a combination of the diffuse reflection of rough surfaces with the specular reflection of shiny surfaces. It is based on Bui Tuong Phong's informal observation that shiny surfaces have small intense specular highlights, while dull surfaces have large highlights that fall off more gradually. The reflection model also includes an ambient term to account for the small amount of light that is scattered about the entire scene.
+
+==See also==
+
+==References==
+
+

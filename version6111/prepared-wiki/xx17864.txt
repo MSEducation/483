@@ -1,0 +1,44 @@
+[[Dijkstra's algorithm]]
+
+CATEGORIES: 1959 in computer science, Graph algorithms, Search algorithms, Routing algorithms, Combinatorial optimization, Articles with example pseudocode, Dutch inventions
+
+Dijkstra's algorithm, conceived by computer scientist Edsger Dijkstra in 1956 and published in 1959,[tpl]cite journal|last=Dijkstra|first=Edsger|coauthors=Thomas J. Misa, Editor|title=An Interview with Edsger W. Dijkstra|journal=Communications of the ACM|date=August 2010|month=08|volume=53|issue=8|pages=41–47|quote=What is the shortest way to travel from Rotterdam to Groningen? It is the algorithm for the shortest path which I designed in about 20 minutes.  One morning I was shopping with my young fiancée, and tired, we sat down on the café terrace to drink a cup of coffee and I was just thinking about whether I could do this, and I then designed the algorithm for the shortest path.|doi=10.1145/1787234.1787249[/tpl][tpl]harvnb|Dijkstra|1959[/tpl] is a graph search algorithm that solves the single-source shortest path problem for a graph with non-negative edge path costs, producing a shortest path tree. This algorithm is often used in routing and as a subroutine in other graph algorithms.
+For a given source vertex (node) in the graph, the algorithm finds the path with lowest cost (i.e. the shortest path) between that vertex and every other vertex. It can also be used for finding costs of shortest paths from a single vertex to a single destination vertex by stopping the algorithm once the shortest path to the destination vertex has been determined. For example, if the vertices of the graph represent cities and edge path costs represent driving distances between pairs of cities connected by a direct road, Dijkstra's algorithm can be used to find the shortest route between one city and all other cities. As a result, the shortest path first is widely used in network routing protocols, most notably IS-IS and OSPF (Open Shortest Path First).
+
+==Algorithm==
+
+Let the node at which we are starting be called the initial node. Let the distance of node ''Y be the distance from the 'initial node' to Y''. Dijkstra's algorithm will assign some initial distance values and will try to improve them step by step.
+
+==Description==
+
+Suppose you would like to find the shortest path between two intersections on a city map, a starting point and a destination.  The order is conceptually simple: to start, mark the distance to every intersection on the map with infinity.  This is done not to imply there is an infinite distance, but to note that  intersection has not yet been visited; some variants of this method simply leave the intersection unlabeled.  Now, at each iteration, select a current intersection.  For the first iteration, the current intersection will be the starting point and the distance to it (the intersection's label) will be zero.  For subsequent iterations (after the first), the current intersection will be the closest unvisited intersection to the starting point—this will be easy to find.
+From the current intersection, update the distance to every unvisited intersection that is directly connected to it. This is done by determining the sum of the distance between an unvisited intersection and the value of the current intersection, and relabeling the unvisited intersection with this value if it is less than its current value.  In effect, the intersection is relabeled if the path to it through the current intersection is shorter than the previously known paths.  To facilitate shortest path identification, in pencil, mark the road with an arrow pointing to the relabeled intersection if you label/relabel it, and erase all others pointing to it.  After you have updated the distances to each neighboring intersection, mark the current intersection as visited and select the unvisited intersection with lowest distance (from the starting point) – or the lowest label—as the current intersection.  Nodes marked as visited are labeled with the shortest path from the starting point to it and will not be revisited or returned to.
+Continue this process of updating the neighboring intersections with the shortest distances, then marking the current intersection as visited and moving onto the closest unvisited intersection until you have marked the destination as visited.  Once you have marked the destination as visited (as is the case with any visited intersection) you have determined the shortest path to it, from the starting point, and can trace your way back, following the arrows in reverse.
+Of note is the fact that this algorithm makes no attempt to direct "exploration" towards the destination as one might expect.  Rather, the sole consideration in determining the next "current" intersection is its distance from the starting point.  This algorithm, therefore "expands outward" from the starting point, interactively considering every node that is closer in terms of shortest path distance until it reaches the destination.  When understood in this way, it is clear how the algorithm necessarily finds the shortest path, however, it may also reveal one of the algorithm's weaknesses: its relative slowness in some topologies.
+
+==Pseudocode==
+
+In the following algorithm, the code u := vertex in Q with smallest distance in dist, searches for the vertex u in the vertex set Q that has the least distu value. That vertex is removed from the priority queue Q and returned to the user. dist_between(u, v) calculates the length between the two neighbor-nodes u and v. The variable alt on lines 20 & 22 is the length of the path from the root node to the neighbor node v if it were to go through u. If this path is shorter than the current shortest path recorded for v, that current path is replaced with this alt path. The previous array is populated with a pointer to the "next-hop" node on the source graph to get the shortest route to the source.
+  1  '''function''' Dijkstra(''Graph'', ''source''):
+  2      '''for each''' vertex ''v'' in ''Graph'':                                ''// Initializations''
+  3          dist[''v'']  := infinity ;                                  ''// Unknown distance function from'' 
+  4                                                                 ''// source to v''
+  5          previous[''v'']  := undefined ;                             ''// Previous node in optimal path
+  6      '''end for'''                                                    ''// from source''
+  7      
+  8      dist[''source'']  := 0 ;                                        ''// Distance from source to source''
+  9      ''Q'' := the set of all nodes in ''Graph'' ;                       ''// All nodes in the graph are''
+ 10                                                                 ''// unoptimized – thus are in Q''
+ 11      '''while''' ''Q'' '''is not''' empty:                                      ''// The main loop''
+ 12          ''u'' := vertex in ''Q'' with smallest distance in dist[] ;    ''// Source node in first case''
+ 13          remove ''u'' from ''Q'' ;
+ 14          '''if''' dist[''u''] = infinity:
+ 15              '''break''' ;                                            ''// all remaining vertices are''
+ 16          '''end if'''                                                 ''// inaccessible from source''
+ 17          
+ 18          '''for each''' neighbor ''v'' of ''u'':                              ''// where v has not yet been'' 
+ 19                                                                 ''// removed from Q.''
+ 20              ''alt'' := dist[''u''] + dist_between(''u'', ''v'') ;
+ 21              '''if''' ''alt'' < dist[''v'']:                                  ''// Relax (u,v,a)''
+ 22                  dist[''v'']  := ''alt'' ;
+ 23                  previous[''v'']  := ''u'' ;

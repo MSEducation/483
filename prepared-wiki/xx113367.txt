@@ -1,0 +1,44 @@
+[[True and false (commands)]]
+
+CATEGORIES: Standard Unix programs, Unix SUS2008 utilities
+
+In Unix-like operating systems, true and false are commands whose only function is to always return with a predetermined exit status. Programmers and scripts often use the exit status of a command to assess success (exit status zero) or failure (non-zero) of the command. The true and false commands represent the logical values of command success, because true returns 0, and false returns 1.
+
+==Usage==
+
+The commands are usually employed in conditional statements and loops of shell scripts. For example, the following shell script repeats the echo hello loop until interrupted:
+
+while true
+do
+  echo hello
+done
+
+The commands can be used to ignore the success or failure of a sequence of other commands, as in the example:
+make … && false
+Setting a user's login shell to false, in /etc/passwd, effectively denies them access to an interactive shell, but their account may still be valid for other services, such as FTP. (Although /sbin/nologin, if available, may be more fitting for this purpose, as it prints a notification before terminating the session.)
+The programs take no "actual" parameters; in most Linux versions, the standard parameter --help displays a usage summary and --version displays the program version.
+
+==Null command==
+
+The true command is sometimes substituted with the very similar null command, written as a single colon (:). The null command is built into the shell, and may therefore be more efficient if true is an external program (true is usually a shell built in function). We can rewrite the upper example using : instead of true:
+
+while :
+do
+  echo hello
+done
+
+The null command may take parameters, which are ignored. It is also used as a no-op dummy command for side-effects such as assigning default values to shell variables through the ${parameter:=word} parameter expansion form. For example, from bashbug, the bug-reporting script for Bash:
+
+ : ${TMPDIR:=/tmp}
+ : ${EDITOR=$DEFEDITOR}
+ : ${USER=${LOGNAME-`whoami`}}
+
+==See also==
+
+==References==
+
+==External links==
+
+===Manual pages===
+
+

@@ -1,0 +1,98 @@
+[[Planted motif search]]
+
+CATEGORIES: Bioinformatics, Computational biology
+
+In the field of computational biology, a planted motif search (PMS) also known as a (''l, d'')-motif search (LDMS) is a method for identifying conserved motifs within a set of nucleic acid or peptide sequences.
+PMS is known to be NP-complete. The time complexities of most of the planted motif search algorithms depend exponentially on the alphabet size and l. The PMS problem was first introduced by Keich and Pevzner.
+The problem of identifying meaningful patterns (e.g., motifs) from biological data has been studied extensively since they play a vital role in understanding gene function, human disease, and may serve as therapeutic drug targets.
+
+Description
+
+The search problem may be summarized as follows:
+Input are n strings (s1, s2, … , sn) of length m each from an alphabet Σ and two integers l and d. Find all strings x such that |x| = l and every input string contains at least one variant of x at a Hamming distance of at most d. Each such x is referred to as an (l, d) motif.
+For example, if the input strings are GCGCGAT, CACGTGA, and CGGTGCC; l = 3 and d = 1, then GGT is a motif of interest. Note that the first input string has GAT as a substring, the second input string has CGT as a substring, and the third input string has GGT as a substring. GAT is a variant of GGT that is within a Hamming distance of 1 from GGT, etc. Call the variants of a motif that occur in the input strings as instances of the motif. For example, GAT is an instance of the motif GGT that occurs in the first input string.
+Zero or more (l, d) motifs are contained in any given set of input strings. Many of the known algorithms for PMS consider DNA strings for which Σ ={G, C, T, A}. There exist algorithms that deal with protein strings as well. The PMS problem is also known as the (l, d)-motif search (LDMS) problem.
+
+Notation
+
+The following mathematical notation is often used to describe PMS algorithms.
+Assume that S = {s1, s2, s3, …, sn} is the given set of input strings from an alphabet Σ. An l-mer of any string is nothing but a substring of the string of length l. Let dH(a, b) stand for the Hamming distance between any two l-mers a and b. Let a be an l-mer and s be an input string. Then, let dH(a, s) stand for the minimum Hamming distance between a and any l-mer b of s. If a is any l-mer and S is a set of input strings then let dH(a, S) stand for maxsєSdH(a, s). Let u be any l-mer. Then, the d-neighborhood of u, (denoted as Bd(u)), is nothing but the set of all the l-mers v such that dH(u, v) ≤ d. In other words, Bd(u)={v: dH(u, v)≤d}. Refer to any such l-mer v as a d-neighbor of u. Bd(x, y) is used to denote the common d-neighborhood of x and y, where x and y are two l-mers. Bd(x, y) is nothing but the set of all l-mers that are within a distance of d from both x and y. Similarly, Bd(x, y, z), etc. can be defined.
+
+Algorithms
+
+The scientific literature describes numerous algorithms for solving the PMS problem. These algorithms can be classified into two major types. Those algorithms that may not return the optimal answer(s) are referred to as approximation algorithms (or heuristic algorithms) and those that always return the optimal answer(s) are called exact algorithms.
+
+Approximate
+
+Examples of approximation (or heuristic) algorithms include Random Projection, and ProfileBranching. These algorithms have been experimentally demonstrated to perform well.
+
+=Random projection=
+
+The algorithm is based on random projections. Let the motif M of interest be an l-mer and C be the collection of all the l-mers from all the n input strings. The algorithm projects these l-mers along k randomly chosen positions (for some appropriate value of k). The projection of each l-mer may be thought of as an integer. The projected values (which are k-mers) are grouped according to their integer values. In other words, hash all the l-mers using the k-mer of any l-mer as its hash value. All the l-mers that have the same hash value fall into the same hash bucket. Since the instances of any (l, d) motif are similar to each other,  many of these instances will fall into the same bucket. Note that the Hamming distance between any two instances of an (l, d) motif is no more than 2d. The key idea of this algorithm is to examine those buckets that have a large number of l-mers in them. For each such bucket, an expectation maximization (EM) algorithm is used to check if an (l, d) motif can be found using the l-mers in the bucket.
+
+=Pattern branching=
+
+Exact
+
+Many exact algorithms are known for solving the PMS problem as well. Examples include the ones in (Martinez 1983),
+
+=WINNOWER and SP-STAR=
+
+If M is an (l, d) motif and if M1, M2, …, and Mn are instances of M in the input strings, then, clearly, these instances will form a clique in G. The WINNOWER algorithm has two phases. In the first phase, it identifies large cliques in G. In the second phase each such clique is examined to see if a motif can be extracted from this clique.
+Another algorithm called SP-STAR, is faster than WINNOWER and uses less memory. WINNOWER algorithm treats all the edges of G equally without distinguishing between edges based on similarities. SP-STAR scores the l-mers of C as well as the edges of G appropriately and hence eliminates more edges than WINNOWER per iteration.
+(Bailey and Elkan, 1994) are also known PMS algorithms.
+
+=PMS series=
+
+In the last decade a series of algorithms with PMS as a prefix has been developed in the lab of Rajasekaran. Some of these algorithms are described below.
+
+==PMS0==
+
+==PMS1==
+
+This algorithm is based on radix sorting and has the following steps.
+
+==PMS2==
+
+Let the motif M of interest be of length l. If M occurs in every input string then any substring of M also occurs in every input string. Here occurrence means occurrence within a Hamming distance of d. It follows that there are at least l-k+1 strings each of length k (for k ≤ l) such that each of these occurs in every input string.
+Let Q be a collection of k-mers in M. Note that, in every input string si, there will be at least one position ij such that a k-mer of Q occurs starting from ij. Another k-mer of Q occurs starting from ij +1 and so on, with the last k-mer occurring at ij + l – k. An l-mer can be obtained by combining these k-mers that occur starting from each such ij.
+PMS2 works as follows. In the first phase find all the (k, d) motifs present in all the input strings (for some appropriate value of k
+==PMS3==
+
+This algorithm enables one to handle large values of d. Let d'=d/2. Let M be the motif to be found with |M|=l=2l' for some integer l'. Let M1 refer to the first half of M and M2 be the next half. Let s= a1a2…am be one of the input strings. M occurs in every input string. Let the occurrence of M (within a Hamming distance of d) in s start at position i. Let s'=aiai+1…ai+l'-1  and s'' =ai+l'…ai+l-1.
+It is clear that either the Hamming distance between M1 and s' is at most d' or the Hamming distance between M2 and s'' is at most d'. Either M1 or M2 occurs in every input string at a Hamming distance of at most d'. As a result, in at least n' strings (where n' = n/2) either M1 or M2  occurs with a Hamming distance of at most d.
+The algorithm first obtains all the (l', d')-motifs that occur in at least n/2 of the input strings. It then uses these motifs and the above observations to identify all the (l, d)-motifs present in the input strings.
+
+==PMSPrune==
+
+This algorithm introduces a tree structure for the motif candidates and uses a branch-and-bound algorithm to reduce the search space. Let S = {s1, s2, …, sn} be a given set of input strings.
+PMSprune follows the same strategy as PMS0: For every l-mer y in s1, it generates the set of neighbors of y and, for each of them, checks whether this is a motif or not. Some key steps in the algorithm are:
+
+==PMS4==
+
+PMS4 is a technique that can be used to speedup any algorithm for the PMS problem. In many of the above algorithms there are two phases. In the first phase we come up with a set of candidate motifs and in the second phase check, for each candidate motif, if it is a valid (l, d)-motif. For each candidate motif it takes O(mnl) time to check if it is a valid motif or not. PMS4 employs a similar two phase strategy. These phases are explained below. Let A be any PMS algorithm.
+
+==PMS5 and PMS6==
+
+Algorithm PMS6 is an extension of PMS5 that improves the preprocessing step and also it uses efficient hashing techniques to store the lookup tables. As a result, it is typically faster than PMS5.
+Shibdas Bandyopadhyay, Sartaj Sahni, Sanguthevar Rajasekaran, "PMS6: A fast algorithm for motif discovery," iccabs, pp.1-6, 2012 IEEE 2nd International Conference on Computational Advances in Bio and medical Sciences, 2012
+
+==qPMSPrune and qPMS7==
+
+Given a set S={s1, s2, …, sn} of strings, and integers l, d, and q, an (l, d, q)-motif is defined to be a string M of length l that occurs in at least q of the n input strings within a Hamming distance of d. The qPMS (Quorum Planted Motif Search) problem is to find all the (l, d, q)-motifs present in the input strings. The qPMS problem captures the nature of motifs more precisely than the PMS problem does because, in practice, some motifs may not have motif instances in all of the input strings.
+
+=RISOTTO=
+
+RISOTTO employs a suffix tree to identify the (l, d)-motifs. It is somewhat similar to PMS0. For every l-mer in s1, it generates the d-neighborhood and for every l-mer in this neighborhood it walks through a suffix tree to check if this l-mer is an (l, d)-motif.
+Voting is similar to PMS1. Instead of using radix sorting, it uses hashing to compute Li's and their intersections.
+
+Relative performance
+
+PMS algorithms are typically tested on random benchmark data generated as follows: Twenty strings each of length 600 are generated randomly from the alphabet of interest. The motif M is also generated randomly and planted in each of the input strings within a Hamming distance of d. The motif instances are also generated randomly. Certain instances of the (l, d)-motif problem have been identified to be challenging. For a given value of l, the instance (l, d) is called challenging if d is the smallest integer for which the expected number of (l, d)-motifs that occur by random chance (in addition to the planted one) is one or more. For example, the following instances are challenging: (9, 2), (11, 3), (13, 4), (15, 5), (17, 6), (19, 7), etc. The performance of PMS algorithms is customarily shown only for challenging instances. Following is a table of time comparison of different PMS algorithms on the challenging instances of DNA sequences for the special case. This table is taken from the paper qPMS7. In this table several algorithms have been compared: qPMSPrune, qPMSPruneI, Pampa, Voting, RISOTTO, PMS5, PMS6, qPMS7.
+In the following table, the alphabet ∑={A,C,G,T}, n=20, m=600, and q=n=20.
+
+
+
+
+
+

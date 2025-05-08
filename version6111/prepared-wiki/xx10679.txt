@@ -1,0 +1,94 @@
+[[Riemann integral]]
+
+CATEGORIES: Definitions of mathematical integration
+
+In the branch of mathematics known as real analysis, the Riemann integral, created by Bernhard Riemann, was the first rigorous definition of the integral of a function on an interval.The Riemann integral was introduced in Bernhard Riemann's paper "Über die Darstellbarkeit einer Function durch eine trigonometrische Reihe" (On the representability of a function by a trigonometric series; i.e., when can a function be represented by a trigonometric series).  This paper was submitted to the University of Göttingen in 1854 as Riemann's Habilitationsschrift (qualification to become an instructor). It was published in 1868 in Abhandlungen der Königlichen Gesellschaft der Wissenschaften zu Göttingen (Proceedings of the Royal Philosophical Society at Göttingen), vol. 13, pages 87-132. (Available on-line here.) For Riemann's definition of his integral, see section 4, "Über der Begriff eines bestimmten Integrals und den Umfang seiner Gültigkeit" (On the concept of a definite integral and the extent of its validity), pages 101-103. For many functions and practical applications, the Riemann integral can be evaluated by the fundamental theorem of calculus or approximated by numerical integration.
+The Riemann integral is unsuitable for many theoretical purposes. Some of the technical deficiencies in Riemann integration can be remedied with the Riemann–Stieltjes integral, and most disappear with the Lebesgue integral.
+
+==Overview==
+
+Let f be a non-negative real-valued function of the interval b, and let
+be the region of the plane under the graph of the function f and above the interval b (see the figure on the top right).  We are interested in measuring the area of S.  Once we have measured it, we will denote the area by:
+The basic idea of the Riemann integral is to use very simple approximations for the area of S. By taking better and better approximations, we can say that "in the limit" we get exactly the area of S under the curve.
+Note that where f can be both positive and negative, the definition of S is modified so that the integral corresponds to the signed area under the graph of f, that is, the area above the x-axis minus the area below the x-axis.
+
+==Definition==
+
+===Partitions of an interval===
+
+A partition of an interval b is a finite sequence of numbers of the form
+Each
+is called a subinterval of the partition.  The mesh or norm of a partition is defined to be the length of the longest subinterval, that is,
+We can define a partial order on the set of all tagged partitions by saying that one tagged partition is greater or equal to another if the former is a refinement of the latter.
+
+===Riemann sums===
+
+===[tpl]anchor|Riemann-integrable[/tpl] Riemann integral===
+
+Loosely speaking, the Riemann integral is the limit of the Riemann sums of a function as the partitions get finer. If the limit exists then the function is said to be integrable (or more specifically Riemann-integrable).  The Riemann sum can be made as close as desired to the Riemann integral by making the partition fine enough.[tpl]Cite book|last=Taylor|first=Michael E.|authorlink=Michael E. Taylor|title=Measure Theory and Integration|publisher=American Mathematical Society|year=2006|isbn=9780821872468|page=1|url=http://books.google.com/books?id=P_zJA-E5oe4C&pg=PA1[/tpl]
+One important fact is that the mesh of the partitions must become smaller and smaller, so that in the limit, it is zero.  If this were not so, then we would not be getting a good approximation to the function on certain subintervals.  In fact, this is enough to define an integral.  To be specific, we say that the Riemann integral of f equals s if the following condition holds:
+Unfortunately, this definition is very difficult to use.  It would help to develop an equivalent definition of the Riemann integral which is easier to work with.  We develop this definition now, with a proof of equivalence following.  Our new definition says that the Riemann integral of f equals s  if the following condition holds:
+Both of these mean that eventually, the Riemann sum of f with respect to any partition gets trapped close to s.  Since this is true no matter how close we demand the sums be trapped, we say that the Riemann sums converge to s.  These definitions are actually a special case of a more general concept, a net.
+If r = 0, then f is the zero function, which is clearly both Darboux and Riemann integrable with integral zero. Therefore we will assume that r > 0. If m > 1, then we choose δ such that
+(We may assume that all the inequalities are strict because otherwise we are in the previous case by our assumption on the length of δ.) This can happen at most m−1 times.
+so this term is bounded by the corresponding term in the Darboux sum for yj. To bound the other term, notice that
+It follows:
+
+==Examples==
+
+If ti is directly on top of one of the xj, then we let ti be the tag for both intervals:
+We still have to choose tags for the other subintervals.  We will choose them in two different ways.  The first way is to always choose a rational point, so that the Riemann sum is as large as possible.  This will make the value of the Riemann sum at least 1−ε.  The second way is to always choose an irrational point, so that the Riemann sum is as small as possible.  This will make the value of the Riemann sum at most ε.
+Since we started from an arbitrary partition and ended up as close as we wanted to either zero or one, it is false to say that we are eventually trapped near some number s, so this function is not Riemann integrable.  However, it is Lebesgue integrable.  In the Lebesgue sense its integral is zero, since the function is zero almost everywhere.  But this is a fact that is beyond the reach of the Riemann integral.
+There are even worse examples. IQ is equivalent (that is, equal almost everywhere) to a Riemann integrable function, but there are non-Riemann integrable bounded functions which are not equivalent to any Riemann integrable function. For example, let C be the Smith–Volterra–Cantor set, and let IC be its indicator function. Because C is not Jordan measurable, IC is not Riemann integrable. Moreover, no function g equivalent to IC is Riemann integrable: g, like IC, must be zero on a dense set, so as in the previous example, any Riemann sum of g has a refinement which is within ε of 0 for any positive number ε. But if the Riemann integral of g exists, then it must equal the Lebesgue integral of IC, which is 1/2. Therefore g is not Riemann integrable.
+
+==Similar concepts==
+
+It is popular to define the Riemann integral as the Darboux integral.  This is because the Darboux integral is technically simpler and because a function is Riemann-integrable if and only if it is Darboux-integrable.
+Some calculus books do not use general tagged partitions, but limit themselves to specific types of tagged partitions.  If the type of partition is limited too much, some non-integrable functions may appear to be integrable.
+Again, alone this restriction does not impose a problem, but the reasoning required to see this fact is more difficult than in the case of left-hand and right-hand Riemann sums.
+However, combining these restrictions, so that one uses only left-hand or right-hand Riemann sums on regularly divided intervals, is dangerous.  If a function is known in advance to be Riemann integrable, then this technique will give the correct value of the integral.  But under these conditions the indicator function IQ will appear to be integrable on 1 with integral equal to one: Every endpoint of every subinterval will be a rational number, so the function will always be evaluated at rational numbers, and hence it will appear to always equal one.  The problem with this definition becomes apparent when we try to split the integral into two pieces.  The following equation ought to hold:
+If we use regular subdivisions and left-hand or right-hand Riemann sums, then the two terms on the left are equal to zero, since every endpoint except 0 and 1 will be irrational, but as we have seen the term on the right will equal 1.
+As defined above, the Riemann integral avoids this problem by refusing to integrate IQ.  The Lebesgue integral is defined in such a way that all these integrals are 0.
+
+==Properties==
+
+===Linearity===
+
+The Riemann integral is a linear transformation; that is, if f and g are Riemann-integrable on b and α and β are constants, then
+Because the Riemann integral of a function is a number, this makes the Riemann integral a linear functional on the vector space of Riemann-integrable functions.
+
+==Integrability==
+
+A function on a compact interval b is Riemann integrable if and only if it is bounded and continuous almost everywhere (the set of its points of discontinuity has measure zero, in the sense of Lebesgue measure). This is known as the [tpl]visible anchor|Lebesgue integrability condition[/tpl] or Lebesgue's criterion for Riemann integrability or the Riemann—Lebesgue theorem.[tpl]harvnb|Apostol|1974|pp=169–172[/tpl] The criterion has nothing to do with the Lebesgue integral. It is due to Lebesgue and uses his measure zero, but makes use of neither Lebesgue's general measure or integral.
+The integrability condition can be proven in various ways,Basic real analysis, by Houshang H. Sohrab, section 7.3, Sets of Measure Zero and Lebesgue’s Integrability Condition, pp. 264–271Introduction to Real Analysis, updated April 2010, William F. Trench, 3.5 "A More Advanced Look at the Existence of the Proper Riemann Integral", pp. 171–177 one of which is sketched below.
+!Proof
+|-
+|The proof is easiest using the Darboux integral definition of integrability (formally, the Riemann condition for integrability) – a function is Riemann integrable if and only if the upper and lower sums can be made arbitrarily close by choosing an appropriate partition.
+which is a constant times ε, and hence can be made arbitrarily small, thus the function is Riemann integrable.
+|}
+In particular, a countable set has Lebesgue measure zero, and thus a bounded function (on a compact interval) with only finitely or countably many discontinuities is Riemann integrable.
+An indicator function of a bounded set is Riemann-integrable if and only if the set is Jordan measurable.PlanetMath Volume
+If a real-valued function is monotone on the interval b it is Riemann-integrable, since its set of discontinuities is countable, and therefore of Lebesgue measure zero.
+If a real-valued function on b is Riemann-integrable, it is Lebesgue-integrable. That is, Riemann-integrability is a stronger (meaning more difficult to satisfy) condition than Lebesgue-integrability.
+However, the Lebesgue monotone convergence theorem (on a monotone pointwise limit) does not hold.
+
+==Generalizations==
+
+It is easy to extend the Riemann integral to functions with values in the Euclidean vector space Rn for any n. The integral is defined by linearity; in other words, if [tpl]nowrap|1=f = (f1, ..., fn)[/tpl] then
+In particular, since the complex numbers are a real vector space, this allows the integration of complex valued functions.
+The Riemann integral is only defined on bounded intervals, and it does not extend well to unbounded intervals.  The simplest possible extension is to define such an integral as a limit, in other words, as an improper integral:
+The sequence (fn) converges uniformly to the zero function, and clearly the integral of the zero function is zero.  Consequently
+This demonstrates that for integrals on unbounded intervals, uniform convergence of a function is not strong enough to allow passing a limit through an integral sign.  This makes the Riemann integral unworkable in applications (even though the Riemann integral assigns both sides the correct value), because there is no other general criterion for exchanging a limit and a Riemann integral, and without such a criterion it is difficult to approximate integrals by approximating their integrands.
+A better route is to abandon the Riemann integral for the Lebesgue integral. The definition of the Lebesgue integral is not obviously a generalization of the Riemann integral, but it is not hard to prove that every Riemann-integrable function is Lebesgue-integrable and that the values of the two integrals agree whenever they are both defined. Moreover, a function ƒ defined on a bounded interval is Riemann-integrable if and only if it is bounded and the set of points where f is discontinuous has Lebesgue measure zero.
+An integral which is in fact a direct generalization of the Riemann integral is the Henstock–Kurzweil integral.
+Another way of generalizing the Riemann integral is to replace the factors [tpl]nowrap|1=xk+1 − xk[/tpl] in the definition of a Riemann sum by something else; roughly speaking, this gives the interval of integration a different notion of length. This is the approach taken by the Riemann–Stieltjes integral.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

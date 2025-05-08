@@ -1,0 +1,27 @@
+[[Sprite (operating system)]]
+
+CATEGORIES: Unix variants, Software using the MIT license, Discontinued operating systems
+
+Sprite was an experimental Unix-like distributed operating system developed at the University of California, Berkeley by John Ousterhout's research group between 1984 and 1992. Its notable features included support for single system image on computer clustershttp://www.eecs.berkeley.edu/Research/Projects/CS/sprite/sprite.html and for the introduction of the log-structured filesystem. The Tcl scripting language also originated in this project.
+
+==Early work==
+
+Early work on Sprite was based on the idea of making the operating system more "network aware", and thereby at the same time make it invisible to the user. The primary area of work was the building of a new network file system which made heavy use of local client-side caching in order to improve performance. After opening the file and some initial reads, the network was only used on-demand, and most user actions would occur against the cache. Similar utilities allowed remote devices to be mapped into the local computer's space, allowing for network printing and similar duties.
+Many of the key Unix files were based on the network, including things like the password file. All machines in a network shared the root directory as well. Other common Unix utilities such as finger were re-written to make them network aware as well, listing all of the people logged on across the network. This made a Sprite network appear as if it were a single large time-sharing system, or a single-system image.
+Another key addition to Sprite was process migration, which allowed programs to be moved between machines at any time. The system maintained a list of machines and their state, and would automatically move processes to idle machines to improve local performance. Processes could also be "evicted" from machines to improve their performance, causing the original starter to move it to another machine on the network, or take control of it locally again. Long tasks (like compiling the Sprite system) could appear very fast.
+
+==Further development==
+
+Work on the "early" Sprite outlined above ended around 1987, but was improved during the next year. Starting in 1990 Sprite was used as the basis for development of the first log-structured file system (LFS), development of which continued until about 1992. LFS dramatically increases the performance of file writes at the expense of read performance. Under Sprite, this tradeoff is particularly useful because most read access was cached anyway—that is, Sprite systems would typically perform fewer reads than a normal Unix system. LFS-like systems also allow for much easier crash recovery, which became a major focus of the project during this period. Additional experimentation on striped file systems, both striped across different machines as well as clusters of drives, continued until about 1994.
+
+==Discontinuation==
+
+Sprite was not a microkernel system, and suffered the same sort of problems as other Unixes in terms of development complexity, becoming increasingly difficult to develop as more functionality was added.[tpl]Citation needed|date=December 2010[/tpl] By the 1990s it was suffering and the small team supporting the project was simply not able to keep up with the rapid changes in Unix taking place during this time. The project was slowly shut down by 1994.
+
+==See also==
+
+==References==
+
+==External links==
+
+

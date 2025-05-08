@@ -1,0 +1,50 @@
+[[PSK31]]
+
+CATEGORIES: Quantized radio modulation modes, Packet radio
+
+PSK31 or "Phase Shift Keying, 31 Baud" is a popular computer-soundcard-generated radioteletype mode, used primarily by amateur radio operators to conduct real-time keyboard-to-keyboard chat, most often using frequencies in the high frequency amateur radio bands (near-shortwave).  PSK31 is distinguished from other digital modes in that it is specifically tuned to have a data rate close to typing speed, and has an extremely narrow bandwidth, allowing many conversations in the same bandwidth as a single voice channel. This narrow bandwidth also concentrates the RF energy in a very narrow bandwidth, allowing relatively low-power equipment (25 watts) to communicate globally using the same skywave propagation used by shortwave radio stations.
+
+==History==
+
+PSK31 was developed and named by English amateur radio operator Peter Martinez (call sign G3PLX) and introduced to the wider amateur radio community in December 1998.The ARRL Handbook for Radio Communications. 84th Ed. (2007):9-13.[tpl]cite web |author=Steven L Karty, N5SK |title=PSK31 Spec |publisher=ARRL Website |url=http://www.arrl.org/psk31-spec |accessdate=18 Dec 2010[/tpl]
+The 31 baud BPSK modulation system used in PSK31 was introduced by Pawel Jalocha (SP9VRC) in his SLOWBPSK program written for Motorola's EVM radio. Instead of the traditional frequency-shift keying, the information is transmitted by patterns of polarity-reversals (sometimes called 180-degree phase shifts). PSK31 was enthusiastically received, and its usage grew like wildfire worldwide, lending a new popularity and tone to the on-air conduct of digital communications.[tpl]cn|date=July 2013[/tpl]  Due to the efficiency of the mode, it became, and still remains, especially popular with operators whose circumstances do not permit the erection of large antenna systems, the use of high power, or both.
+
+==Use and implementation==
+
+A PSK31 operator typically uses a single-sideband (SSB) transceiver connected to the sound card of a computer running PSK31 software. When the operator enters a message for transmission, the software produces an audio tone that sounds, to the human ear, like a continuous whistle with a slight warble. This sound is then fed through either a microphone jack (using an intermediate resistor to reduce the sound card's output power to microphone levels) or an auxiliary connection into the transceiver, from which it is transmitted.
+From the perspective of the transmitter, the sound amounts to little more than somebody whistling into the microphone. However, the software rapidly shifts the phase of the audio signal between two states (hence the name "phase-shift keying"), forming the character codes. These phase shifts serve the same function as the two tones used in traditional RTTY and similar systems.
+To decode PSK31, the audio whistle received from the transceiver's headphone output is fed into a computer sound card's audio input, and software decodes it. The software displays the decoded text.
+The use of PSK31 does not require exclusive use of a dedicated computer.  When it is not running the PSK31 program, the computer can still be used for normal activities. Because PSK31 was developed for use through a computer's sound card, many programs have since been created to use the same technology for other modes, such as RTTY, Hellschreiber, and Olivia MFSK.  So, once it has been set up to run PSK31, a computer can be used to explore a variety of digital message transmission modes.
+Aside from a standard radio transceiver and a computer with a sound card, very little equipment is required to use PSK31.  Normally, an older computer and a few cables will suffice, and many PSK31 software applications are free. Many operators now use a commercially available interface/modem device (or "nomic") between their computers and radios.  These devices incorporate the necessary impedance matching and sound level adjustment to permit the sound card output to be injected into the microphone input, send the radio's audio output to the sound card input, and handle the radio's transmit-receive switching.  Recently introduced interfaces also incorporate their own sound card and can be powered and run from the computer via a single USB connection.
+
+==Resistance to interference==
+
+Like other narrow band digital modes, PSK31 can often overcome interference and poor propagation conditions in situations where voice or other methods of communication fail. However, PSK31 was designed only for leisure use by amateurs, and due to its relatively slow speed and limited error control, is not suitable for transmitting large blocks of data or text, or critical data requiring high immunity from errors.
+PSK31 works well over propagation paths that preserve phase, and resists fading (QSB) well.  However, it can be adversely affected by propagation modes—such as transpolar paths—where auroral "flutter" or multipathing can disrupt the signal phase continuity. In such cases the use of QPSK (see below) is often beneficial.
+Some software supports PSK10 and PSK05 variants, running at 10 baud and 5 baud, respectively. These slower speeds sacrifice throughput to provide greater resistance to noise and other interference.  Conversely, PSK63 is increasingly used for faster exchanges, especially during contest operating.
+
+==Technical information==
+
+PSK31 is typically created by software that generates an amplitude- and phase-modulated waveform that is converted to an audio frequency analog signal by a sound card. In the most-commonly-used variant, BPSK31, binary information is transmitted by either imparting a 180-degree phase shift (a binary "zero") or no phase shift (a binary "one") in each 32ms symbol interval. The 180-degree phase shift for a "zero" bit code occurs at a null amplitude.[tpl]cite book |first=Tom |last=McDermott |title=Wireless Digital Communications: Design and Theory |publisher=Tucson Amateur Packet Radio Corporation |year=1998 |isbn=0-9644707-2-1 |page=50[/tpl]
+As shown in the figure, a raised-cosine filter is used to smooth the rise and fall times of the audio waveform and eliminate key clicks.  All subsequent amplification of the signal must be linear to preserve the modulation waveform and ensure minimum occupied bandwidth. In practice, this means limiting the transmit audio volume to below the level where the transmitter generates Automatic Level Control (ALC) feedback and disabling any audio compression or speech processing.
+The boundaries between character codes are marked by two or more consecutive zeros.  Since since no character code contains more than one consecutive zero, the software can easily identify the spaces between characters, regardless of the length of the character. The idle sequence, sent when an operator is not typing, is a continuous sequence of phase-shifts, which do not print on the screen. Martinez arranged the character alphabet so that, as in Morse code, the more frequently occurring characters have the shortest encodings, while rarer characters use longer encodings.  He named this encoding scheme "varicode".
+PSK31's symbol rate of 31.25 Hz was chosen because a normal typing speed of about 50 words per minute requires a bit rate of about 32 bits per second, and specifically because 31.25 Hz could easily be derived from the 8 kHz sample rate used in many DSP systems, including those used in the computer sound cards commonly used for PSK31 operation (31.25 Hz is 8 kHz divided by 256, and so can be derived from 8 kHz by halving the frequency eight times in succession).
+Colloquial usage of the term 'PSK31' in amateur radio usually implies the use of the most commonly used variant of PSK31: binary phase shift keying (BPSK). BPSK uses no error control, but an allied mode, QPSK31, uses four phases instead of two, to provide a degree of forward error correction.  It is simple to switch from BPSK to QPSK if difficulties arise during a contact.  When QPSK is used; after encoding into varicode, the binary signal is further transformed into a quaternary set of phase shifts.  A sliding window of five bits is used to select one of the four possible phase shifts, providing a means of error correction by spreading each bit of data across adjacent bits.  Successful decoding of an input bit requires a large number of phase shift sequences to be received, causing a 20-bit, 640-millisecond latency (delay) in the output of the decoder.
+
+==Spectrum efficiency compared to other modes==
+
+PSK31's efficiency and narrow bandwidth make it highly suitable for low-power and crowded-band operation. PSK31 contacts can be conducted at less than 100 Hz separation, so with disciplined operation at least twenty simultaneous PSK31 contacts can be carried out side-by-side in the 2.5 kHz bandwidth required for just one SSB voice contact.
+
+==Common frequencies==
+
+The following amateur radio frequencies are commonly used for transmitting and receiving PSK31 signals. They normally occupy the lower edge of each band's digital modes section. PSK31 operators generally use upper sideband (USB), even on frequencies below 10 MHz where the convention normally calls for lower sideband. This is because (a) signals then spread upwards into the digimode section from the "base" frequency, and (b) using QPSK requires both stations to use the same sideband.
+ Current usage as of 2010, based on observation, is centered on 7,070.15 and 21,070.15. 7,035.15 is commonly used in Region 2 as of 2012. There is no authoritative list, as the frequencies are determined by common convention.
+The IARU Region 1 Bandplan was revised in March 2009 to reflect the expanded 40 meter band. The CW-only section within Europe, Africa, the Middle East and the former USSR is now 7.000 to 7.040. Region 2 - The Americas - followed in September 2013.  Region 3 - South Asia and Australasia - has not yet synchronised its bandplan with Regions 1 and 2.
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

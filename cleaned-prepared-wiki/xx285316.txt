@@ -1,0 +1,77 @@
+[[Classification Tree Method]]
+
+CATEGORIES: Software development process, Software development, Software testing
+
+The Classification Tree Method is a method for test design,
+It has been developed by Grimm and Grochtmann in 1993.
+Classification Trees in terms of the Classification Tree Method must not be confused with decision trees.
+The classification tree method consists of two major steps:
+The identification of test relevant aspects usually follows the (functional) specification (e.g. requirements, use cases …) of the system under test. 
+These aspects form the input and output data space of the test object.
+The second step of test design then follows the principles of combinatorial test design.
+While the method can be applied using a pen and a paper, the usual way involves the usage of the Classification Tree Editor, a software tool implementing the classification tree method.
+
+Application
+
+Prerequisites for applying the classification tree method (CTM) is the selection (or definition) of a system under test.
+The CTM is a black-box testing method and supports any type of system under test. This includes (but is not limited to) hardware systems, integrated hardware-software systems, plain software systems, including embedded software, user interfaces, operating systems, parsers, and others (or subsystems of mentioned systems).
+With a selected system under test, the first step of the classification tree method is the identification of test relevant aspects.
+Any system under test can be described by a set of classifications, holding both input and output parameters. 
+(Input parameters can also include environments states, pre-conditions and other, rather uncommon parameters). 
+Each classification can have any number of disjoint classes, describing the occurrence of the parameter.
+The selection of classes typically follows the principle of equivalence partitioning for abstract test cases and boundary-value analysis for concrete test cases.
+Together, all classifications form the classification tree. 
+For semantic purpose, classifications can be grouped into compositions.
+The maximum number of test cases is the Cartesian product of all classes of all classifications in the tree, quickly resulting in large numbers for realistic test problems.
+The minimum number of test cases is the number of classes in the classification with the most containing classes.
+In the seconds step, test cases are composed by selecting exactly one class from every classification of the classification tree. 
+The selection of test cases originally was a manual task to be performed by the test engineer.
+
+Example
+
+For a database system, test design has to be performed. 
+Applying the classification tree method, the identification of test relevant aspects gives the classifications: User Privilege, Operation and Access Method.
+For the User Privileges, two classes can be identified: Regular User and Administrator User.
+There are three Operations: Add, Edit and Delete.
+For the Access Method, again three classes are identified: Native Tool, Web Browser, API.
+The Web Browser class is further refined with the test aspect Brand, three possible classes are included here: Internet Explorer, Mozilla Firefox, and Apple Safari.
+The first step of the classification tree method now is complete. Of course, there are further possible test aspects to include, e.g. access speed of the connection, number of database records present in the database, etc. Using the graphical representation in terms of a tree, the selected aspects and their corresponding values can quickly be reviewed.
+For the statistics, there are 30 possible test cases in total (2 privileges * 3 operations * 5 access methods). For minimum coverage, 5 test cases are sufficient, as there are 5 access methods (and access method is the classification with the highest number of disjoint classes).
+In the second step, three test cases have been manually selected: 
+
+Enhancements
+
+Background
+
+The CTM introduced the following advantages  over the Category Partition Method (CPM) by Olstrad and Balcer:
+
+Classification Tree Method for Embedded Systems
+
+The classification tree method first was intended for the design and specification of abstract test cases. With the classification tree method for embedded systems, test implementation can also be performed. Several additional features are integrated with the method:
+The module and unit testing tool Tessy relies on this extension.
+
+Dependency Rules and Automated Test Case Generation
+
+One way of modelling constraints is using the refinement mechanism in the classification tree method. This, however, does not allow for modelling constraints between classes of different classifications. Lehmann and Wegener introduced Dependency Rules based on Boolean expressions with their incarnation of the CTE. Further features include the automated generation of test suites using combinatorial test design (e.g. all-pairs testing).
+
+Prioritized Test Case Generation
+
+Recent enhancements to the classification tree method include the prioritized test case generation: It is possible to assign weights to the elements of the classification tree in terms of occurrence and error probability or risk. These weights are then used during test case generation to prioritize test cases.  Statistical testing is also available (e.g. for wear and fatigue  tests) by interpreting the element weights as a discrete probability distribution.
+
+Test Sequence Generation
+
+With the addition of valid transitions between individual classes of a classification, classifications can be interpreted as a state machine, and therefore the whole classification tree as a Statechart. This defines an allowed order of class usages in test steps and allows to automatically create test sequences. Different coverage levels are available, such as state coverage, transitions coverage and coverage of state pairs and transition pairs.
+
+Numerical Constraints
+
+In addition to Boolean dependency rules referring to classes of the classification tree, Numerical Constraints allow to specify formulas with classifications as variables, which will evaluate to the selected class in a test case.
+
+Advantages
+
+Limitations
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+[[Garbage collection (computer science)]]
+
+CATEGORIES: Memory management, Automatic memory management, Articles with example code, Solid-state computer storage
+
+In computer science, garbage collection (GC) is a form of automatic memory management. The garbage collector, or just collector, attempts to reclaim garbage, or memory occupied by objects that are no longer in use by the program. Garbage collection was invented by John McCarthy around 1959 to solve problems in Lisp.[tpl]cite web|url=http://portal.acm.org/citation.cfm?id=367177.367199 |title=Recursive functions of symbolic expressions and their computation by machine |publisher=Portal.acm.org |date= |accessdate=29 March 2009[/tpl][tpl]cite web|url=http://www-formal.stanford.edu/jmc/recursive.html|title=Recursive functions of symbolic expressions and their computation by machine, Part I|accessdate=29 May 2009[/tpl]
+Garbage collection is often portrayed as the opposite of manual memory management, which requires the programmer to specify which objects to deallocate and return to the memory system. However, many systems use a combination of approaches, including other techniques such as stack allocation and region inference.  Like other memory management techniques, garbage collection may take a significant proportion of total processing time in a program and can thus have significant influence on performance.
+Resources other than memory, such as network sockets, database handles, user interaction windows, and file and device descriptors, are not typically handled by garbage collection. Methods used to manage such resources, particularly destructors, may suffice to manage memory as well, leaving no need for GC. Some GC systems allow such other resources to be associated with a region of memory that, when collected, causes the other resource to be reclaimed; this is called finalization. Finalization may introduce complications limiting its usability, such as intolerable latency between disuse and reclaim of especially limited resources, or a lack of control over which thread performs the work of reclaiming.
+
+==[tpl]Anchor|GC-LANGUAGE[/tpl]Principles==
+
+The basic principles of garbage collection are:
+Many computer languages require garbage collection, either as part of the language specification (for example, Java, C#, Go and most scripting languages) or effectively for practical implementation (for example, formal languages like lambda calculus); these are said to be garbage collected languages. Other languages were designed for use with manual memory management, but have garbage collected implementations available (for example, C, C++). Some languages, like Ada, Modula-3, and C++/CLI allow both garbage collection and manual memory management to co-exist in the same application by using separate heaps for collected and manually managed objects; others, like D, are garbage collected but allow the user to manually delete objects and also entirely disable garbage collection when speed is required.
+While integrating garbage collection into the language's compiler and runtime system enables a much wider choice of methods,[tpl]Citation needed|date=June 2007[/tpl] post hoc GC systems exist, including some that do not require recompilation. (Post-hoc GC is sometimes distinguished as litter collection.) The garbage collector will almost always be closely integrated with the memory allocator.
+
+===Advantages===
+
+Garbage collection frees the programmer from manually dealing with memory deallocation. As a result, certain categories of bugs are eliminated or substantially reduced:
+Some of the bugs addressed by garbage collection can have security implications.
+
+===Disadvantages===
+
+Typically, garbage collection has certain disadvantages:
+
+==Tracing garbage collectors==
+
+Tracing garbage collectors are the most common type of garbage collector. They first determine which objects are reachable (or potentially reachable), and then discard all remaining objects.
+
+===Reachability of an object===
+
+Informally, an object is reachable if it is referenced by at least one variable in the program, either directly or through references from other reachable objects. More precisely, objects can be reachable in only two ways:
+The reachability definition of "garbage" is not optimal, insofar as the last time a program uses an object could be long before that object falls out of the environment scope. A distinction is sometimes drawn between syntactic garbage, those objects the program cannot possibly reach, and semantic garbage, those objects the program will in fact never again use. For example:
+The problem of precisely identifying semantic garbage can easily be shown to be partially decidable: a program that allocates an object X, runs an arbitrary input program P, and uses X if and only if P finishes would require a semantic garbage collector to solve the halting problem. Although conservative heuristic methods for semantic garbage detection remain an active research area, essentially all practical garbage collectors focus on syntactic garbage.[tpl]Citation needed|date=September 2008[/tpl]
+Another complication with this approach is that, in languages with both reference types and unboxed value types, the garbage collector needs to somehow be able to distinguish which variables on the stack or fields in an object are regular values and which are references: in memory, an integer and a reference might look alike. The garbage collector then needs to know whether to treat the element as a reference and follow it, or whether it is a primitive value. One common solution is the use of tagged pointers.
+
+===Strong and weak references===
+
+The garbage collector can reclaim only objects that have no references pointing to them either directly or indirectly from the root set. However, some programs require weak references, which should be usable for as long as the object exists but should not prolong its lifetime. In discussions about weak references, ordinary references are sometimes called strong references. An object is eligible for garbage collection if there are no strong (i.e. ordinary) references to it, even though there still might be some weak references to it.
+A weak reference is not merely just any pointer to the object that a garbage collector does not care about. The term is usually reserved for a properly managed category of special reference objects which are safe to use even after the object disappears because they lapse to a safe value. An unsafe reference that is not known to the garbage collector will simply remain dangling by continuing to refer to the address where the object previously resided. This is not a weak reference.
+In some implementations, weak references are divided into subcategories. For example, the Java Virtual Machine provides three forms of weak references, namely soft references,[tpl]cite web |url=http://docs.oracle.com/javase/7/docs/api/java/lang/ref/SoftReference.html |title=Class SoftReference<T> |publisher=Oracle |website=Java™ Platform Standard Ed. 7 |accessdate=25 May 2013[/tpl] phantom references,[tpl]cite web |url=http://docs.oracle.com/javase/7/docs/api/java/lang/ref/PhantomReference.html |title=Class PhantomReference<T> |publisher=Oracle |website=Java™ Platform Standard Ed. 7 |accessdate=25 May 2013[/tpl] and regular weak references.[tpl]cite web |url=http://docs.oracle.com/javase/7/docs/api/java/lang/ref/WeakReference.html |title=Class WeakReference<T> |publisher=Oracle |website=Java™ Platform Standard Ed. 7 |accessdate=25 May 2013[/tpl] A softly referenced object is only eligible for reclamation, if the garbage collector decides that the program is low on memory. Unlike a soft reference or a regular weak reference, a phantom reference does not provide access to the object that it references. Instead, a phantom reference is a mechanism that allows the garbage collector to notify the program when the referenced object has become phantom reachable. An object is phantom reachable, if it still resides in memory and it is referenced by a phantom reference, but its finalizer has already executed. Similarly, Microsoft.NET provides two subcategories of weak references,[tpl]cite web |url=http://msdn.microsoft.com/en-us/library/ms404247.aspx |title=Weak References |publisher=Microsoft |website=.NET Framework 4.5 |accessdate=25 May 2013[/tpl] namely long weak references (tracks resurrection) and short weak references.
+
+===Weak collections===
+
+Data structures can also be devised which have weak tracking features. For instance, weak hash tables are useful. Like a regular hash table, a weak hash table maintains an association between pairs of objects, where each pair is understood to be a key and value. However, the hash table does not actually maintain a strong reference on these objects. A special behavior takes place when either the key or value or both become garbage: the hash table entry is spontaneously deleted. There exist further refinements such as hash tables which have only weak keys (value references are ordinary, strong references) or only weak values (key references are strong).
+Weak hash tables are important for maintaining associations between objects, such that the objects engaged in the association can still become garbage if nothing in the program refers to them any longer (other than the associating hash table).
+The use of a regular hash table for such a purpose could lead to a "logical memory leak": the accumulation of reachable data which the program does not need and will not use.
+
+===Basic algorithm===
+
+Tracing collectors are so called because they trace through the working set of memory. These garbage collectors perform collection in cycles. A cycle is started when the collector decides (or is notified) that it needs to reclaim memory, which happens most often when the system is low on memory[tpl]Citation needed|date=June 2011[/tpl]. The original method involves a naïve mark-and-sweep in which the entire memory set is touched several times.
+
+====Naïve mark-and-sweep====
+

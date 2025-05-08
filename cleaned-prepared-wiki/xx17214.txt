@@ -1,0 +1,81 @@
+[[Natural transformation]]
+
+CATEGORIES: Functors
+
+In category theory, a branch of mathematics, a natural transformation provides a way of transforming one functor into another while respecting the internal structure (i.e. the composition of morphisms) of the categories involved. Hence, a natural transformation can be considered to be a "morphism of functors". Indeed this intuition can be formalized to define so-called functor categories. Natural transformations are, after categories and functors, one of the most basic notions of category theory and consequently appear in the majority of its applications.
+
+Definition
+
+If F and G are functors between the categories C and D, then a natural transformation η from F to G associates to every object X in C a morphism  we have:
+This equation can conveniently be expressed by the commutative diagram
+If both F and G are contravariant, the horizontal arrows in this diagram are reversed. If η is a natural transformation from F to G, we also write  is natural in X.
+If, for every object X in C, the morphism ηX is an isomorphism in D, then η is said to be a  (or sometimes natural equivalence or isomorphism of functors). Two functors F and G are called naturally isomorphic or simply isomorphic if there exists a natural isomorphism from F to G.
+An infranatural transformation η from F to G is simply a family of morphisms .  The naturalizer of η, nat(η), is the largest subcategory of C containing all the objects of C on which η restricts to a natural transformation.
+
+Examples
+
+Opposite group
+
+Statements such as
+abound in modern mathematics. We will now give the precise meaning of this statement as well as its proof. Consider the category Grp of all groups with group homomorphisms as morphisms. If (G,*) is a group, we define its opposite group (Gop,*op) as follows: Gop is the same set as G, and the operation *op is defined by . Note that fop is indeed a group homomorphism from Gop to Hop:
+The content of the above statement is:
+To prove this, we need to provide isomorphisms .
+
+Double dual of a vector space
+
+If K is a field, then for every vector space V over K we have a "natural" injective linear map  from the vector space into its double dual. These maps are "natural" in the following sense: the double dual operation is a functor, and the maps are the components of a natural transformation from the identity functor to the double dual functor.
+
+Tensor-hom adjunction
+
+Consider the category Ab of abelian groups and group homomorphisms. For all abelian groups X, Y and Z we have a group isomorphism
+These isomorphisms are "natural" in the sense that they define a natural transformation between the two involved functors . (Here "op" is the opposite category of Ab, not to be confused with the trivial opposite group functor on Ab!)
+This is formally the tensor-hom adjunction, and is an archetypal example of a pair of adjoint functors. Natural transformations arise frequently in conjunction with adjoint functors, and indeed, adjoint functors are defined by a certain natural isomorphism. Additionally, every pair of adjoint functors comes equipped with two natural transformations (generally not isomorphisms) called the unit and counit.
+
+Unnatural isomorphism
+
+This is similar (but more categorical) to concepts in group theory or module theory, where a given decomposition of an object into a direct sum is "not natural", or rather "not unique", as automorphisms exist that do not preserve the direct sum decomposition – see Structure theorem for finitely generated modules over a principal ideal domain#Uniqueness for example.
+Some authors distinguish notationally, using ≅ for a natural isomorphism and ≈ for an unnatural isomorphism, reserving = for equality (usually equality of maps).
+
+Example: fundamental group of torus
+
+As an example of the distinction between the functorial statement and individual objects, consider homotopy groups of a product space, specifically the fundamental group of the torus.
+Naturality is a categorical notion, and requires being very precise about exactly what data is given – the torus as a space that happens to be a product (in the category of spaces and continuous maps) is different from the torus presented as a product (in the category of products of two spaces and continuous maps between the respective components).
+
+Example: dual of a finite-dimensional vector space
+
+Every finite-dimensional vector space is isomorphic to its dual space, but this isomorphism relies on an arbitrary choice of isomorphism (for example, via choosing a basis and then taking the isomorphism sending this basis to the corresponding dual basis). There is in general no natural isomorphism between a finite-dimensional vector space and its dual space. However, related categories (with additional structure and restrictions on the maps) do have a natural isomorphism, as described below.
+The dual space of a finite-dimensional vector space is again a finite-dimensional vector space of the same dimension, and these are thus isomorphic, since dimension is the only invariant of finite-dimensional vector spaces over a given field. However, in the absence of additional data (such as a basis), there is no given map from a space to its dual, and thus such an isomorphism requires a choice, and is "not natural". On the category of finite-dimensional vector spaces and linear maps, one can define an infranatural isomorphism from vector spaces to their dual by choosing an isomorphism for each space (say, by choosing a basis for every vector space and taking the corresponding isomorphism), but this will not define a natural transformation. Intuitively this is because it required a choice, rigorously because any such choice of isomorphisms will not commute with all linear maps; see  for detailed discussion.
+In this category (finite-dimensional vector spaces with a nondegenerate bilinear form, maps linear transforms that respect the bilinear form), the dual of a map between vector spaces can be identified as a transpose. Often for reasons of geometric interest this is specialized to a subcategory, by requiring that the nondegenerate bilinear forms have additional properties, such as being symmetric (orthogonal matrices), symmetric and positive definite (inner product space), symmetric sesquilinear (Hermitian spaces), skew-symmetric and totally isotropic (symplectic vector space), etc. – in all these categories a vector space is naturally identified with its dual, by the nondegenerate bilinear form.
+
+Operations with natural transformations
+
+If  itself as a category (see below under Functor categories).
+Natural transformations also have a "horizontal composition".  If .  This operation is also associative with identity, and the identity coincides with that for vertical composition.  The two operations are related by an identity which exchanges vertical composition with horizontal composition.
+If  by defining
+If on the other hand  is defined by
+
+Functor categories
+
+If C is any category and I is a small category, we can form the functor category CI having as objects all functors from I to C and as morphisms the natural transformations between those functors. This forms a category since for any functor F there is an identity natural transformation  (which assigns to every object X the identity morphism on F(X)) and the composition of two natural transformations (the "vertical composition" above) is again a natural transformation.
+The isomorphisms in CI are precisely the natural isomorphisms. That is, a natural transformation .
+The functor category CI is especially useful if I arises from a directed graph. For instance, if I is the category of the directed graph .
+More generally, one can build the 2-category Cat whose
+
+Yoneda lemma
+
+If X is an object of a locally small category C, then the assignment  are completely known and easy to describe; this is the content of the Yoneda lemma.
+
+Historical notes
+
+Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations." Just as the study of groups is not complete without a study of homomorphisms, so the study of categories is not complete without the study of functors. The reason for Mac Lane's comment is that the study of functors is itself not complete without the study of natural transformations.
+The context of Mac Lane's remark was the axiomatic theory of homology. Different ways of constructing homology could be shown to coincide: for example in the case of a simplicial complex the groups defined directly would be isomorphic to those of the singular theory.  What cannot easily be expressed without the language of natural transformations is how homology groups are compatible with morphisms between objects, and how two equivalent homology theories not only have the same homology groups, but also the same morphisms between those groups.
+
+
+
+Notes
+
+
+
+
+
+

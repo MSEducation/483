@@ -1,0 +1,104 @@
+[[Low-density parity-check code]]
+
+CATEGORIES: Error detection and correction, Coding theory, Capacity-approaching codes
+
+In information theory, a low-density parity-check (LDPC) code is a linear error correcting code, a method of transmitting a message over a noisy transmission channel,David J.C. MacKay (2003) Information theory, Inference and Learning Algorithms, CUP, ISBN 0-521-64298-1, (also available online)Todd K. Moon (2005) Error Correction Coding, Mathematical Methods and Algorithms. Wiley, ISBN 0-471-64800-0 (Includes code) and is constructed using a sparse bipartite graph.Amin Shokrollahi (2003) LDPC Codes: An Introduction LDPC codes are capacity-approaching codes, which means that practical constructions exist that allow the noise threshold to be set very close (or even arbitrarily close on the BEC) to the theoretical maximum (the Shannon limit) for a symmetric memoryless channel. The noise threshold defines an upper bound for the channel noise, up to which the probability of lost information can be made as small as desired. Using iterative belief propagation techniques, LDPC codes can be decoded in time linear to their block length.
+LDPC codes are finding increasing use in applications requiring reliable and highly efficient information transfer over bandwidth or return channel-constrained links in the presence of corrupting noise. Implementation of LDPC codes has lagged behind that of other codes, notably turbo codes. The fundamental patent for Turbo Codes expired on August 29, 2013.[https://www.google.com/patents/US5446747 US5446747NewScientist, Communication speed nears terminal velocity, by Dana Mackenzie, 9 July 2005
+LDPC codes are also known as Gallager codes, in honor of Robert G. Gallager, who developed the LDPC concept in his doctoral dissertation at the Massachusetts Institute of Technology in 1960.[tpl]Cite news |url=http://web.mit.edu/newsoffice/2010/gallager-codes-0121.html |title=Explained: Gallager codes |author=Larry Hardesty |journal=MIT News |date= January 21, 2010 |accessdate= August 7, 2013 [/tpl]
+
+==History==
+
+Impractical to implement when first developed by Gallager in 1963,[tpl]Cite book |author= Robert G. Gallager |title= Low Density Parity Check Codes |publisher= Monograph, M.I.T. Press |year= 1963 |url= http://www.inference.phy.cam.ac.uk/mackay/gallager/papers/ldpc.pdf |accessdate= August 7, 2013 [/tpl] Gallager's LDPC codes were forgotten until Gallager's work was discovered in 1996.David J.C. MacKay and Radford M. Neal, "Near Shannon Limit Performance of Low Density Parity Check Codes," Electronics Letters, July 1996 Turbo codes, another class of capacity-approaching codes discovered in 1993, became the coding scheme of choice in the late 1990s, used for applications such as the Deep Space Network and satellite communications. However, in the last few years, the advances in low-density parity-check codes have seen them surpass turbo codes in terms of error floor and performance in the higher code rate range, leaving turbo codes better suited for the lower code rates only.Telemetry Data Decoding, Design Handbook
+
+==Applications==
+
+In 2003, an LDPC code beat six turbo codes to become the error correcting code in the new DVB-S2 standard for the satellite transmission of digital television. Presentation by Hughes Systems The DVB-S2 selection committee made  decoder complexity estimates for the Turbo Code proposals using a much less efficient serial decoder architecture rather than a parallel decoder architecture.  This forced the Turbo Code proposals to use frame sizes on the order of one half the frame size of the LDPC proposals. In 2008, LDPC beat convolutional turbo codes as the forward error correction (FEC) system for the ITU-T G.hn standard.HomePNA Blog: G.hn, a PHY For All Seasons G.hn chose LDPC coded over turbo codes because of their lower decoding complexity (especially when operating at data rates close to 1.0 Gbit/s) and because the proposed turbo codes exhibited a significant error floor at the desired range of operation.IEEE Communications Magazine paper on G.hn LDPC is also used for 10GBase-T Ethernet, which sends data at 10 gigabits per second over twisted-pair cables. As of 2009, LDPC codes are also part of the Wi-Fi 802.11 standard as an optional part of 802.11n and 802.11ac, in the High Throughput (HT) PHY specification.IEEE Standard, section 20.3.11.6 "802.11n-2009", IEEE, October 29, 2009, accessed March 21, 2011.
+Some OFDM systems add an additional outer error correction that fixes the occasional errors (the "error floor") that get past the LDPC correction inner code even at low bit error rates.
+For example:
+The Reed-Solomon code with LDPC Coded Modulation (RS-LCM) uses a Reed-Solomon outer code.[ref]
+Chih-Yuan Yang, Mong-Kai Ku.
+http://123seminarsonly.com/Seminar-Reports/029/26540350-Ldpc-Coded-Ofdm-Modulation.pdf
+"LDPC coded OFDM modulation for high spectral efficiency transmission"
+[/ref]
+The DVB-T2 standard and the DVB-C2 standard use a BCH code outer code to mop up residual errors after LDPC decoding.[ref]
+Nick Wells.
+[/ref]
+
+==Function==
+
+LDPC codes are defined by a sparse parity-check matrix. This sparse matrix is often randomly generated, subject to the sparsity constraints—LDPC code construction is discussed later. These codes were first designed by Robert Gallager in 1962.
+Below is a graph fragment of an example LDPC code using Forney's factor graph notation. In this graph, n variable nodes in the top of the graph are connected to (n−k) constraint nodes in the bottom of the graph. This is a popular way of graphically representing an (n, k) LDPC code. The bits of a valid message, when placed on the T's at the top of the graph, satisfy the graphical constraints. Specifically, all lines connecting to a variable node (box with an '=' sign) have the same value, and all values connecting to a factor node (box with a '+' sign) must sum, modulo two, to zero (in other words, they must sum to an even number).
+Ignoring any lines going out of the picture, there are eight possible six-bit strings corresponding to valid codewords: (i.e., 000000, 011001, 110010, 101011, 111100, 100101, 001110, 010111). This LDPC code fragment represents a three-bit message encoded as six bits. Redundancy is used, here, to increase the chance of recovering from channel errors. This is a (6, 3) linear code, with n = 6 and k = 3.
+Once again ignoring lines going out of the picture, the parity-check matrix representing this graph fragment is
+In this matrix, each row represents one of the three parity-check constraints, while each column represents one of the six bits in the received codeword.
+Finally, by multiplying all eight possible 3-bit strings by G, all eight valid codewords are obtained. For example, the codeword for the bit-string '101' is obtained by:
+
+==Example Encoder==
+
+Figure 1 illustrates the functional components of most LDPC encoders.
+During the encoding of a frame, the input data bits (D) are repeated and distributed to a set of constituent encoders.  The constituent encoders are typically accumulators and each accumulator is used to generate a parity symbol.  A single copy of the original data (S0,K-1) is transmitted  with the parity bits (P) to make up the code symbols.  The S bits from each constituent encoder are discarded.
+In some cases a parity bit is encoded by a second constituent code (serial concatenation), but more typically the constituent encoding for the LDPC is done in parallel.
+In an example using the DVB-S2 rate 2/3 code the encoded block size is 64800 symbols (N=64800) with 42300 data bits (K=43200) and 21600 parity bits (M=21600).  Each constituent code (check node) encodes 16 data bits except for the first party bit which encodes 8 data bits.  The first 4680 data bits are repeated 13 times (used in 13 parity codes), while the remaining data bits are used in 3 parity codes (irregular LDPC code).
+For comparison, classic turbo codes typically use two constituent codes configured in parallel, each of which encodes the entire input block (K) of data bits.  These constituent encoders are recursive convolutional codes (RSC) of moderate depth (8 or 16 states) that are separated by a code interleaver which interleaves one copy of the frame.
+The LDPC code, in contrast, uses many low depth constituent codes (accumulators) in parallel, each of which encode only a small portion of the input frame.  The many constituent codes can be viewed as many low depth (2 state) 'convolutional codes' that are connected via the repeat and distribute operations. The repeat and distribute operations perform the function of the interleaver in the turbo code.
+The ability to more precisely manage the connections of the various constituent codes and the level of redundancy for each input bit give more flexibility in the design of LDPC codes, which can lead to better performance than turbo codes in some instances. Turbo codes still seem to perform better than LDPCs at low code rates, or at least the design of good performing low rate codes is easier for Turbo Codes.
+As a practical matter, the hardware that forms the accumulators is reused during the encoding process.  That is, once a first set of party bits are generated and the parity bits stored, the same accumulator hardware is used to generate a next set of parity bits.
+
+==Decoding==
+
+As with other codes, the maximum likelihood decoding of an LDPC code on the binary symmetric channel is an NP-complete problem, although techniques based on iterative belief propagation used in practice lead to good approximations. In contrast, belief propagation on the binary erasure channel is particularly simple where it consists of iterative constraint satisfaction.
+For example, consider that the valid codeword, 101011, from the example above, is transmitted across a binary erasure channel and received with the first and fourth bit erased to yield ?⁠01?⁠11. Since the transmitted message must have satisfied the code constraints, the message can be represented by writing the received message on the top of the factor graph.
+In this example, the first bit cannot yet be recovered, because all of the constraints connected to it have more than one unknown bit. In order to proceed with decoding the message, constraints connecting to only one of the erased bits must be identified. In this example, only the second constraint suffices. Examining the second constraint, the fourth bit must have been zero, since only a zero in that position would satisfy the constraint.
+This procedure is then iterated. The new value for the fourth bit can now be used in conjunction with the first constraint to recover the first bit as seen below. This means that the first bit must be a one to satisfy the leftmost constraint.
+Thus, the message can be decoded iteratively. For other channel models, the messages passed between the variable nodes and check nodes are real numbers, which express probabilities and likelihoods of belief.
+This result can be validated by multiplying the corrected codeword r by the parity-check matrix H:
+Because the outcome z (the syndrome) of this operation is the three × one zero vector, the resulting codeword r is successfully validated.
+
+===Updating node information===
+
+In recent years, there has also been a great deal of work spent studying the effects of alternative schedules for variable-node and constraint-node update. The original technique that was used for decoding LDPC codes was known as flooding. This type of update required that, before updating a variable node, all constraint nodes needed to be updated and vice versa. In later work by Vila Casado et al.,A.I. Vila Casado, M. Griot, and R.Wesel, “Informed dynamic scheduling for belief propagation decoding of LDPC codes,” Proc. IEEE Int. Conf. on Comm. (ICC), June 2007. alternative update techniques were studied, in which variable nodes are updated with the newest available check-node information.
+The intuition behind these algorithms is that variable nodes whose values vary the most are the ones that need to be updated first. Highly reliable nodes, whose log-likelihood ratio (LLR) magnitude is large and does not change significantly from one update to the next, do not require updates with the same frequency as other nodes, whose sign and magnitude fluctuate more widely.
+These scheduling algorithms show greater speed of convergence and lower error floors than those that use flooding. These lower error floors are achieved by the ability of the Informed Dynamic Scheduling (IDS) algorithm to overcome trapping sets of near codewords.T. Richardson, “Error floors of LDPC codes,” in Proc. 41st Allerton Conf. Comm., Control, and Comput., Monticello, IL, 2003.
+When nonflooding scheduling algorithms are used, an alternative definition of iteration is used. For an (n, k) LDPC code of rate k/n, a full iteration occurs when n variable and n − k constraint nodes have been updated, no matter the order in which they were updated.
+
+===Lookup table decoding===
+
+It is possible to decode LDPC codes on a relatively low-power microprocessor by the use of lookup tables.
+While codes such as the LDPC are generally implemented on high-power processors, with long block lengths, there are also applications which use lower-power processors and short block lengths (1024).
+Therefore, it is possible to precalculate the output bit based upon predetermined input bits. A table is generated which contains n entries (for a block length of 1024 bits, this would be 1024 bits long), and contains all possible entries for different input states (both errored and nonerrored).
+As a bit is input, it is then added to a FIFO register, and the value of the FIFO register is then used to look up in the table the relevant output from the precalculated values.
+By this method, very high iterations can be used, with little processor overhead, the only cost being that of the memory for the lookup table, such that LDPC decoding is possible even on a 4.0 MHz PIC chip.
+
+==Code construction==
+
+For large block sizes, LDPC codes are commonly constructed by first studying the behaviour of decoders. As the block size tends to infinity, LDPC decoders can be shown to have a noise threshold below which decoding is reliably achieved, and above which decoding is not achieved.Thomas J. Richardson and M. Amin Shokrollahi and Rüdiger L. Urbanke, "Design of Capacity-Approaching Irregular Low-Density Parity-Check Codes," IEEE Transactions in Information Theory, 47(2), February 2001 This threshold can be optimised by finding the best proportion of arcs from check nodes and arcs from variable nodes. An approximate graphical approach to visualising this threshold is an EXIT chart.
+The construction of a specific LDPC code after this optimization falls into two main types of techniques:
+Construction by a pseudo-random approach builds on theoretical results that, for large block size, a random construction gives good decoding performance. In general, pseudorandom codes have complex encoders, but pseudorandom codes with the best decoders can have simple encoders.Thomas J. Richardson and Rüdiger L. Urbanke, "Efficient Encoding of Low-Density Parity-Check Codes," IEEE Transactions in Information Theory, 47(2), February 2001 Various constraints are often applied to help ensure that the desired properties expected at the theoretical limit of infinite block size occur at a finite block size.
+Combinatorial approaches can be used to optimize the properties of small block-size LDPC codes or to create codes with simple encoders.
+Some LDPC codes are based on Reed–Solomon codes, such as the RS-LDPC code used in the 10-gigabit Ethernet standard.[ref]
+Ahmad Darabiha, Anthony Chan Carusone, Frank R. Kschischang.
+[/ref]
+Compared to randomly generated LDPC codes, structured LDPC codes—such as the LDPC code used in the DVB-S2 standard—can have simpler and therefore lower-cost hardware—in particular, codes constructed such that the H matrix is a circulant matrix.[ref]
+Zhengya Zhang, Venkat Anantharam, Martin J. Wainwright, and Borivoje Nikolic.
+"An Efficient 10GBASE-T Ethernet LDPC Decoder Design With Low Error Floors".
+[/ref]
+Yet another way of constructing LDPC codes is to use finite geometries. This method was proposed by Y. Kou et al. in 2001.[ref]Y. Kou, S. Lin and M. Fossorier, "Low-Density Parity-Check Codes
+Based on Finite Geometries: A Rediscovery and New Results," IEEE
+Transactions on Information Theory, vol. 47, no. 7, November 2001, pp. 2711-
+2736.[/ref]
+
+==See also==
+
+===People===
+
+===Theory===
+
+===Applications===
+
+===Other capacity-approaching codes===
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,57 @@
+[[VIC cipher]]
+
+CATEGORIES: Classical ciphers, Science and technology in the Soviet Union
+
+The VIC cipher was a pencil and paper cipher used by the  Soviet spy Reino Häyhänen, codenamed "VICTOR".
+If the cipher were to be given a modern technical name, it would be known as a "straddling bipartite monoalphabetic substitution superenciphered by modified double transposition." However, by general classification it is part of the Nihilist family of ciphers.
+It was arguably the most complex hand-operated cipher ever seen, when it was first discovered. The initial analysis done by the NSA in 1953 did not absolutely conclude that it was a hand cipher, but its placement in a hollowed out 5c coin implied it could be broken by pencil and paper. The VIC cipher remained unbroken until more information about its structure was available. 
+Although certainly not as complex or secure as modern computer operated stream ciphers or block ciphers, in practice messages protected by it resisted all attempts at cryptanalysis by at least NSA from its discovery in 1953 until Häyhänen's defection in 1957.
+
+==A revolutionary leap==
+
+The VIC cipher can be regarded as the evolutionary pinnacle of the Nihilist cipher family.
+The VIC cipher has several important integrated components, including mod 10 chain addition, a lagged Fibonacci generator  (a recursive formula used to generate a sequence of pseudorandom digits), a straddling checkerboard, and a disrupted double transposition.
+Until the discovery of VIC, it was generally thought that a double transposition alone was the most complex cipher an agent, as a practical matter, could use as a field cipher.
+
+==History==
+
+During World War II, several Soviet spy rings communicated to Moscow Centre using two ciphers which are essentially evolutionary improvements on the basic Nihilist cipher. A very strong version was used by Max Clausen in Richard Sorge's network in Japan, and by Alexander Foote in the Lucy spy ring in Switzerland. A slightly weaker version was used by the Rote Kapelle network.
+In both versions, the plaintext was first converted to digits by use of a straddling checkerboard rather than a Polybius square. This has the advantage of slightly compressing the plaintext, thus raising its unicity distance and also allowing radio operators to complete their transmissions quicker and shut down sooner. Shutting down sooner reduces the risk of the operator being found by enemy radio direction finders. Increasing the unicity distance increases strength against statistical attacks.
+Clausen and Foote both wrote their plaintext in English,  and memorized the 8 most frequent letters of English (to fill the top row of the checkerboard) through the mnemonic (and slightly menacing) phrase "a sin to err" (dropping the second "r").[ref]
+by Greg Goebel 2009
+[/ref]
+The standard English straddling checkerboard has 28 character slots and in this cipher the extra two became "full stop" and "numbers shift". Numbers were sent by a numbers shift, followed by the actual plaintext digits in repeated pairs, followed by another shift. Then, similarly to the basic Nihilist, a digital additive was added in, which was called "closing". However a different additive was used each time, so finally a concealed "indicator group" had to be inserted to indicate what additive was used.
+Unlike basic Nihilist, the additive was added by non-carrying addition (digit-wise addition modulo 10), thus producing a more uniform output which doesn't leak as much information. More importantly, the additive was generated not through a keyword, but by selecting lines at random from almanacs of industrial statistics. Such books were deemed dull enough to not arouse suspicion if an agent was searched (particularly as the agents' cover stories were as businessmen), and to have such high entropy density as to provide a very secure additive. Of course the figures from such a book are not actually uniformly distributed (there is an excess of "0" and "1" (see Benford's Law), and sequential numbers are likely to be somewhat similar), but nevertheless they have much higher entropy density than passphrases and the like; at any rate, in practice they seem never to have been successfully cryptanalysed.
+The weaker version generated the additive from the text of a novel or similar book (at least one Rote Kapelle member actually used The Good Soldier Schweik, which may not have been a good choice if one expected to be searched by Nazis!) This text was converted to a digital additive using a technique similar to a straddling checkerboard. 
+The ultimate development along these lines was the VIC cipher, used in the 1950s by Reino Häyhänen. By this time, most Soviet agents were instead using one-time pads. However, despite the theoretical perfection of the one-time pad, in practice they were broken, while VIC was not.
+
+==Internal mechanics==
+
+===Straddling checkerboard===
+
+A straddling checkerboard is a device for converting an alphabetic plaintext into digits whilst simultaneously achieving fractionation (a simple form of information diffusion) and data compression relative to other schemes using digits. It also is known as a monôme-binôme cipher.
+A straddling checkerboard is set up something like this:
+The first row is populated with the ten digits, 0-9.  They can be presented in order, as in the above table, or scrambled for additional security.  The second row is typically set up with high-frequency letters (mnemonic ESTONIA-R), leaving two blank spots.  It has no row label.  The remaining rows are labeled with each digit that was not assigned a letter in the second row, and then filled out with the rest of the alphabet.
+Much like the ordering of the digits in the top row, the alphabet can be presented in order (as it is here), or scrambled with a keyword or other technique.  Since there are 30 slots in our grid, and we skipped two letters in the first row, there will be two spare cells in the other rows.  We have filled these cells with a period '.', and a slash '/' to be used as a numeric escape character (indicating that a numeral follows).  It doesn't matter where these spares go, so long as the sender and receiver use the same system.
+To encipher, a letter in the second row is simply replaced by the number labeling its column.  Letters in the third and fourth rows are replaced by a two-digit number representing their row and column numbers.  Mapping one-digit numbers to common letters reduces the length of the ciphertext, while also concealing the identities of the two-digit numbers by reducing the frequency of their first digits.  Here is an example:http://asecuritysite.com/security/Coding/straddling?word=attackatdawn
+The resulting message, 3113212731223655, may be sent directly (if the table is scrambled), but is usually processed through a second cipher stage, such as transposition or substitution. As a simple example, we will add a secret key number (say, 0452) using modular (non-carrying) arithmetic:
+Optionally, we could then use the same straddling checkerboard to convert the ciphertext back into letters:
+Deciphering is simply the reverse of these processes. Although the size of groups can vary, deciphering is unambiguous because whenever the next element to be deciphered starts with a 2 or a 6, it is a pair; otherwise, it is a singleton.
+
+===Disrupted transposition===
+
+In a disrupted transposition, certain positions in a grid are blanked out, and not used when filling in the plaintext. This breaks up regular patterns and makes the cryptanalyst's job more difficult.
+
+===Fractionation===
+
+Transposition is particularly effective when employed with fractionation - that is, a preliminary stage that divides each plaintext symbol into several ciphertext symbols. For example, the plaintext alphabet could be written out in a grid, then every letter in the message replaced by its co-ordinates (see Polybius square). Another method of fractionation is to simply convert the message to Morse code, with a symbol for spaces as well as dots and dashes.
+When such a fractionated message is transposed, the components of individual letters become widely separated in the message, thus achieving Claude E. Shannon's diffusion. Examples of ciphers that combine fractionation and transposition include the bifid cipher, the trifid cipher, the ADFGVX cipher and the VIC cipher.
+Another choice would be to replace each letter with its binary representation, transpose that, and then convert the new binary string into the corresponding ASCII characters. Looping the scrambling process on the binary string multiple times before changing it into ASCII characters would likely make it harder to break. Many modern block ciphers use more complex forms of transposition related to this simple idea.
+
+==See also==
+
+==References==
+
+==External links==
+
+

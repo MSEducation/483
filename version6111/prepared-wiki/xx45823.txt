@@ -1,0 +1,66 @@
+[[Wavetable synthesis]]
+
+CATEGORIES: Sound synthesis types
+
+Wavetable synthesis is a sound synthesis technique that employs arbitrary periodic waveforms in the production of musical tones or notes.  The technique was developed by Wolfgang Palm of PPG in the late 1970s [tpl]sfn|Palm|2009[/tpl] and published in 1979,[tpl]sfn|Andresen|1979[/tpl] and has since been used as the primary synthesis method in synthesizers built by PPG and Waldorf Music and as an auxiliary synthesis method by Sequential Circuits, Ensoniq, Korg, Access and Dave Smith Instruments among others.
+It was also independently developed by Michael Mcnabb in a similar time frame, and used in his classic work, Dreamsong  (1977) https://ccrma.stanford.edu/~jos/kna/Taxonomy_Digital_Synthesis_Techniques.html and documented in "The Making of Dreamsong," published in Computer Music Journal Volume 5, Number 4.http://www.mcnabb.com/music/pubs/CMJ_Vol5Num4.pdf 
+
+==Principle==
+
+Wavetable synthesis is fundamentally based on periodic reproduction of an arbitrary, single-cycle waveform.[tpl]sfn|Bristow-Johnson|1996[/tpl] In wavetable synthesis, some method is employed to vary or modulate the waveform definition or waveshape.  With 1 degree of modulation, this waveform is one dimension of a two-dimensional array.  Moving along the other dimension of the array selects different waveforms.  A means of interpolating (by scaling and mixing) between adjacent waveforms allows for smooth transition from one selected waveform to the next.  If adjacent waveforms contain subtly different harmonics (in magnitude and phase), the table can swept, dynamically and smoothly changing the timbre of the tone produced. If the adjacent waves however, have radically different harmonic structures, an audible stepping will be heard and artifacts will be present due to the rapid change in harmonic content. Sweeping the wavetable is usually performed by use of an LFO or a ramp with the start position and direction of sweep being specified by the modulation parameters, and the LFO or ramp speed controlling the rate of the harmonic change.
+Depending on the details of the actual implementation, the sound produced by wavetable synthesis may also contain recognizable artifacts, especially aliasing, quantization, and phase truncation noise.
+Many wavetables used in PPG and Ensoniq synthesizers can simulate the methods used by analog synthesizers, such as the opening and closing of a filter and resonant sweeps. Sometimes a wavetable was programmed with a number of bandlimited square waves of different duty cycles. In this way, when the wavetable is swept, it will result in an identical, but bandlimited, waveform as with pulse width modulation applied to a square wave.
+
+===Confusion with table-lookup oscillators===
+
+An early non-realtime software implementation, originally called table-lookup oscillator, appeared in MUSIC IV-B.  Over time this type of short-memory based oscillator has also become known as wavetable oscillator, which is a degenerate case of wavetable synthesis described above.  In wavetable synthesis multiple such single-cycle wavetable oscillators are in use, originally[tpl]sfn|Andresen|1979|p=10[/tpl] as a table of 64 waveforms with 128 samples each, while the term "wavetable" for this arrangement appeared later in the PPG literature for the PPG Wave.[tpl]sfn|PPG Wave 2.2 Owners Manual[/tpl]  Both variable and (more commonly) fixed sample rate systems can be used.[tpl]sfn|Mauchly|Charpentier|1987[/tpl]
+
+===Confusion with sample-based synthesis===
+
+Starting around 1993, with the introduction of Creative Labs' Sound Blaster AWE32 and Gravis' Ultrasound sound cards, the term "wavetable" started to be applied as a marketing term to any sound card that used  PCM samples as the basis of sound creation.  However, these sound cards did not employ any form of wavetable synthesis, but rather a sampler and subtractive synthesis system based on technology from the E-mu Emulator family.
+
+==User Wavetables==
+
+The creation of new wavetables was previously a difficult process unless supported by specialized editing facilities and (near) real-time playback of edited wavetables on the synthesizer.  Such editors often required the use of extra hardware devices like the PPG Waveterm or were only present in expensive models like the Waldorf WAVE.  More commonly, pre-computed wavetables could be added via memory cards or sent to the synthesizer via MIDI.  Today, wavetables can be created more easily by software and auditioned directly on a computer.  Since all waveforms used in wavetable synthesis are periodic, the time-domain and frequency-domain representation are exact equivalents of each other and both can be used simultaneously to define waveforms and wavetables.
+
+===Practical use===
+
+During playback, the sound produced can be harmonically changed by moving to another point in the wavetable, usually under the control of an envelope generator or low frequency oscillator but frequently by any number of modulators (matrix modulation). Doing this modifies the harmonic content of the output wave in real time, producing sounds that can imitate acoustic instruments or be totally abstract, which is where this method of sound creation excels. The technique is especially useful for evolving synth pads, where the sound changes slowly over time.
+It is often necessary to 'audition' each position in a wavetable and to scan through it, forwards and backwards, in order to make good use of it, though selecting random wavetables, start positions, end positions and directions of scan can also produce satisfyingly musical results.  It is worth noting that most wavetable synthesizers also employ other synthesis methods to further shape the output waveform, such as subtractive synthesis (filters), phase modulation, frequency modulation and AM (ring) modulation.
+
+==Notes==
+
+==References==
+
+|first=Wolfgang
+|last=Palm
+|year=2009
+|authorlink=Wolfgang_Palm
+|url=http://blogs.myspace.com/index.cfm?fuseaction=blog.view&friendId=454207875&blogId=477718052
+|title=The PPG Story, Part 4}}
+|contribution=A New Way in Sound Synthesis
+|publisher=Audio Engineering Society (AES)
+|series=62nd AES Convention (Brussels, Belgium)
+|year=1979
+|url=http://www.aes.org/e-lib/browse.cfm?elib=2920}}
+|first1=J. William|last1=Mauchly
+|first2=Albert J.|last2=Charpentier
+|contribution=Practical Considerations in the Design of Music Systems using VLSI
+|publisher=Audio Engineering Society (AES)
+|series=AES 5th International Conference: Music and Digital Technology
+|year=1987
+|url=http://www.aes.org/e-lib/browse.cfm?elib=4672}}
+|first=Robert
+|last=Bristow-Johnson
+|url=http://www.aes.org/e-lib/browse.cfm?elib=7379
+|contribution=Wavetable Synthesis 101, A Fundamental Perspective
+|publisher=Audio Engineering Society (AES)
+|series=101st AES Convention (Los Angeles, California)
+|year=1996}} Copy on MusicDSP
+|publisher=Palm Productions GmbH
+|url=http://seib.synth.net/documents/w22omeng.pdf
+|title=PPG Wave 2.2 Owners Manual (english)}}
+
+===External links===
+
+

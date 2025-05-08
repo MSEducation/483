@@ -1,0 +1,37 @@
+[[Simple precedence parser]]
+
+CATEGORIES: Parsing algorithms
+
+In computer science, a simple precedence parser is a type of bottom-up parser for context-free grammars that can be used only by simple precedence grammars.
+
+==Implementation==
+
+SearchProductionToReduce (Stack)
+
+==Example==
+
+ 
+ Given the language:
+E  --> E + T' | T'
+T' --> T
+T  --> T * F  | F
+F  --> ( E' ) | num
+E' --> E
+
+num is a terminal, and the lexer parse any integer as num.
+and the Parsing table:
+ 
+ STACK                   PRECEDENCE    INPUT            ACTION
+$                            $         * ( 1 + 3 )$     REDUCE (F -> num)
+$         * ( 1 + 3 )$     REDUCE (T -> F)
+$ $ $ $         + 3 )$           REDUCE 4 times (F -> num) (T -> F) (T' -> T) (E ->T ') 
+$ $ $         )$               REDUCE 3 times (F -> num) (T -> F) (T' -> T) 
+$         )$               REDUCE 2 times (E -> E + T) (E' -> E)
+$ $         $                REDUCE (F -> ( E' ))
+$         $                REDUCE (T -> T * F)
+$         $                REDUCE 2 times (T' -> T) (E -> T')
+$         $                ACCEPT
+
+==References==
+
+

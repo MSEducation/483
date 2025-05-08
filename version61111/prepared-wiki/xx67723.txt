@@ -1,0 +1,306 @@
+[[Point-to-point protocol over Ethernet]]
+
+CATEGORIES: Tunneling protocols, Logical link control
+
+The Point-to-Point Protocol over Ethernet (PPPoE) is a network protocol for encapsulating PPP frames inside Ethernet frames. It appeared at the turn of the century, in the context of the boom of the DSL as the solution for tunneling packets over the DSL connection to the ISP's IP network, and from there to the rest of the Internet. A 2005 networking book noted that "Most DSL providers use PPPoE, which provides authentication, encryption, and compression."[tpl]cite book|author=James Boney|title=Cisco IOS in a Nutshell|url=http://books.google.com/books?id=zxq78zNHH7YC&pg=PA88|year=2005|publisher=O'Reilly Media, Inc.|isbn=978-0-596-55311-1|pages=88[/tpl] Typical use of  PPPoE involves leveraging the PPP facilities for authenticating the user with a username and password, predominately via the PAP protocol and less often via CHAP.
+On the customer-premises equipment, PPPoE may be implemented either in a unified residential gateway device that handles both DSL modem and IP routing functions or in the case of a simple DSL modem (without routing support), PPPoE may be handled behind it on a separate Ethernet-only router or even directly on a user's computer. (Support for PPPoE is present in most operating systems, ranging from Windows XP,http://support.microsoft.com/kb/283070 Linuxhttp://www.tldp.org/HOWTO/DSL-HOWTO/configure.html to Mac OS X.http://support.apple.com/kb/ht2301) More recently, some GPON-based (instead of DSL-based) residential gateways also use PPPoE, although the status of PPPoE in the GPON standards is marginal.
+PPPoE was developed by UUNET, Redback Networks and RouterWare (now Wind River Systems) Wind River Systems Acquires RouterWare, Inc.. Findarticles.com (1999-07-05). Retrieved on 2011-09-27.[tpl]dead link|date=December 2013[/tpl] and is available as an informational RFC 2516.
+In the world of DSL, PPPoE was commonly understood to be running on top of ATM (of DSL) as the underlying transport, although no such limitation exists in the PPPoE protocol itself. Other usage scenarios are sometimes distinguished by tacking as a suffix another underlying transport. For example PPPoEoE, when the transport is Ethernet itself, as in the case of Metro Ethernet networks. (In this notation, the original use of PPPoE would be labeled PPPoEoA, although it should not be confused with PPPoA, which is a different encapsulation protocol.)
+PPPoE has been described in some books as a "layer 2.5" protocol,[tpl]cite book|author1=Philip Golden|author2=Hervé Dedieu|author3=Krista S. Jacobsen|title=Implementation and Applications of DSL Technology|url=http://books.google.com/books?id=Jjkd74jY47oC&pg=PA479|year=2007|publisher=Taylor & Francis|isbn=978-1-4200-1307-8|page=479[/tpl] in some rudimentary sense similar to MPLS because it can be used to distinguish different IP flows sharing an Ethernet infrastructure, although the lack of PPPoE switches making routing decision based on PPPoE headers limits applicability in that respect.[tpl]cite book|author=Michael Beck|title=Ethernet in the First Mile : The IEEE 802.3ah EFM Standard|year=2005|publisher=McGraw Hill Professional|isbn=978-0-07-146991-3|page=27[/tpl]
+
+==Original rationale==
+
+In late 1998 the DSL service model had a chicken-and-egg problem. ADSL technology had been proposed a decade earlier.[tpl]cite web |title= Method and apparatus for wideband transmission of digital signals between, for example, a telephone central office and customer premises |author= Richard D. Gitlin, Sailesh K. Rao, Jean-Jacques Werner, Nicholas Zervos |work= US Patent 4,924,492 |url= http://www.google.com/patents/about?id=d2QjAAAAEBAJ| date= May 8, 1990 [/tpl] Potential equipment vendors and carriers alike recognized that broadband such as cable modem or DSL would eventually replace dialup service, but the hardware (both customer premises and LEC) faced a significant low-quantity cost barrier. Initial estimates for low-quantity deployment of DSL showed costs in the $300–$500 range for a DSL modem and $300/mo access fee from the telco [tpl]Citation needed|date=December 2011[/tpl] which was well beyond what a home user would pay. Thus the initial focus was on small & home business customers for whom a T1 line (at the time $800–$1500 per month) was not economical, but who needed more than dialup or ISDN could deliver. If enough of these customers paved the way, quantities would drive the prices down to where the home-use dialup user might be interested: more like $50 for the modem and $50/mo for the access.
+
+===Different usage profile===
+
+The problem was that small business customers had a different usage profile than a home-use dialup user, including
+These requirements didn't lend themselves to the connection establishment lag of a dialup process, nor its one-computer-to-one-ISP model, nor even the many-to-one that NAT + dialup provided. A new model was required.
+PPPoE is used mainly either:
+
+===Time to market: simpler is better===
+
+A problem with creating a completely new protocol to fill these needs was time. The equipment was available immediately, as was the service, and a whole new protocol stack (Microsoft at the time was advocating fiber-based atm-cells-to-the-desktop,[tpl]cite news|date=October 5, 1998 |work=Business Wire|title=TouchWave Partners With Telogy Networks For VoIP Embedded Communications Software|accessdate=16 December 2008|url=http://findarticles.com/p/articles/mi_m0EIN/is_/ai_53056379[/tpl][tpl]dead link|date=December 2013[/tpl] and L2TP was brewing as well, but was not near completion) would take so long to implement that the window of opportunity might slip by. Several decisions were made to simplify implementation and standardization in an effort to deliver a complete solution quickly.
+
+====Reuse existing software stacks====
+
+PPPoE hoped to merge the widespread Ethernet infrastructure with the ubiquitous PPP, allowing vendors on both sides of the connection to heavily leverage their existing software and deliver products in the very near term. Essentially all operating systems at the time had a PPP stack, and the design of PPPoE allowed for a simple shim at the line-encoding stage to convert from PPP to PPPoE.
+
+====Simplify hardware requirements====
+
+Competing WAN technologies (T1, ISDN) required a router on the customer premises. PPPoE used a different Ethernet frame type, which allowed the DSL hardware to function as simply a bridge, passing some frames to the WAN and ignoring the others. Implementation of such a bridge is multiple orders of magnitude simpler than a router.
+
+====Informational RFC====
+
+RFC 2516 was initially released as an informational (rather than standards-track) RFC for the same reason: the adoption period for a standards-track RFC was prohibitively long.
+
+===Success===
+
+PPPoE was initially designed to provide a small LAN with individual independent connections to the internet at large, but also such that the protocol itself would be lightweight enough that it wouldn't impinge on the hoped-for home usage market when it finally arrived. While success on the second matter may be debated (some complain that 8 bytes per packet is too much) PPPoE clearly succeeded in bringing sufficient volume to drive the price for service down to what a home user would pay. It remains the dominant DSL connectivity mechanism as of 2011, more than a decade later.[tpl]citation needed|date=December 2013[/tpl]
+
+==PPPoE stages==
+
+The PPPoE has two distinct stages:
+
+===PPPoE discovery===
+
+Since traditional PPP connections are established between two end points over a serial link or over an ATM virtual circuit that has already been established during dial-up, all PPP frames sent on the wire are sure to reach the other end. But Ethernet networks are multi-access where each node in the network can access every other node. An Ethernet frame contains the hardware address of the destination node (MAC address). This helps the frame reach the intended destination.
+Hence before exchanging PPP control packets to establish the connection over Ethernet, the MAC address of the two end points should be known to each other so that they can be encoded in these control packets. The PPPoE Discovery stage does exactly this. In addition it also helps establish a Session ID that can be used for further exchange of packets.
+
+===PPP session===
+
+Once the MAC address of the peer is known and a session has been established, the Session stage will start.
+
+==PPPoE Discovery (PPPoED)==
+
+Although traditional PPP is a peer-to-peer protocol, PPPoE is inherently a client-server relationship since multiple hosts can connect to a service provider over a single physical connection.
+The Discovery process consists of four steps between the host computer which acts as the client and the access concentrator at the internet service provider's end acts as the server. They are outlined below. The fifth and last step is the way to close an existing session.
+
+===Client to server: Initiation (PADI)===
+
+PADI stands for PPPoE Active Discovery Initiation.http://tools.ietf.org/html/rfc2516#section-5.1
+If a user wants to "dial up" to the Internet using DSL, then his computer first must find the DSL access concentrator (DSL-AC) at the user's Internet service provider's point of presence (POP). Communication over Ethernet is only possible via MAC addresses.  As the computer does not know the MAC address of the DSL-AC, it sends out a PADI packet via an Ethernet broadcast (MAC: ff:ff:ff:ff:ff:ff). This PADI packet contains the MAC address of the computer sending it.
+Example of a PADI-packet:
+ Frame 1 (44 bytes on wire, 44 bytes captured)
+ Ethernet II, Src: 00:50:da:42:d7:df, Dst: ff:ff:ff:ff:ff:ff
+PPP-over-Ethernet Discovery
+  Version: 1
+  Type 1
+  Code Active Discovery Initiation (PADI)
+  Session ID: 0000
+  Payload Length: 24
+PPPoE Tags
+  Tag: Service-Name
+  Tag: Host-Uniq
+    Binary Data: (16 bytes)
+
+Src. (=source) holds the MAC address of the computer sending the PADI. 
+Dst. (=destination) is the Ethernet broadcast address.  
+The PADI packet can be received by more than one DSL-AC.
+Only DSL-AC equipment that can serve the "Service-Name" tag should reply.
+
+===Server to client: Offer (PADO)===
+
+PADO stands for PPPoE Active Discovery Offer.http://tools.ietf.org/html/rfc2516#section-5.2
+Once the user's computer has sent the PADI packet, the DSL-AC replies with a PADO packet, using the MAC address supplied in the PADI. The PADO packet contains the MAC address of the DSL-AC, its name (e.g. LEIX11-erx for the T-Com DSL-AC in Leipzig) and the name of the service. If more than one POP's DSL-AC replies with a PADO packet, the user's computer selects the DSL-AC for a particular POP using the supplied name or service.
+Here is an example of a PADO packet:
+ Frame 2 (60 bytes on wire, 60 bytes captured)
+ Ethernet II, Src: 00:0e:40:7b:f3:8a, Dst: 00:50:da:42:d7:df
+PPP-over-Ethernet Discovery
+  Version: 1
+  Type 1
+  Code Active Discovery Offer (PADO)
+  Session ID: 0000
+  Payload Length: 36
+PPPoE Tags
+  Tag: AC-Name
+    String Data: IpzbrOOl
+  Tag: Host-Uniq
+    Binary Data: (16 bytes)
+
+AC-Name -> String data holds the AC name, in this case “Ipzbr001” (the Arcor DSL-AC in Leipzig) 
+Src. holds the MAC address of the DSL-AC. 
+The MAC address of the DSL-AC also reveals the manufacturer of the DSL-AC (in this case Nortel Networks).
+
+===Client to server: request (PADR)===
+
+PADR stands for PPPoE active discovery request.http://tools.ietf.org/html/rfc2516#section-5.3
+A PADR packet is sent by the user's computer to the DSL-AC following receipt of an acceptable PADO packet from the DSL-AC. It confirms acceptance of the offer of a PPPoE connection made by the DSL-AC issuing the PADO packet.
+
+===Server to client: session-confirmation (PADS)===
+
+PADS stands for PPPoE Active Discovery Session-confirmation.http://tools.ietf.org/html/rfc2516#section-5.4
+The PADR packet above is confirmed by the DSL-AC with a PADS packet, and a Session ID is given out with it. The connection with the DSL-AC for that POP has now been fully established.
+
+===Either end to other end: termination (PADT)===
+
+PADT stands for PPPoE Active Discovery Termination.http://tools.ietf.org/html/rfc2516#section-5.5 This packet terminates the connection to the POP. It may be sent either from the user's computer or from the DSL-AC.
+
+==Protocol overhead==
+
+PPPoE has the highest overhead DSL delivery method.Dirk Van Aken, Sascha Peckelbeen Encapsulation Overhead(s) in ADSL Access Networks, June 2003[tpl]clarify|compared to?|date=December 2013[/tpl]
+On ATM/DSL (aka PPPoEoA): The amount of overhead added by PPPoEoA on the DSL side of things depends on the packet size because of (i) the absorbing effect of ATM cell-padding which completely cancels out overheads of PPPoEoA in some cases, (ii) the PPPoE overhead can cause an entire additional 53 byte ATM cell to be required, and (iii) IP fragmentation can be induced (which also invokes the first two effects).Encapsulation Overhead(s) in ADSL Access Networks. However ignoring ATM and IP fragmentation for the moment, the basic additional protocol header overheads for AAL5 payload are typically: 2 bytes (for PPP) + 6 (for PPPoE) + 18 (Ethernet framing, variable) + 10 (RFC 2684, variable) = 36 bytes. For very small packets this overhead is even greater because of Ethernet frame padding. However more realistically, the typical DSL/ATM overhead is either zero or 53 bytes as in case (ii) where the ATM cell payload maximum of 48 bytes is exceeded, so requiring an additional 53 byte cell. The 36 byte figure deduced earlier can be slightly reduced by various means: discarding Ethernet FCS loses another 4 bytes, for example, bringing the total down to 32. Compare this with a vastly more header-efficient protocol, PPPoA, with a fixed 10 byte overhead inside the AAL5 payload (i.e. on the DSL side).
+On Ethernet: On the Ethernet side of things, additional overhead for PPPoE is a fixed 2 + 6 = 8 bytes as before, unless IP fragmentation is produced.
+
+===MTU/MRU===
+
+When the DSL modem sends and receives PPPoE-containing Ethernet frames across the Ethernet link to the router (or PPPoE-speaking single PC), there is an overhead of 8 bytes (2 for PPP, 6 for PPPoE) added within the payload of the Ethernet frame. This added overhead usually means that a reduced limit (so-called ‘MTU’ or ‘MRU’) of 1492 bytes is imposed on the length of IP packets sent or received, as opposed to the usual 1500 bytes for Ethernet networks. Some devices support RFC 4638,  which allows a 1508 byte l Ethernet frame, sometimes called ‘baby jumbo frames’, thus allowing a full 1500 byte payload to be transported over a PPPoE session. This is advantageous because of the many companies who (incorrectly) block all ICMP traffic from exiting their network. This stops Path MTU discovery from working correctly and can cause problems for people accessing these networks with a MRU of less than 1500 bytes.
+How PPPoE fits in the DSL Internet access architecture
+The transport protocol used on the telephone network is ATM. The DSL modem encapsulates PPP packets inside ATM cells and sends them over the WAN. There are several encapsulation methods.
+
+===PPPoEoA===
+
+The diagram depicts one of two possible scenarios involving the use of PPPoE to connect an Ethernet router to a DSL modem (both PPPoE-speaking) in order to connect a LAN to a PPPoE-speaking ISP. Here three devices need to speak PPPoE; router, modem and a Broadband Remote Access Server located at the service provider or ISP's office. On the diagram, the deep protocol stack we see between modem and DSLAM is a picture of what we have termed ‘’PPPoEoA in this article. (Note that other authors, such as some Cisco publications also use the term ‘PPPoEoA’ but not necessarily with exactly the same meaning.)
+Example: The DSL modem receives an Internet-bound Ethernet frame from the router which contains a PPP frame inside a PPPoE packet. The modem sends on the PPPoE packet toward the DSLAM by wrapping it in several protocol layers as follows: Typically in this PPPoEoA topology, the DSL modem wraps the PPPoE packet within Ethernet frame-wrapping as described in RFC 2684, second part, ‘bridged protocols’, before sending it on to the DSLAM within an AAL5-encapsulated packet over ATM.
+This Ethernet frame wrapping around the PPPoE packets represents a significant and quite unnecessary overhead and can be avoided by using the alternate scheme discussed in the next section.
+|+ DSL Internet access architecture
+|-
+| align="center" valign="bottom" bgcolor="#ffcc99" colspan="2" | Router
+| align="center" valign="bottom" bgcolor="#ffcc99" rowspan="1" colspan="2" | DSL modem
+| align="center" valign="bottom" bgcolor="#ffcc99" rowspan="1" colspan="2" | DSLAM
+| align="center" valign="bottom" bgcolor="#ffcc99" colspan="2" | Remote access server
+| align="center" valign="bottom" bgcolor="#ffcc99"  | (ISP)
+|-
+| align="center" valign="bottom" bgcolor="#eeeeff" | (IP)
+|
+|
+|
+|
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | (IP)
+|-
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+|-
+|
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+|
+|
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+|-
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | IP
+| align="center" valign="bottom" bgcolor="#eeeeff" | IP
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | RFC2684
+| align="center" valign="bottom" bgcolor="#eeeeff" | RFC2684
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | AAL5
+| align="center" valign="bottom" bgcolor="#eeeeff" | AAL5
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | ATM
+| align="center" valign="bottom" bgcolor="#eeeeff" | ATM
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | DSL
+| align="center" valign="bottom" bgcolor="#eeeeff" | DSL
+|}
+Notes:
+
+===PPPoE to PPPoA===
+
+In this diagram, the scenario is the same as before with two exceptions: (i) A more efficient modem architecture is shown, the modem being a PPPoE-to-PPPoA protocol converter. (ii) The service provider offers a PPPoA service and does not understand PPPoE. There is no PPPoEoA in this protocol chain.
+In this alternative topology, PPPoE is merely a means of connecting DSL-modems to an Ethernet-only router (again, or to a single host PC). Here it is not concerned with the mechanism employed by an ISP to offer broadband services.
+When transmitting packets bound for the internet, the PPPoE-speaking Ethernet router sends Ethernet frames to the (also PPPoE-speaking) DSL modem. The modem extracts PPP frames from within the received PPPoE frames, and sends the PPP frames onwards to the DSLAM by encapsulating them according to RFC 2364 (PPPoA), thus converting PPPoE into PPPoA.
+|+ DSL Internet access architecture
+|-
+| align="center" valign="bottom" bgcolor="#ffcc99" colspan="2" | Router
+| align="center" valign="bottom" bgcolor="#ffcc99" rowspan="1" colspan="2" | DSL modem
+| align="center" valign="bottom" bgcolor="#ffcc99" rowspan="1" colspan="2" | DSLAM
+| align="center" valign="bottom" bgcolor="#ffcc99" colspan="2" | Remote access server
+| align="center" valign="bottom" bgcolor="#ffcc99" | (ISP)
+|-
+| align="center" valign="bottom" bgcolor="#eeeeff" | (IP)
+|
+|
+|
+|
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff"  | (IP)
+|-
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+|
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+| align="center" valign="bottom" bgcolor="#eeeeff" | PPP
+|-
+|
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoE
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoA
+|
+|
+| align="center" valign="bottom" bgcolor="#9999ff" | PPPoA
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+|-
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | Ethernet
+| align="center" valign="bottom" bgcolor="#eeeeff" | AAL5
+| align="center" valign="bottom" bgcolor="#eeeeff" | AAL5
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+| align="center" valign="bottom" bgcolor="#eeeeff" | backbone
+| align="center" valign="bottom" bgcolor="#eeeeff"  | IP
+| align="center" valign="bottom" bgcolor="#eeeeff"  | IP
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | ATM
+| align="center" valign="bottom" bgcolor="#eeeeff" | ATM
+|-
+|
+|
+|
+| align="center" valign="bottom" bgcolor="#eeeeff" | DSL
+| align="center" valign="bottom" bgcolor="#eeeeff" | DSL
+|}
+On the diagram, the area shown as ‘backbone’ could also be ATM on older networks, however its architecture is service provider-dependant. On a more detailed, more service-provider specific diagram there would be additional columns in this area.
+
+==Quirks==
+
+Since the point to point connection established has a MTU lower than that of standard Ethernet (typically 1492 vs Ethernet's 1500), it can sometimes cause problems when Path MTU Discovery is defeated by poorly configured firewalls. Although higher MTUs are becoming more common in providers' networks, usually the workaround is to use TCP MSS (Maximum Segment Size) "clamping" or "rewrite", whereby the access concentrator rewrites the MSS to ensure TCP peers send smaller datagrams. Although TCP MSS clamping solves the MTU issue for TCP, other protocols such as ICMP and UDP may still be affected.
+RFC 4638 allows PPPoE devices to negotiate an MTU of greater than 1492 if the underlying Ethernet layer is capable of jumbo frames.
+Some vendors (Ciscohttp://www.cisco.com/en/US/docs/ios/bbdsl/configuration/guide/bba_understanding.pdf and Juniper,[tpl]citation needed|date=December 2013[/tpl] for example) distinguish PPPoEoA from PPPoEoE (PPPoE over Ethernet), which is PPPoE running directly over Ethernet or other IEEE 802 networks or over Ethernet bridged over ATM, in order to distinguish it from PPPoEoA (PPPoE over ATM), which is PPPoE running over an ATM virtual circuit using RFC 2684 and SNAP encapsulation of PPPoE.[tpl]citation needed|date=December 2013[/tpl] (PPPoEoA is not the same as Point-to-Point Protocol over ATM (PPPoA), which doesn't use SNAP).
+According to a Cisco document "PPPoEoE is a variant of PPPoE where the Layer 2 transport protocol is now Ethernet or 802.1q VLAN instead of ATM. This encapsulation method is generally found in Metro Ethernet or Ethernet digital subscriber line access multiplexer (DSLAM) environments. The common deployment model is that this encapsulation method is typically found in multi-tenant buildings or hotels. By delivering Ethernet to the subscriber, the available bandwidth is much more abundant and the ease of further service delivery is increased."
+It is possible to find DSL modems, such as the Draytek Vigor 120, where PPPoE is confined to the ethernet link between a DSL modem and a partnering router,  and the ISP does not speak PPPoE at all (but rather PPPoA).https://www.draytek.com/index.php?option=com_k2&view=item&layout=item&id=2405&Itemid=451&lang=en#overview
+
+==Post-DSL uses and some alternatives in these contexts==
+
+A certain method of using PPPoE in conjunction with GPON (which involves creating a VLAN via OMCI) has been patented by ZTE.http://www.google.com/patents/EP2560407A1
+PPPoE over GPON is reportedly used by retail service providers such as Internode of Australia's National Broadband Network,http://www.internode.on.net/support/guides/internet_access/fibre_to_the_home/fritz!box_7270/ Romania's RCS & RDS (for their "Fiberlink" customers — GPON is sold as Ethernet ports in MDUs).,[tpl]citation needed|date=December 2013[/tpl] Orange Francehttp://forum.tp-link.com/showthread.php?71785-ArcherC7-Firmware-improvements and Philippines' Globe Telecom.http://www.youtube.com/watch?v=9crvbWQrEn4 Verizon's FIOS product has uses DHCP in some states and PPPoE in others.Tested with Maryland and Virigina at http://www.verizon.com/Support/Residential/internet/highspeed/troubleshooting/installation/questionsone/88283.htm on 2013-12-11
+RFC 6934 "Applicability of Access Node Control Mechanism to              
+PON based Broadband Networks", which argues for the use of Access Node Control Protocol in PONs for—among other things—authenticating subscriber access and managing their IP addresses, and the first author of which is a Verizon employee, excludes PPPoE as an acceptable encapsulation for GPON: "The protocol encapsulation on BPON is based on multi-protocol encapsulation over ATM Adaptation Layer 5 (AAL5), defined in RFC2684.  This covers PPP over Ethernet (PPPoE, defined in RFC2516) or IP over Ethernet (IPoE). The protocol encapsulation on GPON is always IPoE."http://datatracker.ietf.org/doc/rfc6934/?include_text=1
+The 10G-PON (XG-PON) standard (G.987) provides for 802.1X mutual authentication of the ONU and OLT, besides the OMCI method carried forward from G.984.[tpl]cite book|author=Dave Hood and Elmar Trojer|title=Gigabit-capable Passive Optical Networks|year=2012|publisher=John Wiley & Sons|isbn=978-1-118-15558-5|page=200[/tpl] G.987 also adds support for authenticating other customer-premises equipment beyond the ONU (e.g. in a MDU), although this is limited to Ethernet ports, also handled via 802.1X. (The ONU is supposed snoop EAP-encapsulated RADIUS messages in this scenario and determine if the authentication was successful or not.)[tpl]cite book|author=Dave Hood and Elmar Trojer|title=Gigabit-capable Passive Optical Networks|year=2012|publisher=John Wiley & Sons|isbn=978-1-118-15558-5|page=207 and 274–275[/tpl] There is some modicum support for PPPoE specified in the OMCI standards, but only in terms of the ONU being able to filter and add VLAN tags for traffic based on its encapsulation (and other parameters), which includes PPPoE among the protocols that ONU must be able to discern.[tpl]cite book|author=Dave Hood and Elmar Trojer|title=Gigabit-capable Passive Optical Networks|year=2012|publisher=John Wiley & Sons|isbn=978-1-118-15558-5|page=261 and 271[/tpl]
+The Broadband Forum's TR-200 "Using EPON in the Context of TR-101" (2011), which also pertains to 10G-EPON, says "The OLT and the multiple-subscriber ONU MUST be able to perform the PPPoE Intermediate Agent function, as specified in Section 3.9.2/TR-101."http://www.broadband-forum.org/technical/download/TR-200.pdf
+A book on Ethernet in the first mile notes that DHCP can obviously be used instead of PPPoE to configure a host for an IP session, although it points out that DHCP is not a complete replacement for PPPoE if some encapsulation is also desired (although VLAN bridges can fulfill this function) and that furthermore DHCP does not provide (subscriber) authentication, suggesting that IEEE 802.1X is also needed for a "complete solution" sans PPPoE.[tpl]cite book|author=Michael Beck|title=Ethernet in the First Mile : The IEEE 802.3ah EFM Standard|year=2005|publisher=McGraw Hill Professional|isbn=978-0-07-146991-3|page=241[/tpl] (This book assumes that PPPoE is leveraged for other features of PPP besides encapsulation, including IPCP for host configuration, and PAP or CHAP for authentication.)
+There are security reasons to use PPPoE in a (non-DSL/ATM) shared-medium environment, such as power line communication networks, in order to create separate tunnels for each customer.[tpl]cite book|author=Xavier Carcelle|title=Power Line Communications in Practice|url=http://books.google.com/books?id=2cvj-oFvfE0C&pg=PA235|year=2009|publisher=Artech House|isbn=978-1-59693-336-1|page=235[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

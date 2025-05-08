@@ -1,0 +1,51 @@
+[[Dynamic HTML]]
+
+CATEGORIES: HTML
+
+Dynamic HTML, or DHTML, is an umbrella term for a collection of technologies used together to create interactive and animated web sites
+DHTML allows scripting languages to change variables in a web page's definition language, which in turn affects the look and function of otherwise "static" HTML page content, after the page has been fully loaded and during the viewing process. Thus the dynamic characteristic of DHTML is the way it functions while a page is viewed, not in its ability to generate a unique page with each page load.
+By contrast, a dynamic web page is a broader concept, covering any web page generated differently for each user, load occurrence, or specific variable values. This includes pages created by client-side scripting, and ones created by server-side scripting (such as PHP, Perl, JSP or ASP.
+DHTML is differentiated from Ajax by the fact that a DHTML page is still request/reload-based. With DHTML, there may not be any interaction between the client and server after the page is loaded; all processing happens in JavaScript on the client side. By contrast, an Ajax page uses features of DHTML to initiate a request (or 'subrequest') to the server to perform actions such as loading more content.
+
+Uses
+
+DHTML allows authors to add effects to their pages that are otherwise difficult to achieve. In short words: scripting language is changing the DOM and style.
+Simply, DHTML is the combination of HTML,CSS and JS.
+A less common use is to create browser-based action games. Although a number of games were created using DHTML during the late 1990s and early 2000s, , differences between browsers made this difficult: many techniques had to be implemented in code to enable the games to work on multiple platforms. Recently browsers have been converging towards web standards, which has made the design of DHTML games more viable. Those games can be played on all major browsers and they can also be ported to Plasma for KDE, Widgets for Mac OS X and Gadgets for Windows Vista, which are based on DHTML code.
+The term "DHTML" has fallen out of use in recent years as it was associated with practices and conventions that tended to not work well between various web browsers. DHTML may now be referred to as unobtrusive JavaScript coding (DOM Scripting), in an effort to place an emphasis on agreed-upon best practices while allowing similar effects in an accessible, standards-compliant way.
+DHTML support with extensive DOM access was introduced with Internet Explorer 4.0. Although there was a basic dynamic system with Netscape Navigator 4.0, not all HTML elements were represented in the DOM. When DHTML-style techniques became widespread, varying degrees of support among web browsers for the technologies involved made them difficult to develop and debug. Development became easier when Internet Explorer 5.0+, Mozilla Firefox 2.0+, and Opera 7.0+ adopted a shared DOM inherited from ECMAscript.
+More recently, JavaScript libraries such as jQuery have abstracted away many of the day-to-day difficulties in cross-browser DOM manipulation.
+
+Structure of a web page
+
+Typically a web page using DHTML is set up in the following way:
+
+Example: Displaying an additional block of text
+
+The following code illustrates an often-used function. An additional part of a web page will only be displayed if the user requests it..
+
+Document Object Model
+
+DHTML is not a technology in and of itself; rather, it  is the product of three related and complementary technologies: HTML, Cascading Style Sheets (CSS), and JavaScript. To allow scripts and components to access features of HTML and CSS, the contents of the document are represented as objects in a programming model known as the Document Object Model (DOM).
+The DOM API is the foundation of DHTML, providing a structured interface that allows access and manipulation of virtually anything in the document. The HTML elements in the document are available as a hierarchical tree of individual objects, meaning you can examine and modify an element and its attributes by reading and setting properties and by calling methods. The text between elements is also available through DOM properties and methods.
+The DOM also provides access to user actions such as pressing a key and clicking the mouse. You can intercept and process these and other events by creating event handler functions and routines. The event handler receives control each time a given event occurs and can carry out any appropriate action, including using the DOM to change the document.
+
+Dynamic styles
+
+Dynamic styles are a key feature of DHTML. By using CSS, you can quickly change the appearance and formatting of elements in a document without adding or removing elements. This helps keep your documents small and the scripts that manipulate the document fast.
+The object model provides programmatic access to styles. This means you can change inline styles on individual elements and change style rules using simple JavaScript programming.
+Inline styles are CSS style assignments that have been applied to an element using the style attribute. You can examine and set these styles by retrieving the style object for an individual element. For example, to highlight the text in a heading when the user moves the mouse pointer over it, you can use the style object to enlarge the font and change its color, as shown in the following simple example.
+
+Data binding
+
+Data binding is a DHTML feature that lets you easily bind individual elements in your document to data from another source, such as a database or comma-delimited text file. When the document is loaded, the data is automatically retrieved from the source and formatted and displayed within the element.
+One practical way to use data binding is to automatically and dynamically generate tables in your document. You can do this by binding a table element to a data source. When the document is viewed, a new row is created in the table for each record retrieved from the source, and the cells of each row are filled with text and data from the fields of the record. Because this generation is dynamic, the user can view the page while new rows are created in the table. Additionally, once all the table data is present, you can manipulate (sort or filter) the data without requiring the server to send additional data. The table is regenerated, using the previously retrieved data to fill the new rows and cells of the table.
+Another practical use of data binding is to bind one or more elements in the document to specific fields of a given record. When the page is viewed, the elements are filled with text and data from the fields in that record, sometimes called the "current" record. An example is a form letter in which the name, e-mail address, and other details about an individual are filled from a database. To adapt the letter for a given individual, you specify which record should be the current record. No other changes to the letter are needed.
+Yet another practical use is to bind the fields in a form to fields in a record. Not only can the user view the content of the record, but the user can also change that content by changing the settings and values of the form. The user can then submit these changes so that the new data is uploaded to the source—for example, to the HTTP server or database.
+To provide data binding in your documents, you must add a data source object (DSO) to your document. This invisible object is an ActiveX control or Java applet that knows how to communicate with the data source. The following example shows how easy it is to bind a table to a DSO. When viewed, this example displays the first three fields from all the comma-delimited records of the file "sampdata.
+
+
+
+
+
+

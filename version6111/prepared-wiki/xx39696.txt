@@ -1,0 +1,20 @@
+ alphabeta(origin, depth, -[[Infinity|∞]], +[[Infinity|∞]], TRUE)
+
+==Heuristic improvements==
+
+Further improvement can be achieved without sacrificing accuracy, by using ordering heuristics to search parts of the tree that are likely to force alpha–beta cutoffs early. For example, in chess, moves that take pieces may be examined before moves that do not, or moves that have scored highly in earlier passes through the game-tree analysis may be evaluated before others. Another common, and very cheap, heuristic is the killer heuristic, where the last move that caused a beta-cutoff at the same level in the tree search is always examined first.  This idea can be generalized into a set of refutation tables.
+Alpha–beta search can be made even faster by considering only a narrow search window (generally determined by guesswork based on experience). This is known as aspiration search. In the extreme case, the search is performed with alpha and beta equal; a technique known as zero-window search, null-window search, or scout search. This is particularly useful for win/loss searches near the end of a game where the extra depth gained from the narrow window and a simple win/loss evaluation function may lead to a conclusive result. If an aspiration search fails, it is straightforward to detect whether it failed high (high edge of window was too low) or low (lower edge of window was too high). This gives information about what window values might be useful in a re-search of the position.
+
+==Other algorithms==
+
+More advanced algorithms that are even faster while still being able to compute the exact minimax value are known, such as SCOUT,Pearl, J., "SCOUT: A Simple Game-Searching Algorithm With Proven Optimal Properties," Proceedings of the First Annual National Conference on Artificial Intelligence, Stanford University, August 18–21, 1980, pp. 143-145. Negascout and MTD-f.   
+Since the minimax algorithm and its variants are inherently depth-first, a strategy such as iterative deepening is usually used in conjunction with alpha–beta so that a reasonably good move can be returned even if the algorithm is interrupted before it has finished execution. Another advantage of using iterative deepening is that searches at shallower depths give move-ordering hints, as well as shallow alpha and beta estimates, that both can help produce cutoffs for higher depth searches much earlier than would otherwise be possible.
+Algorithms like SSS*, on the other hand, use the best-first strategy.  This can potentially make them more time-efficient, but typically at a heavy cost in space-efficiency.[tpl]citation|doi=10.1146/annurev.cs.02.060187.002315|title=Search techniques|journal=Annual Review of Computer Science|volume=2|pages=451–467|year=1987|first1=Judea|last1=Pearl|author1-link=Judea Pearl|first2=Richard|last2=Korf|quote=Like its A* counterpart for single-player games, SSS* is optimal in terms of the average number of nodes examined; but its superior pruning power is more than offset by the substantial storage space and bookkeeping required.[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

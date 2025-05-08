@@ -1,0 +1,50 @@
+[[Faugère's F4 and F5 algorithms]]
+
+CATEGORIES: Computer algebra
+
+In computer algebra, the Faugère F4 algorithm, by Jean-Charles Faugère, computes the Gröbner basis of an ideal of a multivariate polynomial ring.  The algorithm uses the same mathematical principles as the Buchberger algorithm, but computes many normal forms in one go by forming a generally sparse matrix and using fast linear algebra to do the reductions in parallel.
+The Faugère F5 algorithm first calculates the Gröbner basis of a pair of generator polynomials of the ideal.  Then it uses this basis to reduce the size of the initial matrices of generators for the next larger basis: 
+ 
+ If Gprev is an already computed Gröbner basis (f2, …, fm) and we want to compute a Gröbner basis of (f1) + Gprev then we will construct matrices whose rows are m f1 such that m is a monomial not divisible by the leading term of an element of Gprev.
+
+This strategy allows the algorithm to apply two new criteria based on what Faugère calls signatures of polynomials. Thanks to these criteria, the algorithm can compute Gröbner bases for a large class of interesting polynomial systems, called regular sequences, without ever simplifying a single polynomial to zero—the most time-consuming operation in algorithms that compute Gröbner bases. It is also very effective for a large number of non-regular sequences.
+
+==Implementations==
+
+The Faugère F4 algorithm is implemented 
+Study versions of the Faugère F5 algorithm is implemented in[tpl]citation needed|date=February 2013[/tpl]
+
+==Applications==
+
+The previously intractable "cyclic 10" problem was solved by F5, as were a number of systems related to cryptography; for example HFE and C*.
+
+==References==
+
+  | last = Faugère
+  | first = J.-C.
+  | title = A new efficient algorithm for computing Gröbner bases (F<sub>4</sub>)
+  | journal = Journal of Pure and Applied Algebra
+  | volume = 139
+  | issue = 1
+  | pages = 61–88
+  | publisher = Elsevier Science
+  | date = June 1999
+  | url = http://www-calfor.lip6.fr/~jcf/Papers/F99a.pdf
+  | doi = 10.1016/S0022-4049(99)00005-5
+  | issn = 0022-4049
+}}
+  | last = Faugère
+  | first = J.-C.
+  | title = A new efficient algorithm for computing Gröbner bases without reduction to zero (F<sub>5</sub>)
+  | journal = Proceedings of the 2002 international symposium on Symbolic and algebraic computation (ISSAC)
+  | pages = 75–83
+  | publisher = ACM Press
+  | date = July 2002
+  | url = http://www-calfor.lip6.fr/~jcf/Papers/F02a.pdf
+  | doi = 10.1145/780506.780516
+  | isbn = 1-58113-484-3
+}}
+
+==External links==
+
+

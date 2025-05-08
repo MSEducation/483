@@ -1,0 +1,217 @@
+[[Orthogonal frequency-division multiplexing]]
+
+CATEGORIES: Multiplexing, Quantized radio modulation modes, Software-defined radio, Modulation and demodulation scheme
+
+Orthogonal frequency-division multiplexing (OFDM) is a method of encoding digital data on multiple carrier frequencies. OFDM has developed into a popular scheme for wideband digital communication, whether wireless or over copper wires, used in applications such as digital television and audio broadcasting, DSL Internet access, wireless networks, powerline networks, and 4G mobile communications.
+OFDM is essentially and discrete multi-tone modulation (DMT), and is a frequency-division multiplexing (FDM) scheme used as a digital multi-carrier modulation method.  The word "coded" comes from the use of forward error correction (FEC). A large number of closely spaced orthogonal  sub-carrier signals are used to carry datawebe. 2007-03-02  on several  parallel data streams or channels. Each sub-carrier is modulated with a conventional modulation scheme (such as quadrature amplitude modulation or phase-shift keying) at a low symbol rate, maintaining total data rates similar to conventional single-carrier modulation schemes in the same bandwidth.
+The primary advantage of OFDM over single-carrier schemes is its ability to cope with severe channel conditions (for example, attenuation of high frequencies in a long copper wire, narrowband interference and frequency-selective fading due to multipath) without complex equalization filters. Channel equalization is simplified because OFDM may be viewed as using many slowly modulated narrowband signals rather than one rapidly modulated wideband signal. The low symbol rate makes the use of a guard interval between symbols affordable, making it possible to eliminate intersymbol interference (ISI) and utilize echoes and time-spreading (on analogue TV these are visible as ghosting and blurring, respectively) to achieve a diversity gain, i.e. a signal-to-noise ratio improvement. This mechanism also facilitates the design of single frequency networks (SFNs), where several adjacent transmitters send the same signal simultaneously at the same frequency, as the signals from multiple distant transmitters may be combined constructively, rather than interfering as would typically occur in a traditional single-carrier system.
+
+Example of applications
+
+The following list is a summary of existing OFDM based standards and products. For further details, see the Usage section at the end of the article.
+
+Cable
+
+Wireless
+
+The OFDM based multiple access technology OFDMA is also used in several 4G and pre-4G cellular networks and  mobile broadband standards:
+
+Key features
+
+The advantages and disadvantages listed below are further discussed in the Characteristics and principles of operation section below.
+
+Summary of advantages
+
+Summary of disadvantages
+
+Characteristics and principles of operation
+
+Orthogonality
+
+Conceptually, OFDM is a specialized FDM, the additional constraint being: all the carrier signals are orthogonal to each other.
+In OFDM, the sub-carrier frequencies are chosen so that the sub-carriers are orthogonal to each other, meaning that cross-talk between the sub-channels is eliminated and inter-carrier guard bands are not required. This greatly simplifies the design of both the transmitter and the receiver; unlike conventional FDM, a separate filter for each sub-channel is not required.
+The orthogonality also allows high spectral efficiency, with a total symbol rate near the Nyquist rate for the equivalent baseband signal (i.e. near half the Nyquist rate for the double-side band physical passband signal). Almost the whole available frequency band can be utilized. OFDM generally has a nearly 'white' spectrum, giving it benign electromagnetic interference properties with respect to other co-channel users.
+OFDM requires very accurate frequency synchronization between the receiver and the transmitter; with frequency deviation the sub-carriers will no longer be orthogonal, causing inter-carrier interference (ICI) (i.e., cross-talk between the sub-carriers). Frequency offsets are typically caused by mismatched transmitter and receiver oscillators, or by Doppler shift due to movement. While Doppler shift alone may be compensated for by the receiver, the situation is worsened when combined with multipath, as reflections will appear at various frequency offsets, which is much harder to correct. This effect typically worsens as speed increases,Robertson, P.; Kaiser, S. "The effects of Doppler spreads in OFDM(A) mobile radio systems", Vehicular Technology Conference, 1999. VTC 1999 - Fall. IEEE VTS. Link and is an important factor limiting the use of OFDM in high-speed vehicles. In order to mitigate ICI in such scenarios, one can shape each sub-carrier in order to minimize the interference resulting in a non-orthogonal subcarriers overlapping..
+
+Implementation using the FFT algorithm
+
+The orthogonality allows for efficient modulator and demodulator implementation using the FFT algorithm on the receiver side, and inverse FFT on the sender side. Although the principles and some of the benefits have been known since the 1960s, OFDM is popular for wideband communications today by way of low-cost digital signal processing components that can efficiently calculate the FFT.
+The time to compute the inverse-FFT or FFT transform has to take less than the time for each symbol.ir - The suitability of OFDM as a modulation technique for wireless telecommunications, with a CDMA comparison., October 1997 Which for example for DVB-T  or less.
+For an 
+The computational demand approximately scales linearly with FFT size so a double size FFT needs double the amount of time and vice versa.
+As a comparison an Intel Pentium III CPU at 1.266 GHz is able to calculate a .org - 3.0 GHz Intel Core Duo, Intel compilers, 32-bit mode, 2006-10-09
+
+Guard interval for elimination of intersymbol interference
+
+One key principle of OFDM is that since low symbol rate modulation schemes (i.e., where the symbols are relatively long compared to the channel time characteristics) suffer less from intersymbol interference caused by multipath propagation, it is advantageous to transmit a number of low-rate streams in parallel instead of a single high-rate stream. Since the duration of each symbol is long, it is feasible to insert a guard interval between the OFDM symbols, thus eliminating the intersymbol interference.
+The guard interval also eliminates the need for a pulse-shaping filter, and it reduces the sensitivity to time synchronization problems.
+The cyclic prefix, which is transmitted during the guard interval, consists of the end of the OFDM symbol copied into the guard interval, and the guard interval is transmitted followed by the OFDM symbol. The reason that the guard interval consists of a copy of the end of the OFDM symbol is so that the receiver will integrate over an integer number of sinusoid cycles for each of the multipaths when it performs OFDM demodulation with the FFT. In some standards such as Ultrawideband, in the interest of transmitted power, cyclic prefix is skipped and nothing is sent during the guard interval. The receiver will then have to mimic the cyclic prefix functionality by copying the end part of the OFDM symbol and adding it to the beginning portion.
+
+Simplified equalization
+
+The effects of frequency-selective channel conditions, for example fading caused by multipath propagation, can be considered as constant (flat) over an OFDM sub-channel if the sub-channel is sufficiently narrow-banded (i.e., if the number of sub-channels is sufficiently large). This makes frequency domain equalization possible at the receiver, which is far simpler than the time-domain equalization used in conventional single-carrier modulation. In OFDM, the equalizer only has to multiply each detected sub-carrier (each Fourier coefficient) in each OFDM symbol by a constant complex number, or a rarely changed value.
+If differential modulation such as DPSK or DQPSK is applied to each sub-carrier, equalization can be completely omitted, since these non-coherent schemes are insensitive to slowly changing amplitude and phase distortion.
+In a sense, improvements in FIR equalization using FFTs or partial FFTs leads mathematically closer to OFDM,
+Some of the sub-carriers in some of the OFDM symbols may carry pilot signals for measurement of the channel conditions"Coleri, S.   Ergen, M.   Puri, A.   Bahai, A., Channel estimation techniques based on pilot arrangement in OFDM systems.  IEEE Transactions on Broadcasting, Sep 2002. "LinkHoeher, P.   Kaiser, S.   Robertson, P.  "Two-dimensional pilot-symbol-aided channel estimation by Wienerfiltering". IEEE International Conference on Acoustics, Speech, and Signal Processing, ICASSP-97, 1997. Link (i.e., the equalizer gain and phase shift for each sub-carrier). Pilot signals and training symbols (preambles) may also be used for time synchronization (to avoid intersymbol interference, ISI) and frequency synchronization (to avoid inter-carrier interference, ICI, caused by Doppler shift).
+OFDM was initially used for wired and stationary wireless communications.  However, with an increasing number of applications operating in highly mobile environments, the effect of dispersive fading caused by a combination of multi-path propagation and doppler shift is more significant. Over the last decade, research has been done on how to equalize OFDM transmission over doubly selective channels.; Mecklenbrauker, C.F., Time-Variant Channel Estimation Using Discrete Prolate Spheroidal Sequences. Signal Processing, IEEE Transactions on, vol.53, no.9, pp. 3597- 3607, Sept. 2005 "
+Link[/ref][ref]"Zijian Tang; Cannizzaro, R.C.; Leus, G.; Banelli, P., Pilot-Assisted Time-Varying Channel Estimation for OFDM Systems, Signal Processing, IEEE Transactions on, vol.55, no.5, pp.2226-2238, May 2007 "
+Link[/ref][ref]"Hrycak, T.; Das, S.; Matz, G.; Feichtinger, H. G.; Low Complexity Equalization for Doubly Selective Channels Modeled by a Basis Expansion, Signal Processing, IEEE Transactions on, vol.99, pp.1-1, 0 "
+Link[/ref]
+
+Channel coding and interleaving
+
+OFDM is invariably used in conjunction with channel coding (forward error correction), and almost always uses frequency and/or time interleaving.
+Frequency (subcarrier) interleaving increases resistance to frequency-selective channel conditions such as fading. For example, when a part of the channel bandwidth fades, frequency interleaving ensures that the bit errors that would result from those subcarriers in the faded part of the bandwidth are spread out in the bit-stream rather than being concentrated. Similarly, time interleaving ensures that bits that are originally close together in the bit-stream are transmitted far apart in time, thus mitigating against severe fading as would happen when travelling at high speed.
+However, time interleaving is of little benefit in slowly fading channels, such as for stationary reception, and frequency interleaving offers little to no benefit for narrowband channels that suffer from flat-fading (where the whole channel bandwidth fades at the same time).
+The reason why interleaving is used on OFDM is to attempt to spread the errors out in the bit-stream that is presented to the error correction decoder, because when such decoders are presented with a high concentration of errors the decoder is unable to correct all the bit errors, and a burst of uncorrected errors occurs. A similar design of audio data encoding makes compact disc (CD) playback robust.
+A classical type of error correction coding used with OFDM-based systems is convolutional coding, often concatenated with Reed-Solomon coding. Usually, additional interleaving (on top of the time and frequency interleaving mentioned above) in between the two layers of coding is implemented. The choice for Reed-Solomon coding as the outer error correction code is based on the observation that the Viterbi decoder used for inner convolutional decoding produces short errors bursts when there is a high concentration of errors, and Reed-Solomon codes are inherently well-suited to correcting bursts of errors.
+Newer systems, however, usually now adopt near-optimal types of error correction codes that use the turbo decoding principle, where the decoder iterates towards the desired solution. Examples of such error correction coding types include turbo codes and LDPC codes, which perform close to the Shannon limit for the Additive White Gaussian Noise (AWGN) channel. Some systems that have implemented these codes have concatenated them with either Reed-Solomon (for example on the MediaFLO system) or BCH codes (on the DVB-S2 system) to improve upon an error floor inherent to these codes at high signal-to-noise ratios.
+
+Adaptive transmission
+
+The resilience to severe channel conditions can be further enhanced if information about the channel is sent over a return-channel. Based on this feedback information, adaptive modulation, channel coding and power allocation may be applied across all sub-carriers, or individually to each sub-carrier. In the latter case, if a particular range of frequencies suffers from interference or attenuation, the carriers within that range can be disabled or made to run slower by applying more robust modulation or error coding to those sub-carriers.
+The term discrete multitone modulation (DMT) denotes OFDM based communication systems that adapt the transmission to the channel conditions individually for each sub-carrier, by means of so-called bit-loading. Examples are ADSL and VDSL.
+The upstream and downstream speeds can be varied by allocating either more or fewer carriers for each purpose. Some forms of rate-adaptive DSL use this feature in real time, so that the bitrate is adapted to the co-channel interference and bandwidth is allocated to whichever subscriber needs it most.
+
+OFDM extended with multiple access
+
+OFDM in its primary form is considered as a digital modulation technique, and not a multi-user channel access method, since it is utilized for transferring one bit stream over one communication channel using one sequence of OFDM symbols. However, OFDM can be combined with multiple access using time, frequency or coding separation of the users.
+In orthogonal frequency-division multiple access (OFDMA), frequency-division multiple access is achieved by assigning different OFDM sub-channels to different users. OFDMA supports differentiated quality of service by assigning different number of sub-carriers to different users in a similar fashion as in CDMA, and thus complex packet scheduling or Media Access Control schemes can be avoided. OFDMA is used in:
+OFDMA is also a candidate access method for the IEEE 802.22 Wireless Regional Area Networks (WRAN). The project aims at designing the first cognitive radio based standard operating in the VHF-low UHF spectrum (TV spectrum).
+In Multi-carrier code division multiple access (MC-CDMA), also known as OFDM-CDMA, OFDM is combined with CDMA spread spectrum communication for coding separation of the users. Co-channel interference can be mitigated, meaning that manual fixed channel allocation (FCA) frequency planning is simplified, or complex dynamic channel allocation (DCA) schemes are avoided.
+
+Space diversity
+
+In OFDM based wide area broadcasting, receivers can benefit from receiving signals from several spatially dispersed transmitters simultaneously, since transmitters will only destructively interfere with each other on a limited number of sub-carriers, whereas in general they will actually reinforce coverage over a wide area. This is very beneficial in many countries, as it permits the operation of national single-frequency networks (SFN), where many transmitters send the same signal simultaneously over the same channel frequency. SFNs utilise the available spectrum more effectively than conventional multi-frequency broadcast networks (MFN), where program content is replicated on different carrier frequencies. SFNs also result in a diversity gain in receivers situated midway between the transmitters. The coverage area is increased and the outage probability decreased in comparison to an MFN, due to increased received signal strength averaged over all sub-carriers.
+Although the guard interval only contains redundant data, which means that it reduces the capacity, some OFDM-based systems, such as some of the broadcasting systems, deliberately use a long guard interval in order to allow the transmitters to be spaced farther apart in an SFN, and longer guard intervals allow larger SFN cell-sizes. A rule of thumb for the maximum distance between transmitters in an SFN is equal to the distance a signal travels during the guard interval — for instance, a guard interval of 200 microseconds would allow transmitters to be spaced 60 km apart.
+A single frequency network is a form of transmitter macrodiversity. The concept can be further utilized in dynamic single-frequency networks (DSFN), where the SFN grouping is changed from timeslot to timeslot.
+OFDM may be combined with other forms of space diversity, for example antenna arrays and MIMO channels. This is done in the IEEE802.11 Wireless LAN standard.
+
+Linear transmitter power amplifier
+
+An OFDM signal exhibits a high peak-to-average power ratio (PAPR) because the independent phases of the sub-carriers mean that they will often combine constructively. Handling this high PAPR requires:
+Any non-linearity in the signal chain will cause intermodulation distortion that
+The linearity requirement is demanding, especially for transmitter RF output circuitry where amplifiers are often designed to be non-linear in order to minimise power consumption. In practical OFDM systems a small amount of peak clipping is allowed to limit the PAPR in a judicious trade-off against the above consequences. However, the transmitter output filter which is required to reduce out-of-band spurs to legal levels has the effect of restoring peak levels that were clipped, so clipping is not an effective way to reduce PAPR.
+Although the spectral efficiency of OFDM is attractive for both terrestrial and space communications, the high PAPR requirements have so far limited OFDM applications to terrestrial systems.
+The crest factor CF (in dB) for an OFDM system with n uncorrelated sub-carriers is[ref]
+Bernhard Kaehs.
+[/ref]
+    CF = 10 log ( n ) + CFc ...
+where CFc is the crest factor (in dB) for each sub-carrier.
+(CFc is 3.01 dB for the sine waves used for BPSK and QPSK modulation).
+For example, the DVB-T signal in 2K mode is composed of 1705 sub-carriers that are each QPSK-modulated, giving a crest factor of 35.32 dB.
+Many crest factor reduction techniques have been developed.
+The dynamic range required for an FM receiver is  while DAB only require
+about 
+
+Efficiency comparison between single carrier and multicarrier
+
+The performance of any communication system can be measured in terms of its power efficiency and bandwidth efficiency.
+The power efficiency describes the ability of communication system to preserve bit error rate (BER) of the transmitted signal at low power levels.
+Bandwidth efficiency reflects how efficiently the allocated bandwidth is utilized and is defined as the throughput data rate per Hertz in a given bandwidth.
+If the large number of subcarriers are used, the bandwidth efficiency of multicarrier system such as OFDM with using optical fiber channel is defined as 
+Factor 2 is because of two polarization states in the fiber.
+There is saving of bandwidth by using Multicarrier modulation with orthogonal frequency division multiplexing . So the bandwidth for multicarrier system is less in comparison with single carrier system and hence bandwidth efficiency of multicarrier system is larger than single carrier system.
+There is only 1 dB reduction in receiver power, but we get 76.7% improvement in bandwidth efficiency with using multicarrier transmission technique.
+
+Idealized system model
+
+This section describes a simple idealized OFDM system model suitable for a time-invariant AWGN channel.
+
+Transmitter
+
+An OFDM carrier signal is the sum of a number of orthogonal sub-carriers, with baseband data on each sub-carrier being independently modulated commonly using some type of quadrature amplitude modulation (QAM) or phase-shift keying (PSK). This composite baseband signal is typically used to modulate a main RF carrier.
+
+Receiver
+
+Mathematical description
+
+The low-pass equivalent OFDM signal is expressed as:
+
+Usage
+
+OFDM is used in:
+
+OFDM system comparison table
+
+Key features of some common OFDM based systems are presented in the following table.
+
+ADSL
+
+OFDM is used in ADSL connections that follow the ANSI T1.413 and G.992.1) standards, where it is called discrete multitone modulation (DMT). DSL achieves high-speed data connections on existing copper wires. OFDM is also used in the successor standards ADSL2, ADSL2+, VDSL, VDSL2, and G.
+Long copper wires suffer from attenuation at high frequencies. The fact that OFDM can cope with this frequency selective attenuation and with narrow-band interference are the main reasons it is frequently used in applications such as ADSL modems. However, DSL cannot be used on every copper pair; interference may become significant if more than 25% of phone lines coming into a central office are used for DSL.
+
+Powerline Technology
+
+OFDM is used by many powerline devices to extend digital connections through power wiring. Adaptive modulation is particularly important with such a noisy channel as electrical wiring.
+Some medium speed smart metering modems, "Prime" and "G3" use OFDM at modest frequencies (30–100 kHz)with modest numbers of channels (several hundred) in order to overcome the intersymbol interference in the power line environment.lit.de/papers/isplc_2011_hoch.pdf Hoch, Martin; Comparison of PLC G3 and Prime, 2011 IEEE Symposium on Powerline Communication and its Applications
+The IEEE 1901 standards include two incompatible physical layers that both use OFDM. An overview of P1901 PHY/MAC proposal.
+The ITU-T G.
+
+Wireless local area networks (LAN) and metropolitan area networks (MAN)
+
+OFDM is extensively used in wireless LAN and MAN applications, including IEEE 802.11a/g/n and WiMAX.
+IEEE 802.11a/g/n operating in the 2.4 and 5 GHz bands, specifies a per-stream airside data rates ranging from 6 to 54 Mbit/s.  If both devices can utilize "HT mode" added with 802.11n then the top 20 MHz per-stream rate is increased to 72.2 Mbit/s with the option of data rates between 13.5 and 150 Mbit/s using a 40 MHz channel. Four different modulation schemes are used: BPSK, QPSK, 16-QAM, and 64-QAM, along with a set of error correcting rates (1/2–5/6). The multitude of choices allows the system to adapt the optimum data rate for the current signal conditions.
+
+Wireless personal area networks (PAN)
+
+OFDM is also now being used in the WiMedia/Ecma-368 standard for high-speed wireless personal area networks in the 3.1–10.6 GHz ultrawideband spectrum (see MultiBand-OFDM).
+
+Terrestrial digital radio and television broadcasting
+
+Much of Europe and Asia has adopted OFDM for terrestrial broadcasting of digital television (DVB-T, DVB-H and T-DMB) and radio (EUREKA 147 DAB, Digital Radio Mondiale, HD Radio and T-DMB).
+
+=DVB-T=
+
+By Directive of the European Commission, all television services transmitted to viewers in the European Community must use a transmission system that has been standardized by a recognized European standardization body,DIRECTIVE 95/47/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL on the use of standards for the transmission of television signals and such a standard has been developed and codified by the DVB Project, Digital Video Broadcasting (DVB); Framing structure, channel coding and modulation for digital terrestrial television.5.1 (2004-11).  Customarily referred to as DVB-T, the standard calls for the exclusive use of COFDM for modulation. DVB-T is now widely used in Europe and elsewhere for terrestrial digital TV.
+
+=SDARS=
+
+The ground segments of the Digital Audio Radio Service (SDARS) systems used by XM Satellite Radio and Sirius Satellite Radio are transmitted using COFDM.commsdesign.jhtml?articleID=12805708 Agere gets Sirius about satellite radio design
+
+=COFDM vs VSB=
+
+The question of the relative technical merits of COFDM versus 8VSB for terrestrial digital television has been a subject of some controversy, especially between European and North American technologists and regulators. The United States has rejected several proposals to adopt the COFDM based DVB-T system for its digital television services, and has instead opted for 8VSB (vestigial sideband modulation) operation.
+One of the major benefits provided by COFDM is in rendering radio broadcasts relatively immune to multipath distortion and signal fading due to atmospheric conditions or passing aircraft. Proponents of COFDM argue it resists multipath far better than 8VSB. Early 8VSB DTV (digital television) receivers often had difficulty receiving a signal. Also, COFDM allows single-frequency networks, which is not possible with 8VSB.
+However, newer 8VSB receivers are far better at dealing with multipath, hence the difference in performance may diminish with advances in equalizer design. Moreover, 8VSB is nearly a single sideband transmission scheme, while OFDM can be described as a double sideband modulation scheme. This implies that 8VSB (with 3 bit/symbol) modulation offers similar bit rate and require similar bandwidth as 64QAM OFDM (with 6 bit per symbol and sub-carrier), i.e. similar spectral efficiency in (bit/s)/Hz. However, the small 8VSB alphabet of 8 symbols makes it less prone to noise than the 64QAM alphabet of 64 symbols, resulting in lower bit-error rate for the same carrier-to-noise ratio in case of multipath propagation. 8VSB requires less power than 64QAM to transmit a signal the same distance (i.e., the received carrier-to-noise threshold is lower for the same bit error rate).
+
+=Digital radio=
+
+COFDM is also used for other radio standards, for Digital Audio Broadcasting (DAB), the standard for digital audio broadcasting at VHF frequencies, for Digital Radio Mondiale (DRM), the standard for digital broadcasting at shortwave and medium wave frequencies (below 30 MHz) and for DRM+ a more recently introduced standard for digital audio broadcasting at VHF frequencies. (30 to 174 MHz)
+The USA again uses an alternate standard, a proprietary system developed by iBiquity dubbed HD Radio. However, it uses COFDM as the underlying broadcast technology to add digital audio to AM (medium wave) and FM broadcasts.
+Both Digital Radio Mondiale and HD Radio are classified as in-band on-channel systems, unlike Eureka 147 (DAB: Digital Audio Broadcasting) which uses separate VHF or UHF frequency bands instead.
+
+=BST-OFDM used in ISDB=
+
+The band-segmented transmission orthogonal frequency division multiplexing (BST-OFDM) system proposed for Japan (in the ISDB-T, ISDB-TSB, and ISDB-C broadcasting systems) improves upon COFDM by exploiting the fact that some OFDM carriers may be modulated differently from others within the same multiplex. Some forms of COFDM already offer this kind of hierarchical modulation, though BST-OFDM is intended to make it more flexible. The 6 MHz television channel may therefore be "segmented", with different segments being modulated differently and used for different services.
+It is possible, for example, to send an audio service on a segment that includes a segment composed of a number of carriers, a data service on another segment and a television service on yet another segment—all within the same 6 MHz television channel. Furthermore, these may be modulated with different parameters so that, for example, the audio and data services could be optimized for mobile reception, while the television service is optimized for stationary reception in a high-multipath environment.
+
+Ultra-wideband
+
+Ultra-wideband (UWB) wireless personal area network technology may also utilise OFDM, such as in Multiband OFDM (MB-OFDM). This UWB specification is advocated by the WiMedia Alliance (formerly by both the Multiband OFDM Alliance MBOA and the WiMedia Alliance, but the two have now merged), and is one of the competing UWB radio interfaces.
+
+FLASH-OFDM
+
+Fast low-latency access with seamless handoff orthogonal frequency division multiplexing (Flash-OFDM), also referred to as F-OFDM, was based on OFDM and also specified higher protocol layers.  It was developed by Flarion, and purchased by Qualcomm in January 2006.
+In Finland, the license holder Digita began deployment of a nationwide "@450" wireless network in parts of the country since April 2007. It was purchased by Datame in 2011.
+Slovak Telekom in Slovakia offers Flash-OFDM connections
+T-Mobile Germany uses Flash-OFDM to backhaul Wi-Fi HotSpots on the Deutsche Bahn's ICE high speed trains.
+American wireless carrier Nextel Communications field tested wireless broadband network technologies including Flash-OFDM in 2005.
+Citizens Telephone Cooperative launched a mobile broadband service based on Flash-OFDM technology to subscribers in parts of Virginia in March 2006. The maximum speed available was 1.5 Mbit/s.
+Digiweb Ltd. launched a mobile broadband network using Flash-OFDM technology at 872 MHz in July 2007 in Ireland and Digiweb also owns a national 872 MHz license in Norway. Voice handsets are not yet available as of November 2007. The deployment is live in a small area north of Dublin only.
+Butler Networks operates a Flash-OFDM network in Denmark at 872 MHz.
+In The Netherlands, KPN-telecom will start a pilot around July 2007.
+
+History
+
+Technology'', vol. 19, no. 5, pp. 628–634, October 1971.[/ref]
+
+
+
+
+
+M. Bank, B. Hill, Miriam Bank. A wireless mobile communication system without pilot signals Patent PCT/Il N 2006000926, Patent PCT International Application N0 PCT/IL 2006000926. Patent No. 7,986,740, Issue date: 26 July 2011
+
+
+
+

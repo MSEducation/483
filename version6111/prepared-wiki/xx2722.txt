@@ -1,0 +1,110 @@
+[[Equivalence relation]]
+
+CATEGORIES: Mathematical relations
+
+In mathematics, an equivalence relation is the relation that holds between two elements if and only if they are members of the same cell within a set that has been partitioned into cells such that every element of the set is a member of one and only one cell of the partition. The intersection of any two different cells is empty; the union of all the cells equals the original set.
+
+==Notation==
+
+Although various notations are used throughout the literature to denote that two elements a and b of a set are equivalent with respect to an equivalence relation R, the most common are "a ~ b" and "a ≡ b", which are used when R is the obvious relation being referenced, and variations of "a ~R b", "a ≡R b", or "aRb" otherwise.
+
+==Definition==
+
+A given binary relation ~ on a set X is said to be an equivalence relation if and only if it is reflexive, symmetric and transitive. Equivalently, for all a, b and c in X:
+
+==Examples==
+
+===Simple example===
+
+===Equivalence relations===
+
+The following are all equivalence relations:
+
+===Relations that are not equivalences===
+
+==Connections to other relations==
+
+==Well-definedness under an equivalence relation==
+
+If ~ is an equivalence relation on X, and P(x) is a property of elements of X, such that whenever x ~ y, P(x) is true if P(y) is true, then the property P is said to be well-defined or a class invariant under the relation ~.
+A frequent particular case occurs when f is a function from X to another set Y; if x1 ~ x2 implies f(x1) = f(x2) then f is said to be a morphism for ~, a class invariant under ~, or simply invariant under ~. This occurs, e.g. in the character theory of finite groups. The latter case with the function f can be expressed by a commutative triangle. See also invariant.  Some authors use "compatible with ~" or just "respects ~" instead of "invariant under ~".
+More generally, a function may map equivalent arguments (under an equivalence relation ~A) to equivalent values (under an equivalence relation ~B).  Such a function is known as a morphism from ~A to ~B.
+
+==Equivalence class, quotient set, partition==
+
+===Equivalence class===
+
+===Quotient set===
+
+===Projection===
+
+===Equivalence kernel===
+
+===Partition===
+
+A partition of X is a set P of nonempty subsets of X, such that every element of X is an element of a single element of P. Each element of P is a cell of the partition. Moreover, the elements of P are pairwise disjoint and their union is X.
+
+====Counting possible partitions====
+
+Let X be a finite set with n elements. Since every equivalence relation over X corresponds to a partition of X, and vice versa, the number of possible equivalence relations on X equals the number of distinct partitions of X, which is the nth Bell number Bn:
+where the above is one of the ways to write the nth Bell number.
+
+==Fundamental theorem of equivalence relations==
+
+A key result links equivalence relations and partitions:Wallace, D. A. R., 1998. Groups, Rings and Fields. p. 31, Th. 8. Springer-Verlag.Dummit, D. S., and Foote, R. M., 2004. Abstract Algebra, 3rd ed. p. 3, Prop. 2. John Wiley & Sons.
+In both cases, the cells of the partition of X are the equivalence classes of X by ~. Since each element of X belongs to a unique cell of any partition of X, and since each cell of the partition is identical to an equivalence class of X by ~, each element of X belongs to a unique equivalence class of X by ~. Thus there is a natural bijection from the set of all possible equivalence relations on X and the set of all partitions of X.
+
+==Comparing equivalence relations==
+
+If ~ and ≈ are two equivalence relations on the same set S, and a~b implies a≈b for all a,b ∈ S, then ≈ is said to be a coarser relation than ~, and ~ is a finer relation than ≈.  Equivalently,
+The equality equivalence relation is the finest equivalence relation on any set, while the trivial relation that makes all pairs of elements related is the coarsest.
+The relation "~ is finer than ≈" on the collection of all equivalence relations on a fixed set is itself a partial order relation.
+
+==Generating equivalence relations==
+
+==Algebraic structure==
+
+Much of mathematics is grounded in the study of equivalences, and order relations.  Lattice theory captures the mathematical structure of order relations. Even though equivalence relations are as ubiquitous in mathematics as order relations, the algebraic structure of equivalences is not as well known as that of orders. The former structure draws primarily on group theory and, to a lesser extent, on the theory of lattices, categories, and groupoids.
+
+===Group theory===
+
+Just as order relations are grounded in ordered sets, sets closed under pairwise supremum and infimum, equivalence relations are grounded in partitioned sets, which are sets closed under bijections and preserve partition structure. Since all such bijections map an equivalence class onto itself, such bijections are also known as permutations. Hence permutation groups (also known as transformation groups) and the related notion of orbit shed light on the mathematical structure of equivalence relations.
+Let '~' denote an equivalence relation over some nonempty set A, called the universe or underlying set. Let G denote the set of bijective functions over A that preserve the partition structure of A: ∀x ∈ A ∀g ∈ G (g(x) ∈ x). Then the following three connected theorems hold:Rosen (2008), pp. 243-45. Less clear is §10.3 of Bas van Fraassen, 1989. Laws and Symmetry. Oxford Univ. Press.
+In sum, given an equivalence relation ~ over A, there exists a transformation group G over A whose orbits are the equivalence classes of A under ~.
+This transformation group characterisation of equivalence relations differs fundamentally from the way  lattices characterize order relations. The arguments of the lattice theory operations meet and join are elements of some universe A. Meanwhile, the arguments of the transformation group operations composition and inverse are elements of a set of bijections, A → A.
+Moving to groups in general, let H be a subgroup of some group G. Let ~ be an equivalence relation on G, such that a ~ b ↔ (ab−1 ∈ H). The equivalence classes of ~—also called the orbits of the action of H on G—are the right cosets of H in G. Interchanging a and b yields the left cosets.
+‡Proof.Bas van Fraassen, 1989. Laws and Symmetry. Oxford Univ. Press: 246. Let function composition interpret group multiplication, and function inverse interpret group inverse. Then G is a group under composition, meaning that  ∀x ∈ A ∀g ∈ G (g(x) = x), because G satisfies the following four conditions:
+Related thinking can be found in Rosen (2008: chpt. 10).
+
+===Categories and groupoids===
+
+Let G be a set and let "~" denote an equivalence relation over G. Then we can form a groupoid representing this equivalence relation as follows. The objects are the elements of G, and for any two elements x and y of G, there exists a unique morphism from x to y if and only if x~y.
+The advantages of regarding an equivalence relation as a special case of a groupoid include:
+
+===Lattices===
+
+The possible equivalence relations on any set X, when ordered by set inclusion, form a complete lattice, called Con X by convention. The canonical map ker: X^X → Con X, relates the monoid X^X of all functions on X and Con X. ker is surjective but not injective. Less formally, the equivalence relation ker on X, takes each function f: X→X to its kernel ker f. Likewise, ker(ker) is an equivalence relation on X^X.
+
+==Equivalence relations and mathematical logic==
+
+Equivalence relations are a ready source of examples or counterexamples. For example, an equivalence relation with exactly two infinite equivalence classes is an easy example of a theory which is ω-categorical, but not categorical for any larger cardinal number.
+An implication of model theory is that the properties defining a relation can be proved independent of each other (and hence necessary parts of the definition) if and only if, for each property, examples can be found of relations not satisfying the given property while satisfying all the other properties. Hence the three defining properties of equivalence relations can be proved mutually independent by the following three examples:
+Properties definable in first-order logic that an equivalence relation may or may not possess include:
+
+==Euclidean relations==
+
+Euclid's The Elements includes the following "Common Notion 1":
+Nowadays, the property described by Common Notion 1 is called Euclidean (replacing "equal" by "are in relation with"). The following theorem connects Euclidean relations and equivalence relations:
+Theorem. If a relation is Euclidean and reflexive, it is also symmetric and transitive.
+Proof:
+Hence an equivalence relation is a relation that is Euclidean and reflexive. The Elements mentions neither symmetry nor reflexivity, and Euclid probably would have deemed the reflexivity of equality too obvious to warrant explicit mention.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,61 @@
+[[Twisted Hessian curves]]
+
+CATEGORIES: Elliptic curves, Elliptic curve cryptography
+
+In mathematics, the Twisted Hessian curve represents a generalization of Hessian curves; it was introduced in elliptic curve cryptography to speed up the addition and doubling formulas and to have strongly unified arithmetic. In some operations (see the last sections), it is close in speed to Edwards curves.
+
+==Definition==
+
+Let K be a field. According to[tpl]cite web|url=http://hyperelliptic.org/EFD/g1p/auto-twistedhessian.html|title=Twisted Hessian curves|accessdate=28 February 2010[/tpl] twisted Hessian curves were introduced by Bernstein, Lange,
+and Kohel.
+The twisted Hessian form in affine coordinates is given by:
+and in projective coordinates:
+Note that these curves are birationally equivalent to Hessian curves.
+The Hessian curve is just a special case of Twisted Hessian curve, with a=1.
+Considering the equation a · x3 + y3 + 1 = d · x · y, note that:
+if a has a cube root in K, there exists a unique b such that a = b3.Otherwise, it is necessary to consider an extension field of K (e.g., K(a1/3)). Then, since b3 · x3 = bx3, defining t = b · x, the following equation is needed (in Hessian form) to do the transformation:
+This means that Twisted Hessian curves are birationally equivalent to elliptic curve in Weierstrass form.
+
+==Group law==
+
+It is interesting to analyze the group law of the elliptic curve, defining the addition and doubling formulas (because the simple power analysis and differential power analysis attacks are based on the running time of these operations). In general, the group law is defined in the following way: if three points lies in the same line then they sum up to zero. So, by this property, the explicit formulas[tpl]dn|date=December 2013[/tpl] for the group law depend on the curve shape.
+Let P = (x1, y1) be a point, then its inverse is −P = (x1/y1, 1/y1) in the plane.
+In projective coordinates, let P = (X : Y : Z) be one point, then −P = (X1/Y1 : 1/Y1 : Z) is the inverse of P.
+Furthermore, the neutral element (in affine plane) is: θ = (0, −1) and in projective coordinates: θ = (0 : −1 : 1).
+In some applications of elliptic curve cryptography and the elliptic curve method of integer factorization (ECM) it is necessary to compute the scalar multiplications of P, say nP for some integer n, and they are based on the double-and-add method; so the addition and doubling formulas are needed.
+The addition and doubling formulas for this elliptic curve can be defined, using the affine coordinates to simplify the notation:
+
+===Addition formulas===
+
+Let p = (x1, y1) and Q = (x2, y2); then, R = P + Q = (x3, y3) is given by the following equations:
+
+===Doubling formulas===
+
+Let P = (x, y); then 2P = (x1, y1) is given by the following equations:
+
+==Algorithms and examples==
+
+Here some efficient algorithms of the addition and doubling law are given; they can be important in cryptographic computations, and the projective coordinates are used to this purpose.
+
+===Addition===
+
+The cost of this algorithm is 12 multiplications, one multiplication by a (constant) and 3 additions.
+Example:
+let P1 = (1 : −1 : 1) and P2 = (−2 : 1 : 1) be points over a twisted Hessian curve with a=2 and d=-2.Then R = P1 + P2 is given by:
+That is, R= (0 : −3 : −3).
+
+===Doubling===
+
+The cost of this algorithm is 3 multiplications, one multiplication by constant, 3 additions and 3 cube powers.
+This is the best result obtained for this curve.
+Example:
+let P = (1 : −1 : 1) be a point over the curve defined by a=2 and d=-2 as above, then R = 2P = (x3 : y3 : z3) is given by:
+That is R = (−2 : −3 : 5).
+
+==See also==
+
+==External links==
+
+==References==
+
+

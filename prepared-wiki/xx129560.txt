@@ -1,0 +1,27 @@
+[[Location API for Java ME]]
+
+CATEGORIES: Java device platform, Java specification requests, Keyhole Markup Language, Java APIs
+
+The Location API for Java ME is a compact and generic Java 2 ME API that produces information about the device's present physical location to Java applications. This API can be optionally supported by mobile phone and PDA manufacturers, with the minimum Java platform required for this API being CLDC v1.1.
+The Location API was developed under the Java Community Process as JSR 179, released in September 2003 and updated to version 1.0.1 in March 2006. Nokia is the main author and maintainer of this JSR.
+OpenLAPI is an LGPL implementation for use in emulator environments where the Nokia reference implementation does not exist and for devices which can access a GPS device over Bluetooth.
+== Features == 
+The Location API is designed to work with many different positioning methods. Generic interfaces lets application developers implement systems that can retrieve location data from multiple sources, based on their availability on the device. It has advantages over a single means of tracking, including fail-over, indoor/outdoor transparency, and a choice between the speed and accuracy trade-offs between GPS, cellular, or other positioning methods. The API supports:Dr. Dobb's 2006 - The Java Location API
+The Location API does not support:
+
+==Device independence==
+
+Previously, location service implementations were provider specific. The aim of this API was to provide a common API for retrieving the location information on a variety of devices.
+OpenLAPI supports several back-ends:
+along with device specific wrappers.
+
+==Support==
+
+Since many providers choose not to implement this optional JSR, the goal of universality has still not happened and developers are often required to create custom builds for different devices.
+The Location API is available to Java applications on some BlackBerry and Windows Mobile devices, recent Motorola and Sony Ericsson devices, and all Nokia Series 60 3rd Edition devices.
+
+==References==
+
+==External links==
+
+

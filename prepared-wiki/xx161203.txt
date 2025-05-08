@@ -1,0 +1,17 @@
+[[Dynamic convex hull]]
+
+CATEGORIES: Convex hull algorithms
+
+The dynamic convex hull problem is a class of dynamic problems in computational geometry. The problem consists in the maintenance, i.e., keeping track, of the convex hull for the dynamically changing input data, i.e., when input data elements may be inserted, deleted, or modified. Problems of this class may be distinguished by the types of the input data and the allowed types of modification of the input data.
+
+==Planar point set==
+
+This problem may be overcome by eliminating the restriction on the output representation. There are data structures that can maintain representations of the convex hull in an amount of time per update that is much smaller than linear. For many years the best algorithm of this type was that of Overmars and van Leeuwen (1981), which took time O(log2 n) per update, but it has since been improved by Timothy M. Chan and others.
+In a number of applications finding the convex hull is a step in an algorithm for the solution of the overall problem. The selected representation of the convex hull may influence on the computational complexity of further operations of the overall algorithm. For example, the point in polygon query for a convex polygon represented by the ordered set of its vertices may be answered in logarithmic time, which would be impossible for convex hulls reported by the set of it vertices without any additional information. Therefore some research of dynamic convex hull algorithms involves the  computational complexity of various geometric search problems with convex hulls stored in specific kinds of data structures. The mentioned approach of Overmars and van Leeuwen allows for logarithmic complexity of various common queries.
+
+==References==
+
+ | last1 = Overmars | first1 = M. H. | author1-link = Mark Overmars
+ | last2 = van Leeuwen | first2 = J. | author2-link = Jan van Leeuwen
+ | doi = 10.1016/0022-0000(81)90012-X
+ | issue = 2

@@ -1,0 +1,89 @@
+ ISBN 0-201-54428-8 [http://www.inf.ethz.ch/personal/wirth/books/ProjectOberon.pdf PDF (4'398 KB)]</ref> and [[Oberon-2 (programming language)|Oberon-2]].<ref>Mössenböck, Hans-Peter & Wirth, Niklaus.  "''[http://www.ssw.uni-linz.ac.at/Research/Papers/Oberon2.pdf The Programming Language Oberon-2]''". Structured Programming (1991) 12:179-195. 
+[/ref] It bears the name of the Pascal programming language but is incompatible with it. Instead, it is a minor variant and refinement of Oberon-2, designed and supported by a small ETH Zürich spin-off company called Oberon microsystems. They developed an IDE (Integrated Development Environment) called BlackBox Component Builder. At the time the first version was released (1994 as Oberon/F) it presented a novel approach to graphical user interface (GUI) construction based on editable forms, where fields and command buttons are linked to exported variables and executable procedures. This approach bears some similarity to the code-behind way used in Microsoft's .NET 3.0 to access code in XAML.
+An open-source implementation exists for the .NET and Java Virtual Machine platforms, from the Gardens Point team around John Gough at Queensland University of Technology in Australia.
+On 23 June 2004 Oberon microsystems announced that the BlackBox Component Builder was made available as a free download and that an open-source version was planned. The beta open-source version was initially released in December, 2004 and updated to a final v1.5 release in December, 2005.  It includes the complete source code of the IDE, compiler, debugger, source analyser, profiler and interfacing libraries and can also be downloaded from their website. Several release candidates for v1.6 appeared in the years 2009 – 2011, the latest one (1.6rc6) appeared on Oberon microsystems web pages in 2011. End of 2013 Oberon Microsystems released the final release 1.6. It is most probably last release bundled by Oberon Microsystems and a small community took over the ongoing development.
+BlackBox Component Pascal uses the extensions .odc (= 'Oberon document'') for document files, such as source files for example, and .osf (''= Oberon symbol file'') for symbol files while Gardens Point Component Pascal uses .cp for source and .cps for symbol files. BlackBox Component Pascal has its own executable and loadable object format .ocf (''= Oberon code f'ile); it includes a runtime linking loader for this format. The document format (.odc) is a rich text binary format, which allows nice formatting, supports conditional folding, and allows active content to be embedded in the source text. It also handles user interface elements in editable  forms. This is in tradition of the Oberon Text format.Mössenböck, H. and Koskimies, K. (1996), Active Text for Structuring and Understanding Source Code. Softw: Pract. Exper., 26: 833–850. doi: 10.1002/(SICI)1097-024X(199607)26:73.0.CO;2-Q.
+
+==Syntax==
+
+The full syntax for CP, as given by the Language Report, is shown below. Note that in the extended Backus–Naur form only 34 grammatical productions are required, just one more than for Oberon-2, although it is a rather more advanced language.
+ 
+ Module = MODULE ident ";" 
+           [ImportList] DeclSeq 
+           [BEGIN StatementSeq] 
+           [CLOSE StatementSeq] 
+         END ident ".".
+ImportList = IMPORT ":=" ident {"," ":=" ident} ";".
+DeclSeq = { CONST {ConstDecl ";" } 
+          | TYPE {TypeDecl ";"} 
+          | VAR {VarDecl ";"}} 
+          { ProcDecl ";" | ForwardDecl ";"}.
+ConstDecl = IdentDef "=" ConstExpr.
+TypeDecl = IdentDef "=" Type.
+VarDecl = IdentList ":" Type.
+ProcDecl = PROCEDURE Receiver IdentDef FormalPars MethAttributes 
+           [";" DeclSeq [BEGIN StatementSeq] 
+           END ident].
+MethAttributes = NEW (ABSTRACT | EMPTY | EXTENSIBLE).
+ForwardDecl = PROCEDURE "^" Receiver IdentDef FormalPars MethAttributes.
+FormalPars = "(" {";" FPSection} ")" Type.
+FPSection = | IN | OUT ident {"," ident} ":" Type.
+Receiver = "(" | IN ident ":" ident ")".
+Type = Qualident
+    | ARRAY [ConstExpr {"," ConstExpr}] OF Type
+    | [ABSTRACT | EXTENSIBLE | LIMITED] RECORD ["("Qualident")"] FieldList {";" FieldList} END
+    | POINTER TO Type
+    | PROCEDURE [FormalPars].
+FieldList = ":" Type.
+StatementSeq = Statement {";" Statement}.
+Statement = [ Designator ":=" Expr
+    | Designator ["(" [ExprList] ")"]
+    | IF Expr THEN StatementSeq
+        {ELSIF Expr THEN StatementSeq}
+        [ELSE StatementSeq] 
+      END
+    | CASE Expr OF 
+        Case {"|" Case}
+        [ELSE StatementSeq] 
+      END
+    | WHILE Expr DO StatementSeq END
+    | REPEAT StatementSeq UNTIL Expr
+    | FOR ident ":=" Expr TO Expr [BY ConstExpr] DO StatementSeq END
+    | LOOP StatementSeq END
+    | WITH [ Guard DO StatementSeq ] 
+       {"|" [ Guard DO StatementSeq ] } 
+       [ELSE StatementSeq] 
+      END
+    | EXIT
+    | RETURN [Expr]
+    ].
+Case = {"," CaseLabels} ":" StatementSeq.
+CaseLabels = ConstExpr ConstExpr.
+Guard = Qualident ":" Qualident.
+ConstExpr = Expr.
+Expr = SimpleExpr SimpleExpr.
+SimpleExpr = | "-" Term {AddOp Term}.
+Term = Factor {MulOp Factor}.
+Factor = Designator | number | character | string | NIL | Set | "(" Expr ")" | " ~ " Factor.
+Set = "{" {"," Element} "}".
+Element = Expr Expr.
+Relation = "=" | "#" | "" | ">=" | IN | IS.
+AddOp = "+" | "-" | OR.
+MulOp = "*" | "/" | DIV | MOD | "&".
+Designator = Qualident {"." ident 
+             | "[" ExprList "]" 
+             | "^" 
+             | "(" Qualident ")" 
+             | "(" [ExprList] ")"} [ "$" ].
+ExprList = Expr {"," Expr}.
+IdentList = IdentDef {"," IdentDef}.
+Qualident = "." ident.
+IdentDef = ident | "-".
+
+==References==
+
+==Evolution: Modula-2, Oberon, Oberon-2, Component Pascal==
+
+==External links==
+
+

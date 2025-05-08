@@ -1,0 +1,43 @@
+[[IBM CP-40]]
+
+CATEGORIES: Virtualization software, IBM mainframe operating systems, History of software, Time-sharing operating systems, 1960s software
+
+CP-40 was a research precursor to CP-67, which in turn was part of IBM's then-revolutionary CP-67/CMS – a virtual machine/virtual memory time-sharing operating system for the IBM System/360 Model 67, and the parent of IBM's VM family. CP-40 ran multiple instances of client operating systems – particularly CMS, the Cambridge Monitor System, built as part of the same effort. Like CP-67, CP-40 and the first version of CMS were developed by IBM's Cambridge Scientific Center (CSC) staff, working closely with MIT researchers at Project MAC and Lincoln Laboratory. CP-40/CMS production use began in January 1967. CP-40 ran on a unique, specially modified IBM System/360 Model 40. 
+See also:
+
+Project goals
+
+CP-40 was a one-off research system. Its declared goals were:
+However, there was also an important unofficial mission: To demonstrate IBM's commitment to and capability for supporting time-sharing users like MIT. CP-40 (and its successor) achieved its goals from technical and social standpoints – they helped to prove the viability of virtual machines, to establish a culture of time-sharing users, and to launch a remote computer services industry. However, the project became embroiled in an internal IBM political war over time-sharing versus batch processing; and it failed to win the hearts and minds of the academic computer science community, which ultimately turned away from IBM to systems like Multics, UNIX, TOPS-20, and various DEC operating systems. Ultimately, however, the virtualization concepts developed in the CP-40 project bore fruit in diverse areas, and remain important today.
+
+Features
+
+CP-40 was the first operating system that implemented complete virtualization, i.e. it provided a virtual machine environment supporting all aspects of its target computer system (a S/360-40), such that other S/360 operating systems could be installed, tested, and used as if on a stand-alone machine. CP-40 supported fourteen simultaneous virtual machines. Each virtual machine ran in "problem state" – privileged instructions such as I/O operations caused exceptions, which were then caught by the control program and simulated. Similarly, references to virtual memory locations not present in main memory cause page faults, which again were handled by control program rather than reflected to the virtual machine. Further details on this implementation are found in CP/CMS (architecture).
+The basic architecture and user interface of CP-40 were carried forward into CP-67/CMS, which evolved to become IBM's current VM product line.
+
+Hardware platform
+
+A Model 67 was not available for building CP-40, so a custom virtual memory device based on associative memory (the "CAT box"Varian, op. cit., p. 11 (the "CAT box")) was designed and built for CSC. It involved both hardware and microcode changes to a specially modified System/360 Model 40. These changes gave the unit the technology needed for full virtualization of the System/360 hardware. This modified Model 40 influenced the design of the forthcoming Model 67, which was intended to meet the needs of the same community of time-sharing users (notably MIT's Project MAC and Bell Laboratories – though both of these sites became notable IBM sales failures).
+Three distinct virtual memory systems were implemented by IBM during this period:
+These systems were all different, but bore a family resemblance. CP-40's CAT box was a key milestone. PughPugh et al., op. cit., p. 741 (note 218 to Ch. 6) cites an IEEE paperA. B. Lindquist et al., "A time-sharing system using an associative memory", Proceedings of the IEEE 54, pp. 1774-1779. about the CP-40 virtual memory hardware, and states that it was "unique in that it included a parallel-search register bank to speed dynamic address translation. With funds supplied by Cambridge, IBM engineers... The one-of-a-kind result was shipped to Cambridge early in 1966."
+It is important to note that, although virtualization support was an explicit goal for CSC's modified Model 40, this was not apparently the case for the original Model 67 design. The fact that virtualization capabilities were ultimately implemented in the -67, and thus enabled the success of CP-67/CMS, speaks to the tenacity and persuasivness of the CSC team.
+
+CMS under CP-40
+
+CMS was first built in 1964 at CSC to run as a 'client' operating system under CP-40. The CMS project leader was John Harmon. Although any S/360 operating system could be run in a CP-40 virtual machine, it was decided that a new, simple, single-user interactive operating system would be best for supporting interactive time-sharing users. This would avoid the complexity and overhead of running a multi-user system like CTSS. (Contrast this with IBM's OS/MVT-TSO and its successors – essentially a time-sharing operating system running as a single task under an IBM batch operating system. With CMS, each interactive user gets a private virtual machine.)
+By September 1965, many important CMS design decisions had already been made:
+These were radical departures from the difficult file naming, job control (via JCL), and other requirements of IBM's "real" operating systems. cit., pp. 14 – novelty of CMS interface (Some of these concepts had been goals for operating systems from other vendors, such as Control Data Corporation and DEC.)
+The CMS file system design, with its flat directory structure, was kept deliberately simple. Creasy notes: "This structure of multiple disks, each with a single directory, was chosen to be simple but useful. Multi-level linked directories, with files stored in common areas, had been the design trend when we began. We simplified the design of this and other components of CMS to reduce implementation complexity."Creasy, op. cit., p. 489 – flat file system
+Application programs running under CMS executed within the same address space. They accessed system services, such as the CMS file system, through a simple programming interface to the CMS nucleus, which resided in low memory within the CMS virtual machine. A variety of system calls were provided, most of which would be familiar to current CMS programmers. (Since applications ran in the CMS virtual machine, they could potentially misbehave, by overwriting CMS data, using privileged instructions, or taking other actions that could take over or crash the virtual machine. Of course, doing so could not affect other virtual machines, which were all mutually isolated; nor could it damage the underlying control program. Unlike most operating systems, CP crashes rarely stemmed from application errors – and were thus themselves relatively rare.)
+
+Historical notes
+
+The following notes provide brief quotes, primarily from Pugh, Varian, and Creasy references, illustrating the development context of CP-40. Direct quotes rather than paraphrases are provided here, because the authors' perspectives color their interpretations. Also see History of CP/CMS for additional context.
+
+
+
+Citations
+
+Family tree
+
+

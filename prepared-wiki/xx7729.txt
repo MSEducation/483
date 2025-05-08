@@ -1,0 +1,29 @@
+[[Merge algorithm]]
+
+CATEGORIES: Articles with example pseudocode, Sorting algorithms
+
+Merge algorithms are a family of algorithms that run sequentially over multiple sorted lists, typically producing more sorted lists as output.  This is well-suited for machines with tape drives.  Use has declined due to large random access memories, and many applications of merge algorithms have faster alternatives when a random-access memory is available.[tpl]Fact|date=May 2009[/tpl]
+The general merge algorithm has a set of pointers p0..n that point to positions in a set of lists L0..n.  Initially they point to the first item in each list.  The algorithm is as follows:
+While any of p0..n still point to data inside of L0..n instead of past the end:
+
+==Analysis==
+
+Merge algorithms generally run in time proportional to the sum of the lengths of the lists; merge algorithms that operate on large numbers of lists at once will multiply the sum of the lengths of the lists by the time to figure out which of the pointers points to the lowest item, which can be accomplished with a heap-based priority queue in O(log n) time, for O(m log n) time, where n is the number of lists being merged and m is the sum of the lengths of the lists. When merging two lists of length m, there is a lower bound of 2m − 1 comparisons required in the worst case.
+The classic merge (the one used in merge sort) outputs the data item with the lowest key at each step; given some sorted lists, it produces a sorted list containing all the elements in any of the input lists, and it does so in time proportional to the sum of the lengths of the input lists.
+
+==Language support==
+
+The  C++'s Standard Template Library has the function std::merge, which merges two sorted ranges of iterators, and std::inplace_merge, which merges two consecutive sorted ranges in-place. In addition, the std::list (linked list) class has its own merge method which merges another list into itself. The type of the elements merged must support the less-than (Python (programming language)'s standard library (since 2.6) also has a merge() function in the heapq module, that takes multiple sorted iterables, and merges them into a single iterator.http://docs.python.org/library/heapq.html#heapq.merge
+
+==Parallel merge==
+
+In parallel computing, arrays of sorted values may be merged efficiently using an all nearest smaller values computation.[tpl]citation |first1=Omer |last1=Berkman |first2=Baruch |last2=Schieber |first3=Uzi |last3=Vishkin |author3-link=Uzi Vishkin |title=Optimal double logarithmic parallel algorithms based on finding all nearest smaller values |journal=Journal of Algorithms |volume=14 |pages=344–370 |year=1993 |issue=3 |doi=10.1006/jagm.1993.1018[/tpl]
+Parallel merge can also be implemented using a divide-and-conquer algorithm, developed and shown in pseudo-code in.[tpl]Harvnb|Cormen|Leiserson|Rivest|Stein|2009|p=800[/tpl]  This algorithm performs well when combined with a fast sequential merge as a base case for merging of small arrays.  Implementation using Intel's Threading Building Blocks (TBB) and Microsoft's Parallel Pattern Library (PPL) to run on multi-core processors is shown to perform well in practice.V. J. Duvanenko, "Parallel Merge", Dr. Dobb's Journal, February 2011
+
+==See also==
+
+==Notes==
+
+==References==
+
+

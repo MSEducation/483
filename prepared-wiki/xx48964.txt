@@ -1,0 +1,36 @@
+[[Basic block]]
+
+CATEGORIES: Compiler construction
+
+In computing, a basic block is a portion of the code within a program with only one entry point and only one exit point. This makes a basic block highly amenable to analysis."Control Flow Analysis" by Frances E. Allen Compilers usually decompose programs into their basic blocks as a first step in the analysis process. Basic blocks form the vertices or nodes in a control flow graph.
+
+==Definition==
+
+The code in a basic block has:
+Under these circumstances, whenever the first instruction in a basic block is executed, the rest of the instructions are necessarily executed exactly once, in order."Global Common Subexpression Elimination" by John Cocke
+The code may be source code, assembly code or some other sequence of instructions.
+More formally, a sequence of instructions forms a basic block if:
+This definition is more general than the intuitive one in some ways. For example, it allows unconditional jumps to labels not targeted by other jumps. This definition embodies the properties that make basic blocks easy to work with when constructing an algorithm.
+The blocks to which control may transfer after reaching the end of a block are called that block's successors, while the blocks from which control may have come when entering a block are called that block's predecessors.  The start of a basic block may be jumped to from more than one location.
+
+==Creation algorithm==
+
+The algorithm for generating basic blocks from a listing of code is simple: the analyser scans over the code, marking block boundaries, which are instructions which may either begin or end a block because they either transfer control or accept control from another point. Then, the listing is simply "cut" at each of these points, and basic blocks remain.
+Note that this method does not always generate maximal basic blocks, by the formal definition, but they are usually sufficient (maximal basic blocks are basic blocks which cannot be extended by including adjacent blocks without violating the definition of a basic blockModern Compiler Design by Dick Grune, Henri E. Bal, Ceriel J.H. Jacobs, and Koen G. Langendoen p320).
+Input: A sequence of instructions (mostly three-address code).Compiler Principles, Techniques and Tools, Aho Sethi Ullman
+
+Output: A list of basic blocks with each three-address statement in exactly one block.
+Step 1. Identify the leaders in the code. Leaders are instructions which come under any of the following 3 categories :
+Step 2. Starting from a leader, the set of all following instructions until and not including the next leader is the basic block corresponding to the starting leader.
+Thus every basic block has a leader.
+Instructions that end a basic block include the following:
+Instructions which begin a new basic block include the following:
+Note that, because control can never pass through the end of a basic block, some block boundaries may have to be modified after finding the basic blocks. In particular, fall-through conditional branches must be changed to two-way branches, and function calls throwing exceptions must have unconditional jumps added after them. Doing these may require adding labels to the beginning of other blocks.
+
+==See also==
+
+==References==
+
+==External links==
+
+

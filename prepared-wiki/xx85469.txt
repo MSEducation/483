@@ -1,0 +1,47 @@
+[[Extensible Application Markup Language]]
+
+CATEGORIES: .NET framework, Declarative markup languages, Declarative programming languages, Markup languages, Microsoft application programming interfaces, Microsoft Windows multimedia technology, User interface markup languages, Vector graphics markup languages, XML-based standards
+
+Extensible Application Markup Language (XAML, [tpl]IPAc-en||audio=En-us-xaml.ogg|ˈ|z|æ|m|əl[/tpl]) is a declarative XML-based language developed by Microsoft that is used for initializing structured values and objects.  It is available under Microsoft's Open Specification Promise.Microsoft adds XAML to 'Open Specification' list - Software Development Times On The Web The acronym originally stood for Extensible Avalon Markup Language - Avalon being the code-name for Windows Presentation Foundation (WPF).Rob Relyea : January 2004 - Posts
+XAML is used extensively in .NET Framework 3.0 & .NET Framework 4.0 technologies, particularly Windows Presentation Foundation (WPF), Silverlight, Windows Workflow Foundation (WF) and Windows Runtime XAML Framework and Windows Store apps. In WPF, XAML forms a user interface markup language to define UI elements, data binding, eventing, and other features. In WF, workflows can be defined using XAML. XAML can also be used in Silverlight applications, Windows Phone apps and Windows Store apps.
+XAML elements map directly to Common Language Runtime object instances, while XAML attributes map to Common Language Runtime properties and events on those objects. XAML files can be created and edited with visual design tools like Microsoft Expression Blend, Microsoft Visual Studio, and the hostable Windows Workflow Foundation visual designer. They can also be created and edited with a standard text editor, a code editor like XAMLPad, or a graphical editor like Vector Architect.
+Anything that is created or implemented in XAML can be expressed using a more traditional .NET language, such as C# or Visual Basic.NET. However, a key aspect of the technology is the reduced complexity needed for tools to process XAML, because it is based on XML. Consequently, a variety of products are emerging, particularly in the WPF space, which create XAML-based applications. As XAML is simply based on XML, developers and designers are able to share and edit content freely amongst themselves without requiring compilation. Since it is strongly linked to the .NET Framework 3.0 technologies, the only fully compliant implementation at present is Microsoft's.[tpl]Citation needed|date=April 2008[/tpl].
+
+==Technology==
+
+A XAML file can be compiled into a .BAML file (Binary Application Markup Language[ref]
+</ref>), which may be inserted as a resource into a .NET Framework assembly. At run-time, the framework engine extracts the .BAML file from assembly resources, parses it, and creates a corresponding WPF visual tree or workflow.
+When used in Windows Presentation Foundation, XAML is used to describe visual user interfaces. WPF allows for the definition of both 2D and 3D objects, rotations, animations, and a variety of other effects and features.
+When used in Windows Workflow Foundation contexts, XAML is used to describe potentially long-running declarative logic, such as those created by process modeling tools and rules systems. The serialization format for workflows was previously called XOML, to differentiate it from UI markup use of XAML, but now they are no longer distinguished. However, the file extension for files containing the workflow markup is still "XOML".MSDN forum post by the WF product managerRuleML and BPEL are other examples of XML-based declarative logic languages
+
+===Templates===
+
+XAML uses a specific way to define look and feel called Templates; differing from Cascading Style Sheet syntax, it is closer to XBL.
+
+==Example==
+
+This Windows Presentation Foundation example shows the text "Hello World!" in the top-level XAML container called Canvas.
+The schema (the xmlns="http://schemas.microsoft.com..." part) may have to be changed to work on your computer.
+Using a schema that Microsoft recommends, the example can also be
+[ref]Microsoft XAML Overview page at
+XAML Overview (Root element and xmlns)[/ref]
+This can be integrated into a Web page if WPF is installed using XBAPs (XAML Browser Applications) that are compiled applications running in a sandboxed environment hosted within the browser. Another way is to use the Silverlight plugin. The code cannot be included directly in an HTML page; rather it must be loaded into the page via JavaScript. If .NET 3.0 or later is installed, loose XAML files can also be viewed on their own in a compatible Web browser (including Internet Explorer and Firefox) in conjunction with the .NET Framework 3.0, without the need for the Silverlight plugin.Windows Presentation Foundation on the Web: Web Browser Applications - MSDN Loose XAML files are markup-only files limited to defining the visual content to be rendered. They are not compiled with an application.
+The MySilverlight.js file must contain the code that loads the above XAML code (as an XML file) under the MySilverlight html element.
+
+==Differences between versions of XAML==
+
+There are four Microsoft main implementations of XAML:
+These versions have some differences in the parsing behavior.
+Additionally, the XAML parsing between Silverlight 3 and Silverlight 4 is not 100% forwards compatible; XAML files which are accepted by Silverlight 3 may not be accepted or parsed differently in Silverlight 4.
+
+==Criticism==
+
+The European Committee for Interoperable Systems said in 2007 that Microsoft's use of XAML in its Silverlight product aimed to introduce content on the World Wide Web that could only be accessed from the Windows platform.[tpl]cite web|last=Reimer|first=Jeremy|title=European committee chair accuses Microsoft of hijacking the web|url=http://arstechnica.com/uncategorized/2007/01/8715/|work=Ars Technica|publisher=Condé Nast|accessdate=22 August 2013[/tpl]  Using a plugin, XAML is viewable in some non-Microsoft browsers on Windows, Linux, and Mac; and Microsoft supported Novell's Silverlight viewer for GNU/Linux called Moonlight. As of January 2010, Moonlight 2 was compatible with Silverlight 2, but development of Moonlight was later discontinued.
+
+==See also==
+
+==References==
+
+==External links==
+
+

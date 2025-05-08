@@ -1,0 +1,64 @@
+[[Adaptive Transform Acoustic Coding]]
+
+CATEGORIES: Audio codecs
+
+Adaptive Transform Acoustic Coding (ATRAC) is a family of proprietary audio compression algorithms developed by Sony. MiniDisc was the first commercial product to incorporate ATRAC in 1992. ATRAC allowed a relatively small disc like MiniDisc to have the same running time as CD while storing audio information with minimal loss in perceptible quality. Improvements to the codec in the form of ATRAC3, ATRAC3plus, and ATRAC Advanced Lossless followed in 1999, 2002, and 2006 respectively.com
+Other MiniDisc manufacturers such as Sharp and Panasonic also implemented their own versions of the ATRAC codec.
+
+General bitrate quality
+
+ATRAC's original 292 kbit/s bitrate was designed to be close to CD quality acoustically. This is the bitrate used on original MiniDiscs. Years later ATRAC was improved and is generally considered better than earlier versions at similar bitrates. For purposes of comparison, CDs are encoded at 1411.2 kbit/s, and lossless encoders can encode most CDs below 1000 kbit/s, with significant bitrate reduction for easier-to-encode content such as voice.
+
+Performance
+
+According to ATRAC engineers, ATRAC algorithms were developed in close cooperation with LSI development engineers within Sony in order to deliver on a tangible product that could encode at high speeds and with minimal power consumption.  This is reflected in the design of the ATRAC codecs, which tend to emphasize processing smaller numbers of samples at a time to save memory at the cost of compression efficiency and additional multiplies.  These trade-offs are entirely logical on DSP systems, where memory is often at a premium compared to multiplier performance.
+Sony Walkmans offer better battery life when playing ATRAC files as compared to MP3 files. However, as Sony only pushed ATRAC compatibility in Sony Ericsson Walkman series phones in the Japanese market, it is not supported in GSM/UMTS market phones. Sony's Xplod series of car audio CD players support ATRAC CDs.  Minidiscs with ATRAC format songs have, in the past, been supported on Eclipse brand car stereos.
+
+ATRAC1
+
+ATRAC1 was first used in Sony's own theater format SDDS system in the 1990s, and in this context is a direct competitor to Dolby Digital (AC3) and DTS. SDDS uses ATRAC1 with 8 channel encoding, and with a total encoding rate over all the channels of 1168 kbit/s.
+Two stacked quadrature mirror filters split the signal into 3 parts:
+Full stereo (i.e., independent channel) encoding with a data rate of 292 kbit/s.
+Quality is generally transparent for many people (meaning that it is not possible to tell an ATRAC encoding from the source). This is most possible when using the latest algorithm, Type-S, or Type-R (Type-S only improves LP modes). Like most other audio compression codecs, some signals will "trip" the codec and cause artifacts, though these are not usually severe enough to be obvious.
+High-frequency lowpass depends on the complexity of the material; some encodings have content clear up to 22.05 kHz.
+ATRAC1 can also be used in mono (one channel) mode, doubling recording time.
+FFmpeg has an implementationSource code for ATRAC decoder of an ATRAC1 decoder.
+
+ATRAC3 (LP2 and LP4 Modes)
+
+Like ATRAC1 and MP3, ATRAC3 is also a hybrid subband-MDCT encoder, but with several differences.
+In ATRAC3, Three stacked QMF split the signal into 4 parts:
+The four subbands are then MDCT encoded using a fixed-length transform.  Unlike nearly all modern formats, the transform length cannot be varied to optimize coding transients.  Instead, a simpler transient encoding technique called gain control is used, in which the gain of different subbands is varied during a transient prior to MDCT and then restored during decoding after the inverse MDCT to try to smooth over transients.  Additionally, prior to quantization, tonal components are subtracted from the signal and independently quantized.   During decoding, they are separately reconstructed and added back to reform the original MDCT coefficients.
+Sony claims the major advantage of ATRAC3 is its coding efficiency, which was tuned for portable DSP which provides less computing power and battery life.  However, as ATRAC is a hybrid subband-MDCT codec that is algorithmically very similar to MP3, any advantage is probably exaggerated.  Furthermore, compared to newer formats such as Windows Media Audio which use a simple MDCT rather than a hybrid, ATRAC3 must perform an additional and computationally expensive inverse-QMF, although the hybrid system does significantly reduce memory usage, which was likely a factor given the limited memory available when ATRAC was originally developed.
+This uses a 132 kbit/s data rate, the quality of which is advertised to be similar to that of MP3 encoded at a similar bit rate.
+However, in an independent double-blind test (2004/05) without format encoding parameters reference against Ogg Vorbis, AAC, and LAME VBR MP3, ATRAC3 came last.  It is possible that newer ATRAC3 encoders offer better performance.
+This reduces the data rate to 66 kbit/s (half that of LP2), partly by using joint stereo coding and a lowpass filter around 13.5 kHz. It allows 324 minutes to be recorded on an 80 minute MiniDisc, with the same padding required as LP2.
+FFmpeg has an implementationSource code for ATRAC3 decoder of an ATRAC3 decoder, which was converted to fixed precision and implemented in the Rockbox series of firmwares for ARM, Coldfire and MIPS processors.  RealAudio8 is a high-bitrate implementation of ATRAC3 (up to 352.8kbit/s).
+The PlayStation 3 game Race Driver: Grid uses 224 simultaneous streams of ATRAC3 compressed audio, with between one and eight channels per stream at sample rates between 24 and 48 kHz, each filtered using 512 frequency bands of adaptive equalisation, routed via six reverb units running on the same SPU co-processor (one of eight on the PS3's Cell chip), alongside 7.1 channel hybrid third-order Ambisonic mixing.Develop game magazine article
+
+ATRAC3plus
+
+This codec is used in Sony Hi-MD Walkman devices (e.g., "Hi-LP and Hi-SP"), Network Walkman players, Memory Stick players, VAIO Pocket, PS3 and PSP console,  and ATRAC CD players. It is a hybrid subband/MDCT codec based on a 16 channel QMF followed by a 128 point MDCT. Prior to MDCT coding, Generalized Harmonic Analysis (GHA) is used to extract tonal components, an improved version of the process used in ATRAC3.  As in previous ATRAC versions, gain control is used to control preecho rather than variable sized transforms, although different MDCT windows are apparently possible.
+In the recently released SonicStage version 3.2 and 3.3 some more bitrates have been introduced, the available bitrates are: 48, 64, 96, 128, 160, 192, 256, 320 and 352 kbit/s. The newer bitrates are not always compatible with all older hardware decoders, however, some of the older hardware has been found to be compatible with certain newer ATRAC3plus bitrates.
+MiniDiscs recorded in this format are incompatible with older players.
+In a test conducted by an independent firm, but financed by Sony, it was concluded that ATRAC3plus at 64 kbit/s is equal in subjective sound quality to an obsolete MP3 encoder at 128 kbit/s.
+
+ATRAC Advanced Lossless
+
+ATRAC Advanced Lossless (AAL) is the latest update to the codec family. It can provide compression for a CD music source at approximately 30–80% of the original size without any quality loss.
+ATRAC Advanced Lossless provides "scalable" compression; it records a lossy ATRAC3 or ATRAC3plus stream, and supplements it, in the same file, with a stream of correction information that allows the original signal to be reproduced, if desired. A player/decoder can extract and use just the ATRAC3 or ATRAC3plus data, or it can combine that with the correction stream to perfectly reproduce the original audio information. This allows the file to be decoded as either lossless or lossy. It is implemented in such a way that allows the file size to be smaller than uncompressed or compressed versions of the same file.
+ATRAC Advanced Lossless is widely supported in older Walkman players and SonicStage version 4 or later. Sonic Stage 4 allows download of ATRAC Advanced Lossless to Minidisc Players, PlayStation Portable, and PlayStation 3. Recent Walkman players do not support ATRAC Advanced Lossless/ATRAC. Sony has all but dropped the ATRAC related codecs in the USA and Europe and their SonicStage powered 'Connect' Music Service (Sony's equivalent of iTunes) on 31 March 2008. However, it is being continued in Japan and various other countries.
+
+Comparable technology
+
+AAL's use of a "core" (lossy) and "residual" (correction) stream is similar to the idea behind MPEG-4 SLS, DTS-HD Master Audio, Dolby True HD and Ogg Vorbis bitrate peeling. In fact, AAL was the first to be released in the commercial market with this scheme for backward compatibility.
+WavPack hybrid mode and OptimFROG DualStream are in the same category, but store the correction stream in a separate file.
+
+
+
+
+
+
+
+News portal, discussion forums and downloads related to ATRAC.
+

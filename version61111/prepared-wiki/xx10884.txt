@@ -1,0 +1,12 @@
+ <span style="color: green;">''Note 2: All constants in this pseudo code are in [[endianness|big endian]].''</span>
+         <span style="color: green;">''Within each word, the most significant byte is stored in the leftmost byte position''</span>
+ <span style="color: green;">''Initialize variables:''</span>
+ h0 = 0x67452301
+ h1 = 0xEFCDAB89
+ h2 = 0x98BADCFE
+ h3 = 0x10325476
+ h4 = 0xC3D2E1F0
+ ml = message length in bits (always a multiple of the number of bits in a character).
+ <span style="color: green;">''Pre-processing:''</span>
+ append the bit '1' to the message i.e. by adding 0x80 if characters are 8 bits. 
+ append 0 ≤ k &lt; 512 bits '0', thus the resulting message length (in ''bits'')

@@ -1,0 +1,39 @@
+[[Audio Interchange File Format]]
+
+CATEGORIES: Computer file formats, Container formats, Digital audio, Apple Inc.
+
+Audio Interchange File Format (AIFF) is an audio file format standard used for storing sound data for personal computers and other electronic audio devices.  The format was developed by Apple Inc. in 1988 based on Electronic Arts' Interchange File Format (IFF, widely used on Amiga systems) and is most commonly used on Apple Macintosh computer systems.
+The audio data in a standard AIFF file is uncompressed pulse-code modulation (PCM). There is also a compressed variant of AIFF known as AIFF-C or AIFC, with various defined compression codecs.
+Unlike the better-known lossy MP3 format, AIFF is uncompressed (which aids rapid streaming of multiple audio files from disk to the application), and is lossless. Like any uncompressed, lossless format, it uses much more disk space than MP3—about 10MB for one minute of stereo audio at a sample rate of 44.1 kHz and a bit depth of 16 bits. In addition to audio data, AIFF can include loop point data and the musical note of a sample, for use by hardware samplers and musical applications.
+The file extension for the standard AIFF format is .aiff or .aif. For the compressed variants it is supposed to be .aifc, but .aiff or .aif are accepted as well by audio applications supporting the format.
+
+==AIFF on Mac OS X==
+
+With the development of the Mac OS X operating system, Apple created a new type of AIFF which is, in effect, an alternative little-endian byte order format.Mac OS X Reference LibrarySupported Audio File and Data Formats in Mac OS X
+Because the AIFF architecture has no provision for alternative byte order, Apple used the existing AIFF-C compression architecture, and created a "pseudo-compressed" codec called sowt (twos spelled backwards). The only difference between a standard AIFF file and an AIFF-C/sowt file is the byte order; there is no compression involved at all.[tpl]cite web | author= | title=Technical Q&A QTMRF04: QuickTime Sound | url=http://developer.apple.com/mac/library/qa/qtmrf/qtmrf04.html | publisher=Apple | date=1995-05-01 | accessdate=2009-11-09[/tpl]
+Apple uses this new little-endian AIFF type as its standard on Mac OS X. When a file is imported to or exported from iTunes in "AIFF" format, it is actually AIFF-C/sowt that is being used. When audio from an audio CD is imported by dragging to the Mac OS X Desktop, the resulting file is also an AIFF-C/sowt. In all cases, Apple refers to the files simply as "AIFF", and uses the ".aiff" extension.
+For the vast majority of users this technical situation is completely unnoticeable and irrelevant. The sound quality of standard AIFF and AIFF-C/sowt are identical, and the data can be converted back and forth without loss. Users of older audio applications, however, may find that an AIFF-C/sowt file will not play, or will prompt the user to convert the format on opening, or will play as static.
+All traditional AIFF and AIFF-C files continue to work normally on Mac OS X (including on the new Intel-based hardware), and many third-party audio applications as well as hardware continue to use the standard AIFF big-endian byte order.
+Note: As of Mac OS X version 10.4.9, the system will sometimes incorrectly display the AIFC icon for files with the .aif extension, whether or not the actual file format is AIFF or AIFF-C.  This can be verified by opening the files in a hex editor and checking the FORM chunk's form type.  This can sometimes happen when exporting files from QuickTime, and frequently happens when sending and receiving files between Windows and Mac computers or extracting files from an archive.[tpl]Citation needed|date=March 2009[/tpl]
+
+==AIFF Apple Loops==
+
+Apple has also created another recent extension to the AIFF format in the form of Apple Loops[tpl]cite web|url=http://www.apple.com/logicstudio/soundlibrary/#loops |title=Logic Studio - Plug-ins & Sounds |publisher=Apple |date= |accessdate=2010-04-30[/tpl] used by GarageBand and Logic Audio, which allows the inclusion of data for pitch and tempo shifting by an application in the more common variety, and MIDI-sequence data and references to GarageBand playback instruments in another variety.
+AppleLoops use the .aiff (or .aif) extension regardless of type.
+
+==Data format==
+
+An AIFF file is divided into a number of chunks. Each chunk is identified by a chunk ID more broadly referred to as FourCC.
+Types of chunks found in AIFF files:
+
+==AIFF-C common compression types==
+
+AIFF supports only uncompressed PCM data. AIFF-C also supports compression audio formats, that can be specified in the "COMM" chunk. The compression type is "NONE" for PCM audio data. The compression type is accompanied by a printable name. Common compression types and names include, but are not limited to:
+
+==See also==
+
+==References==
+
+==External links==
+
+

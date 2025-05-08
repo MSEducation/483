@@ -1,0 +1,202 @@
+[[Self-reconfiguring modular robot]]
+
+CATEGORIES: Robot architectures
+
+Modular self-reconfiguring robotic systems or self-reconfigurable modular robots are autonomous kinematic machines with variable morphology. Beyond conventional actuation, sensing and control typically found in fixed-morphology robots, self-reconfiguring robots are also able to deliberately change their own shape by rearranging the connectivity of their parts, in order to adapt to new circumstances, perform new tasks, or recover from damage. 
+For example, a robot made of such components could assume a worm-like shape to move through a narrow pipe, reassemble into something with spider-like legs to cross uneven terrain, then form a third arbitrary object (like a ball or wheel that can spin itself) to move quickly over a fairly flat terrain; it can also be used for making "fixed" objects, such as walls, shelters, or buildings.
+In some cases this involves each module having 2 or more connectors for connecting several together. They can contain electronics, sensors, computer processors, memory, and power supplies; they can also contain actuators that are used for manipulating their location in the environment and in relation with each other. A feature found in some cases is the ability of the modules to automatically connect and disconnect themselves to and from each other, and to form into many objects or perform many tasks moving or manipulating the environment.
+By saying "self-reconfiguring" or "self-reconfigurable" it means that the mechanism or device is capable of utilizing its own system of control such as with actuators or stochastic means to change its overall structural shape. Having the quality of being "modular" in "self-reconfiguring modular robotics" is to say that the same module or set of modules can be added to or removed from the system, as opposed to being generically "modularized" in the broader sense. The underlying intent is to have an indefinite number of identical modules, or a finite and relatively small set of identical modules, in a mesh or matrix structure of self-reconfigurable modules.
+Self-reconfiguration is also different from the concept of self-replication, and self-replication is not necessarily a quality that a self-reconfigurable module or collection of such modules can or must possess. A matrix of N-number of modules does not need to be able to increase the quantity of modules to greater than N to be considered self-reconfigurable. It is sufficient for self-reconfigurable modules to be a device that is produced at a conventional factory, where dedicated machines stamp or mold components, and factory workers on an assembly line assemble the components to build each module.
+There are two basic types of methods of segment articulation that self-reconfigurable mechanisms can utilize to reshape their structures, chain reconfiguration and lattice reconfiguration.
+
+==Structure and control==
+
+Modular robots are usually composed of multiple building blocks of a relatively small repertoire, with uniform docking interfaces that allow transfer of mechanical forces and moments, electrical power and communication throughout the robot.
+The modular building blocks usually consist of some primary structural actuated unit, and potentially additional specialized units such as grippers, feet, wheels, cameras, payload and energy storage and generation.
+
+===A taxonomy of architectures===
+
+Modular self-reconfiguring robotic systems can be generally classified into several architectural groups by the geometric arrangement of their unit (lattice vs. chain). Several systems exhibit hybrid properties, and modular robots have also been classified into the two categories of Mobile Configuration Change (MCC) and Whole Body Locomotion (WBL).
+P. Moubarak, et al., Modular and Reconfigurable Mobile Robotics, Journal of Robotics and Autonomous Systems, 60 (12) (2012) 1648 – 1663
+Modular robotic systems can also be classified according to the way by which units are reconfigured (moved) into place.
+Modular robotic systems are also generally classified depending on the design of the modules.
+Other modular robotic systems exist which are not self-reconfigurable, and thus do not formally belong to this family of robots though they may have similar appearance. For example, self-assembling systems may be composed of multiple modules but cannot dynamically control their target shape. Similarly, tensegrity robotics may be composed of multiple interchangeable modules but cannot self-reconfigure.
+
+==Motivation and inspiration==
+
+There are two key motivations for designing modular self-reconfiguring robotic systems. 
+Both these advantages have not yet been fully realized. A modular robot is likely to be inferior in performance to any single custom robot tailored for a specific task. However, the advantage of modular robotics is only apparent when considering multiple tasks that would normally require a set of different robots.
+The added degrees of freedom make modular robots more versatile in their potential capabilities, but also incur a performance tradeoff and increased mechanical and computational complexities. 
+The quest for self-reconfiguring robotic structures is to some extent inspired by envisioned applications such as long-term space missions, that require long-term self-sustaining robotic ecology that can handle unforeseen situations and may require self repair. A second source of inspiration are biological systems that are self-constructed out of a relatively small repertoire of lower-level building blocks (cells or amino acids, depending on scale of interest). This architecture underlies biological systems’ ability to physically adapt, grow, heal, and even self replicate – capabilities that would be desirable in many engineered systems.
+
+==Application areas==
+
+Given these advantages, where would a modular self-reconfigurable system be used? While the system has the promise of being capable of doing a wide variety of things, finding the “killer application” has been somewhat elusive. Here are several examples:
+
+===Space exploration===
+
+One application that highlights the advantages of self-reconfigurable systems is long-term space missions. These require long-term self-sustaining robotic ecology that can handle unforeseen situations and may require self repair. Self-reconfigurable systems have the ability to handle tasks that are not known a prioritise especially compared to fixed configuration systems. In addition, space missions are highly volume and mass constrained. Sending a robot system that can reconfigure to achieve many tasks is better than sending many robots that each can do one task.
+
+===Telepario===
+
+Another example of an application has been coined “telepario” by CMU professors Todd Mowry and Seth Goldstein. What the researchers propose to make are moving, physical,
+three-dimensional replicas of people or objects, so lifelike that human senses would accept them as real. This would eliminate the need for cumbersome virtual reality gear and overcome the viewing angle limitations of modern 3D approaches. The replicas would mimic the shape and appearance of a person or object being imaged in real time, and as the originals moved, so would their replicas. One aspect of this application is that the main development thrust is geometric representation rather than applying forces to the environment as in a typical robotic manipulation task. This project is widely known as claytronicshttp://www.cs.cmu.edu/~claytronics/ or Programmable matter (noting that programmable matter is a much more general term, encompassing functional programmable materials, as well).
+
+===Bucket of stuff===
+
+A third long term vision for these systems has been called “bucket of stuff”. In this vision, consumers of the future have a container of self-reconfigurable modules say in their garage, basement, or attic. When the need arises, the consumer calls forth the robots to achieve a task such as “clean the gutters” or “change the oil in the car” and the robot assumes the shape needed and does the task.
+One source of inspiration for the development of these systems comes from the application. A second source is biological systems that are self-constructed out of a relatively small repertoire of lower-level building blocks (cells or amino acids, depending on scale of interest). This architecture underlies biological systems’ ability to physically adapt, grow, heal, and even self replicate – capabilities that would be desirable in many engineered systems.
+
+==History and state of the art==
+
+The roots of the concept of modular self-reconfigurable robots can be traced back to the “quick change” end effector and automatic tool changers in computer numerical controlled machining centers in the 1970s. Here, special modules each with a common connection mechanism could be automatically swapped out on the end of a robotic arm. However, taking the basic concept of the common connection mechanism and applying it to the whole robot was introduced by Toshio Fukuda with the CEBOT (short for cellular robot) in the late 1980s.
+The early 1990s saw further development from Greg Chirikjian, Mark Yim, Joseph Michael, and Satoshi Murata. Chirikjian, Michael, and Murata developed lattice reconfiguration systems and Yim developed a chain based system. While these researchers started with from a mechanical engineering emphasis, designing and building modules then developing code to program them, the work of Daniela Rus and Wei-min Shen developed hardware but had a greater impact on the programming aspects. They started a trend towards provable or verifiable distributed algorithms for the control of large numbers of modules.
+One of the more interesting hardware platforms recently has been the MTRAN II and III systems developed by Satoshi Murata et al. This system is a hybrid chain and lattice system. It has the advantage of being able to achieve tasks more easily like chain systems, yet reconfigure like a lattice system. 
+More recently new efforts in stochastic self-assembly have been pursued by Hod Lipson and Eric Klavins. A large effort at CMU headed by Seth Goldstein and Todd Mowry has started looking at issues in developing millions of modules. 
+Many tasks have been shown to be achievable, especially with chain reconfiguration modules. This demonstrates the versatility of these systems however, the other two advantages, robustness and low cost have not been demonstrated. In general the prototype systems developed in the labs have been fragile and expensive as would be expected during any initial development. 
+There is a growing number of research groups actively involved in modular robotics research. To date, about 30 systems have been designed and constructed, some of which are shown below. 
+
+===Some current systems===
+
+A chain self-reconfiguration system. Each module is about 50 mm on a side, and has 1 rotational DOF. It is part of the PolyBot modular robot family that has demonstrated many modes of locomotion including walking: biped, 14 legged, slinky-like, snake-like: concertina in a gopher hole, inchworm gaits, rectilinear undulation and sidewinding gaits, rolling like a tread at up to 1.4 m/s, riding a tricycle, climbing: stairs, poles pipes, ramps etc. More information can be found at the polybot webpage at PARC.http://www.parc.com/modrobots/
+A hybrid type self-reconfigurable system. Each module is two cube size (65 mm side), and has 2 rotational DOF and 6 flat surfaces for connection. It is the 3rd M-TRAN prototypes. Compared with the former (M-TRAN II), speed and reliability of connection is largely improved. As a chain type system, locomotion by CPG (Central Pattern Generator) controller in vaious shapes has been demonstrated by M-TRAN II. As a lattice type system, it can change its configuration, e.g., between a 4 legged walker to a caterpillar like robot. See the M-TRAN webpage at AIST.http://unit.aist.go.jp/is/frrg/dsysd/mtran3/
+AMOEBA-I, a three-module reconfigurable mobile robot was developed in Shenyang Institute of Automation (SIA), Chinese Academy of Sciences (CAS) by Liu J G et al.http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1708645http://www.springerlink.com/content/m81820061n48jh32/.AMOEBA-I has nine kinds of non-isomorphic configurations and high mobility under unstructured environments.Four generations of its platform have been developed and a series of researches have been carried out on their reconfiguration mechanism, non-isomorphic configurations, tipover stability, and reconfiguration planning. Experiments have demonstrated that such kind structure permits good mobility and high flexibility to uneven terrain. Being hyper-redundant, modularized and reconfigurable, AMOEBA-I has many possible applications such as Urban Search and Rescue (USAR) and space exploration.
+Ref_1: see http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1708645;
+Ref_2: see http://www.springerlink.com/content/m81820061n48jh32/
+Stochastic-3D (2005)
+High spatial resolution for arbitrary three-dimensional shape formation with modular robots can be accomplished using lattice system with large quantities of very small, prospectively microscopic modules. At small scales, and with large quantities of modules, deterministic control over reconfiguration of individual modules will become unfeasible, while stochastic mechanisms will naturally prevail. Microscopic size of modules will make the use of electromagnetic actuation and interconnection prohibitive, as well, as the use of on-board power storage. 
+Three large scale prototypes were built in attempt to demonstrate dynamically programmable three-dimensional stochastic reconfiguration in a neutral-buoyancy environment. The first prototype used electromagnets for module reconfiguration and interconnection. The modules were 100 mm cubes and weighed 0.81 kg. The second prototype used stochastic fluidic reconfiguration and interconnection mechanism. Its 130 mm cubic modules weighed 1.78 kg each and made reconfiguration experiments excessively slow. The current third implementation inherits the fluidic reconfiguration principle. The lattice grid size is 80 mm, and the reconfiguration experiments are under way. More information can be found at the CCSL Stochastic Modular Robotics webpage.
+Molecubes (2005)
+This hybrid self-reconfiguring system was built by the Cornell Computational Synthesis Lab to physically demonstrate artificial kinematic self-reproduction. Each module is a 0.65 kg cube with 100 mm long edges and one rotational degree of freedom. The axis of rotation is aligned with the cube's longest diagonal. Physical self-reproduction of a three- and a four-module robots was demonstrated. It was also shown that, disregarding the gravity constraints, an infinite number of self-reproducing chain meta-structures can be built from Molecubes. More information can be found at the CCSL Self-Replication webpage.
+The Programmable Parts (2005)
+The programmable parts are stirred randomly on an air-hockey table by randomly actuated air jets. When they collide and stick, they can communicate and decide whether to stay stuck, or if and when to detach. Local interaction rules can be devised and optimized to guide the robots to make any desired global shape. More information can be found at the programmable parts web page.
+SuperBot (2006)
+The SuperBot modules fall into the hybrid architecture. The modules have three degrees of freedom each. The design is based on two previous systems: Conro (by the same research group) and MTRAN (by Murata et al.). Each module can connect to another module through one of its six dock connectors. They can communicate and share power through their dock connectors. Several locomotion gaits have been developed for different arrangements of modules. For high-level communication the modules use hormone-based control, a distributed, scalable protocol that does not require the modules to have unique ID's.
+Miche (2006)
+The Miche system is a modular lattice system capable of arbitrary shape formation. Each module is an autonomous robot module capable of connecting to and communicating with its immediate neighbors. When assembled into a structure, the modules form a system that can be virtually sculpted using a computer interface and a distributed process. The group of modules collectively decide who is on the final shape and who is not using algorithms that minimize the information transmission and storage. Finally, the modules not in the structure let go and fall off under the control of an external force, in this case gravity.
+More details at Miche (Rus et al.). 
+The Distributed Flight Array (2009)
+The Distributed Flight Array is a modular robot consisting of hexagonal-shaped single-rotor units that can take on just about any shape or form. Although each unit is capable of generating enough thrust to lift itself off the ground, on its own it is incapable of flight much like a helicopter cannot fly without its tail rotor. However, when joined together, these units evolve into a sophisticated multi-rotor system capable of coordinated flight and much more. More information can be found here.
+Roombots (2009)
+Roombots have a hybrid architecture. Each module has three degree of freedom, two of them using the diametrical axis within a regular cube, and a third (center) axis of rotation connecting the two spherical parts. All three axes are continuously rotatory. The outer Roombots DOF is using the same axis-orientation as Molecubes, the third, central Roombots axis enables the module to rotate its two outer DOF against each other. This novel feature enables a single Roombots module to locomote on flat terrain, but also to climb a wall, or to cross a concave, perpendicular edge. Convex edges require the assembly of at least two modules into a Roombots "Metamodule". Each module has ten available connector slots, currently two of them are equipped with an active connection mechanism based on mechanical latches.
+Roombots are designed for two tasks: to eventually shape objects of daily life, e.g. furniture, and to locomote, e.g. as a quadruped or a tripod robot made from multiple modules.
+More information can be found at Biorobotics Laboratory Roombots webpage.
+Sambot (2010)
+Being inspired form social insects, multicellar organism and mophogenetic robots. The aim of the Sambot is to develop swarm robotics and  conduct research on the swarm intelligenc, self-assembly and co-evolution of the body and brain for autonomous morphogeneous. Differing from swarm robot, self-reconfigurable robot and morphgenetic robot, the research focuses on self-assembly swarm modular robots that interact and dock as an autonomous mobile module with others to achieve swarm intellegence and furtherly discuss the autonomous construction in space station and exploratary tools and artificial complex structures. Each Sambot robot can run as an autonomos individual in wheel and besides, using combination of the sensors and docking mechanism, the robot can interact and dock with the enviroments and other robots. By the advantage of motion and connection, Sambot swarms can aggregate into a symbiotic or whole organism and generate locomotion as the bionic articular robots. In this case, some self-assembling, self-organizing, self-reconfigurating, and self-repairing function and research are available in design and appliction view. Inside the modular robot whose size is 80(W)X80(L)X102(H) mm, MCU (ARM and AVR), communication (Zigbee), sensors, power, IMU, positioning modules are embeded.
+More information can be found at Self-assembly Swarm Modular Robots 
+It is mathematically proven that physical strings of simple shapes can be folded into any continuous area or volumetric shape. Moteins employ such shape-universal folding strategies, with one or two degrees of freedom and simple actuators with only two or three states.Cheung, K. C., Demaine, E. D., Bachrach, J. R., and Griffith, S., “Programmable Assembly With Universally Foldable Strings (Moteins),” IEEE Transactions on Robotics, vol. 27, no. 4, pp. 718-729 (2011).
+
+===Quantitative accomplishment===
+
+==Challenges, solutions, and opportunities==
+
+Since the early demonstrations of early modular self-reconfiguring systems, the size, robustness and performance has been continuously improving. In parallel, planning and control algorithms have been progressing to handle thousands of units. There are, however, several key steps that are necessary for these systems to realize their promise of adaptability, robustness and low cost. These steps can be broken down into challenges in the hardware design, in planning and control algorithms and in application. These challenges are often intertwined.
+
+===Hardware design challenges===
+
+The extent to which the promise of self-reconfiguring robotic systems can be realized depends critically on the numbers of modules in the system. To date, only systems with up to about 50 units have been demonstrated, with this number stagnating over almost a decade. There are a number of fundamental limiting factors that govern this number:
+
+===Planning and control challenges===
+
+Though algorithms have been developed for handling thousands of units in ideal conditions, challenges to scalability remain both in low-level control and high-level planning to overcome realistic constraints:
+
+===Application challenges===
+
+Though the advantages of Modular self-reconfiguring robotic systems is largely recognized, it has been difficult to identify specific application domains where benefits can be demonstrated in the short term. Some suggested applications are
+
+===Grand Challenges===
+
+Several robotic fields have identified ‘’Grand Challenges’’ that act as a catalyst for development and serve as a short-term goal in absence of immediate ‘’killer apps’’. The Grand Challenge is not in itself a research agenda or milestone, but a means to stimulate and evaluate coordinated progress across multiple technical frontiers. Several Grand Challenges have been proposed for the modular self-reconfiguring robotics field:
+
+===Inductive Transducers===
+
+A unique potential solution that can be exploited is the use of inductors as transducers. This could be useful for dealing with docking and bonding problems. At the same time it could also be beneficial for its capabilities of docking detection (alignment and finding distance), power transmission, and (data signal) communication. A proof-of-concept video can be seen 
+here. The rather limited exploration down this avenue is probably a consequence of the historical lack of need in any applications for such an approach.
+
+===Modular Robotics Google Group===
+
+Modular Robotics Google Group is an open public forum dedicated to announcements of events in the field of Modular Robotics. This medium is used to disseminate calls to workshops, special issues and other academic activities of interest to modular robotics researchers. The founders of this Google group intend it to facilitate the exchange of information and ideas within the community of modular robotics researchers around the world and thus promote acceleration of advancements in modular robotics. Anybody who is interested in objectives and progress of Modular Robotics can join this Google group and learn about the new developments in this field.
+
+==See also==
+
+==References==
+
+==External links==
+
+ 
+ 
+===Debate forums===
+
+ | title = Modular Robotics Google Group
+ | work = Announcement portal for researchers in modular robotics
+ | url = http://groups.google.com/group/modular-robotics
+}}
+ | title = Self-Reconfiguring and Modular Technology Google Group
+ | work = Discussion forum for anything related to Self-Reconfiguring and Modular Technology
+ | url = http://groups.google.com/group/selfreconfigurable
+}}
+
+===Blogs on Self Reconfiguring Modular Robotics===
+
+ | title = Evolve Robotics Blog
+ | work = Great stuff documenting the development of the Evolve modular robot.
+ | url = http://evolverobotics.blogspot.com/
+}}
+ | title = The FlexibilityEnvelope.com
+ | work = The Flexibility Envelope is a blog focusing on the profound consequences of Self Reconfiguring Modular Robotics.
+ | url = http://www.flexibilityenvelope.com/
+}}
+
+===Books on Self Reconfiguring Modular Robotics===
+
+ | title = Self-Reconfigurable Robots An Introduction
+ | work = Great Introduction to where SRCMR are today, how it got there and where it needs to go in the future
+ | url = http://mitpress.mit.edu/catalog/item/default.asp?ttype=2&tid=12151
+}}
+ | title = Self-Organizing Robots
+ | work = From biology, via robot, to molecule
+ | url = http://link.springer.com/book/10.1007/978-4-431-54055-7/page/1
+}}
+
+===Research Institutions===
+
+ | title = Distributed Robotics Laboratory
+ | work = Distributed Robotics Lab at MIT
+ | url = http://groups.csail.mit.edu/drl/wiki/index.php/Main_Page
+}}
+ | title = Modular Robots at PARC
+ | work = Modular Reconfigurable Robots
+ | url = http://www2.parc.com/spl/projects/modrobots/
+}}
+ | title = ModLab at University of Pennsylvania
+ | work = Research on Modular Reconfigurable Robotics
+ | url = http://modlab.seas.upenn.edu/
+}}
+ | title = Claytronics Project at Carnegie Mellon University
+ | work = Collaborative research in programmable matter
+ | url = http://www.cs.cmu.edu/~claytronics
+}}
+ | title = Modular Robotics Group Southern University of Denmark
+ | work = Research on Modular and Self-Reconfigurable Robotics
+ | url = http://modular.mmmi.sdu.dk/wiki/Main_Page
+}}
+ | title = Fukuda Laboratory
+ | work = Research on Modular and Self-Reconfigurable Robotics and Micro-Nano Systems
+ | url = http://www.mein.nagoya-u.ac.jp/
+}}
+ | title = Biorobotics Laboratory
+ | work = Research on modular and self-reconfigurable robotics, bio-inspired robotics, dynamical systems (e.g. CPGs), rehabilitation robotics
+ | url = http://biorob.epfl.ch/
+}}
+
+===Resource collections and links archives===
+
+ | title = Self Reconfigurable Modular Technology
+ | work = Website containing information and external links
+ | url = http://www.selfreconfigurable.com
+}}
+ | title = Self-Reconfigurable Robots: Survey Site
+ | work = Links to research groups in the field and information on hundreds of their research papers (old: http://www.cs.duke.edu/~sgs/robots/)
+ | url = http://web.archive.org/web/20110605024209/http://www.cs.duke.edu/~sgs/robots/
+}}
+

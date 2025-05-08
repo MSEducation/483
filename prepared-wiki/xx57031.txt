@@ -1,0 +1,44 @@
+[[NetBIOS Frames protocol]]
+
+CATEGORIES: Windows communication and services, Network protocols
+
+NetBIOS Frames or NBF protocol is a non-routable network- and transport-level data protocol most commonly used as one of the layers of Microsoft Windows networking in the 1990s. NBF protocol or NetBIOS over IEEE 802.2 LLC is used by a number of network operating systems released in the 1990s, such as LAN Manager, LAN Server, Windows for Workgroups, Windows 95 and Windows NT. Other protocols, such as NBT (NetBIOS over TCP/IP), and NetBIOS-over-IPX/SPX also implement the NetBIOS/NetBEUI services over other protocol suites.
+The NBF protocol is broadly, but incorrectly, referred to as NetBEUI. This originates from the confusion with NetBIOS Extended User Interface, an extension to the NetBIOS API that was originally developed in conjunction with the NBF protocol; both the protocol and the NetBEUI emulator were originally developed to allow NetBIOS programs to run over IBM's new token ring network.[tpl]cite web|url=http://ourworld.compuserve.com/homepages/timothydevans/intro.htm|title=NetBios NetBEUI NBF Networking Introduction|accessdate=2007-07-03 |archiveurl = http://web.archive.org/web/20070207171212/http://ourworld.compuserve.com/homepages/timothydevans/intro.htm  |archivedate = 2007-02-07[/tpl] Microsoft caused this confusion by labelling its NBF protocol implementation NetBEUI. NBF is a protocol and the original NetBEUI was a NetBIOS application programming interface extension.
+
+==Overview==
+
+NBF protocol uses 802.2 type 1 mode to provide the NetBIOS/NetBEUI name service and datagram service, and 802.2 type 2 mode to provide the NetBIOS/NetBEUI session service (virtual circuit). NBF protocol makes wide use of broadcast messages, which accounts for its reputation as a chatty interface. While the protocol consumes few network resources in a very small network, broadcasts begin to adversely impact performance and speed when the number of hosts present in a network grows.
+Sytek developed NetBIOS for IBM for the PC-Network program and was used by Microsoft for MS-NET in 1985. In 1987, Microsoft and Novell utilized it for their network operating systems LAN Manager and NetWare.
+Because NBF protocol is unroutable it can only be used to communicate with devices in the same broadcast domain, but being bridgeable it can also be used to communicate with network segments connected to each other via bridges. This[tpl]clarification needed|date=January 2012[/tpl] means that NBF is only well-suited for small to medium-sized networks, where it has such an advantage over TCP/IP that requires little configuration. The NetBIOS/NetBEUI services must be implemented atop other protocols, such as IPX and TCP/IP (see above) in order to be of use in an internetwork.[tpl]cite web|url=http://ourworld.compuserve.com/homepages/timothydevans/encap.htm|title=NetBios NetBEUI NBF Networking Encapsulation|accessdate=2006-11-24 |archiveurl = http://web.archive.org/web/20060915105324/http://ourworld.compuserve.com/homepages/timothydevans/encap.htm  |archivedate = 2006-09-15[/tpl]
+
+==Services==
+
+NetBIOS/NetBEUI provides three distinct services:
+NBF protocol implements all of these services.
+
+===Name service===
+
+In order to start sessions or distribute datagrams, an application must register its NetBIOS/NetBEUI name using the name service. To do so, an "Add Name Query" or "Add Group Name Query" packet is broadcast on the network. If the NetBIOS/NetBEUI name is already in use, the name service, running on the host that owns the name, broadcasts a "Node Conflict" message on the network.
+In addition, to start a session or to send a datagram to a particular host rather than to broadcast the datagram, NBF protocol has to determine the MAC address of the host with a given NetBIOS/NetBEUI name; this is done by sending a "Name Query" packet, the response to which will have the MAC address of the host sending the response, i.e. the host with that name.
+
+===Datagram distribution service===
+
+Datagram mode is "connectionless". A datagram is sent with a "Datagram" packet if it is being sent to a particular NetBIOS/NetBEUI name, or a "Datagram Broadcast" packet if it is being sent to all NetBIOS/NetBEUI names on the network.
+
+===Session service===
+
+Session mode lets two computers establish a connection for a "conversation," allows larger messages to be handled, and provides error detection and recovery.
+Sessions are established by exchanging packets. The computer establishing the session sends a "Name Query" request, specifying that a session should be initialized. The computer with which the session is to be established will respond with a "Name Recognized" response indicating either that no session can be established (either because that computer is not listening for sessions being established to that name or because no resources are available to establish a session to that name) or that a session can be established (in which case the response will include a local session number to be used in subsequent packets). The computer that is starting the session will then send a "Session Initialize" request which will prompt a "Session Confirm" response.
+Data is transmitted during an established session by data packets. IEEE 802.2 handles flow control and retransmission of data packets. Because NetBIOS/NetBEUI allows packets to be sent that are larger than the largest packet that could be transmitted on a particular MAC layer, a NetBIOS/NetBEUI packet might have to be transmitted as a sequence of "Data First Middle" packets and a "Data Only Last" packet; packets that do not need to be segmented in that fashion will be sent as a single "Data Only Last" packet. An acknowledgment will be sent for all "Data Only Last" packets that are successfully received; this will also acknowledge all preceding "Data First Middle" packets.
+Sessions are closed by sending a "Session End" request.
+
+==Availability==
+
+NBF protocol – apart from DOS and Unix implementations – is officially supported by Microsoft on almost every version of Windows up to Windows 2000,[tpl]cite web|url=http://www.microsoft.com/technet/prodtechnol/windows2000serv/reskit/intwork/inde_nbf_hlpj.mspx|title=NetBEUI support on Windows 2000|accessdate=2007-03-19[/tpl] but its use has decreased quickly since the development of NBT.
+Microsoft officially dropped support starting with Windows XP,[tpl]cite web|url=http://support.microsoft.com/kb/306059|title=The NetBEUI Protocol Is Not Available in Windows XP (KB306059)|accessdate=2007-03-19[/tpl] but it is included on the Windows XP CD-ROM and can be installed manually.[tpl]cite web|url=http://support.microsoft.com/kb/301041|title=How to install NetBEUI on Windows XP (KB301041)|accessdate=2007-03-19[/tpl] Windows Vista does not include NetBEUI (means NBF) support at all, but the Windows XP NetBEUI support drivers can be used.
+
+==References==
+
+==External links==
+
+

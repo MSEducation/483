@@ -1,0 +1,66 @@
+[[Currying]]
+
+CATEGORIES: Higher-order functions, Functional programming, Lambda calculus, Articles with example Java code
+
+In mathematics and computer science, currying journal|first=John C.|last=Reynolds|authorlink=John C. Reynolds|title=Definitional Interpreters for Higher-Order Programming Languages |journal=Higher-Order and Symbolic Computation|volume=11|issue=4|page=374|doi=10.1023/A:1010027404223|quote=In the last line we have used a trick called Currying (after the logician H. Curry) to solve the problem of introducing a binary operation into a language where all functions must accept a single argument. (The referee comments that although "Currying" is tastier, "Schönfinkeling" might be more accurate.)|year=1998|ref=harv}}[/ref]Kenneth Slonneger and Barry L. Kurtz. Formal Syntax and Semantics of Programming Languages. p. 144. is the technique of transforming a function that takes multiple arguments (or a tuple of arguments) in such a way that it can be called as a chain (Reprinted lecture notes from 1967.)
+and later worked out by Haskell Curry.
+Uncurrying is the dual transformation to currying, and can be seen as a form of defunctionalization.  It takes a function f(x) which returns another function g(y) as a result, and yields a new function  which takes a number of additional parameters and applies them to the function returned by function f.  The process can be iterated if necessary.
+
+Motivation
+
+Currying is similar to the process of calculating a function of multiple variables for some given values on paper.
+For example, given the function f(x,y) = y / x:
+On paper, using classical notation, this is usually done all in one step. However, each argument can be replaced sequentially as well. Each replacement results in a function taking exactly one argument. This produces a chain of functions as in lambda calculus, and multi-argument functions are usually represented in curried form.
+Some programming languages almost always use curried functions to achieve multiple arguments; notable examples are ML and Haskell, where in both cases all functions have exactly one argument.
+If we let f be a function
+then the function h where
+is the curried equivalent of the example above.  Note, however, that currying, while similar, is not the same operation as partial function application.
+
+Definition
+
+Curried functions may be used in any language that supports closures; however, uncurried functions are generally preferred for efficiency reasons, since the overhead of partial application and closure creation can then be avoided for most function calls.
+
+Mathematical view
+
+In theoretical computer science, currying provides a way to study functions with multiple arguments in very simple theoretical models such as the lambda calculus in which functions only take a single argument.
+This is the key property of being a Cartesian closed category, and more generally, a closed monoidal category.  The latter, though more rarely discussed, is interesting, as it is the suitable setting for quantum computation,Samson Abramsky and Bob Coecke, "A Categorical Semantics for Quantum Protocols", " whereas the former is sufficient for classical logic. The difference is that the Cartesian product can be interpreted simply as a pair of items (or a list), whereas the tensor product, used to define a monoidal category, is suitable for describing entangled quantum states. Baez and Mike Stay, "Physics, Topology, Logic and Computation: A Rosetta Stone", (2009) ArXiv 0903.0340 in New Structures for Physics, ed. Bob Coecke, Lecture Notes in Physics vol. 813, Springer, Berlin, 2011, pp. 95-174.
+Curry is a continuous function in the Scott topology. (See theorems 1.2.13, 1.2.14)
+
+Naming
+
+The name "currying", coined by Christopher Strachey in 1967, is a reference to logician Haskell Curry.  The alternative name "Schönfinkelisation" has been proposed as a reference to Moses Schönfinkel.I. Heim and A. Kratzer (1998). Semantics in Generative Grammar. Blackwell.
+
+Contrast with partial function application
+
+Currying and partial function application are often conflated.Functional Programming in 5 Minutes
+Intuitively, partial function application says "if you fix the first arguments of the function, you get a function of the remaining arguments". For example, if function div stands for the division operation x/y, then div with the parameter x fixed at 1 (i.e., div 1) is another function: the same as the function inv that returns the multiplicative inverse of its argument, defined by inv(y) = 1/y.
+The practical motivation for partial application is that very often the functions obtained by supplying some but not all of the arguments to a function are useful; for example, many languages have a function or operator similar to plus_one. Partial application makes it easy to define these functions, for example by creating a function that represents the addition operator with 1 bound as its first argument.
+
+
+
+Notes
+
+
+
+  | last = Heim
+  | first = Irene
+  | author-link = 
+  | last2 = Kratzer
+  | first2 = Angelika
+  | author2-link = 
+  | title = Semantics in a Generative Grammar
+  | place = Malden
+  | publisher = Blackwall Publishers
+  | year = 1998
+  | volume = 
+  | edition = 
+  | url =
+  | doi = 
+  | id = 
+  | isbn =
+  | ref = harv
+  | postscript =  }}
+
+
+
+

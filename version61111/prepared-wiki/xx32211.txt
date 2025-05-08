@@ -1,0 +1,68 @@
+ M:= Matrix(<nowiki>[[1,2,3], [a,b,c], [x,y,z]]</nowiki>);  # example Matrix
+ LinearAlgebra:-Determinant(M);
+
+===Series expansion===
+
+series(tanh(x),x=0,15)
+f:=int(exp^cosh(x))
+series(f,x=0,15);
+
+===Solve equation===
+
+High order polynomial equation
+>f := x^53-88*x^5-3*x-5 = 0
+>fsolve(f)
+-1.097486315, -.5226535640, 1.099074017
+
+===Solve equation set===
+
+>f := (sin(x+y))^2 + exp(x)*y+cot(x-y)+cosh(z+x) = 0:
+>g := x^5 - 8*y = 2:
+>h:=x+3*y-77*z=55;
+fsolve( {f,g,h} );
+{x = -1.543352313, y = -1.344549481, z = -.7867142955}
+
+===Plotting of function of single variable===
+
+ plot(x*sin(x),x=-10..10);
+
+===Plotting of function of two variables===
+
+ plot3d(x^2+y^2,x=-1..1,y=-1..1);
+
+===Animation of functions===
+
+ with(plots);
+ animate(subs(k = .5, f), x = -30 .. 30, t = -10 .. 10, numpoints = 200, frames = 50, color = red, thickness = 3);
+ with(plots)
+ animate3d(cos(t*x)*sin(3*t*y), x = -Pi .. Pi, y = -Pi .. Pi, t = 1 .. 2)
+
+===Laplace transform===
+
+ with(inttrans);
+ f := (1+A*t+B*t^2)*exp(c*t);
+ laplace(f, t, s);
+ invlaplace(1/(s-a),s,x)
+
+===Fourier transform===
+
+ with(inttrans);
+ fourier(sin(x),x,w)
+
+===Integral equations===
+
+ eqn:= f(x)-3*Int((x*y+x^2*y^2)*f(y), y=-1..1) = h(x):
+ intsolve(eqn,f(x));
+
+==Use of the Maple engine==
+
+The Maple engine is used within several other products from Maplesoft:
+Listed below are third-party commercial products that no longer use the Maple engine:
+
+==See also==
+
+==References==
+
+==External links==
+
+

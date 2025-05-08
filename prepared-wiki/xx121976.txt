@@ -1,0 +1,12 @@
+[[Provider model]]
+
+CATEGORIES: Software design patterns, .NET framework
+
+The provider model is a design pattern formulated by Microsoft for use in the ASP.NET Starter Kits and formalized in .NET version 2.0. It is used to allow an application to choose from one of multiple implementations or "condiments" in the application configuration, for example, to provide access to different data stores to retrieve login information, or to use different storage methodologies such as a database, binary to disk, XML, etc.
+The .NET extensible provider model allows a "component" to have multiple implementations using an abstract factory pattern approach. Providers are a subclass of the ProviderBase class and typically instantiated using a factory method. 
+The provider model in ASP.NET 2.0 provides extensibility points for developers to plug their own implementation of a feature into the runtime. Both the membership and role features in ASP.NET 2.0 follow the provider pattern by specifying an interface, or contract. The provider model begins with the abstract class ProviderBase. ProviderBase exists to enforce the contract that all providers need public Name and Description properties, as well as a public Initialize method. Inheriting from ProviderBase are the MembershipProvider and RoleProvider abstract classes. These classes add additional properties and methods to define the interface for their specific areas of functionality.
+
+==External links==
+
+
+

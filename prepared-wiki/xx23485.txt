@@ -1,0 +1,13 @@
+[[Eager evaluation]]
+
+CATEGORIES: Evaluation strategy
+
+In computer programming, eager evaluation or greedy evaluation is the evaluation strategy used by most traditional programming languages. In eager evaluation, an expression is evaluated as soon as it is bound to a variable.  The alternative to eager evaluation is lazy evaluation, where expressions are only evaluated when evaluating a dependent expression. Imperative programming languages, where the order of execution is implicitly defined by the source code organization, almost always use eager evaluation.
+One advantage of eager evaluation is that it eliminates the need to track and schedule the evaluation of expressions. It also allows the programmer to dictate the order of execution, making it easier to determine when sub-expressions (including functions) within the expression will be evaluated, as these sub-expressions may have side-effects that will affect the evaluation of other expressions.
+A disadvantage of eager evaluation is that it forces the evaluation of expressions that may not be necessary at run time, or it may delay the evaluation of expressions that have a more immediate need. It also forces the programmer to organize the source code for optimal order of execution. Conversely, it allows the programmer to order the source code to control the order of execution.
+Note that many modern compilers are capable of re-ordering execution to better optimize processor resources and can often eliminate unnecessary expressions from being executed entirely, if it can be determined that the results of the expressions are not visible to the rest of the program. Therefore, the notions of purely eager or purely lazy evaluation may not be applicable in practice.
+Under Church encoding, eager evaluation of operators maps to strict evaluation of functions; for this reason, strict evaluation is sometimes called "eager".
+
+==See also==
+
+

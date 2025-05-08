@@ -1,0 +1,272 @@
+[[IBM Systems Network Architecture]]
+
+CATEGORIES: Network architecture, Network protocols, IBM operating systems
+
+Systems Network Architecture (SNA) is IBM's proprietary networking architecture, created in 1974.. It is a complete protocol stack for interconnecting computers and their resources.  SNA describes formats and protocols and is, in itself, not a piece of software.  The implementation of SNA takes the form of various communications packages, most notably Virtual Telecommunications Access Method (VTAM), the mainframe package for SNA communications.
+
+History
+
+SNA was made public as part of IBM's "Advanced Function for Communications" announcement in September, 1974, which included the implementation of the SNA/SDLC (Synchronous Data Link Control) protocols on new communications products:
+They were supported by IBM 3704/3705 communication controllers and their Network Control Program, and by System/370 and their VTAM and other software such as CICS and IMS. This announcement was followed by another announcement in July, 1975, which introduced the IBM 3760 data entry station, the IBM 3790 communication system, and the new models of the IBM 3270 display system.
+SNA was mainly designed by the IBM Systems Development Division laboratory in Research Triangle Park, North Carolina, USA, helped by other laboratories that implemented SNA/SDLC.  The details were later made public by IBM's System Reference Library manuals and IBM Systems Journal.
+SNA is still used extensively in banks and other financial transaction networks, as well as in many government agencies.  While IBM is still providing support for SNA, one of the primary pieces of hardware, the 3745/3746 communications controller, has been withdrawn from the market by IBM.  There are an estimated 20,000 of these controllers installed however, and IBM continues to provide hardware maintenance service and microcode features to support users.  A robust market of smaller companies continues to provide the 3745/3746, features, parts and service. VTAM is also supported by IBM, as is the IBM Network Control Program (NCP) required by the 3745/3746 controllers.
+In 2008 an IBM publication said:
+
+Objectives of SNA
+
+IBM in the mid-1970s saw itself mainly as a hardware vendor and hence all its innovations in that period aimed to increase hardware sales. SNA's objective was to reduce the costs of operating large numbers of terminals and thus induce customers to develop or expand interactive terminal-based systems as opposed to batch systems. An expansion of interactive terminal-based systems would increase sales of terminals and more importantly of mainframe computers and peripherals - partly because of the simple increase in the volume of work done by the systems and partly because interactive processing requires more computing power per transaction than batch processing.
+Hence SNA aimed to reduce the main non-computer costs and other difficulties in operating large networks using earlier communications protocols. The difficulties included:
+As a result running a large number of terminals required a lot more communications lines than the number required today, especially if different types of terminals needed to be supported, or the users wanted to use different types of applications (.e.g. under CICS or TSO) from the same location. In purely financial terms SNA's objectives were to increase customers' spending on terminal-based systems and at the same time to increase IBM's share of that spending, mainly at the expense of the telecommunications companies.
+SNA also aimed to overcome a limitation of the architecture which IBM's System/370 mainframes inherited from System/360. Each CPU could connect to at most 16 I/O channelsdevices that acted as DMA controllers for control units, which in turn attached peripherals such as tape and disk drives, printers, card-readers and each channel could handle up to 256 peripherals - i.e. there was a maximum of 4096 peripherals per CPU. At the time when SNA was designed, each communications line counted as a peripheral. Thus the number of terminals with which powerful mainframes could otherwise communicate was limited.
+
+Principal components and technologies
+
+Improvements in computer component technology made it feasible to build terminals that included more powerful communications cards which could operate a single standard communications protocol rather than a very stripped-down protocol which suited only a specific type of terminal. As a result several multi-layer communications protocols were proposed in the 1970s, of which IBM's SNA and ITU-T's X.25 became dominant later.
+The most important elements of SNA include:
+
+Advantages and disadvantages
+
+SNA removed link control from the application program and placed it in the NCP. This had the following advantages and disadvantages:
+
+Advantages
+
+Disadvantages
+
+Network Addressable Units
+
+Network Addressable Units in a SNA network are any components that can be assigned an address and can send and receive information.  They are distinguished further as follows:.
+
+Logical Unit (LU)
+
+SNA essentially offers transparent communication: equipment specifics that do not impose any constraints onto LU-LU communication. But eventually it serves a purpose to make a distinction between LU types, as the application must take the functionality of the terminal equipment into account (e.g. screen sizes and layout).
+Within SNA there are two types of data stream to connect local display terminals and printers; there is the 3270 data stream mainly used by mainframes such as the System/370 and successors, including the zSeries family, and the 5250 data stream mainly used by minicomputers/servers such as the System/34, System/36, System/38, and AS/400 and its successors, including System i and IBM Power Systems running IBM i.
+SNA defines several kinds of devices, called Logical Unit types:.
+The primary ones in use are LU1, LU2, and LU6.2 (an advanced protocol for application to application conversations).
+Physical Unit (PU)=== 
+The term 37xx refers to IBM's family of SNA communications controllers. The 3745 supports up to eight high-speed T1 circuits, the 3725 is a large-scale node and front-end processor for a host, and the 3720 is a remote node that functions as a concentrator and router.
+
+Competitors
+
+The proprietary networking architecture for Honeywell Bull mainframes is Distributed Systems Architecture (DSA). Communications package for DSA is VIP. Like SNA, DSA is also no longer supported for client access. Bull mainframes are fitted with Mainway for translating DSA to TCP/IP and VIP devices are replaced by TNVIP Terminal Emulations (GLink, Winsurf). GCOS 8 supports TNVIP SE over TCP/IP.  Other architectures are Unisys – formerly Univac – Distributed Computing Architecture (DCA) and – formerly Burroughs – Burroughs Network Architecture (BNA), both largely obsolete by 2012, and the International Computers Limited  (ICL) Information Processing Architecture (IPA). DECnet is a suite of network protocols created by Digital Equipment Corporation, originally released in 1975 to connect two PDP-11 minicomputers. It evolved into one of the first peer-to-peer network architectures, thus transforming DEC into a networking powerhouse in the 1980s.
+SNA initially aimed at competing with ISOs "Open System Interconnect", which was an attempt to create a vendor-neutral network architecture that failed due to the problems of "committee design". OSI systems are very complex, and the many parties involved required extensive flexibilities that hurt the interoperability of OSI systems, which was the prime objective to start with.
+After TCP/IP for several decades was not considered a serious alternative due to its "nerdy" image, in the 1990s is was discovered as a very attractive alternative: a truly vendor-neutral alternative that fosters true interoperability due to its flexible RFC process of defining standards. TCP/IP is elegant and simple, in contrast to the former network architectures. IBM SNA "APPN". a later development, was in particular extremely complex, ironically with the purpose to make life simpler.
+
+
+
+Notes
+
+
+
+|last=Friend
+|first=George E.
+|coauthors=John L. Fike, H. Charles Baker, John C. Bellamy
+|title=Understanding Data Communications
+|edition=2nd
+|year=1988
+|publisher=Howard W. Sams & Company
+|location=Indianapolis
+|isbn=0-672-27270-9
+|ref=harv
+}}
+|last=Pooch
+|first=Udo W.
+|coauthors=William H. Greene, Gary G. Moss
+|title=Telecommunications and Networking
+|publisher=Little, Brown and Company
+|location=Boston
+|year=1983
+|isbn=0-316-71498-4
+|ref=harv
+}}
+|last=Schatt
+|first=Stan
+|title=Linking LANs: A Micro Manager's Guide
+|year=1991
+|publisher=McGraw-Hill
+|isbn=0-8306-3755-9
+|ref=harv
+}}
+ |     author = IBM
+ |      title = Systems Network Architecture General Information
+ |    section =
+ | sectionurl =
+ |    version = First Edition
+ |  publisher = IBM
+ |       date = January 1975
+ |       year =
+ |        url = 
+ |     format = PDF
+ |         id = GA27-3102-0
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref = GA27-3102-0
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture Concepts and Products
+ |    section =
+ | sectionurl =
+ |    version = Second Edition
+ |  publisher = IBM
+ |       date = February 1984
+ |       year =
+ |        url = 
+ |     format = PDF
+ |         id = GC30-3072-1
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref = GC30-3072-1
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture Technical Overview
+ |    section =
+ | sectionurl =
+ |    version = Fifth Edition
+ |  publisher = IBM
+ |       date = January 1994
+ |       year =
+ |        url = 
+ |     format =
+ |         id = GC30-3073-04
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref = GC30-3073-04
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture Guide to SNA Publications
+ |    section =
+ | sectionurl =
+ |    version = Third Edition
+ |  publisher = IBM
+ |       date = July 1994
+ |       year =
+ |        url = 
+ |     format =
+ |         id = GC30-3438-02
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref = GC30-3438-02
+ |  separator = ,
+ }}
+
+
+
+ |     author = IBM
+ |      title = Systems Network Architecture Formats
+ |    section =
+ | sectionurl =
+ |    version = Twenty-first Edition
+ |  publisher = IBM
+ |       date = March 2004
+ |       year =
+ |        url = 
+ |     format = 
+ |         id = GA27-3136-20
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture - Sessions Between Logical Units
+ |    section =
+ | sectionurl =
+ |    version = Third Edition
+ |  publisher = IBM
+ |       date = April 1981
+ |       year =
+ |        url = 
+ |     format = PDF
+ |         id = GC20-1868-2
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture - Introduction to Sessions between Logical Units
+ |    section =
+ | sectionurl =
+ |    version = Third Edition
+ |  publisher = IBM
+ |       date = December 1979
+ |       year =
+ |        url = 
+ |     format = PDF
+ |         id = GC20-1869-2
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+}}
+ |     author = IBM
+ |      title = Systems Network Architecture: Transaction Programmer's Reference Manual for LU Type 6.2
+ |    section =
+ | sectionurl =
+ |    version = Sixth Edition
+ |  publisher = IBM
+ |       date = June 1993
+ |       year =
+ |        url = 
+ |     format =
+ |         id = GC30-3084-05
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture Type 2.1 Node Reference
+ |    section =
+ | sectionurl =
+ |    version = Fifth Edition
+ |  publisher = IBM
+ |       date = December 1996
+ |       year =
+ |        url = 
+ |     format =
+ |         id = SC30-3422-04
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+ }}
+ |     author = IBM
+ |      title = Systems Network Architecture LU 6.2 Reference: Peer Protocols
+ |    section =
+ | sectionurl =
+ |    version = Third Edition
+ |  publisher = IBM
+ |       date = October 1996
+ |       year =
+ |        url = 
+ |     format =
+ |         id = SC31-6808-02
+ | accessdate =
+ |      quote =
+ |       page =
+ |      pages =
+ |        ref =
+ |  separator = ,
+ }}
+

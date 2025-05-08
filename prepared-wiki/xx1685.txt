@@ -1,0 +1,43 @@
+[[Condition number]]
+
+CATEGORIES: Numerical analysis, Matrices
+
+The condition number is an application of the derivative, and is formally defined as the value of the asymptotic worst-case relative change in output for a relative change in input. The "function" is the solution of a problem and the "arguments" are the data in the problem. The condition number is frequently applied to questions in linear algebra, in which case the derivative is straightforward but the error could be in many different directions, and is thus computed from the geometry of the matrix. More generally, condition numbers can be defined for non-linear functions in several variables.
+A problem with a low condition number is said to be well-conditioned, while a problem with a high condition number is said to be ill-conditioned. The condition number is a property of the problem.  Paired with the problem are any number of algorithms that can be used to solve the problem, that is, to calculate the solution.  Some algorithms have a property called backward stability. In general, a backward stable algorithm can be expected to accurately solve well-conditioned problems. Numerical analysis textbooks give formulas for the condition numbers of problems and identify the backward stable algorithms.
+
+==Matrices==
+
+For example, the condition number associated with the linear equation
+Ax = b gives a bound on how inaccurate the solution x will be after approximation. Note that this is before the effects of round-off error are taken into account; conditioning is a property of the matrix, not the algorithm or floating point accuracy of the computer used to solve the corresponding system. In particular, one should think of the condition number as being (very roughly) the rate at which the solution, x, will change with respect to a change in b.  Thus, if the condition number is large, even a small error in b may cause a large error in x. On the other hand, if the condition number is small then the error in x will not be much bigger than the error in b.
+The condition number is defined more precisely to be the maximum ratio of the relative error in x divided by the relative error in b.
+Let e be the error in b. Assuming that A is a square matrix, the error in the solution A−1b is A−1e. The ratio of the relative error in the solution to the relative error in b is
+This is easily transformed to
+The maximum value (for nonzero b and e) is easily seen[tpl]Citation needed|date=April 2014[/tpl] to be the product of the two operator norms:
+The same definition is used for any  consistent norm, i.e. one that satisfies
+When the condition number is exactly one, then the algorithm may find an approximation of the solution with an arbitrary precision. However it does not mean that the algorithm will converge rapidly to this solution, just that it won't diverge arbitrarily because of inaccuracy on the source data (backward error), provided that the forward error introduced by the algorithm does not diverge as well because of accumulating intermediate rounding errors.
+The condition number may also be infinite, in which case the algorithm will not reliably find a solution to the problem, not even a weak approximation of it (and not even its order of magnitude) with any reasonable and provable accuracy.
+Of course, this definition depends on the choice of norm:
+If the condition number is close to one, the matrix is well conditioned which means its inverse can be computed with good accuracy. If the condition number is large, then the matrix is said to be ill-conditioned. Practically, such a matrix is almost singular, and the computation of its inverse, or solution of a linear system of equations is prone to large numerical errors. A matrix that is not invertible has the condition number equal to infinity.
+
+==Non-linear==
+
+Condition numbers can also defined for nonlinear functions, and can be computed using calculus. The condition number varies with the point; in some cases one can use the maximum (or supremum) condition number over the domain of the function or domain of the question as an overall condition number, while in other cases the condition number at a particular point is of more interest.
+
+===One variable===
+
+The last term is the difference quotient (the slope of the secant line), and taking the limit yields the derivative.
+Condition numbers of common elementary functions are particularly important in computing significant figures, and can be computed immediately from the derivative; see significance arithmetic of transcendental functions. A few important ones are given below:
+
+===Several variables===
+
+Condition numbers can be defined for any function ƒ mapping its data from some domain (e.g. an m-tuple of real numbers x) into some codomain an n-tuple of real numbers ƒ(x), where both the domain and codomain are Banach spaces.  They express how sensitive that function is to small changes (or small errors) in its arguments.  This is crucial in assessing the sensitivity and potential accuracy difficulties of numerous computational problems, for example polynomial root finding or computing eigenvalues.  
+The condition number of ƒ at a point x (specifically, its relative condition number) is then defined to be the maximum ratio of the fractional change in ƒ(x) to any fractional change in x, in the limit where the change δx in x becomes infinitesimally small:L. N. Trefethen and D. Bau, Numerical Linear Algebra (SIAM, 1997).
+If ƒ is differentiable, this is equivalent to:
+
+==See also==
+
+==References==
+
+==External links==
+
+

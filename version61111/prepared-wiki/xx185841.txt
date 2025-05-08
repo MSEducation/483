@@ -1,0 +1,84 @@
+[[RDM Server]]
+
+CATEGORIES: Proprietary database management systems
+
+RDM Server is an embeddable, heterogeneous, client/server database management system supporting both C/C++ and SQL APIs for programming flexibility. The databases can be disk resident and/or memory resident. RDM Server implements multi-user locking, hot database backup, and a fully ACID compliant transaction logging system with automatic crash recovery. It is currently supported on many 32- and 64-bit enterprise and embedded operating systems. The database library can optionally be run in-process with the application, eliminating client/server remote procedure calls. 
+
+==History==
+
+RDM Server was first released in 1993  as an NLM for the NetWare platform under the name RDS (Raima Database Server). It was derived from its predecessor Raima Database Manager, and subsequently renamed Velocis. The database is currently is known by the name RDM Server,  and is currently offered as version 8.4
+Inspiration:
+
+==Product features==
+
+===Architecture===
+
+RDM Server is a client/server database engine with an optional configuration to execute the engine in-process with the application. When in a client/server configuration, clients perform remote procedure calls (RPC) to a server on the same computer or a computer which is visible across a network. Data is converted from the native server host's format to the native client host's format when in heterogeneous environments.
+Since its first release in 1993, RDM Server has allowed user-defined code to be loaded dynamically into the server process as a DLL or shared library. This technology was termed extension modules and was also used as the mechanism for advanced functional modules such as Raima's SQL.
+
+===Core Database Engine===
+
+The RDM Server core engine is a derivative of Raima Database Manager which had been released 9 years earlier. As a derivative product, the native API is a low-level C/C++ API.
+
+====C API====
+
+The native C API is an extensive library functions for all database operations. Timestamps, concurrency control, transaction control, database configuration, data navigation, and data changes are supported.
+
+====Instance Level Locking====
+
+Record instances and set instances may be locked for reading or writing. A set lock controls the ability to navigate or update the connections between owner and member records in a set instance.
+
+====Transaction Logging====
+
+The product implements a fully ACID compliant transaction logging system with automatic recovery capability. This facility is also used for asynchronous replication.
+
+====Indexes====
+
+RDM Server supports regular B-tree based indexes. An index can contain a single or multiple segments. In addition, it supports optional indexes where the application controls the index population.
+
+====Data Storage====
+
+Databases can be disk resident, memory resident or a hybrid. In the first case, all access to disk resident structures (both data or data index information), happens through an in-memory data cache maintained by the database server sub-system. Alternatively, the application can define database structures to reside in-memory. An application can also define a database with mixed disk based or memory resident data structures. The data definition language of the engine supports mixing different storage types for any data structure.
+
+====Data Types====
+
+RDM Server supports for the following native data types: signed and unsigned 8, 16, 32 and 64 bit integers, UTF-8 and Unicode characters, floating point (32 and 64 bit), BLOBs (binary large objects), BCD (Binary Coded Decimal), date, time and timestamp. In addition it has native support for structs and multi-dimensional arrays based on the above list of base types.
+
+====Data Models====
+
+The product offers two data models. The network data model manages relationships between data objects through list of pointers called sets. The network model is defined to allow very flexible relationships between objects. A hierarchical structure has parent-child relationships; the network model allows for the same structure except there is no limitation on the number of parents a child has. The relational data model manages relationships between data objects through value matching, and usually primary key/foreign keys. RDM Server allows for mixing both the network model and relational model in the same database definition giving the application developer additional flexibility.
+
+===Standard Extensions===
+
+Extension modules that are automatically available in RDM Server include:
+
+====SQL====
+
+Raima's SQL is an extension that implements ANSI SQL based on the 1989 and 1992 standards. It supports the following SQL data types: char, varchar, long varchar, smallint, integer, bigint, wchar (Unicode), wvarchar, long wvarchar, float, double, real, decimal/numeric, date, time, timestamp, rowid, binary, varbianary, long varbinary, and c_data (read access to native array and struct data types).
+The SQL API is implemented as a SAG CLI interface giving access to the supported SQL92 standard. RDM Server has full support for ODBC v3.51, JDBC v3 and v4 through a Java type 4 implementation, ADO.Net and even PHP.
+
+====Administrative Functions====
+
+Administrative functions that allow programmatic control over users, databases, and devices, as well as administrative procedures such as backup, defragmentation and consistency checks.
+
+===Replication===
+
+Active and passive replication is also available, maintaining an identical copy of a master database for application failover. The sub-system implements an asynchronous single master multi slave replication engine based on its supporting client–server transports (including TCP/IP).
+
+===Hot Online Backup===
+
+Administrative functions allow RDM Server to be placed into a hot backup mode so that database files can be safely copied to another permanent media. The functions can enumerate the files to be backed up and allow individual files to be "released" by the backup utility, permitting them to be written to again by the server.
+
+===Supported Platforms===
+
+The product is available both as object code and as source code, and currently supports the following target platforms: AIX, FreeBSD, HPUX, Linux (Red Hat Enterprise, and Ubuntu), MAC OS, QNX Neutrino, Solaris and Windows.
+
+==Examples of Applications==
+
+RDM Server is today used in a wide range of applications for business critical data transactions, flight control systems, medical equipment, network management systems  and more.
+
+==External links==
+
+===Articles===
+
+

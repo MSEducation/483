@@ -1,0 +1,39 @@
+[[Greedy algorithm]]
+
+CATEGORIES: Optimization algorithms and methods, Combinatorial algorithms, Matroid theory, Exchange algorithms
+
+A greedy algorithm is an algorithm that follows the problem solving heuristic of making the locally optimal choice at each stage[tpl]cite web|last=Black|first=Paul E.|title=greedy algorithm|url=http://xlinux.nist.gov/dads//HTML/greedyalgo.html|work=Dictionary of Algorithms and Data Structures|publisher=U.S. National Institute of Standards and Technology (NIST) |accessdate=17 August 2012|date=2 February 2005[/tpl] with the hope of finding a global optimum. In many problems, a greedy strategy does not in general produce an optimal solution, but nonetheless a greedy heuristic may yield locally optimal solutions that approximate a global optimal solution in a reasonable time.
+For example, a greedy strategy for the traveling salesman problem (which is of a high computational complexity) is the following heuristic: "At each stage visit an unvisited city nearest to the current city". This heuristic need not find a best solution but terminates in a reasonable number of steps; finding an optimal solution typically requires unreasonably many steps. In mathematical optimization, greedy algorithms solve combinatorial problems  having the properties of matroids.
+
+==Specifics==
+
+In general, greedy algorithms have five components:
+Greedy algorithms produce good solutions on some mathematical problems, but not on others.  Most problems for which they work, will  have two properties:
+
+===Cases of failure===
+
+For many other problems, greedy algorithms fail to produce the optimal solution, and may even produce the unique worst possible solution. One example is the traveling salesman problem mentioned above: for each number of cities, there is an assignment of distances between the cities for which the nearest neighbor heuristic produces the unique worst possible tour.(G. Gutin, A. Yeo and A. Zverovich, 2002)
+Imagine the coin example with only 25-cent, 10-cent, and 4-cent coins. The greedy algorithm would not be able to make change for 41 cents, since after committing to use one 25-cent coin and one 10-cent coin it would be impossible to use 4-cent coins for the balance of 6 cents, whereas a person or a more sophisticated algorithm could make change for 41 cents with one 25-cent coin and four 4-cent coins.
+
+==Types==
+
+Greedy algorithms can be characterized as being 'short sighted', and as 'non-recoverable'. They are ideal only for problems which have 'optimal substructure'. Despite this, greedy algorithms are best suited for simple problems (e.g. giving change). It is important, however, to note that the greedy algorithm can be used as a selection algorithm to prioritize options within a search, or branch and bound algorithm. There are a few variations to the greedy algorithm:
+
+==Applications==
+
+Greedy algorithms mostly (but not always) fail to find the globally optimal solution, because they usually do not operate exhaustively on all the data. They can make commitments to certain choices too early which prevent them from finding the best overall solution later. For example, all known greedy coloring algorithms for the graph coloring problem and all other NP-complete problems do not consistently find optimum solutions. Nevertheless, they are useful because they are quick to think up and often give good approximations to the optimum.
+If a greedy algorithm can be proven to yield the global optimum for a given problem class, it typically becomes the method of choice because it is faster than other optimization methods like dynamic programming. Examples of such greedy algorithms are Kruskal's algorithm and Prim's algorithm for finding minimum spanning trees, and the algorithm for finding optimum Huffman trees.
+The theory of matroids, and the more general theory of greedoids, provide whole classes of such algorithms.
+Greedy algorithms appear in network routing as well.  Using greedy routing, a message is forwarded to the neighboring node which is "closest" to the destination. The notion of a node's location (and hence "closeness") may be determined by its physical location, as in geographic routing used by ad hoc networks.  Location may also be an entirely artificial construct as in small world routing and distributed hash table.
+
+==Examples==
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,44 @@
+[[C data types]]
+
+CATEGORIES: C programming language, C standard library
+
+In the C programming language, data types refers to an extensive system for declaring variables of different types. The language itself provides basic arithmetic types and syntax to build array and compound types. Several headers in the standard library contain definitions of support types, that have additional properties, such as exact size, guaranteed.
+
+Basic types
+
+The C language provides many basic types. Most of them are formed from one of the four basic arithmetic type specifiers in C (char, int, float and double), and optional specifiers (signed, unsigned, short, long). All available basic arithmetic types are listed below:
+The actual size of integer types varies by implementation. The standard only requires size relations between the data types and minimum sizes for each data type:
+The relation requirements are that the long long is not smaller than long, which is not smaller than int, which is not smaller than short. As char's size is always the minimum supported data type, all other data types can't be smaller.
+The minimum size for char is 8 bit, the minimum size for short and int is 16 bit, for long it is 32 bit and long long must contain at least 64 bit.
+The type int should be the integer type that the target processor is most efficient working with. This allows great flexibility: for example, all types can be 64-bit. However, several different integer width schemes (data models) are popular. This is because the data model defines how different programs communicate, a uniform data model is used within a given operating system application interface.
+In practice it should be noted that char is usually 8 bits in size and short is usually 16 bits in size (as are their unsigned counterparts).  This holds true for platforms as diverse as 1990s SunOS 4 Unix, Microsoft MS-DOS, modern Linux, and Microchip MCC18 for embedded 8 bit PIC microcontrollers. POSIX requires char to be exactly 8 bits in size.
+The actual size and behavior of floating-point types also vary by implementation. The only guarantee is that long double is not smaller than double, which is not smaller than float. Usually, the 32-bit and 64-bit IEEE 754 binary floating-point formats are used, if supported by hardware.
+
+Boolean type
+
+C99 added a boolean (true/false) type (_Bool) which is defined in the  header.  Additionally, the standard requires that macros are defined to alias the type as bool as well as providing macros for true and false.
+
+Size and pointer difference types
+
+The C language provides the separate types size_t and ptrdiff_t to represent memory-related quantities. Existing types were deemed insufficient, because their size is defined according to the target processor's arithmetic capabilities, not the memory capabilities, such as available address space. Both of these types are defined in the  header (cstddef header in C++). 
+size_t is used to represent the size of any object (including arrays) in the particular implementation. It is used as the return type of the sizeof operator. The maximum size of size_t is provided via SIZE_MAX, a macro constant which is defined in the  header (cstdint header in C++). As an unsigned type, size_t is guaranteed to be wide enough to accommodate at least the value of 65535.  Signed sizes can be represented by ssize_t, which is a POSIX extension.
+ptrdiff_t is used to represent the difference between pointers.
+
+Interface to the properties of the basic types
+
+Information about the actual properties, such as size, of the basic arithmetic types, is provided via macro constants in two headers:  header (climits header in C++) defines macros for integer types and  header (cfloat header in C++) defines macros for floating-point types. The actual values depend on the implementation.
+
+Fixed-width integer types
+
+The C99 standard includes definitions of several new integer types to enhance the portability of programs. The already available basic integer types were deemed insufficient, because their actual sizes are implementation defined and may vary across different systems. The new types are especially useful in embedded environments where hardware supports usually only several types and that support varies from system to system. All new types are defined in  header (cinttypes header in C++) and also are available at  header (cstdint header in C++). The types can be grouped into the following categories:
+The following table summarizes the types and the interface to acquire the implementation details (N refers to the number of bits):
+
+Printf and scanf format specifiers
+
+The  header (cinttypes header in C++) provides features that enhance the functionality of the types defined in  header. Included are macros that define printf format string and scanf format string specifiers corresponding to the  types and several functions for working with intmax_t and uintmax_t types. This header was added in C99. 
+The macros are in the format PRI{fmt}{type}. Here {fmt} defines the output formatting and is one of d (decimal), x (hexadecimal), o (octal), u (unsigned) and i (integer). {type} defines the type of the argument and is one of N, FASTN, LEASTN, PTR, MAX, where N corresponds to the number of bits in the argument.
+The macros are in the format SCN{fmt}{type}. Here {fmt} defines the output formatting and is one of d (decimal), x (hexadecimal), o (octal), u (unsigned) and i (integer). {type} defines the type of the argument and is one of N, FASTN, LEASTN, PTR, MAX, where N corresponds to the number of bits in the argument.
+
+Additional floating-point types
+
+

@@ -1,0 +1,46 @@
+[[Bayesian linear regression]]
+
+CATEGORIES: Bayesian inference, Regression analysis
+
+In statistics, Bayesian linear regression is an approach to linear regression in which the statistical analysis is undertaken within the context of Bayesian inference. When the regression model has errors that have a normal distribution, and if a particular form of prior distribution is assumed, explicit results are available for the posterior probability distributions of the model's parameters.
+
+==Model setup==
+
+This corresponds to the following likelihood function:
+The ordinary least squares solution is to estimate the coefficient vector using the Moore-Penrose pseudoinverse:
+
+==With conjugate priors==
+
+===Conjugate prior distribution===
+
+For an arbitrary prior distribution, there may be no analytical solution for the posterior distribution. In this section, we will consider a so-called conjugate prior for which the posterior distribution can be derived analytically.
+The likelihood is now re-written as
+where
+This suggests a form for the prior:
+
+===Posterior distribution===
+
+With the prior now specified, the posterior distribution can be expressed as
+Now the posterior can be expressed as a normal distribution times an inverse-gamma distribution:
+Therefore the posterior distribution can be parametrized as follows.
+This can be interpreted as Bayesian learning where the parameters are updated according to the following equations.
+
+===Model evidence===
+
+This integral can be computed analytically and the solution is given in the following equation.The intermediate steps of this computation can be found in O'Hagan (1994) on page 257.
+Note that this equation is nothing but a re-arrangement of Bayes theorem. Inserting the formulas for the prior, the likelihood, and the posterior and simplifying the resulting expression leads to the analytic expression given above.
+
+==Other cases==
+
+In general, it may be impossible or impractical to derive the posterior distribution analytically. However, it is possible to approximate the posterior by an approximate Bayesian inference method such as Monte Carlo samplingCarlin and Louis(2008) and Gelman, et al. (2003) explain how to use sampling methods for Bayesian linear regression. or variational Bayes.
+A similar analysis can be performed for the general case of the multivariate regression and part of this provides for Bayesian estimation of covariance matrices: see Bayesian multivariate linear regression.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,47 @@
+[[Planner (programming language)]]
+
+CATEGORIES: History of artificial intelligence, Automated planning and scheduling, Logic programming languages, Robot programming languages, Theorem proving software systems, Programming languages created in 1969
+
+Planner (often seen in publications as "PLANNER" although it is not an acronym) is a programming language designed by Carl Hewitt at MIT, and first published in 1969.  First, subsets such as Micro-Planner and Pico-Planner were implemented, and then essentially the whole language was implemented in Popler.Carl Hewitt Middle History of Logic Programming: Resolution, Planner, Prolog and the Japanese Fifth Generation Project ArXiv 2009. PDF Derivations such as QA4, Conniver, QLISP and Ether (see Scientific Community Metaphor) were important tools in Artificial Intelligence research in the 1970s, which influenced commercial developments such as KEE and ART.
+
+==Procedural approach versus logical approach==
+
+The two major paradigms for constructing semantic software systems were procedural and logical.  The procedural paradigm was epitomized by 
+Lisp et al. 1962 which featured recursive procedures that operated on list structures.
+The logical paradigm was epitomized by uniform proof procedure resolution theorem provers 1965.  According to the logical paradigm it was “cheating” to incorporate procedural knowledge 1969.
+
+==Procedural embedding of knowledge==
+
+Planner was invented for the purposes of the procedural embedding of knowledge 1971 and was a rejection of the resolution uniform proof procedure paradigm 1965, which
+Planner was a kind of hybrid between the procedural and logical paradigms because it combined programmability with logical reasoning.  Planner featured a procedural interpretation of logical sentences where an implication of the form (P implies Q) can be procedurally interpreted in the following ways using pattern-directed invocation:
+In this respect, the development of Planner was influenced by natural deductive logical systems (especially the one by Frederic Fitch 1952).
+
+==Micro-planner implementation==
+
+A subset called Micro-Planner was implemented by Gerry Sussman, Eugene Charniak and Terry Winograd Charniak, and Winograd 1971 and was used in Winograd's natural-language understanding program SHRDLU, Eugene Charniak's story understanding work, Thorne McCarty's work on legal reasoning, and some other projects.  This generated a great deal of excitement in the field of AI.  It also generated controversy because it proposed an alternative to the logic approach that had been one of the mainstay paradigms for AI.
+At SRI International, Jeff Rulifson, Jan Derksen, and Richard Waldinger developed QA4 which built on the constructs in Planner and introduced a context mechanism to provide modularity for expressions in the database. Earl Sacerdoti and Rene Reboh developed QLISP, an extension of QA4 embedded in INTERLISP, providing Planner-like reasoning embedded in a procedural language and developed in its rich programming environment. QLISP was used by Richard Waldinger and Karl Levitt for program verification, by Earl Sacerdoti for planning and execution monitoring, by Jean-Claude Latombe for computer-aided design, by Richard Fikes for deductive retrieval, and by Steven Coles for an early expert system that guided use of an econometric model.
+Computers were expensive. They had only a single slow processor and their memories were very small by comparison with today. So Planner adopted some efficiency expedients including the following:
+
+==The genesis of Prolog==
+
+Gerry Sussman, Winograd and (Charniak 1971), Seymour Papert (Minsky and Papert 1971), and Terry Winograd (Winograd 1971) visited Edinburgh spreading the news about Micro-Planner and SHRDLU casting doubt on the resolution uniform proof procedure approach that had been the mainstay of the Edinburgh Logicists. At the University of Edinburgh, Bruce Anderson implemented a subset of Micro-Planner called PICO-PLANNER (Anderson 1972) and Julian Davies (1973) implemented essentially all of Planner.
+According to Donald MacKenzie, Pat Hayes recalled the impact of a visit from Papert to Edinburgh, which had become the "heart of artificial intelligence's Logicland," according to Papert's MIT colleague, Carl Hewitt. Papert eloquently voiced his critique of the resolution approach dominant at Edinburgh "...and at least one person upped sticks and left because of Papert." 2001 pg 82.
+The above developments generated tension among the Logicists at Edinburgh.  These tensions were exacerbated when the UK Science Research Council commissioned Sir James Lighthill to write a report on the AI research situation in the UK.  The resulting report Lighthill 1973; McCarthy 1973] was highly critical although SHRDLU was favorably mentioned.
+Pat Hayes visited Stanford where he learned about Planner. When he returned to Edinburgh, he tried to influence his friend Bob Kowalski to take Planner into account in their joint work on automated theorem proving. "Resolution theorem-proving was demoted from a hot topic to a relic of the misguided past.  Bob Kowalski doggedly stuck to his faith in the potential of resolution theorem proving. He carefully studied Planner.” according to Bruynooghe, Pereira, Sickmann, and van Emden 2004. Kowalski 1988 states "I can recall trying to convince Hewitt that Planner was similar to SL-resolution." But Planner was invented for the purposes of the procedural embedding of knowledge and was a rejection of the resolution uniform proof procedure paradigm. Colmerauer and Roussel recalled their reaction to learning about Planner in the following way:
+"While attending an IJCAI convention in September ‘71 with Jean Trudel, we met Robert Kowalski again and heard a lecture by Terry Winograd on natural language processing. The fact that he did not use a unified formalism left us puzzled. It was at this time that we learned of the existence of Carl Hewitt’s programming language, Planner 1969. The lack of formalization of this language, our ignorance of Lisp and, above all, the fact that we were absolutely devoted to logic meant that this work had little influence on our later research." and Roussel 1996
+In the fall of 1972, Roussel implemented a language called Prolog (an abbreviation for PROgrammation en LOGique - French for "programming in logic"). Prolog programs are generically of the following form (which is a special case of the backward-chaining in Planner):
+Prolog duplicated the following aspects of Micro-Planner:
+Prolog also duplicated the following capabilities of Micro-Planner which were pragmatically useful for the computers of the era because they saved space and time:
+Use of the Unique Name Assumption and Negation as Failure became more questionable when attention turned to Open Systems and de Jong 1983, Hewitt 1985, Hewitt and Inman 1991.
+The following capabilities of Micro-Planner were omitted from Prolog:
+Prolog did not include negation in part because it raises implementation issues. Consider for example if negation were included in the following Prolog program:
+The above program would be unable to prove not P even though it follows by the rules of mathematical logic. This is an illustration of the fact that Prolog (like Planner) is intended to be a programming language and so does not (by itself) prove many of the logical consequences that follow from a declarative reading of its programs.
+The work on Prolog was valuable in that it was much simpler than Planner.  However, as the need arose for greater expressive power in the language, Prolog began to include many of the capabilities of Planner that were left out of the original version of Prolog.
+
+==See also==
+
+==References==
+
+==External links==
+
+

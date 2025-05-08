@@ -1,0 +1,106 @@
+[[Hex (board game)]]
+
+CATEGORIES: Board games introduced in 1942, Board games introduced in 1947, Abstract strategy games, Connection games, Mathematical games, PSPACE-complete problems, Parker Brothers games, Paper-and-pencil games
+
+Hex is a strategy board game played on a hexagonal grid, theoretically of any size and several possible shapes, but traditionally as an 11×11 rhombus. Other popular dimensions are 13×13 and 19×19 as a result of the game's relationship to the older game of Go. According to the book A Beautiful Mind, John Nash (one of the game's inventors) advocated 14×14 as the optimal size.
+
+==History==
+
+The game was invented by the Danish mathematician Piet Hein, who introduced it in 1942 at the Niels Bohr Institute. It was independently re-invented in 1947 by the mathematician John Nash at Princeton University. It became known in Denmark under the name Polygon (though Hein called it CON-TAC-TIX); Nash's fellow players at first called the game Nash.  According to Martin Gardner, some of the Princeton University students also referred to the game as John (according to some sources this was because they played the game using the mosaic of the bathroom floor).  However, according to Sylvia Nasar's biography of John Forbes Nash A Beautiful Mind, the game was referred to as "Nash" or "John" after its apparent creator.  John Nash was said to have thought of this game, independent of Hein's, during his graduate years at Princeton.  In 1952 Parker Brothers marketed a version. They called their version "Hex" and the name stuck.
+Hex is an abstract strategy game that belongs to the general category of "connection" games.  Other connection games include Omni, Y and Havannah. All of these games bear varying degrees of similarity to the ancient Asian game of Go.
+
+==Rules==
+
+Each player has an allocated color, Red and Blue or White and Black being conventional.  Players take turns placing a stone of their color on a single cell within the overall playing board.  The goal for each player is to form a connected path of their own stones linking the opposing sides of the board marked by their colors, before their opponent connects his or her sides in a similar fashion. The first player to complete his or her connection wins the game. The four corner hexagons each belong to both adjacent sides.
+Since the first player to move in Hex has a distinct advantage, the pie rule is generally implemented for fairness. This rule allows the second player to choose whether to switch positions with the first player after the first player makes the first move.
+
+==Strategy==
+
+The game can never end in a tie, a fact proved by John Nash: the only way a player can prevent an opponent from forming a connecting path is to form their own path. In other words, Hex is a "determined" game.
+When the sides of the grid are equal, the game favors the first player.  A standard non-constructive strategy-stealing argument proves that the first player has a winning strategy as follows:
+One might attempt to compensate for the second player's disadvantage by making the second player's sides closer together, playing on a parallelogram rather than a rhombus.  However, using a simple pairing strategy, this has been proven to result in an easy win for the second player.Hex IAQ: What about mxn Hex?
+
+===Bridges and connections===
+
+Two (groups of) stones are safely connected if nothing can stop them from being connected even if the opponent has the next move. One example of this is the bridge.  Let A, B, C and D be the hexes that make up a rhombus, with A and C being the non-touching pair.
+To form a bridge, a player places stones at A and C, leaving B and D empty.  If the opponent places a stone at B or D, the remaining hex can be filled to join the original two stones into a single group. This strategy is very useful throughout the game.
+
+===Paths===
+
+Two groups of stones are said to be n-connected if they can be safely connected in n moves (or, more precisely, the number of moves a player must make in order to safely connect the two groups minus the number of moves their opponent makes is n). Safely connected stones, such as adjacent stones are 0-connected. Bridges are also 0-connected. The lower the value of n, the better for the player.
+A path consists of two (or more) groups of stones and an empty-point set, which is the set of empty hexes that are required for the given connections. For example, the bridge path consists of the (one-member) group of stones at A and another (one-member) group of stones at C. The empty-point set is made up of the hexes B and D. For two paths to coexist and maintain the level of connectivity they have while independent, their empty-point sets must not contain any of the same hexes (otherwise the opponent could play there).
+Two 1-connected paths can be consolidated together if the two groups of stones they start and end in are the same and their empty-point sets do not overlap.
+
+===Templates===
+
+An important concept in the theory of Hex is the template. Templates can be considered a special type of 0-connected path where one of the groups of stones is the edge that the player is trying to connect to.
+
+===Ladders===
+
+Ladders are sequences of forcing moves where stones are placed in two parallel lines. They can be considered normal edge templates and can be analyzed using path analysis in the same way that bridges, paths, and templates can.
+
+==Theory and proofs==
+
+Hex is a connection game, and can be classified as a Maker-Breaker game, a particular type of positional game.
+John Nash proved in 1952 that a game of Hex cannot end in a tie, and that for a symmetric board there exists a winning strategy for the player who makes the first move (by the strategy-stealing argument). However, the argument is non-constructive: it only shows the existence of a winning strategy, without describing it explicitly. Finding an explicit strategy has been the main subject of research since then.
+An explicit winning strategy with a pairing argument exists on non-symmetrical n×m boards, which leaves only symmetrical n×n boards as the center of interest.
+In 1976, Shimon Even and Robert Tarjan proved that determining whether a position in the game of Hex is a winning position is
+PSPACE-complete.S. Even and R. E. Tarjan. 1976. A Combinatorial Problem Which Is Complete in Polynomial Space. J. ACM 23, 4 (October 1976), 710-719. DOI=10.1145/321978.321989 http://doi.acm.org/10.1145/321978.321989
+A generalization of this result was proved by Reisch.[tpl]cite journal | author = Stefan Reisch | title = Hex ist PSPACE-vollständig (Hex is PSPACE-complete) | journal = Acta Informatica | issue = 15 | year = 1981 | pages = 167–191[/tpl]
+In the computational complexity theory, it is widely conjectured that PSPACE-complete problems cannot be solved with efficient (polynomial time) algorithms. This result limits the efficiency of the best possible algorithms when considering arbitrary positions on boards of unbounded size, but it doesn't rule out the possibility of a simple winning strategy for the initial position (on boards of unbounded size), or a simple winning strategy for all positions on a board of a particular size.
+In 2002, Jing Yang, Simon Liao and Mirek Pawlak found an explicit winning strategy for the first player on Hex boards of size 7×7.On a decomposition method for finding winning strategy in Hex game, Jing Yang, Simon Liao and Mirek Pawlak, 2002 They extended the method to the 8×8 and 9×9 boards in 2003.
+In 2009, Philip Henderson, Broderick Arneson and Ryan B. Hayward completed the analysis of the 8×8 board with a computer search, solving all the possible openings.Solving 8x8 Hex, P. Henderson, B. Arneson, and R. Hayward, Proc. IJCAI-09 505-510 (2009) The same team has solved most 9×9 openings, but some of them are still unknown.
+The determinacy of Hex has other mathematical consequences: it can be used to prove the two-dimensional Brouwer fixed point theorem, as David Gale showed in 1979,[tpl]cite journal|author=David Gale |year=1979|title=The Game of Hex and Brouwer Fixed-Point Theorem | journal=The American Mathematical Monthly | volume=86 | pages=818–827|doi=10.2307/2320146|jstor=2320146|issue=10|publisher=Mathematical Association of America[/tpl] and the determinacy of higher-dimensional variants proves the fixed-point theorem in general.
+
+==Variants==
+
+===Blockbusters===
+
+Hex had an incarnation as the question board from the television game show Blockbusters. In order to play a "move", contestants had to answer a question correctly. The board had 5 alternating columns of 4 hexagons; the solo player could connect top-to-bottom in 4 moves, while the team of two could connect left-to-right in 5 moves.
+
+===The game of Y===
+
+The game of Y is a generalization of Hex to the extent that any position on a Hex board can be represented as an equivalent position on a larger Y board.
+
+===Havannah===
+
+Havannah has some similarities to Hex, but the winning structures (game objectives) are different.
+
+===Mind Ninja===
+
+Mind Ninja is another game that is a generalization of Hex, albeit a rather broad one.  As in Hex, two players vie to create mutually exclusive patterns by filling in cells of a tiled surface.  In Mind Ninja, however, the players themselves define the patterns, subject to certain constraints.  Mind Ninja differs from Hex also in that it can be played on any tiled surface, and each player may fill in a cell with any available color, rather than just one.Complete rules of Mind Ninja
+
+===Chameleon===
+
+Utilizing the same board and pieces as Hex, Chameleon gives the players the option of placing a piece of either color on the board.  One player is attempting to connect the north and south edges, and the other is attempting to connect the east and west edges.  The game is won when a connection between a player's goal edges is formed using either color. If a piece is placed that creates a connection between both players' goal edges (i.e. all edges are connected), the winner is the player who placed the final piece.
+Chameleon is described in Cameron Browne's book Connection Games: Variations on a Theme (2005) and was independently discovered by Randy Cox and Bill Taylor.
+
+===The Shannon switching game===
+
+The Shannon switching game involves two players coloring the edges of an arbitrary graph, one player attempting to connect two distinguished vertices with edges of their color, and the other erasing edges to prevent this. It was invented by "the father of information theory", Claude Shannon.
+Unlike Hex, this game is not known to be PSPACE hard, unless played on a directed graph or in the variant where play is along vertices rather than edges.[tpl]cite journal | url=http://hex.kosmanor.com/hex/jacm23/t710.html) | title=A Combinatorial Problem Which is Complete in Polynomial Space | author=Even, S. | journal=Journal of the Association for Computing Machinery |date=October 1976 | volume=23 | issue=4 | pages=710–719 | doi=10.1145/321978.321989[/tpl]
+
+===Gale===
+
+In this game invented by David Gale (also known as Game of Gale, Bridg-It, or Bird Cage), two grids of differently-colored dots are overlaid at an offset. One player links orthogonally adjacent dots on one grid, and the other player uses the other. One player attempts to link the top of their grid to the bottom, while the other tries to link their left side to the right.
+The game is equivalent to the Shannon switching game played on a rectangular grid.
+
+===Pex===
+
+Pex is nearly identical to Hex, except that it's played on a rhombus-shaped tiling of irregular pentagons, instead of regular hexagons. Pex's tiling is notable for the fact that half of the pentagons each connect to seven adjacent neighbors, while the other half each connect to only to five neighbors.  Pex's tactics are said to be much sharper than those of Hex.History and rules of Pex with the illustration, showing the board shape
+
+===Hecks===
+
+Hecks is yet another variant of Hex in which the tiles of the square board are irregular polygons and the graph formed by polygon edges is trivalent, i.e. each node has precisely three incident arcs.  The trivalence condition is meant to avoid the decision about the validity of the contact between two tiles that share only a vertex.  An interesting aspect of Hecks is that the sides of the board have no predefined color: the black and white players do not have to declare in advance which pair of sides they attempt to connect,  and the first player who completes a path across the board wins.
+
+===Nex===
+
+Players take turns to place a stone of their color and a neutral stone on empty cells; or replace two neutral stones with stones of their color, and replace a different stone of their color on the board to neutral stone.igGameCenter :: Nex
+
+==See also==
+
+==References==
+
+==External links==
+
+

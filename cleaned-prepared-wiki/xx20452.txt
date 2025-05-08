@@ -1,0 +1,115 @@
+[[Quantum harmonic oscillator]]
+
+CATEGORIES: Quantum models
+
+The quantum harmonic oscillator is the quantum-mechanical analog of the classical harmonic oscillator.   Because an arbitrary potential can usually be approximated as a harmonic potential at the vicinity of a stable equilibrium point,  it is one of the most important model systems in quantum mechanics. Furthermore, it is one of the few quantum-mechanical systems for which an exact, analytical solution is known.[ref]
+[ref]
+</ref>
+
+One-dimensional harmonic oscillator
+
+Hamiltonian and energy eigenstates
+
+The Hamiltonian of the particle is:
+The first term in the Hamiltonian represents the possible kinetic energy states of the particle, and the second term represents its respectively corresponding possible potential energy states.
+One may write the time-independent Schrödinger equation,
+where  denotes a yet-to-be-determined real number that will specify a time-independent energy level, or eigenvalue, and the solution  |ψ⟩ denotes that level's energy eigenstate.
+One may solve the differential equation representing this eigenvalue problem in the coordinate basis, for the wave function  ⟨x|ψ⟩ = ψ(x),  using a spectral method. It turns out that there is a family of solutions. In this basis, they amount to
+The functions Hn are the Hermite polynomials,
+The corresponding energy levels are
+This energy spectrum is noteworthy for three reasons.  First, the energies are quantized, meaning that only discrete energy values (integer-plus-half multiples of  above it; this is called zero-point energy.  Because of the zero-point energy, the position and momentum of the oscillator in the ground state are not fixed (as they would be in a classical oscillator), but have a small range of variance, in accordance with the Heisenberg uncertainty principle.  The zero-point energy also has important implications in quantum field theory and quantum gravity.
+Note that the ground state probability density is concentrated at the origin. This means the particle spends most of its time at the bottom of the potential well, as we would expect for a state with little energy. As the energy increases, the probability density becomes concentrated at the classical "turning points", where the state's energy coincides with the potential energy. This is consistent with the classical harmonic oscillator, in which the particle spends most of its time (and is therefore most likely to be found) at the turning points, where it is the slowest. The correspondence principle is thus satisfied.
+
+Ladder operator method
+
+The spectral method solution, though straightforward, is rather tedious. The "ladder operator" method, developed by Paul Dirac, allows us to extract the energy eigenvalues without directly solving the differential equation. Furthermore, it is readily generalizable to more complicated problems, notably in quantum field theory. Following this approach, we define the operators ,
+The operator  are not equal. Yet the energy eigenstates   |n⟩, when operated on by these ladder operators, give
+It is then evident that   removes a quantum. For this reason, they are sometimes referred to as "creation" and "annihilation" operators.
+From the relations above, we can also define a number operator , which has the following property:
+The following commutators can be easily obtained by substituting the canonical commutation relation,
+And the Hamilton operator can be expressed as
+so the eigenstate of  is also the eigenstate of energy.
+The commutation property yields
+and similarly,
+This means that  are alternatively called "annihilation" and "creation" operators because they destroy and create particles, which correspond to our quanta of energy.
+Given any energy eigenstate, we can act on it with the lowering operator, . However, since
+the smallest eigen-number is 0, and
+In this case, subsequent applications of the lowering operator will just produce zero kets, instead of additional energy eigenstates. Furthermore, we have shown above that
+Finally, by acting on  |0⟩ with the raising operator and multiplying by suitable normalization factors, we can produce an infinite set of energy eigenstates 
+such that
+which matches the energy spectrum given in the preceding section.
+Arbitrary eigenstates can be expressed in terms of     |0⟩,   
+The ground state  |0⟩  in the position representation is determined by a |0⟩ = 0, 
+and hence
+and so on, as in the previous section.
+
+Natural length and energy scales
+
+The quantum harmonic oscillator possesses natural scales for length and energy, which can be used to simplify the problem. These can be found by nondimensionalization. The result is that, if we measure energy in units of  , then the Hamiltonian becomes
+while the energy eigenfunctions and eigenvalues become
+where  are the Hermite polynomials.
+To avoid confusion, we will not adopt these "natural units" in this article. However, they frequently come in handy when performing calculations, by bypassing clutter. For example, the fundamental solution (Green's function) of , the time-dependent Schroedinger operator for this oscillator, simply boils down to the Mehler kernel,Pauli, W. (2000), Wave Mechanics: Volume 5 of Pauli Lectures on Physics (Dover Books on Physics). ISBN 978-0486414621 .
+where .
+
+Phase space solutions
+
+In the phase space formulation of quantum mechanics, solutions to the quantum harmonic oscillator in several different representations of the quasiprobability distribution can be written in closed form.  The most widely used of these is for the Wigner quasiprobability distribution, which has the solution
+where
+and Ln are the Laguerre polynomials.  
+This example illustrates how the Hermite  and Laguerre polynomials are linked through the Wigner map.
+
+N-dimensional harmonic oscillator
+
+The one-dimensional harmonic oscillator is readily generalizable to N dimensions, where N = 1, 2, 3, ... . In one dimension, the position of the particle was specified by a single coordinate, x. In N dimensions, this is replaced by N position coordinates, which we label x1, ..., xN. Corresponding to each position coordinate is a momentum; we label these p1, ..., pN. The canonical commutation relations between these operators are
+The Hamiltonian for this system is
+This observation makes the solution straightforward. For a particular set of quantum numbers {n} the energy eigenfunctions for the N-dimensional oscillator are expressed in terms of the 1-dimensional eigenfunctions as:
+In the ladder operator method, we define N sets of ladder operators,
+By a procedure analogous to the one-dimensional case, we can then show that each of the ai and a†i operators lower and raise the energy by ℏω respectively. The Hamiltonian is
+This Hamiltonian is invariant under the dynamic symmetry group U(N) (the unitary group in N dimensions), defined by
+The energy levels of the system are
+As in the one-dimensional case, the energy is quantized. The ground state energy is N times the one-dimensional energy, as we would expect using the analogy to N independent one-dimensional oscillators. There is one further difference: in the one-dimensional case, each energy level corresponds to a unique quantum state. In N-dimensions, except for the ground state, the energy levels are degenerate, meaning there are several states with the same energy.
+The degeneracy can be calculated relatively easily.  As an example, consider the 3-dimensional case: Define n = n1 + n2 + n3. All states with the same n will have the same energy.  For a given n, we choose a particular n1. Then n2 + n3 = n − n1.   There are n − n1 + 1 possible groups {n2, n3}.  n2 can take on the values 0 to n − n1, and for each n2 the value of n3 is fixed. The degree of degeneracy therefore is:
+Formula for general N and n being the dimension of the symmetric irreducible nth power representation of the unitary group U(N):
+The special case N = 3, given above, follows directly from this general equation.  This is however, only true for distinguishable particle, or one particle in N dimensions (as dimensions are distinguishable). For the case of N bosons in a one dimension harmonic trap, the degeneracy scales as the number of ways to partition an integer n using integers less than or equal to N.
+
+Example: 3D isotropic harmonic oscillator
+
+The Schrödinger equation of a spherically-symmetric three-dimensional harmonic oscillator can be solved explicitly by separation of variables, see this article for the present case. This procedure is analogous to the separation performed in the hydrogen-like atom problem, but with the spherically symmetric potential
+where ,   as earlier in this article.)
+The solution reads
+where
+are generalized Laguerre polynomials; The order   of the polynomial is a non-negative integer;
+The energy eigenvalue is
+The energy is usually described by the single quantum number
+Because    is
+where the sum starts from 0 or 1, according to whether  is even or odd.
+This result is in accordance with the dimension formula above, and amounts to the dimensionality of a symmetric representation of , the relevant degeneracy group.
+
+Harmonic oscillators lattice: phonons
+
+We can extend the notion of harmonic oscillator to a one lattice of many particles. Consider a one-dimensional quantum mechanical harmonic chain of N identical atoms. This is the simplest quantum mechanical model of a lattice, and we will see how phonons arise from it. The formalism that we will develop for this model is readily generalizable to two and three dimensions.
+The quantity  will turn out to be the wave number of the phonon, i.e. 2π  divided by the wavelength. It takes on quantized values, because the number of atoms is finite.
+This choice preserves the desired commutation relations in either real space or wave vector space
+From the general result
+it is easy to show, through elementary trigonometry, that the potential energy term is
+where
+The Hamiltonian may be written in wave vector space as
+Note that the couplings between the position variables have been transformed away; if the  uncoupled harmonic oscillators.
+The form of the quantization depends on the choice of boundary conditions; for simplicity, we impose periodic boundary conditions, defining the th atom as equivalent to the first atom. Physically, this corresponds to joining the chain at its ends. The resulting quantization is
+The upper bound to , as discussed above.
+The  harmonic oscillator eigenvalues or energy levels for the mode  are 
+If we ignore the zero-point energy then the levels are evenly spaced at 
+So an exact amount of energy ,  must be supplied to the harmonic oscillator lattice to push it to the next energy level. In comparison to the photon case when the electromagnetic field is quantised, the quantum of vibrational energy is called a phonon.
+All quantum systems show wave-like and particle-like properties. The particle-like properties of the phonon are best understood using the methods of second quantization and operator techniques described later.
+
+Applications
+
+where 
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+[[Heap overflow]]
+
+CATEGORIES: Computer security exploits, Software anomalies
+
+A heap overflow is a type of buffer overflow that occurs in the heap data area. Heap overflows are exploitable in a different manner to that of stack-based overflows. Memory on the heap is dynamically allocated by the application at run-time and typically contains program data. Exploitation is performed by corrupting this data in specific ways to cause the application to overwrite internal structures such as linked list pointers. The canonical heap overflow technique overwrites dynamic memory allocation linkage (such as malloc meta data) and uses the resulting pointer exchange to overwrite a program function pointer.
+A typical example on older versions of Linux is two buffers allocated next to each other on the heap, writing beyond the boundary of the first buffer allows overwriting meta data in the second buffer. By setting the in-use bit to zero of the second buffer and setting the length to a small negative value which allows null bytes to be copied, when the program calls free() on the first buffer it will attempt to merge these two buffers into a single buffer. When this happens, the buffer that is assumed to be freed will be expected to hold two pointers FD and BK in the first 8 bytes of the formerly allocated buffer. BK gets written into FD and can be used to overwrite a pointer.
+
+==Consequences==
+
+An accidental overflow may result in data corruption or unexpected behavior by any process which uses the affected memory area.  On operating systems without memory protection, this could be any process on the system.
+A deliberate exploit may result in data at a specific location being altered in an arbitrary way, or in arbitrary code being executed.
+The Microsoft JPEG GDI+ vulnerability MS04-028 is an example of the danger a heap overflow can represent to a computer user.
+iOS jailbreaking often uses heap overflows to gain arbitrary code, usually for kernel exploits to achieve the ability to replace the kernel with the one jailbreak provides.
+
+==Detection and prevention==
+
+As with buffer overflows there are primarily three ways to protect against heap overflows. Several modern operating systems such as Windows and Linux provide some implementation of all three.
+Since version 2.3.6 the GNU libc includes protections that can detect heap overflows after the fact, for example by checking pointer consistency when calling unlink. While those protections protect against old-style exploits, they are not perfect, as described in The Malloc Maleficarum, further described in Malloc Des-Maleficarum. In addition, Linux has included support for ASLR since 2005, although PaX introduced a better implementation years before. Also Linux has included support for NX-bit since 2004.
+Microsoft has included protections against heap resident buffer overflows since April 2003 in Windows Server 2003 and August 2004 in Windows XP with Service Pack 2. These mitigations were safe unlinking and heap entry header cookies. Later versions of Windows such as Vista, Server 2008 and Windows 7 include: Removal of commonly targeted data structures, heap entry metadata randomization, expanded role of heap header cookie, randomized heap base address, function pointer encoding, termination of heap corruption and algorithm variation. Normal Data Execution Prevention (DEP) and ASLR also help to mitigate this attack.Microsoft Security Research & Defense blogs.technet.com
+
+==References==
+
+==External links==
+
+==See also==
+
+

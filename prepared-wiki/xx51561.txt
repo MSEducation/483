@@ -1,0 +1,33 @@
+[[Hierarchical database model]]
+
+CATEGORIES: Database models
+
+A hierarchical database model is a data model in which the data is organized into a tree-like structure. The structure allows representing information using parent/child relationships: each parent can have many children, but each child has only one parent (also known as a 1-to-many relationship). All attributes of a specific record are listed under an entity type.
+In a database an entity type is the equivalent of a table. Each individual record is represented as a row, and each attribute as a column. Entity types are related to each other using 1:N mappings, also known as one-to-many relationships. This model is recognized as the first database model created by IBM in the 1960s.
+Currently the most widely used hierarchical databases are IMS developed by IBM and Windows Registry by Microsoft.
+
+==History==
+
+The hierarchical structure was used in early mainframe DBMS.  Records' relationships form a treelike model.  This structure is simple but inflexible because the relationship is confined to a one-to-many relationship.  The IBM Information Management System (IMS) and the RDM Mobile are examples of a hierarchical database system with multiple hierarchies over the same data.  RDM Mobile is a newly designed embedded database for a mobile computer system.[tpl]citation needed|date=March 2013[/tpl]
+The hierarchical data model lost traction as Codd's relational model became the de facto standard used by virtually all mainstream database management systems. A relational-database implementation of a hierarchical model was first discussed in published form in 1992Michael J. Kamfonas/Recursive Hierarchies: The Relational Taboo!--The Relation Journal, October/November 1992 (see also nested set model). Hierarchical data organization schemes resurfaced with the advent of XML in the late 1990shttp://www.ibm.com/developerworks/xml/library/x-matters8/index.html (see also XML database).  The hierarchical structure is used primarily today for storing geographic information and file systems.[tpl]citation needed|date=March 2013[/tpl] Currently the most widely used hierarchical databases are IMS and Windows Registry by Microsoft.[tpl]citation needed|date=March 2013[/tpl]
+
+==Examples of hierarchical data represented as relational tables==
+
+An organization could store employee information in a table that contains attributes/columns such as employee number, first name, last name, and Department number.  The organization provides each employee with computer hardware as needed, but computer equipment may only be used by the employee to which it is assigned.  The organization could store the computer hardware information in a separate table that includes each part's serial number, type, and the employee that uses it.  The tables might look like this:
+|
+|}
+In this model, the employee data table represents the "parent" part of the hierarchy, while the computer table represents the "child" part of the hierarchy.
+In contrast to tree structures usually found in computer software algorithms, in this model the children point to the parents.
+As shown, each employee may possess several pieces of computer equipment, but each individual piece of computer equipment may have only one employee owner.
+Consider the following structure:
+In this, the "child" is the same type as the "parent". The hierarchy stating EmpNo 10 is boss of 20, and 30 and 40 each report to 20 is represented by the "ReportsTo" column. In Relational database terms, the ReportsTo column is a foreign key referencing the EmpNo column. If the "child" data type were different, it would be in a different table, but there would still be a foreign key referencing the EmpNo column of the employees table.
+This simple model is commonly known as the adjacency list model, and was introduced by Dr. Edgar F. Codd after initial criticisms surfaced that the relational model could not model hierarchical data. 
+The Windows Registry is a hierarchical database that stores configuration settings and options on Microsoft Windows operating systems.
+
+==See also==
+
+==References==
+
+==External links==
+
+

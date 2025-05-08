@@ -1,0 +1,47 @@
+[[GNU build system]]
+
+CATEGORIES: GNU Project software, Compiling tools, Build automation, Unix programming tools
+
+The GNU build system, also known as the Autotools, is a suite of programming tools designed to assist in making source code packages portable to many Unix-like systems.
+It can be difficult to make a software program portable: the C compiler differs from system to system; certain library functions are missing on some systems; header files may have different names. One way to handle this is to write conditional code, with code blocks selected by means of preprocessor directives (#ifdef); but because of the wide variety of build environments this approach quickly becomes unmanageable. Autotools is designed to address this problem more manageably.
+Autotools is part of the GNU toolchain and is widely used in many free software and open source packages.  Its component tools are free software-licensed under the GNU General Public License with special license exceptionsAutoconf license exceptionlibtool HACKING including all pertinent license exceptions permitting its use with proprietary software.
+The GNU build system makes it possible to build many programs using a two step process: configure followed by make.Introduction The GNU configure and build system, Cygnus Solutions , 1998.
+
+==Components==
+
+Autotools consists of the GNU utility programs Autoconf, Automake, and Libtool.http://autotoolset.sourceforge.net/tutorial.html#SEC40  Other related tools frequently used alongside it include GNU's make program, GNU gettext, pkg-config, and the GNU Compiler Collection, also called GCC.
+
+===GNU Autoconf===
+
+Autoconf generates a configure script based on the contents of a configure.ac file which characterizes a particular body of source code.  The configure script, when run, scans the build environment and generates a subordinate config.status script which, in turn, converts other input files and most commonly Makefile.in into output files (Makefile) which are appropriate for that build environment.  Finally the make program uses Makefile to generate executable programs from source code.
+The complexity of Autotools reflects the variety of circumstances under which a body of source code may be built.
+To process files, autoconf uses the GNU implementation of the m4 macro system.
+Autoconf comes with several auxiliary programs such as Autoheader, which is used to help manage C header files; Autoscan, which can create an initial input file for Autoconf; and ifnames, which can list C pre-processor identifiers used in the program.
+
+===GNU Automake===
+
+Automake helps to create portable Makefiles, which are in turn processed with the make utility.  It takes its input as Makefile.am, and turns it into Makefile.in, which is used by the configure script to generate the file Makefile output.  It also performs automatic dependency tracking; every time a source file is compiled, the list of dependencies (e.g., C header files) is recorded. Later, any time make is run and a dependency appears to have changed, the dependent files will be rebuilt.
+
+===GNU Libtool===
+
+Libtool helps manage the creation of static and dynamic libraries on various Unix-like operating systems.  Libtool accomplishes this by abstracting the library-creation process, hiding differences between various systems (e.g. GNU/Linux systems vs. Solaris).
+
+===Gnulib===
+
+Gnulib simplifies the process of making software that uses Autoconf and Automake portable to a wide range of systems.
+
+==Usage==
+
+Autotools assists a software development person or team to write cross-platform software and make it available to a much wider user community, including in its source code form to those users who wish to build the software themselves.  Users simply run the supplied configure script, which has no dependencies other than the presence of a Bourne-compatible shell, and then a make program.[tpl]Citation needed|date=March 2012[/tpl]  They do not need to have the Autotools themselves installed on the computer.
+It can be used both for building native programs on the build machine and also for cross-compiling to other architectures.http://sources.redhat.com/autobook/autobook/autobook_258.html
+Cross-compiling software to run on a Windows host from a GNU/Linux or other Unix-like build system is also possible, using MinGW, however native compilation is often desirable on operating systems (such as the Microsoft Windows family of systems) that cannot run Bourne shell scripts on their own.  This makes building such software on the Windows operating system a bit harder than on a Unix-like system which provides the Bourne shell as a standard component.  One can install the Cygwin or MSYS system on top of Windows to provide a Unix-like compatibility layer, though, allowing configure scripts to run.  Cygwin also provides the GNU Compiler Collection, GNU make, and other software that provides a nearly complete Unix-like system within Windows; MSYS also provides GNU make and other tools designed to work with the MinGW version of GCC.
+Although the developer is expected to provide a configure script for the end-user, occasionally the user may wish to re-generate the configure script itself.  Such working might be necessary if the user wishes to amend the source code itself. Such users would need to have Autotools installed, and to use components such as its autoreconf.
+The autoconf-generated configure can be slow because it executes programs like the C compiler many times in order to test whether various libraries, header files, and language features are present. This particularly affects Cygwin, which, due to its lack of a native fork system call, may execute configure scripts considerably slower than Linux.http://cygwin.com/ml/cygwin/2005-04/msg00703.html
+
+==See also==
+
+==References==
+
+==External links==
+
+

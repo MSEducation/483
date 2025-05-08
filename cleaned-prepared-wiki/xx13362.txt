@@ -1,0 +1,52 @@
+[[Ethernet over twisted pair]]
+
+CATEGORIES: Ethernet cables, Physical layer protocols, Local loop
+
+Ethernet over twisted pair technologies use twisted-pair cables for the physical layer of an Ethernet computer network. Other Ethernet cable standards employ coaxial cable or optical fiber. Early versions developed in the 1980s included  StarLAN followed by 10BASE-T. By the 1990s, fast, inexpensive technologies began to emerge. Currently the most popular are 100BASE-TX (fast Ethernet; 100 Mbit/s) and 1000BASE-T (gigabit Ethernet; 1 Gbit/s). These standards all use 8P8C connectors. Meanwhile higher-speed implementations generally support lower-speed standards inclusively; thus it is possible to mix different  generations of equipment.  Inclusive capability is designated 10/100 or 10/100/1000- for connections that support such combinations. The cables usually have four pairs of wires (though 10BASE-T and 100BASE-TX only require two of the pairs). The three standards support both full-duplex and half-duplex communication. High-grade twisted pair cabling can transport up to 10 Gbit/s Ethernet (10GBASE-T).
+
+History
+
+The Institute of Electrical and Electronics Engineers (IEEE) standards association ratified several versions of the technology. The first two early designs were StarLAN, standardized in 1986, at one megabit per second,
+and LattisNet, developed in January 1987, at 10 megabit per second.
+Both were developed before the 10BASE-T standard (published in 1990 as IEEE 802.3i), and both were not compatible with it.
+Using twisted pair cabling, in a star topology, for Ethernet addressed several weaknesses of the previous standards:
+
+Naming
+
+The common names for the standards derive from aspects of the physical media. The leading number (10 in 10BASE-T) refers to the transmission speed in Mbit/s. BASE denotes that baseband transmission is used. The T designates twisted pair cable, where the pair of wires for each signal is twisted together to reduce radio frequency interference and crosstalk between pairs. Where there are several standards for the same transmission speed, they are distinguished by a letter or digit following the T, such as TX.
+
+Cabling
+
+Twisted-pair Ethernet standards are such that the majority of cables can be wired "straight-through" (pin 1 to pin 1, pin 2 to pin 2 and so on), but others may need to be wired in the "crossover" form (receive to transmit and transmit to receive).
+It is conventional to wire cables for 10- or 100-Mbit/s Ethernet to either the T568A or T568B standards. Since these standards differ only in that they swap the positions of the two pairs used for transmitting and receiving (TX/RX), a cable with T568A wiring at one end and T568B wiring at the other is referred to as a crossover cable.  The terms used in the explanations of the 568 standards, tip and ring, refer to older communication technologies, and equate to the positive and negative parts of the connections.
+A 10BASE-T or 100BASE-TX node such as a PC, with a connector called medium dependent interfaces (MDI), transmits on pin 1 and 2 and receives on pin 3 and 6 to a network device using a "straight-through" cable.    In order for two network devices or two nodes to communicate with each other (such as a switch to another switch or computer to computer) a crossover cable is often required at speeds of 10 or 100 Mbit/s.  If available, connections can be made with a straight-through cable by means of an MDI-X port, also known as an "internal crossover" or "embedded crossover" connection.  Hub and switch ports with such internal crossovers are usually labelled as such, with "uplink" or "X".  For example, 3Com usually labels their ports 1X, 2X, and so on. In some cases a button is provided to allow a port to act as either a normal or an uplink port.
+Many modern Ethernet host adapters can automatically detect another computer connected with a straight-through cable and then automatically introduce the required crossover, if needed; if neither of the adapters has this capability, then a crossover cable is required. Most newer switches have automatic crossover ("auto MDI-X" or "auto-uplink") on all ports, eliminating the uplink port and the MDI/MDI-X switch, and allowing all connections to be made with straight-through cables.  If both devices being connected support 1000BASE-T according to the standards, they will connect regardless of the cable being used or how it is wired.
+A 10BASE-T transmitter sends two differential voltages, +2.5 V or −2.5 V.
+100BASE-TX follows the same wiring patterns as 10BASE-T, but is more sensitive to wire quality and length, due to the higher bit rates.
+A 100BASE-TX transmitter sends three differential voltages, +1 V, 0 V, or −1 V.
+1000BASE-T uses all four pairs bi-directionally and the standard includes auto MDI-X; however, implementation is optional.  With the way that 1000BASE-T implements signaling, how the cable is wired is immaterial in actual usage.  The standard on copper twisted pair is IEEE 802.3ab for Cat 5e UTP, or 4D-PAM5; four dimensions using PAM (pulse amplitude modulation) with five voltages, −2 V, −1 V, 0 V, +1 V, and +2 V
+100BASE-TX and 1000BASE-T were both designed to require a minimum of Category 5 cable and also specify a maximum cable length of 100 meters. Category 5 cable has since been deprecated and new installations use Category 5e.
+Unlike earlier Ethernet standards using broadband and coaxial cable, such as 10BASE5 (thicknet) and 10BASE2 (thinnet), 10BASE-T does not specify the exact type of wiring to be used, but instead specifies certain characteristics that a cable must meet.  This was done in anticipation of using 10BASE-T in existing twisted-pair wiring systems that may not conform to any specified wiring standard.  Some of the specified characteristics are attenuation, characteristic impedance, timing jitter, propagation delay, and several types of noise.  Cable testers are widely available to check these parameters to determine if a cable can be used with 10BASE-T.  These characteristics are expected to be met by 100 meters of 24-gauge unshielded twisted-pair cable.  However, with high quality cabling, cable runs of 150 meters or longer are often obtained and are considered viable by most technicians familiar with the 10BASE-T specification.
+
+Shared cable
+
+10BASE-T and 100BASE-TX only require two pairs (pins 1-2, 3-6) to operate.  Since Category 5 cable has four pairs, it is possible, but not necessarily standards compliant, to use the spare pairs (pins 4–5, 7–8) in 10- and 100-Mbit/s configurations. The spare pairs may be used for Power over Ethernet (PoE); or two phone lines; or a second 10BASE-T or 100BASE-TX connection. In practice, great care must be taken to separate these pairs as most 10/100-Mbit/s hubs, switches, and PCs electrically terminate the unused pins. Moreover, 1000BASE-T requires all four pairs to operate.
+
+Autonegotiation and duplex mismatch
+
+Many different modes of operations (10BASE-T half duplex, 10BASE-T full duplex, 100BASE-TX half duplex, ...) exist for Ethernet over twisted pair, and most network adapters are capable of different modes of operation. 1000BASE-T requires autonegotiation to be on in order to operate.
+When two linked interfaces are set to different duplex modes, the effect of this duplex mismatch is a network that functions much more slowly than its nominal speed. Duplex mismatch may be inadvertently caused when an administrator configures an interface to a fixed mode (e.g. 100 Mbit/s full duplex) and fails to configure the remote interface, leaving it set to autonegotiate. Then, when the autonegotiation process fails, half duplex is assumed by the autonegotiating side of the link.
+
+Variants
+
+
+
+Notes
+
+
+
+Further reading
+
+
+
+

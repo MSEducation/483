@@ -1,0 +1,34 @@
+[[Code Access Security]]
+
+CATEGORIES: Common Language Infrastructure, Microsoft Windows security technology, Cryptographic protocols
+
+Code Access Security (CAS), in the Microsoft .NET framework, is Microsoft's solution to prevent untrusted code from performing privileged actions. When the CLR loads an assembly it will obtain evidence for the assembly and use this to identify the code group that the assembly belongs to. A code group contains a permission set (one or more permissions). Code that performs a privileged action will perform a code access demand which will cause the CLR to walk up the call stack and examine the permission set granted to the assembly of each method in the call stack. 
+The code groups and permission sets are determined by the administrator of the machine who defines the security policy.
+
+==Evidence==
+
+Evidence can be any information associated with an assembly. The default evidences that are used by .NET code access security are: 
+A developer can use custom evidence (so-called assembly evidence) but this requires writing a security assembly and in version 1.1 of .NET this facility does not work.
+Evidence based on a hash of the assembly is easily obtained in code. For example in C#, evidence may be obtained by the following code clause:
+
+this.GetType().Assembly.Evidence
+
+==Policy==
+
+A policy is a set of expressions that uses evidence to determine a code group membership. A code group gives a permission set for the assemblies within that group. There are four policies in .NET:
+The first three policies are stored in XML files and are administered through the .NET Configuration Tool 1.1 (mscorcfg.msc). The final policy is administered through code for the current application domain.
+Code access security will present an assembly's evidence to each policy and will then take the intersection (that is the permissions common to all the generated permission set) as the permissions granted to the assembly.
+By default, the Enterprise, User, and AppDomain policies give full trust (that is they allow all assemblies to have all permissions) and the Machine policy is more restrictive. Since the intersection is taken this means that the final permission set is determined by the Machine policy.
+Note that the policy system has been eliminated in .NET Framework 4.0.http://msdn.microsoft.com/en-us/library/ff527276.aspx
+
+==Code group==
+
+Code groups associate a piece of evidence with a named permission set. The administrator uses the .NET Configuration Tool to specify a particular type of evidence (for example, Site) and a particular value for that evidence (for example, www.mysite.com) and then identifies the permission set that the code group will be granted.
+
+==Demands==
+
+Code that performs some privileged action will make a demand for one or more permissions. The demand makes the CLR walk the call stack and for each method the CLR will ensure that the demanded permissions are in the method's assembly's granted permissions. If the permission is not granted then a security exception is thrown. This prevents downloaded code from performing privileged actions. For example, if an assembly is downloaded from an untrusted site the assembly will not have any file IO permissions and so if this assembly attempts to access a file code access security will throw an exception preventing the call.
+
+==References==
+
+

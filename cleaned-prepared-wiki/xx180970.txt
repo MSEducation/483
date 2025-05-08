@@ -1,0 +1,71 @@
+[[CEA-909]]
+
+CATEGORIES: Broadcasting standards
+
+CEA-909 is the ANSI standard for 8VSB/ATSC smart antennas. The basic concept is that the smart antenna either physically rotates toward the signal, or is stationary, but has elements pointed in different directions and uses only those elements pointed toward the signal.  This is accomplished by feedback from the control device, such as a digital-to-analog converter box, telling the smart antenna when the signal is stronger or weaker.
+Analog televisions generally give instant feedback as the signal gets better or worse as you move the antenna.  Digital television antennas can be difficult to aim correctly because of the cliff effect and because of delays in decoding and displaying the signal. Smart antennas remove the burden of positioning the antenna for digital TVs and can make the tuning process easier than it was with analog television.
+
+Information from TVP9900 document
+
+There are two basic modes of operation for a CEA-909 antenna, mode A and mode B. Mode A allows for communication only from the tuner to the antenna and Mode B allows for bidirectional communication. A 14-bit pulse-width modulation data stream is sent to the antenna and if the antenna is mode B a 10-bit data stream is sent back. The timeout period for a response from a mode B antenna is 100 ms. The system uses a single wire for communication, possibly similar to I²C.
+The 10 bits sent back from the antenna are largely unused. Only the first two bits are used with at least one of those being used for a transmission error flag; the remaining 8 bits are reserved. The contents of the 14 bits sent to the antenna are not revealed.
+
+Revision CEA-909-A
+
+CEA-909-A is an update to CEA-909 that enables a single coaxial cable to connect smart antennas to smart antenna-capable DTV sets.  A weakness of CEA-909 was that it required another control cable in addition to the coaxial cable.  This revision was first approved by the Consumer Electronics Association R4 Video Systems Committee on 6 June 2007 and ANSI public review closed on 1 October 2007.
+After editorial review, it was published in December 2007.[ref]
+ [/ref]
+
+Revision CEA-909-B
+
+The CEA R4 Video Systems Committee published this update in September 2010.  Purchase price for the full publication is $81.
+
+CEA-909A data timing specification Mode A
+
+The data timing of the specification is divided into 125 μs symbol periods between 5 VDC for V_Hi and 0 V for V_Low. The PWM Logic 0 is V_Hi for the first 41.7 μs followed by V_Low for the rest of the symbol period while Logic 1 is V_Hi for the first 81.3 μs (V_Low for the rest).  The preamble should send V-Hi for three periods then V_Low for one period then a logic 1 start bit.
+The 14-bit data breaks down sequentially as follows:
+Two bits for coarse direction or switching control, MSB sent first.
+
+Two bits for fine direction control, MSB sent first.
+
+One bit for polarization control
+
+Two bits for preamp gain.  The state 1,1 shall be maximum gain, state 0,0 minimum gain, and  remaining states progressing monotonically.
+
+7 bits for RF channel number (per CEA-542-B  MSB sent first. (Note: this could allow for channel assignment from 0 to 127, but it is artificially limited to the range 2–69 and the post-transition channel range will be 2–51)
+After the data is sent the system should send V_Low for 1 period and wait until next RF channel change (with a minimum of 10 ms between data streams to allow for the antenna controller logic to reset).
+This means channels should be able to change and reset as fast as every ≈12.5 ms (≈80 Hz) or every channel in 0.85 seconds and with 16 'virtual' antennas (32 with two polarization states).
+
+Limited Choice of EIA/CEA-909A Smart Antennas in the Marketplace
+
+After the above rigorous, seven year standardization process by the Consumer Electronics Association leading up to the deployment of ATSC Digital television in the United States on June 11, 2009, two smart antenna models were brought to market:
+And two models are causing consumer confusion:
+The United States National Telecommunications and Information Administration (NTIA) ran a coupon-eligible converter box (CECB) subsidy program for the ATSC conversion, but did not subsidize the purchase of a smart antenna to mitigate the cliff effect of digital television, and most CECBs do not support smart antennas.
+
+Official specs
+
+The official specifications are available for purchase from Global Engineering Documents.
+
+
+
+Further reading
+
+  | date = June 1, 2002
+  | url = 
+  | title = Standard Details - CEA-909
+  | work = CEA Standards
+  | publisher = Consumer Electronics Association
+  | accessdate = 2008-05-29
+}}
+  | date = January 31, 2007
+  | url = 
+  | title = CEA Standards Update
+  | format = PDF
+  | work = CE.org
+  | publisher = Consumer Electronics Association
+  | accessdate = 2008-05-29
+}}
+
+
+
+

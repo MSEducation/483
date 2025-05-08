@@ -1,0 +1,9 @@
+[[Pilatus (detector)]]
+
+CATEGORIES: Detectors, X-ray instrumentation
+
+Pilatus is the name of a series of silicon pixel detectors developed at the Swiss Light Source, and commercialised by Dectris.  The common factor is that X-rays are converted to an electrical signal by the photoelectric effect in silicon subject to a substantial bias voltage, and then counted directly by a series of cells in an ASIC bonded to the silicon detector, rather than relying on a phosphor.  That is, each pixel has its own amplifier, discriminator (for distinguishing X-rays of the desired energy from noise) and counter circuit; this is possible because the desired pixel size for X-ray crystallography is around 100 micrometres, and a 100 micrometre square in a contemporary CMOS process can contain a significant quantity of electronics.
+Design challenges include making the bonding of the ASIC to the sensor sufficiently reliable; the ASIC has to be manufactured in a radiation-tolerant process since the sensor layer by no means absorbs all the incident X-rays.
+Other issues involve combining ASICs to make a sensor of usable size - protein crystallography applications tend to want an active area of around 100,000 mm², though powder diffraction work can use a rather smaller active area.  One detector inclines the ASICs so that the view from the point of view of the crystal is of an unbroken sphere of detector.
+A problem with analysing Pilatus data is that most crystallography software is written to expect 16-bit data values, and Pilatus dynamic range is 20 bits so requires a different input stage to the software.
+

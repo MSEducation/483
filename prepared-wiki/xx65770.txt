@@ -1,0 +1,36 @@
+[[Bézier surface]]
+
+CATEGORIES: Surfaces, Multivariate interpolation
+
+Bézier surfaces are a species of mathematical spline used in computer graphics, computer-aided design, and finite element modeling. 
+As with the Bézier curve, a Bézier surface is defined by a set of control points. Similar to interpolation in many respects, a key difference is that the surface does not, in general, pass through the central control points; rather, it  is "stretched" toward them as though each were an attractive force. They are  visually intuitive, and for many applications, mathematically convenient.
+
+==History==
+
+Bézier surfaces were first described in 1962 by the French engineer Pierre Bézier who used them to design automobile bodies.  Bézier surfaces can be of any degree, but bicubic Bézier surfaces generally provide enough degrees of freedom for most applications.
+
+==Equation==
+
+A given Bézier surface of degree (n, m) is defined by a set of (n + 1)(m + 1) control points ki,j. It maps the unit square into a smooth-continuous surface embedded within a space of the same dimensionality as { ki,j }. For example, if k are all points in a four-dimensional space, then the surface will be within a four-dimensional space.
+A two-dimensional Bézier surface can be defined as a parametric surface where the position of a point p as a function of the parametric coordinates u, v is given by:  [tpl]cite book |first=Gerald |last=Farin |title=Curves and Surfaces for CAGD |edition=5th |publisher=Academic Press |location= |isbn=1-55860-737-4 [/tpl] 
+evaluated over the unit square, where
+is a Bernstein polynomial, and 
+is the binomial coefficient.
+Some properties of Bézier surfaces:
+Generally, the most common use of Bézier surfaces is as nets of bicubic patches (where m = n = 3). The geometry of a single bicubic patch is thus completely defined by a set of 16 control points. These are typically linked up to form a B-spline surface in a similar way as Bézier curves are linked up to form a B-spline curve.
+Simpler Bézier surfaces are formed from biquadratic patches (m = n = 2), or Bézier triangles.
+
+==Bézier surfaces in computer graphics==
+
+Bézier patch meshes are superior to meshes of triangles as a representation of smooth surfaces, since they are much more compact, easier to manipulate, and have much better continuity properties. In addition, other common parametric surfaces such as spheres and cylinders can be well approximated by relatively small numbers of cubic Bézier patches. 
+However, Bézier patch meshes are difficult to render directly. One problem with Bézier patches is that calculating their intersections with lines is difficult, making them awkward for pure ray tracing or other direct geometric techniques which do not use subdivision or successive approximation techniques.
+They are also difficult to combine directly with perspective projection algorithms.
+For this reason, Bézier patch meshes are in general eventually decomposed into meshes of flat triangles by 3D rendering pipelines. In high-quality rendering, the subdivision is adjusted to be so fine that the individual triangle boundaries cannot be seen. To avoid a "blobby" look, fine detail is usually applied to Bézier surfaces at this stage using texture maps, bump maps and other pixel shader techniques.
+A Bézier patch of degree (m, n) may be constructed out of two Bézier triangles of degree m+n, or out of a single Bézier triangle of degree m + n, with the input domain as a square instead of as a triangle.
+A Bézier triangle of degree m may also be constructed out of a Bézier surface of degree (m, m), with the control points so that one edge is squashed to a point, or with the input domain as a triangle instead of as a square.
+
+==See also==
+
+==Bibliography==
+
+

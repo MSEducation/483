@@ -1,0 +1,20 @@
+[[Creator code]]
+
+CATEGORIES: Mac OS, Metadata
+
+A creator code is a mechanism introduced in pre-OS X versions of the Macintosh operating system to link a data file to the application program which created it. The similar type code held the file type, like "TEXT". Together, the type and creator indicated what application should be used to open a file, similar to (but richer than) the file extensions in other operating systems.
+Creator codes are four-byte OSTypes. They allow applications to launch and open a file whenever any of their associated files is double-clicked. Creator codes could be any four-byte value, but were usually chosen so that their ASCII representation formed a word or acronym. For example, the creator code of the HyperCard application and its associated "stacks" is represented in ASCII as WILD.  Occasionally they represented inside jokes. For instance, the Marathon computer game had a creator code of 26.2 (the approximate length, in miles, of a marathon) and Marathon 2: Durandal had a creator code of 52.4.
+The binding are stored inside the resource fork of the application as BNDL and fref resources. These resources maintained the creator code as well as the association with each type code and icon. The OS collected this data from the files when they were copied between mediums, thereby building up the list of associations and icons as software was installed onto the machine. Periodically this "desktop database" would become corrupted, and had to be fixed by "rebuilding the desktop database.""Mac OS: Rebuilding Desktop File and icon recovery", Apple
+The key difference between extensions and Apple's system is that file type and file ownership bindings are kept distinct. This allows files to be written of the same type - TEXT say - by different applications. Although any application can open anyone else's TEXT file, by default, opening the file will open the original application that created it. With the extensions approach, this distinction is lost - all files with a .txt extension will be mapped to a single text editing application of the user's choosing. A more obvious advantage of this approach is specialized editors for more complex but common file types, like .csv or .html.
+OS X retains creator codes, but supports extensions as well (However, beginning with OS X 10.6 Snow Leopard, creator codes are ignored by the Operating System.). Creator codes have been internally superseded by Apple's Uniform Type Identifier scheme, which manages application and file type identification as well as type codes, creator codes and file extensions.
+To avoid conflicts, Apple still maintains a database of creator codes in use. Developers can fill out an online form to register their codes.[tpl]cite web|url=https://developer.apple.com/support/mac/creator-code-registration.html|title=Creator Code Registration[/tpl] Apple reserves codes containing all lower-case ASCII characters for its own use.
+Apple's developer documentation states that applications should continue to set type codes and optionally set creator codes. If either already exists, applications should preserve them.[tpl]cite web|url=http://developer.apple.com/documentation/MacOSX/Conceptual/BPFileSystem/Articles/FilenameExtensions.html#//apple_ref/doc/uid/20002297-110671 |title=File System Overview: Filename Extensions |publisher=Developer.apple.com |date=2009-08-14 |accessdate=2010-05-30[/tpl] Furthermore, creator codes are used in document binding prior to the file extension alone.[tpl]dead link|date=May 2010[/tpl]
+Creator codes are not readily accessible for users to manipulate, although they can be viewed and changed with certain software, most notably the OS X command line tools GetFileInfo and SetFile which are installed as part of the developer tools into /Developer/Tools.
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,34 @@
+[[OpenGL++]]
+
+CATEGORIES: OpenGL, 3D scenegraph APIs
+
+OpenGL++ was a graphics library written in C++ that supported object-oriented data structures on top of the OpenGL 3D graphics system. The project started as the result of a partnership between SGI, IBM and Intel (and later Digital Equipment Corporation as well) to provide a higher level API than the "bare metal" support of OpenGL, as well as being an implementation for Java3D.3D Java APIs, OpenGL++ Work on OpenGL++ ended when SGI decided to partner with Microsoft instead, leading to the Fahrenheit project, which also died.
+
+Background
+
+The vast majority of applications using 3D systems describe the objects in their "world" in a data structure known as a scene graph. A scene graph is normally organized as some sort of a tree data structure, with the nodes representing objects, and the edges their relationship to other objects in the world. For instance, a table might be represented by a single "table" object with several edges connecting its parts together, the table top, legs, etc. Key to high performance in 3D applications is deciding what objects in the world are actually visible given the current camera position and direction. For instance, objects behind the camera do not have to be drawn. Quick traversal of the scene graph is essential to making this "culling" operation occur quickly.
+Scene graphs were generally left to the developer to implement, and it was all too common to see poor examples that led to poor performance. SGI had worked on a number of projects that were intended to help the developer produce a high-quality scene graph, but none of these had become widely used for a variety of reasons. Open Inventor was one such example, and was intended to simplify building the scene graph, but the results were not necessarily very high performance. OpenGL Performer was a similar project that was intended to produce high-speed scenes and support very large numbers of objects in the "world", but was not particularly easy to use.Scene Graph Standard for OpenGL, ARB Meeting Notes
+
+Cosmo3D
+
+The Inventor and Performer teams had already realized that there was no particular reason the two systems could not be combined into one, offering both ease-of-development and high-performance. This led to the Cosmo3D system, basically a standardized high-performance scene graph that at on top of OpenGL. Cosmo3D introduced a new file format that could be used to store entire scenes and all the data needed to reconstruct them, the VRML format that is still in use.
+SGI produced a number of products that used Cosmo3D. Among these were a variety of VRML tools, and a large model visualization system for CAD purposes called OpenGL Optimizer. Oddly, Cosmo Code, a VRML authoring tool, was produced by a different division and did not use the Cosmo scene graph at all.
+Cosmo's scene graph was by no means a unique solution at the time, and a number of other graphics companies were working on similar ideas at about this time.
+
+OpenGL++
+
+At the 20–21 August 1996 meeting of the OpenGL Architecture Review Board (ARB), SGI floated the idea of a new standardized scene graph similar to Cosmo3D but with the express intent of being based on "standard" OpenGL. There was some interest in the concept, so at the 9–10 December 1996 meeting the group presented the first draft of the OpenGL++ concept. A follow-up meeting during 17–19 February 1997 demonstrated that there was considerable interest from most parties, with the exception of Microsoft and Sun, although there were concerns as to whether or not the ARB was the right body to support such an effort without diluting their primary job of supporting OpenGL."Meeting Notes, February 17-19, 1997" Development continued throughout 1997 including several distributions of the API. However, the ARB notes "There's been lots of work, but relatively little communication.""OpenGL ++ ARB Interest Subcomittee Meeting Notes"
+While the work on OpenGL++ continued, Sun and SGI had also been working on a 3D standard suitable for Java. These efforts eventually broke down, and Sun went on to release Java3D. SGI suggested their Cosmo work was a sample Java3D implementation, and as this work evolved into OpenGL++ these plans moved with it. During the definition of OpenGL++, Sun stated that they were not interested in working on the effort as they were focussed on their Java3D work. Comparatively, Java3D spans two layers of the 3D stack, the scene graph and the visual interface and its widgets.
+By late 1997 SGI appeared to be fully committed to the OGL++ effort. They had stated that the existing Cosmo work would be abandoned, and that Open Inventor, Performer and OpenGL Optimzier would be re-written to be hosted on top of OGL++. As OGL++ was intended to be a cleaned up and more flexible version of Cosmo3D, most of the Cosmo3D team started work on OGL++ and a lot of the effort was aimed at a specification and implementation that could deliver on the promise of a truly powerful yet generic scene graph."OpenGL ++ ARB Interest Subcomittee Meeting Notes, September 8, 1997""Skimmer in OpenGL++ Maze in OpenGL++"
+
+At the end
+
+At the March 1998 ARB meeting, to everyone's surprise, SGI presented Fahrenheit, an entirely new project. The ARB notes from that meeting note "SGI felt it was critical to work together with Microsoft, which had not been moving in compatible directions, to be able to build value-added products in the Windows environment. Fahrenheit is a large step in that direction." OpenGL++ was abandoned.
+The project appears to have been a victim of SGI's shifting priorities through this period, changing directions in order to partner with larger companies. When these companies exited the 3D space to focus on other product niches, SGI was left as the only supporter, exactly what they were trying to avoid. Eventually the only other company with a 3D focus was Microsoft, and the Fahrenheit project started and ended shortly after the OpenGL++ efforts.
+Today, no such standardized scene graph exists, and SGI has all but exited the API world. SGI has released the earlier Open Inventor code into open source, but the source to OGL++ was never completed to any satisfactory degree. No finalized specification exists and, as with OpenGL, the spec and idea behind such an open platform would have been what lent it its lasting value, not a single implementation of a scene graph idea.
+
+
+
+Further reading
+
+

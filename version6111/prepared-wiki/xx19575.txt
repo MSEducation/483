@@ -1,0 +1,79 @@
+[[NaN]]
+
+CATEGORIES: Computer arithmetic, Software anomalies
+
+In computing, NaN, standing for not a number, is a numeric data type value representing an undefined or unrepresentable value, especially in floating-point calculations. Systematic use of NaNs was introduced by the IEEE 754 floating-point standard in 1985, along with the representation of other non-finite quantities like infinities.
+Two separate kinds of NaNs are provided, termed quiet NaNs and signaling NaNs.  Quiet NaNs are used to propagate errors resulting from invalid operations or values, whereas signaling NaNs can support advanced features such as mixing numerical and symbolic computation or other extensions to basic floating-point arithmetic.  For example, 0/0 is undefined as a real number, and so represented by NaN; the square root of a negative number is imaginary, and thus not representable as a real floating-point number, and so is represented by NaN; and NaNs may be used to represent missing values in computations.Bowman, Kenneth (2006) An introduction to programming with IDL: Interactive Data Language. Academic Press. p. 26 ISBN 0-12-088559-XWilliam H. Press, Saul A. Teukolsky, William T. Vetterling (2007) Numerical recipes: the art of scientific computing.p. 34  Cambridge University Press, ISBN 0-521-88068-8
+
+==Floating point==
+
+In floating-point calculations, NaN is not the same as infinity, although both are typically handled as special cases in floating-point representations of real numbers as well as in floating-point operations.  An invalid operation is also not the same as an arithmetic overflow (which might return an infinity) or an arithmetic underflow (which would return the smallest normal number, a denormal number, or zero).
+IEEE 754 NaNs are represented with the exponent field filled with ones (like infinity values), and some non-zero number in the significand (to make them distinct from infinity values); this representation allows the definition of multiple distinct NaN values, depending on which bits are set in the significand, but also on the value of the leading sign bit (not all applications are required to provide distinct semantics for those distinct NaN values).
+For example, a bit-wise IEEE floating-point standard single precision (32-bit) NaN would be: s111 1111 1axx xxxx xxxx xxxx xxxx xxxx where s is the sign (most often ignored in applications), a determines the type of NaN, and x is an extra payload (most often ignored in applications). If a = 1, it is a quiet NaN; if a is zero and the payload is nonzero, then it is a signaling NaN.If a is zero and the payload is zero, then it represents infinity.
+Floating point operations other than ordered comparisons normally propagate a quiet NaN (qNaN). Floating point operations on a signaling NaN (sNaN) signal an invalid operation exception, the default exception action is then the same as for qNaN operands and they produce a qNaN if producing a floating point result.
+A comparison with a NaN always returns an unordered result even when comparing with itself. The comparison predicates are either signaling or non-signaling, the signaling versions signal an invalid exception for such comparisons. The equality and inequality predicates are non-signaling so x = x returning false can be used to test if x is a quiet NaN. The other standard comparison predicates are all signaling if they receive a NaN operand, the standard also provides non-signaling versions of these other predicates. The predicate isNaN(x) determines if a value is a NaN and never signals an exception, even if x is a signaling NaN.
+The propagation of quiet NaNs through arithmetic operations allows errors to be detected at the end of a sequence of operations without extensive testing during intermediate stages. However, note that depending on the language and the function, NaNs can silently be removed in expressions that would give a constant result for all other floating-point values e.g. NaN^0, which may be defined as 1, so in general a later test for a set INVALID flag is needed to detect all cases where NaNs are introduced [tpl]cite web |url=http://www.cs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF|title=Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic| author=William Kahan |date=1 October 1997[/tpl] (see section Function definition below for further details).
+In section 6.2 of the revised IEEE 754-2008 standard there are two anomalous functions (the maxnum and minnum functions that return the maximum of two operands that are expected to be numbers) that favor numbers — if just one of the operands is a NaN then the value of the other operand is returned.
+The NaN 'toolbox' for GNU Octave and MATLAB skips all NaNs when computing aggregates (like averages, standard deviations, etc.). NaNs are assumed to represent missing values and so the statistical functions ignore NaNs in the data instead of propagating them.
+
+===Operations generating NaN===
+
+There are three kinds of operations that can return NaN:[tpl]cite web|url=http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.2736|author=David Goldberg|title= What Every Computer Scientist Should Know About Floating-Point[/tpl]
+NaNs may also be explicitly assigned to variables, typically as a representation for missing values. Prior to the IEEE standard, programmers often used a special value (such as −99999999) to represent undefined or missing values, but there was no guarantee that they would be handled consistently or correctly.
+NaNs are not necessarily generated in all the above cases. If an operation can produce an exception condition and traps are not masked then the operation will cause a trap instead. If an operand is a quiet NaN, and there isn't also a signaling NaN operand, then there is no exception condition and the result is a quiet NaN. Explicit assignments will not cause an exception even for signaling NaNs.
+
+===Quiet NaN===
+
+Quiet NaNs, or qNaNs, do not raise any additional exceptions as they propagate through most operations. The exceptions are where the NaN cannot simply be passed through unchanged to the output, such as in format conversions or certain comparison operations (which do not "expect" a NaN input).
+
+===Signaling NaN===
+
+Signaling NaNs, or sNaNs, are special forms of a NaN that when consumed by most operations should raise an invalid exception and then, if appropriate, be "quieted" into a qNaN that may then propagate. They were introduced in IEEE 754. There have been several ideas for how these might be used:
+When encountered a trap handler could decode the sNaN and return an index to the computed result. In practice this approach is faced with many complications. The treatment of the sign bit of NaNs for some simple operations (such as absolute value) is different from that for arithmetic operations. Traps are not required by the standard. There are other approaches to this sort of problem that would be more portable.
+
+==Function definition==
+
+There are differences of opinion about the proper definition for the result of a numeric function that receives a quiet NaN as input. One view is that the NaN should propagate to the output of the function in all cases to propagate the indication of an error. Another view, and the one taken by the IEEE standard in general, is that if the function has multiple arguments and the output is uniquely determined by all the non-NaN inputs including infinity, then that value should be the result. Thus for example the value returned by hypot(±∞, qNaN) and hypot(qNaN, ±∞) is +∞.
+The problem is particularly acute for the exponentiation function pow(x,y) = xy. The expressions 00, ∞0 and 1∞ are considered indeterminate forms when they occur as limits (just like ∞ × 0), and the question of whether zero to the zero power should be defined as 1 has divided opinion.
+If the output is considered as undefined if a parameter is undefined then pow(1,qNaN) should produce a qNaN. However typically math libraries have returned 1 for pow(1,y) for any real number y, and even if y is infinity or -infinity. Similarly they produce 1 for pow(x,0) even when x is 0 or infinity. The rationale for returning the value 1 for the indeterminate forms  was that the value of functions at singular points can be taken as a particular value if that value is in the limit the value[tpl]Clarify|date=October 2011[/tpl] for all but a vanishingly small part of a ball around the limit value of the parameters.  The 2008 version of the IEEE 754 standard says that pow(1,qNaN) and pow(qNaN,0) should both return 1 since they return 1 whatever else is used instead of quiet NaN.
+To satisfy those wishing a more strict interpretation of how the power function should act, the 2008 standard defines two additional power functions; pown(x, n) where the exponent must be an integer, and powr(x, y) which returns a NaN whenever a parameter is a NaN or the exponentiation would give an indeterminate form.
+
+==Integer NaN==
+
+Most fixed sized integer formats do not have any way of explicitly indicating invalid data.
+Perl's BigInt package uses "NaN" for the result of strings that don't represent valid integers.
+ <code> >perl -mMath::BigInt -e "print Math::BigInt->new('foo')" </code>
+ <code> NaN </code>
+
+==Display==
+
+Different operating systems and programming languages may have different string representations of NaN.
+  nan
+  NaN
+  NaN%
+  NAN
+  NaNQ
+  NaNS
+  qNaN
+  sNaN
+  1.#SNAN
+  1.#QNAN
+  -1.#IND
+Since, in practice, encoded NaNs have both a sign and optional 'diagnostic information' (sometimes called a payload), these will often be found in string representations of NaNs, too, for example:
+  -NaN
+   NaN12345
+  -sNaN12300
+  -NaN(s1234)
+(other variants exist)
+
+==Encoding==
+
+In IEEE 754 standard-conforming floating point storage formats, NaNs are identified by specific, pre-defined bit patterns unique to NaNs. The sign bit does not matter. Binary format NaNs are represented with the exponential field filled with ones (like infinity values), and some non-zero number in the significand (to make them distinct from infinity values). The original IEEE 754 standard from 1985 (IEEE 754-1985) only described binary floating point formats, and  did not specify how the signaled/quiet state was to be tagged. In practice, the most significant bit of the significand determined whether a NaN is signalling or quiet. Two different implementations, with reversed meanings, resulted.
+The 2008 revision of the IEEE 754 standard (IEEE 754-2008) makes formal recommendations for the encoding of the signaled/quiet bit.
+The state/value of the remaining bits (i.e. other than the ones used to identify a NaN as NaN, including the quiet/signaled bits) are not defined by the standard except that they must not be all zero. This value is called the 'payload' of the NaN. If an operation has a single NaN input and propagates it to the output, the result NaN's payload should be that of the input NaN. If there are multiple NaN inputs, the result NaN's payload should be from one of the input NaNs; the standard does not specify which.
+
+==References==
+
+==External links==
+
+

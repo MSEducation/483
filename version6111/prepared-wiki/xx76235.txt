@@ -1,0 +1,75 @@
+ | title = [[Proofs from THE BOOK]]
+ | year = 1998}}.</ref> gives the number of spanning trees as ''n''<sup>''n''&nbsp;&minus;&nbsp;2</sup>.
+ | last1 = Harary | first1 = Frank | author1-link = Frank Harary
+ | last2 = Hayes | first2 = John P.
+ | last3 = Wu | first3 = Horng-Jyh
+ | doi = 10.1016/0898-1221(88)90213-1
+ | issue = 4
+ | journal = Computers & Mathematics with Applications
+ | mr = 949280
+ | pages = 277–289
+ | title = A survey of the theory of hypercube graphs
+ | volume = 15
+
+===In arbitrary graphs===
+
+More generally, for any graph G, the number t(G) can be calculated in polynomial time as the determinant of a matrix derived from the graph,
+using Kirchhoff's matrix-tree theorem.[tpl]citation|title=Graphs, Algorithms, and Optimization|series=Discrete Mathematics and Its Applications|first1=William|last1=Kocay|first2=Donald L.|last2=Kreher|publisher=CRC Press|year=2004|isbn=9780203489055|pages=111–116|contribution=5.8 The matrix-tree theorem|url=http://books.google.com/books?id=zxSmHAoMiRUC&pg=PA111[/tpl].
+Specifically, to compute t(G), one constructs a square matrix in which the rows and columns are both indexed by the vertices of G. The entry in row i and column j is one of three values:
+The resulting matrix is singular, so its determinant is zero. However, deleting the row and column for an arbitrarily chosen vertex leads to a smaller matrix whose determinant is exactly t(G).
+
+===Deletion-contraction===
+
+If G is a graph or multigraph and e is an arbitrary edge of G, then the number t(G) of spanning trees of G satisfies the deletion-contraction recurrence
+t(G) = t(G − e) + t(G/e), where G − e is the multigraph obtained by deleting e
+and G/e is the contraction of G by e.[tpl]harvtxt|Kocay|Kreher|2004[/tpl], p. 109. The term t(G − e) in this formula counts the spanning trees of G that do not use edge e, and the term t(G/e) counts the spanning trees of G that use e.
+In this formula, if the given graph G is a multigraph, or if a contraction causes two vertices to be connected to each other by multiple edges,
+then the redundant edges should not be removed, as that would lead to the wrong total. For instance a bond graph connecting two vertices by k edges has k different spanning trees, each consisting of a single one of these edges.
+
+===Tutte polynomial===
+
+The Tutte polynomial of a graph can be defined as a sum, over the spanning trees of the graph, of terms computed from the "internal activity" and "external activity" of the tree. Its value at the arguments (1,1) is the number of spanning trees or, in a disconnected graph, the number of maximal spanning forest.[tpl]harvtxt|Bollobás|1998[/tpl], p. 351.
+The Tutte polynomial can also be computed using a deletion-contraction recurrence, but its computational complexity is high: for many values of its arguments, computing it exactly is #P-complete, and it is also hard to approximate with a guaranteed approximation ratio. The point (1,1), at which it can be evaluated using Kirchhoff's theorem, is one of the few exceptions.[ref]
+; 
+.[/ref]
+
+==Algorithms==
+
+===Construction===
+
+A single spanning tree of a graph can be found in linear time by either depth-first search or breadth-first search. Both of these algorithms explore the given graph, starting from an arbitrary vertex v, by looping through the neighbors of the vertices they discover and adding each unexplored neighbor to a data structure to be explored later. They differ in whether this data structure is a  stack (in the case of depth-first search) or a  queue (in the case of breadth-first search). In either case, one can form a spanning tree by connecting each vertex, other than the root vertex v, to the vertex from which it was discovered. This tree is known as a depth-first search tree or a breadth-first search tree according to the graph exploration algorithm used to construct it.[tpl]citation|title=The Design and Analysis of Algorithms|series=Monographs in Computer Science|first=Dexter|last=Kozen|authorlink=Dexter Kozen|publisher=Springer|year=1992|isbn=9780387976877|page=19|url=http://books.google.com/books?id=L_AMnf9UF9QC&pg=PA19[/tpl]. Depth-first search trees are a special case of a class of spanning trees called Trémaux trees, named after the 19th-century discoverer of depth-first search.[ref]
+.</ref>
+Spanning trees are important in parallel and distributed computing, as a way of maintaining communications between a set of processors; see for instance the Spanning Tree Protocol used by OSI link layer devices. However, the depth-first and breadth-first methods for constructing spanning trees on sequential computers are not well suited for parallel and distributed computers.[ref]
+.</ref> Instead, researchers have devised several more specialized algorithms for finding spanning trees in these models of computation.<ref>
+; 
+; 
+.</ref>
+
+===Optimization===
+
+In certain fields of graph theory it is often useful to find a minimum spanning tree of a weighted graph. Other optimization problems on spanning trees have also been studied, including the maximum spanning tree, the minimum tree that spans at least k vertices, the spanning tree with the fewest edges per vertex, the spanning tree with the largest number of leaves, the spanning tree with the fewest leaves (closely related to the Hamiltonian path problem), the minimum diameter spanning tree, and the minimum dilation spanning tree.[tpl]citation | last = Eppstein | first= David | authorlink = David Eppstein | title = Spanning trees and spanners | booktitle = Handbook of Computational Geometry | publisher = Elsevier | year = 1999 | pages = 425–461 | url = http://www.ics.uci.edu/~eppstein/pubs/Epp-TR-96-16.pdf[/tpl].[tpl]citation | last1 = Wu | first1 = Bang Ye | last2 = Chao | first2 = Kun-Mao | title = Spanning Trees and Optimization Problems | year = 2004 | publisher = CRC Press | isbn = 1-58488-436-3[/tpl].
+Optimal spanning tree problems have also been studied for finite sets of points in a geometric space such as the Euclidean plane. For such an input, a spanning tree is again a tree that has as its vertices the given points. The quality of the tree is measured in the same way as in a graph, using the Euclidean distance between pairs of points as the weight for each edge. Thus, for instance, a Euclidean minimum spanning tree is the same as a graph minimum spanning tree in a complete graph with Euclidean edge weights. However, it is not necessary to construct this graph in order to solve the optimization problem; the Euclidean minimum spanning tree problem, for instance, can be solved more efficiently in O(n log n) time by constructing the Delaunay triangulation and then applying a linear time planar graph minimum spanning tree algorithm to the resulting triangulation.
+
+===Randomization===
+
+A spanning tree chosen randomly from among all the spanning trees with equal probability is called a uniform spanning tree. Wilson's algorithm can be used to generate uniform spanning trees in polynomial time by a process of taking a random walk on the given graph and erasing the cycles created by this walk.[ref]
+.</ref>
+An alternative model for generating spanning trees randomly but not uniformly is the random minimal spanning tree. In this model, the edges of the graph are assigned random weights and then the minimum spanning tree of the weighted graph is constructed.[ref]
+.</ref>
+
+===Enumeration===
+
+Because a graph may have exponentially many spanning trees, it is not possible to list them all in polynomial time. However, algorithms are known for listing all spanning trees in polynomial time per tree.[ref]
+</ref>
+
+==In infinite graphs==
+
+Every finite connected graph has a spanning tree. However, for infinite connected graphs, the existence of spanning trees is equivalent to the axiom of choice. An infinite graph is connected if each pair of its vertices forms the pair of endpoints of a finite path. As with finite graphs, a tree is a connected graph with no finite cycles, and a spanning tree can be defined either as a maximal acyclic set of edges or as a tree that contains every vertex.
+The trees within a graph may be partially ordered by their subgraph relation, and any infinite chain in this partial order has an upper bound (the union of the trees in the chain). Zorn's lemma, one of many equivalent statements to the axiom of choice, states that a partial order in which all chains are upper bounded must have a maximal element; in the partial order on the trees of the graph, this maximal element must be a spanning tree. Therefore, if Zorn's lemma is true, every infinite connected graph has a spanning tree.[tpl]citation|title=Trees|first=Jean-Pierre|last=Serre|authorlink=Jean-Pierre Serre|page=23|publisher=Springer|series=Springer Monographs in Mathematics|year=2003[/tpl].
+In the other direction, given a family of sets, it is possible to construct an infinite graph such that every spanning tree of the graph corresponds to a choice function of the family of sets. Therefore,
+if every infinite connected graph has a spanning tree, then the axiom of choice is true.[ref]
+. See in particular Theorem 2.1, [http://books.google.com/books?id=kIKW18ENfUMC&pg=PA192 pp.&nbsp;192–193].</ref>
+
+==Notes==
+
+

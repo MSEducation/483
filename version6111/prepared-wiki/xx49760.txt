@@ -1,0 +1,73 @@
+[[Set-builder notation]]
+
+CATEGORIES: Set theory, Mathematical notation, Articles with example Haskell code, Articles with example Python code
+
+In set theory and its applications to logic, mathematics, and computer science, set-builder notation is a mathematical notation for describing a set by stating the properties that its members must satisfy.[tpl]cite book | last=Rosen| first=Kenneth| year=2007 | title=Discrete Mathematics and its Applications | edition=6th | publisher=McGraw-Hill | location=New York, NY | isbn=978-0-07-288008-3| pages=111–112[/tpl] Forming sets in this manner is also known as set comprehension, set abstraction or as defining a set's intension. Although some simply refer to it as set notation, that label may be better reserved for the broader class of means of denoting sets.
+
+==Direct, ellipses, and informally specified sets==
+
+A set is an unordered list of elements.  The elements are also called set 'members'.  Elements can be any mathematical entity.  We can specify a set by showing a textual representation of each of its elements written between curly braces.  The following are example set representations:
+The ellipses means that the simplest interpretation should be applied for continuing a sequence. Should no terminating value appear to the right of the ellipses then the sequence is considered to be unbounded. There is no order among the elements of a set, but with the ellipses notation we show an ordered sequence before the dots as a convenient notational vehicle for explaining to a reader which members are in the set.  
+In the last example we use simple prose to describe what is in the set. The meaning of this prose must be clear to the reader or the mathematician who wrote it has failed to sufficiently define the set for the reader.
+The ellipses and simple prose approaches give the reader rules for building the set rather than directly presenting the elements.  Mathematicians find this approach of providing building rules to be convenient and important so they have extended the set builder notation as further described in this article.
+
+==Formal set builder notation sets==
+
+A set in set builder notation has three parts,  a variable, a colon or vertical bar separator, and a logical predicate.  These three parts are contained in curly brackets.
+or
+The x is taken to be a free variable.  The vertical bar, or colon, separator is read as 'such that'.   Φ(x) is said to be the 'rule' or the 'set builder rule'.  It is a logical predicate that evaluates to 'true' or 'false'.  Hence, there is a variable on the left of the separator, and a rule on the right of it.
+All values of x where the rule is true belong in the set.  All values of x where the rule is false are not in the set. 
+More formally we say that Φ(x) is a formula in predicate logic where the variable x is assumed to be universally quantified over the rule.  I.e. we can say that for all x,  Φ(x) is true.  Or more formally we might say that in the universe of discourse all values x in the set satisfy the formula Φ(x).  We may also say that the set members are the extension of Φ(x). In yet another phrasing we can say that set builder notation binds the variable x to the rule and thus note that we must use the same care with x as for all variables bound by quantifiers. 
+Here are some examples of set builder notation in action:
+The '∈' symbol denotes set membership, and can be read as 'member of', 'is in', 'belongs to', or 'lies in'. When used in logic a clause of the form 
+x ∈ {1, 2, 3} is either true or false depending if x is one of the values in the set.  When used for quantification such a clause means that x ranges over the values 1, 2, or 3.
+The ∃ sign stands for "there exists" and is formally known as existential quantification.  Quantification takes a variable and a predicate, and evaluates to true or false.  So for example, ∃x:P(x) reads  'there exists an x for which P(x) is true'.  If such an x does exist, then ∃x:P(x) is true, otherwise it is false.  Another common quantifier is ∀, universal quantification.  ∀x:P(x) will be true if for all values of x P(x) is true,  which is to say there does not exist an x where P(x) is false, ¬∃x:¬P(x).
+
+==Expressions to the left of 'such that' rather than a variable==
+
+An extention of set-builder notation replaces the single variable x with a term T that may include one or more variables, combined with functions acting on them. So instead of  [tpl]nowrap|{x : Φ(x)[/tpl]}, we have  [tpl]nowrap|{T : Φ(x1 ... xn)[/tpl]}, where T is a term involving variables x1 through xn.
+For example:
+Note in this last example the x ∈ R appears to the left of the 'such that' so it is evaluated as an expression.  Thus it is true when x is in R, and it is false when x is not in R.  This follows from our definition of set builder notation and the extension here to allow expressions.  Be careful when reading such expressions as there is a common notational convention where set inclusion found on the left should instead be interpreted as a domain quantifier for the variable.  See the description of that convention in the section below.
+When inverse functions are available the expression on the left can be eliminated through simple subsitution.  Consider the example set above {2 t+ 1 | t ∈ Z}. Make the substituion, u = 2 t+ 1, resulting in t = (u- 1)/2, then replace t and the expression to find:
+
+==Convention of annotating the variable domain on the left of the 'such that'==
+
+There is a convention found in the literature where set membership clauses are found to the left of the 'such that', but they are intended to annotate the domain the affected variable belongs to rather than to be understood as part of the expression.  Here is an example:
+In this case the left side expression is just x, and the set membership statement is to be taken as part of the rule.  In our formal set builder notation this would be written as:
+It is typically clear from context when this shorthand convention is being used. However an author must clarify in any situation where there might be ambiguity between domain quantification or membership operation .  When doing proofs on sets that follow this convention it is important to first move the domain qualifiers back to the rule predicates, or if they are common to all rules, they may be moved into universal quantifiers.
+
+==Leaving the variable domain understood by context==
+
+It is common in the literature for an author to up front universally quantify variable domains and then not state them in the rule predicates. An author may say something such as, "Unless otherwise stated variables are to be taken as Natural Numbers."
+Taking one of our sets from the first section as an example, we can say, "The universe of discourse can be taken to be the set of real numbers, where not specified inside the notation," and then write:
+In such situations when doing proofs, the understood domain is included in a universal quantifier.
+
+==Equivalent builder predicates means equivalent sets==
+
+Two sets are equal if and only if their set builder rules, including the domain specifiers, are logically equivalent. For example,
+because, the two rule predicates are logically equivalent: 
+That is to say, that for any real number x, x2 = 1 will be a true statement if and only if for real number x, |x| = 1 is a true statement.  
+We can state this result more formally by considering two generic sets, namely, the set of elements created from set builder predicate P,  
+and the set of elements created by set builder predicate Q, 
+Then sets A and B will be equal if 
+The inverse situation is also true, i.e. if the two sets have the same members, then their set builder rule predicates are logically equivalent. Hence we can say in general:
+
+==Russell's Paradox==
+
+Let's ask a question about R.  Does this set contain itself? I.e. can it be one of the elements S? 
+If R does not contain itself, then according to the set builder rule it fits the criteria for being an S element, so it should be in R; however, if it is in R then it contains itself!  We arrive at a contradiction.  
+Now consider the case that R contains itself, then by definition it should not be in the set R.  Another contradiction!  
+According to the constructs of Whitehead's set theory, all elements are either in a set, or not in a set, but here using the same theory, Bertrand Russell shows an example of element, R which can not be either.  This inconsistency is known as Russell's Paradox.
+It is possible to avoid this paradox by restricting the richness in expressive power of the original set theory. To illustrate this in terms of our notation, let X = {x | x ∈ A ∧ P(x)} denotes the set of every element of A satisfying the predicate P(x). The canonical restriction on set builder notation asserts that X is a set only if A is already known to be a set. This restriction is codified in the axiom schema of separation present in standard axiomatic set theory. Note that this axiom schema excludes R from sethood.
+
+==Z notation==
+
+==Parallels in programming languages==
+
+A similar notation available in a number of programming languages (notably Python and Haskell) is the list comprehension, which combines map and filter operations over one or more lists.
+In Python, the set-builder's braces are replaced with square brackets, parentheses, or curly braces, giving list, generator, and set objects, respectively. Python uses an English based syntax. Haskell replaces the set-builder's braces with square brackets and uses symbols, including the standard set-builder vertical bar.  Consider these examples given in set-builder notation, Python, and Haskell:
+The set builder notation and list comprehension notation are both instances of a more general notation known as monad comprehensions, which permits map/filter-like operations over any monad with a zero element.[tpl]cite web|url=http://blog.n-sch.de/2010/11/27/fun-with-monad-comprehensions/|title=Fun with monad comprehensions|author=Nils Schweinsberg|date=27 Nov 2010|accessdate=4 July 2011[/tpl]
+
+==References==
+
+

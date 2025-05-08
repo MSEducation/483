@@ -1,0 +1,95 @@
+[[Fiber bundle]]
+
+CATEGORIES: Fiber bundles, Differential topology, Algebraic topology, Homotopy theory
+
+In mathematics, and particularly topology, a fiber bundle (or, in British English, fibre bundle) is a space that is locally a product space, but globally may have a different topological structure. Specifically, the similarity between a space E and a product space B × F is defined using a continuous surjective map 
+that in small regions of E behaves just like a projection from corresponding regions of B × F to B.  The map π, called the projection or submersion of the bundle, is regarded as part of the structure of the bundle.  The space E is known as the total space of the fiber bundle, B as the base space, and F the fiber.
+In the trivial case, E is just B × F, and the map π is just the projection from the product space to the first factor. This is called a trivial bundle. Examples of non-trivial fiber bundles include the Möbius strip and Klein bottle, as well as nontrivial covering spaces.  Fiber bundles such as the tangent bundle of a manifold and more general vector bundles play an important role in differential geometry and differential topology, as do principal bundles.
+Mappings which factor over the projection map are known as bundle maps, and the set of fiber bundles forms a category with respect to such mappings.  A bundle map from the base space itself (with the identity mapping as projection) to E is called a section of E.  Fiber bundles can be generalized in a number of ways, the most common of which is requiring that the transitions between the local trivial patches lie in a certain topological group, known as the structure group, acting on the fiber F.
+
+==Formal definition==
+
+A fiber bundle is a structure (E, B, π, F), where E, B, and F are topological spaces and π : E → B is a continuous surjection satisfying a local triviality condition outlined below. The space B is called the base space of the bundle, E the total space, and F the fiber. The map π is called the projection map (or bundle projection). We shall assume in what follows that the base space B is connected.
+We require that for every x in E, there is an open neighborhood U ⊂ B of π(x) (which will be called a trivializing neighborhood) such that π−1(U) is homeomorphic to the product space U × F, in such a way that π agrees with the projection onto the first factor. That is, the following diagram should commute:
+ 
+ 
+where proj1 : U × F → U is the natural projection and φ : π−1(U) → U × F is a homeomorphism. The set of all {(Ui, φi)} is called a local trivialization of the bundle.
+Thus for any p in B, the preimage π−1({p}) is homeomorphic to F (since proj1-1({p}) clearly is) and is called the fiber over ''p. Every fiber bundle π : E → B is an open map, since projections of products are open maps. Therefore B'' carries the quotient topology determined by the map π.
+A fiber bundle (E, B, π, F) is often denoted
+that, in analogy with a short exact sequence, indicates which space is the fiber, total space and base space, as well as the map from total to base space.
+A smooth fiber bundle is a fiber bundle in the category of smooth manifolds. That is, E, B, and F are required to be smooth manifolds and all the functions above are required to be smooth maps.
+
+==Examples==
+
+===Trivial bundle===
+
+Let E = B × F and let π : E → B be the projection onto the first factor. Then E is a fiber bundle (of F) over B. Here E is not just locally a product but globally one. Any such fiber bundle is called a trivial bundle. Any fiber bundle over a contractible CW-complex is trivial.
+
+===Möbius strip===
+
+The corresponding trivial bundle B × F would be a cylinder, but the Möbius strip has an overall "twist". Note that this twist is visible only globally; locally the Möbius strip and the cylinder are identical (making a single vertical cut in either gives the same space).
+
+===Klein bottle===
+
+A similar nontrivial bundle is the Klein bottle which can be viewed as a "twisted" circle bundle over another circle. The corresponding non-twisted (trivial) bundle is the 2-torus, S1 × S1.
+
+===Covering map===
+
+A covering space is a fiber bundle such that the bundle projection is a local homeomorphism. It follows that the fiber is a discrete space.
+
+===Vector and principal bundles===
+
+A special class of fiber bundles, called vector bundles, are those whose fibers are vector spaces (to qualify as a vector bundle the structure group of the bundle — see below — must be a linear group). Important examples of vector bundles include the tangent bundle and cotangent bundle of a smooth manifold. From any vector bundle, one can construct the frame bundle of bases which is a principal bundle (see below).
+Another special class of fiber bundles, called principal bundles, are bundles on whose fibers a free and transitive action by a group G is given, so that each fiber is a principal homogeneous space. The bundle is often specified along with the group by referring to it as a principal G-bundle. The group G is also the structure group of the bundle. Given a representation ρ of G on a vector space V, a vector bundle with ρ(G)⊆Aut(V) as a structure group may be constructed, known as the associated bundle.
+
+===Sphere bundles===
+
+A sphere bundle is a fiber bundle whose fiber is an n-sphere. Given a vector bundle E with a metric (such as the tangent bundle to a Riemannian manifold) one can construct the associated unit sphere bundle, for which the fiber over a point x is the set of all unit vectors in Ex. When the vector bundle in question is the tangent bundle T(M), the unit sphere bundle is known as the unit tangent bundle, and is denoted UT(M).  
+A sphere bundle is partially characterized by its Euler class, which is a degree n+1 cohomology class in the total space of the bundle. In the case n=1 the sphere bundle is called a circle bundle and the Euler class is equal to the first Chern class, which characterizes the topology of the bundle completely. For any n, given the Euler class of a bundle, one can calculate its cohomology using a long exact sequence called the Gysin sequence.
+
+===Mapping tori===
+
+If X is a topological space and f:X → X is a homeomorphism then the mapping torus Mf has a natural structure of a fiber bundle over the circle with fiber X. Mapping tori of homeomorphisms of surfaces are of particular importance in  3-manifold topology.
+
+===Quotient spaces===
+
+If G is a topological group and H is a closed subgroup, then under some circumstances, the quotient space G/H together with the quotient map π : G → G/H is a fiber bundle, whose fiber is the topological space H. A necessary and sufficient condition for (G,G/H,π,H) to form a fiber bundle is that the mapping π admit local cross-sections [tpl]harv|Steenrod|1951|§7[/tpl].
+The most general conditions under which the quotient map will admit local cross-sections are not known, although if G is a Lie group and H a closed subgroup (and thus a Lie subgroup by Cartan's theorem), then the quotient map is a fiber bundle. One example of this is the Hopf fibration, S3 → S2 which is a fiber bundle over the sphere S2 whose total space is S3. From the perspective of Lie groups, S3 can be identified with the special unitary group SU(2). The abelian subgroup of diagonal matrices is isomorphic to the circle group U(1), and the quotient SU(2)/U(1) is diffeomorphic to the sphere.
+More generally, if G is any topological group and H a closed subgroup which also happens to be a Lie group, then G → G/H is a fiber bundle.
+
+==Sections==
+
+A section (or cross section) of a fiber bundle is a continuous map f : B → E such that π(f(x))=x for all x in B. Since bundles do not in general have globally defined sections, one of the purposes of the theory is to account for their existence. The obstruction to the existence of a section can often be measured by a cohomology class, which leads to the theory of characteristic classes in algebraic topology.
+The most well-known example is the hairy ball theorem, where the Euler class is the obstruction to the tangent bundle of the 2-sphere having a nowhere vanishing section.
+Often one would like to define sections only locally (especially when global sections do not exist). A local section of a fiber bundle is a continuous map f : U → E where U is an open set in B and π(f(x))=x for all x in U. If (U, φ) is a local trivialization chart then local sections always exist over U. Such sections are in 1-1 correspondence with continuous maps U → F. Sections form a sheaf.
+
+==Structure groups and transition functions==
+
+Fiber bundles often come with a group of symmetries which describe the matching conditions between overlapping local trivialization charts. Specifically, let G be a topological group which acts continuously on the fiber space F on the left. We lose nothing if we require G to act effectively on F so that it may be thought of as a group of homeomorphisms of F. A ''G''-atlas for the bundle (E, B, π, F) is a local trivialization such that for any two overlapping charts (Ui, φi) and (Uj, φj) the function
+is given by
+where tij : Ui ∩ Uj → G is a continuous map called a transition function. Two G-atlases are equivalent if their union is also a G-atlas. A ''G''-bundle is a fiber bundle with an equivalence class of G-atlases. The group G is called the structure group of the bundle; the analogous term in physics is gauge group.
+In the smooth category, a G-bundle is a smooth fiber bundle where G is a Lie group and the corresponding action on F is smooth and the transition functions are all smooth maps.
+The transition functions tij satisfy the following conditions
+The third condition applies on triple overlaps Ui ∩ Uj ∩ Uk and is called the cocycle condition (see Čech cohomology). The importance of this is that the transition functions determine the fiber bundle (if one assumes the Čech cocycle condition).
+A principal G-bundle is a G-bundle where the fiber F is a principal homogeneous space for the left action of G itself (equivalently, one can specify that the action of G on the fiber F is free and transitive). In this case, it is often a matter of convenience to identify F with G and so obtain a (right) action of G on the principal bundle.
+
+==Bundle maps==
+
+It is useful to have notions of a mapping between two fiber bundles.  Suppose that M and N are base spaces, and πE : E → M and πF : F → N are fiber bundles over M and N, respectively.  A bundle map (or bundle morphism) consists of a pair of continuousDepending on the category of spaces involved, the functions may be assumed to have properties other than continuity.  For instance, in the category of differentiable manifolds, the functions are assumed to be smooth.  In the category of algebraic varieties, they are regular morphisms. functions
+
+==Differentiable fiber bundles==
+
+In the category of differentiable manifolds, fiber bundles arise naturally as submersions of one manifold to another. Not every (differentiable) submersion ƒ : M → N from a differentiable manifold M to another differentiable manifold N gives rise to a differentiable fiber bundle. For one thing, the map must be surjective, and (M,N,ƒ) is called a fibered manifold. However, this necessary condition is not quite sufficient, and there are a variety of sufficient conditions in common use.
+If M and N are compact and connected, then any submersion f : M → N gives rise to a fiber bundle in the sense that there is a fiber space F diffeomorphic to each of the fibers such that (E,B,π,F) = (M,N,ƒ,F) is a fiber bundle.  (Surjectivity of ƒ follows by the assumptions already given in this case.) More generally, the assumption of compactness can be relaxed if the submersion ƒ : M → N is assumed to be a surjective proper map, meaning that ƒ−1(K) is compact for every compact subset K of N. Another sufficient condition, due to [tpl]harvtxt|Ehresmann|1951[/tpl], is that if ƒ : M → N is a surjective submersion with M and N differentiable manifolds such that the preimage ƒ−1{x} is compact and connected for all x ∈ N, then ƒ admits a compatible fiber bundle structure [tpl]harv|Michor|2008|loc=§17[/tpl].
+
+==Generalizations==
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,188 @@
+[[Reed–Solomon error correction]]
+
+CATEGORIES: Error detection and correction, Coding theory
+
+In coding theory, Reed–Solomon (RS) codes are non-binary cyclic error-correcting codes invented by Irving S. Reed and Gustave Solomon.  They described a systematic way of building codes that could detect and correct multiple random symbol errors. By adding t check symbols to the data, an RS code can detect any combination of up to t erroneous symbols, or correct up to ⌊t/2⌋ symbols. As an erasure code, it can correct up to t known erasures, or it can detect and correct combinations of errors and erasures. 
+Furthermore, RS codes are suitable as multiple-burst bit-error correcting codes, since a sequence of b + 1 consecutive bit errors can affect at most two symbols of size b. The choice of t is up to the designer of the code, and may be selected within wide limits.
+In Reed–Solomon coding, source symbols are viewed as coefficients of a polynomial p(x) over a finite field. The original idea was to create n code symbols from k source symbols by oversampling p(x) at n > k distinct points, transmit the sampled points, and use interpolation techniques at the receiver to recover the original message. That is not how RS codes are used today.[tpl]citation needed|date=February 2013[/tpl] Instead, RS codes are viewed as cyclic BCH codes, where encoding symbols are derived from the coefficients of a polynomial constructed by multiplying p(x) with a cyclic generator polynomial. This gives rise to efficient decoding algorithms (described below).
+Reed–Solomon codes have since found important applications from deep-space communication to consumer electronics. They are prominently used in consumer electronics such as CDs, DVDs, Blu-ray Discs, in data transmission technologies such as DSL and WiMAX, in broadcast systems such as DVB and ATSC, and in computer applications such as RAID 6 systems.
+
+==History==
+
+Reed–Solomon codes were developed in 1960 by Irving S. Reed and Gustave Solomon, who were then staff members of MIT Lincoln Laboratory. Their seminal article was entitled "Polynomial Codes over Certain Finite Fields."  [tpl]Harv|Reed|Solomon|1960[/tpl].  When the article was written, an efficient decoding algorithm was not known. A solution for the latter was found in 1969 by Elwyn Berlekamp and James Massey, and is since known as the Berlekamp–Massey decoding algorithm. In 1977, RS codes were notably implemented in the Voyager program in the form of concatenated codes. The first commercial application in mass-produced consumer products appeared in 1982 with the compact disc, where two interleaved RS codes are used. Today, RS codes are widely implemented in digital storage devices and digital communication standards, though they are being slowly replaced by more modern low-density parity-check (LDPC) codes or turbo codes.  For example, RS codes are used in the digital video broadcasting (DVB) standard DVB-S, but LDPC codes are used in its successor DVB-S2.
+
+==Applications==
+
+===Data storage===
+
+Reed–Solomon coding is very widely used in mass storage systems to correct
+the burst errors associated with media defects.
+Reed–Solomon coding is a key component of the compact disc. It was the first use of strong error correction coding in a mass-produced consumer product, and DAT and DVD use similar schemes. In the CD, two layers of Reed–Solomon coding separated by a 28-way convolutional interleaver yields a scheme called Cross-Interleaved Reed–Solomon Coding (CIRC). The first element of a CIRC decoder is a relatively weak inner (32,28) Reed–Solomon code, shortened from a (255,251) code with 8-bit symbols. This code can correct up to 2 byte errors per 32-byte block. More importantly, it flags as erasures any uncorrectable blocks, i.e., blocks with more than 2 byte errors. The decoded 28-byte blocks, with erasure indications, are then spread by the deinterleaver to different blocks of the (28,24) outer code. Thanks to the deinterleaving, an erased 28-byte block from the inner code becomes a single erased byte in each of 28 outer code blocks. The outer code easily corrects this, since it can handle up to 4 such erasures per block.
+The result is a CIRC that can completely correct error bursts up to 4000 bits, or about 2.5 mm on the disc surface. This code is so strong that most CD playback errors are almost certainly caused by tracking errors that cause the laser to jump track, not by uncorrectable error bursts.[tpl]Citation |first=K. A. S. |last=Immink |authorlink=Kees Immink |contribution=Reed–Solomon Codes and the Compact Disc |editor1-first=Stephen B. |editor1-last=Wicker |editor2-first=Vijay K. |editor2-last=Bhargava |title=Reed–Solomon Codes and Their Applications |publisher=IEEE Press |year=1994 |isbn=978-0-7803-1025-4 |doi= [/tpl]
+DVDs uses a similar scheme, but with much larger blocks, a (208,192) inner code, and a (182,172) outer code.
+Reed–Solomon error correction is also used in parchive files which are commonly posted accompanying multimedia files on USENET. The Distributed online storage service Wuala also makes use of Reed–Solomon when breaking up files.
+
+===Bar code===
+
+Almost all two-dimensional bar codes such as PDF-417, MaxiCode, Datamatrix, QR Code, and Aztec Code use Reed–Solomon error correction to allow correct reading even if a portion of the bar code is damaged.  When the bar code scanner cannot recognize a bar code symbol, it will treat it as an erasure.
+Reed–Solomon coding is less common in one-dimensional bar codes, but is used by the PostBar symbology.
+
+===Data transmission===
+
+Specialized forms of Reed–Solomon codes, specifically Cauchy-RS and Vandermonde-RS, can be used to overcome the unreliable nature of data transmission over erasure channels. The encoding process assumes a code of RS(N, K) which results in N codewords of length N symbols each storing K symbols of data, being generated, that are then sent over an erasure channel.
+Any combination of K codewords received at the other end is enough to reconstruct all of the N codewords. The code rate is generally set to 1/2 unless the channel's erasure likelihood can be adequately modelled and is seen to be less. In conclusion, N is usually 2K, meaning that at least half of all the codewords sent must be received in order to reconstruct all of the codewords sent.
+Reed–Solomon codes are also used in xDSL systems and CCSDS's Space Communications Protocol Specifications as a form of forward error correction.
+
+===Space transmission===
+
+One significant application of Reed–Solomon coding was to encode the digital pictures sent back by the Voyager space probe.
+Voyager introduced Reed–Solomon coding concatenated with convolutional codes, a practice that has since become very widespread in deep space and satellite (e.g., direct digital broadcasting) communications.
+Viterbi decoders tend to produce errors in short bursts. Correcting these burst errors is a job best done by short or simplified Reed–Solomon codes.
+Modern versions of concatenated Reed–Solomon/Viterbi-decoded convolutional coding were and are used on the Mars Pathfinder, Galileo, Mars Exploration Rover and Cassini missions, where they perform within about 1–1.5 dB of the ultimate limit imposed by the Shannon capacity.
+These concatenated codes are now being replaced by more powerful turbo codes where the transmitted data does not need to be decoded immediately.
+
+==Constructions==
+
+The Reed–Solomon code is actually a family of codes:
+For every choice of parameters q, n, and k, there is a Reed–Solomon code that has an alphabet of size q, a block length n < q, and a message length k < n.
+Moreover, the alphabet is interpreted as the finite field of order q, and thus, q has to be a prime power.
+
+===Reed & Solomon's original view: The codeword as a sequence of values===
+
+There are different encoding procedures for the Reed–Solomon code, and thus, there are different ways to describe the set of all codewords.
+In the original view of [tpl]Harvtxt|Reed|Solomon|1960[/tpl], every codeword of the Reed–Solomon code is a sequence of function values of a low-degree polynomial.
+More precisely, in order to obtain a codeword of the Reed–Solomon code, the message is interpreted as the description of a polynomial p of degree less than k over the finite field F with q elements.
+Being a code that achieves this optimal trade-off, the Reed–Solomon code belongs to the class of maximum distance separable codes.
+The latter encoding procedure, while being slightly less efficient, has the advantage that it gives rise to a systematic code, that is, the original message is always contained as a subsequence of the codeword.
+
+====Simple encoding procedure: The message as a sequence of coefficients====
+
+====Systematic encoding procedure: The message as an initial sequence of values====
+
+It can be checked that the alternative encoding function is a linear mapping as well.
+
+===The BCH view: The codeword as a sequence of coefficients===
+
+Since Reed–Solomon codes are a special case of BCH codes and the Berlekamp–Massey algorithm has been designed for the decoding of such codes, it is applicable to Reed–Solomon codes:
+
+====Systematic encoding procedure====
+
+The above encoding procedure for the BCH view of Reed–Solomon codes is classical, but does not give rise to a systematic encoding procedure, i.e., the codewords do not necessarily contain the message as a subsequence.
+
+===Equivalence of the two views===
+
+To be more precise, let
+This shows that the two definitions are equivalent.
+
+===Remarks===
+
+Designers are not required to use the "natural" sizes of Reed–Solomon code blocks. A technique known as "shortening" can produce a smaller code of any desired size from a larger code. For example, the widely used (255,223) code can be converted to a (160,128) code by padding the unused portion of the source block with 95 binary zeroes and not transmitting them. At the decoder, the same portion of the block is loaded locally with binary zeroes. The Delsarte-Goethals-Seidel[tpl]Citation |first=Florian |last=Pfender |first2=Günter M. |last2=Ziegler |title=Kissing Numbers, Sphere Packings, and Some Unexpected Proofs |journal=Notices of the American Mathematical Society |volume=51 |issue=8 |pages=873–883 |date=September 2004 |url=http://www.ams.org/notices/200408/fea-pfender.pdf |doi= [/tpl]. Explains the Delsarte-Goethals-Seidel theorem as used in the context of the error correcting code for compact disc. theorem illustrates an example of an application of shortened Reed–Solomon codes. In parallel to shortening, a technique known as puncturing allows omitting some of the encoded parity symbols.
+
+==Properties==
+
+The Reed–Solomon code is a k, n − k + 1 code; in other words, it is a linear block code of length n (over F) with dimension k and minimum Hamming distance n − k + 1. The Reed–Solomon code is optimal in the sense that the minimum distance has the maximum value possible for a linear code of size (n, k); this is known as the Singleton bound. Such a code is also called a maximum distance separable (MDS) code.
+The Reed–Solomon code properties discussed above make them especially well-suited to applications where errors occur in bursts.  This is because it does not matter to the code how many bits in a symbol are in error — if multiple bits in a symbol are corrupted it only counts as a single error.  Conversely, if a data stream is not characterized by error bursts or drop-outs but by random single bit errors, a Reed–Solomon code is usually a poor choice compared to a binary code.
+The Reed–Solomon code, like the convolutional code, is a transparent code. This means that if the channel symbols have been inverted somewhere along the line, the decoders will still operate. The result will be the inversion of the original data. However, the Reed–Solomon code loses its transparency when the code is shortened. The "missing" bits in a shortened code need to be filled by either zeros or ones, depending on whether the data is complemented or not. (To put it another way, if the symbols are inverted, then the zero-fill needs to be inverted to a one-fill.) For this reason it is mandatory that the sense of the data (i.e., true or complemented) be resolved before Reed–Solomon decoding.
+
+==Error correction algorithms==
+
+===Theoretical decoder===
+
+===Peterson decoder===
+
+[tpl]Harvtxt|Peterson|1960[/tpl] developed a practical decoder based on syndrome decoding.  [tpl]Harv|Welch|1997|p=10[/tpl]  Berlekamp (below) would improve on that decoder.
+
+====Syndrome decoding====
+
+The transmitted message is viewed as the coefficients of a polynomial s(x) that is divisible by a generator polynomial g(x).  [tpl]Harvtxt|Welch|1997|p=5[/tpl]
+where α is a primitive root.
+Since s(x) is divisible by generator g(x), it follows that
+The transmitted polynomial is corrupted in transit by an error polynomial e(x) to produce the received polynomial r(x).
+where ei is the coefficient for the i-th power of x.  Coefficient ei will be zero if there is no error at that power of x and nonzero if there is an error.  If there are ν errors at distinct powers ik of x, then
+The goal of the decoder is to find the number of errors (ν), the positions of the errors (ik), and the error values at those positions (eik). From those, e(x) can be calculated and subtracted from r(x) to get the original message s(x).
+The syndromes Sj are defined as
+
+====Error locators and error values====
+
+For convenience, define the error locators Xk and error values Yk as:
+Then the syndromes can be written in terms of the error locators and error values as
+The syndromes give a system of n − k ≥ 2ν equations in 2ν unknowns, but that system of equations is nonlinear in the Xk and does not have an obvious solution.  However, if the Xk were known (see below), then the syndrome equations provide a linear system of equations that can easily be solved for the Yk error values.
+Consequently, the problem is finding the Xk, because then the leftmost matrix would be known, and both sides of the equation could be multiplied by its inverse, yielding Yk
+
+====Error locator polynomial====
+
+Peterson found a linear recurrence relation that gave rise to a system of linear equations. [tpl]Harv|Welch|1997|p=10[/tpl]
+Solving those equations identifies the error locations.
+Define the error locator polynomial Λ(x) as
+Sum for k = 1 to ν
+This reduces to
+This yields a system of linear equations that can be solved for the coefficients Λi of the error location polynomial:
+The above assumes the decoder knows the number of errors ν, but that number has not been determined yet. The PGZ decoder does not determine ν directly but rather searches for it by trying successive values. The decoder first assumes the largest value for a trial ν and sets up the linear system for that value. If the equations can be solved (i.e., the matrix determinant is nonzero), then that trial value is the number of errors. If the linear system cannot be solved, then the trial ν is reduced by one and the next smaller system is examined. [tpl]Harv|Gill|unknown|p=35[/tpl]
+
+====Obtain the error locators from the error locator polynomial====
+
+Use the coefficients Λi found in the last step to build the error location polynomial. The roots of the error location polynomial can be found by exhaustive search. The error locators are the reciprocals of those roots. Chien search is an efficient implementation of this step.
+
+====Calculate the error locations====
+
+Calculate ik by taking the log base a of  Xk. This is generally done using a precomputed lookup table.
+
+====Calculate the error values====
+
+Once the error locators are known, the error values can be determined. This can be done by direct solution for Yk in the error equations given above, or using the Forney algorithm.
+
+====Fix the errors====
+
+Finally, e(x) is generated from ik and eik and then is subtracted from r(x) to get the sent message s(x).
+
+===Berlekamp–Massey decoder===
+
+The Berlekamp–Massey algorithm is an alternate iterative procedure for finding the error locator polynomial. During each iteration, it calculates a discrepancy based on a current instance of Λ(x) with an assumed number of errors e:
+and then adjusts Λ(x) and e so that a recalculated Δ would be zero. The article Berlekamp–Massey algorithm has a detailed description of the procedure. In the following example, C(x) is used to represent Λ(x).
+
+====Example====
+
+Consider the Reed–Solomon code defined in [tpl]math|GF(929)[/tpl] with [tpl]math|α [tpl]=[/tpl] 3[/tpl] and [tpl]math|t [tpl]=[/tpl] 4[/tpl] (this is used in PDF417 barcodes). The generator polynomial is
+If the message polynomial is [tpl]math|p(x) [tpl]=[/tpl] 3 x2 + 2 x + 1[/tpl], then the codeword is calculated as follows.
+Errors in transmission might cause this to be received instead.
+The syndromes are calculated by evaluating r at powers of α.
+To correct the errors, first use the Berlekamp–Massey algorithm to calculate the error locator polynomial.
+The final value of C is the error locator polynomial, Λ(x). The zeros can be found by trial substitution. They are x1 = 757 = 3−3 and x2 = 562 = 3−4, corresponding to the error locations. To calculate the error values, apply the Forney algorithm.
+Subtracting e1x3 and e2x4 from the received polynomial r reproduces the original codeword s.
+
+===Euclidean decoder===
+
+Another iterative method for calculating the error locator polynomial is based on the Euclidean algorithm
+Ai(0) is the constant (least significant) term of Ai.
+Here is an example of the Euclidean method, using the same data as the Berlekamp Massey example above. In the table below, R and S are forward, A and B are reversed.
+
+===Decoding in frequency domain (sketch)===
+
+The above algorithms are presented in the time domain. Decoding in the frequency domain, using Fourier transform techniques, can offer computational and implementation advantages.  [tpl]Harv|Hong|Vetterli|1995[/tpl]
+The following is a sketch of the main idea behind this error correction technique.
+By definition, a code word of a Reed–Solomon code is given by the sequence of values of a low-degree polynomial over a finite field. A key fact for the error correction algorithm is that the values and the coefficients of a polynomial are related by the discrete Fourier transform.
+The purpose of a Fourier transform is to convert a signal from a time domain to a frequency domain or vice versa. 
+In case of the Fourier transform over a finite field, the frequency domain signal corresponds to the coefficients of a polynomial, and the time domain signal correspond to the values of the same polynomial.
+As shown in Figures 1 and 2, an isolated value in the frequency domain corresponds to a smooth wave in the time domain. The wavelength depends on the location of the isolated value.
+Conversely, as shown in Figures 3 and 4, an isolated value in the time domain corresponds to a smooth wave in the frequency domain.
+
+Now consider a code word containing a single error, as shown in red in Figure 6. The effect of this error in the frequency domain is a smooth, single-frequency wave in the right region, called the syndrome of the error. The error location can be determined by determining the frequency of the syndrome signal.
+Similarly, if two or more errors are introduced in the code word, the syndrome will be a signal composed of two or more frequencies, as shown in Figure 7. As long as it is possible to determine the frequencies of which the syndrome is composed, it is possible to determine the error locations. Notice that the error locations depend only on the frequencies of these waves, whereas the error magnitudes depend on their amplitudes and phase.
+
+===Decoding beyond the error-correction bound===
+
+The Singleton bound states that the minimum distance d of a linear block code of size (n,k) is upper-bounded by n − k + 1. The distance d was usually understood to limit the error-correction capability to ⌊d/2⌋. The Reed–Solomon code achieves this bound with equality, and can thus correct up to ⌊(n − k + 1)/2⌋ errors. However, this error-correction bound is not exact.
+
+===Soft-decoding===
+
+The algebraic decoding methods described above are hard-decision methods, which means that for every symbol a hard decision is made about its value.  For example, a decoder could associate with each symbol an additional value corresponding to the channel demodulator's confidence in the correctness of the symbol. The advent of LDPC and turbo codes, which employ iterated soft-decision belief propagation decoding methods to achieve error-correction performance close to the theoretical limit, has spurred interest in applying soft-decision decoding to conventional algebraic codes. In 2003, Ralf Koetter and Alexander Vardy presented a polynomial-time soft-decision algebraic list-decoding algorithm for RS codes, which was based upon the work by Sudan and Guruswami.[tpl]cite journal | first1=Ralf | last1=Koetter | first2=Alexander | last2=Vardy | title=Algebraic soft-decision decoding of Reed–Solomon codes | journal=IEEE Transactions on Information Theory | volume=49 | issue=11 | year=2003 | pages=2809–2825 | doi=10.1109/TIT.2003.819332[/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+ |first=Barry A.
+ |last=Cipra
+ |title=The Ubiquitous Reed–Solomon Codes

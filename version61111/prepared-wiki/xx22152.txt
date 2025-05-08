@@ -1,0 +1,90 @@
+[[Direct sum of modules]]
+
+CATEGORIES: Linear algebra, Module theory
+
+In abstract algebra, the direct sum is a construction which combines several modules into a new, larger module. The direct sum of modules is the smallest module which contains the given modules as submodules with no "unnecessary" constraints, making it an example of a coproduct. Contrast with the direct product, which is the dual notion.
+The most familiar examples of this construction occur when considering vector spaces (modules over a field) and abelian groups (modules over the ring Z of integers). The construction may also be extended to cover Banach spaces and Hilbert spaces.
+
+==Construction for vector spaces and abelian groups==
+
+We give the construction first in these two cases, under the assumption that we have only two objects. Then we generalise to an arbitrary family of arbitrary modules. The key elements of the general construction are more clearly identified by considering these two cases in depth.
+
+===Construction for two vector spaces===
+
+Suppose V and W are vector spaces over the field K. The cartesian product V × W can be given the structure of a vector space over K [tpl]harv|Halmos|1974|loc=§18[/tpl] by defining the operations componentwise:
+for v, v1, v2 ∈ V, w, w1, w2 ∈ W, and α ∈ K.
+The resulting vector space is called the direct sum of V and W and is usually denoted by a plus symbol inside a circle:
+It is customary to write the elements of an ordered sum not as ordered pairs (v, w), but as a sum v + w.
+The subspace V × {0} of V ⊕ W is isomorphic to V and is often identified with V; similarly for {0} × W and W. (See internal direct sum below.) With this identification, every element of V ⊕ W can be written in one and only one way as the sum of an element of V and an element of W. The dimension of V ⊕ W is equal to the sum of the dimensions of V and W.
+This construction readily generalises to any finite number of vector spaces.
+
+===Construction for two abelian groups===
+
+For abelian groups G and H which are written additively, the direct product of G and H is also called a direct sum [tpl]harv|Mac Lane|Birkhoff|1999|loc=§V.6[/tpl]. Thus the cartesian product G × H is equipped with the structure of an abelian group by defining the operations componentwise:
+for g1, g2 in G, and h1, h2 in H.
+Integral multiples are similarly defined componentwise by
+for g in G, h in H, and n an integer. This parallels the extension of the scalar product of vector spaces to the direct sum above.
+The resulting abelian group is called the direct sum of G and H and is usually denoted by a plus symbol inside a circle:
+It is customary to write the elements of an ordered sum not as ordered pairs (g, h), but as a sum g + h.
+The subgroup G × {0} of G ⊕ H is isomorphic to G and is often identified with G; similarly for {0} × H and H. (See internal direct sum below.) With this identification, it is true that every element of G ⊕ H can be written in one and only one way as the sum of an element of G and an element of H. The rank of G ⊕ H is equal to the sum of the ranks of G and H.
+This construction readily generalises to any finite number of abelian groups.
+
+==Construction for an arbitrary family of modules==
+
+One should notice a clear similarity between the definitions of the direct sum of two vector spaces and of two abelian groups. In fact, each is a special case of the construction of the direct sum of two modules. Additionally, by modifying the definition one can accommodate the direct sum of an infinite family of modules. The precise definition is as follows [tpl]harv|Bourbaki|1989|loc=§II.1.6[/tpl].
+
+==Properties==
+
+==Internal direct sum==
+
+Suppose M is some R-module, and Mi is a submodule of M for every i in I. If every x in M can be written in one and only one way as a sum of finitely many elements of the Mi, then we say that M is the internal direct sum of the submodules Mi [tpl]harv|Halmos|1974|loc=§18[/tpl]. In this case, M is naturally isomorphic to the (external) direct sum of the Mi as defined above [tpl]harv|Adamson|1972|loc=p.61[/tpl].
+A submodule N of M is a direct summand of M if there exists some other submodule N′ of M such that M is the internal direct sum of N and N′. In this case, N and N′ are complementary subspaces.
+
+==Universal property==
+
+In the language of category theory, the direct sum is a coproduct and hence a colimit in the category of left R-modules, which means that it is characterized by the following universal property. For every i in I, consider the natural embedding
+which sends the elements of Mi to those functions which are zero for all arguments but i. If fi : Mi → M are arbitrary R-linear maps for every i, then there exists precisely one R-linear map
+such that f o ji = fi for all i.
+Dually, the direct product is the product.
+
+==Grothendieck group==
+
+The direct sum gives a collection of objects the structure of a commutative monoid, in that the addition of objects is defined, but not subtraction. In fact, subtraction can be defined, and every commutative monoid can be extended to an abelian group. This extension is known as the Grothendieck group. The extension is done by defining equivalence classes of pairs of objects, which allows certain pairs to be treated as inverses. The construction, detailed in the article on the Grothendieck group, is "universal", in that it has the universal property of being unique, and homomorphic to any other embedding of an abelian monoid in an abelian group.
+
+==Direct sum of modules with additional structure==
+
+If the modules we are considering carry some additional structure (e.g. a norm or an inner product), then the direct sum of the modules can often be made to carry this additional structure, as well. In this case, we obtain the coproduct in the appropriate category of all objects carrying the additional structure. Three prominent examples occur for algebras over a field, Banach spaces and Hilbert spaces.
+
+===Direct sum of algebras===
+
+A direct sum of algebras  X and Y is the direct sum as vector spaces, with product 
+Consider these classical examples:
+Joseph Wedderburn exploited the concept of a direct sum of algebras in his classification of hypercomplex numbers. See his Lectures on Matrices (1934), page 151.
+
+===Direct sum of Banach spaces===
+
+The direct sum of two Banach spaces X and Y is the direct sum of X and Y considered as vector spaces, with the norm ||(x,y)|| = ||x||X + ||y||Y for all x in X and y in Y.
+Generally, if Xi is a collection of Banach spaces, where i traverses the index set I, then the direct sum ⨁i∈I Xi is a module consisting of all functions x defined over I such that x(i) ∈ Xi for all i ∈ I and
+The norm is given by the sum above. The direct sum with this norm is again a Banach space.
+For example, if we take the index set I = N and Xi = R, then the direct sum ⨁i∈NXi is the space l1, which consists of all the sequences (ai) of reals with finite norm ||a|| = ∑i |ai|.
+
+===Direct sum of modules with bilinear forms===
+
+Let {(Mi,bi : i ∈ I} be a family indexed by I of modules equipped with bilinear forms. The orthogonal direct sum is the module direct sum with bilinear form B defined by[tpl]cite book | first1=J. | last1=Milnor | author1-link=John Milnor| first2=D. | last2=Husemoller | title=Symmetric Bilinear Forms | series=Ergebnisse der Mathematik und ihrer Grenzgebiete | volume=73 | publisher=Springer-Verlag | year=1973 | isbn=3-540-06009-X | zbl=0292.10016 | pages=4–5[/tpl]
+in which the summation makes sense even for infinite index sets I because only finitely many of the terms are non-zero.
+
+=== Direct sum of Hilbert spaces===
+
+If finitely many Hilbert spaces H1,...,Hn are given, one can construct their orthogonal direct sum as above (since they are vector spaces), defining the inner product as:
+The resulting direct sum is a Hilbert space which contains the given Hilbert spaces as mutually orthogonal subspaces.
+If infinitely many Hilbert spaces Hi for i in I are given, we can carry out the same construction; notice that when defining the inner product, only finitely many summands will be non-zero. However, the result will only be an inner product space and it will not necessarily be complete. We then define the direct sum of the Hilbert spaces Hi to be the completion of this inner product space. 
+Alternatively and equivalently, one can define the direct sum of the Hilbert spaces Hi as the space of all functions α with domain I, such that α(i)  is an element of Hi for every i in I and:
+The inner product of two such function α and β is then defined as:
+This space is complete and we get a Hilbert space.
+Every Hilbert space is isomorphic to a direct sum of sufficiently many copies of the base field (either R or C).  This is equivalent to the assertion that every Hilbert space has an orthonormal basis.  More generally, every closed subspace of a Hilbert space is complemented: it admits an orthogonal complement.  Conversely, the Lindenstrauss–Tzafriri theorem asserts that if every closed subspace of a Banach space is complemented, then the Banach space is isomorphic (topologically) to a Hilbert space.
+
+==See also==
+
+==References==
+
+

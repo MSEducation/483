@@ -1,0 +1,35 @@
+[[Object-relational database]]
+
+CATEGORIES: Database management systems, Database models
+
+An object-relational database (ORD), or object-relational database management system (ORDBMS), is a database management system (DBMS) similar to a relational database, but with an object-oriented database model: objects, classes and inheritance are directly supported in database schemas and in the query language.  In addition, just as with pure relational systems, it supports extension of the data model with custom data-types and methods.
+An object-relational database can be said to provide a middle ground between relational databases and object-oriented databases (OODBMS). In object-relational databases, the approach is essentially that of relational databases: the data resides in the database and is manipulated collectively with queries in a query language; at the other extreme are OODBMSes in which the database is essentially a persistent object store for software written in an object-oriented programming language, with a programming API for storing and retrieving objects, and little or no specific support for querying.
+
+==Overview==
+
+The basic goal for the Object-relational database is to bridge the gap between relational databases and the object-oriented modeling techniques used in programming languages such as Java, C++, Visual Basic .NET or C#.  However, a more popular alternative for achieving such a bridge is to use a standard relational database systems with some form of  Object-relational mapping (ORM) software.  Whereas traditional RDBMS or SQL-DBMS products focused on the efficient management of data drawn from a limited set of data-types (defined by the relevant language standards), an object-relational DBMS allows software developers to integrate their own types and the methods that apply to them into the DBMS.
+The ORDBMS (like ODBMS or OODBMS) is integrated with an object-oriented programming language.  The characteristic properties of ORDBMS are 1) complex data, 2) type inheritance, and 3) object behavior. Complex data creation in most SQL ORDBMSs is based on preliminary schema definition via the user-defined type (UDT). Hierarchy within structured complex data offers an additional property, type inheritance.  That is, a structured type can have subtypes that reuse all of its attributes and contain additional attributes specific to the subtype. Another advantage, the object behavior, is related with access to the program objects. Such program objects have to be storable and transportable for database processing, therefore they usually are named as persistent objects.  Inside a database, all the relations with a persistent program object are relations with its object identifier (OID).  All of these points can be addressed in a proper relational system, although the SQL standard and its implementations impose arbitrary restrictions and additional complexity[tpl]Citation | last1 = Date | first1 = Christopher ‘Chris’ J | author1-link = Chris J Date | last2 = Darwen | first2 = Hugh | author2-link = Hugh Darwen | title = The Third Manifesto[/tpl][tpl]Rp | needed = yes|date=March 2012[/tpl]
+In object-oriented programming (OOP) object behavior is described through the methods (object functions). The methods denoted by one name are distinguished by the type of their parameters and type of objects for which they attached (method signature). The OOP languages call this the polymorphism principle, which briefly is defined as "one interface, many implementations". Other OOP principles, inheritance and encapsulation, are related both to methods and attributes.  Method inheritance is included in type inheritance.  Encapsulation in OOP is a visibility degree declared, for example, through the PUBLIC, PRIVATE and PROTECTED modifiers.
+
+==History==
+
+Object-relational database management systems grew out of research that occurred in the early 1990s. That research extended existing relational database concepts by adding object concepts. The researchers aimed to retain a declarative query-language based on predicate calculus as a central component of the architecture. Probably the most notable research project, Postgres (UC Berkeley), spawned two products tracing their lineage to that research: Illustra and PostgreSQL.
+In the mid-1990s, early commercial products appeared. These included IllustraStonebraker,. Michael with Moore, Dorothy. Object-Relational DBMSs: The Next Great Wave. Morgan Kaufmann Publishers, 1996. ISBN 1-55860-397-2. (Illustra Information Systems, acquired by Informix Software which was in turn acquired by IBM), Omniscience (Omniscience Corporation, acquired by Oracle Corporation and became the original Oracle Lite), and UniSQL (UniSQL, Inc., acquired by KCOMS).  Ukrainian developer Ruslan Zasukhin, founder of Paradigma Software, Inc., developed and shipped the first version of Valentina database in the mid-1990s as a C++ SDK.  By the next decade, PostgreSQL had become a commercially viable database and is the basis for several products today which maintain its ORDBMS features.
+Computer scientists came to refer to these products as "object-relational database management systems" or ORDBMSs.There was, at the time, a dispute whether the term was coined by Michael Stonebraker of Illustra or Won Kim of UniSQL.
+Many of the ideas of early object-relational database efforts have largely become incorporated into SQL:1999 via structured types. In fact, any product that adheres to the object-oriented aspects of SQL:1999 could be described as an object-relational database management product. For example, IBM's DB2, Oracle database, and Microsoft SQL Server, make claims to support this technology and do so with varying degrees of success.
+
+==Comparison to RDBMS==
+
+An RDBMS might commonly involve SQL statements such as these:
+Most [tpl]As of|2007|alt=current[/tpl] SQL databases allow the crafting of custom functions, which would allow the query to appear as:
+In an object-relational database, one might see something like this, with user-defined data-types and expressions such as BirthDay():
+The object-relational model can offer another advantage in that the database can make use of the relationships between data to easily collect related records. In an address book application, an additional table would be added to the ones above to hold zero or more addresses for each customer. Using a traditional RDBMS, collecting information for both the user and their address requires a "join":
+The same query in an object-relational database appears more simply:
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,70 @@
+[[Motion JPEG]]
+
+CATEGORIES: Video codecs
+
+In multimedia, Motion JPEG (M-JPEG or MJPEG) is a video format in which each video frame or interlaced field of a digital video sequence is  compressed separately as a JPEG image. Originally developed for multimedia PC applications, M-JPEG is now used by video-capture devices such as digital cameras, IP cameras, and webcams; and by non-linear video editing systems. It continues to enjoy native support by the QuickTime Player, the PlayStation console, and browsers such as Safari, Google Chrome, and Mozilla Firefox.
+
+==History==
+
+MJPEG was first used by the QuickTime Player in the mid 1990s.[tpl]Citation needed|date=August 2012[/tpl]
+
+==Applications==
+
+Software and devices using the M-JPEG standard include web browsers, media players, game consoles, digital cameras, IP cameras, webcams, streaming servers, video cameras, and non-linear video editors.
+
+===Video capture and editing===
+
+M-JPEG is frequently used in non-linear video editing systems. Modern desktop CPUs are powerful enough to work with high-definition video so no special hardware is required and they in turn offer native random-access to a frame, M-JPEG support is also widespread in video-capture and editing equipment.
+
+===Game consoles===
+
+The PlayStation game console integrated M-JPEG decompression hardware for in-game FMV sequences while the PlayStation Portable handheld game console can play M-JPEG from the Memory Stick Pro Duo under the .avi extension with a resolution of 480×272. Both can  record clips in M-JPEG via its Go!Cam camera. 
+Nintendo's Wii game console as well as V-Tech's InnoTAB can play M-JPEG-encoded videos on SD card using its Photo Channel and the SanDisk Sansa e200 and the Zen V digital audio players play short M-JPEG videos. Recent firmware updates to  the Nintendo 3DS can now record and play "3D-AVI" M-JPEG encoded files, which is the same format used in the Fujifilm FinePix Real 3D series, from a SD card in 320x240 resolution so long as the video duration is  10 minutes or less.
+
+===Digital cameras===
+
+Prior to the recent rise in MPEG-4 encoding in consumer devices, a progressive scan form of M-JPEG saw widespread use in the “movie” modes of digital still cameras, allowing video encoding and playback through the integrated JPEG compression hardware with only a software modification. The resultant quality is still inferior compared to a similar sized MPEG, particularly as the sound (when included) was uncompressed PCM and recorded at the low sample rate or low-compression, low processor-demand ADPCM.
+To keep file sizes and transfer rates under control, frame sizes and rates, along with sound sampling rates, are  kept relatively low with very high levels of compression for each individual frame. Resolutions of 160×120 or 320×240 are common sizes, typically at 10, 12 or 15 frames/second, with picture quality equivalent to a JPEG setting of “50” with mono ADPCM sound sampled at ~8 kHz. This results in a very basic, but servicable video output at a similar storage cost to MPEG (~120 kB/s video rate, ~8 kB/s audio – or approx 1 Mbit/s at 320×240 resolution), but with minimal processing overheads. This video is typically stored in the popular Windows AVI or Apple QuickTime MOV container files, generally viewable natively (or after installation of a simple codec) in most versions of the applicable operating system.
+The AMV video format, common on cheap "MP4" players, is a modified version of M-JPEG.
+In addition to portable players (which are mainly "consumers" of the video), many video-enabled digital cameras use M-JPEG for video-capture. For instance:
+
+===HDTV media players===
+
+Apple announced on September 1, 2010 that their newest version of the Apple TV would support Motion JPEG (M-JPEG) up to 35 Mbit/s, 1280 by 720 pixels, 30 frames per second, audio in μlaw, PCM stereo audio in .avi file format.
+Certain media players such as the Netgear NeoTV 550 do not support the playback of M-JPEG.
+
+===IP cameras===
+
+Many network-enabled cameras provide M-JPEG streams that network clients can connect to. Mozilla and Webkit-based browsers have native support for viewing these M-JPEG streams.
+Some network-enabled cameras provide their own M-JPEG interfaces as part of the normal feature set. For cameras that don't provide this feature natively, a server can be used to transcode the camera pictures into an M-JPEG stream and then provide that stream to other network clients.
+
+===M-JPEG over HTTP===
+
+HTTP streaming separates each image into individual HTTP replies on a specified marker. RTP streaming creates packets of a sequence of JPEG images that can be received by clients such as QuickTime or VLC.
+In response to a GET request for a MJPEG file or stream, the server streams the sequence of JPEG frames over HTTP. A special mime-type content type multipart/x-mixed-replace;boundary= informs the client to expect several parts (frames) as an answer delimited by . This boundary name is expressly disclosed within the MIME-type declaration itself. The TCP connection is not closed as long as the client wants to receive new frames and the server wants to provide new frames. Two basic implementations of a M-JPEG streaming server are cambozola and MJPG-Streamer. The more robust ffmpeg-server also provides M-JPEG streaming support.
+
+===Client software===
+
+Native web browser support includes: Safari, Google Chrome and Firefox.M-JPEG streams sent to Mozilla Firefox must be enclosed within an HTTP document to avoid flickering. See Bug 625012. Other browsers, such as Internet Explorer can display M-JPEG streams with the help of external plugins. Cambozola is an applet that can show M-JPEG streams in Java-enabled browsers. M-JPEG is also natively supported by PlayStation and QuickTime.
+
+===Digital video===
+
+Digital Video (DV) adopts a similar method by compressing video frames individually.
+
+==Encoding==
+
+M-JPEG is an intraframe-only compression scheme (compared with the more computationally intensive technique of interframe prediction). Whereas modern interframe video formats, such as MPEG1, MPEG2 and H.264/MPEG-4 AVC, achieve real-world compression-ratios of 1:50 or better, M-JPEG's lack of interframe prediction limits its efficiency to 1:20 or lower, depending on the tolerance to spatial artifacting in the compressed output. Because frames are compressed independently of one another, M-JPEG imposes lower processing and memory requirements on hardware devices.
+As a purely intraframe compression scheme, the image-quality of M-JPEG is directly a function of each video frame's static (spatial) complexity.  Frames with large smooth-transitions or monotone surfaces compress well, and are more likely to hold their original detail with few visible compression artifacts. Frames exhibiting complex textures, fine curves and lines (such as writing on a newspaper) are prone to exhibit DCT-artifacts such as ringing, smudging, and macroblocking. M-JPEG compressed-video is also insensitive to motion-complexity, i.e. variation over time.  It is neither hindered by highly random motion (such as the surface-water turbulence in a large waterfall), nor helped by the absence of motion (such as static landscape shot by tripod), which are two opposite extremes commonly used to test interframe video-formats.  
+For QuickTime formats, Apple has defined two types of coding: MJPEG-A and MJPEG-B. MJPEG-B no longer retains valid JPEG Interchange Files within it, hence it is not possible to take a frame into a JPEG file without slightly modifying the headers.
+
+==Advantages==
+
+==Disadvantages==
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,12 @@
+[[Vertical blank interrupt]]
+
+CATEGORIES: Video game development
+
+A vertical blank interrupt (or VBI) is a programming technique used in some systems, notably video games and consoles, to allow program code to be run in the periods when the display hardware is turned off, waiting for the TV to complete its vertical blank.
+Since the vertical blank period occurs at the start of every displayed frame (PAL: 50 times a second, NTSC: 60 times a second), timing the code to run during this period guarantees a regular "heartbeat" which is useful for timing-dependent functions. Simple routines like reading the joystick or updating the display can be placed in the VBI, and then basically ignored while the main program runs. Many systems used this to develop a crude sort of multitasking.
+The VBI is particularly useful if the display hardware includes some sort of page flipping support, in which case the hardware can be set up to draw a new frame during the period where there is no drawing taking place. This guarantees a flicker-free display with almost no effort.
+This was widely used on the Atari 8-bit family, whose ANTIC display chip included a register pointing to the start of the display memory. The main program would draw the new frame into a buffer in memory, and then a small piece of code in the VBI would change the ANTIC register. The result was excellent animation from a simple piece of hardware.
+
+==See also==
+
+

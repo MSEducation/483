@@ -1,0 +1,92 @@
+[[Convex set]]
+
+CATEGORIES: Convex geometry, Mathematical analysis, Convex analysis
+
+In Euclidean space, an object is convex if for every pair of points within the object, every point on the straight line segment that joins the pair of points is also within the object. For example, a solid cube is convex, but anything that is hollow or has a dent in it, for example, a crescent shape, is not convex.
+The notion of a convex set can be generalized to other spaces as described below.
+
+==In vector spaces==
+
+Let [tpl]mvar|S[/tpl] be a vector space over the real numbers, or, more generally, some ordered field. This includes Euclidean spaces. A set [tpl]mvar|C[/tpl] in [tpl]mvar|S[/tpl] is said to be convex if, for all [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl] in [tpl]mvar|C[/tpl] and all [tpl]mvar|t[/tpl] in the interval [tpl]math|1[/tpl], the point [tpl]math|(1 − t)x + ty[/tpl] also belongs to [tpl]mvar|C[/tpl]. In other words, every point on the line segment connecting [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl] is in [tpl]mvar|C[/tpl]. This implies that a convex set in a real or complex topological vector space is path-connected, thus connected.
+A set [tpl]mvar|C[/tpl] is called absolutely convex if it is convex and balanced.
+The convex subsets of [tpl]math|R[/tpl] (the set of real numbers) are simply the intervals of [tpl]math|R[/tpl]. Some examples of convex subsets of the Euclidean plane are solid regular polygons, solid triangles, and intersections of solid triangles. Some examples of convex subsets of a Euclidean 3-dimensional space are the Archimedean solids and the Platonic solids. The Kepler-Poinsot polyhedra are examples of non-convex sets.
+
+==Properties==
+
+If [tpl]mvar|S[/tpl] is a convex set in [tpl]mvar|n[/tpl]-dimensional space, then for any collection of [tpl]mvar|r[/tpl], [tpl]math|r > 1[/tpl], [tpl]mvar|n[/tpl]-dimensional vectors [tpl]math|u1, ..., ur[/tpl] in [tpl]mvar|S[/tpl], and for any nonnegative numbers [tpl]math|λ1, ..., λr[/tpl] such that [tpl]math|λ1 + ... + λr [tpl]=[/tpl] 1[/tpl], then one has:
+A vector of this type is known as a convex combination of [tpl]math|u1, ..., ur[/tpl].
+
+===Intersections and unions===
+
+The collection of convex subsets of a vector space has the following properties:[ref]Soltan, Valeriu, Introduction to the Axiomatic Theory of Convexity, Ştiinţa, Chişinău, 1984 (in Russian).
+[/ref][tpl]cite book|last=Singer|first=Ivan|title=Abstract convex analysis|series=Canadian Mathematical Society series of monographs and advanced texts|publisher=John Wiley & Sons, Inc.|location=New York|year= 1997|pages=xxii+491|isbn=0-471-16015-6|mr=1461544[/tpl]
+
+===Convex hulls===
+
+Every subset [tpl]mvar|A[/tpl] of the vector space is contained within a smallest convex set (called the convex hull of [tpl]mvar|A[/tpl]), namely the intersection of all convex sets containing [tpl]mvar|A[/tpl]. The convex-hull operator Conv() has the characteristic properties of a hull operator:
+|-
+| extensive
+| [tpl]math|S ⊆ Conv(S)[/tpl],
+|-
+| non-decreasing
+| [tpl]math|S ⊆ T[/tpl] implies that [tpl]math|Conv(S) ⊆ Conv(T)[/tpl], and
+|-
+| idempotent
+| [tpl]math|Conv(Conv(S)) [tpl]=[/tpl] Conv(S)[/tpl].
+|}
+The convex-hull operation is needed for the set of convex sets to form a lattice, in which the "join" operation is the convex hull of the union of two convex sets
+The intersection of any collection of convex sets is itself convex, so the convex subsets of a (real or complex) vector space form a complete lattice.
+
+===Minkowski addition===
+
+In a real vector-space, the Minkowski sum of two (non-empty) sets, [tpl]math|S1[/tpl] and [tpl]math|S2[/tpl], is defined to be the set [tpl]math|S1 + S2[/tpl] formed by the addition of vectors element-wise from the summand-sets
+More generally, the Minkowski sum of a finite family of (non-empty) sets [tpl]math|Sn[/tpl] is  the set  formed by element-wise addition of vectors
+For Minkowski addition, the zero set [tpl]math|{0} [/tpl] containing only the zero vector [tpl]math|0[/tpl] has special importance: For every non-empty subset S of a vector space
+in algebraic terminology, [tpl]math|{0} [/tpl] is the identity element of Minkowski addition (on the collection of non-empty sets).The empty set is important in Minkowski addition, because the empty set annihilates every other subset: For every subset [tpl]mvar|S[/tpl] of a vector space, its sum with the empty set is empty: [tpl]math|S + ∅ [tpl]=[/tpl] ∅[/tpl].
+
+====Convex hulls of Minkowski sums====
+
+Minkowski addition behaves well with respect to the operation of taking convex hulls, as shown by the following proposition:
+Let [tpl]math|S1, S2[/tpl] be subsets of a real vector-space, the convex hull of their Minkowski sum is the Minkowski sum of their convex hulls
+This result holds more generally for each finite collection of non-empty sets:
+In mathematical terminology, the operations of Minkowski summation and of forming convex hulls are commuting operations.Theorem 3 (pages 562–563): [tpl]cite news|first1=M.|last1=Krein|authorlink1=Mark Krein|first2=V.|last2=Šmulian|year=1940|title=On regularly convex sets in the space conjugate to a Banach space|journal=Annals of Mathematics (2), Second series| volume=41 |pages=556–583|jstor=1968735|doi=10.2307/1968735[/tpl]For the commutativity of Minkowski addition and convexification, see Theorem 1.1.2 (pages 2–3) in Schneider; this reference discusses much of the literature on the convex hulls of Minkowski sumsets in its "Chapter 3 Minkowski addition" (pages 126–196): [tpl]cite book|last=Schneider|first=Rolf|title=Convex bodies: The Brunn–Minkowski theory|series=Encyclopedia of mathematics and its applications|volume=44|publisher=Cambridge University Press| location=Cambridge | year=1993| pages=xiv+490 |isbn=0-521-35220-7|mr=1216521[/tpl]
+
+===Closed convex sets===
+
+Closed convex sets can be characterised as the intersections of closed half-spaces (sets of point in space that lie on and to one side of a hyperplane). From what has just been said, it is clear that such intersections are convex, and they will also be closed sets. To prove the converse, i.e., every convex set may be represented as such intersection, one needs the supporting hyperplane theorem in the form that for a given closed convex set [tpl]mvar|C[/tpl] and point [tpl]mvar|P[/tpl] outside it, there is a closed half-space [tpl]mvar|H[/tpl] that contains [tpl]mvar|C[/tpl] and not [tpl]mvar|P[/tpl]. The supporting hyperplane theorem is a special case of the Hahn–Banach theorem of functional analysis.
+The Minkowski sum of two compact convex sets is compact, the sum of a compact convex set and a closed convex set is closed.Lemma 5.3: [tpl]cite book|first1=C.D.|last1= Aliprantis|first2=K.C.| last2=Border|title=Infinite Dimensional Analysis, A Hitchhiker's Guide| publisher=Springer| location=Berlin|year=2006|isbn=978-3-540-29587-7[/tpl]
+
+==Generalizations and extensions for convexity==
+
+The notion of convexity in the Euclidean space may be generalized by modifying the definition in some or other aspects. The common name "generalized convexity" is used, because the resulting objects retain certain properties of convex sets.
+
+===Star-convex sets===
+
+Let [tpl]mvar|C[/tpl] be a set in a real or complex vector space. [tpl]mvar|C[/tpl] is star convex if there exists an [tpl]math|x0[/tpl] in [tpl]mvar|C[/tpl] such that the line segment from [tpl]math|x0[/tpl] to any point [tpl]mvar|y[/tpl] in [tpl]mvar|C[/tpl] is contained in [tpl]mvar|C[/tpl]. Hence a non-empty convex set is always star-convex but a star-convex set is not always convex.
+
+===Orthogonal convexity===
+
+An example of generalized convexity is orthogonal convexity.Rawlins G.J.E. and Wood D, "Ortho-convexity and its generalizations",  in: Computational Morphology, 137-152. Elsevier, 1988.
+A set [tpl]mvar|S[/tpl] in the Euclidean space is called orthogonally convex or ortho-convex, if any segment parallel to any of the coordinate axes connecting two points of [tpl]mvar|S[/tpl] lies totally within [tpl]mvar|S[/tpl]. It is easy to prove that an intersection of any collection of orthoconvex sets is orthoconvex. Some other properties of convex sets are  valid as well.
+
+===Non-Euclidean geometry===
+
+The definition of a convex set and a convex hull extends naturally to geometries which are not Euclidean by defining a geodesically convex set to be one that contains the geodesics joining any two points in the set.
+
+===Order topology===
+
+Convexity can be extended for a space [tpl]mvar|X[/tpl] endowed with the order topology, using the total order {{math|Let [tpl]math|Y ⊆ X[/tpl]. The subspace [tpl]mvar|Y[/tpl] is a convex set if for each pair of points [tpl]math|a, b[/tpl] in [tpl]mvar|Y[/tpl] such that {{math|a 
+===Convexity spaces===
+
+The notion of convexity may be generalised to other objects, if certain properties of convexity are selected as axioms.
+Given a set [tpl]mvar|X[/tpl], a convexity over [tpl]mvar|X[/tpl] is a collection [tpl]math|𝒞[/tpl] of subsets of [tpl]mvar|X[/tpl] satisfying the following axioms:
+The elements of [tpl]math|𝒞[/tpl] are called convex sets and the pair [tpl]math|(X, 𝒞)[/tpl] is called a convexity space. For the ordinary convexity, the first two axioms hold, and the third one is trivial.
+For an alternative definition of abstract convexity, more suited to discrete geometry, see the convex geometries associated with antimatroids.
+
+==See also==
+
+==References==
+
+==External links==
+
+

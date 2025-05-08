@@ -1,0 +1,77 @@
+[[IEEE 802.15.4]]
+
+CATEGORIES: IEEE 802, Wireless networking standards
+
+IEEE 802.15.4 is a standard which specifies the physical layer and media access control for low-rate wireless personal area networks (LR-WPANs). It is maintained by the IEEE 802.15 working group, which has defined it in 2003.IEEE 802.15 WPAN™ Task Group 4, http://www.ieee802.org/15/pub/TG4.html
+It is the basis for the ZigBee,[ref][tpl]cite web |url=http://sensor-networks.org/index.php?page=0823123150 |title=Security in 802.15.4 and ZigBee networks |first=David |last=Gascón |date=February 5, 2009 |accessdate=9 December 2010 [/tpl]
+[/ref] ISA100.11a,[tpl]cite web | url = http://www.isa.org//MSTemplate.cfm?MicrositeID=1134&CommitteeID=6891 |title=ISA100 Committee Home Page | accessdate=20 July 2011 [/tpl] WirelessHART, and MiWi specifications, each of which further extends the standard by developing the upper layers which are not defined in IEEE 802.15.4.  Alternatively, it can be used with 6LoWPAN and standard Internet protocols to build a wireless embedded Internet.
+
+==Overview==
+
+IEEE standard 802.15.4 intends to offer the fundamental lower network layers of a type of wireless personal area network (WPAN) which focuses on low-cost, low-speed ubiquitous communication between devices (in contrast with other, more end-user oriented approaches, such as Wi-Fi). The emphasis is on very low cost communication of nearby devices with little to no underlying infrastructure, intending to exploit this to lower power consumption even more.
+The basic framework conceives a 10-meter communications range with a transfer rate of 250 kbit/s. Tradeoffs are possible to favor more radically embedded devices with even lower power requirements, through the definition of not one, but several physical layers. Lower transfer rates of 20 and 40 kbit/s were initially defined, with the 100 kbit/s rate being added in the current revision.
+Even lower rates can be considered with the resulting effect on power consumption. As already mentioned, the main identifying feature of IEEE 802.15.4 among WPANs is the importance of achieving extremely low manufacturing and operation costs and technological simplicity, without sacrificing flexibility or generality.
+Important features include real-time suitability by reservation of guaranteed time slots, collision avoidance through CSMA/CA and integrated support for secure communications. Devices also include power management functions such as link quality and energy detection.
+IEEE 802.15.4-conformant devices may use one of three possible frequency bands for operation.
+
+==Protocol architecture==
+
+thumb |upright=1.2 |IEEE 802.15.4 protocol stack Devices are conceived to interact with each other over a conceptually simple wireless network. The definition of the network layers is based on the OSI model; although only the lower layers are defined in the standard, interaction with upper layers is intended, possibly using an IEEE 802.2 logical link control sublayer accessing the MAC through a convergence sublayer. Implementations may rely on external devices or be purely embedded, self-functioning devices.
+
+===The physical layer===
+
+Physical layer is the initial layer in the OSI reference model used worldwide.
+The physical layer (PHY) ultimately provides the data transmission service, as well as the interface to the physical layer management entity, which offers access to every layer management function and maintains a database of information on related personal area networks. Thus, the PHY manages the physical RF transceiver and performs channel selection and energy and signal management functions. It operates on one of three possible unlicensed frequency bands:
+The original 2003 version of the standard specifies two physical layers based on direct sequence spread spectrum (DSSS) techniques: one working in the 868/915 MHz bands with transfer rates of 20 and 40 kbit/s, and one in the 2450 MHz band with a rate of 250 kbit/s.
+The 2006 revision improves the maximum data rates of the 868/915 MHz bands, bringing them up to support 100 and 250 kbit/s as well. Moreover, it goes on to define four physical layers depending on the modulation method used. Three of them preserve the DSSS approach: in the 868/915 MHz bands, using either binary or offset quadrature phase shift keying (the second of which is optional); in the 2450 MHz band, using the latter. An alternative, optional 868/915 MHz layer is defined using a combination of binary keying and amplitude shift keying (thus based on parallel, not sequential spread spectrum, PSSS). Dynamic switching between supported 868/915 MHz PHYs is possible.
+Beyond these three bands, the IEEE 802.15.4c study group considered the newly opened 314–316 MHz, 430–434 MHz, and 779–787 MHz bands in China, while the IEEE 802.15 Task Group 4d defined an amendment to 802.15.4-2006 to support the new 950–956 MHz band in Japan. First standard amendments by these groups were released in April 2009.
+In August 2007, IEEE 802.15.4a was released expanding the four PHYs available in the earlier 2006 version to six, including one PHY using Direct Sequence ultra-wideband (UWB) and another using chirp spread spectrum (CSS).  The UWB PHY is allocated frequencies in three ranges: below 1 GHz, between 3 and 5 GHz, and between 6 and 10 GHz. The CSS PHY is allocated spectrum in the 2450 MHz ISM band.IEEE Computer Society, (August 31, 2007). IEEE Standard 802.15.4a-2007
+In April, 2009 IEEE 802.15.4c and IEEE 802.15.4d were released expanding the available PHYs with several additional PHYs: one for 780 MHz band using O-QPSK or MPSK,IEEE Computer Society, (April 17, 2009). IEEE Standard 802.15.4c-2009 another for 950 MHz using GFSK or BPSK.IEEE Computer Society, (April 17, 2009). IEEE Standard 802.15.4d-2009
+IEEE802.15.4e was chartered to define a MAC amendment to the existing standard 802.15.4-2006 which adopts channel hopping strategy to improve support for the industrial markets increases, robustness against external interference and persistent multi-path fading. On February 6, 2012 the IEEE Standards Association Board approved the IEEE 802.15.4e which concluded all Task Group 4e efforts.
+
+===The MAC layer===
+
+The medium access control (MAC) enables the transmission of MAC frames through the use of the physical channel. Besides the data service, it offers a management interface and itself manages access to the physical channel and network beaconing. It also controls frame validation, guarantees time slots and handles node associations. Finally, it offers hook points for secure services.
+Note that the IEEE 802.15 standard does not use 802.1D or 802.1Q, i.e., it does not exchange standard Ethernet frames.  The physical frame-format is specified in IEEE802.15.4-2011 in section 5.2.  It is tailored to the fact that most IEEE 802.15.4 PHYs only support frames of up to 127 bytes (adaptation layer protocols such as 6LoWPAN provide fragmentation schemes to support larger network layer packets).
+
+===Higher layers===
+
+Other higher-level layers and interoperability sublayers are not defined in the standard. Specifications, such as 6LoWPAN and ZigBee, build on this standard. TinyOS,  Unison RTOS, DSPnano RTOS and Contiki stacks also use a few items of IEEE 802.15.4 hardware.
+
+==Network model==
+
+===Node types===
+
+The standard defines two types of network node.
+The first one is the full-function device (FFD). It can serve as the coordinator of a personal area network just as it may function as a common node. It implements a general model of communication which allows it to talk to any other device: it may also relay messages, in which case it is dubbed a coordinator (PAN coordinator when it is in charge of the whole network).
+On the other hand there are reduced-function devices (RFD). These are meant to be extremely simple devices with very modest resource and communication requirements; due to this, they can only communicate with FFDs and can never act as coordinators.
+
+===Topologies===
+
+Networks can be built as either peer-to-peer or star networks. However, every network needs at least one FFD to work as the coordinator of the network. Networks are thus formed by groups of devices separated by suitable distances. Each device has a unique 64-bit identifier, and if some conditions are met short 16-bit identifiers can be used within a restricted environment. Namely, within each PAN domain, communications will probably use short identifiers.
+Peer-to-peer (or point-to-point) networks can form arbitrary patterns of connections, and their extension is only limited by the distance between each pair of nodes. They are meant to serve as the basis for ad hoc networks capable of performing self-management and organization. Since the standard does not define a network layer, routing is not directly supported, but such an additional layer can add support for multihop communications. Further topological restrictions may be added; the standard mentions the cluster tree as a structure which exploits the fact that an RFD may only be associated with one FFD at a time to form a network where RFDs are exclusively leaves of a tree, and most of the nodes are FFDs. The structure can be extended as a generic mesh network whose nodes are cluster tree networks with a local coordinator for each cluster, in addition to the global coordinator.
+A more structured star pattern is also supported, where the coordinator of the network will necessarily be the central node. Such a network can originate when an FFD decides to create its own PAN and declare itself its coordinator, after choosing a unique PAN identifier. After that, other devices can join the network, which is fully independent from all other star networks.
+
+==Data transport architecture==
+
+Frames are the basic unit of data transport, of which there are four fundamental types (data, acknowledgment, beacon and MAC command frames), which provide a reasonable tradeoff between simplicity and robustness. Additionally, a superframe structure, defined by the coordinator, may be used, in which case two beacons act as its limits and provide synchronization to other devices as well as configuration information. A superframe consists of sixteen equal-length slots, which can be further divided into an active part and an inactive part, during which the coordinator may enter power saving mode, not needing to control its network.
+Within superframes contention occurs between their limits, and is resolved by CSMA/CA. Every transmission must end before the arrival of the second beacon. As mentioned before, applications with well-defined bandwidth needs can use up to seven domains of one or more contentionless guaranteed time slots, trailing at the end of the superframe. The first part of the superframe must be sufficient to give service to the network structure and its devices. Superframes are typically utilized within the context of low-latency devices, whose associations must be kept even if inactive for long periods of time.
+Data transfers to the coordinator require a beacon synchronization phase, if applicable, followed by CSMA/CA transmission (by means of slots if superframes are in use); acknowledgment is optional. Data transfers from the coordinator usually follow device requests: if beacons are in use, these are used to signal requests; the coordinator acknowledges the request and then sends the data in packets which are acknowledged by the device. The same is done when superframes are not in use, only in this case there are no beacons to keep track of pending messages.
+Point-to-point networks may either use unslotted CSMA/CA or synchronization mechanisms; in this case, communication between any two devices is possible, whereas in “structured” modes one of the devices must be the network coordinator.
+In general, all implemented procedures follow a typical request-confirm/indication-response classification.
+
+==Reliability and security==
+
+The physical medium is accessed through a CSMA/CA protocol. Networks which are not using beaconing mechanisms utilize an unslotted variation which is based on the listening of the medium, leveraged by a random exponential backoff algorithm; acknowledgments do not adhere to this discipline. Common data transmission utilizes unallocated slots when beaconing is in use; again, confirmations do not follow the same process.
+Confirmation messages may be optional under certain circumstances, in which case a success assumption is made. Whatever the case, if a device is unable to process a frame at a given time, it simply does not confirm its reception: timeout-based retransmission can be performed a number of times, following after that a decision of whether to abort or keep trying.
+Because the predicted environment of these devices demands maximization of battery life, the protocols tend to favor the methods which lead to it, implementing periodic checks for pending messages, the frequency of which depends on application needs.
+Regarding secure communications, the MAC sublayer offers facilities which can be harnessed by upper layers to achieve the desired level of security. Higher-layer processes may specify keys to perform symmetric cryptography to protect the payload and restrict it to a group of devices or just a point-to-point link; these groups of devices can be specified in access control lists. Furthermore, MAC computes freshness checks between successive receptions to ensure that presumably old frames, or data which is no longer considered valid, does not transcend to higher layers.
+In addition to this secure mode, there is another, insecure MAC mode, which allows access control lists merely as a means to decide on the acceptance of frames according to their (presumed) source.
+
+==See also==
+
+==References==
+
+==External links==
+
+

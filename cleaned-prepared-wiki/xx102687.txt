@@ -1,0 +1,38 @@
+[[NL (complexity)]]
+
+CATEGORIES: Complexity classes
+
+
+In computational complexity theory, NL (Nondeterministic Logarithmic-space) is the complexity class containing decision problems which can be solved by a nondeterministic Turing machine using a logarithmic amount of memory space.
+NL is a generalization of L, the class for logspace problems on a deterministic Turing machine.  Since any deterministic Turing machine is also a nondeterministic Turing machine, we have that L is contained in NL.
+NL can be formally defined in terms of the computational resource nondeterministic space (or NSPACE) as NL = NSPACE(log n).
+Important results in complexity theory allow us to relate this complexity class with other classes, telling us about the relative power of the resources involved.  Results in the field of algorithms, on the other hand, tell us which problems can be solved with this resource.  Like much of complexity theory, many important questions about NL are still open (see Unsolved problems in computer science).
+Occasionally NL is referred to as RL due to its probabilistic definition below; however, this name is more frequently used to refer to randomized logarithmic space, which is not known to equal NL.
+
+NL-complete problems
+
+Containments
+
+It is known that NL is contained in P, since there is a polynomial-time algorithm for 2-satisfiability, but it is not known whether NL = P or whether L = NL. It is known that NL = co-NL, where co-NL is the class of languages whose complements are in NL. This result was independently discovered by  Neil Immerman and Róbert Szelepcsényi in 1987 (Immerman-Szelepcsényi Theorem), who received the 1995 Gödel Prize for this work.
+In circuit complexity, NL can be placed within the NC hierarchy.  In Papadimitriou 1994, Theorem 16.1, we have:
+More precisely, NL is contained in AC1. It is known that NL is equal to ZPL, the class of problems solvable by randomized algorithms in logarithmic space and unbounded time, with no error. It is not, however, known or believed to be equal to RLP or ZPLP, the polynomial-time restrictions of RL and ZPL which some authors refer to as RL and ZPL.
+We can relate NL to deterministic space using Savitch's theorem, which tells us that any nondeterministic algorithm can be simulated by a deterministic machine in at most quadratically more space.  From Savitch's theorem, we have directly that: 
+This was the strongest deterministic-space inclusion known  (Papadimitriou 1994 Problem 16.4.10, "Symmetric space").  Since larger space classes are not affected by quadratic increases, the nondeterministic and deterministic classes are known to be equal, so that for example we have PSPACE = NPSPACE.
+
+Probabilistic definition
+
+Suppose C is the complexity class of problems solvable in logarithmithic space with probabilistic Turing machines that never accept incorrectly but are allowed to reject incorrectly less than 1/3 of the time; this is called one-sided error. The constant 1/3 is arbitrary; any x with 0 ≤ x It turns out that C = NL. Notice that C, unlike its deterministic counterpart L, is not limited to polynomial time, because although it has a polynomial number of configurations it can use randomness to escape an infinite loop. If we do limit it to polynomial time, we get the class RL, which is contained in but not known or believed to equal NL.
+There is a simple algorithm which establishes that C = NL. Clearly C is contained in NL, since:
+To show that NL is contained in C, we simply take an NL algorithm and choose a random computation path of length n, and do this 2n times. Because no computation path exceeds length n, and because there are 2n computation paths in all, we have a good chance of hitting the accepting one (bounded below by a constant).
+The only problem is that we don't have room in log space for a binary counter that goes up to 2n. To get around this we replace it with a randomized counter, which simply flips n coins and stops and rejects if they all land on heads. Since this event has probability 2-n, we expect to take 2n steps on average before stopping. It only needs to keep a running total of the number of heads in a row it sees, which it can count in log space. 
+Because of the Immerman–Szelepcsényi theorem, according to which NL is closed under complements, the one-sided error in these probabilistic computations can be replaced by zero-sided error. That is, these problems can be solved by probabilistic Turing machines that use logarithmic space and never make errors. The corresponding complexity class that also requires the machine to use only polynomial time is called ZPLP.
+Thus, when we only look at space alone, it seems that randomization and nondeterminism are equally powerful.
+
+Descriptive complexity
+
+There is a simple logical characterization of NL: it contains precisely those languages expressible in first-order logic with an added transitive closure operator.
+
+
+
+    | isbn = 0-201-53082-1 | chapter = Chapter 16: Logarithmic Space}}
+

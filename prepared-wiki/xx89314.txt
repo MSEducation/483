@@ -1,0 +1,27 @@
+[[Rlogin]]
+
+CATEGORIES: Internet protocols, Internet Standards, Unix network-related software
+
+rlogin is a software utility for Unix-like computer operating systems that allows users to log in on another host via a network, communicating via TCP port 513.
+It was first distributed as part of the 4.2BSD release. 
+The rlogin homepage is at http://rlogin.sourceforge.net.
+rlogin is also the name of the application layer protocol used by the software, part of the TCP/IP protocol suite. Authenticated users can act as if they were physically present at the computer. RFC 1282, in which it was defined, states that: "The rlogin facility provides a remote-echoed, locally flow-controlled virtual terminal with proper flushing of output." rlogin communicates with a daemon, rlogind, on the remote host. rlogin is similar to the Telnet command, but has the disadvantage of not being as customizable and being able to connect only to Unix hosts.
+
+==Use==
+
+rlogin is most commonly deployed on corporate or academic networks, where user account information is shared between all the Unix machines on the network (often using NIS).  These deployments essentially trust ALL other machines (and the network infrastructure itself) and the rlogin protocol relies on this trust.  rlogind allows logins without password (where rlogind trusts a remote rlogin client) if the remote host appears in the /etc/hosts.equiv file, or if the user in question has a .rhosts file in their home directory (which is frequently shared using NFS).
+
+==Security==
+
+rlogin has several serious security problems:
+Due to these serious problems rlogin was rarely used across untrusted networks (like the public internet) and even in closed deployments it has fallen into relative disuse (with many Unix and Linux distributions no longer including it by default).  Many networks which formerly relied on rlogin and telnet have replaced it with SSH and its rlogin-equivalent slogin.
+
+==Replacements==
+
+The original Berkeley package which provides rlogin also features rcp (remote-copy, allowing files to be copied over the network) and rsh (remote-shell, allowing commands to be run on a remote machine without the user logging into it).  These share  the hosts.equiv and .rhosts access-control scheme (although they connect to a different daemon, rshd), and as such suffer from the same security problems. The ssh suite contains suitable replacements for both: scp replaces rcp, and ssh itself replaces both rlogin and rsh.
+
+==References==
+
+==External links==
+
+

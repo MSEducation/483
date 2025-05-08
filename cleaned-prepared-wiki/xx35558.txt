@@ -1,0 +1,112 @@
+[[Perturbation theory]]
+
+CATEGORIES: Perturbation theory, Concepts in physics, Functional analysis, Ordinary differential equations, Mathematical physics, Computational chemistry, Asymptotic analysis
+
+Perturbation theory comprises mathematical methods for finding an approximate solution to a problem, by starting from the exact solution of a related problem. Perturbation theory is applicable if the problem at hand cannot be solved exactly, but can be formulated by adding a "small" term to the mathematical description of the exactly solvable problem.
+
+General description
+
+Perturbation theory is closely related to methods used in numerical analysis. The earliest use of what would now be called perturbation theory was to deal with the otherwise unsolvable mathematical problems of celestial mechanics: Newton's solution for the orbit of the Moon, which moves noticeably differently from a simple Keplerian ellipse because of the competing gravitation of the Earth and the Sun.
+Perturbation methods start with a simplified form of the original problem, which is simple enough to be solved exactly. In celestial mechanics, this is usually a Keplerian ellipse. Under non relativistic gravity, an ellipse is exactly correct when there are only two gravitating bodies (say, the Earth and the Moon) but not quite correct when there are three or more objects (say, the Earth, Moon, Sun, and the rest of the solar system).
+The solved, but simplified problem is then "perturbed" to make the conditions that the perturbed solution actually satisfies closer to the real problem, such as including the gravitational attraction of a third body (the Sun). The "conditions" are a formula (or several) that represent reality, often something arising from a physical law like Newton's second law, the force-acceleration equation:
+The slight changes that result from accommodating the perturbation, which themselves may have been simplified yet again, are used as corrections to the approximate solution. Because of simplifications introduced along every step of the way, the corrections are never perfect, and the conditions met by the corrected solution do not perfectly match the equation demanded by reality. However, even only one cycle of corrections often provides an excellent approximate answer to what the real solution should be.
+There is no requirement to stop at only one cycle of corrections. A partially corrected solution can be re-used as the new starting point for yet another cycle of perturbations and corrections. In principle, cycles of finding increasingly better corrections could go on indefinitely. In practice, one typically stops at one or two cycles of corrections. The usual difficulty with the method is that the corrections progressively make the new solutions very much more complicated, so each cycle is much more difficult to manage than the previous cycle of corrections. Isaac Newton is reported to have said, regarding the problem of the Moon's orbit, that "It causeth my head to ache.".
+This general procedure  is a widely used mathematical tool in advanced sciences and engineering: start with a simplified problem and gradually add corrections that make the formula that the corrected problem matches closer and closer to the formula that represents reality. It is the natural extension to mathematical functions of the "guess, check, and fix" method used by older civilisations to compute certain numbers, such as square roots.
+
+Examples
+
+Examples for the "mathematical description" are: 
+an algebraic equation,
+a differential equation (e.g., the equations of motion in celestial mechanics or a wave equation),
+a free energy (in statistical mechanics),
+a Hamiltonian operator (in quantum mechanics).
+Examples for the kind of solution to be found perturbatively:
+the solution of the equation (e.g., the trajectory of a particle), 
+the statistical average of some
+physical quantity (e.g., average magnetization), 
+the ground state energy of a quantum mechanical
+problem.
+Examples for the exactly solvable problems to start with:
+linear equations, including linear equations of motion
+(harmonic oscillator, linear wave equation), statistical or quantum-mechanical systems of
+non-interacting particles (or in general, Hamiltonians or free
+energies containing only terms quadratic in all degrees of freedom).
+Examples of "perturbations" to deal with:
+Nonlinear contributions to the equations of motion, interactions
+between particles, terms of higher powers in the Hamiltonian/Free Energy.
+For physical problems involving interactions between particles,
+the terms of the perturbation series may be displayed (and 
+manipulated) using Feynman diagrams.
+
+History
+
+Perturbation theory has its roots in early celestial mechanics, where the theory of epicycles was used to make small corrections to the predicted paths of planets. Curiously, it was the need for more and more epicycles that eventually led to the 16th century Copernican revolution in the understanding of planetary orbits. The development of basic perturbation theory for differential equations was fairly complete by the middle of the 19th century. It was at that time that Charles-Eugène Delaunay was studying the perturbative expansion for the Earth-Moon-Sun system, and discovered the so-called "problem of small denominators". Here, the denominator appearing in the n term of the perturbative expansion could become arbitrarily small, causing the n correction to be as large or larger than the first-order correction. At the turn of the 20th century, this problem led Henri Poincaré to make one of the first deductions of the existence of chaos, or what is prosaically called the "butterfly effect": that even a very small perturbation can have a very large effect on a system.
+Perturbation theory saw a particularly dramatic expansion and evolution with the arrival of quantum mechanics.  Although perturbation theory was used in the semi-classical theory of the Bohr atom, the calculations were monstrously complicated, and subject to somewhat ambiguous interpretation. The discovery of Heisenberg's matrix mechanics allowed a vast simplification of the application of perturbation theory. Notable examples are the Stark effect and the Zeeman effect, which have a simple enough theory to be included in standard undergraduate textbooks in quantum mechanics. Other early applications include the fine structure and the hyperfine structure in the hydrogen atom.
+In modern times, perturbation theory underlies much of quantum chemistry and quantum field theory.  In chemistry, perturbation theory was used to obtain the first solutions for the helium atom.
+In the middle of the 20th century, Richard Feynman realized that the perturbative expansion could be given a dramatic and beautiful graphical representation in terms of what are now called Feynman diagrams. Although originally applied only in quantum field theory, such diagrams now find increasing use in any area where perturbative expansions are studied.  
+A partial resolution of the small-divisor problem was given by the statement of the KAM theorem in 1954. Developed by Andrey Kolmogorov, Vladimir Arnold and Jürgen Moser, this theorem stated the conditions under which a system of partial differential equations will have only mildly chaotic behaviour under small perturbations.
+In the late 20th century, broad dissatisfaction with perturbation theory in the quantum physics community, including not only the difficulty of going beyond second order in the expansion, but also questions about whether the perturbative expansion is even convergent, has led to a strong interest in the area of non-perturbative analysis, that is, the study of exactly solvable models. The prototypical model is the Korteweg–de Vries equation, a highly non-linear equation for which the interesting solutions, the solitons, cannot be reached by perturbation theory, even if the perturbations were carried out to infinite order. Much of the theoretical work in non-perturbative analysis goes under the name of quantum groups and non-commutative geometry.
+
+Perturbation orders
+
+The standard exposition of perturbation theory is given in terms of the order to which the perturbation is carried out: first-order perturbation theory or second-order perturbation theory, and whether the perturbed states are degenerate (that is, singular), in which case extra care must be taken, and the theory is slightly more difficult.
+
+First-order non-singular perturbation theory
+
+This section develops, in simplified terms, the general theory for the perturbative solution to a differential equation to the first order. To keep the exposition simple, a crucial assumption is made: that the solutions to the unperturbed system are not degenerate, so that the perturbation series can be inverted. There are ways of dealing with the degenerate (or singular) case; these require extra care.
+Suppose one wants to solve a differential equation of the form
+and
+This can be trivially rewritten as a simple linear algebra problem of finding the eigenvalue of a matrix, where
+so that
+to give
+Several important observations can be made about the form of this solution. First, the sum over functions with differences of eigenvalues in the denominator resembles the resolvent in Fredholm theory. This is no accident; the resolvent acts essentially as a kind of Green's function or propagator, passing the perturbation along. Higher-order perturbations resemble this form, with an additional sum over a resolvent appearing at each order.
+Curiously, the situation is not at all bad if two or more eigenvalues are exactly equal. This case is referred to as singular or degenerate perturbation theory. The degeneracy of eigenvalues indicates that the unperturbed system has some sort of symmetry, and that the generators of the symmetry commute with the unperturbed differential operator. Typically, the perturbing term does not possess the symmetry; one says the perturbation lifts or breaks the degeneracy. In this case, the perturbation can still be performed; however, one must be careful to work in a basis for the unperturbed states so that these map one-to-one to the perturbed states, rather than being a mixture.
+
+Perturbation theory of degenerate states
+
+One may notice that the problem occurs in the first order perturbation theory when 
+two or more eigenfunctions of the unperturbed system correspond to one eigenvalue i.e.
+when the eigenvalue equation becomes
+Expression for the eigenfunctions having the energy differences in the denominators
+becomes infinite. In that case the degenerate perturbation theory must be applied.
+The degeneracy must be removed first for higher order perturbation
+theory. The  function is first assumed  to be the linear combination of 
+eigenfunctions with the same eigenvalue only
+of integers the later equation can be usually solved analytically as at most 
+4x4 matrix equation. Once the degeneracy is removed the first and any order of the
+perturbation theory may be further used with respect to the new functions.
+
+Example of second-order singular perturbation theory
+
+Example of degenerate perturbation theory – Stark effect in resonant rotating wave
+
+where the unperturbed Hamiltonian is 
+while the eigenstates are different.
+The eigenvalue equation for the Hamiltonian takes the form
+where
+which leads to the quadratic equation which can be readily solved
+with the solution
+These states are the Stark states in the rotating frame, they are Trojan (higher eigenvalue)  and anti-Trojan  wavepackets.
+
+Commentary
+
+Both regular and singular perturbation theory are frequently used in physics and engineering. Regular perturbation theory may only be used to find those solutions of a problem that evolve smoothly out of the initial solution when changing the parameter (that are "adiabatically connected" to the initial solution). A well-known example from physics where regular perturbation theory fails is in fluid dynamics when one treats the viscosity as a small parameter. Close to a boundary, the fluid velocity goes to zero, even for very small viscosity (the no-slip condition). For zero viscosity, it is not possible to impose this boundary condition and a regular perturbative expansion amounts to an expansion about an unrealistic physical solution. Singular perturbation theory can, however, be applied here and this amounts to 'zooming in' at the boundaries (using the method of matched asymptotic expansions).
+Perturbation theory can fail when the system can transition to a different "phase" of matter, with a qualitatively different behaviour, that cannot be modelled by the physical formulas put into the perturbation theory (e.g., a solid crystal melting into a liquid). In some cases, this failure manifests itself by divergent behavior of the perturbation series. Such divergent series can sometimes be resummed using techniques such as Borel resummation.
+Perturbation techniques can be also used to find approximate solutions to non-linear differential equations.  Examples of techniques used to find approximate solutions to these types of problems are the Lindstedt–Poincaré technique and the method of multiple time scales.
+There is absolutely no guarantee that perturbative methods result in a convergent solution. In fact, asymptotic series are the norm.
+
+Perturbation theory in chemistry
+
+Many of the ab initio quantum chemistry methods use perturbation theory directly or are closely related methods. Møller–Plesset perturbation theory uses the difference between the Hartree–Fock Hamiltonian and the exact non-relativistic Hamiltonian as the perturbation. The zero-order energy is the sum of orbital energies. The first-order energy is the Hartree–Fock energy and electron correlation is included at second-order or higher. Calculations to second, third or fourth order are very common and the code is included in most ab initio quantum chemistry programs. A related but more accurate method is the coupled cluster method.
+
+
+
+Martínez-Carranza, F. Soto-Eguibar and H. Moya-Cessa, Eur. Phys.
+J. D, 66, 22(2012). "ALTERNATIVE ANALYSIS TO PERTURBATION THEORY."
+
+
+
+
+
+
+

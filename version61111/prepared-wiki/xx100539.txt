@@ -1,0 +1,19 @@
+[[Consistency (database systems)]]
+
+CATEGORIES: Data management, Transaction processing
+
+In database systems, a consistent transaction is one that starts with a database in a consistent state and ends with the database in a consistent state. Consistent state means that there is no violation of any integrity constraints. Consistency may temporarily be violated during execution of the transaction, but must be corrected before changes are permanently committed to the database. If the transaction would leave the database in an illegal state, it is aborted and an error is reported.Database consistency article
+Consistency is one of the ACID properties that ensures that any changes to values in an instance are consistent with changes to other values in the same instance. A consistency constraint is a predicate on data which serves as a precondition, post-condition, and transformation condition on any transaction. The database management system (DBMS) assumes that the consistency holds for each transaction in instances. On the other hand, ensuring this property of the transaction is the responsibility of the user.
+Example:- Consider a transaction of transferring £50 from account a to account b. 
+The steps are: 
+1) read(a);
+2) a:=a-50;
+3) b:=b+50;
+4) write(b);
+Consistency of this transaction requires that the sum of a and b remain constant before and after the transaction. 
+
+==See also==
+
+==References==
+
+

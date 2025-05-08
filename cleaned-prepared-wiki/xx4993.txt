@@ -1,0 +1,73 @@
+[[Idempotence]]
+
+CATEGORIES: Abstract algebra, Closure operators, Mathematical relations, Theoretical computer science, Binary operations
+
+Idempotence () is the property of certain operations in mathematics and computer science, that can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
+The term was introduced by Benjamin PeircePolcino & Sehgal (2002), p. 127. in the context of elements of algebras that remain invariant when raised to a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
+There are several meanings of idempotence, depending on what the concept is applied to:
+
+Definitions
+
+Unary operation
+
+Idempotent elements and binary operations
+
+For example, the operations of set union and set intersection are both idempotent, as are logical conjunction and logical disjunction, and, in general, the meet and join operations of a lattice.
+
+Connections
+
+The connections between the three notions are as follows.
+
+Common examples
+
+Functions
+
+As mentioned above, the identity map and the constant maps are always idempotent maps.  The absolute value function of a real or complex argument, and the floor function of a real argument are idempotent.
+
+Formal languages
+
+The Kleene star and Kleene plus operators used to express repetition in formal languages are idempotent.
+
+Idempotent ring elements
+
+Idempotent elements of rings yield direct decompositions of modules, and play a role in describing other homological properties of the ring. 
+While "idempotent" usually refers to the multiplication operation of a ring, there are rings in which both operations are idempotent: Boolean algebras are such an example.
+
+Other examples
+
+In linear algebra, projections are idempotent. In fact, the projections of a vector space are exactly the idempotent elements of the ring of linear transformations of the vector space.  After fixing a basis, it can be shown that the matrix of a projection with respect to this basis is an idempotent matrix.
+An idempotent semiring (also sometimes called a dioid) is a semiring whose addition (not multiplication) is idempotent. If both operations of the semiring are idempotent, then the semiring is called doubly idempotent. Graphs, dioids and semirings. Springer, 2008, p. 34
+
+Computer science meaning
+
+In computer science, the term idempotent is used more comprehensively to describe an operation that will produce the same results if executed once or multiple times. for any value x.org/idempotent
+This is a very useful property in many situations, as it means that an operation can be repeated or retried as often as necessary without causing unintended effects. With non-idempotent operations, the algorithm may have to keep track of whether the operation was already performed or not.
+
+Examples
+
+Looking up some customer's name and address in a database are typically idempotent (in fact nullipotent), since this will not cause the database to change.  Similarly, changing a customer's address is typically idempotent, because the final address will be the same no matter how many times it is submitted. However, placing an order for a car for the customer is typically not idempotent, since running the method/call several times will lead to several orders being placed. Canceling an order is idempotent, because the order remains canceled no matter how many requests are made.
+A composition of idempotent methods or subroutines, however, is not necessarily idempotent if a later method in the sequence changes a value that an earlier method depends on – idempotence is not closed under composition.  For example, suppose the initial value of a variable is 3 and there is a sequence that reads the variable, then changes it to 5, and then reads it again.  Each step in the sequence is idempotent: both steps reading the variable have no side effects and changing a variable to 5 will always have the same effect no matter how many times it is executed.  Nonetheless, executing the entire sequence once produces the output (3, 5), but executing it a second time produces the output (5, 5), so the sequence is not idempotent.W3C, HyperText Transfer Protocol v. 1.1 Methods.  See also HyperText Transfer Protocol.
+In the HyperText Transfer Protocol (HTTP), idempotence and safety are the major attributes that separate HTTP verbs.  Of the major HTTP verbs, GET, PUT, and DELETE are idempotent (if implemented according to the standard), but POST is not.  These verbs represent very abstract operations in computer science: GET retrieves a resource; PUT stores content at a resource; and DELETE eliminates a resource.  As in the example above, reading data usually has no side effects, so it is idempotent (in fact nullipotent).  Storing a given set of content is usually idempotent, as the final value stored remains the same after each execution.  And deleting something is generally idempotent, as the end result is always the absence of the thing deleted.
+In Event Stream Processing, idempotence refers to the ability of a system to produce the same outcome, even if an event or message is received more than once.
+In a load-store architecture, instructions that might possibly cause a page fault are idempotent. So if a page fault occurs, the OS can load the page from disk and then simply re-execute the faulted instruction.
+In  a processor where such instructions are not idempotent, dealing with page faults is much more complex.
+
+Applied examples
+
+Applied examples that many people could encounter in their day-to-day lives include elevator call buttons and crosswalk buttons.archive.nclabor.pdf  For example, this design specification includes detailed algorithm for when elevator cars will respond to subsequent calls for service The initial activation of the button moves the system into a requesting state, until the request is satisfied. Subsequent activations of the button between the initial activation and the request being satisfied have no effect.
+
+
+
+
+
+Further reading
+
+ |author=Goodearl, K. R.
+ |title=von Neumann regular rings
+ |edition=2
+ |publisher=Robert E. Krieger Publishing Co. Inc.
+ |place=Malabar, FL
+ |year=1991
+ |pages=xviii+412
+ |isbn=0-89464-632-X
+ |mr=1150975 (93m:16006)}}

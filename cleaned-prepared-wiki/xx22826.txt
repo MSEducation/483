@@ -1,0 +1,92 @@
+[[IBM System/370]]
+
+CATEGORIES: Computing platforms, IBM System/360 mainframe line, 1970 introductions, 1990s disestablishments
+
+The IBM System/370 (S/370) was a model range of IBM mainframes announced on June 30, 1970 as the successors to the System/360 family. The series maintained backward compatibility with the S/360, allowing an easy migration path for customers; this, plus improved performance, were the dominant themes of the product announcement. Improvements over the S/360 first released in the S/370 model range included: 
+| title = IBM Maintenance Library 3145 Processing Unit Theory - Maintenance
+| id = SY24-3581-2
+| author = IBM
+| pages = CPU 117–129
+| separator = ,
+}}[/ref] and a hardware upgrade to include a DAT box on the 370/155 and 370/165; these were not announced until 1972;
+
+Evolution
+
+The original System/370 line underwent several architectural improvements during its roughly 20-year lifetime. One very significant change was the introduction of virtual memory, which was first made generally available in 1972 via IBM's "System/370 Advanced Function" announcement. IBM had initially (and controversially) chosen to exclude virtual storage from the S/370 line. The August 2nd, 1972 announcement included:
+Virtual memory had in fact been delivered on S/370 hardware before this announcement:
+Shortly after the August 2nd, 1972 announcement, DAT box (address relocation hardware) upgrades for the S/370-155 and S/370-165 were quietly announced, but were available only for purchase by customers who already owned a Model 155 or 165. 
+ in the slow adoption of OS/VS2 MVS, not only by customers in general, but for many internal IBM sites as well.
+
+1980s
+
+Later architectural changes primarily involved expansions in memory (central storage) – both physical memory and virtual address space – to enable larger workloads and meet client demands for more storage. This was the inevitable trend as Moore's Law eroded the unit cost of memory. As with all IBM mainframe development, preserving backward compatibility was paramount.
+
+Expanding the address space
+
+As described above, the S/370 product line underwent a major architectural change: expansion of its address space from 24 to 31 bits.
+The evolution of S/370 addressing was always complicated by the basic S/360 instruction set design, and its large installed code base, which relied on a 24-bit logical address. (In particular, a heavily-used machine instruction, "Load Address" (LA), explicitly cleared the top eight bits of the address being placed in a register. This created enormous migration problems for existing software.) 
+The strategy chosen was to implement expanded addressing in three stages:
+Since the core S/360 instruction set remained geared to a 24-bit universe, this third step would require a real break from the status quo; existing assembly language applications would of course not benefit, and new compilers would be needed before non-assembler applications could be migrated. Most shops thus continued to run their 24-bit applications in a higher-performance 31-bit world.
+This evolutionary implementation (repeated in z/Architecture) had the characteristic of solving the most urgent problems first:  relief for real memory addressing being needed sooner that virtual memory addressing.
+
+31 versus 32 bits
+
+IBM's choice of 31-bit (versus 32-bit) addressing for 370-XA involved various factors. The System/360 Model 67 had included a full 32-bit addressing mode, but this feature was not carried forward to the System/370 series, which began with only 24-bit addressing. When IBM later expanded the S/370 address space in S/370-XA, several reasons are cited for the choice of 31 bits:
+
+Series and models
+
+The following table summarizes the major S/370 series and models. The second column lists the principal architecture associated with each series. Many models implemented more than one architecture; thus, 308x processors initially shipped as S/370 architecture, but later offered XA; and many processors, such as the 4381, had microcode that allowed customer selection between S/370 or XA (later, ESA) operation.
+Note also the confusing term "System/370-compatible", which appeared in IBM source documents to describe certain products. Outside IBM, this term would more often describe systems from Amdahl Corporation, Hitachi Ltd., and others, that could run the same S/370 software. This choice of terminology by IBM may have been a deliberate attempt to ignore the existence of those plug compatible manufacturers (PCMs), because they competed aggressively against IBM hardware dominance.
+Notable machines in the 370 range include the IBM 370/195, the IBM 370/168, the IBM 3033, the IBM 3090 mainframe/supercomputer with its optional vector facility (VF) extension, and the relatively inexpensive IBM 9370 tailored for small-to-medium size businesses.
+
+Clones
+
+In the 360 era, a number of manufacturers had already standardized upon the IBM/360 instruction set and, to a degree, 360 architecture. Notable computer makers included Univac, RCA, English Electric, and the Soviet ES EVM. These computers weren't perfectly compatible, nor (except for the Russian efforts) were they intended to be.
+That changed in the 1970s with the introduction of the IBM/370 and Gene Amdahl's launch of his own company. About the same time, Japanese giants began eying the lucrative mainframe market both at home and abroad. One Japanese consortium focused upon IBM and two others IBM's competitors, which had become known as the BUNCH (Burroughs/Univac/NCR/Control Data/Honeywell). The latter efforts were abandoned and eventually all Japanese efforts focused on the IBM mainframe lines.
+Some of the era's clones included:
+
+S/370 replacement
+
+The System/370 line was replaced by the IBM System/390 in the 1990s, and the architecture was similarly renamed from ESA/370 to ESA/390. This was essentially just a rename for marketing reasons, rather than major architectural change.
+In 2000, the System/390 was replaced by the zSeries (now called IBM System z). The zSeries mainframes introduced the 64-bit z/Architecture, the most significant design improvement since the 31-bit transition.  All have retained essential backward compatibility with the original S/360 architecture and instruction set.
+
+GCC and Linux on the S/370
+
+The GNU Compiler Collection (GCC) had a backend for S/370, but it became obsolete over time and was finally replaced by the S/390 backend. Although the S/370 and S/390 instruction sets are essentially the same (and have been consistent since the introduction of the S/360), GCC operability on older systems has been abandoned.
+
+I/O evolutions
+
+ |     author = IBM
+ |      title = IBM System/370 Principles of Operation
+ |         id = GA22-7000-0
+ |    version = First Edition
+ |       date = June 1970
+ |        url = 
+ |  separator = ,
+ }}
+[/ref]
+
+Architecture details
+
+* Note that IBM documentation numbers the bits in reverse order to that shown
+
+  above, i.e., the most significant (leftmost) bit is designated as bit number 0.
+|}
+S/370 also refers to a computer system architecture specification,GA22-7000: System/370 principles of operation and is a direct and mostly backward compatible evolution of the System/360 architectureGA22-6821: System/360 principles of operationGA22-7000-4: System/370 principles of operation, p. 9, chapter 1 – describes philosophy of evolution from S/360 to S/370, available from  from which it retains most aspects. This specification does not make any assumptions on the implementation itself, but rather describes the interfaces and the expected behavior of an implementation. The architecture describes mandatory interfaces that must be available on all implementations and optional interfaces which may or may not be implemented.
+Some of the aspects of this architecture are:
+Some of the optional features are:
+Because of the extensible nature of the interface specification, new interface could be devised without breaking the initial interface contract. Such examples are:
+Great care was taken in order to ensure that further modifications to the architecture would remain compatible, at least as far as non-privileged programs were concerned. This philosophy predates the definition of the S/370 architecture and started with the S/360 architecture. If certain rules are adhered to, a program written for this architecture will run with the intended results on the successors of this architecture.
+One of the key aspect that allows this compatibility is to define that unused fields are to be set to a predetermined value (usually 0) - and that using another value leads to an exception condition being recognized. 10, Note 4 of Compatibility section; describes use of unassigned fields When the interface is modified, this unused field can then be used to alter the interface contract. A well formed program can then still produce the expected result even when executing on an implementation of the new interface.
+Such an example is that the S/370 architecture specifies that the 64 bit PSW register bit number 32 has to be set to 0 and that doing otherwise leads to an exception. Subsequently when the S/370 XA architecture was defined, it was stated that this bit would indicate whether the program was a program expecting a 24 bit address architecture or 31 bit address architecture. Thus, most programs running on the 24 bit architecture can still run on 31 bit systems and the new 64 bit system.
+However, not all of the interfaces can remain compatible. Emphasis was put on having non control programs (called problem state programs) remain compatible.3.2.2 Problem state program compatibility with S/370 available from  Thus, operating systems have to be ported to the new architecture because the control interfaces can (and were) redefined in an incompatible way. For example, the I/O interface was redesigned in S/370 XA making S/370 program issuing I/O operations unusable as-is.
+
+
+
+Notes
+
+
+
+
+
+

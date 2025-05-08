@@ -1,0 +1,101 @@
+[[Java applet]]
+
+CATEGORIES: Java platform, Java programming language
+
+A Java applet is a small application written in Java and delivered to users in the form of bytecode. The user launches the Java applet from a web page and it is then executed within a Java Virtual Machine (JVM) in a process separate from the web browser itself. A Java applet can appear in a frame of the web page, a new application window, Sun's AppletViewer or a stand-alone tool for testing applets. Java applets were introduced in the first version of the Java language in 1995.
+Java applets can be written in any programming language that compiles to Java bytecode. They are usually written in Java but other languages such as Jython,Jython applet page JRuby,About Java applets in Ruby Pascal,Free Pascal Compiler for JVM Scala or Eiffel (via SmartEiffel)A tool to produce Java applets with SmartEiffel may be used as well.
+Java applets run at very fast speeds comparable to, but generally slower than, other compiled languages such as C++. Until approximately 2011, Java applets had been many times faster than JavaScript.An example of the 2005 year performance benchmarking Unlike JavaScript, Java applets have access to 3D hardware acceleration, making them well suited for non-trivial, computation intensive visualizations. As browsers have gained support for hardware accelerated graphics thanks to the canvas technology (or specifically WebGL in the case of 3D graphics), as well as just in time compiled JavaScript, the speed difference has become less noticeable.
+Since Java's bytecode is cross-platform (or platform independent), Java applets can be executed by browsers (or other clients) for many platforms, including Microsoft Windows, FreeBSD, Unix, OS X and Linux. It is also trivial to run a Java applet as an application with very little extra code so that it can be run directly from the integrated development environment (IDE).
+
+==Overview==
+
+Applets are used to provide interactive features to web applications that cannot be provided by HTML alone. They can capture mouse input and also have controls like buttons or check boxes. In response to the user action an applet can change the provided graphic content. This makes applets well suitable for demonstration, visualization and teaching. There are online applet collections for studying various subjects, from physicsPaul Falstad online applet portal to heart physiology.
+An applet can also be a text area only, providing, for instance, a cross platform command-line interface to some remote system.Jraft.com If needed, an applet can leave the dedicated area and run as a separate window. However, applets have very little control over web page content outside the applet dedicated area, so they are less useful for improving the site appearance in general (while applets like news tickersObjectPlanet.com, an applet that works as news ticker or WYSIWYG editorsSferyx.com, a company that produces applets acting as WYSWYG editor. are also known). Applets can also play media in formats that are not natively supported by the browserCortado applet to play ogg format
+HTML pages may embed parameters that are passed to the applet. Hence the same applet may appear differently depending on the parameters that were passed.
+As applets were available before CSS and DHTML were standard, they were also widely used for trivial effects like rollover navigation buttons. Heavily criticized, this usage is now declining.Top 13 Things Not to Do When Designing a Website
+
+==Technical information==
+
+Java applets are executed in a sandbox by most or all web browsers, preventing them from accessing local data like the clipboard or file system. The code of the applet is downloaded from a web server and the browser either embeds the applet into a web page or opens a new window showing the applet's user interface.
+A Java applet extends the class [tpl]Javadoc:SE|package=java.applet|java/applet|Applet[/tpl], or in the case of a Swing applet, [tpl]Javadoc:SE|package=javax.swing|javax/swing|JApplet[/tpl]. The class must override methods from the applet class to set up a user interface inside itself (Applet) is a descendant of [tpl]Javadoc:SE|java/awt|Panel[/tpl] which is a descendant of [tpl]Javadoc:SE|java/awt|Container[/tpl]. As applet inherits from container, it has largely the same user interface possibilities as an ordinary Java application, including regions with user specific visualization.
+The first implementations involved downloading an applet class by class. While classes are small files, there are frequently a lot of them, so applets got a reputation as slow loading components. However, since jars were introduced, an applet is usually delivered as a single file that has a size similar to a large image file (hundreds of kilobytes to several megabytes).
+The domain from where the applet executable has been downloaded is the only domain to which the usual (unsigned) applet is allowed to communicate. This domain can be different from the domain where the surrounding HTML document is hosted.
+Java system libraries and runtimes are backwards compatible, allowing one to write code that runs both on current and on future versions of the Java virtual machine.
+
+===Similar technologies===
+
+Many Java developers, blogs and magazines are recommending that the Java Web Start technology be used in place of applets.JavaWorld.comJavaChannel.net Java Web Start allows launching unmodified applet code, which then runs in a separate window (not inside the invoking browser).
+A Java Servlet is sometimes informally compared to be "like" a server-side applet, but it is different in its language, functions, and in each of the characteristics described here about applets.
+
+==Embedding into a web page==
+
+The applet can be displayed on the web page by making use of the deprecated applet HTML element,W3.org or the recommended object element.W3.org  Embed element can be used[tpl]cite web|url=http://www.java.com/en/download/manual.jsp |title=Java Downloads for All Operating Systems |publisher=Java.com |date=14 August 2012 |accessdate=2013-06-14[/tpl] with Mozilla family browsers (embed was deprecated in HTML 4 but is included in HTML 5). This specifies the applet's source and location. Object and embed tags can also download and install Java virtual machine (if required) or at least lead to the plugin page. Applet and object tags also support loading of the serialized applets that start in some particular (rather than initial) state. Tags also specify the message that shows up in place of the applet if the browser cannot run it due to any reason.
+However, despite object being officially a recommended tag, as of 2010, the support of the object tag was not yet consistent among browsers and Sun kept recommending the older applet tag for deploying in multibrowser environments,Sun's position on applet and object tags as it remained the only tag consistently supported by the most popular browsers. To support multiple browsers, the object tag currently requires JavaScript (that recognizes the browser and adjusts the tag), usage of additional browser-specific tags or delivering adapted output from the server side. Deprecating applet tag has been criticized.Criticism of APPLET tag deprecation Oracle now provides a maintained JavaScript codeJava applet launcher from Oracle - Link Broken! to launch applets with cross platform workarounds.
+
+==Example==
+
+The following example is made simple enough to illustrate the essential use of Java applets through its java.applet package. It also uses classes from the Java Abstract Window Toolkit (AWT) for producing actual output (in this case, the "Hello, world!" message).
+Simple applets are shared freely on the internet for customizing applications that support plugins.For example, see Java applet section in Wikiversity
+For compiling, this code is saved in a plain-ASCII file named after the class, with the suffix .java, e.g. HelloWorld.java. The resulting HelloWorld.class applet should be placed on the web server and is invoked within an HTML page by using an <applet> or an <object> tag. For example:
+Displaying the HelloWorld_example.html page from a Web server, the result should look as this:
+To minimize download time, applets are usually delivered in a form of compressed zip archive (having jar extension). If all needed classes (only one in our case) are placed in compressed archive example.jar, the embedding code would look different:
+Applet inclusion is described in detail in Sun's official page about  the APPLET tag.Java.Sun.com Sun's APPLET tag page
+
+==Advantages==
+
+A Java applet can have any or all of the following advantages:Oracle official overview on Java applet technology
+
+==Disadvantages==
+
+A Java applet may have any of the following disadvantages:
+
+==Compatibility-related lawsuits==
+
+Sun has made considerable efforts to ensure compatibility is maintained between Java versions as they evolve, enforcing Java portability by law if required. Oracle seems to be continuing the same strategy.
+
+===1997 Sun vs Microsoft===
+
+The 1997 lawsuit1997 year Sun-Microsoft lawsuit in JavaWorld was filed after Microsoft created a modified Java Virtual Machine of their own, which shipped with Internet Explorer. Microsoft added about 50 methods and 50 fields into the classes within the java.awt, java.lang, and java.io packages. Other modifications included removal of RMI capability and replacement of Java native interface from JNI to RNI, a different standard. RMI was removed because it only easily supports Java to Java communications and competes with Microsoft DCOM technology. Applets that relied on these changes or just inadvertently used them worked only within Microsoft's Java system. Sun sued for breach of trademark, as the point of Java was that there should be no proprietary extensions and that code should work everywhere. Microsoft agreed to pay Sun $20 million, and Sun agreed to grant Microsoft limited license to use Java without modifications only and for a limited time.Sun's page, devoted for the lawsuits against Microsoft
+
+===2002 Sun vs Microsoft===
+
+Microsoft continued to ship its own unmodified Java virtual machine. Over the years it became extremely outdated yet still default for Internet Explorer. A later study revealed that applets of this time often contain their own classes that mirror Swing and other newer features in a limited way.Kenai.com (2011) Most common problems, found in the code of the reviewed applets.  In 2002 Sun filed an antitrust lawsuit, claiming that Microsoft's attempts at illegal monopolization had harmed the Java platform. Sun demanded Microsoft distribute Sun's current, binary implementation of Java technology as part of Windows, distribute it as a recommended update for older Microsoft desktop operating systems and stop the distribution of Microsoft's Virtual Machine (as its licensing time, agreed in the prior lawsuit, had expired). Microsoft paid $700 million for pending antitrust issues, another $900 million for patent issues and a $350 million royalty fee to use Sun's software in the future.Sun - Microsoft 2002 lawsuitMicrosoft page devoted to the Sun - Microsoft 2002 lawsuit
+
+===2010 Oracle vs Google===
+
+Google has developed their own Android platform that uses Java features and concepts, yet is incompatible with standard libraries. This may be a violation of conditions under which Sun granted OpenJDK patents to use open source Java for all.[tpl]cite web|url=http://www.scribd.com/doc/35811761/Oracle-s-complaint-against-Google-for-Java-patent-infringement |title=Oracle's complaint against Google for Java patent infringement |publisher=Scribd.com |date= |accessdate=2013-06-14[/tpl] In 2010, Oracle sued GoogleOracle sues Google over Android for using Java "in a wrong way", claiming that "Google's Android competes with Oracle America's Java" and that "Google has been aware of Sun’s patent portfolio ... since Google hired certain former Sun Java engineers". In May 2012 the jury in this case found that Google did not infringe on Oracle's patents, and the trial judge ruled that the structure of the Java APIs used by Google was not copyrightable.[tpl]cite web | url=http://www.zdnet.com/blog/btl/jury-clears-google-of-infringing-on-oracle-patents/77897 | title=Jury clears Google of infringing on Oracle's patents | author = Josh Lowensohn | work=ZDNet | date = 23 May 2012 | accessdate=2012-05-25[/tpl][ref]
+
+</ref>
+
+==Security==
+
+There are two applet types with very different security models: signed applets and unsigned applets.Sun's explanation about applet security As of Java SE 7 Update 21 (April 2013) applets and Web-Start Apps are encouraged to be signed with a trusted certificate, and warning messages appear when running unsigned applets.[tpl]Cite web|url = http://www.oracle.com/technetwork/java/javase/tech/java-code-signing-1915323.html#60|title = Java Applet & Web Start - Code Signing|accessdate = 28 February 2014|publisher = Oracle[/tpl] Further starting with Java 7 Update 51 unsigned applets are blocked by default; they can be run by creating an exception in the Java Control Panel.[tpl]Cite web|url = http://java.com/en/download/help/appsecuritydialogs.xml|title = What should I do when I see a security prompt from Java?|accessdate = 28 February 2014|date = |publisher = Oracle[/tpl]
+
+===Unsigned===
+
+Limits on unsigned applets are understood as "draconian":Java Security FAQ Applet Security Restrictions by Mark Wutka they have no access to the local filesystem and web access limited to the applet download site; there are also many other important restrictions. For instance, they cannot access all system properties, use their own class loader, call native code, execute external commands on a local system or redefine classes belonging to core packages included as part of a Java release. While they can run in a standalone frame, such frame contains a header, indicating that this is an untrusted applet. Successful initial call of the forbidden method does not automatically create a security hole as an access controller checks the entire stack of the calling code to be sure the call is not coming from an improper location.
+As with any complex system, many security problems have been discovered and fixed since Java was first released. Some of these (like the Calendar serialization security bug)Description of Calendar serialization security bug persisted for many years with nobody being aware. Others have been discovered in use by malware in the wild.[tpl]citation needed|date=September 2013[/tpl]
+Some studies mention applets crashing the browser or overusing CPU resources but these are classified as nuisancesJava Security FAQ and not as true security flaws. However, unsigned applets may be involved in combined attacks that exploit a combination of multiple severe configuration errors in other parts of the system.Avirubin.com An unsigned applet can also be more dangerous to run directly on the server where it is hosted because while code base allows it to talk with the server, running inside it can bypass the firewall. An applet may also try DoS attacks on the server where it is hosted, but usually people who manage the web site also manage the applet, making this unreasonable. Communities may solve this problem via source code review or running applets on a dedicated domain.Strategy.Wikimedia.org, proposal with discussion about Java applets in community sitesUltrastudio.org, user editable educational site with full applet support
+The unsigned applet can also try to download malware hosted on originating server. However it could only store such file into a temporary folder (as it is transient data) and has no means to complete the attack by executing it. There were attempts to use applets for spreading Phoenix and Siberia exploits this way,[tpl]citation needed|date=October 2010[/tpl] but these exploits do not use Java internally and were also distributed in several other ways.
+
+===Signed===
+
+A signed appletInformit.com contains a signature that the browser should verify through a remotely running, independent certificate authority server. Producing this signature involves specialized tools and interaction with the authority server maintainers. Once the signature is verified, and the user of the current machine also approves, a signed applet can get more rights, becoming equivalent to an ordinary standalone program. The rationale is that the author of the applet is now known and will be responsible for any deliberate damage.[tpl]vague|date=October 2010[/tpl] This approach allows applets to be used for many tasks that are otherwise not possible by client-side scripting. However, this approach requires more responsibility from the user, deciding whom he or she trusts. The related concerns include a non-responsive authority server, wrong evaluation of the signer identity when issuing certificates, and known applet publishers still doing something that the user would not approve of. Hence signed applets that appeared from Java 1.1 may actually have more security concerns.Sid Stamm, Markus Jakobsson, Mona Gandhi (2006). A study in socially transmitted malware
+
+===Self-signed===
+
+Self-signed applets, which are applets signed by the developer themselves, may potentially pose a security risk; java plugins provide a warning when requesting authorization for a self-signed applet, as the function and safety of the applet is guaranteed only by the developer itself, and has not been independently confirmed. Such self-signed certificates are usually only used during development prior to release where third-party confirmation of security is unimportant, but most applet developers will seek third-party signing to ensure that users trust the applet's safety.
+Java security problems are not fundamentally different from similar problems of any client-side scripting platform. In particular, all issues related to signed applets also apply to Microsoft ActiveX components.
+As of approximately Jan 1 2014, self-signed and unsigned applets are no longer accepted by the commonly available java plugins or java web start.  Consequently, developers who wish to deploy java applets have no alternative but to acquire trusted certificates from commercial sources.
+
+==Alternatives==
+
+Alternative technologies exist (for example, JavaScript, Flash, signed SCSK Curl applets and Microsoft Silverlight) that satisfy some of the scope of what is possible with an applet. Of these, JavaScript is not always viewed as a competing replacement; JavaScript can coexist with applets in the same page, assist in launching applets (for instance, in a separate frame or providing platform workarounds) and later be called from the applet code.Rgagnon.com, calling a Java applet from JavaScript JavaFX is an extension of the Java platform and may also be viewed as an alternative.
+
+==See also==
+
+==References==
+
+==External links==
+
+

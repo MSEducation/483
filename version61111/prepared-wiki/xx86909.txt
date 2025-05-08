@@ -1,0 +1,56 @@
+[[Fuglede's theorem]]
+
+CATEGORIES: Operator theory, Theorems in functional analysis
+
+In mathematics, Fuglede's theorem is a result in operator theory, named after Bent Fuglede.
+
+==The result==
+
+Theorem (Fuglede) Let T and N be bounded operators on a complex Hilbert space with N being normal. If TN = NT, then TN* = N*T, where N* denotes the adjoint of N.
+Normality of N is necessary, as is seen by taking T=N.  When T is self-adjoint, the claim is trivial regardless of whether N is normal:
+Tentative Proof: If the underlying Hilbert space is finite-dimensional, the spectral theorem says that N is of the form
+where Pi are pairwise orthogonal projections. One aspects that 
+TN = NT if and only if  TPi = PiT.
+Indeed it can be proved to be true by elementary arguments (e.g. it can be shown that all Pi are representable as polynomials of N and for this reason, if T commutes with N, it has to commute with Pi...). 
+Therefore T must also commute with
+In general, when the Hilbert space is not finite-dimensional, the normal operator N gives rise to a projection-valued measure P on its spectrum, σ(N), which assigns a projection PΩ to each Borel subset of σ(N). N can be expressed as
+Differently from the finite dimensional case,  it is by no means obvious that TN = NT implies TPΩ = PΩT. Thus, it is not so obvious that T also commutes with any simple function of the form
+Indeed, following the construction of the spectral decomposition for a bounded, normal, not self-adjoint, operator T, one sees that to verify that T
+That is the relevance of Fuglede's theorem: The latter hypothesis is not really necessary.
+
+==Putnam's generalization==
+
+The following contains Fuglede's result as a special case. The proof by Rosenblum pictured below is just that presented by Fuglede for his theorem 
+when assuming N=M.
+Theorem (Calvin Richard Putnam) Let T, M, N be linear operators on a complex Hilbert space, and suppose that M and N are normal, M is bounded and MT = TN. 
+Then M*T = TN*.
+First proof (Marvin Rosenblum):
+By induction, the hypothesis implies that MkT = TNk for all k. 
+Consider the function
+This is equal to 
+so U is unitary, and hence has norm 1 for all λ; the same is true for V(λ), so
+So F is a bounded analytic vector-valued function, and is thus constant, and equal to F(0) = T. Considering the first-order terms in the expansion for small λ, we must have M*T = TN*.
+The original paper of Fuglede appeared in 1950; it was extended to the form given above by Putnam in 1951. The short proof given above was first published by Rosenblum in 1958; it is very elegant, but is less general than the original proof which also considered the case of unbounded operators. Another simple proof of Putnam's theorem is as follows:
+Second proof: Consider the matrices
+The operator N'  is normal and, by assumption, T' N' = N' T' . By Fuglede's theorem, one has
+Comparing entries then gives the desired result.
+From Putnam's generalization, one can deduce the following:
+Corollary If two normal operators M and N are similar, then they are unitarily equivalent.
+Proof: Suppose MS = SN where S is a bounded invertible operator. Putnam's result implies M*S = SN*, i.e.
+Take the adjoint of the above equation and we have
+So
+Therefore, on Ran(M), SS* is the identity operator. SS* can be extended to Ran(M)⊥ = Ker(M). Therefore, by normality of M, SS* = I, the identity operator. Similarly, S*S = I. This shows that S is unitary.  
+Corollary If M and N are normal operators, and MN = NM, then MN is also normal.
+Proof: The argument invokes only Fuglede's theoerm. One can directly compute
+By Fuglede, the above becomes
+But M and N are normal, so
+
+==C*-algebras==
+
+The theorem can be rephrased as a statement about elements of C*-algebras. 
+Theorem (Fuglede-Putnam-Rosenblum) Let x, y be two normal elements of a C*-algebra A and
+z such that xz = zy. Then it follows that x* z = z y*.
+
+==References==
+
+

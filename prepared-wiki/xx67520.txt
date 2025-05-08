@@ -1,0 +1,139 @@
+[[Stochastic context-free grammar]]
+
+CATEGORIES: Bioinformatics, Formal languages, Language modeling, Natural language parsing, Statistical natural language processing, Probabilistic models
+
+Grammar theory to model symbol strings originated from work in computational linguistics aiming at understanding the structure of natural languages. Through controlled grammar exploring and scoring the correctness of a sentence construct in a language by computation is achievable. Grammars are said to be generative grammars/transformational grammars if their rules are used to predict/emit words forming grammatical sentences. Probabilistic context free grammars (PCFG) have been applied in probabilistic modeling of RNA structures almost 40 years post their introduction in computational linguistics.
+PCFGs extend context-free grammars similar to how hidden Markov models extend regular grammars. Each production is assigned a probability. The probability of a derivation (parse) is the product of the probabilities of the productions used in that derivation. These probabilities are typically computed by machine learning programs operating on large databases. A probabilistic grammar's validity is constrained by context of its training dataset.
+PCFGs have application in areas as diverse as natural language processing to the study the structure of RNA molecules and design of programming languages. Designing efficient PCFG grammars has to weigh factors of scalability and generality. Issues such as grammar ambiguity need to be resolved. The grammar design influences results accuracy. Grammar parsing algorithms have various time and memory requirements.
+
+==Definitions==
+
+Derivation:  The process of recursive generation of strings from a grammar.
+Parsing: Finding a valid derivation using an automaton.
+Parse Tree: The alignment of the grammar to a sequence.
+An example of a parser for PCFG grammars is the pushdown automaton. The algorithm parses grammar nonterminals from left to right in a stack-like manner. This brute-force approach is not very efficient. In RNA secondary structure prediction variants of the Cocke–Younger–Kasami (CYK) algorithm (CYK) algorithm provide more efficient alternatives to grammar parsing than pushdown automata. Another example of a  PCFG parser is the Stanford Statistical Parser which has been trained using Treebank,.[tpl]cite journal|last=Klein|first=Daniel|coauthors=Manning, Christopher|title=Accurate Unlexicalized Parsing|journal=Proceedings of the 41st Meeting of the Association for Computational Linguistics|year=2003|pages=423–430.|url=http://nlp.stanford.edu/~manning/papers/unlexicalized-parsing.pdf[/tpl]
+
+==Formal definition==
+
+where 
+
+==Relation with Hidden Markov Models==
+
+PCFGs models extend context-free grammars the same way as hidden Markov models extend regular grammars.
+The Inside-Outside algorithm is an analogue of the Forward-Backward algorithm. It computes the total probability of all derivations that are consistent with a given sequence, based on some PCFG.  This is equivalent to the probability of the PCFG generating the sequence, and is intuitively a measure of how consistent the sequence is with the given grammar. The Inside-Outside algorithm is used in model parametrization to estimate prior frequencies observed from training sequences in the case of RNAs.
+Dynamic programming variants of the CYK algorithm find the Viterbi parse of a RNA sequence for a PCFG model.  This parse is the most likely derivation of the sequence by the given PCFG.
+
+==Grammar Construction==
+
+This grammar can be shortened using the | 'or' character into:
+Its derivation is: 
+Ambiguous grammar may result in ambiguous parsing if applied on homographs since the same word sequence can have more than one interpretation. Pun sentences such as the newspaper headline "Iraqi Head Seeks Arms" are an example of ambiguous parses.
+One strategy of dealing with ambiguous parses (originating with grammarians as early as Pāṇini) is to add yet more rules, or prioritize them so that one rule takes precedence over others. This, however, has the drawback of proliferating the rules, often to the point where they become difficult to manage. Another difficulty is overgeneration, where unlicensed structures are also generated.
+Probabilistic grammars circumvent these problems by ranking various productions on frequency weights, resulting in a "most likely" (winner-take-all) interpretation.  As usage patterns are altered in diachronic shifts, these probabilistic rules can be re-learned, thus upgrading the grammar.
+Assigning probability to production rules makes a PCFG. These probabilities are informed by observing distributions on a training set of similar composition to the language to be modeled. On most samples of broad language, probabilistic grammars where probabilities are estimated from data typically outperform hand-crafted grammars. CFGs when contrasted with PCFGs are not applicable to RNA structure prediction because while they incorporate sequence-structure relationship they lack the scoring metrics that reveal a sequence structural potential 
+
+==Applications==
+
+===RNA Structure Prediction===
+
+Energy minimization and PCFG provide ways to predicting RNA secondary structure with comparable performance. However structure prediction by PCFGs is scored probabilistically rather than by minimum free energy calculation. PCFG model parameters are directly derived from frequencies of different features observed in databases of RNA structures  rather than by experimental 
+determination as is the case with energy minimization methods.
+The types of various structure that can be modeled by an PCFG include long range interactions, pairwise structure and other nested structures. However, pseudoknots can not be modeled. PCFGs extend CFG by assigning probabilities to each production rule. A maximum probability parse tree from the grammar implies a maximum probability structure. Since RNAs preserve their structures over their primary sequence; RNA structure prediction can be guided by combining evolutionary information from comparative sequence analysis with biophysical knowledge about a structure plausibility based on such probabilities. Also search results for structural homologs using PCFG rules are scored according to PCFG derivations probabilities. Therefore building grammar to model the behavior of base-pairs and single-stranded regions starts with exploring features of structural multiple sequence alignment of related RNAs. 
+A PCFG model extendibility allows constraining structure prediction by incorporating expectations about different features of an RNA . Such expectation may reflect for example the propensity for assuming a certain structure by an RNA.  However incorporation of too much information may increase PCFG space and memory complexity and it is desirable that a PCFG-based model be as simple as possible.
+
+====Implementations====
+
+RNA secondary structure implementations based on PCFG approaches can be utilized in :
+Different implementation of these approaches exist. For example Pfold is used in secondary structure prediction from a group of related RNA sequences, covariance models are used in searching databases for homologous sequences and RNA annotation and classification, RNApromo, CMFinder and TEISER are used in finding stable structural motifs in RNAs.
+
+====Design considerations====
+
+PCFG design impacts the secondary structure prediction accuracy. Any useful structure prediction probabilistic model based on PCFG has to maintain simplicity without much compromise to prediction accuracy. Too complex a model of excellent performance on a single sequence may not scale. A grammar based model should be able to:
+The resulting of multiple parse trees per grammar denotes grammar ambiguity. This may be useful in revealing all possible base-pair structures for a grammar. However an optimal structure is the one where there is one and only one correspondence between the parse tree and the secondary structure.
+Two types of ambiguities can be distinguished. Parse tree ambiguity and structural ambiguity. Structural ambiguity does not affect thermodynamic approaches as the optimal structure selection is always on the basis of lowest free energy scores. Parse tree ambiguity concerns the existence of multiple parse trees per sequence. Such an ambiguity can reveal all possible base-paired structures for the sequence by generating all possible parse trees then finding the optimal one. In the case of structural ambiguity multiple parse trees describe the same secondary structure. This obscures the CYK algorithm decision on finding an optimal structure as the correspondence between the parse tree and the structure is not unique. Grammar ambiguity can be checked for by the conditional-inside algorithm.
+
+====Building a PCFG model====
+
+A probabilistic context free grammar consists of terminal and nonterminal variables. Each feature to be modeled has a production rule that is assigned a probability estimated from a training set of RNA structures. Production rules are recursively applied until only terminal residues are left.
+The formalism of this simple PCFG looks like:
+The application of PCFGs in predicting structures is a multi-step process. In addition, the PCFG itself can be incorporated into probabilistic models that consider RNA evolutionary history or search homologous sequences in databases. In an evolutionary history context inclusion of prior distributions of RNA structures of a structural alignment in the production rules of the PCFG facilitates good prediction accuracy.
+A summary of general steps for utilizing PCFGs in various scenarios:
+
+====Algorithms====
+
+Several algorithms dealing with aspects of PCFG based probabilistic models in RNA structure prediction exist. For instance the inside-outside algorithm and the CYK algorithm. The inside-outside algorithm is a recursive dynamic programming scoring algorithm that can follow expectation-maximization paradigms. It computes the total probability of all derivations that are consistent with a given sequence, based on some PCFG. The inside part scores the subtrees from a parse tree and therefore subsequences probabilities given an PCFG. The outside part scores the probability of the complete parse tree for a full sequence. CYK modifies the inside-outside scoring. Note that the term 'CYK algorithm' describes the CYK variant of the inside algorithm that finds an optimal parse tree for a sequence using a PCFG. It extends the actual CYK algorithm used in non-probabilistic CFGs.
+
+====PCFG in homology search====
+
+Covariance models (CMs) are a special type of PCFGs with applications in database searches for homologs, annotation and RNA classification. Through CMs it is possible to build PCFG-based RNA profiles where related RNAs can be represented by a consensus secondary structure. The RNA analysis package Infernal uses such profiles in inference of RNA alignments. The Rfam database also uses CMs in classifying RNAs into families based on their structure and sequence information.
+CMs are designed from a consensus RNA structure. A CM allows indels of unlimited length in the alignment. Terminals constitute states in the CM and the transition probabilities between the states is 1 if no indels are considered. Grammars in a CM are as follows:
+The model has 6 possible states and each state grammar includes different types of secondary structure probabilities of the non-terminals. The states are connected by transitions. Ideally current node states connect to all insert states and subsequent node states connect to non-insert states. In order to allow insertion of more than one base insert states connect to themselves.
+
+====Example: Using evolutionary information to guide structure prediction====
+
+The KH-99 algorithm by Knudsen and Hein lays the basis of the Pfold approach to predicting RNA secondary structure. In this approach the parameterization requires evolutionary history information derived from an alignment tree in addition to probabilities of columns and mutations. The grammar probabilities are observed from a training dataset.
+
+=====Estimate column probabilities for paired and unpaired bases=====
+
+In a structural alignment the probabilities of the unpaired bases columns and the paired bases columns are independent of other columns. By counting bases in single base positions and paired positions one obtains the frequencies of  bases in loops and stems.
+
+=====Calculate mutation rates for paired and unpaired bases=====
+
+By pairing sequences in all possible ways overall mutation rates are estimated. In order to recover plausible mutations a sequence identity threshold should be used so that the comparison is between similar sequences. This approach uses 85% identity threshold between pairing sequences. 
+For unpaired bases a 4 X 4 mutation rate matrix is used that satisfies that the mutation flow from X to Y is reversible:
+For basepairs a 16 X 16 rate distribution matrix is similarly generated.
+The PCFG is used to predict the prior probability distribution of the structure whereas posterior probabilities are estimated by the inside-outside algorithm and the most likely structure is found by the CYK algorithm.
+
+=====Estimate alignment probabilities=====
+
+=====Assign production probabilities to each rule in the grammar=====
+
+Each structure in the grammar is assigned production probabilities devised from the structures of the training dataset. These prior probabilities give weight to predictions accuracy. The number of times each rule is used depends on the observations from the training dataset for that particular grammar feature. These probabilities are written in parenthesis in the grammar formalism and each rule will have a total of 100%. For instance:
+
+=====Predict the structure likelihood=====
+
+=====Pfold improvements on the KH-99 algorithm=====
+
+PCFG based approaches are desired to be scalable and general enough. Compromising speed for accuracy needs to as minimal as possible. Pfold addresses the limitations of the KH-99 algorithm with respect to scalability, gaps, speed and accuracy. 
+
+==See also==
+
+==References==
+
+ 
+ [tpl]cite journal |author=Chomsky, Noam|title= Three models for the description of language. |journal=IRE Transactions on Information Theory.|volume=2|pages=113–124|year=1956|doi= 10.1109/TIT.1956.1056813[/tpl]
+[tpl]cite journal |author=Chomsky, Noam |title=On certain formal properties of grammars  |journal=Information and Control|volume=2|page=2|year=137-167|doi=10.1016/S0019-9958(59)90362-6[/tpl]
+[tpl]cite journal |author=Eddy S. R. and Durbin R.|title=RNA sequence analysis using covariance models.|journal=Nucleic Acids Research|volume=22|pages=2079–2088|year=1994|doi=10.1093/nar/22.11.2079[/tpl]
+[tpl]cite journal |author=Sakakibara Y., Brown, M. Hughey, R., Mian, I. S., et al|title=Stochastic context-free grammars for tRNA modelling.   |journal=Nucleic Acids Research|volume=22|issue= 23|pages=5112–5120|year=1994|doi=10.1093/nar/22.23.5112[/tpl]
+[tpl]cite journal |author=Grat, L. 1995. |title=Automatic RNA secondary structure determination with stochastic context-free grammars. |journal=In Rawlings, C., Clark, D., Altman, R., Hunter, L., Lengauer, T and Wodak, S. Proceedings of the Third International Conference on Intelligent Systems for Molecular Biology,  AAAI Press|pages=236-144|year=1995[/tpl]
+[tpl]cite journal |author=Lefebvre, F|title= An optimized parsing algorithm well suited to RNA folding  |journal=In Rawlings, C., Clark, D., Altman, R., Hunter, L., Lengauer, T and Wodak, S. Proceedings of the Third International Conference on Intelligent Systems for Molecular Biology. AAAI Press|pages=222–230|year=1995[/tpl]
+[tpl]cite journal |author=Lefebvre, F.|title= A grammar-based unification of several alignment and folding algorithms. |journal=In States. D. J., Agarwal, P., Gaasterlan, T., Hunter, L and Smith R. F., eds., Proceedings of the Fourth International Conference on Intelligent Systems for Molecular Biology. AAAI Press|year=143-153[/tpl]
+ <ref name="Dowell 2004">[tpl]cite journal |author=Dowell R and Eddy S|title=Evaluation of several lightweight stochastic context-free grammars for RNA secondary structure prediction.|journal=BMC Bioinformatics |volume=5|issue=71|doi=10.1186/1471-2105-5-71[/tpl]</ref>
+[tpl]cite journal |author=McCaskill JS.|title= The Equilibrium Partition Function and Base Pair Binding Probabilities for RNA Secondary Structure.  |journal=Biopolymers.|volume=29|pages=1105–19|year=1990[/tpl]
+[tpl]cite journal |author=Juan V, Wilson C.|title= RNA Secondary Structure Prediction Based on Free Energy and Phylogenetic Analysis.|journal=J Mol Biol.|volume= 289|pages=935–947.|year=1999|doi=10.1006/jmbi.1999.2801[/tpl]
+[tpl]cite journal |author=Zuker M|title= Calculating Nucleic Acid Secondary Structure.|journal=Curr Opin Struct Biol.|volume=10|pages=303–310|year=2000|doi=10.1016/S0959-440X(00)00088-9[/tpl]
+[tpl]cite journal |author=Mathews DH., Sabina J., Zuker M., Turner DH.|title= Expanded sequence dependence of thermodynamic parameterss improves prediction of RNA secondary structure.|journal=J Mol Biol. .|volume=288|pages=911–940|year=1999|doi=10.1006/jmbi.1999.2700[/tpl]
+[tpl]cite journal |author=B. Knudsen and J. Hein.|title= Pfold: RNA secondary structure prediction using stochastic context-free grammars. |journal=Nucleic Acids Research. |volume=31|issue=13|pages=3423–3428|year=2003|doi=10.1093/nar/gkg614[/tpl]
+[tpl]cite journal |author=Knudsen B, Hein J|title= RNA Secondary Structure Prediction Using Stochastic Context-Free Grammars and Evolutionary History.  |journal=Bioinformatics|volume=15|pages=446–454|year=1999|doi=10.1093/bioinformatics/15.6.446[/tpl]
+[tpl]cite journal |author=Rivas E, Eddy SR|title= Noncoding RNA Gene Detection Using Comparative Sequence Analysis.  |journal=BMC Bioinformatics.|volume=2|year=2001|doi=10.1186/1471-2105-2-8 [/tpl]
+[tpl]cite book |editor=R. Durbin, S. Eddy, A. Krogh, G. Mitchinson |title=Biological sequence analysis : probabilistic models of proteins and nucleic acids |url=http://books.google.com/books?id=R5P2GlJvigQC |publisher=Cambridge University Press |year=1998 |isbn=978-0-521-62971-3[/tpl]
+[tpl]cite journal |author=Holmes I, Rubin GM|title= Pairwise RNA Structure Comparison with Stochastic Context-Free Grammars.  |journal=In Pac Symp Biocomput 2002|volume=|pages=163–174|year=2002[/tpl]
+[tpl]cite book |editor=Noam Chomsky|title=Syntactic Structures.|publisher= Mouton & Co. Publishers, Den Haag, Netherlands,|year= 1957[/tpl]
+[tpl]cite journal| author="Nawrocki E. P., and Eddy S. R."|title=Infernal 1.1:100-fold faster RNA homology searches.|journal=Bioinformatics.|volume=29|pages=2933–2935|year=2013|doi=10.1093/bioinformatics/btt509[/tpl]
+[tpl]cite journal |author=P.P. Gardner, J. Daub, J. Tate, B.L. Moore, I.H. Osuch, S. Griffiths-Jones, R.D. Finn, E.P. Nawrocki, D.L. Kolbe, S.R. Eddy, A. Bateman.|title=Rfam: Wikipedia, clans and the "decimal" release. |journal=Nucleic Acids Research 2011.|volume=39|year=2010|doi=10.1093/nar/gkq1129[/tpl]
+
+[tpl]cite journal |author=Goodarzi H, Najafabadi HS, Oikonomou P, Greco TM, Fish L, Salavati R, Cristea IM, Tavazoie S.|title= Systematic discovery of structural elements governing stability of mammalian messenger RNAs. |journal=Nature|volume=485|pages=264–268|year=2012|doi=10.1038/nature11013[/tpl]
+[tpl]cite journal |author=Goodarzi H. et al |title=Systematic discovery of structural elements governing stability of mammalian messenger RNAs|journal=Nature|volume=485 |issue=20  |year=2012| doi= 10.1038/nature1101[/tpl]
+[tpl]cite journal |author=Lari K. and Young, S. J.|title= The estimation of stochastic context-free grammars using the inside-outside algorithm |journal=Computer Speech and Language|volume=4|pages=35–56|year=1990|doi=10.1016/0885-2308(90)90022-X[/tpl]
+[tpl]cite journal |author=Sipser M.|title= Introduction to Theory of Computation|journal=Brooks Cole Pub Co.|volume=|year=1996[/tpl]
+[tpl]cite journal |author=Lari K and Young, S. J.|title= Applications of stochastic context-free grammars using the inside-outside algorithm.|journal=Computer Speech and Language|volume=5|pages=237–257|year=1991|doi=10.1016/0885-2308(91)90009-F[/tpl]
+[tpl]cite book |author=Michael A. Harrison |title= Introduction to Formal Language Theory. |journal=Addison-Wesley;|year=1978[/tpl]
+[tpl]cite journal |author=Myers, G.|title= Approximately matching context-free languages |journal=Information Processing Letters|volume=54|pages=85–92|year=1995|doi=10.1016/0020-0190(95)00007-Y[/tpl]
+[tpl]cite journal |author=Hopcroft J.E., Ullman J.D.|title= Introduction to Automata Theory, Languages, and Computation. |journal=Addison-Wesley;|year=1979[/tpl]
+[tpl]cite journal |author=Giegerich R.|title=Explaining and Controlling Ambiguity in Dynamic Programming.|journal= In Proceedings of the 11th Annual Symposium on Combinatorial Pattern Matching 1848 Edited by: Giancarlo R, Sankoff D. Montréal, Canada: Springer-Verlag, Berlin.|pages=46–59|year=2000[/tpl]
+[tpl]cite journal |author=Tavaré S.|title= Some probabilistic and statistical problems in the analysis of DNA sequences. |journal=Lectures on Mathematics in the Life Sciences. American Mathematical Society|volume=17|pages=57–86|year=1986[/tpl]
+[tpl]cite journal |author=Muse S.V. |title=Evolutionary analyses of DNA sequences subject to constraints of secondary structure.|journal=Genetics.|volume=139 |issue=3 |pages=1429–1439|year=1995|pmc=1206468[/tpl]
+[tpl]cite journal |author=J.K. Baker |title=Trainable grammars for speech recognition|journal=In D. Klatt and J. Wolf, editors, Speech Communication Papers for the 97th Meeting of the Acoustical Society of America|volume=36 |issue=20 |pages=545–550 |year=1979[/tpl]
+[tpl]cite journal |author=Schöniger M., von Haeseler A. |title=A stochastic model for the evolution of autocorrelated DNA sequences. |volume=3 |issue=3 |pages=240–7 |year=1994| journal = Mol Phylogenet Evol.|doi=10.1006/mpev.1994.1026[/tpl]
+
+

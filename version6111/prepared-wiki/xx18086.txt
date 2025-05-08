@@ -1,0 +1,34 @@
+[[Lua (programming language)]]
+
+CATEGORIES: Lua (programming language), Brazilian inventions, Cross-platform software, Embedded systems, Free compilers and interpreters, Free computer libraries, Free software programmed in C, Object-oriented programming languages, Prototype-based programming languages, Register-based virtual machines, Scripting languages, Software using the MIT license, Programming languages created in 1993
+
+Lua ([tpl]IPAc-en|ˈ|l|uː|ə[/tpl] [tpl]respell|LOO|ə[/tpl], from [tpl]lang-pt|lua[/tpl] [tpl]IPA-pt|ˈlu.(w)ɐ|[/tpl] meaning moon; explicitly not "LUA"[tpl]cite web| url = http://www.lua.org/about.html#name| title = About Lua| publisher = Lua.org| accessdate = 2013-06-19[/tpl]) is a lightweight multi-paradigm programming language designed as a scripting language with extensible semantics as a primary goal. Lua is cross-platform since it is written in ANSI C.[tpl]cite web| url = http://www.lua.org/about.html#why| title = About Lua| publisher = Lua.org| accessdate = 2011-08-11[/tpl] Lua has a relatively simple C API.[tpl]cite web |url=http://www.foreignaffairs.com/articles/139332/yuri-takhteyev/from-brazil-to-wikipedia?page=2 |title=From Brazil to Wikipedia |work=Foreign Affairs |author=Yuri Takhteyev |date=April 21, 2013 |accessdate=April 25, 2013[/tpl]
+
+==History==
+
+Lua was created in 1993 by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes, members of the Computer Graphics Technology Group (Tecgraf) at the Pontifical Catholic University of Rio de Janeiro, in Brazil.
+From 1977 until 1992, Brazil had a policy of strong trade barriers (called a market reserve) for computer hardware and software. In that atmosphere, Tecgraf's clients could not afford, either politically or financially, to buy customized software from abroad. Those reasons led Tecgraf to implement the basic tools it needed from scratch.[tpl]Cite book| last1 = Ierusalimschy | first1 = R.| author1-link = Roberto Ierusalimschy| last2 = Figueiredo| first2 = L. H. | last3 = Celes| first3 = W.| contribution = The evolution of Lua| contribution-url = http://www.lua.org/doc/hopl.pdf| doi = 10.1145/1238844.1238846| title = Proc. of ACM HOPL III| url = http://www.acm.org/sigs/sigplan/hopl| year = 2007| pages = 2–1–2–26| isbn = 978-1-59593-766-7[/tpl]
+Lua's historical "father and mother" were the data-description/configuration languages SOL (Simple Object Language) and DEL (data-entry language).[ref][tpl]cite web|url=http://www.lua.org/history.html|title=The evolution of an extension language: a history of Lua|accessdate=2008-12-18|year=2001[/tpl]
+[/ref] They had been independently developed at Tecgraf in 1992–1993 to add some flexibility into two different projects (both were interactive graphical programs for engineering applications at Petrobras company). There was a lack of any flow-control structures in SOL and DEL, and Petrobras felt a growing need to add full programming power to them.
+As the language's authors wrote, in The Evolution of Lua:
+Lua 1.0 was designed in such a way that its object constructors, being then slightly different from the current light and flexible style, incorporated the data-description syntax of SOL (hence the name Lua – sol is Portuguese for sun; lua is moon). Lua syntax for control structures was mostly borrowed from Modula (if, while, repeat/until), but also had taken influence from CLU (multiple assignments and multiple returns from function calls, as a simpler alternative to reference parameters or explicit pointers), C++ ("neat idea of allowing a local variable to be declared only where we need it"), SNOBOL and AWK (associative arrays). In an article published in Dr. Dobb's Journal, Lua's creators also state that LISP and Scheme with their single, ubiquitous data structure mechanism (the list) were a major influence on their decision to develop the table as the primary data structure of Lua.[tpl]Cite news| last1 = Figueiredo | first1 = L. H. | last2 = Ierusalimschy | first2 = R. | last3 = Celes| first3 = W. | title = Lua: an Extensible Embedded Language. A few metamechanisms replace a host of features| magazine = Dr. Dobb's Journal| volume = 21| issue = 12| pages = 26–33| date = December 1996| url = http://www.lua.org/ddj.html[/tpl]
+Lua semantics have been increasingly influenced by Scheme over time, especially with the introduction of anonymous functions and full lexical scoping.
+Versions of Lua prior to version 5.0 were released under a license similar to the BSD license. From version 5.0 onwards, Lua has been licensed under the MIT License.  Both are permissive free software licences and are almost identical.
+
+==Features==
+
+Lua is commonly described as a “multi-paradigm” language, providing a small set of general features that can be extended to fit different problem types, rather than providing a more complex and rigid specification to match a single paradigm. Lua, for instance, does not contain explicit support for inheritance, but allows it to be implemented with metatables. Similarly, Lua allows programmers to implement namespaces, classes, and other related features using its single table implementation; first-class functions allow the employment of many techniques from functional programming; and full lexical scoping allows fine-grained information hiding to enforce the principle of least privilege.
+In general, Lua strives to provide flexible meta-features that can be extended as needed, rather than supply a feature-set specific to one programming paradigm. As a result, the base language is light – the full reference interpreter is only about 180 kB compiled – and easily adaptable to a broad range of applications.
+Lua is a dynamically typed language intended for use as an extension or scripting language, and is compact enough to fit on a variety of host platforms. It supports only a small number of atomic data structures such as boolean values, numbers (double-precision floating point by default), and strings. Typical data structures such as arrays, sets, lists, and records can be represented using Lua's single native data structure, the table, which is essentially a heterogeneous associative array.
+Lua implements a small set of advanced features such as first-class functions, garbage collection, closures, proper tail calls, coercion (automatic conversion between string and number values at run time), coroutines (cooperative multitasking) and dynamic module loading.
+By including only a minimum set of data types, Lua attempts to strike a balance between power and size.
+
+===Example code===
+
+The classic hello world program can be written as follows:
+
+print('Hello World!')
+
+Comments use the following syntax, similar to that of Ada, Eiffel, Haskell, SQL and VHDL:
+
+-- A comment in Lua starts with a double-hyphen and runs to the end of the line.

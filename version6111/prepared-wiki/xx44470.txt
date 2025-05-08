@@ -1,0 +1,38 @@
+[[MIX]]
+
+CATEGORIES: Educational abstract machines, Donald Knuth
+
+MIX is a hypothetical computer used in Donald Knuth's monograph, The Art of Computer Programming (TAOCP).  MIX's model number is 1009, which was derived by combining the model numbers and names of several contemporaneous, commercial machines deemed significant by the author.  ("MIX" also represents the value 1009 in Roman numerals.)
+The 1960s-era MIX has since been superseded by a new (also hypothetical) computer architecture, MMIX, to be incorporated in forthcoming editions of TAOCP.  Software implementations for both the MIX and MMIX architectures have been developed by Knuth and made freely available (named "MIXware" and "MMIXware", respectively).
+Several derivatives of Knuth's MIX/MMIX emulators also exist.  GNU MDK is one such software package; it is free and runs on a wide variety of platforms.
+Their purpose for education is quite similar to John L. Hennessy's and David A. Patterson's DLX architecture, from Computer Organization and Design - The Hardware Software Interface.
+
+==Architecture==
+
+MIX is a hybrid binary–decimal computer.  When programmed in binary, each byte has 6 bits (values range from 0 to 63).  In decimal, each byte has 2 decimal digits (values range from 0 to 99).  Bytes are grouped into words of five bytes plus a sign.  Most programs written for MIX will work in either binary or decimal, so long as they do not try to store a value greater than 63 in a single byte.
+A word has the range −1,073,741,823 to 1,073,741,823 (inclusive) in binary mode, and −9,999,999,999 to 9,999,999,999 (inclusive) in decimal mode.  The sign-and-magnitude representation of integers in the MIX architecture distinguishes between “−0” and “+0.”  This contrasts with modern computers, whose two's-complement representation of integer quantities includes a single representation for zero, but whose range for a given number of bits includes one more negative integer than the number of representable positive integers.
+|}
+
+===Registers===
+
+There are 9 registers in MIX:
+A byte is assumed to be at least 6 bits. Most instructions can specify which of the "fields" (bytes) of a register are to be altered, using a suffix of the form (first:last). The zeroth field is the one-bit sign.
+MIX also records whether the previous operation overflowed, and has a one-trit comparison indicator (less than, equal to, or greater than).
+
+===Memory and input/output===
+
+The MIX machine has 4000 words of storage (each with 5 bytes and a sign), addressed from 0 to 3999. A variety of input and output devices are also included:
+
+===Instructions===
+
+Each machine instruction in memory occupies one word, and consists of 4 parts: the address (2 bytes and the sign of the word) in memory to read or write; an index specification (1 byte, describing which rI index register to use) to add to the address; a modification (1 byte) that specifies which parts of the register or memory location will be read or altered; and the operation code (1 byte). All operation codes have an associated mnemonic.
+MIX programs frequently use self-modifying code, in particular to return from a subroutine, as MIX lacks an automatic subroutine return stack. Self-modifying code is facilitated by the modification byte, allowing the program to store data to, for example, the address part of the target instruction, leaving the rest of the instruction unmodified.
+MIX programs are typically constructed using the MIXAL assembly language; for an example, see the list hello world programs page.
+
+==See also==
+
+==References==
+
+==External links==
+
+

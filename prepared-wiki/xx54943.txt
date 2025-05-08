@@ -1,0 +1,20 @@
+[[ISAM]]
+
+CATEGORIES: Computer file systems, Computer file formats
+
+ISAM stands for Indexed Sequential Access Method, a method for indexing data for fast retrieval. ISAM was originally developed by IBM for mainframe computers. Today the term is used for several related concepts:
+In an ISAM system, data is organized into records which are composed of fixed length fields. Records are stored sequentially, originally to speed access on a tape system. A secondary set of hash tables known as indexes contain "pointers" into the tables, allowing individual records to be retrieved without having to search the entire data set. This is a departure from the contemporaneous navigational databases, in which the pointers to other data were stored inside the records themselves. The key improvement in ISAM is that the indexes are small and can be searched quickly, thereby allowing the database to access only the records it needs. Additionally modifications to the data do not require changes to other data, only the table and indexes in question.
+When an ISAM file is created, index nodes are fixed, and their pointers do not change during inserts and deletes that occur later (only content of leaf nodes change afterwards). As a consequence of this, if inserts to some leaf node exceed the node's capacity, new records are stored in overflow chains. If there are many more inserts than deletions from a table, these overflow chains can gradually become very large, and this affects the time required for retrieval of a record.Ramakrishnan Raghu, Gehrke Johannes - Database Management Systems, McGraw-Hill Higher Education (2000), 2nd edition (en) page 252
+Relational databases can easily be built on an ISAM framework with the addition of logic to maintain the validity of the links between the tables. Typically the field being used as the link, the foreign key, will be indexed for quick lookup. While this is slower than simply storing the pointer to the related data directly in the records, it also means that changes to the physical layout of the data do not require any updating of the pointers—the entry will still be valid.
+ISAM is very simple to understand and implement, as it primarily consists of direct, sequential access to a database file. It is also very inexpensive. The tradeoff is that each client machine must manage its own connection to each file it accesses. This, in turn, leads to the possibility of conflicting inserts into those files, leading to an inconsistent database state. This is typically solved with the addition of a client-server framework which marshals client requests and maintains ordering. This is the basic concept behind a database management system (DBMS), which is a client layer over the underlying data store.
+ISAM was replaced at IBM with a methodology called VSAM (Virtual Storage Access Method). Still later, IBM developed DB2 which, as of 2004, IBM promotes as their primary database management system. VSAM is the physical access method used in DB2.
+The OpenVMS operating system uses the Files-11 file system in conjunction with RMS (Record Management Services). RMS provides an additional layer between the application and the files on disk that provides a consistent method of data organization and access across multiple 3GL and 4GL languages. RMS provides 4 different methods of accessing data; Sequential, Relative Record Number Access, Record File Address Access, and Indexed Access.
+The Indexed Access method of reading or writing data only provides the desired outcome if in fact the file is organized as an ISAM file with the appropriate, previously defined keys. Access to data via the previously defined key(s) is extremely fast. Multiple keys, overlapping keys and key compression within the hash tables are supported. A utility to define/redefine keys in existing files is provided. Records can be deleted, although "garbage collection" is done via a separate utility.
+
+==ISAM-style Implementations==
+
+==See also==
+
+==References==
+
+

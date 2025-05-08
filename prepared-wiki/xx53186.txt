@@ -1,0 +1,49 @@
+[[Three-valued logic]]
+
+CATEGORIES: Many-valued logic
+
+In logic, a three-valued logic (also trivalent, ternary, trinary logic, or trilean,[tpl]citation needed|date=September 2013[/tpl] sometimes abbreviated 3VL) is any of several many-valued logic systems in which there are three truth values indicating true, false and some indeterminate third value.  This is contrasted with the more commonly known bivalent logics (such as classical sentential or Boolean logic) which provide only for true and false. Conceptual form and basic ideas were initially created by Jan Łukasiewicz and C. I. Lewis. These were then re-formulated by Grigore Moisil in an axiomatic algebraic form, and also extended to n-valued logics in 1945.
+
+==Representation of values==
+
+As with bivalent logic, truth values in ternary logic may be represented numerically using various representations of the ternary numeral system.  A few of the more common examples are:
+Inside a ternary computer, ternary values are represented by ternary signals.
+This article mainly illustrates a system of ternary propositional logic using the truth values {false, unknown, and true}, and extends conventional Boolean connectives to a trivalent context. Ternary predicate logics exist as well;[tpl]Citation needed|date=February 2007[/tpl] these may have readings of the quantifier different from classical (binary) predicate logic, and may include alternative quantifiers as well.
+
+==Logics==
+
+===Kleene logic===
+
+Below is a set of truth tables showing the logic operations for Kleene's logic.
+In these truth tables, the UNKNOWN state can be metaphorically thought of as a sealed box containing either an unambiguously TRUE or unambiguously FALSE value. The knowledge of whether any particular UNKNOWN state secretly represents TRUE or FALSE at any moment in time is not available. However, certain logical operations can yield an unambiguous result, even if they involve at least one UNKNOWN operand. For example, since TRUE OR TRUE equals TRUE, and TRUE OR FALSE also equals TRUE, one can infer that TRUE OR UNKNOWN equals TRUE, as well. In this example, since either bivalent state could be underlying the UNKNOWN state, but either state also yields the same result, a definitive TRUE results in all three cases.
+If numeric values are assigned to FALSE, UNKNOWN and TRUE such that FALSE is less than UNKNOWN and UNKNOWN is less than TRUE, then A AND B AND C... = MIN(A, B, C ...) and A OR B OR C ... = MAX(A, B, C...).
+Material implication for Kleene logic can be defined as:
+which differs from that for Łukasiewicz logic (described below).
+Kleene logic has no tautologies (valid formulas) because whenever all of the atomic components of a well-formed formula are assigned the value Unknown, the formula itself must also have the value Unknown. (And the only designated truth value for Kleene logic is True.) However, the lack of valid formulas does not mean that it lacks valid arguments and/or inference rules. An argument is semantically valid in Kleene logic if, whenever (for any interpretation/model) all of its premises are True, the conclusion must also be True. (Note that the Logic of Paradox (LP) has the same truth tables as Kleene logic, but it has two designated truth values instead of one; these are: True and Both (the analogue of Unknown), so that LP does have tautologies but it has fewer valid inference rules.)http://www.uky.edu/~look/Phi520-Lecture7.pdf
+
+===Łukasiewicz logic===
+
+The Łukasiewicz Ł3 has the same tables for AND, OR, and NOT as the Kleene logic given above, but differs in its definition of implication. This section follows the presentation from Malinowski's chapter of the Handbook of the History of Logic, vol 8.Grzegorz Malinowski, "Many-valued Logic and its Philosophy" in Dov M. Gabbay, John Woods (eds.) Handbook of the History of Logic Volume 8. The Many Valued and Nonmonotonic Turn in Logic, Elsevier, 2009
+In fact, using Łukasiewicz's implication and negation, the other usual connectives may be derived as:
+It's also possible to derive a few other useful unary operators (first derived by Tarski in 1921):
+They have the following truth tables:
+||
+||
+|}
+M is read as "it is not false that..." or in the (unsuccessful) Tarski–Łukasiewicz attempt to axiomatize modal logic using a three-valued logic, "it is possible that..." L is read "it is true that..." or "it is necessary that..." Finally I is read "it is unknown that..." or "it is contingent that..."
+In Łukasiewicz's Ł3 the designated value is True, meaning that only a proposition having this value everywhere is considered a tautology. For example A → A and A ↔ A are tautologies in Ł3 and also in classical logic. Not all tautologies of classical logic lift to Ł3 "as is". For example, the law of excluded middle, A ∨ ¬A, and the law of non-contradiction, ¬(A ∧ ¬A) are not tautologies in Ł3. However, using the operator I defined above, it is possible to state tautologies that are their analogues:
+
+==Application in SQL==
+
+The database structural query language SQL implements ternary logic as a means of handling comparisons with NULL field content. The original intent of NULL in SQL was to represent missing data in a database, i.e. the assumption that an actual value exists, but that the value is not currently recorded in the database. SQL uses a common fragment of the Kleene K3 logic, restricted to AND, OR, and NOT tables. Notice that basing SQL on Łukasiewicz L3 logic would conduct to different results as {A AND B} and {A OR B} differ when A and B are both UNKNOWN: Łukasiewicz finds FALSE and TRUE respectively while Kleene finds UNKNOWN.[tpl]cite doi|10.1007/3-540-36596-6_7[/tpl]
+In SQL, the intermediate value is intended to be interpreted as UNKNOWN. Explicit comparisons with NULL, including that of another NULL yields UNKNOWN. However this choice of semantics is abandoned for some set operations, e.g. UNION or INTERSECT, where NULLs are treated as equal with each other. Critics assert that this inconsistency deprives SQL of intuitive semantics in its treatment of NULLs.Ron van der Meyden, "Logical approaches to incomplete information: a survey" in Chomicki, Jan; Saake, Gunter (Eds.) Logics for Databases and Information Systems, Kluwer Academic Publishers ISBN 978-0-7923-8129-7, p. 344; PS preprint (note: page numbering differs in preprint from the published version) The SQL standard defines an optional feature called F571, which adds some unary operators, among which IS UNKNOWN corresponding to the Łukasiewicz I in this article. The addition of IS UNKNOWN to the other operators of SQL's three-valued logic makes the SQL three-valued logic functionally complete,C. J. Date, Relational database writings, 1991-1994, Addison-Wesley, 1995, p. 371 meaning its logical operators can express (in combination) any conceivable three-valued logical function.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

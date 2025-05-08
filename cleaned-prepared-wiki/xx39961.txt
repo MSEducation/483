@@ -1,0 +1,30 @@
+[[Lagrange multiplier]]
+
+CATEGORIES: Multivariable calculus, Mathematical optimization, Mathematical and quantitative methods (economics)
+
+In mathematical optimization, the method of Lagrange multipliers (named after Joseph Louis Lagrange) is a strategy for finding the local maxima and minima of a function subject to equality constraints.
+For instance (see Figure 1), consider the optimization problem
+We need both ) called a Lagrange multiplier and study the Lagrange function (or Lagrangian) defined by
+where the .[ref]
+[/ref] Sufficient conditions for a minimum or maximum also exist.
+
+Introduction
+
+One of the most common problems in calculus is that of finding maxima or minima (in general, "extrema") of a function, but it is often difficult to find a closed form for the function being extremized. Such difficulties often arise when one wishes to maximize or minimize a function subject to fixed outside conditions or constraints. The method of Lagrange multipliers is a powerful tool for solving this class of problems without the need to explicitly solve the conditions and use them to eliminate extra variables.
+Consider the two-dimensional problem introduced above:
+Lagrange multipliers relies on the intuition that at a maximum f(x, y) cannot be increasing in the direction of any neighboring point where  to get higher, meaning that the starting point wasn't actually the maximum.
+We can visualize contours of .
+Suppose we walk along the contour line with  does not change in any direction.
+To check the first possibility, notice that since the gradient of a function is perpendicular to the contour lines, the contour lines of  and
+for some 
+where
+are the respective gradients. The constant  is required because although the two gradient vectors are parallel, the magnitudes of the gradient vectors are generally not equal. (The negative is traditional). This constant is called the Lagrange multiplier.
+Notice that this method also solves the second possibility: if .
+To incorporate these conditions into one equation, we introduce an auxiliary function
+and solve
+The constrained extrema of  (see Example 2 below).
+One may reformulate the Lagrangian as a Hamiltonian, in which case the solutions are local minima for the Hamiltonian. This is done in optimal control theory, in the form of Pontryagin's minimum principle.
+The fact that solutions of the Lagrangian are not necessarily extrema also poses difficulties for numerical optimization. This can be addressed by computing the magnitude of the gradient, as the zeros of the magnitude are necessarily local minima, as illustrated in the numerical optimization example.
+
+Handling multiple constraints
+

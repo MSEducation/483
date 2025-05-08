@@ -1,0 +1,125 @@
+[[RCA 1802]]
+
+CATEGORIES: Radiation-hardened microprocessors, RCA brands
+
+The RCA CDP1802, also known as the COSMAC (''Complementary Symmetry Monolithic Array Computer''), is an 8-bit CMOS microprocessor (µP) introduced by RCA in early 1976.[tpl]cite web |url=http://www.antiquetech.com/chips/RCA1802.htm|title=RCA COSMAC 1802|date=2009-04-21|publisher=AntiqueTech.com|accessdate=2010-12-27[/tpl] It is [tpl]As of|2010|alt=currently[/tpl] being manufactured by Intersil Corporation as a high-reliability microprocessor. The 1802 has an architecture different from most other 8-bit microprocessors.
+In 1970 and 1971, Joseph Weisbecker developed a new 8-bit architecture computer system,.An Eight-Bit Micro-Processor, RCA Technical Report, PRRL-7l-TR-207 RCA released Weisbecker's work as the COSMAC 1801R and 1801U in early 1975, using its CMOS process (called COSMOS, an  acronym for ''Complementary Silicon/Metal-oxide Semiconductor''). In 1976, a team led by Jerry Herzog integrated the two chips into one, the 1802.[tpl]cite web |url=http://www.wiki.vintage-computer.com/index.php/Joseph_Weisbecker|title=Joseph Weisbecker |date=2010-02-08|publisher=Vintage-Computer.com|accessdate=2010-12-27[/tpl][tpl]cite web |url=http://www.cosmacelf.com/weisbecker.html|title=Joseph A. Weisbecker (1932 - 1990)|publisher=CosmacElf.com|accessdate=2010-12-27[/tpl]
+
+==Introduction==
+
+The RCA 1802  has a static CMOS design with no minimum clock frequency, so that it can be run at very low speeds and low power. It has an 8-bit parallel bus with a bidirectional data bus and a multiplexed address bus (i.e., the high order byte of the 16-bit address and the low order byte  of the address take turns in using the 8-bit physical address bus lines, by accessing the bus lines in different clock cycles).
+The RCA 1802 has a single bit, programmable output port, and four input pins which are directly tested by branch instructions.
+Its I/O mode is flexible and programmable, and it has a single-phase clock with an on-chip oscillator. Its register set consists of sixteen 16-bit registers. The program counter (PC) can reside in any of these, providing a simple way to implement multiple PCs, pointers, or registers.
+
+==Applications==
+
+In addition to standard CMOS technology, the 1802 was also available fabricated in Silicon on Sapphire semiconductor process technology, which gives it a degree of resistance to radiation and electrostatic discharge (ESD).  Along with its extreme low-power abilities, this makes the chip well-suited in space applications (also, at the time the 1802 was introduced, very few, if any, other radiation-hardened microprocessors were available in the market).
+The Galileo spacecraft used multiple 1802 microprocessors.[tpl]Cite web|last=Tomayko|first=James|publisher=NASA|date=April 1987|url=http://history.nasa.gov/computers/Ch6-3.html|accessdate=February 6, 2010|title=Computers in Spaceflight: The NASA Experience[/tpl]  The 1802 has often been incorrectly claimed to have been used in the earlier Viking and Voyager spacecraft, but it was not available at the time those spacecraft were being designed, and primary sources describe the Viking and Voyager computers as having architectures very dissimilar to the 1802, and not being microprocessor-based.
+The 1802 has been widely used in Earth-orbiting satellites mainly for their primary computer but since the 1990s its use as a low complexity flight control and telecom systems computer has dominated.[tpl]Cite web|url=http://oldcomputers.net/rca-cosmac-vip.html|accessdate=January 31, 2010|title=RCA COSMAC VIP|work=Obsolete Technology Website[/tpl]
+A number of early microcomputers were based on the 1802, including the Comx-35, COSMAC ELF (1976), COSMAC VIP, Netronics ELF II, Quest SuperELF, Finnish Telmac 1800 and Oscom Nano, and Yugoslav Pecom 32 and 64, as well as the RCA Studio II video game console (one of the first consoles to use bitmapped graphics).
+The first high-level language available for the 1802 was Forth, provided by Forth, Inc. in 1976.
+
+==Technical description==
+
+===Registers and I/O===
+
+An important feature of the 1802 is the register file of sixteen registers of 16 bits each. Using the SEP instruction, you can select any of the 16 registers to be the program counter; using the SEX instruction, you can select any of the 16-bit registers to be the index register. Register R0 has the special use of holding the memory address for the built-in DMA controller.
+The processor has 5 special I/O lines. There's a single Q output that can be set with the SEQ instruction and reset with the REQ instruction.   There are four external flag inputs: EF1, EF2, EF3, EF4 and there are 8 dedicated branch instructions to conditionally branch based on the state of those input lines.
+The EF and Q lines were typically overused on RCA 1802 based hobbyist computers because of the lines' favorable handling. It was typical for the Q line to drive a status LED, a cassette interface, an RS-232 interface, and the speaker.  This meant that the user could actually hear RS-232 and cassette data being transmitted.
+
+===Subroutine calls===
+
+The processor does not have standard subroutine CALL immediate and RET instructions, though they can be emulated.  The register file makes possible some interesting subroutine call and return mechanisms, though they are better suited to small programs than general purpose coding. A few commonly used subroutines can be called quickly by keeping their address in one of the 16 registers; the SEP instruction is used to call a subroutine pointed to by one of the 16 bit registers and another SEP to return to the caller (SEP stands for Set Program Counter, and selects which one of the 16 registers is to be used as the program counter from that point onwards).  Before a subroutine returns, it jumps to the location immediately preceding its entry point so that after the SEP instruction returns control to the caller, the register will be pointing to the right value for next time.   An interesting variation of this scheme is to have two or more subroutines in a ring so that they are called in round robin order.  On early hobbyist computers, tricks like this were commonly used in the horizontal refresh interrupt to reprogram the scan line address to repeat each scan line 4 times for the video controller. Computed subroutine calls were no problem because all CALL instructions were indexed (some processors only had CALL immediate).
+
+===Addressing modes===
+
+Because of the 16-bit address bus, and the 8-bit data bus, the sixteen general purpose registers are 16 bits wide, but the accumulator (the so-called data register, or D-register) is only 8 bits wide. The accumulator, therefore, tends to be a bottleneck. Transferring the contents of one register to another involves four instructions (one Get and one Put on the HI byte of the register, and a similar pair for the LO byte: GHI R1; PHI R2; GLO R1; PLO R2). Similarly, loading a new constant into a register (such as a new address for a subroutine jump, or the address of a data variable) also involves four instructions (two load immediate, LDI, instructions, one for each half of the constant, each one followed by a Put instruction to the register, PHI and PLO).
+The two addressing modes Indirect register, and Indirect register with auto-increment are then fairly efficient, to perform 8-bit operations on the data in the accumulator. There are no other addressing modes, though. Thus, the direct addressing mode needs to be emulated using the four instructions mentioned earlier to load the address into a spare register; followed by an instruction to select that register as the index register; followed, finally, by the intended operation on the data variable that is pointed to by that address.
+
+===DMA and Load Mode===
+
+The CDP1802 has a built-in DMA controller, having two DMA request lines for DMA input and output operations.  R0 is used as the DMA address pointer.
+The DMA controller also provides a special "load mode", which allows loading of memory while the CLEAR and WAIT inputs of the processor are active.  This allows a program to be loaded without the need for a ROM-based bootstrap loader.  This was used by the COSMAC Elf microcomputer and its successors to load a program from toggle switches or a hexadecimal keypad.
+
+===Instruction timing===
+
+Clock cycle efficiency is poor in comparison to most 8-bit microprocessors. Eight clock cycles makes up one machine cycle.  Most instructions take two machine cycles (16 clock cycles) to execute; the remaining instructions take three machine cycles (24 clock cycles).  By comparison, the MOS Technology 6502 takes two to seven clock cycles to execute an instruction, and the Intel 8080 takes 4 to 18 clock cycles.
+
+==Support chips==
+
+===Video===
+
+In early microcomputers the companion graphics Video Display Controller chip, CDP1861 for the NTSC video format, (CDP1864 variant for PAL), used the built-in DMA controller to display bitmapped graphics.
+The 1861 chip could display 64 pixels horizontally and 128 pixels vertically, though by reloading the R0 register, the resolution could be reduced to 64×64 or 64×32 to use less memory or to make square pixels. Since the frame buffer was similar in size to the memory size, it was not unusual to display your program/data on the screen allowing you to watch the computer "think" (i.e. process its data).
+Programs which ran amok and accidentally overwrote themselves could be spectacular.   Although the faster version of 1802 could operate at 5 MHz (at 5 V; it was faster at 10 V), it was usually operated at 3.58 MHz/2 to suit the requirements of the 1861 chip which gave a speed of a little over 100,000 instructions per second.
+
+==Code samples==
+
+This code snippet tests ALU OPS, it is a diagnostic routine.
+ 
+ ..  TEST ALU OPS
+0000 90         GHI 0     .. SET UP R6
+0001 B6         PHI 6
+0002 F829       LDI DOIT  .. FOR INPUT OF OPCODE
+0004 A6         PLO 6
+0005 E0         SEX 0     .. (X=0 ALREADY)
+0006 6400       OUT 4,00  .. ANNOUNCE US READY
+0008 E6         SEX 6     .. NOW X=6
+0009 3F09       BN4 *     .. WAIT FOR IT
+000B 6C         INP 4     .. OK, GET IT
+000C 64         OUT 4     .. AND ECHO TO DISPLAY
+000D 370D       B4 *      .. WAIT FOR RELEASE
+000F F860       LDI #60   .. NOW GET READY FOR
+0011 A6         PLO 6     .. FIRST OPERAND
+0012 E0         SEX 0     .. SAY SO
+0013 6401       OUT 4,01
+0015 3F15       BN4 *
+0017 E6         SEX 6     .. TAKE IT IN AND ECHO
+0018 6C         INP 4     .. (TO 0060)
+0019 64         OUT 4     .. (ALSO INCREMENT R6)
+001A 371A       B4 *
+001C E0         SEX 0     .. DITTO SECOND OPERAND
+001D 6402       OUT 4,02
+001F E6         SEX 6
+0020 3F20 LOOP: BN4 *     .. WAIT FOR IT
+0022 6C         INP 4     .. GET IT (NOTE: X=6)
+0023 64         OUT 4     .. ECHO IT
+0024 3724       B4 *      .. WAIT FOR RELEASE
+0026 26         DEC 6     .. BACK UP R6 TO 0060
+0027 26         DEC 6
+0028 46         LDA 6     .. GET 1ST OPERAND TO D
+0029 C4   DOIT: NOP       .. DO OPERATION
+002A C4         NOP       .. (SPARE)
+002B 26         DEC 6     .. BACK TO 0060
+002C 56         STR 6     .. OUTPUT RESULT
+002D 64         OUT 4     .. (X=6 STILL)
+002E 7A         REQ       .. TURN OFF Q
+002F CA0020     LBNZ LOOP .. THEN IF ZERO,
+0032 7B         SEQ       .. TURN IT ON AGAIN
+0033 3020       BR LOOP   .. REPEAT IN ANY CASE
+
+Note: The above routine presumes that the CDP1802 microprocessor is in an initial reset state.
+(or that it has been set as such prior to executing this code)
+Therefore the program counter (PC) and the X indirect register 'pointer' are both
+set to 16-bit register R0. That is why you can output an immediate value, as in the example
+'OUT 4,00', because PC and X are both pointing to R0. The PC is incremented after the
+opcode instruction byte is retrieved from memory, so it points to the next address when the
+OUT 4 is executed. Therefore, it outputs the value in memory pointed to by RX = R0, which
+is the next immediate byte. The OUT instruction also increments the X register, which is R0,
+which is also the PC, so it outputs the immediate value after the OUT and continues program
+execution at the next instruction address after the immediate value. This is why you see the
+routine set X (SEX) to register R6 and R0 as needed. Also note that, although the OUT opcode
+increments the RX register, to easily output a section of memory ('buffer'), INP does not. It stores the
+value at the address pointed to by RX and into the D 8-bit data byte accumulator, but RX
+is not modified.
+The routine also presumes that OUT 4 will display the value in the CPU system's 8-bit LED or
+2-digit hex display, and IN 4 gets the value from the 8 toggle switches (or possibly the hex keypad). The BN4 opcode (loop; * = 'this address'), "branch if the single-bit input EF4 line is lo", is used to test if the momentary 'Input' pushbutton is pressed. The B4 opcode ('if hi') loop waits for the button to be released. SEQ and REQ turn the single Q line, which is usually attached to an LED, on and off.
+The 1802 is a "byte machine", but has 16 16-bit registers, R0-RF (sometimes referred to as 0-F without the 'R' prefix). To deal with 16-bit register data, the programmer must Get and Put the Hi or Lo values of the registers using the D accumulator as the go-between. These high and low bytes of the registers are sometimes referred to as Rn.0 (lo) and Rn.1 (hi). Short Branches are 2-byte opcodes with page-absolute addressing, and a 256-byte address boundary. Long Branches are 3-byte opcodes with full 16-bit address branching.
+This information should make the routine more understandable to any computer programmer who is knowledgeable enough to read "pseudo-code" and is minimally familiar with assembly and machine language programming.
+
+==References==
+
+==External links==
+
+Minor parts of this article were originally based on material from the Free On-line Dictionary of Computing, which is licensed under the GFDL.
+

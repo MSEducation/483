@@ -1,0 +1,81 @@
+[[Weak topology]]
+
+CATEGORIES: Topology of function spaces, Topology, General topology
+
+In mathematics, weak topology is an alternative term for initial topology. The term is most commonly used for the initial topology of a topological vector space (such as a normed vector space) with respect to its continuous dual. The remainder of this article will deal with this case, which is one of the concepts of functional analysis.
+One may call subsets of a topological vector space weakly closed (respectively, weakly compact, etc.) if they are closed (respectively, compact, etc.) with respect to the weak topology.  Likewise, functions are sometimes called weakly continuous (respectively, weakly differentiable, weakly analytic, etc.) if they are continuous (respectively, differentiable, analytic, etc.) with respect to the weak topology.
+
+==The weak and strong topologies==
+
+Let K be a topological field, namely a field  with a topology such that  addition, multiplication, and division are continuous.  In most applications K will be either the field of complex numbers or the field of real numbers with the familiar topologies.   Let X be a topological vector space over K.  Namely, X is a K vector space equipped with a topology so that vector addition and scalar multiplication are continuous.
+We may define a possibly different topology on X using the continuous (or topological) dual space X*. The topological dual space consists of all linear functions from X into the base field K that are continuous with respect to the given topology. The weak topology on X is the initial topology
+with respect to X*. In other words, it is the coarsest topology (the topology with the fewest open sets) such that each element of  X*  is a continuous function.  In order to distinguish the weak topology from the original topology on X, the original topology is often called the strong topology.
+A subbase for the weak topology is the collection of sets of the form φ−1(U) where φ ∈ X* and U is an open subset of the base field K.  In other words, a subset of X is open in the weak topology if and only if it can be written as a union of (possibly infinitely many) sets, each of which is an intersection of finitely many sets of the form φ−1(U).
+More generally, if F is a subset of the algebraic dual space, then the initial topology of X with respect to F, denoted by σ(X,F), is the weak topology with respect to ''F'' .  If one takes F to be the whole continuous dual space of X, then the weak topology with respect to F coincides with the weak topology defined above.
+seminorms,
+for all f∈F and x∈X.  In particular, weak topologies are locally convex.
+From this point of view, the weak topology is the coarsest polar topology; see weak topology (polar topology) for details.  Specifically, if F is a vector space of linear functionals on X which separates points of X, then the continuous dual of X with respect to the topology σ(X,F) is precisely equal to F [tpl]harv|Rudin|1991|loc=Theorem 3.10[/tpl].
+
+===Weak convergence===
+
+The weak topology is characterized by the following condition: a net (xλ) in X converges in the weak topology to the element x of X if and only if φ(xλ) converges to φ(x) in R or C for all φ in X* .
+In particular, if xn is a sequence in X, then xn converges weakly to x if
+as n → ∞ for all φ ∈ X*.  In this case, it is customary to write
+or, sometimes,
+
+===Other properties===
+
+If X is equipped with the weak topology, then addition and scalar multiplication remain continuous operations, and X is a locally convex topological vector space.
+If X is a normed space, then the dual space X* is itself a normed vector space by using the norm ǁφǁ = supǁxǁ≤1|φ(x)|. This norm gives rise to a topology, called the strong topology, on X*.  This is the topology of uniform convergence.  The uniform and strong topologies are generally different for other spaces of linear maps; see below.
+
+==The weak-* topology==
+
+A space X can be embedded into the double dual X** by
+where
+Thus T : X → X** is an injective linear mapping, though not necessarily surjective (spaces for which this canonical embedding is surjective are called reflexive).  The weak-* topology on X* is the weak topology induced by the image of T: T(X) ⊂ X**. In other words, it is the coarsest topology such that the maps Tx, defined by Tx(φ) = φ(x) from X* to the base field R or C remain continuous.
+
+===Weak-* convergence===
+
+A net φλ in X* is convergent to φ in the weak-* topology if it converges pointwise:
+for all x in X.  In particular, a sequence of φn ∈ X* converges to φ provided that
+for all x in X.  In this case, one writes
+as n → ∞.
+Weak-* convergence is sometimes called the topology of simple convergence or the topology of pointwise convergence.  Indeed, it coincides with the topology of pointwise convergence of linear functionals.
+
+===Other properties===
+
+By definition, the weak* topology is weaker than the weak topology on X*. An important fact about the weak* topology is the Banach–Alaoglu theorem: if X is normed, then the closed unit ball in X* is weak*-compact (more generally, the polar in X* of a neighborhood of 0 in X is weak*-compact).  Moreover, the closed unit ball in a normed space X is compact in the weak topology if and only if X is reflexive.
+In more generality, let F be locally compact valued field (e.g., the reals, the complex numbers, or any of the p-adic number systems). Let X be a normed topological vector space over F, compatible with the absolute value in F. Then in X*, the topological dual space X of continuous F-valued linear functionals on X, all norm-closed balls are compact in the weak-* topology.
+If a normed space X is separable, then the weak-* topology is metrizable on the norm-bounded subsets of X*. It is not metrizable on all of X* unless the normed space X is countable-dimensional. If X is a Banach space, the weak-* topology is not metrizable on all of X* unless X is finite-dimensional.[ref]Proposition 2.6.12, p. 226 in 
+.[/ref]
+
+==Examples==
+
+===Hilbert spaces===
+
+Consider, for example, the difference between strong and weak convergence of functions in the Hilbert space L2(Rn).  Strong convergence of a sequence ψk∈L2(Rn)  to an element ψ means that
+as k→∞.  Here the notion of convergence corresponds to the norm on L2.
+In contrast weak convergence only demands that
+for all functions f∈L2 (or, more typically, all f in a dense subset of L2 such as a space of test functions, if the sequence {ψk} is bounded). For given test functions, the relevant  notion of convergence only corresponds to the topology used in C.
+For example, in the Hilbert space L2(0,π), the sequence of functions
+form an orthonormal basis.  In particular, the (strong) limit of ψk as k→∞ does not exist.  On the other hand, by the Riemann–Lebesgue lemma, the weak limit exists and is zero.
+
+===Distributions===
+
+One normally obtains spaces of distributions by forming the strong dual of a space of test functions (such as the compactly supported smooth functions on Rn).  In an alternative construction of such spaces, one can take the weak dual of a space of test functions inside a Hilbert space such as L2.  Thus one is led to consider the idea of a rigged Hilbert space.
+
+==Operator topologies==
+
+If X and Y are topological vector spaces, the space L(X,Y) of continuous linear operators f:X → Y may carry a variety of different possible topologies.  The naming of such topologies depends on the kind of topology one is using on the target space Y to define operator convergence [tpl]harv|Yosida|1980|loc=IV.7 Topologies of linear maps[/tpl].  There are, in general, a vast array of possible operator topologies on L(X,Y), whose naming is not entirely intuitive.
+For example, the strong operator topology on L(X,Y) is the topology of pointwise convergence.  For instance, if Y is a normed space, then this topology is defined by the seminorms indexed by x∈X:
+More generally, if a family of seminorms Q defines the topology on Y, then the seminorms pq,x on L(X,Y) defining the strong topology are given by
+indexed by q∈Q and x∈X.
+In particular, see the weak operator topology and weak* operator topology.
+
+==See also==
+
+==Notes==
+
+==References==
+
+

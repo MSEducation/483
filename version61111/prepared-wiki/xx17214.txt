@@ -1,0 +1,81 @@
+[[Natural transformation]]
+
+CATEGORIES: Functors
+
+In category theory, a branch of mathematics, a natural transformation provides a way of transforming one functor into another while respecting the internal structure (i.e. the composition of morphisms) of the categories involved. Hence, a natural transformation can be considered to be a "morphism of functors". Indeed this intuition can be formalized to define so-called functor categories. Natural transformations are, after categories and functors, one of the most basic notions of category theory and consequently appear in the majority of its applications.
+
+==Definition==
+
+If F and G are functors between the categories C and D, then a natural transformation η from F to G associates to every object X in C a morphism [tpl]nobreak|1=ηX : F(X) → G(X)[/tpl] between objects of D, called the component of η at X, such that for every morphism [tpl]nobreak|1=f : X → Y in C[/tpl] we have:
+This equation can conveniently be expressed by the commutative diagram
+If both F and G are contravariant, the horizontal arrows in this diagram are reversed. If η is a natural transformation from F to G, we also write [tpl]nobreak|1=η : F → G[/tpl] or [tpl]nobreak|1=η : F ⇒ G[/tpl]. This is also expressed by saying the family of morphisms [tpl]nobreak|1=ηX : F(X) → G(X)[/tpl] is natural in X.
+If, for every object X in C, the morphism ηX is an isomorphism in D, then η is said to be a [tpl]visible anchor|natural isomorphism[/tpl] (or sometimes natural equivalence or isomorphism of functors). Two functors F and G are called naturally isomorphic or simply isomorphic if there exists a natural isomorphism from F to G.
+An infranatural transformation η from F to G is simply a family of morphisms [tpl]nobreak|1=ηX: F(X) → G(X)[/tpl].  Thus a natural transformation is an infranatural transformation for which [tpl]nobreak|1=ηY ∘ F(f)  = G(f) ∘ ηX[/tpl] for every morphism [tpl]nobreak|1=f : X → Y[/tpl].  The naturalizer of η, nat(η), is the largest subcategory of C containing all the objects of C on which η restricts to a natural transformation.
+
+==Examples==
+
+===Opposite group===
+
+Statements such as
+abound in modern mathematics. We will now give the precise meaning of this statement as well as its proof. Consider the category Grp of all groups with group homomorphisms as morphisms. If (G,*) is a group, we define its opposite group (Gop,*op) as follows: Gop is the same set as G, and the operation *op is defined by [tpl]nobreak|1=a *op b = b * a[/tpl]. All multiplications in Gop are thus "turned around". Forming the opposite group becomes a (covariant!) functor from Grp to Grp if we define [tpl]nobreak|1=fop = f[/tpl] for any group homomorphism [tpl]nobreak|1=f: G → H[/tpl]. Note that fop is indeed a group homomorphism from Gop to Hop:
+The content of the above statement is:
+To prove this, we need to provide isomorphisms [tpl]nobreak|1=ηG : G → Gop[/tpl] for every group G, such that the above diagram commutes. Set [tpl]nobreak|1=ηG(a) = a−1[/tpl]. The formulas [tpl]nobreak|1=(ab)−1 = b−1 a−1[/tpl] and [tpl]nobreak|1=(a−1)−1 = a[/tpl] show that ηG is a group homomorphism which is its own inverse. To prove the naturality, we start with a group homomorphism [tpl]nobreak|1=f : G → H[/tpl] and show [tpl]nobreak|1=ηH ∘ f = fop ∘ ηG[/tpl], i.e. [tpl]nobreak|1=(f(a))−1 = fop(a−1)[/tpl] for all a in G. This is true since [tpl]nobreak|1=fop = f[/tpl] and every group homomorphism has the property [tpl]nobreak|1=(f(a))−1 = f(a−1)[/tpl].
+
+===Double dual of a vector space===
+
+If K is a field, then for every vector space V over K we have a "natural" injective linear map [tpl]nobreak|1=V → V**[/tpl] from the vector space into its double dual. These maps are "natural" in the following sense: the double dual operation is a functor, and the maps are the components of a natural transformation from the identity functor to the double dual functor.
+
+===Tensor-hom adjunction===
+
+Consider the category Ab of abelian groups and group homomorphisms. For all abelian groups X, Y and Z we have a group isomorphism
+These isomorphisms are "natural" in the sense that they define a natural transformation between the two involved functors [tpl]nobreak|1=Ab × Abop × Abop → Ab[/tpl]. (Here "op" is the opposite category of Ab, not to be confused with the trivial opposite group functor on Ab!)
+This is formally the tensor-hom adjunction, and is an archetypal example of a pair of adjoint functors. Natural transformations arise frequently in conjunction with adjoint functors, and indeed, adjoint functors are defined by a certain natural isomorphism. Additionally, every pair of adjoint functors comes equipped with two natural transformations (generally not isomorphisms) called the unit and counit.
+
+==Unnatural isomorphism==
+
+This is similar (but more categorical) to concepts in group theory or module theory, where a given decomposition of an object into a direct sum is "not natural", or rather "not unique", as automorphisms exist that do not preserve the direct sum decomposition – see Structure theorem for finitely generated modules over a principal ideal domain#Uniqueness for example.
+Some authors distinguish notationally, using ≅ for a natural isomorphism and ≈ for an unnatural isomorphism, reserving = for equality (usually equality of maps).
+
+===Example: fundamental group of torus===
+
+As an example of the distinction between the functorial statement and individual objects, consider homotopy groups of a product space, specifically the fundamental group of the torus.
+Naturality is a categorical notion, and requires being very precise about exactly what data is given – the torus as a space that happens to be a product (in the category of spaces and continuous maps) is different from the torus presented as a product (in the category of products of two spaces and continuous maps between the respective components).
+
+===Example: dual of a finite-dimensional vector space===
+
+Every finite-dimensional vector space is isomorphic to its dual space, but this isomorphism relies on an arbitrary choice of isomorphism (for example, via choosing a basis and then taking the isomorphism sending this basis to the corresponding dual basis). There is in general no natural isomorphism between a finite-dimensional vector space and its dual space.[tpl]harv|MacLane|Birkhoff|1999|loc=§VI.4[/tpl] However, related categories (with additional structure and restrictions on the maps) do have a natural isomorphism, as described below.
+The dual space of a finite-dimensional vector space is again a finite-dimensional vector space of the same dimension, and these are thus isomorphic, since dimension is the only invariant of finite-dimensional vector spaces over a given field. However, in the absence of additional data (such as a basis), there is no given map from a space to its dual, and thus such an isomorphism requires a choice, and is "not natural". On the category of finite-dimensional vector spaces and linear maps, one can define an infranatural isomorphism from vector spaces to their dual by choosing an isomorphism for each space (say, by choosing a basis for every vector space and taking the corresponding isomorphism), but this will not define a natural transformation. Intuitively this is because it required a choice, rigorously because any such choice of isomorphisms will not commute with all linear maps; see [tpl]harv|MacLane|Birkhoff|1999|loc=§VI.4[/tpl] for detailed discussion.
+In this category (finite-dimensional vector spaces with a nondegenerate bilinear form, maps linear transforms that respect the bilinear form), the dual of a map between vector spaces can be identified as a transpose. Often for reasons of geometric interest this is specialized to a subcategory, by requiring that the nondegenerate bilinear forms have additional properties, such as being symmetric (orthogonal matrices), symmetric and positive definite (inner product space), symmetric sesquilinear (Hermitian spaces), skew-symmetric and totally isotropic (symplectic vector space), etc. – in all these categories a vector space is naturally identified with its dual, by the nondegenerate bilinear form.
+
+==Operations with natural transformations==
+
+If [tpl]nobreak|1=η : F → G[/tpl] and [tpl]nobreak|1=ε : G → H[/tpl] are natural transformations between functors [tpl]nobreak|1=F,G,H : C → D[/tpl], then we can compose them to get a natural transformation [tpl]nobreak|1=εη : F → H[/tpl]. This is done componentwise: [tpl]nobreak|1=(εη)X = εXηX[/tpl]. This "vertical composition" of natural transformation is associative and has an identity, and allows one to consider the collection of all functors [tpl]nobreak|1=C → D[/tpl] itself as a category (see below under Functor categories).
+Natural transformations also have a "horizontal composition".  If [tpl]nobreak|1=η : F → G[/tpl] is a natural transformation between functors [tpl]nobreak|1=F,G : C → D[/tpl] and [tpl]nobreak|1=ε : J → K[/tpl] is a natural transformation between functors [tpl]nobreak|1=J,K : D → E[/tpl], then the composition of functors allows a composition of natural transformations [tpl]nobreak|1=ηε : JF → KG[/tpl].  This operation is also associative with identity, and the identity coincides with that for vertical composition.  The two operations are related by an identity which exchanges vertical composition with horizontal composition.
+If [tpl]nobreak|1=η : F → G[/tpl] is a natural transformation between functors [tpl]nobreak|1=F,G : C → D[/tpl], and [tpl]nobreak|1=H : D → E[/tpl] is another functor, then we can form the natural transformation [tpl]nobreak|1=Hη : HF → HG[/tpl] by defining
+If on the other hand [tpl]nobreak|1=K : B → C[/tpl] is a functor, the natural transformation [tpl]nobreak|1=ηK : FK → GK[/tpl] is defined by
+
+==Functor categories==
+
+If C is any category and I is a small category, we can form the functor category CI having as objects all functors from I to C and as morphisms the natural transformations between those functors. This forms a category since for any functor F there is an identity natural transformation [tpl]nobreak|1=1F : F → F[/tpl] (which assigns to every object X the identity morphism on F(X)) and the composition of two natural transformations (the "vertical composition" above) is again a natural transformation.
+The isomorphisms in CI are precisely the natural isomorphisms. That is, a natural transformation [tpl]nobreak|1=η : F → G[/tpl] is a natural isomorphism if and only if there exists a natural transformation [tpl]nobreak|1=ε : G → F[/tpl] such that [tpl]nobreak|1=ηε = 1G[/tpl] and [tpl]nobreak|1=εη = 1F[/tpl].
+The functor category CI is especially useful if I arises from a directed graph. For instance, if I is the category of the directed graph [tpl]nobreak|1=• → •[/tpl], then CI has as objects the morphisms of C, and a morphism between [tpl]nobreak|1=φ : U → V[/tpl] and [tpl]nobreak|1=ψ : X → Y[/tpl] in CI is a pair of morphisms [tpl]nobreak|1=f : U → X[/tpl] and [tpl]nobreak|1=g : V → Y[/tpl] in C such that the "square commutes", i.e. [tpl]nobreak|1=ψ f = g φ[/tpl].
+More generally, one can build the 2-category Cat whose
+
+==Yoneda lemma==
+
+If X is an object of a locally small category C, then the assignment [tpl]nobreak|1=Y [tpl]mapsto[/tpl] HomC(X, Y)[/tpl] defines a covariant functor [tpl]nobreak|1=FX : C → Set[/tpl]. This functor is called representable (more generally, a representable functor is any functor naturally isomorphic to this functor for an appropriate choice of X). The natural transformations from a representable functor to an arbitrary functor [tpl]nobreak|1=F : C → Set[/tpl] are completely known and easy to describe; this is the content of the Yoneda lemma.
+
+==Historical notes==
+
+Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."[tpl]harv|Mac Lane|1998|loc=§I.4[/tpl] Just as the study of groups is not complete without a study of homomorphisms, so the study of categories is not complete without the study of functors. The reason for Mac Lane's comment is that the study of functors is itself not complete without the study of natural transformations.
+The context of Mac Lane's remark was the axiomatic theory of homology. Different ways of constructing homology could be shown to coincide: for example in the case of a simplicial complex the groups defined directly would be isomorphic to those of the singular theory.  What cannot easily be expressed without the language of natural transformations is how homology groups are compatible with morphisms between objects, and how two equivalent homology theories not only have the same homology groups, but also the same morphisms between those groups.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

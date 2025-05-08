@@ -1,0 +1,25 @@
+[[Apache Hive]]
+
+CATEGORIES: Apache Software Foundation projects, Facebook, Free software programmed in Java, Free system software, Cloud computing, Hadoop
+
+Apache Hive is a data warehouse infrastructure built on top of Hadoop for providing data summarization, query, and analysis.[tpl]cite book |last=Venner |first=Jason |title=Pro Hadoop |publisher=Apress |year=2009 |isbn=978-1-4302-1942-2[/tpl] While initially developed by Facebook, Apache Hive is now used and developed by other companies such as Netflix.Use Case Study of Hive/Hadoop [tpl]YouTube|id=Idu9OKnAOis|title=OSCON Data 2011, Adrian Cockcroft, "Data Flow at Netflix"[/tpl] Amazon maintains a software fork of Apache Hive that is included in Amazon Elastic MapReduce on Amazon Web Services.Amazon Elastic MapReduce Developer Guide
+
+==Features==
+
+Apache Hive supports analysis of large datasets stored in Hadoop's HDFS and compatible file systems such as Amazon S3 filesystem. It provides an SQL-like language called HiveQL while maintaining full support for map/reduce. To accelerate queries, it provides indexes, including bitmap indexes.Working with Students to Improve Indexing in Apache Hive
+By default, Hive stores metadata in an embedded Apache Derby database, and other client/server databases like MySQL can optionally be used.[tpl]cite book |last=Lam |first=Chuck |title=Hadoop in Action |publisher=Manning Publications |year=2010 |isbn=1-935182-19-6[/tpl]
+Currently, there are four file formats supported in Hive, which are TEXTFILE, SEQUENCEFILE, ORC and RCFILE.Facebook's Petabyte Scale Data Warehouse using Hive and Hadoop[tpl]cite web| url=http://www.cse.ohio-state.edu/hpcs/WWW/HTML/publications/papers/TR-11-4.pdf| title=RCFile: A Fast and Space-efﬁcient Data Placement Structure in MapReduce-based Warehouse Systems| author=Yongqiang He, Rubao Lee, Yin Huai, Zheng Shao, Namit Jain, Xiaodong Zhang and Zhiwei Xu|format=PDF[/tpl]
+Other features of Hive include:
+
+==HiveQL==
+
+While based on SQL, HiveQL does not strictly follow the full SQL-92 standard. HiveQL offers extensions not in SQL, including multitable inserts and create table as select, but only offers basic support for indexes. Also, HiveQL lacks support for transactions and materialized views, and only limited subquery support.[tpl]cite book |last=White |first=Tom |title=Hadoop: The Definitive Guide |publisher=O'Reilly Media |year=2010 |isbn=978-1-4493-8973-4[/tpl]Hive Language Manual There are plans for adding support for insert, update, and delete with full ACID functionality.Implement insert, update, and delete in Hive with full ACID support
+Internally, a compiler translates HiveQL statements into a directed acyclic graph of MapReduce jobs, which are submitted to Hadoop for execution.Hive A Warehousing Solution Over a MapReduce Framework
+
+==See also==
+
+==References==
+
+==External links==
+
+

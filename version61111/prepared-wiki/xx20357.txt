@@ -1,0 +1,125 @@
+[[Gaussian quadrature]]
+
+CATEGORIES: Numerical integration (quadrature)
+
+In numerical analysis, a quadrature rule is an approximation of the definite integral of a function, usually stated as a weighted sum of function values at specified points within the domain of integration.
+(See numerical integration for more on quadrature rules.)
+An n-point Gaussian quadrature rule, named after Carl Friedrich Gauss, is a quadrature rule constructed to yield an exact result for polynomials of degree 2n − 1 or less by a suitable choice of the points xi and weights wi for i = 1,...,n.
+The domain of integration for such a rule is conventionally taken as 1, so the rule is stated as
+Gaussian quadrature as above will only produce accurate results if the function f(x) is well approximated by a polynomial function within the range −1,1. The method is not, for example, suitable for functions with singularities. However, if the integrated function can be written as
+Common weighting functions include
+It can be shown (see Press, et al., or Stoer and Bulirsch) that the evaluation points xi are just the roots of a polynomial belonging to a class of orthogonal polynomials.
+== Gauss–Legendre quadrature == 
+the associated polynomials are Legendre polynomials, Pn(x), and the method is usually known as Gauss–Legendre quadrature. With the nth polynomial normalized to give Pn(1) = 1, the ith Gauss node, xi, is the ith root of Pn; its weight is given by [tpl]Harv|Abramowitz|Stegun|1972|loc=p. 887[/tpl]
+Some low-order rules for solving the integration problem are listed below.
+
+==Change of interval==
+
+An integral over b must be changed into an integral over 1 before applying the Gaussian quadrature rule. This change of interval can be done in the following way:
+Applying the Gaussian quadrature rule then results in the following approximation:
+
+==Other forms==
+
+The integration problem can be expressed in a slightly more general way by introducing a positive weight function ω into the integrand,
+and allowing an interval other than 1.
+That is, the problem is to calculate
+for some choices of a, b, and ω.
+For a = −1, b = 1, and ω(x) = 1,
+the problem is the same as that considered above.
+Other choices lead to other integration rules.
+Some of these are tabulated below.
+Equation numbers are given for Abramowitz and Stegun (A & S).
+
+===Fundamental theorem===
+
+Because of the choice of nodes xi, the corresponding relation
+
+====General formula for the weights====
+
+The weights can be expressed as
+We can write
+We can thus write the integral expression for the weights as
+In the integrand, writing
+yields
+We can then write
+
+====Proof that the weights are positive====
+
+Consider the following polynomial of degree 2n-2
+
+===Computation of Gaussian quadrature rules===
+
+====Gautschi's theorem====
+
+orthogonal polynom. Therefore,
+
+====The Golub-Welsch algorithm====
+
+the first component of this eigenvector, namely:
+See, for instance, [tpl]harv|Gil|Segura|Temme|2007[/tpl] for further details.
+There are alternative methods for obtaining the same weights and nodes in O(n) operations using the Prüfer Transform.
+
+===Error estimates===
+
+The error of a Gaussian quadrature rule can be stated as follows [tpl]harv|Stoer|Bulirsch|2002|loc=Thm 3.6.24[/tpl].
+For an integrand which has 2n continuous derivatives,
+for some ξ in (a, b), where pn is the monic (i.e. the leading coefficient is 1) orthogonal polynomial of degree n and where
+In the important special case of ω(x) = 1, we have the error estimate [tpl]Harv|Kahaner|Moler|Nash|1989|loc=§5.2[/tpl]
+Stoer and Bulirsch remark that this error estimate is inconvenient in practice,
+since it may be difficult to estimate the order 2n derivative,
+and furthermore the actual error may be much less than a bound established by the derivative.
+Another approach is to use two Gaussian quadrature rules of different orders,
+and to estimate the error as the difference between the two results.
+For this purpose, Gauss–Kronrod quadrature rules can be useful.
+Important consequence of the above equation is that Gaussian quadrature of order n is accurate for all polynomials up to degree 2n–1.
+
+===Gauss–Kronrod rules===
+
+If the interval b is subdivided,
+the Gauss evaluation points of the new subintervals never coincide with the previous evaluation points (except at zero for odd numbers),
+and thus the integrand must be evaluated at every point.
+This allows for computing higher-order estimates while re-using the function values of a lower-order estimate.
+The difference between a Gauss quadrature rule and its Kronrod extension are often used as an estimate of the approximation error.
+
+===Gauss–Lobatto rules===
+
+Also known as Lobatto quadrature [tpl]Harv|Abramowitz|Stegun|1972|loc=p. 888[/tpl], named after Dutch mathematician Rehuel Lobatto.
+It is similar to Gaussian quadrature with the following differences:
+Lobatto quadrature of function f(x) on interval +1:
+Weights:
+Remainder:
+Some of the weights are:
+
+==See also==
+
+==References==
+
+|year=1965 | volume=19 | number=91 | pages=477–481 | journal=Math. Comp. | doi=10.1090/s0025-5718-1965-0178569-1
+}}
+}}
+|title=Construction of Gauss–Christoffel Quadrature Formulas
+ |journal= Math. Comp. | year=1968 
+ | volume=22 | issue= 102
+ | pages=251–270
+|doi=10.1090/S0025-5718-1968-0228171-0 | mr=0228171
+}}
+|title=On the construction of Gaussian quadrature rules from modified moments
+|journal= Math. Comp. | year=1970 | volume=24 | pages=245–260
+|doi=10.1090/S0025-5718-1970-0285117-6  | mr=0285177
+}}
+|year=1971 | volume=5 | number=1 | journal= J. Eng. Math. | pages=1–9
+|doi=10.1007/BF01535429}}
+|volume=27 | number=124 | pages=861–869 | doi= 10.1090/S0025-5718-1973-0331730-X |mr=0331730}}
+|title=A Gaussian quadrature for the calculation of generalized Fermi-Dirac integrals
+|year=1991 | journal=Comp. Phys. Commun. | volume=66 | pages=271–275 |number=2-3
+|doi=10.1016/0010-4655(91)90076-W }}
+|year=1996 | journal=J. Comp. Phys. | volume=129 | pages=406–430| bibcode=1996JCoPh.129..406Y |doi=10.1006/jcph.1996.0258}}
+|title=Accurate recovery of recursion coefficients from Gaussian quadrature formulas
+|year=1999 | volume=112 | number=1-2 | pages=165–180 
+|journal=J. Comp. Appl. Math. | doi=10.1016/S0377-0427(99)00228-9 }}
+|title=Computation of Gauss-type quadrature formulas
+|year=2001 | pages=201–217 | volume=127 | number=1-2 | journal=J. Comp. Appl. Math. | doi=10.1016/S0377-0427(00)00506-9 }}
+
+==External links==
+
+

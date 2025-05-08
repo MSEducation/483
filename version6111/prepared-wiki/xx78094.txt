@@ -1,0 +1,51 @@
+[[Daemon (computing)]]
+
+CATEGORIES: Servers (computing)
+
+In multitasking computer operating systems, a daemon ([tpl]IPAc-en|ˈ|d|iː|m|ən[/tpl] or [tpl]IPAc-en|ˈ|d|eɪ|m|ən[/tpl])[tpl]Cite web|url=http://catb.org/~esr/jargon/html/D/daemon.html |title=daemon |author=Eric S. Raymond |authorlink=Eric S. Raymond |accessdate=2008-10-22 |work=The Jargon File [/tpl] is a computer program that runs as a background process, rather than being under the direct control of an interactive user. Traditionally daemon names end with the letter d: for example, syslogd is the daemon that implements the system logging facility and sshd is a daemon that services incoming SSH connections.
+In a Unix environment, the parent process of a daemon is often, but not always, the init process. A daemon is usually either created by a process forking a child process and then immediately exiting, thus causing init to adopt the child process, or by the init process directly launching the daemon. In addition, a daemon launched by forking and exiting typically must perform other operations, such as dissociating the process from any controlling terminal (tty). Such procedures are often implemented in various convenience routines such as daemon(3) in Unix.
+Systems often start daemons at boot time and serve the function of responding to network requests, hardware activity, or other programs by performing some task. Daemons can also configure hardware (like udevd on some GNU/Linux systems), run scheduled tasks (like cron), and perform a variety of other tasks.
+
+==Terminology==
+
+The term was coined by the programmers of MIT's Project MAC. They took the name from Maxwell's demon, an imaginary being from a famous thought experiment that constantly works in the background, sorting molecules.[tpl]Cite web|url=http://www.takeourword.com/TOW146/page4.html|author=Fernando J. Corbató|title=Take Our Word for It|date=2002-01-23|accessdate=2006-08-20[/tpl] Unix systems inherited this terminology.  Maxwell's Demon is consistent with Greek mythology's interpretation of a daemon as a supernatural being working in the background, with no particular bias towards good or evil. However, BSD and some of its derivatives have adopted a Christian daemon as their mascot rather than a Greek daemon.[tpl]citation needed|date=May 2013|reason=No evidence they specifically chose a Christian demon rather than a daemon and then used Christian-themed artwork.[/tpl]
+The word daemon is an alternative spelling of demon,[tpl]Cite web|url=http://www.merriam-webster.com/dictionary/daemon|title=Merriam-Webster definition of daemon|accessdate=2009-08-05| work=Merriam-Webster Online[/tpl] and is pronounced [tpl]IPAc-en|ˈ|d|iː|m|ən[/tpl] [tpl]respell|DEE|mən[/tpl]. In the context of computer software, the original pronunciation [tpl]IPAc-en|ˈ|d|iː|m|ən[/tpl] has drifted to [tpl]IPAc-en|ˈ|d|eɪ|m|ən[/tpl] [tpl]respell|DAY|mən[/tpl] for some speakers.
+Alternate terms for daemon are service (Microsoft Windows NT), started task (IBM z/OS),http://publib.boulder.ibm.com/infocenter/zos/basics/index.jsp?topic=/com.ibm.zglossary.doc/zglossary.html, s.v. "started task" and ghost job (XDS UTS).
+
+==Creation==
+
+In a strictly technical sense, a Unix-like system process is a daemon when its parent process terminates and the daemon is assigned the init process (process number 1) as its parent process and has no controlling terminal. However, more commonly, a daemon may be any background process, whether a child of the init process or not.
+On a Unix-like system, the common method for a process to become a daemon, when the process is started from the command line or from a startup script such as an init script or a SystemStarter script, involves:
+If the process is started by a super-server daemon, such as inetd, launchd, or systemd, the super-server daemon will perform those functions for the process[tpl]man|8|inetd|FreeBSD[/tpl][tpl]man|5|launchd.plist|Darwin[/tpl][tpl]cite web|title=systemd.service|url=http://www.freedesktop.org/software/systemd/man/systemd.service.html|publisher=freedesktop.org|accessdate=August 25, 2012[/tpl] (except for old-style daemons not converted to run under systemd and specified as Type=forking and "multi-threaded" datagram servers under inetd).
+
+==Implementation in MS-DOS and Microsoft Windows==
+
+In the Microsoft DOS environment, daemon-like programs were implemented as Terminate and Stay Resident (TSR) software. On Microsoft Windows NT systems, programs called Windows services perform the functions of daemons. They run as processes, usually do not interact with the monitor, keyboard, and mouse, and may be launched by the operating system at boot time. In Windows 2000 and later versions, Windows services are configured and manually started and stopped using the Control Panel, a dedicated control/configuration program, the Service Controller component of the Service Control Manager (sc command), or the net start and net stop commands.
+However, any Windows application can perform the role of a daemon, not just a service, and some daemons for Windows have the option of running as a normal process.
+
+==Implementation in Mac OS==
+
+On the original Mac OS, optional features and services were provided by files loaded at startup time that patched the operating system; these were known as system extensions and control panels. Later versions of classic Mac OS augmented these with fully fledged faceless background applications: regular applications that ran in the background. To the user, these were still described as regular system extensions.
+OS X, which is a Unix system, uses daemons. (The term "services" is used in OS X for software that performs functions selected from the Services menu, rather than being used for daemons as in Windows.)
+
+==Etymology==
+
+According to Fernando J. Corbato who worked on Project MAC in 1963 his team is the first to use the term daemon. The use of the term daemon was inspired by Maxwell's demon, an imaginary agent in physics and thermodynamics that helped to sort molecules.[tpl]Cite web|url=http://ei.cs.vt.edu/~history/Daemon.html| title=The Origin of the word Daemon[/tpl]
+ We fancifully began to use the word daemon to describe background processes which worked tirelessly to perform system chores. 
+In the general sense, daemon is an older form of the word demon, from the Greek δαίμων. In the Unix System Administration Handbook, Evi Nemeth states the following about daemons:[tpl]Cite web|url=http://www.freebsd.org/copyright/daemon.html |title=The BSD Daemon |publisher=Freebsd.org |date= |accessdate=2008-11-15[/tpl]
+ 
+ Many people equate the word "daemon" with the word "demon", implying some kind of satanic connection between UNIX and the underworld. This is an egregious misunderstanding. "Daemon" is actually a much older form of "demon"; daemons have no particular bias towards good or evil, but rather serve to help define a person's character or personality. The ancient Greeks' concept of a "personal daemon" was similar to the modern concept of a "guardian angel"—eudaemonia is the state of being helped or protected by a kindly spirit. As a rule, UNIX systems seem to be infested with both daemons and demons. (p.403)
+
+A further characterization of the mythological symbolism is that a daemon is something which is not visible yet is always present and working its will. Plato's Socrates describes his own personal daemon to be something like the modern concept of a moral conscience:[tpl]quote|"The favour of the gods has given me a marvelous gift, which has never left me since my childhood. It is a voice which, when it makes itself heard, deters me from what I am about to do and never urges me on."|sign=Character of Socrates in "Theages", Plato[tpl]Efn|There is some doubt as to whether "Theages" was genuinely authored by Plato but this passage accurately articulates the Greek conception of a daemon.[/tpl][/tpl]
+
+==Notable service daemons in Unix-like systems==
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

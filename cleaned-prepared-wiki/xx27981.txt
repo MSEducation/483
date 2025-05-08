@@ -1,0 +1,71 @@
+[[Born–Oppenheimer approximation]]
+
+CATEGORIES: Quantum chemistry, Approximations
+
+In quantum chemistry, the computation of the energy and the wavefunction of an average-size molecule is a formidable task that is alleviated by the Born–Oppenheimer (BO) approximation, named after Max Born and J. Robert Oppenheimer. For instance the benzene molecule consists of 12 nuclei and 42 electrons. The time independent Schrödinger equation, which must be solved to obtain the energy and wavefunction of this molecule, is a partial differential eigenvalue equation in 162 variables—the spatial coordinates of the electrons and the nuclei. The BO approximation makes it possible to compute the wavefunction in two less complicated consecutive steps. This approximation was proposed in 1927, in the early period of quantum mechanics, by Born and Oppenheimer and is still indispensable in quantum chemistry.
+In basic terms, it allows the wavefunction of a molecule to be broken into its electronic and nuclear (vibrational, rotational) components.
+The success of the BO approximation is due to the high ratio between nuclear and electronic masses. The approximation is an important tool of quantum chemistry; without it only the lightest molecule, H2, could be handled, and all computations of molecular wavefunctions for larger molecules make use of it. Even in the cases where the BO approximation breaks down, it is used as a point of departure for the computations.
+The electronic energies, constituting the nuclear potential, consist of kinetic energies, interelectronic repulsions and electron–nuclear attractions. In a handwaving manner the nuclear potential is taken to be an averaged electron–nuclear attraction. 
+The BO approximation follows from the inertia of electrons being considered to be negligible in comparison to the atom to which they are bound.
+In molecular spectroscopy, because the ratios of the periods of the electronic, vibrational and rotational energies are each related to each other on scales in the order of a thousand, the Born–Oppenheimer name has also been attached to the approximation where the energy components are treated separately.
+The nuclear spin energy is so small that it is normally omitted.
+
+Short description
+
+The Born–Oppenheimer (BO) approximation is ubiquitous in quantum chemical calculations of molecular wavefunctions. It consists of two steps.
+In the first step the nuclear kinetic energy is neglected, that is, the corresponding operator Tn is subtracted from the total molecular Hamiltonian. In the remaining electronic Hamiltonian He the nuclear positions enter as parameters. The electron–nucleus interactions are not removed and the electrons still "feel" the Coulomb potential of the nuclei clamped at certain positions in space. (This first step of the BO approximation is therefore often referred to as the clamped nuclei approximation.)
+The electronic Schrödinger equation
+is solved (out of necessity, approximately). The quantity r stands for all electronic coordinates and R for all nuclear coordinates. The electronic energy eigenvalue Ee depends on the chosen positions R of the nuclei. Varying these positions R in small steps and repeatedly solving the electronic Schrödinger equation, one obtains Ee as a function of R. This is the potential energy surface (PES): Ee(R) . Because this procedure of recomputing the electronic wave functions as a function of an infinitesimally changing nuclear geometry is reminiscent of the conditions for the adiabatic theorem, this manner of obtaining a PES is often referred to as the adiabatic approximation and the PES itself is called an adiabatic surface.
+In the second step of the BO approximation the nuclear kinetic energy Tn (containing partial derivatives with respect to the components of R) is reintroduced and the Schrödinger equation for the nuclear motion
+is solved. This second step of the BO approximation involves separation of vibrational, translational, and rotational motions. This can be achieved by application of the Eckart conditions. The eigenvalue E is the total energy of the molecule, including contributions from electrons, nuclear vibrations, and overall rotation and translation of the molecule.
+
+Footnotes
+
+Derivation of the Born–Oppenheimer approximation
+
+It will be discussed how the BO approximation may be derived and under which conditions it is applicable. At the same time we will show how the BO approximation may be improved by including vibronic coupling. To that end the second step of the BO approximation is generalized to a set of coupled eigenvalue equations depending on nuclear coordinates only. Off-diagonal elements in these equations are shown to be nuclear kinetic energy terms.
+It will be shown that the BO approximation can be trusted whenever the PESs, obtained from the solution of the electronic Schrödinger equation, are well separated:
+We start from the exact non-relativistic, time-independent molecular Hamiltonian:
+with
+We assume that the molecule is in a homogeneous
+(no external force) and isotropic (no external torque) space. The only interactions are the 
+Coulomb interactions between the electrons and nuclei. The Hamiltonian is expressed in atomic units, so that we do not see Planck's constant, the dielectric constant of the vacuum, electronic charge, or electronic mass in this formula. The only constants explicitly entering the formula are ZA and MA—the atomic number and mass of nucleus A.
+It is useful to introduce the total nuclear momentum and to rewrite the nuclear kinetic energy operator as follows:
+We will assume that the parametric dependence is continuous and differentiable, so that it is meaningful to consider
+which in general will not be zero.
+with
+is turned into a set of K coupled eigenvalue equations depending on nuclear coordinates only
+The vibronic coupling in this approach is through nuclear kinetic energy terms. 
+Solution of these coupled equations gives an approximation for energy and wavefunction that goes beyond the Born–Oppenheimer approximation. 
+Unfortunately, the off-diagonal kinetic energy terms are usually difficult to handle. This is why often a diabatic transformation is applied, which retains part of the nuclear kinetic energy terms on the diagonal, removes the kinetic energy terms from the off-diagonal and creates coupling terms between the adiabatic PESs on the off-diagonal.
+If we can neglect the off-diagonal elements the equations will uncouple and simplify drastically. In order to show when this neglect is justified, we
+The matrix element in the numerator is
+The matrix element of the one-electron operator appearing on the right hand side is finite.
+the BO approximation breaks down and a coupled set of nuclear motion equations must be considered, instead of the one equation appearing in the second step of the BO approximation.
+which are the normal second-step of the BO equations discussed above.
+We reiterate that when two or more potential energy surfaces approach each other, or even cross, the Born–Oppenheimer
+approximation breaks down and one must fall back on the coupled equations. Usually one
+invokes then the diabatic approximation.
+
+The Born–Oppenheimer approximation with the correct symmetry
+
+The starting point is the nuclear adiabatic BO (matrix) equation written in the form:M. Baer, Beyond Born–Oppenheimer: Electronic non-Adiabatic Coupling Terms and Conical Intersections, 2006 (Wiley and Sons, Inc., Hoboken, N.J.), Chapter 2
+To study the scattering process taking place on the two lowest surfaces one extracts, from the above BO equation, the two corresponding equations:
+Next a new function is introduced:M. Baer and R. Englman, Chem. Phys. Lett. 265, 105 (1997)
+and the corresponding rearrangements are made:
+In this equation the inhomogeneity ensures the symmetry for the perturbed part of the solution along any contour and therefore for the solution in the required region in configuration space.
+The relevance of the present approach was demonstrated while studying a two-arrangement-channel model (containing one inelastic channel and one reactive channel) for which the two adiabatic states were coupled via a Jahn-Teller  conical intersection.(a) R. Baer, D.M. Charutz, R. Kosloff and M. Baer, J. Chem. Phys. 111, 9141 (1996); (b) S. Adhikari and G.D. Billing, J. Chem. Phys. 111, 40 (1999)D.M. Charutz, R. Baer and M. Baer, Chem. Phys. Lett. 265, 629 (1996)  A nice fit between the symmetry-preserved, single-state, treatment and the corresponding two-state treatment was obtained. This applies in particular to the reactive state-to-state probabilities (see Table III in Ref. 5a and Table III in Ref. 5b) for which the ordinary BO approximation led to erroneous results, whereas the symmetry-preserving BO approximation produced the accurate results as they followed from solving the two coupled equations.
+
+Historical note
+
+Born and Oppenheimer wrote the paper:  This paper describes the separation of electronic motion, nuclear vibrations, and molecular rotation. However, in the original paper the presentation of the BO approximation is well hidden in Taylor expansions (in terms of internal and external nuclear coordinates) of (i) electronic wave functions, (ii) potential energy surfaces and (iii) nuclear kinetic energy terms. Internal coordinates are the relative positions of the nuclei in the molecular equilibrium and their displacements (vibrations) from equilibrium. External coordinates are the position of the center of mass and the orientation of the molecule. The Taylor expansions complicate the theory and make the derivations
+very hard to follow, in contrast to the explanation and derivation above. Moreover, knowing that the proper separation of vibrations and rotations was not achieved in this paper, but only eight years later  (see Eckart conditions), there is little need to understand the work by Born and Oppenheimer, however famous it may be. Although the article still collects many citations each year, it is safe to say that it is not read anymore (except perhaps by historians of science).
+
+
+
+
+
+
+
+Resources related to the Born–Oppenheimer approximation:
+

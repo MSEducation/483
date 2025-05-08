@@ -1,0 +1,133 @@
+</ref> such memory barriers are not needed on modern CPUs.  The <code>ACCESS_ONCE()</code> macro is a volatile cast that generates no additional code in most cases. And there is absolutely no way that <code>rcu_read_lock</code> can participate in a [[deadlock]] cycle, cause a realtime process to miss its scheduling deadline, precipitate [[priority inversion]], or result in high [[lock (computer science)|lock contention]].  However, in this toy RCU implementation, blocking within an RCU read-side critical section is illegal, just as is blocking while holding a pure spinlock.
+The implementation of synchronize_rcu moves the caller of synchronize_cpu to each CPU, thus blocking until all CPUs have been able to perform the context switch.  Recall that this is a non-preemptive environment and that blocking within an RCU read-side critical section is illegal, which imply that there can be no preemption points within an RCU read-side critical section.  Therefore, if a given CPU executes a context switch (to schedule another process), we know that this CPU must have completed all preceding RCU read-side critical sections. Once all CPUs have executed a context switch, then all preceding RCU read-side critical sections will have completed.
+
+==Analogy with reader-writer locking==
+
+Although RCU can be used in many different ways, a very common use of RCU is analogous to reader-writer locking. The following side-by-side code display shows how closely related reader-writer locking (on the left) and RCU (on the right) can be.[ref]
+</ref>
+ 
+  1 struct el {                           1 struct el {
+ 2   struct list_head lp;                2   struct list_head lp;
+ 3   long key;                           3   long key;
+ 4   spinlock_t mutex;                   4   spinlock_t mutex;
+ 5   int data;                           5   int data;
+ 6   /* Other data fields */             6   /* Other data fields */
+ 7 };                                    7 };
+ 8 DEFINE_RWLOCK(listmutex);             8 DEFINE_SPINLOCK(listmutex);
+ 9 LIST_HEAD(head);                      9 LIST_HEAD(head);
+ 1 int search(long key, int *result)     1 int search(long key, int *result)
+ 2 {                                     2 {
+ 3   struct el *p;                       3   struct el *p;
+ 4                                       4
+ 5   read_lock(&listmutex);              5   rcu_read_lock();
+ 6   list_for_each_entry(p, &head, lp) { 6   list_for_each_entry_rcu(p, &head, lp) {
+ 7     if (p->key == key) {              7     if (p->key == key) {
+ 8       *result = p->data;              8       *result = p->data;
+ 9       read_unlock(&listmutex);        9       rcu_read_unlock();
+10       return 1;                      10       return 1;
+11     }                                11     }
+12   }                                  12   }
+13   read_unlock(&listmutex);           13   rcu_read_unlock();
+14   return 0;                          14   return 0;
+15 }                                    15 }
+ 1 int delete(long key)                  1 int delete(long key)
+ 2 {                                     2 {
+ 3   struct el *p;                       3   struct el *p;
+ 4                                       4
+ 5   write_lock(&listmutex);             5   spin_lock(&listmutex);
+ 6   list_for_each_entry(p, &head, lp) { 6   list_for_each_entry(p, &head, lp) {
+ 7     if (p->key == key) {              7     if (p->key == key) {
+ 8       list_del(&p->lp);               8       list_del_rcu(&p->lp);
+ 9       write_unlock(&listmutex);       9       spin_unlock(&listmutex);
+                                        10       synchronize_rcu();
+10       kfree(p);                      11       kfree(p);
+11       return 1;                      12       return 1;
+12     }                                13     }
+13   }                                  14   }
+14   write_unlock(&listmutex);          15   spin_unlock(&listmutex);
+15   return 0;                          16   return 0;
+16 }                                    17 }
+
+The differences between the two approaches are quite small.  Read-side locking moves to rcu_read_lock and rcu_read_unlock, update-side locking moves from a reader-writer lock to a simple spinlock, and a synchronize_rcu precedes the kfree.
+However, there is one potential catch: the read-side and update-side critical sections can now run concurrently. In many cases, this will not be a problem, but it is necessary to check carefully regardless. For example, if multiple independent list updates must be seen as a single atomic update, converting to RCU will require special care.
+Also, the presence of synchronize_rcu means that the RCU version of delete can now block. If this is a problem, call_rcu could be used like call_rcu (kfree, p) in place of synchronize_rcu.  This is especially useful in combination with reference counting.
+
+==Name==
+
+The name comes from the way that RCU is used to update a linked structure in place.
+A thread wishing to do this uses the following steps:
+When the thread which made the copy is awakened by the kernel, it can safely deallocate the old structure.
+So the structure is read concurrently with a thread copying in order to do an update, hence the name "read-copy update". The abbreviation "RCU" was one of many contributions by the Linux community. Other names for similar techniques include passive serialization and MP defer by VM/XA programmers and generations by K42 and Tornado programmers.
+
+==History==
+
+Techniques and mechanisms resembling RCU have been independently invented multiple times:[ref]
+</ref>
+  | last = Kung
+  | first = H. T.
+  | last2 = Lehman
+  | first2 = Q.
+  | title = Concurrent Maintenance of Binary Search Trees
+  | url = http://portal.acm.org/citation.cfm?id=320619&dl=GUIDE,
+  | journal = ACM Transactions on Database Systems
+  | volume = 5
+  | date = September 1980
+  | issue = 3
+  | doi = 10.1145/320613.320619
+  | page = 354
+  }}</ref>
+  | last = Manber
+  | first = Udi
+  | last2 = Ladner
+  | first2 = Richard E.
+  | title = Concurrency Control in a Dynamic Search Structure
+  | journal = ACM Transactions on Database Systems
+  | volume = 9
+  | date = September 1984
+  | issue = 3
+  }}</ref>
+  | last = Rashid
+  | first = Richard
+  | last2 = Tevanian
+  | first2 = Avadis
+  | last3 = Young
+  | first3 = Michael
+  | last4 = Golub
+  | first4 = David
+  | last5 = Baron
+  | first5 = Robert
+  | last6 = Bolosky
+  | first6 = William
+  | last7 = Chew
+  | first7 = Jonathan
+  | title = Machine-Independent Virtual Memory Management for Paged Uniprocessor and Multiprocessor Architectures
+  | url = http://citeseer.csail.mit.edu/cache/papers/cs/6535/http:zSzzSzwww.cs.cornell.eduzSzcs614-sp98zSzberkeley-262zSzmach-vm.pdf/rashid87machineindependent.pdf
+  | journal = Second Symposium on Architectural Support for Programming Languages and Operating Systems
+  | publisher = Association for Computing Machinery
+  | date = October 1987
+  | year = 1987}}</ref>
+  | last = Hennessy
+  | first = James P.
+  | last2 = Osisek
+  | first2 = Damian L.
+  | last3 = Seigh II
+  | first3 = Joseph W.
+  | title = Passive Serialization in a Multitasking Environment
+  | url = http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=4809168.PN.&OS=PN/4809168&RS=PN/4809168
+  | number = 4,809,168
+  | date = February 1989
+  | year = 1989 }}</ref>
+  | last = Pugh
+  | first = William
+  | title = Concurrent Maintenance of Skip Lists
+  | url = http://portal.acm.org/citation.cfm?id=SERIES9310.93717
+  | institution = Institute of Advanced Computer Science Studies, Department of Computer Science, University of Maryland
+  | number = CS-TR-2222.1
+  | date = June 1990
+  | year = 1990 }}</ref>
+  | last = John
+  | first = Aju
+  | title = Dynamic vnodes &mdash; design and implementation
+  | journal = USENIX Winter 1995
+  | url = https://www.usenix.org/publications/library/proceedings/neworl/full_papers/john.a
+  | date = January 1995

@@ -1,0 +1,53 @@
+[[SBT (software)]]
+
+CATEGORIES: Build automation, Compiling tools, Java development tools, Scala programming language, Free software programmed in Scala, Software using the BSD license
+
+sbt is an open source build tool for Scala and Java projects, similar to Java's Maven or Ant.
+
+sbt is the abbreviation for "simple build tool".
+Its main features are:
+sbt is the de facto build tool for the Scala community,Public repositories hosted on github which mention sbt used by the Lift web frameworkGetting started for Lift and Play Framework.
+Typesafe Inc., Scala's commercial outlet, has called sbt "arguably the best tool for building Scala projects", with the two most prominent key features being incremental compilation and an interactive shell.[tpl]cite web|title=Zinc and Incremental Compilation|url=http://blog.typesafe.com/zinc-and-incremental-compilation|publisher = typesafe's blog|date = 13 August 2012| accessdate = 22 August 2012[/tpl] When continuous compilation mode is entered, the Scala compiler is only once instantiated which eliminates subsequent startup costs, and source file changes are tracked so that only affected dependencies are recompiled. The interactive console allows modifying build settings on the fly and entering the Scala REPL along with all class files of the project.[tpl]cite web|last=Goldin|first=Evgeny|title=SBT Scala Build Tool|url=http://www.methodsandtools.com/tools/scalabuildtool.php| accessdate = 7 May 2012[/tpl] The popularity of the incremental compilation has prompted Typesafe to extract this feature in the form of an independent component called Zinc.
+sbt had already fed back into the Scala standard library before, when its process API was adopted in Scala 2.9.[tpl]cite web|url=http://www.scala-lang.org/node/9483|title=Scala 2.9.0 final|date=12 May 2011|accessdate=22 August 2012[/tpl]
+
+==Build files==
+
+An sbt project can be configured using either a "light" configuration or a "full" configuration. Light configuration files consist of multiple Scala expressions in a .sbt file. Full configuration files are complete Scala programs that use sbt as a library.sbt: Basic Configuration Below is an example of light configuration:
+
+// Set the project name to the string "my-project" and the version to 1.0.0.
+name := "my-project"
+version := "1.0.0"
+// Add a single dependency, for tests.
+libraryDependencies += "junit" % "junit" % "4.8" % "test"
+// Add multiple dependencies.
+libraryDependencies ++= Seq(
+  "net.databinder" %% "dispatch-google" % "0.7.8",
+  "net.databinder" %% "dispatch-meetup" % "0.7.8"	
+)
+// Use the project version to determine the repository to publish to.
+publishTo := Some(if (version.value endsWith "-SNAPSHOT") "http://example.com/maven/snapshots" else "http://example.com/maven/releases")
+
+==Example use==
+
+sbt may be invoked for each build command, or it may enter interactive mode if no command is given. To clean build products of the current build:
+
+$ sbt clean
+
+Multiple commands may be used on the same line. To run a single test named "Foo" and then publish exported jars:
+
+$ sbt "test-only Foo" publish
+
+==Extensibility and integration==
+
+The functionality of sbt can be extended through a plugin architecture.[tpl]cite web|url=http://www.scala-sbt.org/release/docs/Community/Community-Plugins.html|title = Plugins|publisher=sbt|accessdate=22 August 2012[/tpl] A dedicated website was set up for community contributed plugins, which cover various areas such as signing, packaging, publishing and releasing artifacts, connecting to other services such as blogs and databases, or integrating with other technologies such as deploying to the Android platform.[tpl]cite web|url=http://www.scala-sbt.org/community-plugins.html|title=sbt Community Plugins|accessdate=22 August 2012[/tpl]
+There are plugins to automatically create project files for the Eclipse and IntelliJ IDEA IDEs. On the other hand, an IntelliJ IDEA plugin allows the sbt console to be integrated into IDEA, and projects can choose to use sbt for building.
+
+==Comparison and criticism==
+
+As with most software tools, sbt has found advocates and critics. It is often compared against Maven, which is a standard build tool in the Java world. In particular, the domain specific language used for sbt build files has attracted criticism as being cryptic compared to the pure declarative approach of Maven's XML files. Furthermore, an incompatible change in the file format and layout was introduced with the version jump from 0.7 to 0.10. Due to the maturity of Maven and sbt being rather young, it has also been said that Maven provides a greater number of plugins and that sbt's documentation is lacking, although others say that the quality of documentation is improving.[tpl]cite web|url=http://www.quora.com/Scala/Is-sbt-the-best-way-to-manage-Scala-projects-if-your-first-priority-is-developer-efficiency|title=Is sbt the best way to manage Scala projects if your first priority is developer efficiency?|publisher=Quora|date=25 July 2012|accessdate=22 August 2012[/tpl][tpl]cite web|url=http://codahale.com/the-rest-of-the-story/|title=The Rest Of The Story|author=Coda Hale|date=29 November 2011|accessdate=22 August 2012[/tpl] This is a blog entry giving context to a linked e-mail in which problems with sbt are outlined.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,26 @@
+[[FROG]]
+
+CATEGORIES: Block ciphers
+
+In cryptography, FROG is a block cipher authored by 
+Georgoudis, Leroux and Chaves. The algorithm can work with any block size between 8 and 128 bytes, and supports key sizes between 5 and 125 bytes. The algorithm consists of 8 rounds and has a very complicated key schedule. 
+It was submitted in 1998 by TecApro, a Costa Rican software company, to the AES competition as a candidate to become the Advanced Encryption Standard. Wagner et al. (1999) found a number of weak key classes for FROG. Other problems included very slow key setup and relatively slow encryption. FROG was not selected as a finalist.
+
+==Description==
+
+The FROG key schedule (or internal key) is 2304 bytes long. It is produced recursively by iteratively applying FROG to an empty plaintext. The resulting block is processed to produce a well formatted internal key with 8 records. FROG has 8 rounds, the operations of each round codified by one record in the internal key. All operations are byte-wide and consist of XORs and substitutions.A detailed description of the cipher can be found here.
+FROG is very easy to implement (the reference C version has only about 150 lines of code). Much of the code needed to implement FROG is used to generate the secret internal key; the internal cipher itself is a very short piece of code. It is possible to write an assembly routine of just 22 machine instructions that does full FROG encryption and decryption. The implementation will run well on 8 bit processors because it uses only byte-level instructions. No bit-specific operations are used. Once the internal key has been computed, the algorithm is fairly fast: a version implemented using 8086 assembler achieves processing speeds of over 2.2 megabytes per second when run on a 200 MHz Pentium PC.
+
+==Security==
+
+FROG's design philosophy is meant to defend against unforeseen/unknown types of attacks. Nevertheless, the very fact that the key is used as the encryption program means that some keys may correspond to weak encryption programs. David Wagner et al. found that 2−33 of the keys are weak and that in these cases the key can be broken with 258 chosen plaintexts. 
+Another flaw of FROG is that the decryption function has a much slower diffusion than the encryption function. Here 2−29 of keys are weak and can be broken using 236 chosen ciphertexts.
+
+==Notes==
+
+==References==
+
+==External links==
+
+
+

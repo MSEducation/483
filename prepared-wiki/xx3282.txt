@@ -1,0 +1,115 @@
+[[Hexadecimal]]
+
+CATEGORIES: Binary arithmetic, Hexadecimal numeral system, Positional numeral systems
+
+In mathematics and computing, hexadecimal (also base [tpl]num|16[/tpl], or hex) is a positional numeral system with a radix, or base, of 16. It uses sixteen distinct symbols, most often the symbols 0–9 to represent values zero to nine, and A, B, C, D, E, F (or alternatively a–f) to represent values ten to fifteen. For example, the hexadecimal number 2AF3 is equal, in decimal, to [tpl]math|(2 × 163) + (10 × 162) + (15 × 161) + (3 × 160)[/tpl], or 10995.
+Each hexadecimal digit represents four binary digits (bits), and the primary use of hexadecimal notation is a human-friendly representation of binary-coded values in computing and digital electronics. One hexadecimal digit represents a nibble, which is half of an octet or byte (8 bits). For example, byte values can range from 0 to 255 (decimal), but may be more conveniently represented as two hexadecimal digits in the range 00 to FF. Hexadecimal is also commonly used to represent computer memory addresses.
+
+==Representation==
+
+===Written representation===
+
+====Using 0–9 and A–F====
+
+In situations where there is no context, hexadecimal numbers can be ambiguous and confused with numbers expressed in other bases. There are several conventions for expressing values unambiguously. A numerical subscript (itself written in decimal) can give the base explicitly: 15910 is decimal 159; 15916 is hexadecimal 159, which is equal to 34510. Other authors prefer a text subscript, such as 159decimal and 159hex, or 159d and 159h.
+In linear text systems, such as those used in most computer programming environments, a variety of methods have arisen:
+ | url = http://www.web-colors-explained.com/hex.php
+ | title = Hexadecimal web colors explained
+}}[/ref] CSS allows 3-hexdigit abbreviations with one hexdigit per component: #FA3 abbreviates #FFAA33 (a golden orange: [tpl]color box|#FA3[/tpl]).
+There is no universal convention to use lowercase or uppercase for the letter digits, and each is prevalent or preferred in particular environments by community standards or convention.
+
+===Early written representations===
+
+The choice of the letters A through F to represent the digits above nine was not universal in the early history of computers.
+
+===Verbal and digital representations===
+
+There are no traditional numerals to represent the quantities from ten to fifteen — letters are used as a substitute — and most European languages lack non-decimal names for the numerals above ten. Even though English has names for several non-decimal powers (pair for the first binary power, score for the first vigesimal power, dozen, gross, and great gross for the first three duodecimal powers), no English name describes the hexadecimal powers (decimal 16, 256, 4096, 65536, ... ). Some people read hexadecimal numbers digit by digit like a phone number: 4DA is "four-dee-ay". However, the letter A sounds like "eight", C sounds like "three", and D can easily be mistaken for the "-ty" suffix: Is it 4D or forty? Other people avoid confusion by using the NATO phonetic alphabet: 4DA is "four-delta-alfa", the Joint Army/Navy Phonetic Alphabet ("four-dog-able"), or a similar ad hoc system.
+Systems of counting on digits have been devised for both binary and hexadecimal. 
+Arthur C. Clarke suggested using each finger as an on/off bit, allowing finger counting from zero to 102310 on ten fingers. Another system for counting up to FF16 (25510) is illustrated on the right.
+
+===Signs===
+
+The hexadecimal system can express negative numbers the same way as in decimal: −2A to represent −4210 and so on.
+However, some[tpl]who|date=June 2012[/tpl] prefer instead to use the hexadecimal notation to express the exact bit patterns used in the processor, so a sequence of hexadecimal digits may represent a signed or even a floating point value. This way, the negative number −4210 can be written as FFFF FFD6 in a 32-bit CPU register (in two's-complement), as C228 0000 in a 32-bit FPU register or C045 0000 0000 0000 in a 64-bit FPU register (in the IEEE floating-point standard).
+
+===Hexadecimal exponential notation===
+
+Just as decimal numbers can be represented in exponential notation so too can hexadecimal.  By convention, the letter p represents times two raised to the power of, whereas e serves a similar purpose in decimal.  The number after the p is decimal and represents the binary exponent.
+Usually the number is normalised: that is, the leading hexadecimal digit is 1 (unless the value is exactly 0).
+Example: 1.3DEp42 represents [tpl]math|1.3DE16 × 242[/tpl].
+Hexadecimal exponential notation is required by the IEEE 754 binary floating-point standard.  This notation can be produced by some versions of the printf family of functions by using the %a conversion.
+
+==Conversion==
+
+===Binary conversion===
+
+Most computers manipulate binary data, but it is difficult for humans to work with the large number of digits for even a relatively small binary number. Although most humans are familiar with the base 10 system, it is much easier to map binary to hexadecimal than to decimal because each hexadecimal digit maps to a whole number of bits (410).
+This example converts 11112 to base ten. Since each position in a binary numeral can contain either a 1 or a 0, its value may be easily determined by its position from the right:
+Therefore:
+With little practice, mapping 11112 to F16 in one step becomes easy: see table in Written representation. The advantage of using hexadecimal rather than decimal increases rapidly with the size of the number. When the number becomes large, conversion to decimal is very tedious. However, when mapping to hexadecimal, it is trivial to regard the binary string as 4-digit groups and map each to a single hexadecimal digit.
+This example shows the conversion of a binary number to decimal, mapping each digit to the decimal value, and adding the results.
+Compare this to the conversion to hexadecimal, where each group of four digits can be considered independently, and converted directly:
+The conversion from hexadecimal to binary is equally direct.
+The octal system can also be useful as a tool for people who need to deal directly with binary computer data. Octal represents data as three bits per character, rather than four.
+
+===Division-remainder in source base===
+
+As with all bases there is a simple algorithm for converting a representation of a number to hexadecimal by doing integer division and remainder operations in the source base. In theory, this is possible from any base, but for most humans only decimal and for most computers only binary (which can be converted by far more efficient methods) can be easily handled with this method.
+Let d be the number to represent in hexadecimal, and the series hihi−1...h2h1 be the hexadecimal digits representing the number.
+"16" may be replaced with any other base that may be desired.
+The following is a JavaScript implementation of the above algorithm for converting any number to a hexadecimal in String representation. Its purpose is to illustrate the above algorithm. To work with data seriously, however, it is much more advisable to work with bitwise operators.
+
+===Addition and multiplication===
+
+It is also possible to make the conversion by assigning each place in the source base the hexadecimal representation of its place value and then performing multiplication and addition to get the final representation. 
+That is, to convert the number B3AD to decimal one can split the hexadecimal number into its digits: B (1110), 3 (310), A (1010) and D (1310), and then get the final result by multiplying each decimal representation by 16p, where p is the corresponding hex digit position, counting from right to left, beginning with 0. In this case we have [tpl]math|B3AD [tpl]=[/tpl] (11 × 163) + (3 × 162) + (10 × 161) + (13 × 160)[/tpl], which is 45997 base 10.
+
+===Tools for conversion===
+
+Most modern computer systems with graphical user interfaces provide a built-in calculator utility, capable of performing conversions between various radices, in general including hexadecimal.
+In Microsoft Windows, the Calculator utility can be set to Scientific mode (called Programmer mode in some versions), which allows conversions between radix 16 (hexadecimal), 10 (decimal), 8 (octal) and 2 (binary), the bases most commonly used by programmers. In Scientific Mode, the on-screen numeric keypad includes the hexadecimal digits A through F, which are active when "Hex" is selected. In hex mode, however, the Windows Calculator supports only integers.
+
+==Real numbers==
+
+As with other numeral systems, the hexadecimal system can be used to represent rational numbers, although recurring digits are common since sixteen (10hex) has only a single prime factor (two):
+where an overline denotes a recurring pattern.
+For any base, 0.1 (or "1/10") is always equivalent to one divided by the representation of that base value in its own number system: Counting in base 3 is 0, 1, 2, 10 (three). Thus, whether dividing one by two for binary or dividing one by sixteen for hexadecimal, both of these fractions are written as 0.1. Because the radix 16 is a perfect square (4²), fractions expressed in hexadecimal have an odd period much more often than decimal ones, and there are no cyclic numbers (other than trivial single digits). Recurring digits are exhibited when the denominator in lowest terms has a prime factor not found in the radix; thus, when using hexadecimal notation, all fractions with denominators that are not a power of two result in an infinite string of recurring digits (such as thirds and fifths). This makes hexadecimal (and binary) less convenient than decimal for representing rational numbers since a larger proportion lie outside its range of finite representation.
+All rational numbers finitely representable in hexadecimal are also finitely representable in decimal, duodecimal, and sexagesimal: that is, any hexadecimal number with a finite number of digits has a finite number of digits when expressed in those other bases. Conversely, only a fraction of those finitely representable in the latter bases are finitely representable in hexadecimal. For example, decimal 0.1 corresponds to the infinite recurring representation 0.199999999999... in hexadecimal. However, hexadecimal is more efficient than bases 12 and 60 for representing fractions with powers of two in the denominator (e.g., decimal one sixteenth is 0.1 in hexadecimal, 0.09 in duodecimal, 0:3:45 in sexagesimal and 0.0625 in decimal).
+
+===Powers===
+
+Possibly the most widely used powers, powers of two, are easier to show using base 16. The first sixteen powers of two are shown below.
+Since four squared is sixteen, powers of four have an even easier relation:
+This also makes tetration simpler when using two and four since: 
+32 = 24 = 10hex, 
+42 = 216 = 10000hex and 
+52 = 265536 = (1 followed by 16384 zeros)hex.
+
+==Cultural==
+
+===Etymology===
+
+The word hexadecimal is composed of hexa-, derived from the Greek έξ (hex) for "six", and -decimal, derived from the Latin for "tenth". Webster's Third New International online derives "hexadecimal" as an alteration of the all-Latin "sexadecimal" (which appears in the earlier Bendix documentation). The earliest date attested for "hexadecimal" in Merriam-Webster Collegiate online is 1954, placing it safely in the category of international scientific vocabulary (ISV). It is common in ISV to mix Greek and Latin combining forms freely. The word "sexagesimal" (for base 60) retains the Latin prefix. Donald Knuth has pointed out that the etymologically correct term is "senidenary" (or possibly "sedenary"), from the Latin term for "grouped by 16". (The terms "binary", "ternary" and "quaternary" are from the same Latin construction, and the etymologically correct terms for "decimal" and "octal" arithmetic are "denary" and "octonary", respectively.)Knuth, Donald. (1969). The Art of Computer Programming, Volume 2. ISBN 0-201-03802-1. (Chapter 17.) Alfred B. Taylor used "senidenary" in his mid-1800s work on alternative number bases, although he rejected base 16 because of its "incommodious number of digits".A.B. Taylor, Report on Weights and Measures, Pharmaceutical Association, 8th Annual Session, Boston, Sept. 15, 1859.  See pages and 33 and 41.Alfred B. Taylor, "Octonary numeration and its application to a system of weights and measures", Proc Amer. Phil. Soc. Vol XXIV, Philadelphia, 1887; pages 296-366.  See pages 317 and 322. Schwartzman notes that the expected form from usual Latin phrasing would be "sexadecimal", but computer hackers would be tempted to shorten that word to "sex".Schwartzman, S. (1994). The Words of Mathematics: an etymological dictionary of mathematical terms used in English. ISBN 0-88385-511-9. The etymologically proper Greek term would be hexadecadic (although in Modern Greek deca-hexadic (δεκαεξαδικός) is more commonly used).
+
+===Use in Chinese culture===
+
+The traditional Chinese units of weight were base-16. For example, one jīn (斤) in the old system equals sixteen taels. The suanpan (Chinese abacus) could be used to perform hexadecimal calculations.
+
+===Primary numeral system===
+
+Similar to dozenal advocacy,
+there have been occasional attempts to promote hexadecimal as the preferred numeral system. These attempts usually 
+propose pronunciation and/or symbology. Sometimes the proposal unifies standard
+measures so that they are multiples of 16.[tpl]cite book | last=Nystrom | first=John William | title=Project of a New System of Arithmetic, Weight, Measure and Coins: Proposed to be called the Tonal System, with Sixteen to the Base |year=1862 | url=http://books.google.com/books?id=aNYGAAAAYAAJ | location=Philadelphia[/tpl]
+An example of unifying standard measures is hexadecimal time, which subdivides a day by 16 so that there are 16 "hexhours" in a day.
+
+==Key to number base notation==
+
+Simple key for notations used in article: 
+
+==See also==
+
+==References==
+
+

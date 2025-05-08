@@ -1,0 +1,59 @@
+[[Universal Disk Format]]
+
+CATEGORIES: Disk file systems, ISO standards, IEC standards, Ecma standards, Windows components
+
+Universal Disk Format (UDF) is a profile of the specification known as ISO/IEC 13346 and ECMA-167ECMA-167 - Volume and File Structure for Write-Once and Rewritable Media using Non-Sequential Recording for Information Interchange and is an open vendor-neutral file system for computer data storage for a broad range of media. In practice, it has been most widely used for DVDs and newer optical disc formats, supplanting ISO 9660. Due to its design, it is very well suited for incremental updates on both recordable and (re)writable optical media. UDF is developed and maintained by the Optical Storage Technology Association (OSTA).
+Normally, authoring software will master a UDF file system in a batch process and write it to optical media in a single pass. But when packet writing to rewriteable media, such as CD-RW, UDF allows files to be created, deleted and changed on-disc just as a general-purpose filesystem would on removable media like floppy disks and flash drives. This is also possible on write-once media, such as CD-R, but in that case the space occupied by the deleted files cannot be reclaimed (and instead becomes inaccessible).
+Multi-session mastering is also possible in UDF, though some implementations may be unable to read disks with multiple sessions.Multi-session mastering has always been part of the UDF specification. See 2.01/6.10.1, though earlier documents were not very clear that the anchor offsets are specified to be from the last session.
+
+==History==
+
+The Optical Storage Technology Association standardized the UDF file system to form a common file system for all optical media: both for read-only media and for re-writable optical media. When first standardized, the UDF file system aimed to replace ISO 9660, allowing support for both read-only and writable media. After the release of the first version of UDF, the DVD Consortium adopted it as the official file system for DVD-Video and DVD-Audio.[ref]
+OSTA - UDF Specifications[/ref]
+
+===Revisions===
+
+Multiple revisions of UDF have been released:Wenguang's Introduction to Universal Disk Format (UDF)
+
+==Specifications==
+
+The UDF standard defines three file system variations, called "builds". These are:
+
+===Plain build===
+
+Introduced in the first version of the standard, this format can be used on any type of disk that allows random read/write access, such as hard disks, DVD+RW and DVD-RAM media. Similarly to other common file system formats, such as FAT, directory entries point directly to the block or sector numbers of their file contents. In writing to such a disk in this format, any physical block on the disk may be chosen for allocation of new or updated files.
+Since this is the basic format, practically any operating system or file system driver claiming support for UDF should be able to read this format.
+
+===VAT build===
+
+Write-once media such as DVD-R and CD-R have limitations when being written to, in that each physical block can only be written to once, and the writing must happen incrementally. Thus the plain build of UDF can only be written to CD-Rs by pre-mastering the data and then writing all data in one piece to the media, similar to the way an ISO 9660 file system gets written to CD media.
+To enable a CD-R to be used virtually like a hard disk, whereby the user can add and modify files on a CD-R at will (so-called "drive letter access" on Windows), OSTA added the VAT build to the UDF standard in its revision 1.5. The VAT is an additional structure on the disk that allows packet writing; that is, remapping physical blocks when files or other data on the disk are modified or deleted. For write-once media, the entire disk is virtualized, making the write-once nature transparent for the user; the disk can be treated the same way one would treat a rewritable disc.
+The write-once nature of CD-R or DVD-R media means that when a file is deleted on the disk, the file's data still remains on the disk. It does not appear in the directory any more, but it still occupies the original space where it was stored. Eventually, after using this scheme for some time, the disk will be full, as free space cannot be recovered by deleting files. Special tools can be used to access the previous state of the disc (the state before the delete occurred), making recovery possible.
+Not all drives fully implement version 1.5 or higher of the UDF, and some may therefore be unable to handle VAT builds.
+
+===Spared (RW) build===
+
+Rewriteable media such as DVD-RW and CD-RW have fewer limitations than DVD-R and CD-R media. Sectors can be rewritten at random (though in packets at a time). These media can be erased entirely at any time, making the disc blank again, ready for writing a new UDF or other file system (e.g., ISO 9660 or CD Audio) to it. However, sectors of -RW media may "wear out" after a while, meaning that their data becomes unreliable, through having been rewritten too often (typically after a few hundred rewrites, with CD-RW).
+The plain and VAT builds of the UDF format can be used on rewriteable media, with some limitations. If the plain build is used on a -RW media, file-system level modification of the data must not be allowed, as this would quickly wear out often-used sectors on the disc (such as those for directory and block allocation data), which would then go unnoticed and lead to data loss. To allow modification of files on the disc, rewriteable discs can be used like -R media using the VAT build. This ensures that all blocks get written only once (successively), ensuring that there are no blocks that get rewritten more often than others. This way, a RW disc can be erased and reused many times before it should become unreliable. However, it will eventually become unreliable with no easy way of detecting it. When using the VAT build, CD-RW/DVD-RW media effectively appears as CD-R or DVD+/-R media to the computer. However, the media may be erased again at any time.
+The spared build was added in revision 1.5 to addess the particularities of rewriteable media. This build adds an extra Sparing Table in order to manage the defects that will eventually occur on parts of the disc that have been rewritten too many times. This table keeps track of worn-out sectors and remaps them to working ones. UDF defect management does not apply to systems that already implement another form of defect management, such as Mount Rainier for optical discs, or a disk controller for a hard drive.
+The tools and drives that do not fully support revision 1.5 of UDF will ignore the sparing table, which would lead them to read the outdated worn-out sectors, leading to retrieval of corrupted data.
+
+==Character set==
+
+The specification allows for nine character encodings: one by agreement, one specified by ECMA-6 (also known as ASCII), three subsets of ASCII, a subset of ECMA-94 (Latin-1), and various other graphical characters.[tpl]cite web |url=http://www.osta.org/specs/pdf/udf102.pdf |title=OSTA Univeral sic Disk Format Specification Revision 1.02 |author= |date= |work= |publisher=Osta |accessdate=25 September 2010[/tpl][tpl]cite web |url=http://www.osta.org/specs/pdf/udf201.pdf |title=Universal Disk Format Specification Revision 2.01 |author= |date= |work= |publisher=Osta |accessdate=25 September 2010[/tpl]
+
+==Compatibility==
+
+Many DVD players do not support any UDF revision other than version 1.02. Discs created with a newer revision may still work in these players if the ISO 9660 bridge format is used. Even if an operating system claims to be able to read UDF 1.50, it still may only support the plain build and not necessarily either the VAT or Spared UDF builds.
+Mac OS X 10.4.5 claims to support Revision 1.50 (see man mount_udf), yet it can only mount disks of the plain build properly and provides no virtualization support at all. It cannot mount UDF disks with VAT, as seen with the Sony Mavica issue.[tpl]cite web |url=http://docs.info.apple.com/article.html?artnum=75503 |title=Sony Mavica problem |author= |date= |work= |publisher=apple.com |accessdate= [/tpl] Releases before 10.4.11 mount disks with Sparing Table but does not read its files correctly. Version 10.4.11 fixes this problem.[tpl]cite web |url=http://www.apple.com/downloads/macosx/apple/macosx_updates/macosx10411comboupdateintel.html |title=Intel update |author= |date= |work= |publisher=apple.com |accessdate=[/tpl][tpl]cite web |url=http://www.apple.com/downloads/macosx/apple/macosx_updates/macosx10411comboupdateppc.html |title=PowerPC update |author= |date= |work= |publisher=apple.com |accessdate= [/tpl]
+Similarly, Microsoft Windows XP Service Pack 2 (SP2) cannot read DVD-RW disks that use the UDF 2.00 sparing tables as a defect management system.[tpl]cite web |url=http://support.microsoft.com/kb/321640/en-us |title=Microsoft Windows UDF Read Troubleshooting |author= |date= |work= |publisher=microsoft.com |accessdate= [/tpl] This problem occurs if the UDF defect management system creates a sparing table that spans more than one sector on the DVD-RW disk. Windows XP SP2 can recognize that a DVD is using UDF, but Windows Explorer displays the contents of a DVD as an empty folder. A hotfix is available for this[tpl]cite web |url=http://support.microsoft.com/kb/899527 |title=Windows XP UDF hotfix |author= |date= |work= |publisher=microsoft.com |accessdate= [/tpl] and is included in Service Pack 3.[tpl]cite web |url=http://support.microsoft.com/kb/321640/en-us |title=MS Windows and UDF optical disks |author= |date= |work= |publisher= |accessdate= [/tpl]
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

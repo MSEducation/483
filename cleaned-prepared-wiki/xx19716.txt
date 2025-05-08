@@ -1,0 +1,57 @@
+[[Pascal's triangle]]
+
+CATEGORIES: Factorial and binomial topics, Blaise Pascal, Triangles of numbers, Indian inventions, Chinese mathematical discoveries
+
+In mathematics, Pascal's triangle is a triangular array of the binomial coefficients. It is named after the French mathematician Blaise Pascal in much of the Western world, although other mathematicians studied it centuries before him in India,Maurice Winternitz, History of Indian Literature, Vol. III Greece, Iran, China, Germany, and Italy.
+The rows of Pascal's triangle are conventionally enumerated starting with row n = 0 at the top. The entries in each row are numbered from the left beginning with k = 0 and are usually staggered relative to the numbers in the adjacent rows. A simple construction of the triangle proceeds in the following manner. On row 0, write only the number 1. Then, to construct the elements of following rows, add the number above and to the left with the number above and to the right to find the new value. If either the number to the right or left is not present, substitute a zero in its place. For example, the first number in the first row is 0 + 1 = 1, whereas the numbers 1 and 3 in the third row are added to produce the number 4 in the fourth row.
+This construction is related to the binomial coefficients by Pascal's rule, which says that if
+then
+Pascal's triangle has higher dimensional generalizations. The three-dimensional version is called Pascal's pyramid or Pascal's tetrahedron, while the general versions are called Pascal's simplices.
+
+History
+
+The set of numbers that form Pascal's triangle were known before Pascal. However, Pascal developed many uses of it and was the first one to organize all the information together in his treatise, Traité du triangle arithmétique (1653). The numbers originally arose from Indian studies of combinatorics and binomial numbers and the Greeks' study of figurate numbers.Pascal's Triangle | World of Mathematics Summary
+At around the same time, it was discussed in Persia (Iran) by the Persian mathematician, Al-Karaji (953–1029). It was later repeated by the Persian poet-astronomer-mathematician Omar Khayyám (1048–1131); thus the triangle is referred to as the Khayyam-Pascal triangle or Khayyam triangle in Iran. Several theorems related to the triangle were known, including the binomial theorem. Khayyam used a method of finding nth roots based on the binomial expansion, and therefore on the binomial coefficients.[ref]
+.</ref>
+Pascal's triangle was known in China in the early 11th century through the work of the Chinese mathematician Jia Xian (1010–1070). In 13th century, Yang Hui (1238–1298) presented the triangle and hence it is still called Yang Hui's triangle in China. (2003). CRC concise encyclopedia of mathematics, .
+In the west, the binomial coefficients were calculated by Gersonides in the early 14th century, using the multiplicative formula for them.
+Petrus Apianus (1495–1552) published the full triangle on the frontispiece of his book on business calculations in 1527. This is the first record of the triangle in Europe.. Michael Stifel published a portion of the triangle (from the second to the middle column in each row) in 1544, describing it as a table of figurate numbers. In Italy, Pascal's triangle is referred to as Tartaglia's triangle, named for the Italian algebraist Niccolò Fontana Tartaglia (1500–77), who published six rows of the triangle in 1556. 
+Gerolamo Cardano, also, published the triangle as well as the additive and multiplicative rules for constructing it in 1570.
+Pascal's Traité du triangle arithmétique (Treatise on Arithmetical Triangle) was published posthumously in 1665. In this, Pascal collected several results then known about the triangle, and employed them to solve problems in probability theory. The triangle was later named after Pascal by Pierre Raymond de Montmort (1708) who called it "Table de M. Pascal pour les combinaisons" (French: Table of Mr. Pascal for combinations) and Abraham de Moivre (1730) who called it "Triangulum Arithmeticum PASCALIANUM" (Latin: Pascal's Arithmetic Triangle), which became the modern Western name. See in particular p. 11.
+
+Binomial expansions
+
+Pascal's triangle determines the coefficients which arise in binomial expansions. For an example, consider the expansion
+Notice the coefficients are the numbers in row two of Pascal's triangle: 1, 2, 1.
+In general, when a binomial like x + y is raised to a positive integer power we have:
+where the coefficients ai in this expansion are precisely the numbers on row n of Pascal's triangle. In other words,
+This is the binomial theorem.
+Notice that the entire right diagonal of Pascal's triangle corresponds to the coefficient of yn in these binomial expansions, while the next diagonal corresponds to the coefficient of xyn−1 and so on.
+To see how the binomial theorem relates to the simple construction of Pascal's triangle, consider the problem of calculating the coefficients of the expansion of (x + 1)n+1  in terms of the corresponding coefficients of (x + 1)n (setting y = 1 for simplicity). Suppose then that
+Now
+The two summations can be reorganized as follows:
+(because of how raising a polynomial to a power works, a0 = an = 1).
+We now have an expression for the polynomial (x + 1)n+1 in terms of the coefficients of (x + 1)n (these are the ais), which is what we need if we want to express a line in terms of the line above it.  Recall that all the terms in a diagonal going from the upper-left to the lower-right correspond to the same power of x, and that the a-terms are the coefficients of the polynomial (x + 1)n, and we are determining the coefficients of (x + 1)n+1.  Now, for any given i not 0 or n + 1, the coefficient of the xi term in the polynomial (x + 1)n+1 is equal to ai (the figure above and to the left of the figure to be determined, since it is on the same diagonal) + ai−1 (the figure to the immediate right of the first figure).  This is indeed the simple rule for constructing Pascal's triangle row-by-row.
+It is not difficult to turn this argument into a proof (by mathematical induction) of the binomial theorem. Since
+(a + b)n = bn(a/b +  1)n, the coefficients are identical in the expansion of the general case.
+An interesting consequence of the binomial theorem is obtained by setting both variables x and y equal to one.  In this case, we know that (1 + 1)n = 2n, and so
+In other words, the sum of the entries in the nth row of Pascal's triangle is the nth power of 2.
+
+Combinations
+
+A second useful application of Pascal's triangle is in the calculation of combinations. For example, the number of combinations of n things taken k at a time (called n choose k) can be found by the equation
+But this is also the formula for a cell of Pascal's triangle. Rather than performing the calculation, one can simply look up the appropriate entry in the triangle. For example, suppose a basketball team has 10 players and wants to know how many ways there are of selecting 8. Provided we have the first row and the first entry in a row numbered 0, the answer is entry 8 in row 10: 45. That is, the solution of 10 choose 8 is 45.
+
+Relation to binomial distribution and convolutions
+
+When divided by 2n, the nth row of Pascal's triangle becomes the binomial distribution in the symmetric case where p = 1/2. By the central limit theorem, this distribution approaches the normal distribution as n increases. This can also be seen by applying Stirling's formula to the factorials involved in the formula for combinations.
+This is related to the operation of discrete convolution in two ways. First, polynomial multiplication exactly corresponds to discrete convolution, so that repeatedly convolving the sequence {..., 0, 0, 1, 1, 0, 0, ...} with itself corresponds to taking powers of 1 + x, and hence to generating the rows of the triangle. Second, repeatedly convolving the distribution function for a random variable with itself corresponds to calculating the distribution function for a sum of n independent copies of that variable; this is exactly the situation to which the central limit theorem applies, and hence leads to the normal distribution in the limit.
+
+Patterns and properties
+
+Pascal's triangle has many properties and contains many patterns of numbers.
+
+Rows
+
+ | last = Brothers | first = H. J.
+ | doi = 10.4169/math.85.1.51

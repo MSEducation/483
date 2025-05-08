@@ -1,0 +1,42 @@
+[[M-expression]]
+
+CATEGORIES: Lisp programming language
+
+In computer programming, M-expressions (or meta-expressions) were intended to be the expressions used to write functions in the Lisp programming language.  Data to be manipulated using M-expressions was to be written using S-expressions.  M-expressions were used for the original theoretical language in early papers about Lisp, but the first working implementation of Lisp interpreted encodings of M-expressions as S-expressions, and M-expressions were never actually implemented.
+[tpl]cquote2|The project of defining M-expressions precisely and compiling them or at least translating them into S-expressions was neither finalized nor explicitly abandoned. It just receded into the indefinite future, and a new generation of programmers appeared who preferred internal notation to any FORTRAN-like or ALGOL-like notation that could be devised.|John McCarthy[tpl]cite web|url=http://www-formal.stanford.edu/jmc/history/lisp/node3.html |title=The implementation of LISP |publisher=Formal.stanford.edu |date=1996-02-05 |accessdate=2013-08-24[/tpl]|History of Lisp[/tpl]
+
+==Historical relation to S-expressions==
+
+An S-expression represents data made up of atoms and pairs.  As originally described, an atom was a symbol written in upper case, and a pair was delimited by parentheses.  Shorthand list notation was described, though it originally separated list elements by commas rather than whitespace.  For example (using spaces rather than commas):
+
+ ((A B) (C D) (E F))
+
+which represents a list of three elements, each of which is a list of two symbols.
+An M-expression could also use operator names, meta-variables, and argument lists.  Operator names and meta-variable names were in lower case, to show that they were not symbols (i.e., not data).  Argument lists were delimited by brackets, , and their elements were separated by semicolons.  For example:
+
+ car[cons[(A . B); x]]
+
+which represents a two-part operation.  The first part constructs a pair from the data structure (A . B) and whatever data is represented by the meta-variable called x.  The second part extracts the first element of the constructed pair.
+In McCarthy's original published paper on Lisp, as a demonstration of the theoretical universality of the language, he described a function eval, which would take as input an S-expression encoding of an M-expression, and execute the M-expression program encoded by that S-expression.  Here are a few examples of M-expressions and their encodings as S-expressions (again using the modern list notation):
+
+ (A B C)                          (QUOTE (A B C))
+ car[x]                           (CAR X)
+ car[append[(A B C); (D E F)]]    (CAR (APPEND (QUOTE (A B C)) (QUOTE (D E F))))
+
+The initial implementation of Lisp was expected to be a very long process, as compilers at the time were expected to take years to write.  Implementation began with hand-compiling particular functions while the M-expression sublanguage was still tentative.  However, Stephen B. Russell and Daniel J. Edwards realized that an implementation of eval would be in effect a full implementation of S-expression-encoded Lisp as an interpreter.[tpl]cite web|url=http://community.computerhistory.org/scc/projects/LISP/book/LISP%201.5%20Programmers%20Manual.pdf |title=LISP 1.5 Programmer's Manual |publisher=Community.computerhistory.org |accessdate=2013-09-02[/tpl]  He hand-compiled function eval — a very easy task, compared to the anticipated huge many-year compiler construction — and a community of S-expression Lisp programmers quickly developed.  M-expressions fell into neglect, and were never implemented.
+
+==Later use of M-expressions==
+
+While it is not uncommon for Lisp programmers to devise an alternate form for the language (of which MLISP is one example), some of which use M-expressions, such dialects generally lack the homoiconicity of S-expressions[tpl]dubious|date=March 2014[/tpl], which is considered an important part of the expressiveness of the language. As a result, virtually all mainstream Lisp dialects retain S-expressions as the main (or sole) syntax. Exceptions to this include Logo, which could be considered (loosely) to be an M-expression Lisp. Several other languages, such as Dylan and Ruby, borrow heavily from Lisp, but use an ALGOL-like syntax that differs from both S-expressions and M-expressions. 
+There is also an implementation of an interpreter for M-LISP in Common Lisp, which evaluates M-Expressions.
+
+==Variants==
+
+The syntax of ML (Metalanguage), a functional programming language, provides somewhat similar syntax, as it is derived from math notation as well.  However, additional concepts such as type annotations and pattern matching, hide this similarity.  The Mathematica language uses a syntax similar to the original M-expression syntax, where lists can be written using braces (which can also be written using M-expression notation), and functions using M-expressions.
+A more recent variant is I-expressions, which use indentation to indicate parentheses implicitly, and are thus in some ways intermediate between S-expressions and M-expressions.  I-expressions were introduced in Scheme Request For Implementation 49 as an auxiliary syntax for Scheme, but they have not been widely adopted.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,30 @@
+[[Cell lists]]
+
+CATEGORIES: Molecular dynamics, Computational chemistry, Molecular physics, Computational physics, Numerical differential equations
+
+Cell lists (also sometimes referred to as Cell linked-lists) are a tool for finding all atom pairs within a given cut-off distance of each other in Molecular dynamics simulations. These pairs are needed to compute the short-range non-bonded interactions in a system, such as Van der Waals forces or the short-range part of the electrostatic interaction when using Ewald summation.
+
+==Algorithm==
+
+Cell lists work by subdividing the simulation domain into cells with an edge length greater than or equal to the cut-off radius of the interaction to be computed. The particles are sorted into these cells and the interactions are computed between particles in the same or neighbouring cells.
+
+==Periodic Boundary Conditions==
+
+In most simulations, Periodic boundary conditions are used to avoid imposing artificial boundary conditions. Using cell lists, these boundaries can be implemented in two ways
+
+===Ghost Cells===
+
+In the ghost cells approach, the simulation box is wrapped in an additional layer of cells. These cells contain periodically wrapped copies of the corresponding simulation cells inside the domain.
+Although the data—and usually also the computational cost—is doubled for interactions over the periodic boundary, this approach has the advantage of being straightforward to implement and very easy to parallelize, since cells will only interact with their geographical neighbours.
+
+===Periodic Wrapping===
+
+==Improvements==
+
+Another approach is outlined and tested in,[tpl]cite journal| first=Pedro | last=Gonnet | title=A Simple Algorithm to Accelerate the Computation of Non-Bonded Interactions in Cell-Based Molecular Dynamics Simulations | journal=Journal of Computational Chemistry | volume=28 | issue=2 | pages=570–573 | doi=10.1002/jcc.20563 | year=2007| pmid=17183605 [/tpl] in which the particles are first sorted along the axis connecting the cell centers. This approach generates only about 40% spurious pairwise distance computations, yet carries an additional cost due to sorting the particles.
+
+==See also==
+
+==References==
+
+

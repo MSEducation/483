@@ -1,0 +1,76 @@
+[[Range encoding]]
+
+CATEGORIES: Lossless compression algorithms
+
+Range encoding is an entropy coding method defined by G. Nigel N. Martin in a 1979 paper,G. Nigel N. Martin, Range encoding: An algorithm for removing redundancy from a digitized message, Video & Data Recording Conference, Southampton, UK, July 24–27, 1979. which effectively rediscovered the FIFO arithmetic code first introduced by Richard Clark Pasco in 1976."Source coding algorithms for fast data compression" Richard Clark Pasco, Stanford, CA 1976 Given a stream of symbols and their probabilities, a range coder produces a space efficient stream of bits to represent these symbols and, given the stream and the probabilities, a range decoder reverses the process.
+Range coding is very similar to arithmetic encoding, except that encoding is done with digits in any base, instead of with bits, and so it is faster when using larger bases (e.g. a byte) at small cost in compression efficiency."On the Overhead of Range Coders", Timothy B. Terriberry, Technical Note 2008 After the expiration of the first (1978) arithmetic coding patent,[tpl]US patent|4122440[/tpl] — (IBM) Filed March 4, 1977, Granted 24 October 1978 (Now expired) range encoding appeared to clearly be free of patent encumbrances. This particularly drove interest in the technique in the open source community. Since that time, patents on various well-known arithmetic coding techniques have also expired.
+
+==How range encoding works==
+
+Range encoding conceptually encodes all the symbols of the message into one number, unlike Huffman coding which assigns each symbol a bit-pattern and concatenates all the bit-patterns together. Thus range encoding can achieve greater compression ratios than the one-bit-per-symbol lower bound on Huffman encoding and it does not suffer the inefficiencies that Huffman does when dealing with probabilities that are not exact powers of two.
+The central concept behind range encoding is this: given a large-enough range of integers, and a probability estimation for the symbols, the initial range can easily be divided into sub-ranges whose sizes are proportional to the probability of the symbol they represent. Each symbol of the message can then be encoded in turn, by reducing the current range down to just that sub-range which corresponds to the next symbol to be encoded. The decoder must have the same probability estimation the encoder used, which can either be sent in advance, derived from already transferred data or be part of the compressor and decompressor.
+When all symbols have been encoded, merely identifying the sub-range is enough to communicate the entire message (presuming of course that the decoder is somehow notified when it has extracted the entire message). A single integer is actually sufficient to identify the sub-range, and it may not even be necessary to transmit the entire integer; if there is a sequence of digits such that every integer beginning with that prefix falls within the sub-range, then the prefix alone is all that's needed to identify the sub-range and thus transmit the message.
+
+===Example===
+
+Suppose we want to encode the message "AABA", where  is the end-of-message symbol. For this example it is assumed that the decoder knows that we intend to encode exactly five symbols in the base 10 number system (allowing for 105 different combinations of symbols with the range ) using the probability distribution {A: .60; B: .20; : .20}. The encoder breaks down the range  into three subranges:
+ <nowiki>A:     [     0,  60000)</nowiki>
+ <nowiki>B:     [ 60000,  80000)</nowiki>
+ <nowiki><EOM>: [ 80000, 100000)</nowiki>
+Since our first symbol is an A, it reduces our initial range down to . The second symbol choice leaves us with three sub-ranges of this range, we show them following the already-encoded 'A':
+ <nowiki>AA:     [     0,  36000)</nowiki>
+ <nowiki>AB:     [ 36000,  48000)</nowiki>
+ <nowiki>A<EOM>: [ 48000,  60000)</nowiki>
+With two symbols encoded, our range is now  and our third symbols leads to the following choices:
+ <nowiki>AAA:     [     0,  21600)</nowiki>
+ <nowiki>AAB:     [ 21600,  28800)</nowiki>
+ <nowiki>AA<EOM>: [ 28800,  36000)</nowiki>
+This time it is the second of our three choices that represent the message we want to encode, and our range becomes . It may look harder to determine our sub-ranges in this case, but it is actually not: we can merely subtract the lower bound from the upper bound to determine that there are 7200 numbers in our range; that the first 4320 of them represent 0.60 of the total, the next 1440 represent the next 0.20, and the remaining 1440 represent the remaining 0.20 of the total. Adding back the lower bound gives us our ranges:
+ <nowiki>AABA:     [21600, 25920)</nowiki>
+ <nowiki>AABB:     [25920, 27360)</nowiki>
+ <nowiki>AAB<EOM>: [27360, 28800)</nowiki>
+Finally, with our range narrowed down to , we have just one more symbol to encode. Using the same technique as before for dividing up the range between the lower and upper bound, we find the three sub-ranges are:
+ <nowiki>AABAA:     [21600, 24192)</nowiki>
+ <nowiki>AABAB:     [24192, 25056)</nowiki>
+ <nowiki>AABA<EOM>: [25056, 25920)</nowiki>
+And since  is our final symbol, our final range is . Because all five-digit integers starting with "251" fall within our final range, it is one of the three-digit prefixes we could transmit that would unambiguously convey our original message. (The fact that there are actually eight such prefixes in all implies we still have inefficiencies. They have been introduced by our use of base 10 rather than base 2.)
+The central problem may appear to be selecting an initial range large enough that no matter how many symbols we have to encode, we will always have a current range large enough to divide into non-zero sub-ranges. In practice, however, this is not a problem, because instead of starting with a very large range and gradually narrowing it down, the encoder works with a smaller range of numbers at any given time. After some number of digits have been encoded, the leftmost digits will not change. In the example after encoding just three symbols, we already knew that our final result would start with "2". More digits are shifted in on the right as digits on the left are sent off. This is illustrated in the following code:
+To finish off we may need to emit a few extra digits. The top digit of low is probably too small so we need to increment it, but we have to make sure we don't increment it past low+range. So first we need to make sure range is large enough.
+One problem that can occur with the Encode function above is that range might become very small but low and low+range still have differing first digits. This could result in the interval having insufficient precision to distinguish between all of the symbols in the alphabet. When this happens we need to fudge a little, output the first couple of digits even though we might be off by one, and re-adjust the range to give us as much room as possible. The decoder will be following the same steps so it will know when it needs to do this to keep in sync.
+Base 10 was used in this example, but a real implementation would just use binary, with the full range of the native integer data type. Instead of 10000 and 1000 you would likely use hexadecimal constants such as 0x1000000 and 0x10000. Instead of emitting a digit at a time you would emit a byte at a time and use a byte-shift operation instead of multiplying by 10.
+Decoding uses exactly the same algorithm with the addition of keeping track of the current code value consisting of the digits read from the compressor. Instead of emitting the top digit of low you just throw it away, but you also shift out the top digit of code and shift in a new digit read from the compressor. Use AppendDigit below instead of EmitDigit.
+In order to determine which probability intervals to apply, the decoder needs to look at the current value of code within the interval [low, low+range) and decide which symbol this represents.
+For the  example above, this would return a value in the range 0 to 9. Values 0 through 5 would represent A, 6 and 7 would represent B, and 8 and 9 would represent .
+
+==Relationship with arithmetic coding==
+
+Arithmetic coding is the same as range encoding, but with the integers taken as being the numerators of fractions. These fractions have an implicit, common denominator, such that all the fractions fall in the range . Accordingly, the resulting arithmetic code is interpreted as beginning with an implicit "0.". As these are just different interpretations of the same coding methods, and as the resulting arithmetic and range codes are identical, each arithmetic coder is its corresponding range encoder, and vice-versa. In other words, arithmetic coding and range encoding are just two, slightly different ways of understanding the same thing.
+In practice, though, so-called range encoders tend to be implemented pretty much as described in Martin's paper, while arithmetic coders more generally tend not to be called range encoders. An often noted feature of such range encoders is the tendency to perform renormalization a byte at a time, rather than one bit at a time (as is usually the case). In other words, range encoders tend to use bytes as encoding digits, rather than bits. While this does reduce the amount of compression that can be achieved by a very small amount, it is faster than when performing renormalization for each bit.
+
+==Range ANS variant==
+
+The standard range coding requires 2 variables as the current state, like low and range above. Analogous range variant of Asymmetric Numeral Systems (rANS) uses single natural number as the state (x), what gives two performance advantages: requires only single multiplication per decoding step and allows to use SIMD vectorization, getting many times faster coding speed.https://github.com/rygorous/ryg_rans rANS implementation
+For freqs = fs / 2^n quantized probabilities, denote 
+
+cumuls = f0 + f1 + ... + fs-1 
+
+mask = 2^n - 1 
+
+symbol... n-1 = s  such that cumuls  - which symbol is in x-th position of (0..01..1...) length 2^n range: having fs appearances of symbol s
+Now encoding of symbol s requires 1 division modulo fs: 
+
+C(s,x) = (floor(x/fs) 
+Decoding from x has one multiplication and needs symbol table or function deciding in which subrange we are: 
+
+s = symbol & mask  
+
+x = fs * (x >> n) + (x & mask) - cumuls 
+Renormalization flushes the least significant bits of x, such that it remains in a chosen range.
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,56 @@
+[[Framekiller]]
+
+CATEGORIES: World Wide Web
+
+A framekiller (or framebuster or framebreaker) is a technique used by web applications to prevent their web pages from being displayed within a frame. A frame is a subdivision of a Web browser window and can act like a smaller window. It's usually deployed to prevent a frame from an external Web site being loaded from within a frameset without permission often as part of clickjacking attack.
+
+==First framekillers==
+
+Historically, the first framekiller scripts were as simple as this:
+
+  if(top != self) top.location.replace(location);
+
+The logic here was to display the page, but check if the top location is the same as the current page, and replace the top by current if not.
+There were many variations of this script. This example is cross-browser compatible, avoids deprecated objects, and uses replace which preserves the user's back-button. Comparing object references, top, self and location directly is slightly more efficient, and succinct.
+
+==Modern framekiller==
+
+In 2010 Gustav Rydstedt, Elie Bursztein, Dan Boneh and Collin Jackson published a paper that highlighted the limitations of current frame-busting techniques and proposed the following improved version:
+
+ html{display:none;} 
+
+   if(self == top) {
+       document.documentElement.style.display = 'block'; 
+   } else {
+       top.location = self.location; 
+   }
+
+The logic of this script was to disable presentation of the page by default and enable it only in top location.
+
+===Alternative solutions===
+
+An alternative choice is to allow the user to determine whether to let the framekiller work.
+
+var framekiller = true;
+window.onbeforeunload = function() { 
+  if(framekiller) {
+    return "...";  // any message that helps user to make decision
+  }
+};
+
+and the code below should be added after the frame tag:
+
+//"my_frame" should be changed according to the real id of the frame in your page 
+document.getElementById("my_frame").onload = function() { 
+  framekiller = false;
+};
+
+==Framekiller limitations==
+
+Client-side JavaScript solution relies on the end-user's browser enforcing their own security. This makes it a beneficial, but unreliable, means of disallowing your page to be embedded in other pages. The following situations may render the script above useless:
+
+==See also==
+
+==References==
+
+

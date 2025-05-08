@@ -1,0 +1,61 @@
+[[Pattern matching]]
+
+CATEGORIES: Pattern matching, Conditional constructs, Articles with example Haskell code, Functional programming
+
+In computer science, pattern matching is the act of checking a perceived sequence of tokens for the presence of the constituents of some pattern. In contrast to pattern recognition, the match usually has to be exact.  The patterns generally have the form of either sequences or tree structures. Uses of pattern matching include outputting the locations (if any) of a pattern within a token sequence, to output some component of the matched pattern, and to substitute the matching pattern with some other token sequence (i.e., search and replace).
+Sequence patterns (e.g., a text string) are often described using regular expressions and matched using techniques such as backtracking.
+Tree patterns are used in some programming languages as a general tool to process data based on its structure, e.g., Haskell, ML and the symbolic mathematics language Mathematica have special syntax for expressing tree patterns and a language construct for conditional execution and value retrieval based on it. For simplicity and efficiency reasons, these tree patterns lack some features that are available in regular expressions.
+Often it is possible to give alternative patterns that are tried one by one, which yields a powerful conditional programming construct.  Pattern matching sometimes include support for guards.
+Term rewriting and graph rewriting languages rely on pattern matching for the fundamental way a program evaluates into a result.
+
+History
+
+The first computer programs to use pattern matching were text editors. At Bell Labs, Ken Thompson extended the seeking and replacing features of the QED editor to accept regular expressions. Early programming languages with pattern matching constructs include SNOBOL from 1962, SASL from 1976, NPL from 1977, and KRC from 1981. The first programming language with tree-based pattern matching features was Fred McBride's extension of LISP, in 1970.cs.ac.ps.gz
+
+Primitive patterns
+
+The simplest pattern in pattern matching is an explicit value or a variable. For an example, consider a simple function definition in Haskell syntax (function parameters are not in parentheses but are separated by spaces, = is not assignment but definition):
+Here, 0 is a single value pattern. Now, whenever f is given 0 as argument the pattern matches and the function returns 1. With any other argument, the matching and thus the function fail. As the syntax supports alternative patterns in function definitions, we can continue the definition extending it to take more generic arguments:
+Here, the first n is a single variable pattern, which will match absolutely any argument and bind it to name n to be used in the rest of the definition. In Haskell (unlike at least Hope), patterns are tried in order so the first definition still applies in the very specific case of the input being 0, while for any other argument the function returns n * f (n-1) with n being the argument.
+The wildcard pattern (often written as _) is also simple: like a variable name, it matches any value, but does not bind the value to any name.
+
+Tree patterns
+
+More complex patterns can be built from the primitive ones of the previous section, usually in the same way as values are built by combining other values. The difference then is that with variable and wildcard parts, a pattern doesn't build into a single value, but matches a group of values that are the combination of the concrete elements and the elements that are allowed to vary within the structure of the pattern.
+A tree pattern describes a part of a tree by starting with a node and specifying some branches and nodes and leaving some unspecified with a variable or wildcard pattern. It may help to think of the abstract syntax tree of a programming language and algebraic data types.
+In Haskell, the following line defines an algebraic data type Color that has a single data constructor ColorConstructor that wraps an integer and a string.
+The constructor is a node in a tree and the integer and string are leaves in branches.
+When we want to write functions to make Color an abstract data type, we wish to write functions to interface with the data type, and thus we want to extract some data from the data type, for example, just the string or just the integer part of Color.
+If we pass a variable that is of type Color, how can we get the data out of this variable? For example, for a function to get the integer part of Color, we can use a simple tree pattern and write:
+As well:
+The creations of these functions can be automated by Haskell's data record syntax.
+
+Filtering data with patterns
+
+Pattern matching can be used to filter data of a certain structure. For instance, in Haskell a list comprehension could be used for this kind of filtering:
+evaluates to
+ [A 1, A 2]
+
+Pattern matching in Mathematica
+
+In Mathematica, the only structure that exists is the tree, which is populated by symbols. In the Haskell syntax used thus far, this could be defined as
+ data SymbolTree = Symbol String [SymbolTree]
+An example tree could then look like
+ Symbol "a" [Symbol "b" [], Symbol "c" [] ]
+In the traditional, more suitable syntax, the symbols are written as they are and the levels of the tree are represented using , so that for instance ab,c is a tree with a as the parent, and b and c as the children.
+A pattern in Mathematica involves putting "_" at positions in that tree. For instance, the pattern
+ A[_]
+will match elements such as A1, A2, or more generally Ax where x is any entity. In this case, A is the concrete element, while _ denotes the piece of tree that can be varied. A symbol prepended to _ binds the match to that variable name while a symbol appended to _ restricts the matches to nodes of that symbol.
+The Mathematica function Cases filters elements of the first argument that match the pattern in the second argument:
+ Cases[{a[1], b[1], a[2], b[2]}, a[_] ]
+evaluates to
+ {a[1], a[2]}
+Pattern matching applies to the structure of expressions. In the example below,
+ <code>Cases[ {a[b], a[b, c], a[b[c], d], a[b[c], d[e]], a[b[c], d, e]}, a[b[_], _] ]</code>
+returns
+ <code>{a[b[c],d], a[b[c],d[e]]}</code>
+because only these elements will match the pattern ab_,_ above.
+In Mathematica, it is also possible to extract structures as they are created in the course of computation, regardless of how or where they appear. The function Trace can be used to monitor a computation, and return the elements that arise which match a pattern. For example, we can define the Fibonacci sequence as
+ fib[0|1]:=1
+ fib[n_]:= fib[n-1] + fib[n-2]
+Then, we can ask the question: Given fib3, what is the sequence of recursive Fibonacci calls?

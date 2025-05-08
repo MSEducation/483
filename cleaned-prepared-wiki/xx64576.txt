@@ -1,0 +1,71 @@
+[[Type signature]]
+
+CATEGORIES: Type theory, Subroutines
+
+In computer science, a type signature or type annotation defines the inputs and outputs for a function, subroutine or method. A type signature includes at least the function name and the number of its arguments. In some programming languages, it may also specify the function's return type, the types of its arguments, or errors it may pass back.
+
+Examples
+
+C/C++
+
+In C and C++, the type signature is declared by what is commonly known as a function prototype.
+In C/C++, a function declaration reflects its use; for example, a function pointer that would be invoked as:
+has the signature:
+
+Erlang
+
+In Erlang, type signatures may be optionally declared, as:
+For example:
+
+Haskell
+
+A type signature in the Haskell programming language is generally written in the following format:
+Notice that the type of the result can be regarded as everything past the first supplied argument. This is a consequence of currying, which is made possible by Haskell's support for first-class functions; this function requires two inputs where one argument supplied and the function is "curried" to produce a function for the argument not supplied. Thus calling .
+The actual type specifications can consist of an actual type, such as . So we can write something like:
+Since Haskell supports higher-order functions, functions can be passed as arguments. This is written as:
+This function takes in a function with type signature  out.
+
+Java
+
+In the Java virtual machine, internal type signatures are used to identify methods and classes at the level of the virtual machine code.
+Example: The method . The signature of main() method looks like this:
+The method signature for the main() method contains three modifiers:
+
+Signature
+
+A function signature consists of the function prototype.  It specifies the general information about a function like the name, scope and parameters.  Many programming languages use name mangling in order to pass along more semantic information from the compilers to the linkers.  In addition to mangling, there is an excess of information in a function signature (stored internally to most compilers) which is not readily available, but may be accessed.
+Understanding the notion of a function signature is an important concept for all computer science studies.
+The practice of multiple inheritance requires consideration of the function signatures to avoid unpredictable results.
+Computer science theory, and the concept of polymorphism in particular, make much use of the concept of function signature.
+In the C programming language signature is roughly equivalent to its prototype definition.
+The term "signature" may carry other meanings in computer science. For example:
+
+Method signature
+
+In computer programming, especially object-oriented programming, a method is commonly identified by its unique method signature, which usually includes the method name, and the number, types and order of its parameters. A method signature is the smallest type of a method.
+
+Examples
+
+C/C++
+
+In C/C++, the method signature is the method name and the number and type of its parameters, but it is possible to have a last parameter that consists of an array of values:
+Manipulation of these parameters can be done by using the routines in the standard library header .
+
+C#
+
+Similar to the C syntax, C# sees as the method signature its name and the number and type of its parameters, where the last parameter may be an array of values:
+
+Java
+
+In the Java programming language, a method signature is the method name and the number and type of its parameters. Return types and thrown exceptions are not considered to be a part of the method signature. 
+For example, the following two methods have distinct signatures:
+The following three methods do have the same signatures and are considered the same, as only the return value differs. The name of the parameter is not part of the method signature and is ignored by the compiler for checking method uniqueness.
+
+Objective-C
+
+In the Objective-C programming language, method signatures for an object are declared in the interface header file. For example,
+defines a method ; this signature is equivalent:
+
+
+
+

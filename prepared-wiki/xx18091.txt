@@ -1,0 +1,114 @@
+  __index = function(values, n)                --[[ __index is a function predefined by Lua, 
+                                                    it is called if key "n" does not exist. ]]
+    values[n] = values[n - 1] + values[n - 2]  -- Calculate and memoize fibs[n].
+    return values[n]
+  end
+})
+
+===Object-oriented programming===
+
+Although Lua does not have a built-in concept of classes, they can be implemented using two language features: first-class functions and tables. By placing functions and related data into a table, an object is formed. Inheritance (both single and multiple) can be implemented via the metatable mechanism, telling the object to look up nonexistent methods and fields in parent object(s).
+There is no such concept as "class" with these techniques; rather, prototypes are used, as in the programming languages Self or JavaScript. New objects are created either with a factory method (that constructs new objects from scratch), or by cloning an existing object.
+Lua provides some syntactic sugar to facilitate object orientation. To declare member functions inside a prototype table, one can use function table:func(args), which is equivalent to function table.func(self, args). Calling class methods also makes use of the colon: object:func(args) is equivalent to object.func(object, args).
+Creating a basic vector object:
+
+local Vector = {}
+Vector.__index = Vector
+function Vector:new(x, y, z)    -- The constructor
+  return setmetatable({x = x, y = y, z = z}, Vector)
+end
+function Vector:magnitude()     -- Another method
+  -- Reference the implicit object using self
+  return math.sqrt(self.x^2 + self.y^2 + self.z^2)
+end
+local vec = Vector:new(0, 1, 0) -- Create a vector
+print(vec:magnitude())          -- Call a method (output: 1)
+print(vec.x)                    -- Access a member variable (output: 0)
+
+==Internals==
+
+Lua programs are not interpreted directly from the textual Lua file, but are compiled into bytecode which is then run on the Lua virtual machine. The compilation process is typically transparent to the user and is performed during run-time, but it can be done offline in order to increase loading performance or reduce the memory footprint of the host environment by leaving out the compiler.
+Like most CPUs, and unlike most virtual machines (which are stack-based), the Lua VM is register-based, and therefore more closely resembles an actual hardware design. The register architecture both avoids excessive copying of values and reduces the total number of instructions per function. The virtual machine of Lua 5 is one of the first register-based pure VMs to have a wide use.[tpl]Cite journal| last1 = Ierusalimschy | first1 = R. | last2 = Figueiredo | first2 = L. H. | last3 = Celes | first3 = W. | title = The implementation of Lua 5.0| journal = J. Of Universal Comp. Sci.| volume = 11| issue = 7| pages = 1159–1176| year = 2005| url = http://www.jucs.org/jucs_11_7/the_implementation_of_lua/jucs_11_7_1159_1176_defigueiredo.html[/tpl] Perl's
+Parrot and Android's Dalvik are two other well-known register-based VMs.
+This example is the bytecode listing of the factorial function defined above (as shown by the luac 5.1 compiler):[tpl]cite web| author = Kein-Hong Man| title = A No-Frills Introduction to Lua 5.1 VM Instructions| year = 2006| url = http://luaforge.net/docman/view.php/83/98/ANoFrillsIntroToLua51VMInstructions.pdf[/tpl]
+ function <factorial.lua:1,6> (10 instructions, 40 bytes at 003D5818)
+ 1 param, 3 slots, 0 upvalues, 1 local, 3 constants, 0 functions
+         1       [2]     EQ              0 0 -1  ; - 0
+         2       [2]     JMP             2       ; to 5
+         3       [3]     LOADK           1 -2    ; 1
+         4       [3]     RETURN          1 2
+         5       [5]     GETGLOBAL       1 -3    ; factorial
+         6       [5]     SUB             2 0 -2  ; - 1
+         7       [5]     CALL            1 2 2
+         8       [5]     MUL             1 0 1
+         9       [5]     RETURN          1 2
+         10      [6]     RETURN          0 1
+
+==C API==
+
+Lua is intended to be embedded into other applications, and provides a C API for this purpose. The API is divided into two parts: the Lua core and the Lua auxiliary library.[tpl]cite web| url = http://www.lua.org/manual/5.2/| title = Lua 5.2 Reference Manual| publisher = Lua.org| accessdate = 2012-10-23[/tpl]
+The Lua API's design eliminates the need for manual reference management in C code, unlike Python's API. The API, like the language, is minimalistic. Advanced functionality is provided by the auxiliary library, which consists largely of preprocessor macros which assist with complex table operations.
+
+===Stack===
+
+The Lua C API is stack based. Lua provides functions to push and pop most simple C data types (integers, floats, etc.) to and from the stack, as well as functions for manipulating tables through the stack. The Lua stack is somewhat different from a traditional stack; the stack can be indexed directly, for example. Negative indices indicate offsets from the top of the stack (for example, −1 is the last element), while positive indices indicate offsets from the bottom.
+Marshalling data between C and Lua functions is also done using the stack. To call a Lua function, arguments are pushed onto the stack, and then the lua_call is used to call the actual function. When writing a C function to be directly called from Lua, the arguments are popped from the stack.
+
+===Example===
+
+Here is an example of calling a Lua function from C:
+
+int main(void)
+{
+    lua_State *L = luaL_newstate();
+    if (luaL_dostring(L, "function foo (x,y) return x+y end")) {
+        lua_close(L);
+        exit(EXIT_FAILURE);
+    }
+    lua_getglobal(L, "foo");
+    lua_pushinteger(L, 5);
+    lua_pushinteger(L, 3);
+    lua_call(L, 2, 1);
+    printf("Result: %d\n", lua_tointeger(L, -1));
+    lua_close(L);
+    return 0;
+}
+
+Running this example gives:
+ $ gcc -o example example.c -llua
+ $ ./example
+Result: 8
+
+===Special tables===
+
+The C API also provides several special tables, located at various “pseudo-indices” in the Lua stack. At LUA_GLOBALSINDEX is the globals table, _G from within Lua, which is the main namespace. There is also a registry located at LUA_REGISTRYINDEX where C programs can store Lua values for later retrieval.
+
+===Extension and binding===
+
+It is possible to write extension modules using the Lua API. Extension modules are shared objects which can be used to extend the functionality of the interpreter by providing native facilities to Lua scripts. From the Lua side, such a module appears as a namespace table holding its functions and variables. Lua scripts may load extension modules using require, just like modules written in Lua itself.
+A growing collection of modules known as rocks are available through a package management system called LuaRocks,[tpl]cite web| url = http://www.luarocks.org/| title = LuaRocks| publisher = LuaRocks wiki| accessdate=2009-05-24[/tpl] in the spirit of CPAN, RubyGems and Python Eggs.
+Other modules can be found through the Lua Addons directory of the lua-users.org wiki.[tpl]cite web| url = http://lua-users.org/wiki/LuaAddons| title = Lua Addons| publisher = Lua-users wiki| accessdate=2009-05-24[/tpl]
+There are several packages for creating graphical user interfaces, Perl/POSIX regular expressions, encryption, file compression, and many others. Prewritten Lua bindings exist for most popular programming languages, including other scripting languages.[tpl]cite web| url = http://lua-users.org/wiki/BindingCodeToLua| title = Binding Code To Lua| publisher = Lua-users wiki| accessdate = 2009-05-24[/tpl] For C++, there are a number of template-based approaches and some automatic binding generators.
+
+==Applications==
+
+===Video games===
+
+In video game development, Lua is widely used as a scripting language by game programmers, perhaps owing its perceived easiness to embed, fast execution, and short learning curve.[tpl]cite web |url=http://stackoverflow.com/questions/38338/why-is-lua-considered-a-game-language |title=Why is Lua considered a game language? |publisher=Stack Overflow |accessdate=2010-04-23[/tpl]
+In 2003, a poll conducted by GameDev.net showed Lua as a most popular scripting language for game programming.http://web.archive.org/web/20031207171619/http://gamedev.net/gdpolls/viewpoll.asp?ID=163 On January 12, 2012, Lua was announced as a winner of the Front Line Award 2011 from the magazine Game Developer in the category Programming Tools.Front Line Award Winners Announced
+
+===Other===
+
+Other applications using Lua include:
+
+==References==
+
+==Further reading==
+
+===Books===
+
+===Articles===
+
+==External links==
+
+

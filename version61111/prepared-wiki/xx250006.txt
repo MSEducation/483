@@ -1,0 +1,119 @@
+[[Doubling-oriented Doche–Icart–Kohel curve]]
+
+CATEGORIES: Elliptic curves, Elliptic curve cryptography
+
+In mathematics, the doubling-oriented Doche–Icart–Kohel curve is a form in which an elliptic curve can be written. It is a special case of Weierstrass form and it is also important in elliptic-curve cryptography because the doubling speeds up considerably (computing as composition of 2-isogeny and its dual). 
+It has been introduced by Christophe Doche, Thomas Icart, and David R. Kohel in Christophe Doche, Thomas Icart, and David R. Kohel, Efficient Scalar Multiplication by Isogeny Decompositions
+
+==Definition==
+
+Equivalently, in projective coordinates:
+Notice that, since this curve is a special case of Weierstrass form, transformations to the most common form of elliptic curve (Weierstrass form) are not needed.
+
+==Group law==
+
+It is interesting to analyze the group law in elliptic curve cryptography, defining the addition and doubling formulas, because these formulas are necessary to compute multiples of points nP (see Exponentiation by squaring). In general, the group law is defined in the following way: if three points lies in the same line then they sum up to zero. So, by this property, the group laws are different for every curve shape.
+In this case, since these curves are special cases of Weierstrass curves, the addition is just the standard addition on Weierstrass curves. On the other hand, to double a point, the standard doubling formula can be used, but it would not be so fast.
+
+===Addition===
+
+In this case, affine coordinates will be used to define the addition formula:
+(x1,y1)+(x2,y2)=(x3,y3) where
+x3 = (-x13+(x2-a)x12+(x22+2ax2)x1+(y12-2y2y1+(-x23-ax22+y22)))/(x12-2x2x1+x22)
+y3 = ((-y1+2y2)x13+(-ay1+(-3y2x2+ay2))x12+((3x22+2ax2)y1-2ay2x2)x1+(y13-3y2y12+(-2x23-ax22+3y22)y1+(y2x23+ay2x22-y23)))/(-x13+3x2x12-3x22x1+x23)
+
+===Doubling===
+
+2(x1,y1)=(x3,y3)
+x3 = 1/(4y12)x14-8a/y12x12+64a2/y12
+y3 = 1/(8y13)x16+((-a2+40a)/(4y13))x14+((ay12+(16a3-640a2))/(4y13))x12+((-4a2y12-512a3)/y13)
+
+==Algorithms and examples==
+
+===Addition===
+
+The fastest addition is the following one (comparing with the results given in: http://hyperelliptic.org/EFD/g1p/index.html), and the cost that it takes is 4 multiplications, 4 squaring and 10 addition.
+A = Y2-Y1
+AA = A2
+B = X2-X1
+CC = B2
+F = X1CC
+Z3 = 2CC
+D = X2Z3
+ZZ3 = Z32
+X3 = 2(AA-F)-aZ3-D
+Y3 = ((A+B)2-AA-CC)(D-X3)-Y2ZZ3
+
+====Example====
+
+A=2
+AA=4
+B=1
+CC=1
+F=2
+   Z3=4
+D=4
+ZZ3=16
+   X3=-4
+Y3=336   
+Thus, P+Q=(-4:336:4)
+
+===Doubling===
+
+The following algorithm is the fastest one (see the following link to compare: http://hyperelliptic.org/EFD/g1p/index.html), and the cost that it takes is 1 multiplication, 5 squaring and 7 additions.
+A = X12
+B = A-a16
+C = a2A
+YY = Y12
+YY2 = 2YY
+Z3 = 2YY2
+X3 = B2
+V = (Y1+B)2-YY-X3
+Y3 = V(X3+64C+a(YY2-C))
+ZZ3 = Z32
+
+====Example====
+
+A=1
+B=-15
+C=2
+YY=4
+YY2=8
+Z3=16
+X3=225
+V=27
+Y3=9693
+ZZ3=256
+Thus, Q=(225:9693:16).
+
+==Extended coordinates==
+
+The addition and doubling computations should be as fast as possible, so it is more convenient to use the following representation of the coordinates:
+Then, the Doubling-oriented Doche–Icart–Kohel curve is given by the following equation:
+Faster doubling formulas for these curves and mixed-addition formulas were introduced by Doche, Icart and Kohel; but nowadays, these formulas are improved by Daniel J. Bernstein and Tanja Lange (see below the link of EFD).
+
+==Internal Link==
+
+For more informations about the running-time required in a specific case, see Table of costs of operations in elliptic curves
+
+==External links==
+
+==Notes==
+
+==References==
+
+ | author = Christophe Doche, Thomas Icart and David R. Kohel 
+ | year = 2006
+ | title = Efficient Scalar Multiplication by Isogeny Decompositions 
+ | publisher =Springer Berlin / Heidelberg
+ | url = http://www.springerlink.com/content/h542176232q8w45q/fulltext.pdf
+ | isbn = 978-3-540-33851-2
+ }}
+ | author = Daniel J. Bernstein and Tanja Lange  
+ | year = 2008
+ | title = Analysis and optimization of elliptic-curve single scalar multiplication
+ | publisher =
+ | url = http://books.google.nl/books?hl=es&lr=&id=VZ5kFYzH_ZUC&oi=fnd&pg=PA1&dq=related:0lMQ2OY5ejoJ:scholar.google.com/&ots=7erHZiu8CS&sig=PJCJlQQIhvqu0njfTyaV4DLYlkg#v=onepage&q=&f=false
+ | isbn = 
+ }}
+

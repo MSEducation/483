@@ -1,0 +1,71 @@
+[[MPEG-4 Part 3]]
+
+CATEGORIES: Audio codecs, Lossy compression algorithms, MPEG-4
+
+MPEG-4 Part 3 or MPEG-4 Audio (formally ISO/IEC 14496-3) is the third part of the ISO/IEC MPEG-4 international standard developed by Moving Picture Experts Group.
+The MPEG-4 Part 3 consists of a variety of audio coding technologies - from lossy speech coding (HVXC, CELP), general audio coding (AAC, TwinVQ, BSAC), lossless audio compression (MPEG-4 SLS, Audio Lossless Coding, MPEG-4 DST), a Text-To-Speech Interface (TTSI), Structured Audio (using SAOL, SASL, MIDI) and many additional audio synthesis and coding techniques.
+MPEG-4 Audio does not target a single application such as real-time telephony or high-quality audio compression. It applies to every application which requires the use of advanced sound compression, synthesis, manipulation, or playback.
+MPEG-4 Audio is a new type of audio standard that integrates numerous different types of audio coding: natural sound and synthetic sound, low bitrate delivery and high-quality delivery, speech and music, complex soundtracks and simple ones, traditional content and interactive content.
+
+Versions
+
+Subparts
+
+MPEG-4 Part 3 contains following subparts:
+
+MPEG-4 Audio Object Types
+
+MPEG-4 Audio includes a system for handling a diverse group of audio formats in a uniform manner. Each format is assigned a unique Audio Object Type to represent it.  Object Type is used to distinguish between different coding methods. It directly determines the MPEG-4 tool subset required to decode a specific object. The MPEG-4 profiles are based on the object types and each profile supports different list of object types.
+
+Audio Profiles
+
+The MPEG-4 Audio standard defines several profiles. These profiles are based on the object types and each profile supports different list of object types. Each profile may also have several levels, which limit some parameters of the tools present in a profile. These parameters usually are the sampling rate and the number of audio channels decoded at the same time.
+
+Audio storage and transport
+
+There is no standard for transport of elementary streams over a channel, because the broad range of MPEG-4 applications have delivery requirements that are too wide to easily characterize with a single solution.
+The capabilities of a transport layer and the communication between transport, multiplex, and demultiplex functions are described in the Delivery Multimedia Integration Framework (DMIF) in ISO/IEC 14496-6. A wide variety of delivery mechanisms exist below this interface, e.g., MPEG transport stream, Real-time Transport Protocol (RTP), etc.
+Transport in Real-time Transport Protocol is defined in RFC 3016 (RTP Payload Format for MPEG-4 Audio/Visual Streams), RFC 3640 (RTP Payload Format for Transport of MPEG-4 Elementary Streams), RFC 4281 (The Codecs Parameter for "Bucket" Media Types) and RFC 4337 (MIME Type Registration for MPEG-4).
+LATM and LOAS were defined for natural audio applications, which do not require sophisticated object-based coding or other functions provided by MPEG-4 Systems.
+
+Bifurcation in the AAC technical standard
+
+The Advanced Audio Coding in MPEG-4 Part 3 (MPEG-4 Audio) Subpart 4 was enhanced relative to the previous standard MPEG-2 Part 7 (Advanced Audio Coding), in order to provide better sound quality for a given encoding bitrate.
+It is assumed that any Part 3 and Part 7 differences will be ironed out by the ISO standards body in the near future to avoid the possibility of future bitstream incompatibilities. At present there are no known player or codec incompatibilities due to the newness of the standard.
+The MPEG-2 Part 7 standard (Advanced Audio Coding) was first published in 1997 and offers three default profiles: Low Complexity profile (LC), Main profile and Scalable Sampling Rate profile (SSR).
+The MPEG-4 Part 3 Subpart 4 (General Audio Coding) combined the profiles from MPEG-2 Part 7 with Perceptual Noise Substitution (PNS) and defined them as Audio Object Types (AAC LC, AAC Main, AAC SSR).
+
+HE-AAC
+
+High-Efficiency Advanced Audio Coding is an extension of AAC LC using spectral band replication (SBR), and Parametric Stereo (PS). It is designed to increase coding efficiency at low bitrates by using partial parametric representation of audio.
+
+AAC-SSR
+
+AAC Scalable Sample Rate was introduced by Sony to the MPEG-2 Part 7 and MPEG-4 Part 3 standards. It was first published in ISO/IEC 13818-7, Part 7: Advanced Audio Coding (AAC) in 1997. The audio signal is first split into 4 bands using a 4 band polyphase quadrature filter bank. Then these 4 bands are further split using MDCTs with a size k of 32 or 256 samples. This is similar to normal AAC LC which uses MDCTs with a size k of 128 or 1024 directly on the audio signal.
+The advantage of this technique is that short block switching can be done separately for every PQF band. So high frequencies can be encoded using a short block to enhance temporal resolution, low frequencies can be still encoded with high spectral resolution. However, due to aliasing between the 4 PQF bands coding efficiencies around (1,2,3) * fs/8 is worse than normal MPEG-4 AAC LC.
+MPEG-4 AAC-SSR is very similar to ATRAC and ATRAC-3.
+
+Why AAC-SSR was introduced
+
+The idea behind AAC-SSR was not only the advantage listed above, but also the possibility of reducing the data rate by removing 1, 2 or 3 of the upper PQF bands. A very simple bitstream splitter can remove these bands and thus reduce the bitrate and sample rate.
+Example:
+Note: although possible, the resulting quality is much worse than typical
+for this bitrate. So for normal 64 kbit/s AAC LC a bandwidth of 14–16 kHz is
+achieved by using intensity stereo and reduced NMRs. This degrades audible quality
+less than transmitting 6 kHz bandwidth with perfect quality.
+
+BSAC
+
+Bit Sliced Arithmetic Coding is an MPEG-4 standard (ISO/IEC 14496-3 subpart 4) for scalable audio coding. BSAC uses an alternative noiseless coding to AAC, with the rest of the processing being identical to AAC. This support for scalability allows for nearly transparent sound quality at 64 kbit/s and graceful degradation at lower bit rates. BSAC coding is best performed in the range of 40 kbit/s to 64 kbit/s, though it operates in the range of 16 kbit/s to 64 kbit/s. The AAC-BSAC codec is used in Digital Multimedia Broadcasting (DMB) applications.
+
+Licensing
+
+In 2002, the MPEG-4 Audio Licensing Committee selected the Via Licensing Corporation as the Licensing Administrator for the MPEG-4 Audio patent pool.
+
+
+
+
+
+
+
+

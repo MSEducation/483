@@ -1,0 +1,51 @@
+[[Linear temporal logic]]
+
+CATEGORIES: 1977 works, Temporal logic
+
+In logic, linear temporal logic or linear-time temporal logicLogic in Computer Science: Modelling and Reasoning about Systems: page 175Linear-time Temporal Logic (LTL) is a modal temporal logic with modalities referring to time. In LTL, one can encode formulae about the future of paths, e.g., a condition will eventually be true, a condition will be true until another fact becomes true, etc. It is a fragment of the more complex CTL*, which additionally allows branching time and quantifiers. Subsequently LTL is sometimes called propositional temporal logic, abbreviated PTL.[tpl]cite book|author=Dov M. Gabbay, A. Kurucz, F. Wolter, M. Zakharyaschev|title=Many-dimensional modal logics: theory and applications|url=http://books.google.com/books?id=P8jZwiExZYEC&pg=PA46|year=2003|publisher=Elsevier|isbn=978-0-444-50826-3|page=46[/tpl]
+Linear temporal logic (LTL) is a fragment of S1S.
+LTL was first proposed for the formal verification of computer programs by Amir Pnueli in 1977.Amir Pnueli, The temporal logic of programs. Proceedings of the 18th Annual Symposium on Foundations of Computer Science (FOCS), 1977, 46–57. [tpl]doi|10.1109/SFCS.1977.32[/tpl]
+
+==Syntax==
+
+LTL is built up from a finite set of propositional variables AP, the logical operators ¬ and ∨, and the temporal modal operators X (some literature uses O or N) and U. 
+Formally, the set of LTL formulas over AP is inductively defined as follows:
+X is read as next and U is read as until.
+Other than these fundamental operators, there are additional logical and temporal operators defined in terms of the fundamental operators to write LTL formulas succinctly.
+The additional logical operators are ∧, →, ↔, true, and false.
+Following are the additional temporal operators. 
+
+==Semantics==
+
+An LTL formula can be satisfied by an infinite sequence of truth evaluations of variables in AP.
+These sequences can be viewed as a word on a path of a Kripke structure (an ω-word over alphabet 2AP).
+The additional logical operators are defined as follows:
+The additional temporal operators R, F, and G are defined as follows:
+Some authors also define a weak until binary operator, denoted W, with semantics similar to that of the until operator but the stop condition is not required to occur (similar to release).Sec. 5.1.5 "Weak Until, Release, and Positive Normal Form" of Principles of Model Checking. It is sometimes useful since both U and R can be defined in terms of the weak until:
+The semantics for the temporal operators are pictorially presented as follows.
+†The symbols are used in the literature to denote these operators.
+
+==Equivalences==
+
+Let Φ, ψ, and ρ be LTL formulas. The following tables list some of the useful equivalences which extend standard equivalences among the usual logical operators. 
+
+==Negation normal form==
+
+All the formulas of LTL can be transformed into negation normal form, where
+Using the above equivalences for negation propagation, it is possible to derive the normal form. This normal form allows R, true, false, and ∧ to appear in the formula, which are not fundamental operators of LTL. Note that the transformation to the negation normal form does not blow up the size of the formula. This normal form is useful in translation from LTL to Büchi automaton.
+
+==Relations with other logics==
+
+LTL can be shown to be equivalent to the monadic first-order logic of order, FOComputation tree logic (CTL) and Linear temporal logic (LTL) are both a subset of CTL*, but are not equivalent to each other. For example,
+However, a subset of CTL* exists that is a proper subset of both CTL and LTL.
+
+==Applications==
+
+An important way to model check is to express desired properties (such as the ones described above) using LTL operators and actually check if the model satisfies this property. One technique is to obtain a Büchi automaton that is equivalent to the model and another one that is equivalent to the negation of the property.[tpl]Clarify|reason=Under what equivalence(s)?|date=February 2014[/tpl] The intersection of the two non-deterministic Büchi automata is empty if the model satisfies the property.Moshe Y. Vardi. An Automata-Theoretic Approach to Linear Temporal Logic.  Proceedings of the 8th Banff Higher Order Workshop (Banff'94).  Lecture Notes in Computer Science, vol. 1043, pp. 238--266, Springer-Verlag, 1996. ISBN 3-540-60915-6.
+One of the applications of linear temporal logic is the specification of preferences in the Planning Domain Definition Language for the purpose of preference-based planning.[tpl]citation needed|date=January 2011[/tpl]
+
+==See also==
+
+==References==
+
+

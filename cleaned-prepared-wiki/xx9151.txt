@@ -1,0 +1,45 @@
+[[Netlist]]
+
+CATEGORIES: Electronic design automation
+
+The word netlist can be used in several different contexts, but perhaps the most popular is in the field of electronic design. In this context, a "netlist" describes the connectivity of an electronic design. 
+Netlists usually convey connectivity information and provide nothing more than instances, nets, and perhaps some attributes. If they express much more than this, they are usually considered to be a hardware description language such as Verilog, VHDL, or any one of several specific languages designed for input to simulators.
+Netlists can be either physical or logical; either instance-based or net-based; and flat or hierarchical. The latter can be either folded or unfolded.
+
+Contents and structure of a netlist
+
+Most netlists either contain or refer to descriptions of the parts or devices used.
+Each time a part is used in a netlist, this is called an "instance."
+Thus, each instance has a "master", or "definition".
+These definitions will usually list the connections that can be made to that kind of device, and some basic properties of that device.
+These connection points are called "ports" or "pins", among several other names.
+An "instance" could be anything from a MOSFET transistor or a bipolar transistor, to a resistor, capacitor, or integrated circuit chip.
+Instances have "ports". In the case of a vacuum cleaner, these ports would be the three metal prongs in the plug. Each port has a name, and in continuing the vacuum cleaner example, they might be "Neutral", "Live" and "Ground". Usually, each instance will have a unique name, so that if you have two instances of vacuum cleaners, one might be "vac1" and the other "vac2". Besides their names, they might otherwise be identical.
+Nets are the "wires" that connect things together in the circuit. There may or may not be any special attributes associated with the nets in a design, depending on the particular language the netlist is written in, and that language's features.
+Instance based netlists usually provide a list of the instances used in a design.
+Along with each instance, either an ordered list of net names is provided, or a list of pairs provided, of an instance port name, along with the net name to which that port is connected.
+In this kind of description, the list of nets can be gathered from the connection lists, and there is no place to associate particular attributes with the nets themselves.
+SPICE is perhaps the most famous of instance-based netlists.
+Net-based netlists usually describe all the instances and their attributes, then describe each net, and say which port they are connected on each instance.
+This allows for attributes to be associated with nets.
+EDIF is probably the most famous of the net-based netlists.
+
+Hierarchy
+
+In large designs, it is a common practice to split the design into pieces, each piece becoming a "definition" which can be used as instances in the design. In the vacuum cleaner analogy, one might have a vacuum cleaner definition with its ports, but now this definition would also include a full description of the machine's internal components and how they connect (motors, switches, etc.), like a wiring diagram does.   
+A definition which includes no instances is called a "primitive" (or a "leaf", or other names); whereas a definition which includes instances is "hierarchical".
+A "folded" hierarchy allows a single definition to be represented several times by instances. An "unfolded" hierarchy does not allow a definition to be used more than once in the hierarchy. 
+Folded hierarchies can be extremely compact.  A small netlist of just a few instances can describe designs with a very large number of instances.  For example, suppose definition A is a simple primitive, like a memory cell. Then suppose definition B contains 32 instances of A; C contains 32 instances of B; D contains 32 instances of C; and E contains 32 instances of D.   The design now contains 5 definitions (A through E) and 128 instances. Yet, E describes a circuit that contains over a million memory cells.
+
+Unfolding
+
+In a "flat" design, only primitives are instanced. Hierarchical designs can be recursively "exploded" ("flattened") by creating a new copy (with a new name) of each definition each time it is used.   If the design is highly folded, expanding it like this will result in a much larger netlist database, but preserves the hierarchy dependencies.  Given a hierarchical netlist, the list of instance names in a path from the root definition to a primitive instance specifies the single unique path to that primitive. The paths to every primitive, taken together, comprise a large but flat netlist that is exactly equivalent to the compact hierarchical version.
+
+Backannotation
+
+Backannotation are data that could be added to a hierarchical netlist. Usually they are kept separate from the netlist, because several such alternate sets of data could be applied to a single netlist. These data may have been extracted from a physical design, and might provide extra information for more accurate simulations. Usually the data are composed of a hierarchical path and a piece of data for that primitive or finding the values of RC delay due to interconnection.
+
+Inheritance
+
+Another concept often used in netlists is that of inheritance. Suppose a definition of a capacitor has an associated attribute called "Capacitance", corresponding to the physical property of the same name, with a default value of "100 pF" (100 picofarads). Each instance of this capacitor might also have such an attribute, only with a different value of capacitance. And other instances might not associate any capacitance at all. In the case where no capacitance is specified for an instance, the instance will "inherit" the 100 pF value from its definition. A value specified will "override" the value on the definition. If a great number of attributes end up being the same as on the definition, a great amount of information can be "inherited", and not have to be redundantly specified in the netlist, saving space, and making the design easier to read by both machines and people.
+

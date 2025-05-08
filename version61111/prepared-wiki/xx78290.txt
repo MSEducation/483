@@ -1,0 +1,22 @@
+[[Su (Unix)]]
+
+CATEGORIES: Unix user management and support-related utilities, System administration
+
+The su command, also referred to as substitute user, super user, or switch user, allows a computer operator to change the current user account associated with the running virtual console.
+By default, and without any other command line argument, this will elevate the current user to the superuser of the local system.
+
+==Usage==
+
+When run from the command line, su asks for the target user's password, and if authenticated, grants the operator access to that account and the files and directories that account is permitted to access.
+Additionally, one can switch to another user who is not the superuser; e.g. su jane.
+It should generally be used with a hyphen by administrators (su -, which is identical to su - root), which can be used to start a login shell. This way users can assume the user environment of the target user:
+A related command called sudo executes a command as another user but observes a set of constraints about which users can execute which commands as which other users (generally in a configuration file named /etc/sudoers, best editable by the command visudo).  Unlike su, sudo authenticates users against their own password rather than that of the target user (to allow the delegation of specific commands to specific users on specific hosts without sharing passwords among them and while mitigating the risk of any unattended terminals).
+Some Unix-like systems have a wheel group of users, and only allow these users to su to root.[tpl]cite book|title=UNIX Administration: A Comprehensive Sourcebook for Effective Systems and Network Management |first=Bozidar |last=Levi |publisher=CRC Press |year=2002 |pages=207 |isbn=0-8493-1351-1[/tpl]  This may or may not mitigate these security concerns, since an intruder might first simply break into one of those accounts. GNU su, however, does not support a wheel group for philosophical reasons. Richard Stallman argues that because a wheel group would prevent users from utilizing root passwords leaked to them, the group would allow existing admins to ride roughshod over ordinary users.[tpl]cite web |url=http://www.gnu.org/software/coreutils/manual/html_node/su-invocation.html#index-fascism-2365|title=Why GNU su does not support the wheel group[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,64 @@
+[[Singleton pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code
+
+In software engineering, the singleton pattern is a design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system. The concept is sometimes generalized to systems that operate more efficiently when only one object exists, or that restrict the instantiation to a certain number of objects. The term comes from the mathematical concept of a singleton.
+There is criticism of the use of the singleton pattern, as some consider it an anti-pattern, judging that it is overused, introduces unnecessary restrictions in situations where a sole instance of a class is not actually required, and introduces global state into an application. Patterns I hate #1: Singleton, July 2007Scott Densmore. Why singletons are evil, May 2004Steve Yegge. Singletons considered stupid, September 2004J.B. Rainsberger, IBM. Use your singletons wisely, July 2001Chris Reath. Singleton I love you, but you're bringing me down, October 2008Clean Code Talks - Global State and Singletons
+In C++ it also serves to isolate from the unpredictability of the order of dynamic initialization, returning control to the programmer.
+
+Common uses
+
+UML
+
+Implementation
+
+Implementation of a singleton pattern must satisfy the single instance and global access principles. It requires a mechanism to access the singleton class member without creating a class object and a mechanism to persist the value of class members among class objects. The singleton pattern is implemented by creating a class with a method that creates a new instance of the class if one does not exist. If an instance already exists, it simply returns a reference to that object. To make sure that the object cannot be instantiated any other way, the constructor is made private. Note the distinction between a simple static instance of a class and a singleton: although a singleton can be implemented as a static instance, it can also be lazily constructed, requiring no memory or resources until needed. Another notable difference is that static member classes cannot implement an  interface, unless that interface is simply a marker. So if the class has to realize a contract expressed by an interface, it really has to be a singleton.
+The singleton pattern must be carefully constructed in multi-threaded applications. If two threads are to execute the creation method at the same time when a singleton does not yet exist, they both must check for an instance of the singleton and then only one should create the new one.  If the programming language has concurrent processing capabilities the method should be constructed to execute as a mutually exclusive operation. The classic solution to this problem is to use mutual exclusion on the class that indicates that the object is being instantiated.
+
+Example
+
+The Java programming language solutions provided here are all thread-safe but differ in supported language versions and lazy-loading. Since Java 5.0, the easiest way to create a Singleton is the enum type approach, given at the end of this section.
+
+Lazy initialization
+
+This method uses double-checked locking, which should not be used prior to J2SE 5.0, as it is vulnerable to subtle bugs.  The problem is that an out-of-order write may allow the instance reference to be returned before the Singleton constructor is executed.
+An alternate simpler and cleaner version may be used at the expense of potentially lower concurrency in a multithreaded environment:
+
+Eager initialization
+
+If the program will always need an instance, or if the cost of creating the instance is not too large in terms of time/resources, the programmer can switch to eager initialization, which always creates an instance:
+This method has a number of advantages:
+
+Static block initialization
+
+Some authors refer to a similar solution allowing some pre-processing (e.g. for error-checking). In this sense, the traditional approach could be seen as a particular case of this one, as the class loader would do exactly the same processing.
+
+Initialization On Demand Holder Idiom
+
+University of Maryland Computer Science researcher Bill Pugh has written about the code issues underlying the Singleton pattern when implemented in Java.  Pugh's efforts on the "Double-checked locking" idiom led to changes in the Java memory model in Java 5 and to what is generally regarded as the standard method to implement Singletons in Java. The technique known as the initialization on demand holder idiom, is as lazy as possible, and works in all known versions of Java.  It takes advantage of language guarantees about class initialization, and will therefore work correctly in all Java-compliant compilers and virtual machines.
+The nested class is referenced no earlier (and therefore loaded no earlier by the class loader) than the moment that getInstance() is called. Thus, this solution is thread-safe without requiring special language constructs (i.e. volatile or synchronized).
+Alternatively, the inner class SingletonHolder can also be substituted by implementing a Property which provides also access to the static final/read-only class members. Just like the lazy object in C#, whenever the Singleton.
+
+The Enum way
+
+In the second edition of his book Effective Java, Joshua Bloch claims that "a single-element enum type is the best way to implement a singleton"Joshua Bloch: Effective Java 2nd edition, ISBN 978-0-321-35668-0, 2008, p. 18 for any Java that supports enums. The use of an enum is very easy to implement and has no drawbacks regarding serializable objects, which have to be circumvented in the other ways.
+The public method can be written to take any desired types of arguments; a single String argument is used here as an example.
+This approach implements the singleton by taking advantage of Java's guarantee that any enum value is instantiated only once in a Java program.  Since Java enum values are globally accessible, so is the singleton, initialized lazily by the class loader. The drawback is that the enum type is somewhat inflexible.
+
+Prototype-based singleton
+
+In a prototype-based programming language, where objects but not classes are used, a "singleton" simply refers to an object without copies or that is not used as the prototype for any other object. Example in Io:
+ Foo := Object clone
+ Foo clone := Foo
+
+Example of use with the Abstract Factory pattern
+
+The singleton pattern is often used in conjunction with the Abstract Factory pattern to create a system-wide resource whose specific type is not known to the code that uses it.  An example of using these two patterns together is the Java Abstract Window Toolkit (AWT).
+.
+The binding performed by the toolkit allows, for example, the backing implementation of a  to bind to the platform-specific java.peer. Neither the Window class nor the application using the window needs to be aware of which platform-specific subclass of the peer is used.
+
+
+
+
+
+

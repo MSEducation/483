@@ -1,0 +1,26 @@
+[[Xetal]]
+
+CATEGORIES: SIMD computing
+
+Xetal is the name of a family of non commercial massively parallel processors developed within Philips Research..
+
+==Background==
+
+The Xetal was conceived in 1999 at Philips Research when researchers investigated possibilities for combining a CMOS image sensor with powerful image processing logic. Since CMOS image sensors (contrary to CCD sensors) can be produced using the same manufacturing process as processors, both could be combined in a single integrated circuit (IC). With the image sensor and image processing combined on the same die it is essentially possible to parallelize image processing up to the level where each pixel has its dedicated image processing logic. In such a design the image sensor would be in the upper layers of the IC while the image processing would be done in the lower layers, so image data would be transferred from one layer to the other, instead of through external pins or wires.
+Additionally there is inherent parallelism in image processing algorithms. Many algorithms do the same processing on every pixel. Image processing is therefore a suitable domain for a massively parallel approach using an SIMD architecture. Although massive parallelism is not a new idea (earlier examples include ILLIAC IV and Goodyear MPP) the Xetal 1 was one of the first to apply this approach to image processing.
+
+==Initial design==
+
+The first design combined a QVGA image sensor with line-based A/D conversion. In this design, the analogue pixel values of the sensor were converted line by line (instead of pixel by pixel). For every line there were 320 A/D converters. Each A/D converter is connected to a dedicated processing element (PE) to do image processing. This parallel design meant that a complete line of 320 pixels could essentially be processed in a single clock cycle. This parallelism was also applied to the memory architecture, where each processing element could access a pixel from a so-called /Line memory.
+Simulations of this design showed that the digital (PE) part of the chip caused noise on the A/D converters. On top of that CMOS sensors at the time were produced using a 350-nm process using 3 metal layers. Few layers were used so as to limit height variations in the sensor surface which could cause artifacts. For discrete logic the 180-nm process was more common. Also, more layers were used. Development of the CMOS sensor and the image processor therefore continued independently.
+
+==Xetal 1==
+
+The image processor resulting from this was the Xetal 1, first produced in 2001. It was manufactured using a 180-nm process and was designed to run at 18 MHz with 320 PEs and 16 line memories. Since each of the PEs can perform one operation per clock cycle the
+raw performance at this clock speed is 5.7 GOPS (109 operations per second). As a result, combined with a CMOS image sensor at QVGA resolution running at 15 frames per second the Xetal 1 could essentially perform 5000 operations per pixel.
+During testing it turned out the Xetal 1 could even be clocked up to 38 MHz, more than double the original specification, resulting in a raw performance of over 12 GOPS. Moreover, it achieved this performance at very low power consumption (1-2 Watt).
+It was soon discovered that with these levels of performance it was possible to do much more than just image processing. The research team created demonstrations which showed that Xetal 1 was capable of running computer vision algorithms such as object recognition and tracking, including a self-playing pinball machine, air drumming, and Robocup robots.
+
+==References==
+
+

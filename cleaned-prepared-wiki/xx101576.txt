@@ -1,0 +1,67 @@
+[[Serial attached SCSI]]
+
+CATEGORIES: SCSI, Computer storage buses
+
+Serial Attached SCSI (SAS) is a point-to-point serial protocol that moves data to and from computer storage devices such as hard drives and tape drives. SAS replaces the older Parallel SCSI (Small Computer System Interface, pronounced "scuzzy"), bus technology that first appeared in the mid-1980s. SAS, like its predecessor, uses the standard SCSI command set. SAS offers backward compatibility with SATA, versions 2 and later. This allows for SATA drives to be connected to SAS backplanes. The reverse, connecting SAS drives to SATA backplanes, is not possible. 
+The T10 technical committee of the International Committee for Information Technology Standards (INCITS) develops and maintains the SAS protocol; the SCSI Trade Association (SCSITA) promotes the technology.
+
+Introduction
+
+A typical Serial Attached SCSI system consists of the following basic components:
+
+Identification and addressing
+
+A SAS Domain is the SAS version of a SCSI domain—it consists of a set of SAS devices that communicate with one another by means of a service delivery subsystem. Each SAS port in a SAS domain has a SCSI port identifier that identifies the port uniquely within the SAS domain. It is assigned by the device manufacturer, like an Ethernet device's MAC address, and is typically world-wide unique as well. SAS devices use these port identifiers to address communications to each other.
+In addition, every SAS device has a SCSI device name, which identifies the SAS device uniquely in the world.  One doesn't often see these device names because the port identifiers tend to identify the device sufficiently.
+For comparison, in parallel SCSI, the SCSI ID is the port identifier and device name. In Fibre Channel, the port identifier is a WWPN and the device name is a WWNN.
+In SAS, both SCSI port identifiers and SCSI device names take the form of a SAS address, which is a 64 bit value, normally in the NAA IEEE Registered format.  People sometimes refer to a SCSI port identifier as the SAS address of a device, out of confusion.  People sometimes call a SAS address a World Wide Name or WWN, because it is essentially the same thing as a WWN in Fibre Channel.  For a SAS expander device, the SCSI port identifier and SCSI device name are the same SAS address.
+
+Comparison with parallel SCSI
+
+Comparison with SATA
+
+There is little physical difference between SAS and SATA. 
+
+Characteristics
+
+Technical details
+
+The Serial Attached SCSI standard defines several layers (in order from highest to lowest): 
+Serial Attached SCSI comprises three transport protocols:
+For the Link and PHY layers, SAS defines its own unique protocol.
+At the physical layer, the SAS standard defines connectors and voltage levels. The physical characteristics of the SAS wiring and signaling are compatible with and have loosely tracked that of SATA up to the present 6 Gbit/s rate, although SAS defines more rigorous physical signaling specifications as well as a wider allowable differential voltage swing intended to allow longer cabling. While SAS-1.0/SAS-1.1 adopted the physical signaling characteristics of SATA at the 1.5 Gbit/s and 3 Gbit/s rates, SAS-2.0 development of a 6 Gbit/s physical rate led the development of an equivalent SATA speed. According to the SCSI Trade Association, 12 Gbit/s is slated to follow 6 Gbit/s in a 2013 SAS-3.0 specification. 
+
+Architecture
+
+SAS architecture consists of six layers:
+
+Topology
+
+An initiator may connect directly  to a target via one or more PHYs (such a connection is called a port whether it uses one or more PHYs, although the term wide port is sometimes used for a multi-PHY connection).
+
+SAS expanders
+
+The components known as Serial Attached SCSI Expanders (SAS Expanders) facilitate communication between large numbers of SAS devices. Expanders contain two or more external expander-ports. Each expander device contains at least one SAS Management Protocol target port for management and may contain SAS devices itself. For example, an expander may include a Serial SCSI Protocol target port for access to a peripheral device. An expander is not necessary to interface a SAS initiator and target but allows a single initiator to communicate with more SAS/SATA targets. A useful analogy: one can regard an expander as akin to a network switch in a network, which connects multiple systems using a single switch port.
+SAS 1 defined two types of expander; however, the SAS-2.0 standard has dropped the distinction between the two, as it created unnecessary topological limitations with no realized benefit:
+Direct routing allows a device to identify devices directly connected to it. Table routing identifies devices connected to the expanders connected to a device's own PHY. Subtractive routing is used when you are not able to find the devices in the sub-branch you belong to. This passes the request to a different branch altogether.
+Expanders exist to allow more complex interconnect topologies. Expanders assist in link-switching (as opposed to packet-switching) end-devices (initiators or targets). They may locate an end-device either directly (when the end-device is connected to it), via a routing table (a mapping of end-device IDs and the expander the link should be switched to downstream to route towards that ID), or when those methods fail, via subtractive routing: the link is routed to a single expander connected to a subtractive routing port. If there is no expander connected to a subtractive port, the end-device cannot be reached.
+Expanders with no PHYs configured as subtractive act as fanout expanders and can connect to any number of other expanders.  Expanders with subtractive PHYs may only connect to two other expanders at a maximum, and in that case they must connect to one expander via a subtractive port and the other via a non-subtractive port.
+SAS-1.1 topologies built with expanders generally contain one root node in a SAS domain with the one exception case being topologies that contain two expanders connected via a subtractive-to-subtractive port. If it exists, the root node is the expander, which is not connected to another expander via a subtractive port. Therefore, if a fanout expander exists in the configuration, it must be the domain's root node. The root node contains routes for all end devices connected to the domain.  Note that with the advent in SAS-2.0 of table-to-table routing and new rules for end-to-end zoning, more complex topologies built upon SAS-2.0 rules do not contain a single root node.
+
+Connectors
+
+The SAS connector is much smaller than traditional parallel SCSI connectors, allowing for the small 
+The physical SAS connector comes in several different variants: 
+
+Nearline SAS
+
+Nearline SAS or NL-SAS drives have a SAS interface, but head, media, and rotational speed of traditional enterprise-class SATA drives, so they cost less than other SAS drives.
+They have the following benefits compared to SATA: 
+
+
+
+
+
+
+
+

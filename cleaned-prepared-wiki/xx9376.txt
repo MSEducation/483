@@ -1,0 +1,71 @@
+[[Oberon (programming language)]]
+
+CATEGORIES: Class-based programming languages, Procedural programming languages, Oberon programming language family, Systems programming languages, Programming languages created in 1986
+
+Oberon is a modern general-purpose programming language created in 1986 by Professor Niklaus Wirth and it's the last member of the Wirthian family of ALGOL-like languages (Euler, Algol-W, Pascal, Modula, and Modula-2). Oberon was the result of a concentrated effort to increase the power of Modula-2, the direct successor of Pascal, and simultaneously to reduce its complexity, its principal new feature is the concept of type extension of record types:D. Pountain, Modula's Children, Part II: Oberon - BYTE 16(3), 135-142, Mar. 1991. Archive. Oberon was developed as part of the implementation of the Oberon operating system at ETH Zurich in Switzerland. The name is from the moon of Uranus, Oberon.
+Oberon is still maintained by the original author and the latest revision is dated 10 March 2014.
+
+Design
+
+Oberon is designed with the Einstein's motto in mind: Make it as simple as possible, but not simpler. The principal guideline was to concentrate on features that are basic and essential and to omit ephemeral issues and it was also driven by the recognition of the growth of complexity in languages such as C++ and Ada, on the contrary Oberon emphasizes the use of the library concept to extending the language. As opposed to Modula-2, in Oberon enumeration types and subrange types are removed, set types are limited to small set of integers and the number of low-level facilities was sharply reduced, in particular type transfer functions were eliminated. By eliminating all potentially unsafe facilities, the most essential step was finally made to obtain a truly high-level language. Watertight type checking, also across modules, strict index checking at run-time, nil-pointer checking, and the safe type extension concept let the programmer rely on the language rules alone.
+The simplicity resulted in a language which is easy to learn, simple to implement, and also very efficient. Oberon compilers are known to be compacts and to compile blazingly fast while providing adequate code quality compared to commercial compilers.ssw.ac.pdf
+
+Characteristics
+
+The following features characterise the Oberon language:
+
+Object orientation
+
+Oberon supports extension of record types for the construction of abstractions and heterogeneous structures, but doesn't have a dispatch mechanism as a language feature but rather as programming technique or design pattern. This gives a great flexibility in the OOP world. In Oberon operating system two programming techniques in conjunction has been used for the dispatch call: Method suite and Message handler.
+
+Method suite
+
+In this technique a table of procedure variables is defined and a global variable of this type is declared in the extended module and assigned back in the generic module:
+We extend the generic type Figure to a specific shape:
+Dynamic dispatch is only done via procedures in Figures module that is the generic module. 
+
+Message handler
+
+This technique lies in replacing the set of methods by a single procedure, which discriminates between the various methods:
+We extend the generic type Figure to a specific shape:
+In the Oberon operating system these techniques are both used for dynamic dispatch, the first one is used for the known set of methods, the second one is used for the new methods declared in the extended module. If the module Rectangles implements the new procedure Rotate(), in the Figures module it can only be called via a message handler.
+
+Implementations and variants
+
+Oberon
+
+No-cost implementations of Oberon (the language) and Oberon (the operating system) can be found on the Internet (several are from ETHZ itself).
+
+Oberon-2
+
+A few changes were made to the first released specification (object-oriented programming features were added, the 'FOR' loop was reinstated, for instance); the result was Oberon-2, currently the most common implementation. There is a release called Native Oberon which includes an operating system, and can directly boot on PC class hardware. A .NET-related extensions has also been developed at ETHZ.
+Oberon-2 compilers maintained by ETH include versions for Windows, Linux, Solaris, Mac OS X. Furthermore there are implementations for various other operating systems, such as Atari-TOS or AmigaOS.
+There is an Oberon-2 Lex scanner and Yacc parser by Stephen J Bevan of Manchester University, UK, based on the one in the Mössenböck and Wirth reference.  It is at version 1.4.
+
+Oberon-07
+
+Oberon-07, defined by Niklaus Wirth in 2007 and revised in 2011, 2013, and 2014 is based on the original version of Oberon rather than Oberon-2. The main changes are: explicit numeric conversion functions (e.g. FLOOR and FLT) must be used, the LOOP and EXIT statements have been eliminated, WHILE statements have been extended, RETURN statements can only be connected to the end of a function, imported variables and structured value parameters are read-only and arrays can be assigned without using COPY. For full details, see The Programming Language Oberon-07.
+Oberon-07 compilers have been developed for use with 32-bit Windows Oberon-07M (Oberon-07 language revision 2008), Akron's (compiles code for both Windows and Linux), oberonjs (produces JavaScript code), 32-bit ARM, Cortex-M3 microcontrollers, and a Wirth-designed RISC processor implemented using a Xilinx FPGA Spartan-3 board.
+
+Active Oberon
+
+Active Oberon is yet another variant of Oberon, which adds objects (with object-centered access protection and local activity control), system-guarded assertions, preemptive priority scheduling and a slightly changed syntax for methods (aka type-bound procedures in the Oberon world). Objects may be active, which means that they may be threads or processes. The operating system A2 aka Bluebottle, especially the kernel, synchronizes and coordinates different active objects.
+
+Related languages
+
+Development has continued on languages in this family. A further extension of Oberon-2 produced Component Pascal, currently supported by Oberon Microsystems, a commercial company spin-off from ETHZ, and by Queensland University of Technology. In addition, the Lagoona and Obliq languages carry the Oberon spirit into specialized areas.
+ETHZ has released Active Oberon which supports active objects, and the Bluebottle operating system and environment (JDK, HTTP, FTP, etc.) for the language. As with many prior designs from ETHZ, versions of both are available for download on the Internet. As this is written, both single and dual x86 CPUs and the StrongARM family are supported.
+Recent . This includes the features of Oberon and restores some from Pascal (enumerated types, built-in IO) but has some syntactic differences. Additional features include support for active objects, operator overloading and exception handling. Zonnon is available as a plug-in language for the Microsoft Visual Studio for .
+Oberon-V (originally called Seneca, after Seneca the Younger) is a descendant of Oberon designed for numerical applications on supercomputers, especially vector or pipelined architectures. It includes array constructors and an ALL statement. (See "Seneca - A Language for Numerical Applications on Vectorcomputers", Proc CONPAR 90 - VAPP IV Conf. R. Griesemer, Diss Nr. 10277, ETH Zurich.)
+
+
+
+
+
+
+
+General
+
+Evolution of Oberon
+
+

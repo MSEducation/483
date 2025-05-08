@@ -1,0 +1,38 @@
+[[Parallel Line Internet Protocol]]
+
+CATEGORIES: Internet protocols, Link protocols
+
+The Parallel Line Internet Protocol (PLIP) is a computer networking protocol for direct computer-to-computer communications using the parallel port normally used for connections to a printer.
+The Parallel Line Internet Protocol provides Link Layer services for the Internet Protocol, the protocol used for forming small local area networks and large computer networks, such as the Internet, enabling computers without standard dedicated networking hardware, such as Ethernet, but with older parallel port devices, to communicate.
+
+==Operation==
+
+The Internet Protocol Suite is the standards-based networking model and software specification for forming small and large computer networks, from local area networks to global communication systems, such as the Internet. It is usually implemented by software and hardware features that use Ethernet network interface cards, cabling, and networking switches or hubs.
+Early personal computers did not have Ethernet hardware included in their design and bus adapters were initially expensive. A solution to was to use the, at the time, standard parallel port, typically used for connection to a printer or similar output device. The ports on two computers are connected with a so-called null-printer cable, sometimes called a LapLink cable.
+The laplink cable connects five output pins of a parallel port to five input pins on the opposing port, for each direction. Due to the lack of an internal timing in the parallel ports, synchronization is implemented via software handshaking: four of the five pins are used for data transfer and one is used for synchronization. The logical values at these pins are read and written directly by the software via an input or output instruction.
+This method does not connect the bidirectional data lines of the two devices, in order to avoid both lines being active at the same time. The status lines ERROR, SLCT, PAPOUT, ACK and BUSY on one device are connected to data pins d0 through d4 respectively on the other.
+Transmission of a byte is accomplished by dividing it into two nibbles of four bits each. Each nibble is transmitted by setting the four data lines according to the four nibble bits and then toggling the acknowledge line. This toggle indicates the receiving host that the nibble is ready to be read. Once the receiving host has read the nibble, it toggles its synchronization line to tell the transmitter that the nibble has been read and that a new one may be sent. Both hosts use a toggle on their acknowledge lines to indicate that the read or write operation has been performed. As a result, each host has to wait for a toggle from the other host before proceeding with a new operation.
+As an example, the transfer of nibble 0010 proceeds as follows:
+ 
+  t->r lines       r->s lines      operation
+ 00010            0xxxx           transmitter sets data lines to 0010
+ 10010            0xxxx           transmitter toggle ACK line
+                                  receiver detects toggle and reads 0010
+ 10010            1xxxx           receiver toggle ACK line
+                                  transmitter detects toggle
+
+When the transmitter detects the toggle, this procedure is repeated for the next nibble.
+Internet Protocol packets are sent over the line after encapsulating them into PLIP packets before transmission over the line. The encapsulated packet has the following structure:
+The length and checksum are calculated over the second and third field only, so that the actual total length of the packet is three more than the length as reported in the first two bytes of the packet.
+
+==Similar methods==
+
+An analogous feature for serial communications ports is the Serial Line Internet Protocol (SLIP), using null-modem cables, but allows transfer of four bits at a time rather than one. It generally works at higher bitrates. The method is based on the "Crynwr" standard devised by Russ Nelson.
+Ethernet may also be used as a direct computer-to-computer communications method using an Ethernet crossover cable.
+Other point-to-point connections, such as USB host-to-host bridges or cables are also used to transfer files between two computers where a network is not necessary or available.
+
+==See also==
+
+==External links==
+
+

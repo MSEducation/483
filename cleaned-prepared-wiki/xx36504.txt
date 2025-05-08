@@ -1,0 +1,38 @@
+[[Transport layer]]
+
+CATEGORIES: Internet protocols, Transport layer protocols, OSI protocols
+
+In computer networking, a transport layer provides end-to-end or host-to-host communication services for applications within a layered architecture of network components and protocols.1.3. The transport layer provides services such as connection-oriented data stream support, reliability, flow control, and multiplexing.
+Transport layer implementations are contained in both the TCP/IP model (RFC 1122),RFC 1122, Requirements for Internet Hosts – Communication Layers, IETF, R. Braden (Editor), October 1989 which is the foundation of the Internet, and the Open Systems Interconnection (OSI) model of general networking, however, the definitions of details of the transport layer are different in these models. In the  Open Systems Interconnection model the transport layer is most often referred to as Layer 4.
+The best-known transport protocol is the Transmission Control Protocol (TCP). It lent its name to the title of the entire Internet Protocol Suite, TCP/IP. It is used for connection-oriented transmissions, whereas the connectionless User Datagram Protocol (UDP) is used for simpler messaging transmissions. TCP is the more complex protocol, due to its stateful design incorporating reliable transmission and data stream services.  Other prominent protocols in this group are the Datagram Congestion Control Protocol (DCCP) and the Stream Control Transmission Protocol (SCTP).
+
+Services
+
+Transport layer services are conveyed to an application via a programming interface to the transport layer protocols. The services may include the following features:
+
+Analysis
+
+The transport layer is responsible for delivering data to the appropriate application process on the host computers. This involves statistical multiplexing of data from different application processes, i.e. forming data packets, and adding source and destination port numbers in the header of each transport layer data packet. Together with the source and destination IP address, the port numbers constitutes a network socket, i.e. an identification address of the process-to-process communication. In the OSI model, this function is supported by the session layer.
+Some transport layer protocols, for example TCP, but not UDP, support virtual circuits, i.e. provide connection oriented communication over an underlying packet oriented datagram network. A byte-stream is delivered while hiding the packet mode communication for the application processes. This involves connection establishment, dividing of the data stream into packets called segments, segment numbering and reordering of out-of order data. 
+Finally, some transport layer protocols, for example TCP, but not UDP, provide end-to-end reliable communication, i.e. error recovery by means of error detecting code and automatic repeat request (ARQ) protocol. The ARQ protocol also provides flow control, which may be combined with congestion avoidance. 
+UDP is a very simple protocol, and does not provide virtual circuits, nor reliable communication, delegating these functions to the application program. UDP packets are called datagrams, rather than segments. 
+TCP is used for many protocols, including HTTP web browsing and email transfer. UDP may be used for multicasting and broadcasting, since retransmissions are not possible to a large amount of hosts. UDP typically gives higher throughput and shorter latency, and is therefore often used for real-time multimedia communication where packet loss occasionally can be accepted, for example IP-TV and IP-telephony, and for online computer games.
+In many non-IP-based networks, for example X.25, Frame Relay and ATM, the connection-oriented communication is implemented at network layer or data link layer rather than the transport layer. In X.25, in telephone network modems and in wireless communication systems, reliable node-to-node communication is implemented at lower protocol layers. 
+The OSI connection-mode transport layer protocol specification defines five classes of transport protocols: TP0, providing the least error recovery, to TP4, which is designed for less reliable networks.
+
+Protocols
+
+This list shows some protocols that are commonly placed in the transport layers of TCP/IP, OSI, NetWare's IPX/SPX, AppleTalk, and Fibre Channel.
+
+Comparison of transport layer protocols
+
+Comparison of OSI transport protocols
+
+ISO/IEC 8073/ITU-T Recommendation X.224, "Information Technology - Open Systems Interconnection - Protocol for providing the connection-mode transport service", defines five classes of connection-mode transport protocols designated class 0 (TP0) to class 4 (TP4).  Class 0 contains no error recovery, and was designed for use on network layers that provide error-free connections. Class 4 is closest to TCP, although TCP contains functions, such as the graceful close, which OSI assigns to the session layer.  All OSI connection-mode protocol classes provide expedited data and preservation of record boundaries.  Detailed characteristics of the classes are shown in the following table: 
+There is also a connectionless transport protocol, specified by ISO/IEC 8602/ITU-T Recommendation X.234.
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+[[Synchronous Serial Interface]]
+
+CATEGORIES: Physical layer protocols, Serial buses
+
+Synchronous Serial Interface (SSI) is a widely used serial interface standard for industrial applications between a master (e.g. controller) and a slave (e.g. sensor). SSI is based on RS-422Interfaces article by novotechnik standards and has a  high protocol efficiency in addition to its implementation over various hardware platforms, making it very popular among sensor manufacturers. SSI was originally developed by Max Stegmann GMBH in 1984 for transmitting the position data of absolute encoders – for this reason, some servo/drive equipment manufacturers refer to their SSI port as a "Stegmann Interface".
+It was formerly covered by the German patent DE 34 45 617 which expired in 1990. It is very suitable for applications demanding reliability and robustness in measurements under varying industrial environments.
+
+==Introduction==
+
+SSI is a synchronous, point to point, serial communication channel for digital data transmission. Synchronous data transmission is one in which the data is transmitted by synchronizing the transmission at the receiving and sending ends using a common clock signal. Since start and stop bits are not present, this allows the use of transmission bandwidth for more message bits and makes the whole transmission process simpler and easier.
+In general, as mentioned earlier, it is a point to point connection from a master (e.g. PLC, Microcontroller) to a slave (e.g. rotary encoders). The master controls the clock sequence and the slave transmits the current data/value through a shift register. When invoked by the master, the data is clocked out from the shift register. The master and slave are synchronized by the common clock of the controller.
+The CLOCK and DATA signals are transmitted according to RS-422 standards. RS-422, also known as ANSI/TIA/EIA-422-B, is a technical standard that specifies the electrical characteristics of the balanced voltage digital interface circuit. Data is transmitted using balanced or differential signalling i.e. the CLOCK and DATA lines are basically twisted pair cables. 
+Inputs can use an opto-coupler for galvanic isolation (For more details see http://www.posital.sg/sg/products/POSITAL/AbsoluteEncoders_Context/AbsoluteEncoders_Context_Technology_SSI_AppNote.pdf) that can be driven by RS-422/485 levels. The DATA output of the sensor is driven by a RS-422/485 line driver. Differential signalling improves the resistance to electromagnetic interference (EMI), hence making it a reliable communication channel over long transmission lengths and harsh external environments.
+
+==SSI design==
+
+The interface has a very simple design as illustrated in the above figure. It consists of 2 pairs of wires, one for transmitting the clock signals from the master and the other for transmitting the data from the slave. The clock sequences are triggered by the master when need arises. Different clock frequencies can be used ranging from 100 kHz to 2 MHz and the number of clock pulses depends on the number of data bits to be transmitted.
+The simplest SSI slave interface uses a retriggerable monostable multivibrator (monoflop) to freeze the current value of the sensor. The current frozen values of the slave are stored in Shift registers. These values are clocked out sequentially when initiated by the controller. The design is being revolutionized with the integration of microcontrollers, FPGAs and ASICs into the interface.
+The data format is designed in such a way to ensure proper communication of data. The protocol for the data transmission is based on three different subsequent parts (Leading-”1" -> Data-Bits -> Trailing-"0"). The main significance of this type of format is to ensure the proper working of the interface and hence secure data transmission free from any hardware or software errors.
+In idle state the CLOCK is on high level and also the sensor output is on high level, so that it can be used for detecting any broken wire contacts. This helps in observing the proper working condition of the interface.
+After n-CLOCK pulses (rising edges) the data is completely transmitted. With the next CLOCK pulse (rising edge n+1) the sensor output goes to low level which can be used to detect a short circuit in the cable. If it is high even after n+1 rising edges then it means that the interface has a short circuit.  
+Readings from multiple slaves (up to three) can be enabled at the same time by connecting them to a common clock. However, to avoid ground loops and electrically isolate the slave, complete galvanic isolation by opto-couplers is needed.
+
+==SSI timing and transmission==
+
+The following keywords will be useful in understanding the SSI data transmission procedure.
+
+===Single transmission===
+
+The diagram illustrates the single data transmission using SSI protocol:
+The SSI is initially in the idle mode, where both the data and clock lines stay HIGH and the slave keeps updating its current data.
+The transmission mode is evoked when the master initiates a train of clock pulses. Once the slave receives the beginning of the clock signal (1), it automatically freezes its current data. With the first rising edge (2) of the clock sequence, the MSB of the sensor’s value is transmitted and with consequent rising edges, the bits are sequentially transmitted to the output.
+After the transmission of complete data word (3) (i.e. LSB is transmitted), an additional rising edge of the clock sets the clock line HIGH. The data line is set to LOW and remains there for a period of time, tm, to recognize the transfer timeout . If a clock signal (data-output request) is received within that time, the same data will be transmitted again (multiple transmission).
+The slave starts updating its value and the data line is set to HIGH (idle mode) if there are no clock pulses within time, tm. This marks the end of single transmission of the data word. Once the slave receives a clock signal at a time, tp (>=tm), the updated position value is frozen and the transmission of the value begins as described earlier.
+
+===Multiple transmissions===
+
+Multiple transmissions of the same data happens only if there is continuous clocking even after the transmission of the least significant bit i.e. the clock pulses does not allow the monoflop to go to steady state. This is illustrated below.
+The initial sequences are the same as that of the single transmission. In the idle state the CLOCK and DATA lines are high but with the arrival of the first falling edge the transmission mode is evoked and the similarly the data bits are transmitted sequentially starting with the MSB with every rising edge. The transmission of the LSB means that the transmission of the data is completed. An additional rising edge pushes the data line to LOW signifying the end of transmission of the particular data. 
+But, if there are continuous clock pulses even after then (i.e. the next clock pulses comes in time tw (Then, it follows the same procedure as earlier transmissions, leading to multiple transmissions of the same data. The value of the slave is updated only when the timing between two clock pulses is more than the transfer timeout, tm.
+Multiple transmission is used to check the data integrity. The two consecutive received values are compared, transmission failures are indicated by differences between the two values.
+
+===Interrupting transmission===
+
+The transmission of data is controlled by the master and the transmission can be interrupted at any time just by stopping the clock sequence, for a period longer than tm. The slave automatically will recognize the transfer timeout and go into idle mode.
+
+==Cabling – according to RS-422 standards==
+
+Since SSI is based on RS-422 standards, it is necessary to select appropriate cables and to stay within the limits of cabling length and clock frequencies.
+The relation between the cable length and clock frequency is shown in the following figure.*RS422 Cable Characteristics This can be used as a conservative guide. This curve is based upon empirical data using a 24 AWG Standard, copper conductor, unshielded twisted-pair telephone cable with a shunt capacitance of 52.5 pF/meter (16 pF/foot) terminated in a 100 Ohm resistive load.  The cable length restriction shown by the curve is based upon assumed load signal quality requirements of:
+When high data rates are used, the application is limited to a shorter cables. It is possible to use longer cables when low data rates are used. The DC resistance of the cable limits the length of the cable for low data rate applications by increasing the noise margin as the voltage drop in the cable increases. The AC effects of the cable limit the quality of the signal and limit the cable length to short distances when high data rates are used. Examples of data rate and cable length combinations vary from 90 kbit/s at 1.2 km to 10 Mbit/s at 5m for RS-422. 
+Cables having characteristics different from the twisted pair 24 AWG, 52.5 pF/meter (16 pF/foot), can also be employed within bounds mentioned above. First, determine the absolute loop resistance and capacitance values of the typical 24 AWG cable provided by the cable length associated with the data signalling rate desired from the figure.  Then convert those values to equivalent lengths of the cable actually used.  For example, longer distances would be possible when using 19 AWG, while shorter distances would be necessary for 28 AWG.
+The maximum permissible length of cable separating the master and slave is a function of data signalling rate and is influenced by the tolerable signal distortion, the amount of longitudinally coupled noise and ground potential differences introduced between the master and the slave circuit.  Accordingly, users are advised to restrict cable length to a minimum.
+The type and length of the cable used must be capable of maintaining the necessary signal quality needed for the particular application. Furthermore, the cable balance must be such as to maintain acceptable crosstalk levels, both generated and received.
+
+==Derived protocols==
+
+Some manufacturers and organizations*Biss interface  added additional information to the basic SSI protocol. It was done mainly to ensure proper data transmission. For secure transmission and to indicate the end of data transmission CRC bits or parity bits can be added. In simple words, they were used for identifying if the byte has been correctly interpreted and received. In the original specification multiple transmissions were used to ensure data integrity. In this case, two consecutive transmissions of the same data were initiated and compared for any error in transmission. But this however reduces the protocol efficiency by 50% compared to parallel data transmission.
+
+==Benefits==
+
+The limitations in this interface are negligible for applications in industrial automation. SSI can handle only short distance communication (up to 1.2 km) and supports only one master device. But, 1.2 km is rather a good distance for communication by automation industry standards. When compared to advanced communication systems based on field buses or Ethernet, SSI is limited to a master slave architecture and a simple point to point communication between a master and a slave. Another disadvantage is that there is no hardware slave acknowledgment i.e. detection of slave for communication.
+
+==References==
+
+==External links==
+
+
+

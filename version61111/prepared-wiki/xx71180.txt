@@ -1,0 +1,75 @@
+</ref> In 1936 [[Hans Freudenthal]] further generalized the Radon–Nikodym theorem by proving the [[Freudenthal spectral theorem]], a result in [[Riesz space]] theory, which contains the Radon–Nikodym theorem as a special case.<ref>[tpl]Cite book| last = Zaanen  | first = Adriaan C. | year = 1996  | title = Introduction to Operator Theory in Riesz spaces | publisher = [[Springer Science+Business Media|Springer]] | isbn = 3-540-61989-5 | postscript = [tpl]inconsistent citations[/tpl][/tpl]</ref>
+If [tpl]mvar|Y[/tpl] is a Banach space and the generalization of the Radon–Nikodym theorem also holds for functions with values in [tpl]mvar|Y[/tpl] (mutatis mutandis), then [tpl]mvar|Y[/tpl] is said to have the Radon–Nikodym property. All Hilbert spaces have the Radon–Nikodym property.
+
+==Radon–Nikodym derivative==
+
+The function [tpl]math| f [/tpl] satisfying the above equality is uniquely defined up to a [tpl]mvar|μ[/tpl]-null set, that is, if [tpl]mvar|g[/tpl] is another function which satisfies the same property, then [tpl]math| f  [tpl]=[/tpl] g[/tpl] [tpl]mvar|μ[/tpl]-almost everywhere. [tpl]math| f [/tpl] is commonly written [tpl]math|[tpl]sfrac|dν|dμ[/tpl][/tpl] and is called the Radon–Nikodym derivative. The choice of notation and the name of the function reflects the fact that the function is analogous to a derivative in calculus in the sense that it describes the rate of change of density of one measure with respect to another (the way the Jacobian determinant is used in multivariable integration). A similar theorem can be proven for signed and complex measures: namely, that if [tpl]mvar|μ[/tpl] is a nonnegative σ-finite measure, and [tpl]mvar|ν[/tpl] is a finite-valued signed or complex measure such that [tpl]math|[tpl]![/tpl]ν[tpl]![/tpl] ≪ μ[/tpl], i.e. [tpl]mvar|ν[/tpl] is absolutely continuous with respect to [tpl]mvar|μ[/tpl], then there is [tpl]mvar|μ[/tpl]-integrable real- or complex-valued function [tpl]mvar|g[/tpl] on [tpl]mvar|X[/tpl] such that for every measurable set [tpl]mvar|A[/tpl],
+
+==Applications==
+
+The theorem is very important in extending the ideas of probability theory from probability masses and probability densities defined over real numbers to probability measures defined over arbitrary sets. It tells if and how it is possible to change from one probability measure to another. Specifically, the probability density function of a random variable is the Radon–Nikodym derivative of the induced measure with respect to some base measure (usually the Lebesgue measure for continuous random variables).
+For example, it can be used to prove the existence of conditional expectation for probability measures. The latter itself is a key concept in probability theory, as conditional probability is just a special case of it.
+Amongst other fields, financial mathematics uses the theorem extensively. Such changes of probability measure are the cornerstone of the rational pricing of derivatives and are used for converting actual probabilities into those of the risk neutral probabilities.
+
+==Properties==
+
+==Further applications==
+
+===Information divergences===
+
+If [tpl]mvar|μ[/tpl] and [tpl]mvar|ν[/tpl] are measures over [tpl]mvar|X[/tpl], and [tpl]math|μ ≪ ν[/tpl]
+
+==The assumption of [tpl]mvar|σ[/tpl]-finiteness==
+
+The Radon–Nikodym theorem makes the assumption that the measure [tpl]mvar|μ[/tpl] with respect to which one computes the rate of change of [tpl]mvar|ν[/tpl] is [tpl]mvar|σ[/tpl]-finite. Here is an example when [tpl]mvar|μ[/tpl] is not [tpl]mvar|σ[/tpl]-finite and the Radon–Nikodym theorem fails to hold.
+Consider the Borel [tpl]mvar|σ[/tpl]-algebra on the real line. Let the counting measure, [tpl]mvar|μ[/tpl], of a Borel set [tpl]mvar|A[/tpl] be defined as the number of elements of [tpl]mvar|A[/tpl] if [tpl]mvar|A[/tpl] is finite, and [tpl]math|∞[/tpl] otherwise. One can check that [tpl]mvar|μ[/tpl] is indeed a measure. It is not [tpl]mvar|σ[/tpl]-finite, as not every Borel set is at most a countable union of finite sets. Let [tpl]mvar|ν[/tpl] be the usual Lebesgue measure on this Borel algebra. Then, [tpl]mvar|ν[/tpl] is absolutely continuous with respect to [tpl]mvar|μ[/tpl], since for a set [tpl]mvar|A[/tpl] one has [tpl]math|μ(A) [tpl]=[/tpl] 0[/tpl] only if [tpl]mvar|A[/tpl] is the empty set, and then [tpl]math|ν(A)[/tpl] is also zero.
+Assume that the Radon–Nikodym theorem holds, that is, for some measurable function [tpl]math| f [/tpl] one has
+for all Borel sets. Taking [tpl]mvar|A[/tpl] to be a singleton set, [tpl]math|A [tpl]=[/tpl] {a},[/tpl] and using the above equality, one finds
+for all real numbers [tpl]mvar|a[/tpl]. This implies that the function [tpl]math| f [/tpl], and therefore the Lebesgue measure [tpl]mvar|ν[/tpl], is zero, which is a contradiction.
+
+==Proof==
+
+This section gives a measure-theoretic proof of the theorem. There is also a functional-analytic proof, using Hilbert space methods, that was first given by von Neumann.
+For finite measures [tpl]mvar|μ[/tpl] and [tpl]mvar|ν[/tpl], the idea is to consider functions [tpl]math| f [/tpl] with [tpl]math| f dμ ≤ dν[/tpl]. The supremum of all such functions, along with the monotone convergence theorem, then furnishes the Radon–Nikodym derivative. The fact that the remaining part of [tpl]mvar|μ[/tpl] is singular with respect to [tpl]mvar|ν[/tpl] follows from a technical fact about finite measures. Once the result is established for finite measures, extending to [tpl]mvar|σ[/tpl]-finite, signed, and complex measures can be done naturally. The details are given below.
+
+===For finite measures===
+
+First, suppose [tpl]mvar|μ[/tpl] and [tpl]mvar|ν[/tpl] are both finite-valued nonnegative measures. Let [tpl]mvar|F[/tpl] be the set of those measurable functions [tpl]math| f  : X → [0, ∞)[/tpl] such that:
+[tpl]math|F ≠ ∅[/tpl], since it contains at least the zero function. Now let [tpl]math| f1,  f2 ∈ F[/tpl], and suppose [tpl]mvar|A[/tpl] be an arbitrary measurable set, and define:
+Then one has
+and therefore, [tpl]math|max{ f 1,  f 2} ∈ F[/tpl].
+Now, let [tpl]math|{ fn } [/tpl]be a sequence of functions in [tpl]mvar|F[/tpl] such that
+By replacing [tpl]math| fn [/tpl] with the maximum of the first [tpl]mvar|n[/tpl] functions, one can assume that the sequence [tpl]math|{ fn } [/tpl] is increasing. Let [tpl]mvar|g[/tpl] be a function defined as
+By Lebesgue's monotone convergence theorem, one has
+for each [tpl]math|A ∈ Σ[/tpl], and hence, [tpl]math|g ∈ F[/tpl]. Also, by the construction of [tpl]mvar|g[/tpl],
+Now, since [tpl]math|g ∈ F[/tpl],
+defines a nonnegative measure on [tpl]math|Σ[/tpl]. Suppose [tpl]math|ν0 ≠ 0[/tpl]; then, since [tpl]mvar|μ[/tpl] is finite, there is an [tpl]math|ε > 0[/tpl] such that [tpl]math|ν0(X) > ε μ(X)[/tpl]. Let (P, N) be a Hahn decomposition for the signed measure [tpl]math|ν0 − ε μ[/tpl]. Note that for every [tpl]math|A ∈ Σ[/tpl] one has [tpl]math|ν0(A ∩ P) ≥ ε μ(A ∩ P)[/tpl], and hence,
+Also, note that [tpl]math|μ(P) > 0[/tpl]; for if [tpl]math|μ(P) [tpl]=[/tpl] 0[/tpl], then (since [tpl]mvar|ν[/tpl] is absolutely continuous in relation to [tpl]mvar|μ[/tpl]) [tpl]math|ν0(P) ≤ ν(P) [tpl]=[/tpl] 0[/tpl], so [tpl]math|ν0(P) [tpl]=[/tpl] 0[/tpl] and
+contradicting the fact that [tpl]math|ν0(X) > εμ(X)[/tpl].
+Then, since
+[tpl]math|g + ε 1P ∈ F[/tpl] and satisfies
+This is impossible, therefore, the initial assumption that [tpl]math|ν0 ≠ 0[/tpl] must be false. So [tpl]math|ν0 [tpl]=[/tpl] 0[/tpl], as desired.
+Now, since [tpl]mvar|g[/tpl] is [tpl]mvar|μ[/tpl]-integrable, the set [tpl]math|{x ∈ X : g(x) [tpl]=[/tpl] ∞} [/tpl]is [tpl]mvar|μ[/tpl]-null. Therefore, if a [tpl]math| f [/tpl] is defined as
+then [tpl]math| f [/tpl] has the desired properties.
+As for the uniqueness, let [tpl]math| f, g : X → [0, ∞)[/tpl] be measurable functions satisfying
+for every measurable set [tpl]mvar|A[/tpl]. Then, [tpl]math|g − f [/tpl] is [tpl]mvar|μ[/tpl]-integrable, and
+In particular, for [tpl]math|A [tpl]=[/tpl] {x ∈ X : f(x) > g(x)},[/tpl] or {{math|{x ∈ X : f(x) and so, that [tpl]math|(g − f )+ [tpl]=[/tpl] 0[/tpl] [tpl]mvar|μ[/tpl]-almost everywhere; the same is true for [tpl]math|(g − f )−[/tpl], and thus, [tpl]math| f  [tpl]=[/tpl] g[/tpl] [tpl]mvar|μ[/tpl]-almost everywhere, as desired.
+
+===For [tpl]mvar|σ[/tpl]-finite positive measures===
+
+If [tpl]mvar|μ[/tpl] and [tpl]mvar|ν[/tpl] are [tpl]mvar|σ[/tpl]-finite, then [tpl]mvar|X[/tpl] can be written as the union of a sequence [tpl]math|{Bn}n[/tpl] of disjoint sets in [tpl]math|Σ[/tpl], each of which has finite measure under both [tpl]mvar|μ[/tpl] and [tpl]mvar|ν[/tpl]. For each [tpl]mvar|n[/tpl], there is a [tpl]math|Σ[/tpl]-measurable function [tpl]math| fn  : Bn → [0, ∞)[/tpl] such that
+for each [tpl]math|Σ[/tpl]-measurable subset [tpl]mvar|A[/tpl] of [tpl]math|Bn[/tpl]. The union [tpl]math| f [/tpl] of those functions is then the required function.
+As for the uniqueness, since each of the [tpl]math| fn [/tpl] is [tpl]mvar|μ[/tpl]-almost everywhere unique, then so is [tpl]math| f [/tpl].
+
+===For signed and complex measures===
+
+If [tpl]mvar|ν[/tpl] is a [tpl]mvar|σ[/tpl]-finite signed measure, then it can be Hahn–Jordan decomposed as [tpl]math|ν [tpl]=[/tpl] ν+ − ν−[/tpl] where one of the measures is finite. Applying the previous result to those two measures, one obtains two functions, [tpl]math|g, h : X → [0, ∞)[/tpl], satisfying the Radon–Nikodym theorem for [tpl]math|ν+[/tpl] and [tpl]math|ν−[/tpl] respectively, at least one of which is [tpl]mvar|μ[/tpl]-integrable (i.e., its integral with respect to [tpl]mvar|μ[/tpl] is finite). It is clear then that [tpl]math| f [tpl]=[/tpl] g − h[/tpl] satisfies the required properties, including uniqueness, since both [tpl]mvar|g[/tpl] and [tpl]mvar|h[/tpl] are unique up to [tpl]mvar|μ[/tpl]-almost everywhere equality.
+If [tpl]mvar|ν[/tpl] is a complex measure, it can be decomposed as [tpl]math|ν [tpl]=[/tpl] ν1 + iν2[/tpl], where both [tpl]math|ν1[/tpl] and [tpl]math|ν2[/tpl] are finite-valued signed measures. Applying the above argument, one obtains two functions, [tpl]math|g, h : X → [0, ∞)[/tpl], satisfying the required properties for [tpl]math|ν1[/tpl] and [tpl]math|ν2[/tpl], respectively. Clearly, [tpl]math| f  [tpl]=[/tpl] g + ih[/tpl] is the required function.
+
+==See also==
+
+==Notes==
+
+==References==
+
+

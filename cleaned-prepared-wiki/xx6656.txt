@@ -1,0 +1,98 @@
+[[Linear map]]
+
+CATEGORIES: Abstract algebra, Functions and mappings, Linear algebra, Transformation (function)
+
+In mathematics, a linear map (also called a linear mapping, linear transformation or, in some contexts, linear function) is a mapping . Sometimes the definition of a linear function coincides with that of a linear map, while in analytic geometry it does not.
+A linear map always maps linear subspaces to linear subspaces (possibly of a lower dimension); for instance it maps a plane through the origin to a plane, straight line or point.
+In the language of abstract algebra, a linear map is a homomorphism of modules.  In the language of category theory it is a morphism in the category of modules over a given ring.
+
+Definition and first consequences
+
+Let V and W be vector spaces over the same field K. A function f: V → W is said to be a linear map if for any two vectors x and y in V and any scalar α in K, the following two conditions are satisfied:
+This is equivalent to requiring the same for any linear combination of vectors, i.e. that for any vectors x1, ..., xm ∈ V and scalars a1, ..., am ∈ K, the following equality holds:
+Denoting the zero elements of the vector spaces V and W by 0V and 0W respectively, it follows that f(0V) = 0W because letting α = 0 in the equation for homogeneity of degree 1,
+Occasionally, V and W can be considered to be vector spaces over different fields.  It is then necessary to specify which of these ground fields is being used in the definition of "linear". If V and W are considered as spaces over the field K as above, we talk about K-linear maps. For example, the conjugation of complex numbers is an R-linear map C → C, but it is not C-linear.
+A linear map from V to K (with K viewed as a vector space over itself) is called a linear functional.
+These statements generalize to any left-module RM over a ring R without modification.
+
+Examples
+
+Matrices
+
+If V and W are finite-dimensional vector spaces and a basis is defined for each vector space, then every linear map from V to W can be represented by a matrix. This is useful because it allows concrete calculations. Matrices yield examples of linear maps: if A is a real m × n matrix, then 
+f(x) = Ax describes a linear map Rn → Rm (see Euclidean space).
+Let {v1, ..., vn} be a basis for V.  Then every vector v in V is uniquely determined by the coefficients c1, ..., cn in the field R:
+If f : V → W is a linear map,
+which implies that the function f is entirely determined by the vectors f(v1), ..., f(vn). Now let {w1, ..., wm} be a basis for W.  Then we can represent each vector f(vj) as
+Thus, the function f is entirely determined by the values of aij. If we put these values into an m × n matrix M, then we can conveniently use it to compute the vector output of f for any vector in V.  To get M, every column j of M is a vector whose coordinates are
+corresponding to f(vj) as defined above. To define it more clearly, for some column j that corresponds to the mapping f(vj),
+where M is the matrix of f. The symbol * denotes that there are other columns which together with column j make up a total of n columns of M. In other words, every column j = 1,...,n has a corresponding mapping f(vj) whose coefficients a1j,...,amj are the elements of column j, and vj is a basis vector of the vector space V. It can be shown that M has full column rank. A single linear map may be represented by many matrices. This is because the values of the elements of a matrix depend on the bases chosen.
+
+Examples of linear transformation matrices
+
+In two-dimensional space R2 linear maps are described by 2 × 2 real matrices. These are some examples:
+
+Forming new linear maps from given ones
+
+The composition of linear maps is linear: if . It follows from this that the class of all vector spaces over a given field K, together with K-linear maps as morphisms, forms a category.
+The inverse of a linear map, when defined, is again a linear map.
+If .
+If , is also linear.
+Thus the set , this vector space (denoted End(V)) is an associative algebra under composition of maps, since the composition of two linear maps  is again a linear map, and the composition of maps is always associative.  This case is discussed in more detail below.
+Given again the finite-dimensional case, if bases have been chosen, then the composition of linear maps corresponds to the matrix multiplication, the addition of linear maps corresponds to the matrix addition, and the multiplication of linear maps with scalars corresponds to the multiplication of matrices with scalars.
+
+Endomorphisms and automorphisms
+
+A linear transformation f: V → V is an endomorphism of V; the set of all such endomorphisms End(V)  together with addition, composition and scalar multiplication as defined above forms an associative algebra with identity element over the field K (and in particular a ring). The multiplicative identity element of this algebra is the identity map id: V → V.
+An endomorphism of V that is also an isomorphism is called an automorphism of V. The composition of two automorphisms is again an automorphism, and the set of all automorphisms of V forms a group, the automorphism group of V which is denoted by Aut(V) or GL(V). Since the automorphisms are precisely those endomorphisms which possess inverses under composition, Aut(V) is the group of units in the ring End(V).
+If V has finite dimension n, then End(V) is isomorphic to the associative algebra of all n × n matrices with entries in K. The automorphism group of V is isomorphic to the  general linear group GL(n, K) of all n × n invertible matrices with entries in K.
+
+Kernel, image and the rank–nullity theorem
+
+If f : V → W is linear, we define the kernel and the image or range of f by
+ker(f) is a subspace of V and im(f) is a subspace of W.  The following dimension formula is known as the rank–nullity theorem:
+The number dim(im(f)) is also called the rank of f and written as rank(f), or sometimes, ρ(f); the number dim(ker(f)) is called the nullity of f and written as null(f) or ν(f). If V and W are finite-dimensional, bases have been chosen and f is represented by the matrix A, then the rank and nullity of f are equal to the rank and nullity of the matrix A, respectively.
+
+Cokernel
+
+A subtler invariant of a linear transformation is the cokernel, which is defined as
+This is the dual notion to the kernel: just as the kernel is a subspace of the domain, the co-kernel is a quotient space of the target.
+Formally, one has the exact sequence
+These can be interpreted thus: given a linear equation f(v) = w to solve,
+The dimension of the co-kernel and the dimension of the image (the rank) add up to the dimension of the target space. For finite dimensions, this means that the dimension of the quotient space W/f(V) is the dimension of the target space minus the dimension of the image.
+
+Index
+
+For a linear operator with finite-dimensional kernel and co-kernel, one may define  index as:
+namely the degrees of freedom minus the number of constraints.
+For a transformation between finite-dimensional vector spaces, this is just the difference dim(V) − dim(W), by rank–nullity. This gives an indication of how many solutions or how many constraints one has: if mapping from a larger space to a smaller one, the map may be onto, and thus will have degrees of freedom even without constraints. Conversely, if mapping from a smaller space to a larger one, the map cannot be onto, and thus one will have constraints even without degrees of freedom.
+The index comes of its own in infinite dimensions: it is how homology.
+
+Algebraic classifications of linear transformations
+
+No classification of linear maps could hope to be exhaustive. The following incomplete list enumerates some important classifications that do not require any additional structure on the vector space.
+Let V and W denote vector spaces over a field, F. Let T: V → W be a linear map.
+
+Change of basis
+
+Given a linear map whose matrix is A, in the basis B of the space it transforms vectors coordinates u as v = Au. As vectors change with the inverse of B, its inverse transformation is v  = Bv'.
+Substituting this in the first expression
+hence
+Therefore the matrix in the new basis is A′ = B−1AB, being B the matrix of the given basis.
+Therefore linear maps are said to be 1-co 1-contra -variant objects, or type (1, 1) tensors.
+
+Continuity
+
+A linear transformation between topological vector spaces, for example normed spaces, may be continuous.  If its domain and codomain are the same, it will then be a continuous linear operator.  A linear operator on a normed linear space is continuous if and only if it is bounded, for example, when the domain is finite-dimensional.  An infinite-dimensional domain may have discontinuous linear operators.  
+An example of an unbounded, hence discontinuous, linear transformation is differentiation on the space of smooth functions equipped with the supremum norm (a function with small values can have a derivative with large values, while the derivative of 0 is 0).  For a specific example, sin(nx)/n converges to 0, but its derivative cos(nx) does not, so differentiation is not continuous at 0 (and by a variation of this argument, it is not continuous anywhere).
+
+Applications
+
+A specific application of linear maps is for geometric transformations, such as those performed in computer graphics, where the translation, rotation and scaling of 2D or 3D objects is performed by the use of a transformation matrix. Linear mappings also are used as a mechanism for describing change: for example in calculus correspond to derivatives; or in relativity, used as a device to keep track of the local transformations of reference frames.  
+Another application of these transformations is in compiler optimizations of nested-loop code, and in parallelizing compiler techniques.
+
+
+
+
+
+

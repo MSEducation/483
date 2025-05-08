@@ -1,0 +1,101 @@
+[[Use case]]
+
+CATEGORIES: Software project management, Software requirements, Unified Modeling Language, Systems Modeling Language, 1986 establishments in Sweden, 1986 in computer science, Swedish inventions, Agile software development
+
+In software and systems engineering, a use case is a list of steps, typically defining interactions between a role (known in Unified Modeling Language (UML) as an "actor") and a system, to achieve a goal. The actor can be a human or an external system.
+In systems engineering, use cases are used at a higher level than within software engineering, often representing missions or stakeholder goals. The detailed requirements may then be captured in Systems Modeling Language (SysML) or as contractual statements.
+As an important requirement technique, use cases have been widely used in modern software engineering over the last two decades. Use case driven development is a key characteristic of process models and frameworks like Unified Process (UP), Rational Unified Process (RUP), Oracle Unified Method (OUM), etc. With its iterative and evolutionary nature, use case is also a good fit for agile development.
+
+History
+
+In 1986 Ivar Jacobson first formulated textual, structural, and visual modeling techniques for specifying use cases. In 1992 his co-authored bookJacobson et al, 1992. helped to popularize the technique for capturing functional requirements, especially in software development. Originally he used the terms usage scenarios and usage case – the latter being a direct translation of his Swedish term användningsfall – but found that neither of these terms sounded natural in English, and eventually he settled on use case. Since then, others have contributed to improving this technique, notably including Alistair Cockburn, Larry Constantine, Dean Leffingwell, Kurt Bittner and Gunnar Overgaard.
+In 2011, Ivar Jacobson published an update to use cases called Use Case 2.0, the intention being to incorporate many of his practical experiences of applying use cases since its original inception.
+
+Templates
+
+Martin Fowler
+
+Martin Fowler states "There is no standard way to write the content of a use case, and different formats work well in different cases."Fowler, 2004.
+
+Alistair Cockburn
+
+Alistair Cockburn describes a more detailed structure for a use case, but permits it to be simplified when less detail is needed. His "fully dressed" use case structure is:Cockburn, 2001
+
+=Fully dressed=
+
+Cockburn's fully dressed use case template lists the following fields:Cockburn, 2001. Page 120.
+In addition, Cockburn suggests using two devices to indicate the nature of each use case: icons for design scope and goal level.
+Cockburn's approach has influenced other authors; for example, Alexander and Beus-Dukic generalize Cockburn's "Fully dressed use case" template from software to systems of all kinds, with the following fields differing from Cockburn:Alexander and Beus-Dukic, 2009. Page 121
+
+=Casual=
+
+Cockburn recognizes that projects may not always need detailed "fully dressed" use cases. He describes a Casual use case with the fields:
+
+=Design scopes=
+
+Cockburn suggests annotating each use case with a symbol to show the "Design Scope", which may be black-box (internal detail is hidden) or white-box (internal detail is shown). Five symbols are available:Cockburn, 2001. Inside front cover. Icons "Design Scope".
+Other authors sometimes call use cases at Organization level "Business use cases". Scenarios in Requirements Discovery. Chapter 3 in Alexander and Maiden, 2004. Pages 39-59.
+
+=Goal levels=
+
+Cockburn suggests annotating each use case with a symbol to show the "Goal Level";Cockburn, 2001. Inside front cover. Icons "Goal Level". the preferred level is "User-goal" (or colloquially "sea level").
+Sometimes in text writing, a use-case name followed by an alternative text symbol (!, +, -, etc.) is a more concise and convenient way to denote levels, e.g. place an order!, login-.
+
+Actors
+
+A use case defines the interactions between external actors and the system under consideration to accomplish a goal. Actors must be able to make decisions, but need not be human: "An actor might be a person, a company or organization, a computer program, or a computer system — hardware, software, or both."Cockburn, 2001. Page 53. Actors are always stakeholders, but not all stakeholders are actors, since they "never interact directly with the system, even though they have the right to care how the system behaves." For example, "the owners of the system, the company's board of directors, and regulatory bodies such as the Internal Revenue Service and the Department of Insurance" could all be stakeholders but are unlikely to be actors.
+Similarly, a person using a system may be represented as different actors because he is playing different roles. For example, user "Joe" could be playing the role of a Customer when using an Automated Teller Machine to withdraw cash from his own account, or playing the role of a Bank Teller when using the system to restock the cash drawer on behalf of the bank.
+Actors are often working on behalf of someone else. Cockburn writes that "These days I write 'sales rep for the customer' or 'clerk for the marketing department' to capture that the user of the system is acting for someone else." This tells the project that the "user interface and security clearances" should be designed for the sales rep and clerk, but that the customer and marketing department are the roles concerned about the results. Page 55.
+A stakeholder may play both an active and an inactive role: for example, a Consumer is both a "mass-market purchaser" (not interacting with the system) and a User (an actor, actively interacting with the purchased product). Page 39. In turn, a User is both a "normal operator" (an actor using the system for its intended purpose) and a "functional beneficiary" (a stakeholder who benefits from the use of the system). For example, when user "Joe" withdraws cash from his account, he is operating the Automated Teller Machine and obtaining a result on his own behalf.
+Cockburn advises to look for actors among the stakeholders of a system, the primary and supporting (secondary) actors of a use case, the system under design (SuD) itself, and finally among the "internal actors", namely the components of the system under design.
+
+Visual Modeling
+
+In the Unified Modeling Language, the relationships between all (or a set of) the use cases and actors are represented in a Use Case Diagram or diagrams, originally based upon Ivar Jacobson's Objectory notation. SysML, a UML profile, uses the same notation at the system block level.
+Besides Use Case Diagram, behavioral UML diagrams like Activity diagram, Sequence diagram, Communication diagram and State machine diagram are often used to visualize a use case.
+
+Example
+
+Below is a sample use case written with a slightly-modified version of the Cockburn-style template. Note that there are no buttons, controls, forms, or any other UI elements and operations in the basic use case description, where only user goals, subgoals or intentions are expressed in every step of the basic flow or extensions. This practice makes the requirement specification clearer, and maximizes the flexibility of the design and implementations.
+Use Case: 
+Primary Actor:
+Scope: a Wiki system
+Level: ! (User goal or sea level)
+Brief: (equivalent to a user story or an epic)
+Stakeholders
+...
+Postconditions
+Preconditions:
+Triggers:
+Basic flow:
+Extensions:
+2-3.
+4a. Timeout:
+...
+
+Advantages
+
+Alistair Cockburn lists 5 reasons why he still writes use cases in agile development.
+
+Limitations
+
+Limitations of use cases include:
+
+Misconceptions
+
+ Product Backlog items are articulated in any way that is clear and sustainable. Contrary to popular misunderstanding, the Product Backlog does not contain "user stories"; it simply contains items. Those items can be expressed as user stories, use cases, or any other requirements approach that the group finds useful. But whatever the approach, most items should focus on delivering value to customers. 
+
+Tools
+
+Text editors and/or word processors with template support are often used to write use cases. For large and complex system requirements, dedicated use case tools are helpful.
+Most UML Tools support both the text writing and visual modeling of use cases.
+
+
+
+
+
+Further reading
+
+
+
+

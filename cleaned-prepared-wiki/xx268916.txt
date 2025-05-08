@@ -1,0 +1,107 @@
+[[Packet processing]]
+
+CATEGORIES: Computer networking, Packets (information technology), History of the Internet
+
+In digital communications networks, packet processing refers to the wide variety of algorithms that are applied to a packet of data or information as it moves through the various network elements of a communications network.
+There are two broad classes of packet processing algorithms that align with the standardized network subdivision of control plane and data plane. The algorithms are applied to either:
+Within any network enabled device (e.g. router, switch, network element or terminal such as a computer or smartphone) it is the packet processing subsystem that manages the traversal of the multi-layered network or protocol stack from the lower, physical and network layers all the way through to the application layer.
+
+History
+
+The history of packet processing is the history of the Internet and packet switching. Packet Processing milestones include:
+Historical references and timeline can be found in the External Resources section below.
+
+Communications models
+
+For networks to succeed it is necessary to have a unifying standard for which defines the architecture of networking systems. The fundamental requirement for such a standard is to provide a framework that enables the hardware and software manufacturers around the world to develop networking technologies that will work together and to harness their cumulative investment capabilities  to move the state of networking forward.
+In the 1970s, two organizations, the International Organization for StandardizationInternational Organization for Standardization (ISO) and the International Telegraph and Telephone Consultative CommitteeInternational Telecommunication Union) (CCITT, now called the International Telecommunication Union (ITU-T) each initiated projects with the goal of developing international networking standards. In 1983, these efforts were merged and in 1984 the standard, called The Basic Reference Model for Open Systems Interconnection,ISO/IEC 10731:1994. Information technology -- Open Systems Interconnection -- Basic Reference Model -- Conventions for the definition of OSI services was published by ISO and as standard X.200ITU-T X.200-199407, X.200 : Information technology - Open Systems Interconnection - Basic Reference Model: The basic model by the ITU-T.
+The OSI Model is a 7 layer modelTech-FAQ. The OSI Model – What It Is; Why It Matters; Why It Doesn't Matter describing how a network operating system works. A layered model has many benefitsComputer Networking Notes. Advantages of OSI 7 Layer Model including the ability to change one layer without impacting the others and as a model for understanding how a network OS works. As long as the interconnection between layers is maintained, vendors can enhance the implementation of an individual layer without impact on other layers.
+In parallel with the development of the OSI model, a research network was being implemented by the United States Defense Advanced Research Projects AgencyDARPA - Defense Advanced Research Projects Agency (DARPA). The internetworking protocol developed to support the network, called ARPAnet,Living Internet. ARPANET -- The First Internet was called TCP or Transmission Control Program. As research and development progressed and the size of the network grew, it was determined that the internetworking design that was being used was becoming unwieldy and it did not exactly follow the layered approach of the OSI Model.  This led to the splitting of the original TCP and the creation of the TCP/IP architectureW3 Schools, TCP/IP Tutorial - TCP now standing for Transmission Control Protocol and IP standing for Internet Protocol.
+
+Advent of packet processing
+
+Packet networksSheldon, Tom. Packets and Packet Processing Networks. Linktionary, 2001.  came about as a result of the need in the early 1960s to make communications networks more reliable. It can be viewed as the implementation of the layered model using a packet structure.
+Early commercial networks were composed of dedicated, analog circuits used for voice communications. The concept of packet switching was introduced to create a communications network that would continue to function in spite of equipment failures throughout the network. In this paradigm shift, networks are viewed as collections of systems that transmit data in small packets that work their way from origin to destination by any number of routes. Initial packet processing functions supported the routing of packets through the network, transmission error detection and correction and other network management functions.
+Packet switching with its supporting packet processing functions has several practical benefits over traditional circuit-switched networks:Copeland, Lee. QuickStudy: Packet-Switched vs. Circuit-Switched Networks. Computerworld, March 2000.
+
+Packet structure
+
+A network packet is the fundamental building block for packet-switched networks. and Davie, B. Computer Networks (5th Edition): A Systems Approach. Morgon Kaufmann, March 2011. When an item such as a file, e-mail message, voice or video stream is transmitted through the network, it is broken into chunks called packets that can be more efficiently moved through the network than one large block of data. Numerous standardsRFC Sourcebook. IP, Internet Protocol. cover the structure of packets, but typically packets are composed of three elements:
+In a packet-switched network, the sending host computer packetizes the original item and each packet is routed through the network to its destination. Some networks used fixed length packets, typically 1024 bits, while others use variable length packets and include the packet length in the header.
+Individual packets may take different routes to the destination and arrive at the destination out of order. The destination computer verifies the correctness of the data in each packet (using information in the trailer), reassembles the original item using the packet number information in the header, and presents the item to the receiving application or user.
+This basic example includes the three most fundamental packet processing functions, packetization, routing, and assembly. Packet processing functions range from the simple to highly complex. As an example, the routing function is actually a multi-step processStreenstrup, M. Routing in Communications Networks. Prentice Hall, April 1995. involving various optimization algorithms and table lookups. A basic routing function on the Internet looks something like:
+More advanced routing functions include network load balancingAnderson, P. and James, L. Performance soars, features vary - Review: Load Balancers. NetworkWorldFusion, June 1999. and fastest route algorithms. Routing in Packet-Switched Networks Using Path-Finding Algorithms. UC Santa Cruz, 1996. These examples illustrate the range of packet processing algorithms possible and how they can introduce significant delaysU. of Maryland. Introduction, Rate and Latency. 2009 into the transmission of an item. Network equipment designers frequently use a combination of hardware and software accelerators to minimize the latency in the network.
+
+Network equipment architecture
+
+IP-based equipment can be partitioned into three basic elements: data plane, control plane and management plane. What are Planes?. February 2010.
+
+Data plane
+
+The data plane is a subsystem of a network node that receives and sends packets from an interface, processes them as required by the applicable protocol, and delivers, drops, or forwards them as appropriate.
+
+Control plane
+
+The control plane maintains information that can be used to change data used by the data plane. Maintaining this information requires handling complex signaling protocols. Implementing these protocols in the data plane would lead to poor forwarding performance. A common way to manage these protocols is to let the data plane detect incoming signaling packets and locally forward them to the control plane. The control plane signaling protocols can update the data plane information and inject outgoing signaling packets into the data plane. This architecture works because signaling traffic is a very small part of the global traffic.
+
+Management plane
+
+The management plane provides an administrative interface into the overall system. It contains processes that support operational administration, management or configuration/provisioning actions such as:
+More sophisticated solutions based on XML (eXtensible Markup Language) can also be included.
+
+Examples
+
+The list of packet processing applicationsVin, H. Packet Processing Applications: An Overview. Univ. of Texas, Fall 2003. is usually divided into two categories. The following are a few examples selected to illustrate the variety in use today.
+
+Control applications
+
+Data applications
+
+Packet processing architectures
+
+Packet switchingElhanany, I. and Hamdi, M. High Performance Packet Switching Architectures. Springer, November 2011. also introduces some architectural compromises.  Performing packet processing functions in the transmission of information introduces delays that may be detrimental to the application being performed. For example, in voice and video applications, the necessary conversion from analog-to-digital and back again at the destination along with delays introduced by the network can cause noticeable gaps that are disruptive to the users. Latency is a measure of the time delay experienced by a complex system.
+Multiple architectural approaches to packet processing have been developedSelissen, M. Packet Processing Needs Balanced Between Architecture, Network. EE Times, Aug 2002. to address the performance and functionality requirements of a specific network and to address the latency issue.
+
+Single threaded architecture (standard operating system)
+
+A standard networking stack uses services provided by the Operating System (OS) running on a single processor (single threaded). While single threaded architectures are the simplest to implement, they are subject to overheads associated with the performance of OS functions such as preemptions, thread management, timers and locking. These OS processing overheads are imposed on each packet passing through the system, resulting in a throughput penalty.
+
+Multi-threaded architecture (multi-processing operating system)
+
+Performance improvements can be made to an OS networking stack by adapting the protocol stack processing software to support multiple processors (multi-threaded), either through the use of Symmetrical Multiprocessing (SMP) platforms or multicore processor architecture. Performance increases are realized for a small number of processors,Foong, A., Fung, J. and Newell, D. Improved Linux SMP Scaling: User-directed Processor Affinity. Intel Software Network, October 2008. but fails to scale linearly over larger numbers of processors (or cores) and a processor with, for example, eight cores may not process packets significantly faster than one with two cores.
+
+Fast path architecture (operating system by-pass)
+
+In a fast path implementation, the data plane is split into two layers. The lower layer, typically called the fast path, processes the majority of incoming packets outside the OS environment and without incurring any of the OS overheads that degrade overall performance. Only those packets that require complex processing are forwarded to the OS networking stack (the upper layer of the data plane), which performs the necessary management, signaling and control functions. When complex algorithms such as routing or security are required, the OS networking stack forwards the packet to dedicated software components in the control plane.
+A multicore processor can provide additional performance improvement to a fast path implementation. 6WIND Provides 10x Acceleration of Packet Processing Functions on New multicore Intel® Platforms. March, 2010. In order to maximize the overall system throughput, multiple cores can be dedicated to running the fast path, while only one core is required to run the Operating System, the OS networking stack and the application's control plane.
+The only restriction when configuring the platform is that, since the cores running the fast path are running outside the OS, they must be dedicated exclusively to the fast path and not shared with other software. The system can also be reconfigured dynamically as traffic patterns change. Splitting the data plane into two layers also adds complexity as the two layers must have the same information to ensure system consistency.
+
+Packet processing technologies
+
+In order to create specialized packet processing platforms, a variety of technologies have been developed and deployed. These technologies, which span the breadth of hardware and software, have all been designed with the aim of maximizing speed and throughput while minimizing latency.
+
+Network processors
+
+A network processor unit (NPU) is similar in many respects to general purpose processors (GPP) that power most computers but with its internal architecture and functions tailored to network-centric operations. NPUs commonly have network-specific functions such as address lookup, pattern matching and queue management built into their microcode. Higher level packet processing operations such as security or intrusion detection are often built into NPU architectures. Advanced Algorithmic Knowledge-based Processors. Network processor examples would include:
+
+Multicore processors
+
+A multicore processor is a single semiconductor package that has 2 or more cores, each representing an individual processing unit, capable of executing code in parallel. General purpose CPUs such as the Intel XeonIntel. Packet Processing with  Intel® multicore Processors. 2008. now support up to 8 cores. Some multicore processors integrate dedicated packet processing capabilities to provide a complete SoC (System on Chip). They generally integrate Ethernet interfaces, crypto-engines, pattern matching engines, hardware queues for QoS and sometimes more sophisticated functions using micro-cores. All these hardware features are able to offload the software packet processing. Recent examples of these specialized multicore packages, such as the Cavium OCTEON II, can support from 2 up to 32 cores.
+
+Hardware accelerators
+
+For clearly definable and repetitive actions, creating a dedicated accelerator built directly into a semiconductor hardware solution will speed up operations when compared to software running on a general purpose processor. Architecture Comparison For High Performance WAN Optimization Systems. Infineta, Cardinal Directions, March 2011. Initial implementations used FPGAs (field-programmable gate array) or ASICs (Application-specific Integrated Circuit), but now specific functions such as encryption and compression are built into both GPPs and NPUs as internal hardware accelerators. Current multicore processor examples with network-specific hardware accelerators include the Cavium CN63xx with acceleration for security, TCP/IP, QOS and HFA pattern matchingCavium. OCTEON II CN63XX multicore MIPS64 Internet Application Processors and the Netlogic Microsystems XFS processor family with networking and security acceleration engines. multicore Processor Solutions
+
+Deep packet inspection
+
+Being able to make decisions based on the content of individual packets enables a wide variety of new applications such as Policy Charging and Rules Functions (PCRF) and Quality of Service. Packet processing systems separate out specific traffic types through the use of Deep Packet Inspection (DPI)dpacket. technologies.  DPI technologies utilize pattern matching algorithms to look inside the data payload to identify the contents of each and every packet flowing through a network device. Successful pattern matches are reported to the controlling application for any appropriate further action to be taken.
+
+Packet processing software
+
+Operating system software will contain certain standard network stacks that will operate in both single and multicore environments. This type of software provides a suite of networking protocols that can be distributed across multiple blades, processors or cores and scale appropriately.
+
+
+
+
+
+

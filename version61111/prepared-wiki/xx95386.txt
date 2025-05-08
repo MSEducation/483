@@ -1,0 +1,45 @@
+[[Cp (Unix)]]
+
+CATEGORIES: Standard Unix programs, Unix SUS2008 utilities, File copy utility
+
+cp is a UNIX command for copying files and directories. The command has three principal modes of operation, expressed by the types of arguments presented to the program for copying a file to another file, one or more files to a directory, or for copying entire directories to another directory.
+The utility further accepts various command line option flags to detail the operations performed. The two major specifications are POSIX cp and GNU cp. GNU cp has many additional options over the POSIX version.http://www.gnu.org/software/coreutils/manual/html_node/cp-invocation.html#cp-invocation
+
+==Operating modes==
+
+Cp has three principal modes of operation. These modes are inferred from the type and count of arguments presented to the program upon invocation.
+
+==Usage==
+
+Copying a file to another file:
+ cp [-fHip][--] sourcefile targetfile
+Copying file(s) to a directory
+ cp [-fHip] [--] sourcefile... targetdirectory
+Copying a directory to a directory (-r or -R must be used)
+ cp -r|-R [-fHip] [--]  sourcedirectory... targetdirectory
+
+==Option flags==
+
+==Examples==
+
+Creating a copy of a file in the current directory:
+ cp prog.c prog.bak
+This copies prog.c to prog.bak. If the prog.bak file does not already exist, the cp command creates it. If it does exist, the cp command replaces its contents with the contents of the prog.c file.
+Copy two files in the current directory into another directory:
+ cp jones smith /home/nick/clients
+This copies the files jones to /home/nick/clients/jones and smith to /home/nick/clients/smith.
+Copy a file to a new file and preserve the modification date, time, and access control list associated with the source file:
+ cp -p smith smith.jr
+This copies the smith file to the smith.jr file. Instead of creating the file with the current date and time stamp, the system gives the smith.jr file the same date and time as the smith file. The smith.jr file also inherits the smith file's access control protection.
+Copy a directory, including all its files and subdirectories, to another directory:
+ cp -R /home/nick/clients /home/nick/customers
+This copies the directory clients, including all its files, subdirectories, and the files in those subdirectories, to the directory customers/clients. Some Unix systems behave differently in this mode, depending on the termination of directory paths. Using cp -R /home/nick/clients/ /home/nick/customers on a GNU system it behaves as expected; however, on a BSD system, it copies all the contents of the "clients" directory, instead of the directory clients itself. The same happens in both GNU and BSD systems if the path of the source directory ends in . or .. (with or without trailing slash). 
+The copying of a file to an existing file is performed by opening the existing file in update mode, thereby preserving the files inode, which requires write access and results in the target file retaining the permissions it had originally.
+
+==Related Unix commands==
+
+==See also==
+
+==References==
+
+

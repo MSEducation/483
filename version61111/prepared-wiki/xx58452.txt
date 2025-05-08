@@ -1,0 +1,16 @@
+[[ILBM]]
+
+CATEGORIES: Graphics file formats, AmigaOS, MorphOS
+
+ILBM is a subtype of the Interchange File Format (IFF) used for storing picture data. ILBM stands for InterLeaved BitMap which refers to the way the pictures are stored. The image data is stored as a varying number of bitplanes, each storing one bit of data for each pixel in the image. The format supports horizontal and vertical RLE (Run Length Encoding) compression.
+Besides supporting TrueColor (24-bit color) with or without an 8-bit alpha channel, the format is capable of closely matching the abilities and expectations of the original Amiga chipsets, of which three major revisions existed.
+On the OCS/ECS chipsets up to 6 bitplanes are supported, which would normally limit the number of colors to 64. However only 32 palette registers are available. Usage of one to five bitplanes is straightforward, according to binary progression. The first bitplane provides 2 colors, the second one doubles that to 4 colors, the third again doubles that to 8 colors, the fourth provides 16, and five bitplanes allows for 32 colors. With six bitplanes there are two display modes. Extra Half-Bright mode provides 64 colors, the last 32 being half as bright as the first. The Hold And Modify (or HAM) mode which while only making use of 16 palette colors, allowed the display of 4096 colors with some restrictions.
+On the AGA chipset the Amiga is able to use 8 bitplanes and have 256 color registers. This means the addition of straight 64, 128, and 256 color modes. Additionally an upgraded HAM8 mode is made available, using 64 palette colors, and offering a maximum of 262,144 displayable colors.
+Because ILBM is based on the Interchange File Format, the file consists of chunks. Each chunk consists of a 4-byte type, a 4-byte length field and a structure dependent on the type of the chunk. This makes it possible for programs to extend the format. Unknown chunks can be skipped because the length is known.
+The following chunks are defined for the ILBM type:
+Of course, an ILBM file can have any of the standard IFF chunks for description of author, version, copyright etc. Files created with DPaint also have:
+A variation on the ILBM format exists called ANIM, which supports animation. This format has extra chunk types defined:
+
+==References==
+
+

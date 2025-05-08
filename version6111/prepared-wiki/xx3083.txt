@@ -1,0 +1,88 @@
+[[Euclidean space]]
+
+CATEGORIES: Euclidean geometry, Linear algebra, Topological spaces, Norms (mathematics)
+
+In mathematics, particularly in geometry, the concept of a Euclidean space encompasses Euclidean plane and the three-dimensional space of Euclidean geometry as spaces of dimensions 2 and 3 respectively. It is named after the Ancient Greek mathematician Euclid of Alexandria. The term “Euclidean” distinguishes these spaces from other types of spaces considered in modern geometry. Euclidean spaces also generalize to higher dimensions.
+Classical Greek geometry defined the Euclidean plane and Euclidean three-dimensional space using certain postulates, while the other properties of these spaces were deduced as theorems. Geometric constructions are also used to define rational numbers. When algebra and mathematical analysis became developed enough, this relation reversed and now it is more common to define Euclidean space using Cartesian coordinates and the ideas of analytic geometry. It means that points of the space are specified with collections of real numbers, and geometric shapes are defined as equations and inequalities. This approach brings the tools of algebra and calculus to bear on questions of geometry, and has the advantage that it generalizes easily to Euclidean spaces of more than three dimensions.
+From the modern viewpoint, there is essentially only one Euclidean space of each dimension. With Cartesian coordinates it is modelled by the real coordinate space ([tpl]math|Rn[/tpl]) of the same dimension.   In dimension one this is the real line; in dimension two it is the Cartesian plane; and in higher dimensions it is a coordinate space with three or more real number coordinates. Mathematicians denote the [tpl]mvar|n[/tpl]-dimensional Euclidean space by [tpl]math|En[/tpl] if they wish to emphasize its Euclidean nature, but [tpl]math|Rn[/tpl] is used as well, since the latter is assumed to have the standard Euclidean structure and these two structures are not always distinguished. Euclidean spaces have finite dimension.[tpl]cite web|title=Euclidean space.|url=http://www.encyclopediaofmath.org/index.php/Euclidean_space|work=Encyclopedia of Mathematics|publisher=Springer|accessdate=1 May 2014|author=E.D. Solomentsev|date=7 February 2011[/tpl] 
+
+==Intuitive overview==
+
+One way to think of the Euclidean plane is as a set of points satisfying certain relationships, expressible in terms of distance and angle. For example, there are two fundamental operations (referred to as motions) on the plane. One is translation, which means a shifting of the plane so that every point is shifted in the same direction and by the same distance. The other is rotation about a fixed point in the plane, in which every point in the plane turns about that fixed point through the same angle. One of the basic tenets of Euclidean geometry is that two figures (usually considered as subsets) of the plane should be considered equivalent (congruent) if one can be transformed into the other by some sequence of translations, rotations and reflections (see below). 
+In order to make all of this mathematically [tpl]visible anchor|precise[/tpl], the theory must clearly define the notions of distance, angle, translation, and rotation for a mathematically described space. Even when used in physical theories, Euclidean space is an abstraction detached from actual physical locations, specific reference frames, measurement instruments, and so on. A purely mathematical definition of Euclidean space ignores also questions of units of length and other physical dimensions: the distance in a "mathematical" space is a number, not something expressed in inches or metres. The standard way to define such space, as carried out in the remainder of this article, is to define the Euclidean plane as a two-dimensional real vector space equipped with an inner product. The reason for working with arbitrary vector spaces instead of [tpl]math|Rn[/tpl] is that it is often preferable to work in a coordinate-free manner (that is, without choosing a preferred basis). For then:
+Once the Euclidean plane has been described in this language, it is actually a simple matter to extend its concept to arbitrary dimensions. For the most part, the vocabulary, formulae, and calculations are not made any more difficult by the presence of more dimensions. (However, rotations are more subtle in high dimensions, and visualizing high-dimensional spaces remains difficult, even for experienced mathematicians.)
+A Euclidean space is not technically a vector space but rather an affine space, on which a vector space acts by translations, or, conversely, a Euclidean vector is the difference (displacement) in an ordered pair of points, not a single point. Intuitively, the distinction says merely that there is no canonical choice of where the origin should go in the space, because it can be translated anywhere. When certain point is chosen, it can be declared the origin and subsequent calculations may ignore the difference between a point and its coordinate vector, as said above. See point–vector distinction for details.
+
+==Euclidean structure==
+
+These are distances between points and the angles between lines or vectors, which satisfy certain conditions (see below), which makes a set of points a Euclidean space. The natural way to obtain these quantities is by introducing and using the standard inner product (also known as the dot product) on [tpl]math|Rn[/tpl]. The inner product of any two real [tpl]mvar|n[/tpl]-vectors [tpl]math|x[/tpl] and [tpl]math|y[/tpl] is defined by
+where [tpl]mvar|xi[/tpl] and [tpl]mvar|yi[/tpl] are [tpl]mvar|i[/tpl]th coordinates of vectors [tpl]math|x[/tpl] and [tpl]math|y[/tpl] respectively.
+The result is always a real number.
+
+===Distance===
+
+The inner product of [tpl]math|x[/tpl] with itself is always non-negative. This product allows us to define the "length" of a vector [tpl]math|x[/tpl] through square root:
+This length function satisfies the required properties of a norm and is called the Euclidean norm on [tpl]math|Rn[/tpl].
+Finally, one can use the norm to define a metric (or distance function) on [tpl]math|Rn[/tpl] by
+This distance function is called the Euclidean metric. This formula expresses a special case of the Pythagorean theorem.
+This distance function (which makes a metric space) is sufficient to define all Euclidean geometry, including the dot product. Thus, a real coordinate space together with this Euclidean structure is called Euclidean space. Its vectors form an inner product space (in fact a Hilbert space), and a normed vector space.
+The metric space structure is the main reason behind the use of real numbers [tpl]math|R[/tpl], not some other ordered field, as the mathematical foundation of Euclidean (and many other) spaces. Euclidean space is a complete metric space, a property which is impossible to achieve operating over rational numbers, for example.
+
+===Angle===
+
+The (non-reflex) angle [tpl]mvar|θ[/tpl] ([tpl]math|0° ≤ θ ≤ 180°[/tpl]) between vectors [tpl]math|x[/tpl] and [tpl]math|y[/tpl] is then given by
+where [tpl]math|arccos[/tpl] is the arccosine function. It is useful only for [tpl]math|n > 1[/tpl],On the real line ([tpl]math|1=n = 1[/tpl]) any two non-zero vectors are either parallel or antiparallel depending on whether their signs match or oppose. There are no angles between 0 and 180°. and the case [tpl]math|1=n = 2[/tpl] is somewhat special. Namely, on an oriented Euclidean plane one can define an angle between two vectors as a number defined modulo 1 turn (usually denoted as either [tpl]math|2π[/tpl] or 360°), such that [tpl]math|1=∠y x = −∠x y[/tpl]. This oriented angle is equal either to the angle [tpl]mvar|θ[/tpl] from the formula above or to [tpl]math|−θ[/tpl]. If one non-zero vector is fixed (such as the first basis vector), then each non-zero vector is uniquely defined by its magnitude and angle.
+The angle does not change if vectors [tpl]math|x[/tpl] and [tpl]math|y[/tpl] are multiplied by positive numbers.
+Unlike the aforementioned situation with distance, the scale of angles is the same in pure mathematics, physics, and computing. It does not depend on the scale of distances: all distances may be multiplied to some fixed positive factor, while all angles preserve. Usually the angle is considered as a dimensionless quantity, but there are different units of measurement, such as radian (preferred in pure mathematics and theoretical physics) and degree ° (preferred in most applications).
+
+===Rotations and reflections===
+
+Symmetries of a Euclidean space are transformations which preserve the Euclidean metric (called isometries). Although aforementioned translations are most obvious of them, they have the same structure for any affine space and do not show a distinctive character of Euclidean geometry. Another family of symmetries leave one point fixed, which may be seen as the origin without loss of generality. All transformations, which preserves the origin and the Euclidean metric, are linear maps. Such transformations [tpl]mvar|Q[/tpl] must, for any [tpl]math|x[/tpl] and [tpl]math|y[/tpl], satisfy:
+Such transforms constitute a group called the orthogonal group [tpl]math|O(n)[/tpl]. Its elements [tpl]mvar|Q[/tpl] are exactly solutions of a matrix equation
+where [tpl]mvar|Q[/tpl]T is the transpose of [tpl]mvar|Q[/tpl] and [tpl]math|I[/tpl] is the identity matrix.
+But a Euclidean space is orientable.It is [tpl]math|Rn[/tpl] which is oriented because of the ordering of elements of the standard basis. Although an orientation is not an attribute of the Euclidean structure, there are only two possible orientations, and any linear automorphism either keeps orientation or reverses (swaps the two). Each of these transformations either preserves or reverses orientation depending on whether its determinant is +1 or −1 respectively. Only transformations which preserve orientation, which form the special orthogonal group [tpl]math|SO(n)[/tpl], are considered (proper) rotations. This group has, as a Lie group, the same dimension [tpl]math|n(n − 1) /2[/tpl] and is the identity component of [tpl]math|O(n)[/tpl].
+Polytope is a concept which generalizes polygons on a plane and polyhedra in 3-dimensional space (which are among the earliest studied geometrical objects). A simplex is a generalization of a line segment (1-simplex) and a triangle (2-simplex). A tetrahedron is a 3-simplex.
+The concept of a polytope belongs to affine geometry, which is more general than Euclidean. But Euclidean geometry distinguish regular polytopes. For example, affine geometry does not see the difference between an equilateral triangle and a right triangle, but in Euclidean space the former is regular and the latter is not.
+Root systems are special sets of Euclidean vectors. A root system is often identical to the set of vertices of a regular polytope.
+
+===Curves===
+
+===Balls, spheres, and hypersurfaces===
+
+==Topology==
+
+Since Euclidean space is a metric space, it is also a topological space with the natural topology induced by the metric. The metric topology on [tpl]math|En[/tpl] is called the Euclidean topology, and it is identical to the standard topology on [tpl]math|Rn[/tpl]. A set is open if and only if it contains an open ball around each of its points; in other words, open balls form a base of the topology. The topological dimension of the Euclidean [tpl]mvar|n[/tpl]-space equals [tpl]mvar|n[/tpl], which implies that spaces of different dimension are not homeomorphic. A finer result is the invariance of domain, which proves that any subset of [tpl]mvar|n[/tpl]-space, that is (with its subspace topology) homeomorphic to an open subset of [tpl]mvar|n[/tpl]-space, is itself open.
+
+==Applications==
+
+Aside of countless uses in fundamental mathematics, a Euclidean model of the physical space can be used to solve many practical problems with sufficient precision. Two usual approaches are a fixed, or stationary reference frame (i.e. the description of a motion of objects as their positions that change continuously with time), and [tpl]anchor|Galilean[/tpl]the use of Galilean space-time symmetry (such as in Newtonian mechanics). To both of them the modern Euclidean geometry provides a convenient formalism; for example, the space of Galilean velocities is itself a Euclidean space (see relative velocity for details).
+Topographical maps and technical drawings are planar Euclidean. An idea behind them is the scale invariance of Euclidean geometry, that permits to represent large objects in a small sheet of paper, or a screen.
+
+==Alternatives and generalizations==
+
+Although Euclidean spaces are not considered as the only possible setting for a geometry any more, they form the prototypes for other geometric objects. Ideas and terminology from Euclidean geometry (both traditional and analytic) are pervasive in modern mathematics, where other geometric objects share many similarities with Euclidean spaces, have a portion of their structure, or include Euclidean spaces as a partial case.
+
+===Curved spaces===
+
+A smooth manifold is a Hausdorff topological space that is locally diffeomorphic to Euclidean space. Diffeomorphism does not respect distance and angle, but if one additionally prescribes a smoothly varying inner product on the manifold's tangent spaces, then the result is what is called a Riemannian manifold. Put differently, a [tpl]visible anchor|Riemannian[/tpl] manifold is a space constructed by deforming and patching together Euclidean spaces. Such a space enjoys notions of distance and angle, but they behave in a curved, non-Euclidean manner. The simplest Riemannian manifold, consisting of [tpl]math|Rn[/tpl] with a constant inner product, is essentially identical to Euclidean [tpl]mvar|n[/tpl]-space itself. Less trivial examples are [tpl]mvar|n[/tpl]-sphere and hyperbolic spaces. Discovery of the latter in 19th century was branded as the non-Euclidean geometry.
+Also, the concept of a Riemannian manifold permits an expression of the Euclidean structure in any smooth coordinate system, via metric tensor. From this tensor one can compute the Riemann curvature tensor. Where the latter equals to zero, the metric structure is locally Euclidean (it means that at least some open set in the coordinate space is isometric to a piece of Euclidean space), no matter whether coordinates are affine or curvilinear.
+
+===Indefinite quadratic form===
+
+If one replaces the inner product of a Euclidean space with an indefinite quadratic form, the result is a pseudo-Euclidean space. Smooth manifolds built from such spaces are called pseudo-Riemannian manifolds. Perhaps their most famous application is the theory of relativity, where flat spacetime is a pseudo-Euclidean space called Minkowski space, where rotations correspond to motions of hyperbolic spaces mentioned above. Further generalization to curved spacetimes form pseudo-Riemannian manifolds, such as in general relativity.
+
+===Other number fields===
+
+Another line of generalization is to consider other number fields than one of real numbers. Over complex numbers, a Hilbert space can be seen as a generalization of Euclidean dot product structure, although the definition of the inner product becomes a sesquilinear form for compatibility with metric structure.
+
+===Infinite dimensions===
+
+==See also==
+
+==Footnotes==
+
+==References==
+
+==External links==
+
+

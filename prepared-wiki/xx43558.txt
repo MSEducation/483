@@ -1,0 +1,173 @@
+[[Calculus of variations]]
+
+CATEGORIES: Calculus of variations, Mathematical optimization
+
+Calculus of variations is a field of mathematical analysis that deals with maximizing or minimizing functionals, which are mappings from a set of functions to the real numbers. Functionals are often expressed as definite integrals involving  functions and their derivatives. The interest is in extremal functions that make the functional attain a maximum or minimum value – or stationary functions – those where the rate of change of the functional is zero.
+A simple example of such a problem is to find the curve of shortest length connecting two points. If there are no constraints, the solution is obviously a straight line between the points. However, if the curve is constrained to lie on a surface in space, then the solution is less obvious, and possibly many solutions may exist. Such solutions are known as geodesics. A related problem is posed by Fermat's principle: light follows the path of shortest optical length connecting two points, where the optical length depends upon the material of the medium. One corresponding concept in mechanics is the principle of least action.
+Many important problems involve functions of several variables. Solutions of boundary value problems for the Laplace equation satisfy the Dirichlet principle. Plateau's problem requires finding a surface of minimal area that spans a given contour in space: a solution can often be found by dipping a frame in a solution of soap suds. Although such experiments are relatively easy to perform, their mathematical interpretation is far from simple: there may be more than one locally minimizing surface, and they may have non-trivial topology.
+
+==History==
+
+The calculus of variations may be said to begin with the brachistochrone curve problem raised by Johann Bernoulli (1696).[tpl]cite book|last1=Gelfand|first1=I. M.|authorlink1=Israel Gelfand|last2=Fomin|first2=S. V.|authorlink2=Sergei Fomin|ref=harv|title=Calculus of variations|year=2000|publisher=Dover Publications|location=Mineola, New York|isbn=978-0486414485|page=3|url=http://store.doverpublications.com/0486414485.html|edition=Unabridged repr.|editor1-last=Silverman| editor1-first=Richard A.[/tpl] It immediately occupied the attention of Jakob Bernoulli and the Marquis de l'Hôpital, but Leonhard Euler first elaborated the subject. His contributions began in 1733, and his Elementa Calculi Variationum gave to the science its name. Lagrange contributed extensively to the theory, and Legendre (1786) laid down a method, not entirely satisfactory, for the discrimination of maxima and minima. Isaac Newton and Gottfried Leibniz also gave some early attention to the subject.[tpl]cite book |last = van Brunt |first = Bruce |title = The Calculus of Variations |publisher = Springer |year = 2004  |isbn = 0-387-40247-0[/tpl] To this discrimination Vincenzo Brunacci (1810), Carl Friedrich Gauss (1829), Siméon Poisson (1831), Mikhail Ostrogradsky (1834), and Carl Jacobi (1837) have been among the contributors. An important general work is that of Sarrus (1842) which was condensed and improved by Cauchy (1844). Other valuable treatises and memoirs have been written by Strauch (1849), Jellett (1850), Otto Hesse (1857), Alfred Clebsch (1858), and Carll (1885), but perhaps the most important work of the century is that of Weierstrass. His celebrated course on the theory is epoch-making, and it may be asserted that he was the first to place it on a firm and unquestionable foundation. The 20th and the 23rd Hilbert problem published in 1900 encouraged further development. In the 20th century David Hilbert, Emmy Noether, Leonida Tonelli, Henri Lebesgue and Jacques Hadamard among others made significant contributions. Marston Morse applied calculus of variations in what is now called Morse theory.[tpl]cite arXiv |last=Ferguson |first=James |authorlink=|eprint= arXiv:math/0402357 |title=  Brief Survey of the History of the Calculus of Variations and its Applications |year=2004 [/tpl] Lev Pontryagin, Ralph Rockafellar and F. H. Clarke developed new mathematical tools for the calculus of variations in optimal control theory. The Dynamic Programming of Richard Bellman is an alternative to  the calculus of variations.Dimitri P Bertsekas. Dynamic programming and optimal control. Athena Scientific, 2005.[tpl]cite journal |last=Bellman |first=Richard E. |title= Dynamic Programming and a new formalism in the calculus of variations |year=1954 |journal= Proc. Nat. Acad. Sci. | issue=40 | pages=231–235|url=http://www.ncbi.nlm.nih.gov/pmc/articles/PMC527981/pdf/pnas00731-0009.pdf[/tpl][tpl]cite news | first = Harold J. | last = Kushner | title = Richard E. Bellman Control Heritage Award  | year = 2004 | url = http://a2c2.org/awards/richard-e-bellman-control-heritage-award | work = American Automatic Control Council | accessdate = 2013-07-28 [/tpl] See 2004: Harold J. Kushner: regarding Dynamic Programming,  "The calculus of variations had related ideas (e.g., the work of Caratheodory, the Hamilton-Jacobi equation). This led to conflicts with the calculus of variations community."
+
+==Extrema==
+
+The calculus of variations is concerned with the maxima or minima of functionals, which are collectively called extrema. A functional depends on a function, somewhat analogous to the way  a function can depend on a numerical variable, and thus a functional has been described as a function of a function.  Functionals have extrema with respect to the elements [tpl]math|y[/tpl] of a given function space defined over a given domain. A functional [tpl]math|J [/tpl] is said to have an extremum at the function [tpl]math|f  [/tpl] if [tpl]math|ΔJ [tpl]=[/tpl] J   - J f[/tpl] has the same sign for all [tpl]math|y[/tpl] in an arbitrarily small neighborhood of  [tpl]math|f .[/tpl]{{#tag:ref|The neighborhood of [tpl]math|f[/tpl] is the part of the given function space where {{math| y  - f A more detailed definition of weak and strong extrema involves the concept of the norm of a function in a function space, which has a role that is similar to the length of a vector in a vector space. If [tpl]math|y[/tpl] is an element of the function space [tpl]math|C(a,b)[/tpl] of all continuous functions that are defined on a closed interval a,b, the norm [tpl]math|  ''y'' 0[/tpl] defined on [tpl]math|C(a,b)[/tpl] is the maximum absolute value of  [tpl]math|y (x)[/tpl] for [tpl]math|a ≤ x ≤ b[/tpl],[tpl]harv | Gelfand|Fomin| 2000 | p=6 [/tpl]
+Similarly, if  [tpl]math|y[/tpl] is an element of the function space [tpl]math|D1(a,b)[/tpl] of  all functions of [tpl]math|C(a,b)[/tpl] that have continuous first derivatives, the norm [tpl]math|  ''y'' 1[/tpl] defined on [tpl]math|D1(a,b)[/tpl] is the sum of the maximum absolute value of  [tpl]math|y (x)[/tpl] and the maximum absolute value of its first derivative [tpl]math|y ′(x)[/tpl], for [tpl]math|a ≤ x ≤ b[/tpl],
+A functional [tpl]math|J [/tpl] is said to have a weak extremum at the function [tpl]math|f[/tpl] if there exists some [tpl]math|δ > 0[/tpl] such that,  [tpl]math| J  - J f[/tpl] has the same sign for all functions [tpl]math|y ∈ D1(a,b)[/tpl] with [tpl]math|  y - f 1  0[/tpl] such that,  [tpl]math| J  - J f[/tpl] has the same sign for all functions [tpl]math|y ∈ C (a,b)[/tpl] with {{math|  y - f 0 Both strong and weak extrema are for  a space of continuous functions but weak extrema have the additional requirement that the first derivatives of the functions in the space be continuous.  A strong extremum  is also a weak extremum, but the converse may not hold.  Finding strong extrema is more difficult than finding weak extrema.[tpl]refn| group=Note| name=sufficient[/tpl] An example of a necessary condition that is used for finding weak extrema is the Euler–Lagrange equation.[tpl]harv | Gelfand|Fomin| 2000 | pp=14–15 [/tpl]
+
+==Euler–Lagrange equation==
+
+Under ideal conditions, the maxima and minima of a given function may be located by finding the points where its derivative vanishes (i.e., is equal to zero).  By analogy, solutions of smooth variational problems may be obtained by finding a function where the functional derivative is equal to zero.  This leads to solving the associated Euler–Lagrange equation.The following derivation of the Euler–Lagrange equation corresponds to the derivation on pp. 184–5 of: [tpl]cite book | authors = Courant, R., Hilbert, D. | title = Methods of Mathematical Physics | volume = Vol. I | edition = First English | publisher = Interscience Publishers, Inc | year = 1953 | location = New York | page =  | accessdate =  | isbn = 978-0471504474[/tpl]
+Consider the functional
+where
+If the functional [tpl]math|J[/tpl] attains a local minimum at  [tpl]math|f ,[/tpl]  and [tpl]math|η(x)[/tpl] is an arbitrary function that has at least one derivative and vanishes at the endpoints [tpl]math|x1[/tpl] and [tpl]math|x2 ,[/tpl] then for any number [tpl]math|ε[/tpl] close to 0,   
+The term [tpl]math|εη[/tpl] is called the variation of the function [tpl]math|f[/tpl] and is denoted by [tpl]math|δf .[/tpl][tpl]harv|Courant|Hilbert|1953|p=184[/tpl]
+Substituting  [tpl]math|f + εη[/tpl]  for [tpl]math|y[/tpl]  in the functional [tpl]math|J ,[/tpl] the result is a function of [tpl]math|''ε[/tpl],
+Since the functional [tpl]math|J[/tpl] has a minimum for [tpl]math|y [tpl]=[/tpl] f ,[/tpl] the function [tpl]math|Φ(ε)[/tpl] has a minimum at [tpl]math|ε [tpl]=[/tpl] 0[/tpl] and thus,The product [tpl]math|εΦ′(0)[/tpl] is called the first variation of the functional [tpl]math|J[/tpl] and is denoted by [tpl]math|δJ[/tpl].  Some references define the first variation differently by leaving out the [tpl]math|ε[/tpl] factor.    
+Taking the total derivative of [tpl]math|Ly, y ′ ,[/tpl] where [tpl]math|y [tpl]=[/tpl] f + ε η[/tpl] and [tpl]math|y ′ [tpl]=[/tpl] f ′ + ε η′[/tpl] are functions of [tpl]math|ε[/tpl] but [tpl]math|x[/tpl] is not, 
+and since  [tpl]math|dy /dε [tpl]=[/tpl] η[/tpl]  and  [tpl]math|dy ′/dε [tpl]=[/tpl] η' [/tpl],
+Therefore,
+where [tpl]math|Ly, y ′ → Lf, f ′[/tpl] when ε = 0 and we have used  integration by parts.  The last term vanishes because [tpl]math|η [tpl]=[/tpl] 0[/tpl] at [tpl]math|x1[/tpl] and [tpl]math|x2[/tpl] by definition.  Also, as previously mentioned the left side of the equation is zero so that 
+According to the fundamental lemma of calculus of variations, the part of the integrand in parentheses is zero, i.e. 
+which is called the Euler–Lagrange equation.  The left hand side of this equation is called the functional derivative of [tpl]math|Jf[/tpl] and is denoted [tpl]math|δJ/δf(x) .[/tpl]
+In general this gives a second-order ordinary differential equation which can be solved to obtain the extremal function [tpl]math| f(x) .[/tpl]  The Euler–Lagrange equation is a necessary, but not sufficient, condition for an extremum [tpl]math|Jf[/tpl].  Sufficient conditions for an extremum are discussed in the references.[tpl]refn| group=Note| name=sufficient| For sufficient conditions, see [tpl]harvnb|Gelfand|Fomin|2000[/tpl]. Chapter[tpl]nbsp[/tpl]5: "The Second Variation. Sufficient Conditions for a Weak Extremum". Sufficient conditions for a weak minimum are given by the theorem on p.[tpl]nbsp[/tpl]116. Chapter[tpl]nbsp[/tpl]6: "Fields. Sufficient Conditions for a Strong Extremum". Sufficient conditions for a strong minimum are given by the theorem on p.[tpl]nbsp[/tpl]148.[/tpl]
+
+===Example===
+
+In order to illustrate this process, consider the problem of finding the extremal function [tpl]math|y [tpl]=[/tpl] f (x) ,[/tpl] which is the shortest curve that connects two points [tpl]math|(x1, y1)[/tpl] and [tpl]math|(x2, y2) .[/tpl] The arc length of the curve is given by
+with 
+The Euler–Lagrange equation will now be used to find the extremal function [tpl]math|f (x)[/tpl] that minimizes the functional [tpl]math|A .[/tpl]
+with
+Since [tpl]math|f[/tpl] does not appear explicitly in [tpl]math|L ,[/tpl] the first term in the Euler–Lagrange equation vanishes for all [tpl]math|f (x) [/tpl]  and thus,
+Substituting for [tpl]math|L[/tpl] and taking the partial derivative,
+Taking the derivative [tpl]math|d/dx[/tpl] and simplifying gives, 
+and because [tpl]math|1+′(x'')2[/tpl] is positive, 
+which implies that the shortest curve that connects two points [tpl]math|(x1, y1)[/tpl] and [tpl]math|(x2, y2) [/tpl] is
+and we have thus found the extremal function [tpl]math|f(x)[/tpl] that minimizes the functional [tpl]math|A[/tpl] so that [tpl]math|A[/tpl] is a minimum. Note that [tpl]math|y [tpl]=[/tpl] f(x)[/tpl] is the equation for a straight line as expected.
+
+==Beltrami identity==
+
+In physics problems it frequently turns out that [tpl]math|∂L / ∂x [tpl]=[/tpl] 0[/tpl].  In that case, the Euler–Lagrange equation can be simplified to the Beltrami identity:Weisstein, Eric W. "Euler-Lagrange Differential Equation."  From MathWorld--A Wolfram Web Resource. See Eq. (5).
+where [tpl]math|C[/tpl] is a constant. The left hand side is the Legendre transformation of [tpl]math|L[/tpl] with respect to [tpl]math|f ′[/tpl].
+
+==du Bois Reymond's theorem==
+
+The discussion thus far has assumed that extremal functions possess two continuous derivatives, although the existence of the integral A requires only first derivatives of trial functions. The condition that the first variation vanish at an extremal may be regarded as a weak form of the Euler–Lagrange equation. The theorem of du Bois Reymond asserts that this weak form implies the strong form. If L has continuous first and second derivatives with respect to all of its arguments, and if
+
+==Lavrentiev phenomenon==
+
+Hilbert was the first to give good conditions for the Euler–Lagrange equations to give a stationary solution. Within a convex area and a positive thrice differentiable Lagrangian the solutions are composed of a countable collection of sections that either go along the boundary or satisfy the Euler–Lagrange equations in the interior.
+However Lavrentiev in 1926 showed that there are circumstances where there is no optimum solution but one can be approached arbitrarily closely by increasing numbers of sections. For instance the following:
+Here a zig zag path gives a better solution than any smooth path and increasing the number of sections improves the solution.
+
+==Functions of several variables==
+
+Variational problems that involve multiple integrals arise in numerous applications. For example, if φ(x,y) denotes the displacement of a membrane above the domain D in the x,y plane, then its potential energy is proportional to its surface area: 
+Plateau's problem consists of finding a function that minimizes the surface area while assuming prescribed values on the boundary of D; the  solutions are called minimal surfaces. The Euler–Lagrange equation for this problem is nonlinear:
+See Courant (1950) for details.
+
+===Dirichlet's principle===
+
+It is often sufficient to consider only small displacements of the membrane, whose energy difference from no displacement is approximated by
+Provided that u has two derivatives, we may apply the divergence theorem to obtain
+for all smooth functions v that vanish on the boundary of D. The proof for the case of one dimensional integrals may be adapted to this case to show that 
+The difficulty with this reasoning is the assumption that the minimizing function u must have two derivatives. Riemann argued that the existence of a smooth minimizing function was assured by the connection with the physical problem: membranes do indeed assume configurations with minimal potential energy. Riemann named this idea the Dirichlet principle in honor of his teacher Peter Gustav Lejeune Dirichlet. However Weierstrass gave an example of a variational problem with no solution: minimize
+W can be made arbitrarily small by choosing piecewise linear functions that 
+make a transition between -1 and 1 in a small neighborhood of the origin. However, there is no function that makes W=0. The resulting controversy over the validity of Dirichlet's principle is explained in 
+http://turnbull.mcs.st-and.ac.uk/~history/Biographies/Riemann.html .
+Eventually it was shown that Dirichlet's principle is valid, but it requires a sophisticated application of the regularity theory for elliptic partial differential equations; see Jost and Li-Jost (1998).
+
+===Generalization to other boundary value problems===
+
+A more general expression for the potential energy of a membrane is
+If we apply the divergence theorem, the result is
+If we first set v=0 on C, the boundary integral vanishes, and we conclude as before that
+in D. Then if we allow v to assume arbitrary boundary values, this implies that u must satisfy the boundary condition
+on C. Note that this boundary condition is a consequence of the minimizing property of u: it is not imposed beforehand. Such conditions are called natural boundary conditions.
+By appropriate choice of c, V can assume any value unless the quantity inside the brackets vanishes. Therefore the variational problem is meaningless unless
+This condition implies that net external forces on the system are in equilibrium. If these forces are in equilibrium, then the variational problem has a solution, but it is not unique, since an arbitrary constant may be added. Further details and examples are in Courant and Hilbert  (1953).
+
+==Eigenvalue problems==
+
+Both one-dimensional and multi-dimensional eigenvalue problems can be formulated as variational problems.
+
+===Sturm-Liouville problems===
+
+The Sturm-Liouville eigenvalue problem involves a general quadratic form
+where φ is restricted to functions that satisfy the boundary conditions
+Let R be a normalization integral
+where λ is the quotient
+The next smallest eigenvalue and eigenfunction can be obtained by minimizing Q under the additional constraint
+This procedure can be extended to obtain the complete sequence of eigenvalues and eigenfunctions for the problem.
+The variational problem also applies to more general boundary conditions. Instead of requiring that φ vanish at the endpoints, we may not impose any condition at the endpoints, and set 
+After integration by parts, 
+If we first require that v vanish at the endpoints, the first variation  will vanish for all such v only if
+If u satisfies this condition, then the first variation will vanish for arbitrary v only if
+These latter conditions are the natural boundary conditions for this problem, since they are not imposed on trial functions for the minimization, but are instead a consequence of the minimization.
+
+===Eigenvalue problems in several dimensions===
+
+Eigenvalue problems in higher dimensions are defined in analogy with the one-dimensional case. For example, given a domain D with boundary B in three dimensions we may define
+and
+with no condition prescribed on the boundary B. The Euler–Lagrange equation satisfied by u is
+where 
+The minimizing u must also satisfy the natural boundary condition
+on the boundary B. This result depends upon the regularity theory for elliptic partial differential equations; see Jost and Li-Jost (1998) for details. Many extensions, including completeness results, asymptotic properties of the eigenvalues and results concerning the nodes of the eigenfunctions are in Courant and Hilbert (1953).
+
+==Applications==
+
+Some applications of the calculus of variations include:
+
+===Fermat's principle===
+
+then the first variation of A (the derivative of A with respect to ε) is
+After integration by parts of the first term within brackets, we obtain the Euler–Lagrange equation
+The light rays may be determined by integrating this equation. This formalism is used in the context of Lagrangian optics and Hamiltonian optics.
+
+====Snell's law====
+
+There is a discontinuity of the refractive index when light enters or leaves a lens. Let
+
+====Fermat's principle in three dimensions====
+
+Note that this integral is invariant with respect to changes in the parametric representation of C. The Euler–Lagrange equations for a minimizing curve have the symmetric form
+where 
+It follows from the definition that P satisfies
+Therefore the integral may also be written as
+This form suggests that if we can find a function ψ whose gradient is given by P, then the integral A is given by  the difference of ψ at the endpoints of the interval of integration. Thus the problem of studying the curves that make the integral stationary can be related to the study of the level surfaces of ψ. In order to find such a function, we turn to the wave equation, which governs the propagation of light. This formalism is used in the context of Lagrangian optics and Hamiltonian optics.
+
+=====Connection with the wave equation=====
+
+The wave equation for an inhomogeneous medium is
+where c is the velocity, which generally depends upon X. Wave fronts for light are characteristic surfaces for this partial differential equation: they satisfy
+We may look for solutions in the form
+In that case, ψ satisfies
+along a system of curves (the light rays) that are given by
+These equations for solution of a first-order partial differential equation are identical to the Euler–Lagrange equations if we make the identification
+We conclude that the function ψ is the value of the minimizing integral A as a function of the upper end point. That is, when a family of minimizing curves is constructed, the values of the optical length satisfy the characteristic equation corresponding the wave equation. Hence, solving the associated partial differential equation of first order is equivalent to finding families of solutions of the variational problem. This is the essential content of the Hamilton–Jacobi theory, which applies to more general variational problems.
+
+===Action principle===
+
+In classical mechanics, the action, S, is defined as the time integral of the Lagrangian, L.  The Lagrangian is the difference of energies,
+where T is the kinetic energy of a mechanical system and U its potential energy. Hamilton's principle (or the action principle) states that the motion of a conservative holonomic (integrable constraints) mechanical system is such that the action integral
+is stationary with respect to variations in the path x(t).
+The Euler–Lagrange equations for this system are known as Lagrange's equations:
+and they are equivalent to Newton's equations of motion (for such systems).
+The conjugate momenta P are defined by
+For example, if 
+then 
+The Hamiltonian is the total energy of the system: H = T + U.
+Analogy with Fermat's principle suggests that solutions of Lagrange's equations (the particle trajectories) may be described in terms of level surfaces of some function of X. This function is a solution of the Hamilton–Jacobi equation:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

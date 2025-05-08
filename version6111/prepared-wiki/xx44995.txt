@@ -1,0 +1,51 @@
+[[Diagonal matrix]]
+
+CATEGORIES: Matrix normal forms, Sparse matrices
+
+In linear algebra, a diagonal matrix is a matrix (usually a square matrix) in which the entries outside the main diagonal (↘) are all zero. The diagonal entries themselves may or may not be zero. Thus, the matrix D = (di,j) with n columns and n rows is diagonal if:
+For example, the following matrix is diagonal:
+The term diagonal matrix may sometimes refer to a rectangular diagonal matrix, which is an m-by-n matrix with only the entries of the form di,i possibly non-zero. For example:
+1 & 0 & 0 & 0 & 0\\
+0 & 4 & 0& 0 & 0\\
+0 & 0 & -3& 0 & 0\end{bmatrix}
+However, in the remainder of this article we will consider only square matrices. Any square diagonal matrix is also a symmetric matrix. Also, if the entries come from the field R or C, then it is a normal matrix as well. Equivalently, we can define a diagonal matrix as a matrix that is both upper- and lower-triangular. The identity matrix In and any square zero matrix are diagonal. A one-dimensional matrix is always diagonal.
+
+==Scalar matrix==
+
+A diagonal matrix with all its main diagonal entries equal is a scalar matrix, that is, a scalar multiple λI of the identity matrix I. Its effect on a vector is scalar multiplication by λ. For example, a 3×3 scalar matrix has the form:
+The scalar matrices are the center of the algebra of matrices: that is, they are precisely the matrices that commute with all other square matrices of the same size.
+
+==Matrix operations==
+
+The operations of matrix addition and matrix multiplication are especially simple for diagonal matrices. Write diag(a1,...,an) for a diagonal matrix whose diagonal entries starting in the upper left corner are a1,...,an. Then, for addition, we have
+and for matrix multiplication,
+The diagonal matrix diag(a1,...,an) is invertible if and only if the entries a1,...,an are all non-zero. In this case, we have
+In particular, the diagonal matrices form a subring of the ring of all n-by-n matrices. 
+Multiplying an n-by-n matrix A from the left with diag(a1,...,an) amounts to multiplying the i-th row of A by ai for all i; multiplying the matrix A from the right with diag(a1,...,an) amounts to multiplying the i-th column of A by ai for all i.
+
+==Operator matrix in eigenbasis==
+
+In other words, the eigenvalues of diag(λ1, ..., λn) are λ1, ..., λn with associated eigenvectors of e1, ..., en.
+
+==Other properties==
+
+The determinant of diag(a1, ..., an) is the product a1...an.
+The adjugate of a diagonal matrix is again diagonal.
+A square matrix is diagonal if and only if it is triangular and normal.
+
+==Uses==
+
+Diagonal matrices occur in many areas of linear algebra. Because of the simple description of the matrix operation and eigenvalues/eigenvectors given above, it is always desirable to represent a given matrix or linear map by a diagonal matrix. 
+In fact, a given n-by-n matrix A is similar to a diagonal matrix (meaning that there is a matrix X such that X-1AX is diagonal) if and only if it has n linearly independent eigenvectors. Such matrices are said to be diagonalizable.
+Over the field of real or complex numbers, more is true. The spectral theorem says that every normal matrix is unitarily similar to a diagonal matrix (if AA* = A*A then there exists a unitary matrix U such that UAU* is diagonal). Furthermore, the singular value decomposition implies that for any matrix A, there exist unitary matrices U and V such that UAV* is diagonal with positive entries.
+
+==Operator theory==
+
+In operator theory, particularly the study of PDEs, operators are particularly easy to understand and PDEs easy to solve if the operator is diagonal with respect to the basis with which one is working; this corresponds to a separable partial differential equation. Therefore, a key technique to understanding operators is a change of coordinates – in the language of operators, an integral transform – which changes the basis to an eigenbasis of eigenfunctions: which makes the equation separable. An important example of this is the Fourier transform, which diagonalizes constant coefficient differentiation operators (or more generally translation invariant operators), such as the Laplacian operator, say, in the heat equation.
+Especially easy are multiplication operators, which are defined as multiplication by (the values of) a fixed function – the values of the function at each point correspond to the diagonal entries of a matrix.
+
+==See also==
+
+==References==
+
+

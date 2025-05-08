@@ -1,0 +1,22 @@
+[[Client/Server Runtime Subsystem]]
+
+CATEGORIES: Windows NT architecture
+
+Client/Server Runtime Subsystem, or csrss.exe, is a component of the Microsoft Windows NT operating system that provides the user mode side of the Win32 subsystem and is included in Windows 2000, Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008, Windows 7, and Windows 8.  Because most of the Win32 subsystem operations have been moved to kernel mode drivers, in Windows NT 4 and later, CSRSS is mainly responsible for Win32 console handling and GUI shutdown. It is critical to system operation; therefore, terminating this process will result in system failure. Under normal circumstances, CSRSS cannot be terminated with the taskkill command or with Windows Task Manager, although it is possible in Vista if the Task Manager is run in Administrator mode. On Windows 7 and Windows 8 Developer Preview, Task Manager will inform the user that terminating the process will result in system failure, and prompt if they want to continue. Some virus hoax emails claim that csrss.exe is a virus that has been confirmed by Microsoft, and that the user should terminate it immediately. This, obviously, would actually lead to system failure and a blue screen of death.
+
+==Workings==
+
+CSRSS runs as a user-mode system service. When a user-mode process calls a function involving console windows, process/thread creation, or side-by-side support, instead of issuing a system call, the Win32 libraries (kernel32.dll, user32.dll, gdi32.dll) send an inter-process call to the CSRSS process which does most of the actual work without compromising the kernel. Window manager and GDI services are handled by a kernel mode driver (win32k.sys) instead.[tpl]cite book|last=Russinovich|first=Mark|title=Windows Internals, 5th Edition|year=2009|publisher=Microsoft Press|pages=54[/tpl]
+CSRSS is called along with winlogon.exe at Windows start-up. If either of the files is corrupted or otherwise inaccessible, the NT kernel will shut down the start-up process with a Blue Screen of Death. This is caused by a failure to move out of kernel mode and into user mode, the "normal" operation of Windows. The error code for this fault is 0xc000021a.
+
+==History==
+
+The Windows NT 3.x series of releases had placed the Graphics Device Interface component in CSRSS, but this was moved into kernel mode with Windows NT 4.0 to improve graphics performance. The Windows startup process has changed significantly since Vista. Two instances of csrss.exe are running in Windows 7 and Vista.
+
+==See also==
+
+==References==
+
+==External links==
+
+

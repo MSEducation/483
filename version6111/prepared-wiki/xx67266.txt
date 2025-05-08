@@ -1,0 +1,47 @@
+[[IBM RS64]]
+
+CATEGORIES: PowerPC microprocessors, IBM microprocessors
+
+The IBM RS64 is a family of microprocessors that were used in the late 1990s in IBM's RS/6000 and AS/400 servers. 
+These microprocessors implement the "Amazon", or "PowerPC-AS", instruction set architecture (ISA). Amazon is a subset of the PowerPC instruction set, with the addition of special features not in the PowerPC specification, mainly derived from POWER2 and the original AS/400 processor, and has been 64-bit from the start. The processors in this family are optimized for commercial workloads (integer performance, large caches, branches) and do not feature the strong floating point performance of the processors in the IBM POWER microprocessors family, its sibling. 
+The RS64 family was phased out soon after the introduction of the POWER4, which was developed to unite the RS64 and POWER families.
+
+==History==
+
+In 1990 the Amazon project was started to create a common architecture that would host both AIX and OS/400.  The AS/400 engineering team at IBM was designing a RISC instruction set to replace the CISC instruction set of the existing AS/400 computers.  Their original design was a variant of the existing "IMPI" instruction set, extended to 64 bits and given some RISC instructions to speed up the more computationally intensive commercial applications that were being put on AS/400s.  IBM management wanted them to use PowerPC, but they resisted, arguing that the existing 32/64-bit PowerPC instruction set would not enable a viable transition for OS/400 software and that the existing instruction set required extensions for the commercial applications on the AS/400.  Eventually, an extension to the PowerPC instruction set, called "Amazon", was developed.
+At the same time, the RS/6000 developers were broadly expanding their product line to include systems which spanned from low-end workstations, to mainframe competitor-large enterprise SMP systems, to clustered RS/6000-SP2 supercomputing systems.  PowerPC processors developed in the AIM alliance suited the low-end RISC workstation and small server space well.  But mainframe and large clustered supercomputing systems required more performance and reliability, availability and serviceability features than processors designed for Apple Power Macs. Multiple processor designs were required to simultaneously meet the requirements of the cost-focused Apple Power Mac, high-performance and RAS RS/6000 systems, and the AS/400 transition to PowerPC.   
+Amazon was extended to support those features as well, so that processors could be designed for use in both high-end RS/6000 and AS/400 machines.
+The project to develop the first such processor was "Bellatrix" (the name of a star in the Orion constellation, also called the "Amazon Star").  The Bellatrix project was extremely ambitious in its pervasive use of self-timed & pulse based circuits and the EDA tools required to support this design strategy, and was eventually terminated.  To address technical workstation, supercomputer, and engineering/scientific markets, IBM Austin (the home of the RS/6000s) then started developing a time-to-market single-chip version of the Power2 (P2SC) in parallel with the development of a sophisticated 64-bit PowerPC processor with the POWER2 extensions and twin sophisticated MAF floating point units (the POWER3/630).  To address RS/6000 commercial applications and AS/400 systems, IBM Rochester (the home of the AS/400s) started developing the first of the high-end 64-bit PowerPC processors with AS/400 extensions, and IBM Endicott started developing a low-end single-chip PowerPC processor with AS/400 extensions.
+
+==Cobra and Muskie==
+
+In 1995 IBM released the Cobra, or A10 processor, the first implementation of PowerPC AS, for AS/400 systems. It was a single-chip processor running at 50-77 MHz. It was designed with a semi-custom methodology, as a consequence of time-to-market constraints. The die contains 4.7 million transistors and measures 14.6 mm by 14.6 mm (213 mm2). It was fabricated by IBM in their CMOS 5L process, a 0.5 µm, four-layer-metal CMOS process. It used a 3.0 V power supply and dissipated 17.7 W maximum, 13.4 W minimum at 77 MHz. It was packaged in a 625-contact ceramic ball grid array (CBGA) that measured 32 mm by 32 mm.
+In 1996 IBM released the high-end, 4-way SMP, multi-chip version called Muskie, A25 or A30 in AS/400 systems. It ran at 125-154 MHz. It was manufactured on a BiCMOS fabrication process.
+These processors were only used in AS/400 machines.
+
+==RS64==
+
+The RS64 or Apache was introduced in 1997.  It was developed from "Cobra" and "Muskie" but included a more complete PowerPC ISA and was therefore set to be used in RS/6000 machines as well as in AS/400 systems. It featured 128 KB total on-die L1 cache, 4 MB full speed off-chip L2 on a 128 bit bus, and a clock of 125 MHz. It scaled to a 12 processor SMP configuration in IBM's machines.
+RS64 was called A35 in AS/400 and was one time referred to as the PowerPC 625, between the defunct PowerPC 620 and the PowerPC 630 (later renamed POWER3).
+It was manufactured with a BiCMOS fabrication process.
+
+==RS64-II==
+
+The RS64-II or Northstar was introduced at 262 MHz in 1998 with 8 MB of full speed L2 on a 256 bit 6XX bus (also used in PowerPC 620 and POWER3).  Processor boards containing 4 RS64-II's could be swapped into machines designed for similar 4-way RS64 boards, avoiding a "fork lift upgrade". The RS64-II contained 12.5 million transistors, was 162 mm² large and drew 27 Watts maximum power. Manufacturing changed to a 0.35 μm CMOS fabrication.
+RS64-II was the first mass-market processor to implement multithreading.  Essentially, each chip stores state information for 2 threads at any given time and appears to be two processors to the OS.  One logical processor runs what is called the foreground thread.  When this thread encounters a high latency event (L2 cache miss, etc.) the background thread is switched to, on the second logical processor from the OS's point of view.  In the event of a "less long" latency event (L1 miss, etc.), thread switching will only occur if the background thread is ready to execute.  If the background thread is also waiting for a miss, thread switching will not occur.  IBM calls this scheme "coarse grained multithreading".  It is not exactly the same thing as simultaneous multithreading as found on later Pentium 4 processors.  An IBM paper notes that the coarse grained scheme is a better fit for an in-order architecture like RS64. 
+RS64-II was called A50 in AS/400 systems.
+
+==RS64-III==
+
+The RS64-III or Pulsar was introduced in 1999 at 450 MHz. Key changes included larger 128 KiB L1 instruction and data caches, improved branch prediction accuracy and reduced branch misprediction penalties of zero or one cycle. The RS64-III has a five stage pipeline and a 256 bit wide L2 cache bus, which provided the processor with 14.4 GB/s of bandwidth from the 8 MiB L2 cache, implemented with 225 MHz DDR SRAMs.
+The RS64-III has 34 million transistors, a die size of 140 mm², and is manufactured on the 0.22 μm CMOS 7S process with six levels of copper interconnect.
+In 2000, IBM launched a refined version called IStar manufactured with a SOI fabrication process with copper interconnects, which increased the processor's clock frequency to 600 MHz. This was the first processor implemented in this process. Architecturally however, the IStar was identical to Pulsar.
+==RS64-IV== 
+The RS64-IV or Sstar was introduced in 2000 at 600 MHz, later increased to 750 MHz.  Up to 16 MB DDR L2 was supported in the same manner as the RS64-III (19.2 GB/s bandwidth). The RS64-IV had 44 million transistors and was 128 mm² large manufactured on a 0.18 μm process. Unlike POWER, energy consumption remained low, at under 15 watts per core.
+For a time, while the POWER line stagnated at half the clock speed of its competitors, the RS64 family was at the top of the IBM large SMP UNIX server line.  The integer / commercial workload performance of the RS-64 IV was similar to the Sun Microsystems processors with which it competed, though its floating point power was not comparable to the contemporary POWER3-II, which remained reasonably competitive throughout its lifecycle.
+
+==Further reading==
+
+==External links==
+
+

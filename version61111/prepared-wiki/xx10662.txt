@@ -1,0 +1,28 @@
+[[RIPEMD]]
+
+CATEGORIES: Cryptographic hash functions
+
+RIPEMD (RACE Integrity Primitives Evaluation Message Digest) is a family of cryptographic hash functions developed in Leuven, Belgium, by Hans Dobbertin, Antoon Bosselaers and Bart Preneel at the COSIC research group at the Katholieke Universiteit Leuven, and first published in 1996. RIPEMD was based upon the design principles used in MD4, and is similar in performance to the more popular SHA-1. 
+RIPEMD-160 is an improved, 160-bit version of the original RIPEMD, and the most common version in the family. RIPEMD-160 was designed in the open academic community, in contrast to the NSA designed SHA-1 and SHA-2 algorithms. On the other hand, RIPEMD-160 appears to be used somewhat less frequently than SHA-1, which may have caused it to be less scrutinized than SHA. RIPEMD-160 is not known to be constrained by any patents.
+As well as 160-bit, there also exist 128, 256 and 320-bit versions of this algorithm, called RIPEMD-128, RIPEMD-256, and RIPEMD-320, respectively.  The 128-bit version was intended only as a drop-in replacement for the original RIPEMD, which was also 128-bit, and which had been found to have questionable security.  The 256 and 320-bit versions diminish only the chance of accidental collision, and don't have higher levels of security (against preimage attacks) as compared to, respectively, RIPEMD-128 and RIPEMD-160.
+In August 2004, a collision was reported for the original RIPEMD. This does not apply to RIPEMD-160.
+
+==RIPEMD-160 hashes==
+
+The 160-bit RIPEMD-160 hashes (also termed RIPE message digests) are typically represented as 40-digit hexadecimal numbers.  The following demonstrates a 43-byte ASCII input and the corresponding RIPEMD-160 hash:
+  RIPEMD-160("The quick brown fox jumps over the lazy [tpl]Background color|#87CEEB|d[/tpl]og") =
+  37f332f68db77bd9d7edd4969571ad671cf9dd3b</tt>
+RIPEMD-160 behaves with the desired avalanche effect of cryptographic hash functions (small changes, e.g. changing d to c, result in a completely different hash):
+  RIPEMD-160("The quick brown fox jumps over the lazy [tpl]Background color|#87CEEB|c[/tpl]og") =
+  132072df690933835eb8b6ad0b77e7b6f14acad7
+The hash of a zero-length string is:
+  RIPEMD-160("") = 
+  9c1185a5c5e9fc54612808977ee8f548b2258d31
+
+==See also==
+
+==References==
+
+==External links==
+
+

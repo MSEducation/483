@@ -1,0 +1,11 @@
+[[Horizontal blank interrupt]]
+
+CATEGORIES: Video game development
+
+A horizontal blank interrupt (also called Raster interrupt) is a programming technique used in some systems, notably video games and consoles, to allow program code to be run in the periods when the display hardware is turned off, waiting for the TV to complete its horizontal blank, which takes about 10 μS.
+The technique was only really useful before the entire display could be addressed directly with high speed CPUs attached to large frame buffers, that is, in the days of 8-bit systems. In this case the CPU was not terribly fast, and that 10 μS might be enough to run perhaps 40 to 60 instructions. That was enough to change a few registers in the display hardware however, which is why this technique was useful.
+For instance, both the Bally Astrocade and Atari 8-bit family (originally intended to be a console) included HBI support. (Atari refers to HBI as "Display List Interrupts" as this feature is directly connected to the ANTIC graphics chip's Display List feature.) The Bally Astrocade could display only four colors per pixel per display line.  The Atari 8-bit family could display four or five colors per playfield graphics mode line and up to nine colors when adding Player/Missile graphics or when using GTIA graphics mode 10 (the BASIC/OS mode number).  But both systems used "graphics indirection" where each playfield color is represented by a hardware register allowing those playfield colors to be selected from a palette of 256.   By changing the values of the color registers during the HBI, the systems could select a new set of colors on every line, leading to a number of "rainbow" or "gradient" displays with all 256 colors on screen.
+
+==See also==
+
+

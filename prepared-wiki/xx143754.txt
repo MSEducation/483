@@ -1,0 +1,36 @@
+[[Bayesian multivariate linear regression]]
+
+CATEGORIES: Bayesian inference, Regression analysis
+
+In statistics, Bayesian multivariate linear regression is a
+Bayesian approach to multivariate linear regression, i.e. linear regression where the predicted outcome is a vector of correlated random variables rather than a single scalar random variable. A more general treatment of this approach can be found in the article MMSE estimator.
+
+==Details==
+
+Consider a regression problem where the dependent variable to be
+predicted is not a single real-valued scalar but an m-length vector
+of correlated real numbers.  As in the standard regression setup, there
+are n observations, where each observation i consists of k-1
+of length k (where a dummy variable with a value of 1 has been
+added to allow for an intercept coefficient).  This can be viewed as a
+set of m related regression problems for each observation i:
+are all correlated.  Equivalently, it can be viewed as a single regression
+and the regression coefficient vectors are stacked next to each other, as follows:
+is jointly normal, so that the outcomes for a given observation are
+correlated:
+We can write the entire regression problem in matrix form as:
+To obtain the Bayesian solution, we need to specify the conditional likelihood and then find the appropriate conjugate prior.  As with the univariate case of linear Bayesian regression, we will find that we can specify a natural conditional conjugate prior (which is scale dependent).
+Let us write our conditional likelihood as
+Using the same technique as with Bayesian linear regression, we decompose the exponential term using a matrix-form of the sum-of-squares technique. Here, however, we will also need to use the Matrix Differential Calculus (Kronecker product and vectorization transformations).
+First, let us apply sum-of-squares to obtain new expression for the likelihood:
+We would like to develop a conditional form for the priors:
+Write
+Let
+Then
+With the likelihood in a more tractable form, we can now find a natural (conditional) conjugate prior.
+
+==See also==
+
+==References==
+
+

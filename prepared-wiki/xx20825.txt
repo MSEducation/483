@@ -1,0 +1,73 @@
+[[Network File System]]
+
+CATEGORIES: Internet protocols, Network file systems, Internet Protocol based network software, Unix network-related software, Application layer protocols
+
+Network File System (NFS) is a distributed file system protocol originally developed by Sun Microsystems in 1984,[tpl]cite web |url= http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.14.473 |title=Design and Implementation of the Sun Network Filesystem |year=1985 |publisher=USENIX |author= Russel Sandberg, David Goldberg, Steve Kleiman, Dan Walsh, Bob Lyon [/tpl]  allowing a user on a client computer to access files over a network much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The Network File System is an open standard defined in RFCs, allowing anyone to implement the protocol.
+
+==Versions and variations==
+
+Sun used version 1 only for in-house experimental purposes. When the development team added substantial changes to NFS version 1 and released it outside of Sun, they decided to release the new version as v2, so that version interoperation and RPC version fallback could be tested.NFS Illustrated (2000) by Brent Callaghan - ISBN 0-201-32570-5
+
+===NFSv2===
+
+Version 2 of the protocol (defined in RFC 1094, March 1989) originally operated only over UDP. Its designers meant to keep the server side stateless, with locking (for example) implemented outside of the core protocol. People involved in the creation of NFS version 2 include Russel Sandberg, Bob Lyon, Bill Joy, Steve Kleiman, and others.[tpl]Cite journal |title= The Sun Network Filesystem: Design, Implementation and Experience |work= Technical Report |author= Russel Sandberg |publisher= Sun Microsystems |url= http://www.cse.buffalo.edu/faculty/tkosar/cse710_spring13/papers/nfs.pdf [/tpl]
+The Virtual File System interface allowed a modular implementation, reflected in a simple protocol. By February 1986, implementations were demonstrated for operating systems such as System V release 2, Microsoft DOS, and VAX/VMS using Eunice.
+NFSv2 only allowed the first 2 GB of a file to be read due to 32-bit limitations.
+
+===NFSv3===
+
+Version 3 (RFC 1813, June 1995) added:
+At the time of introduction of Version 3, vendor support for TCP as a transport-layer protocol began increasing. While several vendors had already added support for NFS Version 2 with TCP as a transport, Sun Microsystems added support for TCP as a transport for NFS at the same time it added support for Version 3. Using TCP as a transport made using NFS over a WAN more feasible.
+
+===NFSv4===
+
+Version 4 (RFC 3010, December 2000; revised in RFC 3530, April 2003), influenced by AFS and CIFS, includes performance improvements, mandates strong security, and introduces a stateful protocol. Version 4 became the first version developed with the Internet Engineering Task Force (IETF) after Sun Microsystems handed over the development of the NFS protocols.
+NFS version 4.1 (RFC 5661, January 2010) aims to provide protocol support to take advantage of clustered server deployments including the ability to provide scalable parallel access to files distributed among multiple servers (pNFS extension). NFS version 4.2 is currently being developed.
+Not everyone was happy with the new protocol. In 2010, OpenBSD's Theo de Raadt wrote: "NFSv4 is not on our roadmap.  It is a ridiculous bloated protocol which they keep adding crap to."[tpl]cite web|url=http://openbsd.7691.n7.nabble.com/nfsv4-tp18690p18712.html |title=openbsd user - misc - nfsv4? |publisher=Openbsd.7691.n7.nabble.com |date=2010-10-27 |accessdate=2014-01-12[/tpl]
+
+===Other extensions===
+
+WebNFS, an extension to Version 2 and Version 3, allows NFS to integrate more easily into Web-browsers and to enable operation through firewalls. In 2007, Sun Microsystems open-sourced their client-side WebNFS implementation.yanfs.dev.java.net
+Various side-band protocols have become associated with NFS, including:
+NFS over RDMA is an adaptation of NFS that uses RDMA as a transport.[tpl]cite web|url=http://www.connectathon.org/talks06/talpey-cthon06-nfs-rdma.pdf|title=NFS/RDMA Implementation(s) Update|author=Tom Talpey|publisher=Network Appliance, Inc.|date=February 28, 2006[/tpl][tpl]cite web|url=http://www.usenix.org/events/fast02/wips/callaghan.pdf|title=NFS over RDMA|author=Brent Callaghan|publisher=Sun Microsystems|date=January 28, 2002[/tpl]
+
+==Platforms==
+
+NFS is often used with Unix operating systems (such as Solaris, AIX and HP-UX) and Unix-like operating systems (such as Linux and FreeBSD). It is also available to operating systems such as the classic Mac OS, OpenVMS, Microsoft Windows, Novell NetWare, and IBM AS/400. Alternative remote file access protocols include the Server Message Block (SMB, also known as CIFS), Apple Filing Protocol (AFP), NetWare Core Protocol (NCP), and OS/400 File Server file system (QFileSvr.400).
+SMB and NetWare Core Protocol (NCP) occur more commonly than NFS on systems running Microsoft Windows; AFP occurs more commonly than NFS in Macintosh systems; and QFileSvr.400 occurs more commonly in AS/400 systems. Haiku recently added NFSv4 support as part of a Google Summer of Code project.
+
+==Typical implementation==
+
+Assuming a Unix-style scenario in which one machine (the client) requires access to data stored on another machine (the NFS server):
+Note that automation of the NFS mounting process may take place — perhaps using /etc/fstab  and/or automounting facilities.
+
+==Protocol development==
+
+===1980s===
+
+NFS and ONC figured prominently in the network-computing war between Sun Microsystems and Apollo Computer, and later the UNIX wars (ca 1987-1996) between AT&T Corporation and Sun on one side, and Digital Equipment, HP, and IBM on the other.
+During the development of the ONC protocol (called SunRPC at the time), only Apollo's Network Computing System (NCS) offered comparable functionality. Two competing groups developed over fundamental differences in the two remote procedure call systems. Arguments focused on the  method for data-encoding — ONC's External Data Representation (XDR) always rendered integers in big-endian order, even if both peers of the connection had little-endian machine-architectures, whereas NCS's method attempted to avoid byte-swap whenever two peers shared a common endianness in their machine-architectures. An industry-group called the Network Computing Forum formed (March 1987) in an (ultimately unsuccessful) attempt to reconcile the two network-computing environments.
+Later,[tpl]When |date= August 2013[/tpl] Sun and AT&T announced they would jointly develop AT&T's UNIX System V Release 4. This caused many of AT&T's other licensees of UNIX System V to become concerned that this would put Sun in an advantaged position, and it ultimately led to Digital Equipment, HP, IBM, and others forming the Open Software Foundation (OSF) in 1988. Ironically, Sun and AT&T had previously competed over Sun's NFS versus AT&T's Remote File System (RFS), and the quick adoption of NFS over RFS by Digital Equipment, HP, IBM, and many other computer vendors tipped the majority of users in favor of NFS.
+NFS interoperability was aided by events called "Connectathons" starting in 1986 that allowed vendor-neutral testing of implementations with each other.[tpl]cite web |title= What is Connectathon? |work= Original Connectathon.Org web site |url= http://www.connectathon.org/ |deadurl=yes |archiveurl= https://web.archive.org/web/19990128152940/http://www.connectathon.org/#whatis |archivedate= January 28, 1999 [/tpl] OSF adopted the Distributed Computing Environment (DCE) and the Distributed File System (DFS) over Sun/ONC RPC and NFS. DFS used DCE as the RPC, and DFS derived from the Andrew File System (AFS); DCE itself derived from a suite of technologies, including Apollo's NCS and Kerberos.[tpl]cn|date=January 2014[/tpl]
+
+===1990s===
+
+Sun Microsystems and the Internet Society (ISOC) reached an agreement to cede "change control" of ONC RPC so that the ISOC's engineering-standards body, the Internet Engineering Task Force (IETF), could publish standards documents (RFCs) related to ONC RPC protocols and could extend ONC RPC. OSF attempted to make DCE RPC an IETF standard, but ultimately proved unwilling to give up change control. Later, the IETF chose to extend ONC RPC by adding a new authentication flavor based on GSSAPI, RPCSEC GSS, in order to meet IETF's requirements that protocol standards have adequate security.
+Later, Sun and ISOC reached a similar agreement to give ISOC change control over NFS, although writing the contract carefully to exclude NFS version 2 and version 3. Instead, ISOC gained the right to add new versions to the NFS protocol, which resulted in IETF specifying NFS version 4 in 2003.
+
+===[tpl]anchor|PNFS[/tpl]2000s===
+
+By the 21st century, neither DFS nor AFS had achieved any major commercial success as compared to CIFS or NFS.  IBM, which had previously acquired the primary commercial vendor of DFS and AFS, Transarc, donated most of the AFS source code to the free-software community in 2000. The OpenAFS project lives on.  In early 2005, IBM announced end-of-sales for AFS and DFS.
+In January 2010 Panasas proposed an NFSv4.1 based on their Parallel NFS (pNFS) technology; they  claimed it improved data-access parallelism[ref][tpl]cite web |title= pNFS |publisher= Panasas |url= http://www.pnfs.com |accessdate= August 4, 2013 [/tpl]
+[/ref] capability. The NFSv4.1 protocol defines a method of separating the file system metadata from file data location; it goes beyond the simple name/data separation by striping the data amongst a set of data servers. This differs from the traditional NFS server which holds the names of files and their data under the single umbrella of the server. Some products provide multi-node NFS servers, but the participation of the client in separation of meta-data and data is limited.
+The NFSv4.1 pNFS server is a collection of server resources or components; these are assumed to be controlled by the meta-data server.
+The pNFS client still accesses a single meta-data server for traversal or interaction with the namespace; when the client moves data to and from the server it may directly interact with the set of data servers belonging to the pNFS server collection. The NFSv4.1 client can be enabled as a direct participant in the exact location of file data and to avoid solitary interaction with a single NFS server when moving data.
+In addition to pNFS, NFSv4.1 provides:
+
+==See also==
+
+==References==
+
+==External links==
+
+

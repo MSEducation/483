@@ -1,0 +1,45 @@
+[[Superuser]]
+
+CATEGORIES: System administration, Operating system security
+
+In computing, the superuser is a special user account used for system administration. Depending on the operating system (OS), the actual name of this account might be: root, administrator, admin or supervisor. In some cases the actual name is not significant, rather an authorization flag in the user's profile determines if administrative functions can be performed. 
+In OSes which have the concept of a superuser, it is generally recommended that most application work be done using an ordinary account which does not have the ability to make system-wide changes.
+
+Unix and Unix-like
+
+In Unix-like computer OSes, root is the conventional name of the user who has all rights or permissions (to all files and programs) in all modes (single- or multi-user). Alternative names include baron in BeOS  and avatar on some Unix variants.4.7), catb."What is this UID 0 toor account?", freebsd. The root user can do many things an ordinary user cannot, such as changing the ownership of files and binding to network ports numbered below 1024.  The name "root" may have originated because root is the only user account with permission to modify the root directory of a Unix system and this directory was originally considered to be root's home directory.
+The first process bootstrapped in a Unix-like system, usually called init, runs with root privileges. It spawns all other processes directly or indirectly, which inherit their parents' privileges. Only a process running as root is allowed to change its user ID to that of another user; once it's done so, there is no way back. Doing so is sometimes called dropping root privileges and is often done as a security measure to limit the damage from possible contamination of the process. Another case is login and other programs that ask users for credentials and in case of successful authentication allow them to run programs with privileges of their accounts.
+It is never good practice for anyone (including system administrators) to use root as their normal user account, since simple typographical errors in entering commands can cause major damage to the system. It is advisable to create a normal user account instead and then use the su command to switch when necessary. The sudo utility is preferred as it only executes a single command as root, then returns to the normal user.
+Some OSes, such as OS X and some Linux distributions, allow administrator accounts which provide greater access while shielding the user from most of the pitfalls of full root access. In some cases the root account is disabled by default, and must be specifically enabled. In mobile platform-oriented OSs such as Apple iOS and Android, the device's security systems must be exploited in order to obtain superuser access. In a few systems, such as Plan 9, there is no superuser at all.
+
+Windows NT
+
+In Windows NT and later systems derived from it (such as Windows 2000, Windows XP, Windows Server 2003, and Windows Vista/7/8), there must be at least one administrator account (Windows XP and earlier) or one able to elevate privileges to superuser (Windows Vista/7/8 via User Account Control). This built-in administrator account is created with a blank password. This poses security risks, so the built-in administrator account is disabled by default in Windows Vista and later systems due to the introduction of User Account Control (UAC).
+A Windows administrator account is not an exact analogue of the Unix root account - some privileges are assigned to the "Local System account". The purpose of the administrator account is to allow making system-wide changes to the computer (with the exception of privileges limited to Local System).
+The built-in administrator account and a user administrator account have the same level of privileges. The default user account created in Windows systems is an administrator account. Unlike OS X, Linux, and Windows Vista/7/8 administrator accounts, administrator accounts in Windows systems without UAC do not insulate the system from most of the pitfalls of full root access. One of these pitfalls includes decreased resilience to malware infections. In Microsoft Windows 2000, Windows XP Professional, and Windows Server 2003, administrator accounts can be insulated from more of the these pitfalls by changing the account from the administrator group to the power user group in the user account properties but this solution is not as effective as using newer Windows systems with UAC.
+In Windows Vista/7/8 administrator accounts, a prompt will appear to authenticate running a process with elevated privileges. No user credentials are required to authenticate the UAC prompt in administrator accounts but authenticating the UAC prompt requires entering the username and password of an administrator in standard user accounts. In Windows XP (and earlier systems) administrator accounts, authentication is not required to run a process with elevated privileges and this poses another security risk that lead to the development of UAC. Users can set a process to run with elevated privileges from standard accounts by setting the process to "run as administrator" or using the "runas" command and authenticating the prompt with credentials (username and password) of an administrator account. Much of the benefit of authenticating from a standard account is negated if the administrator account's credentials being used has a blank password (as in the built-in administrator account in Windows XP and earlier systems).
+In Windows Vista/7/8, the root user is TrustedInstaller.  In Windows NT, 2000, and XP, the root user is System.
+
+Novell NetWare
+
+In Novell NetWare, the superuser was called "supervisor", later "admin".
+
+OpenVMS
+
+In OpenVMS, "SYSTEM" is the superuser account for the OS.
+
+Network operations
+
+Most configuration, testing and maintenance of networked systems has the potential to adversely affect multiple systems. In an effort to prevent inexperienced and disruptive individuals from causing problems, OS network utilities often require superuser authority. For example stress testing, if done at inappropriate times or without clear understanding of the effects, can deny users access to portions or all of the services of multiple computers. This is more of a problem than the original implementers of some utilities envisioned since it is now common for novices to build systems they own and have the ability to use the superuser account.
+
+Older personal systems
+
+Many older OSes on computers intended for personal and home use, including MS-DOS and Windows 95, do not have the concept of multiple accounts and thus have no separate administrative account; anyone using the system has full privileges. The lack of this separation in these OSes has been cited as one major source of their insecurity.
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+--[[ Multi-line strings & comments
+     are adorned with double square brackets. ]]
+--this can have other --comments nested. =
+
+The factorial function is implemented as a function in this example:
+
+function factorial(n)
+  local x = 1
+  for i = 2,n do
+    x = x * i
+  end
+  return x
+end
+
+===Loops===
+
+Lua has four types of loops: the while loop, the repeat loop (similar to a  do while loop), the for loop, and the generic for loop.
+
+--condition = true
+while condition do
+  --statements
+end
+repeat
+  --statements
+until condition
+for i = first,last,delta do     --delta may be negative, allowing the for loop to count down or up
+  --statements
+  --example: print(i)
+end
+
+The generic for loop:
+
+for key, value in pairs(_G) do
+  print(key, value)
+end
+
+would iterate over the table _G using the standard iterator function pairs, until it returns nil.
+
+===Functions===
+
+Lua's treatment of functions as first-class values is shown in the following example, where the print function's behavior is modified:
+
+do
+  local oldprint = print
+  -- Store current print function as oldprint
+  function print(s)

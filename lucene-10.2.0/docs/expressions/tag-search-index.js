@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"The Expressions Module for Apache Lucene","h":"Overview","d":"Section","u":"index.html#the-expressions-module-for-apache-lucene-heading"}];updateSearchResults();

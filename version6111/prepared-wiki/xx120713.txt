@@ -1,0 +1,16 @@
+[[HP StorageWorks Scalable File Share]]
+
+CATEGORIES: Hewlett-Packard products, Disk file systems, Shared disk file systems
+
+HP StorageWorks Scalable File Share (HP SFS) is a production tested distributed parallel scalable filesystem designed to solve the I/O bandwidth challenge on large Linux clusters used in high-performance computing applications. It is based on the open source Lustre filesystem from Sun Microsystems. It is composed of software, hardware storage and service from HP.
+HP SFS can be used over ethernet networks but it is more typical to use a high performance interconnect like Infiniband or Quadrics elan4, with many hundreds of compute clients connecting to each server cluster.
+On the server side, HP SFS uses clustered pairs of HP Proliant servers (typically DL380) connected to either MSA20 SATA or EVA FibreChannel RAID storage arrays. Each pair member is the primary server of a set of Lustre services (MDS or OST) and backup server for the services provided by its partner. This configuration means that full filesystem service is guaranteed as long as at least one member of each server pair is up. If one server goes down its partner will automatically take over serving the OST or MDS services that were lost. Clients won't notice that anything has happened, except that they will experience a slight delay while a connection to the new server is established (Lustre recovery).
+On the client side, HP provides a set of source rpms that can be used to build the kernel modules and supporting files required to connect clients running various Linux distros to an SFS server. They also provide precompiled binary rpms for the HP XC High Performance Computing Linux compute cluster distro.
+The current version of HP SFS is V2.3 which is based on Lustre 1.4.11
+A new version of SFS, based on Lustre 1.6 and codenamed SFS G3, was released in late 2008. This ships on different hardware configurations than the original SFS versions described above. A variant of G3 for the original SFS hardware platforms is due to ship in early 2009.
+
+==See also==
+
+==External links==
+
+

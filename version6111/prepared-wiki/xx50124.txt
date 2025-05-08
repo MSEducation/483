@@ -1,0 +1,49 @@
+[[Comm]]
+
+CATEGORIES: Free file comparison tools, Standard Unix programs, Unix SUS2008 utilities
+
+The comm command in the Unix family of computer operating systems is a utility that is used to compare two files for common and distinct lines.  comm is specified in the POSIX standard.  It has been widely available on Unix-like operating systems since the mid to late 1980s. 
+
+==Usage==
+
+comm reads two files as input, regarded as lines of text.  comm outputs one file, which contains three columns.  The first two columns contain lines unique to the first and second file, respectively. The last column contains lines common to both. This functionally is similar to diff.
+Columns are typically distinguished with the  character.  If the input files contain lines beginning with the separator character, the output columns can become ambiguous.  
+For efficiency, standard implementations of comm expect both input files to be sequenced in the same line collation order, sorted lexically.  The sort (Unix) command can be used for this purpose.  
+The comm algorithm makes use of the collating sequence of the current locale.  If the lines in the files are not both collated in accordance with the current locale, the result is undefined.
+
+==Return code==
+
+Unlike diff, the return code from comm has no logical significance concerning the relationship of the two files.  A return code of 0 indicates success, a return code >0 indicates an error occurred during processing.
+==Example== 
+File foo
+ apple
+ banana
+ eggplant
+File bar
+ apple
+ banana
+ banana
+ zucchini
+This shows that both files have one banana, but only bar has a second banana.  
+In more detail, the output file has the appearance that follows.  Note that the column is interpreted by the number of leading tab characters.  \t represents a tab character and \n represents a newline (Escape_character#Programming_and_data_formats).  
+
+==Comparison to diff==
+
+In general terms, diff is a more powerful utility than comm.  The simpler comm is best suited for use in scripts.  
+The primary distinction between comm and diff is that comm discards information about the order of the lines prior to sorting.  
+A minor difference between comm and diff is that comm will not try to indicate that a line has "changed" between the two files; lines are either shown in the "from file #1", "from file #2", or "in both" columns.  This can be useful if one wishes two lines to be considered different even if they only have subtle differences.
+
+==Other options==
+
+comm has command-line options to suppress any of the three columns.  This is useful for scripting.
+There is also an option to read one file (but not both) from standard input.
+==Limits== 
+Up to a full line must be buffered from each input file during line comparison, before the next output line is written.  
+Some implementations read lines with the function readlinebuffer() which does not impose any line length limits if system memory suffices.   
+Other implementations read lines with the function fgets().  This function requires a fixed buffer.  For these implementations, the buffer is often sized according to the POSIX macro LINE_MAX.
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env /bin/bash
+rm wiki-subset-20140602/._* 2>/dev/null # Get rid of the macOS metadata files
+rm -r prepared-wiki 2>/dev/null
+mkdir prepared-wiki
+cd prepared-wiki
+files=( ../wiki-subset-20140602/* )
+cat "${files[@]}" | csplit - --suffix-format='%03d.txt' '/\[\[/' '{*}'
+rm xx000.txt # this is an empty file because of the way csplit works, so lets get rid of it.
+# Source: https://unix.stackexchange.com/a/15663 and https://unix.stackexchange.com/a/560143

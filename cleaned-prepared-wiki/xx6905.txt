@@ -1,0 +1,110 @@
+[[Basis (linear algebra)]]
+
+CATEGORIES: Linear algebra, Articles containing proofs, Matroid theory
+
+In linear algebra, a basis is a set of linearly independent vectors that, in a linear combination, can represent every vector in a given vector space or free module, or, more simply put, which define a "coordinate system" (as long as the basis is given a definite order).
+Given a basis of a vector space, every element of the vector space can be expressed uniquely as a finite linear combination of basis vectors, whose coefficients are referred to as vector components. The statement that every vector space has a basis is equivalent to the axiom of choice. All bases of a vector space have the same number of elements, called the dimension of the vector space.
+
+Definition
+
+A basis B of a vector space V over a field F is a linearly independent subset of V that spans V.
+In more detail, suppose that B = { v1, …, vn } is a finite subset of a vector space V over a field F (such as the real or complex numbers R or C). Then B is a basis if it satisfies the following conditions:
+The numbers ai are called the coordinates of the vector x with respect to the basis B, and by the first property they are uniquely determined.
+A vector space that has a finite basis is called finite-dimensional.  To deal with infinite-dimensional spaces, we must generalize the above definition to include infinite basis sets.  We therefore say that a set (finite or infinite) B ⊂ V is a basis, if
+The sums in the above definition are all finite because without additional structure the axioms of a vector space do not permit us to meaningfully speak about an infinite sum of vectors. Settings that permit infinite linear combinations allow alternative definitions of the basis concept: see ''Related notions below.
+It is often convenient to list the basis vectors in a specific order, for example, when considering the transformation matrix of a linear map with respect to a basis. We then speak of an ordered basis, which we define to be a sequence (rather than a set) of linearly independent vectors that span V: see Ordered bases and coordinates below.
+
+Expression of a basis
+
+There are several ways to describe a basis for the space. Some are made ad hoc for a specific dimension. For example, there are several ways to give a basis in dim 3, like Euler angles.
+The general case is to give a matrix with the components of the new basis vectors in columns. This is also the more general method because it can express any possible set of vectors even if it is not a basis. This matrix can be seen as three things:
+Basis Matrix: Is a matrix that represents the basis, because its columns are the components of vectors of the basis. This matrix represents any vector of the new basis as linear combination of the current basis.
+Rotation operator: When orthonormal bases are used, any other orthonormal basis can be defined by a rotation matrix. This matrix represents the rotation operator that rotates the vectors of the basis to the new one. It is exactly the same matrix as before because the rotation matrix multiplied by the identity matrix I has to be the new basis matrix. 
+Change of basis matrix: This matrix can be used to change different objects of the space to the new basis. Therefore is called "change of basis" matrix. It is important to note that some objects change their components with this matrix and some others, like vectors, with its inverse.
+
+Properties
+
+Again, B denotes a subset of a vector space V. Then, B is a basis if and only if any of the following equivalent conditions are met:
+Every vector space has a basis. The proof of this requires the axiom of choice.  All bases of a vector space have the same cardinality (number of elements), called the dimension of the vector space. This result is known as the dimension theorem, and requires the ultrafilter lemma, a strictly weaker form of the axiom of choice.
+Also many vector sets can be attributed a standard basis which comprises both spanning and linearly independent vectors.
+Standard bases for example:
+In Rn {E1,...,En} where En is the n-th column of the identity matrix which consists of all ones in the main diagonal and zeros everywhere else. This is because the columns of the identity matrix are linearly independent can always span a vector set by expressing it as a linear combination.
+In P2 where P2 is the set of all polynomials of degree at most 2 {1,x,x2} is the standard basis.
+In M22  {M1,1,M1,2,M2,1,M2,2} where M22 is the set of all 2×2 matrices. and Mm,n is the 2×2 matrix with a 1 in the m,n position and zeros everywhere else. This again is a standard basis since it is linearly independent and spanning.
+
+Examples
+
+Extending to a basis
+
+Let S be a subset of a vector space V.  To extend S to a basis means to find a basis B that contains S as a subset.  This can be done if and only if S is linearly independent.  Almost always, there is more than one such B, except in rather special circumstances (i.e. S is already a basis, or S is empty and V has two elements).
+A similar question is when does a subset S contain a basis.  This occurs if and only if S spans V.  In this case, S will usually contain several different bases.
+
+Example of alternative proofs
+
+Often, a mathematical result can be proven in more than one way.
+Here, using three different proofs, we show that the vectors (1,1) and (−1,2) form a basis for R2.
+
+From the definition of basis
+
+We have to prove that these two vectors are linearly independent and that they generate R2.
+To prove that they are linearly independent, suppose that there are numbers a,b such that:
+(i.e., they are linearly dependent). Then: 
+Subtracting the first equation from the second, we obtain: 
+  b=0. \,</math></div>
+Subtracting this equation from the first equation then: 
+Hence we have linear independence.
+Part II: To prove that these two vectors generate R2, we have to let (a,b) be an arbitrary element of R2, and show that there exist numbers r,s ∈ R such that: 
+Then we have to solve the equations: 
+Subtracting the first equation from the second, we get: 
+
+By the dimension theorem
+
+Since (−1,2) is clearly not a multiple of (1,1) and since (1,1) is not the zero vector, these two vectors are linearly independent. Since the dimension of R2 is 2, the two vectors already form a basis of R2 without needing any extension.
+
+By the invertible matrix theorem
+
+Simply compute the determinant
+Since the above matrix has a nonzero determinant, its columns form a basis of R2. See: invertible matrix.
+
+Ordered bases and coordinates
+
+A basis is just a linearly independent set of vectors with no given ordering. For many purposes it is convenient to work with an ordered basis. For example, when working with a coordinate representation of a vector it is customary to speak of the "first" or "second" coordinate, which makes sense only if an ordering is specified for the basis. For finite-dimensional vector spaces one typically indexes a basis {vi} by the first n integers. An ordered basis is also called a frame.
+Suppose V is an n-dimensional vector space over a field F. A choice of an ordered basis for V is equivalent to a choice of a linear isomorphism φ from the coordinate space Fn to V.
+Proof. The proof makes use of the fact that the standard basis of Fn is an ordered basis.
+Suppose first that
+is a linear isomorphism. Define an ordered basis {vi}  for V by
+where {ei} is the standard basis for Fn.
+Conversely, given an ordered basis, consider the map defined by
+where x = x1e1 + x2e2 + ... + xnen is an element of Fn. It is not hard to check that φ is a linear isomorphism.
+These two constructions are clearly inverse to each other. Thus ordered bases for V are in 1-1 correspondence with linear isomorphisms Fn → V.
+The inverse of the linear isomorphism φ determined by an ordered basis {vi} equips V with coordinates: if, for a vector v ∈ V, φ−1(v) = (a1, a2,...,an) ∈ Fn, then the components aj = aj(v) are the coordinates of v in the sense that v = a1(v) v1 + a2(v) v2 + ... + an(v) vn.
+The maps sending a vector v to the components aj(v) are linear maps from V to F, because of φ−1 is linear. Hence they are linear functionals. They form a basis for the dual space of V, called the dual basis.
+
+Related notions
+
+Analysis
+
+In the context of infinite-dimensional vector spaces over the real or complex numbers, the term Hamel basis (named after Georg Hamel) or algebraic basis can be used to refer to a basis as defined in this article. This is to make a distinction with other notions of "basis" that exist when infinite-dimensional vector spaces are endowed with extra structure. The most important alternatives are orthogonal bases on Hilbert spaces, Schauder bases and Markushevich bases on normed linear spaces.
+The common feature of the other notions is that they permit the taking of infinite linear combinations of the basic vectors in order to generate the space. This, of course, requires that infinite sums are meaningfully defined on these spaces, as is the case for topological vector spaces – a large class of vector spaces including e.g. Hilbert spaces, Banach spaces or Fréchet spaces.
+
+=Example=
+
+In the study of Fourier series, one learns that the functions {1} ∪ { sin(nx), cos(nx) : n = 1, 2, 3, ... } are an "orthogonal basis" of the (real or complex) vector space of all (real or complex valued) functions on the interval 2π that are square-integrable on this interval, i.e., functions f satisfying
+The functions {1} ∪ { sin(nx), cos(nx) : n = 1, 2, 3, ... } are linearly independent, and every function f that is square-integrable on 2π is an "infinite linear combination" of them, in the sense that
+for suitable (real or complex) coefficients ak, bk.  But most square-integrable functions cannot be represented as finite linear combinations of these basis functions, which therefore do not comprise a Hamel basis. Every Hamel basis of this space is much bigger than this merely countably infinite set of functions. Hamel bases of spaces of this kind are typically not useful, whereas orthonormal bases of these spaces are essential in Fourier analysis.
+
+Affine geometry
+
+
+
+Notes
+
+
+
+General references
+
+Historical references
+
+
+
+

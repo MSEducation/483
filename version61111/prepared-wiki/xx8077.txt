@@ -1,0 +1,38 @@
+[[Majority function]]
+
+CATEGORIES: Logic gates, Circuit complexity, Boolean algebra
+
+In Boolean logic, the majority function (also called the median operator)  is a function from n inputs to one output. The value of the operation is false when n/2 or more arguments are false, and true otherwise.
+Alternatively, representing true values as 1 and false values as 0, we may use the formula
+The "−1/2" in the formula serves to break ties in favor of zeros when n is even. If the term "−1/2" is omitted, the formula can be used for a function that breaks ties in favor of ones.
+
+==Boolean circuits==
+
+A majority gate is a logical gate used in circuit complexity and other applications of Boolean circuits.  A majority gate returns true if and only if more than 50% of its inputs are true.
+For instance, in a full adder, the carry output is found by applying a majority function to the three inputs, although frequently this part of the adder is broken down into several simpler logical gates.
+A major result in circuit complexity asserts that the majority function cannot be computed by AC0 circuits of subexponential size.
+
+==Monotone formulae for majority==
+
+For n = 1 the median operator is just the unary identity operation x.  For n = 3 the ternary median operator can be expressed using conjunction and disjunction as xy + yz + zx.  Remarkably this expression denotes the same operation independently of whether the symbol + is interpreted as inclusive or or exclusive or.
+For an arbitrary n there exists a monotone formula for majority of size O(n5.3) [tpl]harv|Valiant|1984[/tpl]. This is proved using probabilistic method. Thus, this formula is non-constructive. However, one can obtain an explicit formula for majority of polynomial size using a sorting network of Ajtai, Komlós, and Szemerédi.
+
+==Properties==
+
+Among the properties of the ternary median operator < x,y,z > are:
+An abstract system satisfying these as axioms is a median algebra.
+
+==References==
+
+ | first = L. | last = Valiant | authorlink = Leslie Valiant
+ | title = Short monotone formulae for the majority function
+ | journal = Journal of Algorithms
+ | volume = 5
+ | issue = 3 | year = 1984 | pages = 363–366
+ | doi = 10.1016/0196-6774(84)90016-6
+ | ref = harv
+ | postscript = }}.
+
+==See also==
+
+

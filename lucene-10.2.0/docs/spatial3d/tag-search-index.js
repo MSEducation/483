@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"Constant Field Values","h":"","u":"constant-values.html"},{"l":"The Spatial3D Module for Apache Lucene","h":"Overview","d":"Section","u":"index.html#the-spatial3d-module-for-apache-lucene-heading"}];updateSearchResults();

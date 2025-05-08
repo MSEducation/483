@@ -1,0 +1,22 @@
+[[MD6]]
+
+CATEGORIES: NIST hash function competition
+
+The MD6 Message-Digest Algorithm is a cryptographic hash function. It uses a Merkle tree-like structure to allow for immense parallel computation of hashes for very long inputs. Authors claim a performance of 28 cycles per byte for MD6-256 on an Intel Core 2 Duo and provable resistance against differential cryptanalysis.[ref]
+  
+
+  (Microsoft PowerPoint file)
+[/ref]
+Speeds in excess of 1 GB/s have been reported to be possible for long messages on 16-core CPU architecture.
+The design of Merkle tree is based on the claims from Intel describing the future of hardware processors with tens and thousands of cores instead of the conventional uni-core systems. With this in mind, Merkle tree hash structures exploit full potential of such hardware while being appropriate for current uni/dual core architectures.
+In December 2008, Douglas Held of Fortify Software discovered a buffer overflow in the original MD6 hash algorithm's reference implementation. This error was later made public by professor Ron Rivest on 19 February 2009, with a release of a corrected reference implementation in advance of the Fortify Report.http://blog.fortify.com/repo/Fortify-SHA-3-Report.pdf
+MD6 was submitted to the NIST SHA-3 competition. However, on July 1, 2009, Rivest posted a comment at NIST that MD6 is not yet ready to be a candidate for SHA-3 because of speed issues, a "gap in the proof that the submitted version of MD6 is resistant to differential attacks", and an inability to supply such a proof for a faster reduced-round version,[tpl]cite web|url=http://groups.csail.mit.edu/cis/md6/OFFICIAL_COMMENT_MD6_2009-07-01.txt|title=OFFICIAL COMMENT: MD6|last=Rivest|first=Ronald|date=July 1, 2009|accessdate=September 27, 2011[/tpl] although Rivest also stated at the MD6 website that it is not withdrawn formally.[tpl]cite web|url=http://www.schneier.com/blog/archives/2009/07/md6.html|title=MD6 Withdrawn from SHA-3 Competition|last=Schneier|first=Bruce|date=July 1, 2009|accessdate=July 9, 2009[/tpl] MD6 did not advance to the second round of the SHA-3 competition. In September 2011, a paper presenting an improved proof that MD6 and faster reduced-round versions are resistant to differential attacks[tpl]cite web|url=http://eprint.iacr.org/2011/374|title=Restoring the Differential Resistance of MD6|last=Heilman|first=Ethan|date=July 10, 2011|accessdate=September 27, 2011[/tpl] was posted to the MD6 website.[tpl]cite web|url=http://groups.csail.mit.edu/cis/md6/|title=Improved Differential Analysis|last=Heilman|first=Ethan|date=September 2011|accessdate=September 27, 2011[/tpl]
+The algorithm's first known production use was in the Conficker.B worm in December 2008;[tpl]cite web|url=http://mtc.sri.com/Conficker/addendumC/|title=Addendum: Conficker C Analysis|authors=Phillip Porras, Hassen Saidi, Vinod Yegneswaran|work=Malware Threat Center|publisher=SRI International Computer Science Laboratory|date=2009-04-04|accessdate=2013-06-14[/tpl] the worm's authors subsequently updated Conficker with the corrected implementation once the buffer overflow vulnerability became known.
+
+==See also==
+
+==References==
+
+==External links==
+
+

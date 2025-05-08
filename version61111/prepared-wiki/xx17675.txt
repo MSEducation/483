@@ -1,0 +1,10 @@
+          MT[i] := '''last''' 32 bits '''of'''(1812433253 * (MT[i-1] '''[[Bitwise operation#XOR|xor]]''' ('''right shift by''' 30 bits(MT[i-1]))) + i) ''// 0x6c078965''
+      }
+  }
+  ''// Extract a tempered pseudorandom number based on the index-th value,''
+  ''// calling generate_numbers() every 624 numbers''
+  '''function''' extract_number() {
+      '''if''' index == 0 {
+          generate_numbers()
+      }
+      '''int''' y := MT[index]

@@ -1,0 +1,24 @@
+[[Serial Line Internet Protocol]]
+
+CATEGORIES: Internet protocols, Link protocols, Logical link control
+
+The Serial Line Internet Protocol (also Serial Line Interface Protocol; SLIP) is an encapsulation of the Internet Protocol designed to work over serial ports and modem connections. It is documented in RFC 1055. On personal computers, SLIP has been largely replaced by the Point-to-Point Protocol (PPP), which is better engineered, has more features and does not require its IP address configuration to be set before it is established. On microcontrollers, however, SLIP is still the preferred way of encapsulating IP packets due to its very small overhead.
+
+==Description==
+
+SLIP modifies a standard TCP/IP datagram by 
+SLIP requires a serial port configuration of 8 data bits, no parity, and either EIA hardware flow control, or CLOCAL mode (3-wire null-modem) UART operation settings.
+SLIP does not provide error detection, being reliant on upper layer protocols for this. Therefore SLIP on its own is not satisfactory over an error-prone dial-up connection. It is however still useful for testing operating systems' response capabilities under load (by looking at flood-ping statistics).
+SLIP is also currently used in the BlueCore Serial Protocol for communication between Bluetooth modules and host computers.BCSP BlueCore Serial Protocol (bcore-sp-012Pb) - CSR Support
+
+==CSLIP==
+
+A version of SLIP with header compression is called Compressed SLIP (CSLIP). The compression algorithm used in CSLIP is known as Van Jacobson TCP/IP Header Compression. CSLIP has no effect on the data payload of a packet and is independent of any compression by the serial line modem used for transmission. It reduces the Transmission Control Protocol (TCP) header from 20 bytes to seven bytes. CSLIP has no effect on User Datagram Protocol (UDP) datagrams.
+
+==See also==
+
+==References==
+
+==External links==
+
+

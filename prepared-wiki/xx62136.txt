@@ -1,0 +1,290 @@
+         n = [[Floor and ceiling functions|floor]](n / 2)
+     '''end while'''
+     '''while''' s ''is not empty'' '''do'''
+         output(s.pop())
+     '''end while'''
+ '''end function'''
+
+===Towers of Hanoi===
+
+One of the most interesting applications of stacks can be found in solving a puzzle called Tower of Hanoi. According to an old Brahmin story, the existence of the universe is calculated in terms of the time taken by a number of monks, who are working all the time, to move 64 disks from one pole to another. But there are some rules about how this should be done, which are:
+For algorithm of this puzzle see Tower of Hanoi.
+Assume that A is the first tower, B is the second tower, and C is the third tower.
+
+====Output: (when there are 3 disks)====
+
+Let 1 be the smallest disk, 2 be the disk of medium size and 3 be the largest disk.
+The C++ code for this solution can be implemented in two ways:
+
+====First implementation (using stacks implicitly by recursion)====
+
+====Second implementation (using stacks explicitly)====
+
+In case of the monks, the number of turns taken to transfer 64 disks, by following the above rules, will be 18,446,744,073,709,551,615; which will surely take a lot of time!
+
+===Expression evaluation and syntax parsing===
+
+Calculators employing reverse Polish notation use a stack structure to hold values. Expressions can be represented in prefix, postfix or infix notations and conversion from one form to another may be accomplished using a stack. Many compilers use a stack for parsing the syntax of expressions, program blocks etc. before translating into low level code. Most programming languages are context-free languages, allowing them to be parsed with stack based machines.
+
+====Evaluation of an infix expression that is fully parenthesized====
+
+Input: (((2 * 5) - (1 * 2)) / (11 - 9))
+Output: 4
+Analysis:  Five types of input characters
+Data structure requirement:  A character stack
+Algorithm
+   1. Read one input character
+   2. Actions at end of each input
+      Opening brackets          (2.1)  Go to step (1)
+      Number                        (2.2)  ''Push'' into stack and then Go to step (1)
+      Operator                      (2.3)  ''Push'' into stack and then Go to step (1)
+      Closing brackets              (2.4)  ''Pop'' from stack
+                                    (2.4.1) ''Pop'' is used three times
+                                            The first popped element is assigned to op2
+                                            The second popped element is assigned to op
+                                            The third popped element is assigned to op1
+                                            Evaluate op1 op op2
+                                            Convert the result into character and 
+                                            ''push'' into the stack
+                                            Go to step (1)
+     New line character            (2.5)  ''Pop'' from stack and print the answer
+                                          ''STOP''
+Result:  The evaluation of the fully parenthesized infix expression is printed as follows:
+Input String:  (((2 * 5) - (1 * 2)) / (11 - 9))
+
+====Evaluation of infix expression which is not fully parenthesized====
+
+Input: (2 * 5 - 1 * 2) / (11 - 9)
+Output: 4
+Analysis
+There are five types of input characters which are:
+We do not know what to do if an operator is read as an input character.
+By implementing the priority rule for operators, we have a solution to this problem.
+The Priority rule: we should perform a comparative priority check if an operator is read, and then push it. If the stack top contains an operator of priority higher than or equal to the priority of the input operator, then we pop it and print it. We keep on performing the priority check until the top of stack either contains an operator of lower priority or if it does not contain an operator.
+Data Structure Requirement for this problem: a character stack and an integer stack
+Algorithm:
+    1. Read an input character
+    2. Actions that will be performed at the end of each input
+       Opening parentheses              (2.1)  ''Push'' it into character stack and then Go to step (1)  
+       Number                         (2.2)  ''Push'' into integer stack, Go to step (1)
+       Operator                      (2.3)  Do the comparative priority check
+                                     (2.3.1) if the character stack's ''top'' contains an operator with equal
+                                              or higher priority, then ''pop'' it into op
+                                              ''Pop'' a number from integer stack into op2
+                                              ''Pop'' another number from integer stack into op1
+                                            Calculate op1 op op2 and ''push'' the result into the integer
+                                            stack
+      Closing parentheses              (2.4)  ''Pop'' from the character stack
+                                    (2.4.1) if it is an opening parentheses, then discard it and Go to
+                                            step (1)
+                                    (2.4.2) To op, assign the popped element
+                                            ''Pop'' a number from integer stack and assign it op2
+                                            ''Pop'' another number from integer stack and assign it
+                                            to op1
+                                            Calculate ''op1'' ''op'' ''op2'' and push the result into the integer
+                                            stack
+                                            Convert into character and ''push'' into stack
+                                            Go to the step (2.4)
+     New line character            (2.5)  Print the result after popping from the stack
+                                          ''STOP''
+Result:  The evaluation of an infix expression that is not fully parenthesized is printed as follows:
+Input String:  (2 * 5 - 1 * 2) / (11 - 9)
+[tpl]cite book|last=Gopal|first=Arpita|title=Magnifying Data Structures|publisher=PHI[/tpl]
+
+====Evaluation of prefix expression====
+
+Input: / - * 2 5 * 1 2 - 11 9
+Output: 4
+Analysis
+There are three types of input characters
+Data structure requirement: a character stack and an integer stack
+Algorithm:
+    1. Read one character input at a time and keep pushing it into the character stack until the new
+       line character is reached
+    2. Perform ''pop'' from the character stack. If the stack is empty, go to step (3)
+       Number                        (2.1) ''Push'' in to the integer stack and then go to step (1) 
+       Operator                      (2.2)  Assign the operator to op
+                                            ''Pop'' a number from  integer stack and assign it to op1
+                                            ''Pop'' another number from integer stack
+                                            and assign it to op2                               
+                                            Calculate op1 op op2 and push the output into the integer
+                                            stack. Go to step (2)                                       
+    3. ''Pop'' the result from the integer stack and display the result
+Result:  the evaluation of prefix expression is printed as follows:
+Input String: / - * 2 5 * 1 2 - 11 9
+
+====Evaluation of postfix expression====
+
+The calculation: 1 + 2 * 4 + 3 can be written down like this in postfix notation with the advantage of no precedence rules and parentheses needed:
+ 1 2 4 * + 3 +
+The expression is evaluated from the left to right using a stack:
+Like the following way (the Stack is displayed after Operation has taken place):
+The final result, 12, lies on the top of the stack at the end of the calculation.
+Example in C
+
+====Evaluation of postfix expression (Pascal)====
+
+This is an implementation in Pascal, using marked sequential file as data archives.
+}
+
+===Conversion of an Infix expression that is fully parenthesized into a Postfix expression===
+
+Input: (((8 + 1) - (7 - 4)) / (11 - 9))
+Output: 8 1 + 7 4 - - 11 9 - /
+Analysis:  There are five types of input characters which are:
+                * Opening parentheses
+                * Numbers
+                * Operators
+                * Closing parentheses
+                * New line character (\n)
+Requirement: A character stack
+Algorithm:
+    1. Read an character input
+    2. Actions to be performed at end of each input
+      Opening parentheses           (2.1)  ''Push'' into stack and then Go to step (1)
+      Number                        (2.2)  Print and then Go to step (1)
+      Operator                      (2.3)  ''Push'' into stack and then Go to step (1)
+      Closing parentheses           (2.4)  ''Pop'' it from the stack
+                                    (2.4.1) If it is an operator, print it, Go to step (2.4)
+                                    (2.4.2) If the popped element is an opening parentheses,
+                                            discard it and go to step (1)           
+      New line character            (2.5)  ''STOP''
+Therefore, the final output after conversion of an infix expression to a postfix expression is as follows:
+
+===Rearranging railroad cars===
+
+====Problem description====
+
+This is one useful application of stacks. Consider that a freight train has n railroad cars, each to be left at different station. They're numbered 1 through n and freight train visits these stations in order n through 1. Obviously, the railroad cars are labeled by their destination. To facilitate removal of the cars from the train, we must rearrange them in ascending order of their number (i.e. 1 through n). When cars are in this order, they can be detached at each station. We rearrange cars at a shunting yard that has input track, output track and k holding tracks between input & output tracks (i.e. holding track).
+
+====Solution strategy====
+
+To rearrange cars, we examine the cars on the input from front to back. If the car being examined is next one in the output arrangement, we move it directly to output track. If not, we move it to the holding track & leave it there until it's time to place it to the output track. The holding tracks operate in a LIFO manner as the cars enter & leave these tracks from top. When rearranging cars only following moves are permitted:
+The figure shows a shunting yard with k = 3, holding tracks H1, H2 & H3, also n = 9. The n cars of freight train begin in the input track & are to end up in the output track in order 1 through n from right to left. The cars initially are in the order 5,8,1,7,4,2,9,6,3 from back to front. Later cars are rearranged in desired order.
+
+====A three tracks example====
+
+A three tracks example can be explained as follows:Data structures, Algorithms and Applications in C++ by Sartaj Sahni
+The requirement of rearrangement of cars on any holding track is that the cars should be preferred  to arrange in ascending order from top to bottom. 
+The car 4 is moved to output track. No other cars can be moved to output track at this time.
+
+===Backtracking===
+
+Another important application of stacks is backtracking. Consider a simple example of finding the correct path in a maze. There are a series of points, from the starting point to the destination. We start from one point. To reach the final destination, there are several paths. Suppose we choose a random path. After following a certain path, we realise that the path we have chosen is wrong. So we need to find a way by which we can return to the beginning of that path. This can be done with the use of stacks. With the help of stacks, we remember the point where we have reached. This is done by pushing that point into the  stack. In case we end up on the wrong path, we can pop the last point from the stack and thus return to the last point and continue our quest to find the right path. This is called backtracking.
+
+===Quicksort===
+
+Sorting means arranging the list of elements in a particular order. In case of numbers, it could be in ascending order, or in the case of letters, alphabetic order.  Quicksort is an algorithm of the divide and conquer type. In this method, to sort a set of numbers, we reduce it to two smaller sets, and then sort these smaller sets.  This can be explained with the help of the following example:
+Suppose A is a list of the following numbers:
+In the reduction step, we find the final position of one of the numbers. In this case, let us assume that we have to find the final position of 48, which is the first number in the list.
+To accomplish this, we adopt the following method. Begin with the last number, and move from right to left. Compare each number with 48. If the number is smaller than 48, we stop at that number and swap it with 48.
+In our case, the number is 24. Hence, we swap 24 and 48.
+The numbers 96 and 72 to the right of 48, are greater than 48.  Now beginning with 24, scan the numbers in the opposite direction, that is from left to right. Compare every number with 48 until you find a number that is greater than 48.
+In this case, it is 60. Therefore we swap 48 and 60.
+Note that the numbers 12, 24 and 36 to the left of 48 are all smaller than 48. Now, start scanning numbers from 60, in the right to left direction. As soon as you find lesser number, swap it with 48.
+In this case, it is 44. Swap it with 48. The final result is:
+Now, beginning with 44, scan the list from left to right, until you find a number greater than 48.
+Such a number is 84. Swap it with 48. The final result is:
+Now, beginning with 84, traverse the list from right to left, until you reach a number lesser than 48. We do not find such a number before reaching 48. This means that all the numbers in the list have been scanned and compared with 48. Also, we notice that all numbers less than 48 are to the left of it, and all numbers greater than 48, are to its right.
+The final partitions look as follows:
+Therefore, 48 has been placed in its proper position and now our task is reduced to sorting the two partitions.
+This above step of creating partitions can be repeated with every partition containing 2 or more elements. As we can process only a single partition at a time, we should be able to keep track of the other partitions, for future processing.
+This is done by using two stacks called LOWERBOUND and UPPERBOUND, to temporarily store these partitions. The addresses of the first and last elements of the partitions are pushed into the LOWERBOUND and UPPERBOUND stacks respectively. Now, the above reduction step is applied to the partitions only after its boundary values are popped from the stack.
+We can understand this from the following example:
+Take the above list A with 12 elements. The algorithm starts by pushing the boundary values of A, that is 1 and 12 into the LOWERBOUND and UPPERBOUND stacks respectively.  Therefore the stacks look as follows:
+     LOWERBOUND:  1                   UPPERBOUND:  12
+To perform the reduction step, the values of the stack top are popped from the stack. Therefore, both the stacks become empty.
+     LOWERBOUND:  {empty}                UPPERBOUND: {empty}
+Now, the reduction step causes 48 to be fixed to the 5th position and creates two partitions, one from position 1 to 4 and the other from position 6 to 12. Hence, the values 1 and 6 are pushed into the LOWERBOUND stack and 4 and 12 are pushed into the UPPERBOUND stack.
+     LOWERBOUND:  1, 6                   UPPERBOUND: 4, 12
+For applying the reduction step again, the values at the stack top are popped. Therefore, the values 6 and 12 are popped. Therefore the stacks look like:
+     LOWERBOUND:  1                      UPPERBOUND: 4
+The reduction step is now applied to the second partition, that is from the 6th to 12th element.
+After the reduction step, 98 is fixed in the 11th position. So, the second partition has only one element. Therefore, we push the upper and lower boundary values of the first partition onto the stack. So, the stacks are as follows:
+     LOWERBOUND:  1, 6                   UPPERBOUND:  4, 10
+The processing proceeds in the following way and ends when the stacks do not contain any upper and lower bounds of the partition to be processed, and the list gets sorted.
+[tpl]cite book|last=Lipschutz|first=Seymour|title=Theory and Problems of Data Structures|publisher=Tata McGraw Hill[/tpl]
+
+===The Stock Span Problem===
+
+In the stock span problem, we will solve a financial problem with the help of stacks.
+Suppose, for a stock, we have a series of n daily price quotes, the span of the stock's price on a given day is defined as the maximum number of consecutive days just before the given day, for which the price of the stock on the current day is less than or equal to its price on the given day.
+Let, Price(i) = price of the stock on day "i".
+Then, Span(i) = Max{k : k>=0 and Price(j)Thus, if Price(i-1)>Price(i), then Span(i)=0.
+
+====An algorithm which has Quadratic Time Complexity====
+
+Input: An array P with n elements
+Output: An array S  of n elements such that Si is the largest integer k such that k Algorithm:
+        1. Initialize an array P which contains the daily prices of the stocks
+        2. Initialize an array S which will store the span of the stock
+        3. '''for''' i = 0 to i = n - 1
+                3.1 Initialize k to zero
+                3.2 Done with a ''false'' condition
+                3.3 '''repeat'''
+                      3.3.1 if ( P[i - k] <= P[i] ) then
+                                Increment k by 1
+                      3.3.2 else
+                                Done with ''true'' condition
+                3.4 Till (k > i) or done with processing
+                      Assign value of k to S[i] to get the span of the stock
+        4. Return array S
+Now, analyzing this algorithm for running time, we observe:
+
+====An algorithm which has Linear Time Complexity====
+
+In order to calculate the span more efficiently, we see that the span on a particular day can be easily calculated if we know the closest day before i, such that the price of the stocks on that day was higher than the price of the stocks on the present day. If there exists such a day, we can represent it by h(i) and initialize h(i) to be -1. This is basically the same algorithm as the one used for efficient construction of Cartesian tree.
+Therefore the span of a particular day is given by the formula,
+s = i - h(i).
+To implement this logic, we use a stack as an abstract data type to store the days i, h(i), h(h(i)) and so on. When we go from day i-1 to i, we pop the days when the price of the stock was less than or equal to p(i) and then push the value of day i back into the stack.
+Here, we assume that the stack is implemented by operations that take O(1) that is constant time. The algorithm is as follows:
+Input: An array P with n elements and an empty stack N
+Output: An array S  of n elements such that Pi is the largest integer k such that k Algorithm:
+        1. Initialize an array P which contains the daily prices of the stocks
+        2. Initialize an array S which will store the span of the stock
+        3. '''for''' i = 0 to i = n - 1
+                3.1 Initialize k to zero
+                3.2 Done with a ''false'' condition
+                3.3 '''while not''' (Stack N is empty or done with processing)
+                      3.3.1 if ( P[i] >= P[N.top())] then
+                                Pop a value from stack N
+                      3.3.2 else
+                                Done with ''true'' condition
+                3.4 if Stack N is empty
+                         3.4.1 Initialize h to -1
+                3.5 else
+                         3.5.1 Initialize h to N.top()
+                3.6 Put the value of i - h in S[i]
+                3.7 Push the value of i in N 
+        4. Return array S
+Now, analyzing this algorithm for running time, we observe:
+[tpl]cite book|last=Goodrich, Tamassia, Mount|first=Michael, Roberto, David|title=Data Structures and Algorithms in C++|publisher=Wiley-India[/tpl]
+
+===Runtime memory management===
+
+A number of programming languages are stack-oriented, meaning they define most basic operations (adding two numbers, printing a character) as taking their arguments from the stack, and placing any return values back on the stack. For example, PostScript has a return stack and an operand stack, and also has a graphics state stack and a dictionary stack.
+Forth uses two stacks, one for argument passing and one for subroutine return addresses. The use of a return stack is extremely commonplace, but the somewhat unusual use of an argument stack for a human-readable programming language is the reason Forth is referred to as a stack-based language.
+Many virtual machines are also stack-oriented, including the p-code machine and the Java Virtual Machine.
+Almost all calling conventions – computer runtime memory environments – use a special stack (the "call stack") to hold information about procedure/function calling and nesting in order to switch to the context of the called function and restore to the caller function when the calling finishes. The functions follow a runtime protocol between caller and callee to save arguments and return value on the stack. Stacks are an important way of supporting nested or recursive function calls. This type of stack is used implicitly by the compiler to support CALL and RETURN statements (or their equivalents) and is not manipulated directly by the programmer.
+Some programming languages use the stack to store data that is local to a procedure. Space for local data items is allocated from the stack when the procedure is entered, and is deallocated when the procedure exits. The C programming language is typically implemented in this way. Using the same stack for both data and procedure calls has important security implications (see below) of which a programmer must be aware in order to avoid introducing serious security bugs into a program.
+
+==Security==
+
+Some computing environments use stacks in ways that may make them vulnerable to security breaches and attacks.  Programmers working in such environments must take special care to avoid the pitfalls of these implementations.
+For example, some programming languages use a common stack to store both data local to a called procedure and the linking information that allows the procedure to return to its caller.  This means that the program moves data into and out of the same stack that contains critical return addresses for the procedure calls.  If data is moved to the wrong location on the stack, or an oversized data item is moved to a stack location that is not large enough to contain it, return information for procedure calls may be corrupted, causing the program to fail.
+Malicious parties may attempt a stack smashing attack that takes advantage of this type of implementation by providing oversized data input to a program that does not check the length of input.  Such a program may copy the data in its entirety to a location on the stack, and in so doing it may change the return addresses for procedures that have called it.  An attacker can experiment to find a specific type of data that can be provided to such a program such that the return address of the current procedure is reset to point to an area within the stack itself (and within the data provided by the attacker), which in turn contains instructions that carry out unauthorized operations.
+This type of attack is a variation on the buffer overflow attack and is an extremely frequent source of security breaches in software, mainly because some of the most popular compilers use a shared stack for both data and procedure calls, and do not verify the length of data items.  Frequently programmers do not write code to verify the size of data items, either, and when an oversized or undersized data item is copied to the stack, a security breach may occur.
+
+==Programming tasks==
+
+There are many programming tasks which require application of a stack. The following tasks can be solved and evaluated online:
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

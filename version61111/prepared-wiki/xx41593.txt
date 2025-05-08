@@ -1,0 +1,67 @@
+[[Decorator pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code
+
+In object-oriented programming, the decorator pattern (also known as Wrapper, an alternative naming shared with the Adapter pattern) is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.[tpl]cite book|last=Gamma, et al.|first=Erich|title=Design Patterns|year=1995|publisher=Addison-Wesley Publishing Co, Inc.|location=Reading, MA|isbn=0-201-63361-2|pages=175ff[/tpl]
+
+==Intent==
+
+The decorator pattern can be used  to extend (decorate) the functionality of a certain object statically, or in some cases at run-time, independently of other instances of the same class, provided some groundwork is done at design time. This is achieved by designing a new decorator class that wraps the original class. This wrapping could be achieved by the following sequence of steps:
+This pattern is designed so that multiple decorators can be stacked on top of each other, each time adding a new functionality to the overridden method(s).
+Note that decorators and the original class object share a common set of features. In the previous diagram, the "operation()" method was available in both the decorated and undecorated versions.
+The decoration features (e.g., methods, properties, or other members) are usually defined by an interface, mixin (a.k.a. "trait") or class inheritance which is shared by the decorators and the decorated object. In the previous example the class "Component" is inherited by both the "ConcreteComponent" and the subclasses that descend from "Decorator".
+The decorator pattern is an alternative to subclassing. Subclassing adds behavior at compile time, and the change affects all instances of the original class; decorating can provide new behavior at run-time for individual objects.
+This difference becomes most important when there are several independent ways of extending functionality. In some object-oriented programming languages, classes cannot be created at runtime, and it is typically not possible to predict, at design time, what combinations of extensions will be needed. This would mean that a new class would have to be made for every possible combination. By contrast, decorators are objects, created at runtime, and can be combined on a per-use basis. The I/O Streams implementations of both Java and the .NET Framework incorporate the decorator pattern.
+
+==Motivation==
+
+As an example, consider a window in a windowing system. To allow scrolling of the window's contents, we may wish to add horizontal or vertical scrollbars to it, as appropriate. Assume windows are represented by instances of the Window class, and assume this class has no functionality for adding scrollbars. We could create a subclass ScrollingWindow that provides them, or we could create a ScrollingWindowDecorator that adds this functionality to existing Window objects. At this point, either solution would be fine.
+Now let's assume we also desire the ability to add borders to our windows. Again, our original Window class has no support. The ScrollingWindow subclass now poses a problem, because it has effectively created a new kind of window. If we wish to add border support to all windows, we must create subclasses WindowWithBorder and ScrollingWindowWithBorder. Obviously, this problem gets worse with every new feature to be added. For the decorator solution, we simply create a new BorderedWindowDecorator—at runtime, we can decorate existing windows with the ScrollingWindowDecorator or the BorderedWindowDecorator or both, as we see fit.
+Note, in the previous example, that the "SimpleWindow" & "WindowDecorator" classes implement the "Window" interface, which defines the "draw();" method and the "getDescription();" method, that are required in this scenario, in order to decorate a window control.
+
+==Examples==
+
+===Java===
+
+====First example (window/scrolling scenario)====
+
+The following Java example illustrates the use of decorators using the window/scrolling scenario.
+The following classes contain the decorators for all Window classes, including the decorator classes themselves.
+Here's a test program that creates a Window instance which is fully decorated (i.e., with vertical and horizontal scrollbars), and prints its description:
+The output of this program is "simple window, including vertical scrollbars, including horizontal scrollbars". Notice how the getDescription method of the two decorators first retrieve the decorated Window's description and decorates it with a suffix.
+
+====Second example (coffee making scenario)====
+
+The next Java example illustrates the use of decorators using coffee making scenario.
+In this example, the scenario only includes cost and ingredients.
+The following classes contain the decorators for all Coffee classes, including the decorator classes themselves..
+Here's a test program that creates a Coffee instance which is fully decorated (i.e., with milk, whip, sprinkles), and calculate cost of coffee and prints its ingredients:
+The output of this program is given below:
+ 
+ Cost: 1.0; Ingredients: Coffee
+Cost: 1.5; Ingredients: Coffee, Milk
+Cost: 1.7; Ingredients: Coffee, Milk, Sprinkles
+Cost: 2.4; Ingredients: Coffee, Milk, Sprinkles, Whip
+Cost: 2.6; Ingredients: Coffee, Milk, Sprinkles, Whip, Sprinkles
+
+===C++===
+
+Here is an example program written in C++:
+The output of this program is given below:
+ 
+ Cost: 1.0; Ingredients: Coffee
+Cost: 1.5; Ingredients: Coffee, Milk
+Cost: 1.7; Ingredients: Coffee, Whip
+Cost: 2.2; Ingredients: Coffee, Whip, Milk
+
+===Dynamic languages===
+
+The decorator pattern can also be implemented in dynamic languages either with interfaces or with traditional OOP inheritance.
+
+==See also==
+
+==References==
+
+==External links==
+
+

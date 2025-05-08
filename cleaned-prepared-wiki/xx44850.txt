@@ -1,0 +1,55 @@
+[[Transpose]]
+
+CATEGORIES: Matrices, Abstract algebra, Linear algebra
+
+In linear algebra, the transpose of a matrix A is another matrix AT (also written A′, Atr,tA or At) created by any one of the following equivalent actions:
+Formally, the i th row, j th column element of AT is the j th row, i th column element of A: 
+If A is an  matrix.
+The transpose of a matrix was introduced in 1858 by the British mathematician Arthur Cayley.  The transpose (or "transposition") is defined on page 31.
+
+Examples
+
+Properties
+
+For matrices A, B and scalar c we have the following properties of transpose:
+
+Special transpose matrices
+
+A square matrix whose transpose is equal to itself is called a symmetric matrix; that is, A is symmetric if
+A square matrix whose transpose is equal to its negative is called a skew-symmetric matrix; that is, A is skew-symmetric if
+A square complex matrix whose transpose is equal to the matrix with every entry replaced by its complex conjugate is called a Hermitian matrix (equivalent to the matrix being equal to its conjugate transpose); that is, A is Hermitian if
+A square complex matrix whose transpose is equal to the negation of its complex conjugate is called a skew-Hermitian matrix; that is, A is skew-Hermitian if
+A square matrix whose transpose is equal to its inverse is called an orthogonal matrix; that is, A is orthogonal if
+
+Transpose of a linear map
+
+The transpose may be defined using a coordinate-free approach:
+If  that satisfies
+The definition of the transpose may be seen to be independent of any bilinear form on the vector spaces, unlike the adjoint (below).
+If the matrix A describes a linear map with respect to bases of V and W, then the matrix AT  describes the transpose of that linear map with respect to the dual bases.
+
+Transpose of a bilinear form
+
+Every linear map to the dual space .
+
+Adjoint
+
+If the vector spaces V and W have respective nondegenerate bilinear forms BV and BW, a concept closely related to the transpose – the adjoint – may be defined:
+If  satisfies
+These bilinear forms define an isomorphism between V and V∗, and between W and W∗, resulting in an isomorphism between the transpose and adjoint of f.  The matrix of the adjoint of a map is the transposed matrix only if the bases are orthonormal with respect to their bilinear forms.  In this context, many authors use the term transpose to refer to the adjoint as defined here.
+The adjoint allows us to consider whether  for which the adjoint equals the inverse.
+Over a complex vector space, one often works with sesquilinear forms (conjugate-linear in one argument) instead of bilinear forms.  The Hermitian adjoint of a map between such spaces is defined similarly, and the matrix of the Hermitian adjoint is given by the conjugate transpose matrix if the bases are orthonormal.
+
+Implementation of matrix transposition on computers
+
+On a computer, one can often avoid explicitly transposing a matrix in memory by simply accessing the same data in a different order.  For example, software libraries for linear algebra, such as BLAS, typically provide options to specify that certain matrices are to be interpreted in transposed order to avoid the necessity of data movement.
+However, there remain a number of circumstances in which it is necessary or desirable to physically reorder a matrix in memory to its transposed ordering.  For example, with a matrix stored in row-major order, the rows of the matrix are contiguous in memory and the columns are discontiguous.  If repeated operations need to be performed on the columns, for example in a fast Fourier transform algorithm, transposing the matrix in memory (to make the columns contiguous) may improve performance by increasing memory locality.
+Ideally, one might hope to transpose a matrix with minimal additional storage.  This leads to the problem of transposing an n × m matrix in-place, with O(1) additional storage or at most storage much less than mn.  For n ≠ m, this involves a complicated permutation of the data elements that is non-trivial to implement in-place.  Therefore efficient in-place matrix transposition has been the subject of numerous research publications in computer science, starting in the late 1950s, and several algorithms have been developed.
+
+
+
+
+
+
+
+

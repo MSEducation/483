@@ -1,0 +1,55 @@
+[[Process (computing)]]
+
+CATEGORIES: Process (computing), Concurrent computing, Operating system technology
+
+In computing, a process is an instance of a computer program that is being executed. It contains the program code and its current activity. Depending on the operating system (OS), a process may be made up of multiple threads of execution that execute instructions concurrently.
+A computer program is a passive collection of instructions; a process is the actual execution of those instructions. Several processes may be associated with the same program; for example, opening up several instances of the same program often means more than one process is being executed.
+Multitasking is a method to allow multiple processes to share processors (CPUs) and other system resources. Each CPU executes a single task at a time. However, multitasking allows each processor to switch between tasks that are being executed without having to wait for each task to finish. Depending on the operating system implementation, switches could be performed when tasks perform input/output operations, when a task indicates that it can be switched, or on hardware interrupts.
+A common form of multitasking is time-sharing. Time-sharing is a method to allow fast response for interactive user applications. In time-sharing systems, context switches are performed rapidly. This makes it seem like multiple processes are being executed simultaneously on the same processor. The execution of multiple processes seemingly simultaneously is called concurrency.
+For security and reliability reasons most modern operating systems prevent direct communication between independent processes, providing strictly mediated and controlled inter-process communication functionality.
+
+Representation
+
+In general, a computer system process consists of (or is said to 'own') the following resources:
+The operating system holds most of this information about active processes in data structures called process control blocks.
+Any subset of resource, but typically at least the processor state, may be associated with each of the process' threads in operating systems that support threads or 'daughter' processes.
+The operating system keeps its processes separated and allocates the resources they need, so that they are less likely to interfere with each other and cause system failures (e.g., deadlock or thrashing).  The operating system may also provide mechanisms for inter-process communication to enable processes to interact in safe and predictable ways.
+
+Process management in multi-tasking operating systems
+
+A multitasking operating system may just switch between processes to give the appearance of many processes executing concurrently or simultaneously, though in fact only one process can be executing at any one time on a single-core CPU (unless using multithreading or other similar technology).
+It is usual to associate a single process with a main program, and daughter ( or child) processes with any spin-off, parallel processes, which behave like asynchronous subroutines. A process is said to own resources, of which an image of its program (in memory) is one such resource. (Note, however, that in multiprocessing systems, many processes may run off of, or share, the same reentrant program at the same location in memory— but each process is said to own its own image of the program.)
+Processes are often called "tasks" in embedded operating systems. The sense of "process" (or task) is "something that takes up time", as opposed to 'memory', which is "something that takes up space".
+The above description applies to both processes managed by an operating system, and processes as defined by process calculi.
+If a process requests something for which it must wait, it will be blocked. When the process is in the blocked state, it is eligible for swapping to disk, but this is transparent in a virtual memory system, where regions of a process's memory may be really on disk and not in main memory at any time. Note that even unused portions of active processes/tasks (executing programs) are eligible for swapping to disk.  All parts of an executing program and its data do not have to be in physical memory for the associated process to be active.
+
+Process states
+
+An operating system kernel that allows multi-tasking needs processes to have certain states. Names for these states are not standardised, but they have similar functionality.
+
+Inter-process communication
+
+When processes communicate with each other it is called "Inter-process communication" (IPC).
+Processes frequently need to communicate, for instance in a shell pipeline, the output of the first process need to pass to the second one, and so on to the other process. It is preferred in a well-structured way not using interrupts.
+It is even possible for the two processes to be running on different machines. The operating system (OS) may differ from one process to the other, therefore some mediator(s) (called protocols) are needed.
+
+History
+
+By the early 1960s computer control software had evolved from Monitor control software, for example IBSYS, to Executive control software. Computers got "faster" and computer time was still neither "cheap" nor fully used. It made multiprogramming possible and necessary.
+Multiprogramming means that several programs run "at the same time" (concurrently, including parallel and non-parallel). At first they ran on a single processor (i.e., uniprocessor) and shared scarce resources. Multiprogramming is also basic form of multiprocessing, a much broader term.
+Programs consist of sequences of instructions for processors. A single processor can run only one instruction at a time: it is impossible to run more programs at the same time. A program might need some resource (input ...) which has a large delay, or a program might start some slow operation (output to printer ...). This would lead to processor being "idle" (unused). To use processor at all times, the execution of such a program is halted. At that point, a second (or nth) program is started or restarted. To the user, it will appear that the programs run at the same time (hence the term, concurrent).
+Shortly thereafter, the notion of a 'program' was expanded to the notion of an 'executing program and its context'. The concept of a process was born.
+This became necessary with the invention of re-entrant code.
+Threads came somewhat later.  However, with the advent of time-sharing; computer networks; multiple-CPU, shared memory computers; etc., the old "multiprogramming" gave way to true multitasking, multiprocessing and, later,  multithreading.
+
+
+
+Notes
+
+
+
+Further reading
+
+
+
+

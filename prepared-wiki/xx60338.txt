@@ -1,0 +1,79 @@
+[[Swing (Java)]]
+
+CATEGORIES: Java platform, Java programming language, Java libraries, Java APIs, Widget toolkits
+
+Swing is the primary Java GUI widget toolkit.  It is part of Oracle's Java Foundation Classes (JFC) — an API for providing a graphical user interface (GUI) for Java programs.
+Swing was developed to provide a more sophisticated set of GUI components than the earlier Abstract Window Toolkit (AWT).  Swing provides a native look and feel that emulates the look and feel of several platforms, and also supports a pluggable look and feel that allows applications to have a look and feel unrelated to the underlying platform. It has more powerful and flexible components than AWT. In addition to familiar components such as buttons, check boxes and labels, Swing provides several advanced components such as tabbed panel, scroll panes, trees, tables, and lists.
+Unlike AWT components, Swing components are not implemented by platform-specific code. Instead they are written entirely in Java and therefore are platform-independent. The term "lightweight" is used to describe such an element.[tpl]cite book | page=53 | title=Java Swing | first1=Marc | last1=Loy | first2=Robert | last2=Eckstein | first3=Dave | last3=Wood | first4=James | last4=Elliott | first5=Brian | last5=Cole | publisher=O'Reilly Media, Inc | year=2012 | edition=2 | isbn=1449337309[/tpl]
+
+==History==
+
+The Internet Foundation Classes (IFC) were a graphics library for Java originally developed by Netscape Communications Corporation and first released on December 16, 1996.  On April 2, 1997, Sun Microsystems and Netscape Communications Corporation announced their intention to incorporate IFC with other technologies to form the Java Foundation Classes. The "Java Foundation Classes" were later renamed "Swing."
+Swing introduced a mechanism that allowed the look and feel of every component in an application to be altered without making substantial changes to the application code. The introduction of support for a pluggable look and feel allows Swing components to emulate the appearance of native components while still retaining the benefits of platform independence. 
+Originally distributed as a separately downloadable library, Swing has been included as part of the Java Standard Edition since release 1.2. The Swing classes and components are contained in the [tpl]Javadoc:SE|package=javax.swing|javax/swing[/tpl] package hierarchy.
+
+==Architecture==
+
+Swing is a platform-independent, Model-View-Controller GUI framework for Java, which follows a single-threaded programming model."Swing threading and the event-dispatch thread - JavaWorld", Welcome to JavaWorld.com, http://www.javaworld.com/javaworld/jw-08-2007/jw-08-swingthreading.html Additionally, this framework provides a layer of abstraction between the code structure and graphic presentation of a Swing-based GUI.
+
+===Foundations===
+
+Swing is platform-independent because it is completely written in Java.  Complete documentation for all Swing classes can be found in the Java API Guide.
+
+====Extensible====
+
+Swing is a highly modular-based architecture, which allows for the "plugging" of various custom implementations of specified framework interfaces: Users can provide their own custom implementation(s) of these components to override the default implementations using Java's inheritance mechanism."LookAndFeel (Java Platform SE 7 )", Oracle Documentation, http://docs.oracle.com/javase/7/docs/api/javax/swing/LookAndFeel.html, 5/26/2012
+Swing is a component-based framework, whose components are all ultimately derived from the javax.swing.JComponent class.  Swing objects asynchronously fire events, have bound properties, and respond to a documented set of methods specific to the component. Swing components are Java Beans components, compliant with the Java Beans Component Architecture specifications.
+
+====Customizable====
+
+Given the programmatic rendering model of the Swing framework, fine control over the details of rendering of a component is possible.  As a general pattern, the visual representation of a Swing component is a composition of a standard set of elements, such as a border, inset, decorations, and other properties.  Typically, users will programmatically customize a standard Swing component (such as a JTable) by assigning specific borders, colors, backgrounds, opacities, etc.  The core component will then use these properties to render itself. However, it is also completely possible to create unique GUI controls with highly customized visual representation.
+
+Swing custom painted screenshot 1.png|Swing custom painted screenshot 1
+Swing custom painted screenshot 2.png|Swing custom painted screenshot 2
+Swing custom painted screenshot 3.png|Swing custom painted screenshot 3
+
+====Configurable====
+
+Swing's heavy reliance on runtime mechanisms and indirect composition patterns allows it to respond at run time to fundamental changes in its settings.  For example, a Swing-based application is capable of hot swapping its user-interface during runtime.  Furthermore, users can provide their own look and feel implementation, which allows for uniform changes in the look and feel of existing Swing applications without any programmatic change to the application code.
+Swing's high level of flexibility is reflected in its inherent ability to override the native host operating system (OS)'s GUI controls for displaying itself. Swing "paints" its controls using the Java 2D APIs, rather than calling a native user interface toolkit.  Thus, a Swing component does not have a corresponding native OS GUI component, and is free to render itself in any way that is possible with the underlying graphics GUIs.
+However, at its core, every Swing component relies on an AWT container, since (Swing's) [tpl]Javadoc:SE|javax/swing|JComponent[/tpl] extends (AWT's) Container.  This allows Swing to plug into the host OS's GUI management framework, including the crucial device/screen mappings and user interactions, such as key presses or mouse movements.  Swing simply "transposes" its own (OS-agnostic) semantics over the underlying (OS-specific) components.  So, for example, every Swing component paints its rendition on the graphic device in response to a call to component.paint(), which is defined in (AWT) Container.  But unlike AWT components, which delegated the painting to their OS-native "heavyweight" widget, Swing components are responsible for their own rendering.
+This transposition and decoupling is not merely visual, and extends to Swing's management and application of its own OS-independent semantics for events fired within its component containment hierarchies. Generally speaking, the Swing architecture delegates the task of mapping the various flavors of OS GUI semantics onto a simple, but generalized, pattern to the AWT container. Building on that generalized platform, it establishes its own rich and complex GUI semantics in the form of the [tpl]Javadoc:SE|javax/swing|JComponent[/tpl] model.
+
+====Loosely coupled and MVC====
+
+The Swing library makes heavy use of the Model/View/Controller software design pattern,Swing as MVC which conceptually decouples the data being viewed from the user interface controls through which it is viewed.  Because of this, most Swing components have associated models (which are specified in terms of Java interfaces), and the programmers can use various default implementations or provide their own.  The framework provides default implementations of model interfaces for all of its concrete components. The typical use of the Swing framework does not require the creation of custom models, as the framework provides a set of default implementations that are transparently, by default, associated with the corresponding [tpl]Javadoc:SE|javax/swing|JComponent[/tpl] child class in the Swing library.  In general, only complex components, such as tables, trees and sometimes lists, may require the custom model implementations around the application-specific data structures. To get a good sense of the potential that the Swing architecture makes possible, consider the hypothetical situation where custom models for tables and lists are wrappers over DAO and/or EJB services.
+Typically, Swing component model objects are responsible for providing a concise interface defining events fired, and accessible properties for the (conceptual) data model for use by the associated JComponent. Given that the overall MVC pattern is a loosely coupled collaborative object relationship pattern, the model provides the programmatic means for attaching event listeners to the data model object.  Typically, these events are model centric (ex: a "row inserted" event in a table model) and are mapped by the JComponent specialization into a meaningful event for the GUI component.
+For example, the [tpl]Javadoc:SE|javax/swing|JTable[/tpl] has a model called [tpl]Javadoc:SE|javax/swing/table|TableModel[/tpl] that describes an interface for how a table would access tabular data.  A default implementation of this operates on a two-dimensional array.
+The view component of a Swing JComponent is the object used to graphically represent the conceptual GUI control.  A distinction of Swing, as a GUI framework, is in its reliance on programmatically rendered GUI controls (as opposed to the use of the native host OS's GUI controls). Prior to Java 6 Update 10, this distinction was a source of complications when mixing AWT controls, which use native controls, with Swing controls in a GUI (see Mixing AWT and Swing components).
+Finally, in terms of visual composition and management, Swing favors relative layouts (which specify the positional relationships between components) as opposed to absolute layouts (which specify the exact location and size of components).  This bias towards "fluid"' visual ordering is due to its origins in the applet operating environment that framed the design and development of the original Java GUI toolkit.  (Conceptually, this view of the layout management is quite similar to that which informs the rendering of HTML content in browsers, and addresses the same set of concerns that motivated the former.)
+
+===Relationship to AWT===
+
+Since early versions of Java, a portion of the Abstract Window Toolkit (AWT) has provided platform-independent APIs for user interface components. In AWT, each component is rendered and controlled by a native peer component specific to the underlying windowing system.
+By contrast, Swing components are often described as lightweight because they do not require allocation of native resources in the operating system's windowing toolkit. The AWT components are referred to as heavyweight components.[tpl]Whom?|date=May 2012[/tpl]
+Much of the Swing API is generally a complementary extension of the AWT rather than a direct replacement. In fact, every Swing lightweight interface ultimately exists within an AWT heavyweight component because all of the top-level components in Swing ([tpl]Javadoc:SE|javax/swing|JApplet[/tpl], [tpl]Javadoc:SE|javax/swing|JDialog[/tpl], [tpl]Javadoc:SE|javax/swing|JFrame[/tpl], and [tpl]Javadoc:SE|javax/swing|JWindow[/tpl]) extend an AWT top-level container. Prior to Java 6 Update 10, the use of both lightweight and heavyweight components within the same window was generally discouraged due to Z-order incompatibilities. However, later versions of Java have fixed these issues, and both Swing and AWT components can now be used in one GUI without Z-order issues.
+The core rendering functionality used by Swing to draw its lightweight components is provided by Java 2D, another part of JFC.
+
+===Relationship to SWT===
+
+The Standard Widget Toolkit (SWT) is a competing toolkit originally developed by IBM and now maintained by the Eclipse community. SWT's implementation has more in common with the heavyweight components of AWT. This confers benefits such as more accurate fidelity with the underlying native windowing toolkit, at the cost of an increased exposure to the native platform in the programming model.
+There has been significant debate and speculation about the performance of SWT versus Swing; some hinted that SWT's heavy dependence on JNI would make it slower when the GUI component and Java need to communicate data, but faster at rendering when the data model has been loaded into the GUI, but this has not been confirmed either way.Swing vs. SWT Performance - Have a Look at the Call Stacks A fairly thorough set of benchmarks in 2005 concluded that neither Swing nor SWT clearly outperformed the other in the general case.
+
+==Examples==
+
+===A basic example===
+
+The following is a rather simple Swing-based program. It displays a window (a [tpl]Javadoc:SE|javax/swing|JFrame[/tpl]) containing a label and a button.
+Notice how all instantiation and handling of Swing components are done by creating an instance of the class, 
+which is subclassed from the Runnable class. This is then run on the Event Dispatch Thread by use of the method [tpl]Javadoc:SE|member=invokeLater(Runnable)|javax/swing|SwingUtilities|invokeLater(java.lang.Runnable)[/tpl]), created in the main method (see Swing and thread safety). Although Swing code can be run without using this technique (for instance, by not implementing Runnable and moving all commands from the run method to the main method), it is considered to be good form, as Swing is not thread-safe, meaning that invoking resources from multiple threads can result in thread interference and memory consistency errors.http://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html The Event Dispatch Thread
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

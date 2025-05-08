@@ -1,0 +1,22 @@
+[[Binary File Descriptor library]]
+
+CATEGORIES: C libraries, GNU Project software, Executable file formats, Free computer libraries
+
+The Binary File Descriptor library (BFD) is the GNU Project's main mechanism for the portable manipulation of object files in a variety of formats. [tpl]As of|2003[/tpl], it supports approximately 50 file formats for some 25 processor architectures.
+
+==History==
+
+When David Henkel-Wallace of Cygnus Support proposed developing the library as a way to open up new business opportunities for the company, Richard Stallman said that it would be difficult; David's response was "Big F*cking Deal". This became the library name, and "Binary File Descriptor" was invented later as the meaning of the letters.
+
+==Design==
+
+BFD works by presenting a common abstract view of object files. An object file has a "header" with descriptive info; a variable number of "sections" that each has a name, some attributes, and a block of data; a symbol table; relocation entries; and so forth.
+Internally, BFD translates the data from the abstract view into the details of the  bit/byte layout required by the target processor and file format. Its key services include handling byte order differences, such as between a little-endian host and big-endian target, correct conversion between 32-bit and 64-bit data, and details of address arithmetic specified by relocation entries.
+Although BFD was originally designed to be a generic library usable by a wide variety of tools, the frequent need to tinker with the API to accommodate new systems' capabilities has tended to limit its use;[tpl]cite mailing list |url= http://lists.debian.org/debian-devel/2005/05/msg01086.html |title= Re: depending on shared libbfd from binutils-dev |date= 2005-05-22 |accessdate=2011-04-03 |mailinglist= debian-devel |last= Langasek|first= Steve|author= Steve Langasek |language= English [/tpl][tpl]cite mailing list |url= http://lists.fedoraproject.org/pipermail/packaging/2010-June/007154.html |title= binutils once more|date= 2010-06-04 |accessdate=2011-04-03 |mailinglist= Fedora-packaging |last= Kuratomi |first= Toshio |author= Toshio Kuratomi |language= English [/tpl][tpl]cite mailing list |url= http://www.sourceware.org/ml/binutils/2003-09/msg00216.html|title= Re: FreeBSD 4.6 - binutils 2.14 installs useless libbfd|date= 2003-09-12|accessdate=2011-04-03 |mailinglist= binutils|last= Taylor|first= Ian|author= Ian Lance Taylor|language= English [/tpl] BFD's main clients are the GNU Assembler (GAS), GNU Linker (GLD), and other GNU Binary Utilities ("binutils") tools, and the GNU Debugger (GDB). As a result, BFD is not distributed separately, but is always included with releases of binutils and GDB. Nevertheless, BFD is a critical component in the use of GNU tools for embedded systems development.
+The BFD library can be used to read the structured data out of a core dump.
+
+==References==
+
+==External links==
+
+

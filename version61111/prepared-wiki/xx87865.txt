@@ -1,0 +1,48 @@
+[[MOS Technology 8563]]
+
+CATEGORIES: MOS Integrated Circuits, Graphics chips, Commodore 64
+
+The 8563 Video Display Controller (VDC) was an integrated circuit produced by MOS Technology. It was used in the Commodore 128 computer to generate an 80-column (640×200 pixel) RGB video display, running alongside a VIC-II which supported Commodore 64-compatible graphics. The DCR models (as well as a few D-models) of the C128 used the later and more technically advanced 8568 DVDC controller.
+
+==History and characteristics==
+
+Originally intended for a planned (but unreleased) UNIX-based business computer, Commodore designed the VDC into several prototype machines. Of these, only the Commodore 128 ever saw production. Unlike earlier MOS video chips such as the popular VIC-II, the VDC had dedicated video RAM, 16 kilobytes (upgradable to 64 kilobytes) in the original or "flat" C128 and 64 kilobytes in the C128DCR.  This RAM was not directly accessible by the microprocessor.
+The 8563 was more difficult to produce than most of the rest of the MOS Technology line, and initial yields were very low. http://www.commodore.ca/products/128/Commodore_128.htm  Also, there were timing issues with the VDC that would cause indirect load and store operations on its registers to malfunction.
+Officially, the VDC was a text-only chip, although a careful reading of the technical literature by MOS Technology that was given to the early C128 developers did indicate that a  high-resolution bitmap mode was possible—it simply wasn't described in any detail. BASIC 7.0, the Commodore 128's built-in programming language, only supported high-resolution graphics in 40-column mode via the legacy VIC-II chip.
+Shortly after the release of the C128 the VDC's bitmap mode was described in considerable detail in a Data Becker book (published in late 1985 in the USA by Abacus Software), and an assembly language program was provided by the authors, in which it was possible to set or clear any pixel or, using BASIC to perform the necessary calculations, generate bitmapped geometric shapes on the 80 column screen.  In February 1986, less than a year after the Commodore 128's release, RUN magazine published "Ultra Hi-Res Graphics", an article describing the VDC's bitmapped mode and including a type-in program (written in 8502 assembly language) that extended BASIC 7.0's capabilities to support 640×200 high-resolution graphics using the 8563. http://cbmfiles.com/genie/geniefiles/C128Software/ULTRAHIRES.DOCS Authors Lou Wallace and David Darus later developed the Ultra Hi-Res utility into a commercial package, BASIC 8. One of the most popular third-party utilities for the C128, this offered more advanced VDC high-resolution capabilities to a wide audience of programmers.
+Commodore finally offered complete official documentation on the VDC in the Commodore 128 Programmer's Reference Guide. VDC bitmap modes were used extensively in the C128 version of the GEOS operating system.
+The VDC lacked sprite capabilities, which limited its use in gaming applications. However, it did contain blitting capabilities to autonomously perform small block memory copies within its dedicated video RAM.    While the VDC is performing such a copy, the system CPU can continue running code, provided no other VDC accesses are attempted before the copy is finished.  These functions were used by the C128's screen editor ROM to rapidly scroll or clear screen sections.
+
+==Technical specifications==
+
+==Programming==
+
+Addressing the VDC's internal registers and dedicated video memory must be accomplished by indirect means.  First the program must tell the VDC which of its 37 internal registers is to be accessed.  Next the program must wait until the VDC is ready for the access, after which a read or write on the selected internal register may be performed.  The following code is typical of a register read:
+
+         ldx #regnum       ;VDC register to access
+         stx $d600         ;write to control register
+ loop    bit $d600         ;check bit 7 of status register
+         bpl loop          ;VDC not ready
+         lda $d601         ;read from VDC register
+         ...
+
+The following code is typical of a register write operation:
+
+         ldx #regnum       ;VDC register to write to
+         stx $d600         ;write to control register
+ loop    bit $d600         ;check bit 7 of status register
+         bpl loop          ;VDC not ready
+         sta $d601         ;write to VDC register
+         ...
+
+Owing to this somewhat cumbersome method of controlling the VDC, the maximum possible frame rate in bit-mapped mode is generally too slow for arcade-style action video games, in which bit-intensive manipulation of the display is required.
+
+==Register Listing==
+
+This information was adapted from the Commodore 128 Programmer's Reference GuideCommodore Capital, Inc., (1986). Commodore 128 programmer's reference guide. New York, NY: Bantam Books, Inc.
+
+==References==
+
+==External links==
+
+

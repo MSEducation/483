@@ -1,0 +1,207 @@
+[[Newton's method]]
+
+CATEGORIES: Optimization algorithms and methods, Root-finding algorithms
+
+In numerical analysis, Newton's method (also known as the Newton–Raphson method), named after Isaac Newton and Joseph Raphson, is a method for finding successively better approximations to the roots (or zeroes) of a real-valued function.
+The Newton–Raphson method in one variable is implemented as follows:
+Given a function ƒ defined over the reals x, and its derivative ƒ[tpl]void[/tpl]', we begin with a first guess x0 for a root of the function f. Provided the function satisfies all the assumptions made in the derivation of the formula, a better approximation x1 is
+Geometrically, (x1, 0) is the intersection with the x-axis of the tangent to the graph of f at (x0, f (x0)).
+The process is repeated as
+until a sufficiently accurate value is reached.
+This algorithm is first in the class of Householder's methods, succeeded by Halley's method. The method can also be extended to complex functions and to systems of equations.
+
+==Description==
+
+The idea of the method is as follows: one starts with an initial guess which is reasonably close to the true root, then the function is approximated by its tangent line (which can be computed using the tools of calculus), and one computes the x-intercept of this tangent line (which is easily done with elementary algebra). This x-intercept will typically be a better approximation to the function's root than the original guess, and the method can be iterated.
+Suppose ƒ : a, b → R is a differentiable function defined on the interval a, b with values in the real numbers R. The formula for converging on the root can be easily derived. Suppose we have some current approximation xn. Then we can derive the formula for a better approximation, xn+1 by referring to the diagram on the right. The equation of the tangent line to the curve y = ƒ(x) at the point x=xn is 
+where, ƒ' denotes the derivative of the function ƒ.
+The x-intercept of this line (the value of x such that y=0) is then used as the next approximation to the root, xn+1.  In other words, setting y to zero and x to xn+1 gives 
+Solving for xn+1 gives
+We start the process off with some arbitrary initial value x0.  (The closer to the zero, the better.  But, in the absence of any intuition about where the zero might lie, a "guess and check" method might narrow the possibilities to a reasonably small interval by appealing to the intermediate value theorem.)  The method will usually converge, provided this initial guess is close enough to the unknown zero, and that ƒ'(x0) ≠ 0. Furthermore, for a zero of multiplicity 1, the convergence is at least quadratic (see rate of convergence) in a neighbourhood of the zero, which intuitively means that the number of correct digits roughly at least doubles in every step. More details can be found in the analysis section below.
+The Householder's methods are similar but have higher order for even faster convergence.
+However, the extra computations required for each step can slow down the overall performance relative to Newton's method, particularly if f or its derivatives are computationally expensive to evaluate.
+
+==History==
+
+Newton's method was used by 17th-century Japanese mathematician Seki Kōwa to solve single-variable equations, though the connection with calculus was missing.
+Newton's method was first published in 1685 in A Treatise of Algebra both Historical and Practical by John Wallis. In 1690, Joseph Raphson published a simplified description in Analysis aequationum universalis. Raphson again viewed Newton's method purely as an algebraic method and restricted its use to polynomials, but he describes the method in terms of the successive approximations xn instead of the more complicated sequence of polynomials used by Newton. Finally, in 1740, Thomas Simpson described Newton's method as an iterative method for solving general nonlinear equations using calculus, essentially giving the description above. In the same publication, Simpson also gives the generalization to systems of two equations and notes that Newton's method can be used for solving optimization problems by setting the gradient to zero.
+Arthur Cayley in 1879 in The Newton-Fourier imaginary problem was the first to notice the difficulties in generalizing Newton's method to complex roots of polynomials with degree greater than 2 and complex initial values. This opened the way to the study of the theory of iterations of rational functions.
+
+==Practical considerations==
+
+Newton's method is an extremely powerful technique—in general the convergence is quadratic: as the method converges on the root, the difference between the root and the approximation is squared (the number of accurate digits roughly doubles) at each step. However, there are some difficulties with the method.
+
+===Difficulty in calculating derivative of a function===
+
+Newton's method requires that the derivative be calculated directly.  An analytical expression for the derivative may not be easily obtainable and could be expensive to evaluate. In these situations, it may be appropriate to approximate the derivative by using the slope of a line through two nearby points on the function. Using this approximation would result in something like the secant method whose convergence is slower than that of Newton's method.
+
+===Failure of the method to converge to the root===
+
+It is important to review the proof of quadratic convergence of Newton's Method before implementing it.  Specifically, one should review the assumptions made in the proof.  For situations where the method fails to converge, it is because the assumptions made in this proof are not met.
+
+====Overshoot====
+
+If the first derivative is not well behaved in the neighborhood of a particular root, the method may overshoot, and diverge from that root. An example of a function with one root, for which the derivative is not well behaved in the neighborhood of the root is
+for which the root will be overshot and the sequence of [tpl]mvar|x[/tpl] will diverge. For [tpl]math|[tpl]var|a[/tpl] [tpl]=[/tpl] 1/2[/tpl], the root will still be overshot, but the sequence will oscillate between two values. For {{math|1/2 In some cases, Newton's method can be stabilized by using successive over-relaxation, or the speed of convergence can be increased by using the same method.
+
+====Stationary point====
+
+If a stationary point of the function is encountered, the derivative is zero and the method will terminate due to division by zero.
+
+====Poor initial estimate====
+
+A large error in the initial estimate can contribute to non-convergence of the algorithm.
+
+====Mitigation of non-convergence====
+
+In a robust implementation of Newton's method, it is common to place limits on the number of iterations, bound the solution to an interval known to contain the root, and combine the method with a more robust root finding method.
+
+===Slow convergence for roots of multiplicity > 1===
+
+==Analysis==
+
+Suppose that the function ƒ has a zero at α, i.e., ƒ(α) = 0.
+If f  is continuously differentiable and its derivative is nonzero at α, then there exists a neighborhood of α such that for all starting values x0 in that neighborhood, the sequence {xn} will converge to α.[tpl]Citation needed|date=February 2012[/tpl]
+If the function is continuously differentiable and its derivative is not 0 at α and it has a second derivative at α then the convergence is quadratic or faster. If the second derivative is not 0 at α then the convergence is merely quadratic. If the third derivative exists and is bounded in a neighborhood of α, then:
+If the derivative is 0 at α, then the convergence is usually only linear. Specifically, if ƒ is twice continuously differentiable, ƒ(α) = 0 and ƒ(α) ≠ 0, then there exists a neighborhood of α such that for all starting values x0 in that neighborhood, the sequence of iterates converges linearly, with rate log10 2 (Süli & Mayers, Exercise 1.6). Alternatively if ƒ(α) = 0 and ƒ(x) ≠ 0 for x ≠ α, x in a neighborhood U of α, α being a zero of multiplicity r, and if ƒ ∈ Cr(U) then there exists a neighborhood of α such that for all starting values x0 in that neighborhood, the sequence of iterates converges linearly.
+However, even linear convergence is not guaranteed in pathological situations.
+
+===Proof of quadratic convergence for Newton's iterative method===
+
+where the Lagrange form of the Taylor series expansion remainder is
+Remembering that xn+1 is defined by
+one finds that
+That is,
+Taking absolute value of both sides gives
+Equation ([tpl]EquationNote|6[/tpl]) shows that the rate of convergence is quadratic if following conditions are satisfied:
+The term sufficiently close in this context means the following:
+(a) Taylor approximation is accurate enough such that we can ignore higher order terms,
+Finally, ([tpl]EquationNote|6[/tpl]) can be expressed in the following way:
+
+===Basins of attraction===
+
+==Failure analysis==
+
+Newton's method is only guaranteed to converge if certain conditions are satisfied.  If the assumptions made in the proof of quadratic convergence are met, the method will converge.  For the following subsections, failure of the method to converge indicates that the assumptions made in the proof were not met.
+
+===Bad starting points===
+
+====Iteration point is stationary====
+
+Consider the function:
+It has a maximum at x = 0 and solutions of f(x) = 0 at x = ±1. If we start iterating from the stationary point x0 = 0 (where the derivative is zero), x1 will be undefined, since the tangent at (0,1) is parallel to the x-axis:
+The same issue occurs if, instead of the starting point, any iteration point is stationary. Even if the derivative is small but not zero, the next iteration will be a far worse approximation.
+
+====Starting point enters a cycle====
+
+For some functions, some starting points may enter an infinite cycle, preventing convergence. Let
+and take 0 as the starting point. The first iteration produces 1 and the second iteration returns to 0 so the sequence will alternate between the two without converging to a root. In fact, this 2-cycle is stable: there are neighborhoods around 0 and around 1 from which all points iterate asymptotically to the 2-cycle (and hence not to the root of the function). In general, the behavior of the sequence can be very complex (see Newton fractal).
+
+===Derivative issues===
+
+If the function is not continuously differentiable in a neighborhood of the root then it is possible that Newton's method will always diverge and fail, unless the solution is guessed on the first try.
+
+====Derivative does not exist at root====
+
+A simple example of a function where Newton's method diverges is the cube root, which is continuous and infinitely differentiable, except for x = 0, where its derivative is undefined (this, however, does not affect the algorithm, since it will never require the derivative if the solution is already found):
+For any iteration point xn, the next iteration point will be:
+The algorithm overshoots the solution and lands on the other side of the y-axis, farther away than it initially was; applying Newton's method actually doubles the distances from the solution at each iteration.
+
+====Discontinuous derivative====
+
+If the derivative is not continuous at the root, then convergence may fail to occur in any neighborhood of the root. Consider the function
+Its derivative is:
+Within any neighborhood of the root, this derivative keeps changing sign as x approaches 0 from the right (or from the left) while f(x) ≥ x − x2 > 0 for 0 So f(x)/f(x) is unbounded near the root, and Newton's method will diverge almost everywhere in any neighborhood of it, even though:
+
+===Non-quadratic convergence===
+
+In some cases the iterates converge but do not converge as quickly as promised. In these cases simpler methods converge just as quickly as Newton's method.
+
+====Zero derivative====
+
+If the first derivative is zero at the root, then convergence will not be quadratic. Indeed, let
+Similar problems occur even when the root is only "nearly" double. For example, let
+Then the first few iterates starting at x0 = 1 are
+1, 0.500250376, 0.251062828, 0.127507934, 0.067671976, 0.041224176, 0.032741218, 0.031642362; it takes six iterations to reach a point where the convergence appears to be quadratic.
+
+====No second derivative====
+
+If there is no second derivative at the root, then convergence may fail to be quadratic. Indeed, let
+Then
+And
+
+==Generalizations==
+
+===Complex functions===
+
+When dealing with complex functions, Newton's method can be directly applied to find their zeroes. Each zero has a basin of attraction in the complex plane, the set of all starting values that cause the method to converge to that particular zero. These sets can be mapped as in the image shown. For many complex functions, the boundaries of the basins of attraction are fractals.
+
+===Nonlinear systems of equations===
+
+====k variables, k functions====
+
+One may also use Newton's method to solve systems of k (non-linear) equations, which amounts to finding the zeroes of continuously differentiable functions F : Rk → Rk. In the formulation given above, one then has to left multiply with the inverse of the k-by-k Jacobian matrix JF(xn) instead of dividing by f '(xn).
+Rather than actually computing the inverse of this matrix, one can save time by solving the system of linear equations
+for the unknown xn+1 − xn.
+
+====k variables, m equations, with m > k====
+
+The k-dimensional Newton's method can be used to solve systems of >k (non-linear) equations as well if the algorithm uses the generalized inverse of the non-square Jacobian matrix J+ = ((JTJ)−1)JT instead of the inverse of J. If the nonlinear system has no solution, the method attempts to find a solution in the non-linear least squares sense. See Gauss–Newton algorithm for more information.
+
+===Nonlinear equations in a Banach space===
+
+Another generalization is Newton's method to find a root of a functional F defined in a Banach space. In this case the formulation is
+
+===Nonlinear equations over p-adic numbers===
+
+In p-adic analysis, the standard method to show a polynomial equation in one variable has a p-adic root is Hensel's lemma, which uses the recursion from Newton's method on the p-adic numbers. Because of the more stable behavior of addition and multiplication in the p-adic numbers compared to the real numbers (specifically, the unit ball in the p-adics is a ring), convergence in Hensel's lemma can be guaranteed under much simpler hypotheses than in the classical Newton's method on the real line.
+
+===Newton-Fourier method===
+
+==Applications==
+
+===Minimization and maximization problems===
+
+Newton's method can be used to find a minimum or maximum of a function. The derivative is zero at a minimum or maximum, so minima and maxima can be found by applying Newton's method to the derivative. The iteration becomes:
+
+===Multiplicative inverses of numbers and power series===
+
+An important application is Newton–Raphson division, which can be used to quickly find the reciprocal of a number, using only multiplication and subtraction.
+Finding the reciprocal of a amounts to finding the root of the function
+Newton's iteration is 
+Therefore, Newton's iteration needs only two multiplications and one subtraction.
+This method is also very efficient to compute the multiplicative inverse of a power series.
+
+===Solving transcendental equations===
+
+Many transcendental equations can be solved using Newton's method. Given the equation
+with g(x) and/or h(x) a transcendental function, one writes
+The values of x that solves the original equation are then the roots of f(x), which may be found via Newton's method.
+
+==Examples==
+
+===Square root of a number===
+
+Consider the problem of finding the square root of a number. Newton's method is one of many methods of computing square roots.
+For example, if one wishes to find the square root of 612, this is equivalent to finding the solution to
+The function to use in Newton's method is then,
+with derivative,
+With an initial guess of 10, the sequence given by Newton's method is
+Where the correct digits are underlined. With only a few iterations one can obtain a solution accurate to many decimal places.
+
+===Solution of cos(x) = x3===
+
+Consider the problem of finding the positive number x with cos(x) = x3. We can rephrase that as finding the zero of f(x) = cos(x) − x3. We have f'(x) = −sin(x) − 3x2. Since cos(x) ≤ 1 for all x and x3 > 1 for x > 1, we know that our zero lies between 0 and 1. We try a starting value of x0 = 0.5. (Note that a starting value of 0 will lead to an undefined result, showing the importance of using a starting point that is close to the zero.)
+The correct digits are underlined in the above example. In particular, x6 is correct to the number of decimal places given. We see that the number of correct digits after the decimal point increases from 2 (for x3) to 5 and 10, illustrating the quadratic convergence.
+
+==Pseudocode==
+
+The following is an example of using the Newton's Method to help find a root of a function f which has derivative fprime. 
+
+==See also==
+
+==References==
+
+==External links==
+
+

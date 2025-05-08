@@ -1,0 +1,59 @@
+[[Time hierarchy theorem]]
+
+CATEGORIES: Structural complexity theory, Theorems in computational complexity theory, Articles containing proofs
+
+In computational complexity theory, the time hierarchy theorems are important statements about time-bounded computation on Turing machines. Informally, these theorems say that given more time, a Turing machine can solve more problems. For example, there are problems that can be solved with n2 time but not n time.
+The time hierarchy theorem for deterministic multi-tape Turing machines was first proven by Richard Stearns and Juris Hartmanis in 1965. It was improved a year later when F. C. Hennie and Richard Stearns improved the efficiency of the Universal Turing machine. Consequent to the theorem, for every deterministic time-bounded complexity class, there is a strictly larger time-bounded complexity class, and so the time-bounded hierarchy of complexity classes does not completely collapse. More precisely, the time hierarchy theorem for deterministic Turing machines states that for all time-constructible functions f(n),
+The time hierarchy theorem for nondeterministic Turing machines was originally proven by Stephen Cook in 1972. It was improved to its current form via a complex proof by Joel Seiferas, Michael Fischer, and Albert Meyer in 1978. Finally in 1983, Stanislav Žák achieved the same result with the simple proof taught today. The time hierarchy theorem for nondeterministic Turing machines states that if g(n) is a time-constructible function, and f(n+1) = o(g(n)), then
+The analogous theorems for space are the space hierarchy theorems. A similar theorem is not known for time-bounded probabilistic complexity classes, unless the class also has advice.[tpl]Cite journal|doi=10.1109/FOCS.2004.33|title=45th Annual IEEE Symposium on Foundations of Computer Science|year=2004|author=Fortnow, L.|pages=316|last2=Santhanam|first2=R.|chapter=Hierarchy Theorems for Probabilistic Polynomial Time|isbn=0-7695-2228-9[/tpl]
+
+==Background==
+
+==Proof overview==
+
+We need to prove that some time class TIME(g(n)) is strictly larger than some time class TIME(f(n)).  We do this by constructing a machine which cannot be in TIME(f(n)), by diagonalization.  We then show that the machine is in TIME(g(n)), using a simulator machine.
+
+==Deterministic time hierarchy theorem==
+
+===Statement===
+
+ Time Hierarchy Theorem. If f(n) is a time-constructible function, then there exists a decision problem which cannot be solved in worst-case deterministic time f(n) but can be solved in worst-case deterministic time f(n)2. In other words,
+ Note 1. f(n) is at least n, since smaller functions are never time-constructible. 
+Note 2. Even more generally, it can be shown that if f(n) is time-constructible, then 
+For example, there are problems solvable in time n2 but not time n, since n is in 
+
+===Proof===
+
+We include here a proof that DTIME(f(n)) is a strict subset of DTIME(f(2n + 1)3) as it is simpler. See the bottom of this section for information on how to extend the proof to f(n)2.
+To prove this, we first define a language as follows:
+Here, M is a deterministic Turing machine, and x is its input (the initial contents of its tape). M denotes an input that encodes the Turing machine M. Let m be the size of the tuple (M, x).
+We know that we can decide membership of Hf by way of a deterministic Turing machine that first calculates f(|x|), then writes out a row of 0s of that length, and then uses this row of 0s as a "clock" or "counter" to simulate M for at most that many steps. At each step, the simulating machine needs to look through the definition of M to decide what the next action would be. It is safe to say that this takes at most f(m)3 operations, so
+The rest of the proof will show that
+so that if we substitute 2n + 1 for m, we get the desired result. Let us assume that Hf is in this time complexity class, and we will attempt to reach a contradiction.
+If Hf is in this time complexity class, it means we can construct some machine K which, given some machine description M and input x, decides whether the tuple (M, x) is in Hf within 
+Therefore we can use this K to construct another machine, N, which takes a machine description M and runs K on the tuple (M, M), and then accepts only if K rejects, and rejects if K accepts. If now n is the length of the input to N, then m (the length of the input to K) is twice n plus some delimiter symbol, so m = 2n + 1. N's running time is thus 
+Now if we feed N as input into N itself (which makes n the length of N) and ask the question whether N accepts its own description as input, we get:
+We thus conclude that the machine K does not exist, and so
+
+===Extension===
+
+The reader may have realised that the proof is simpler because we have chosen a simple Turing machine simulation for which we can be certain that
+It has been shownLuca Trevisan, Notes on Hierarchy Theorems, U.C. Berkeley that a more efficient model of simulation exists which establishes that
+but since this model of simulation is rather involved, it is not included here.
+
+==Non-deterministic time hierarchy theorem==
+
+If g(n) is a time-constructible function, and f(n+1) = o(g(n)), then there exists a decision problem which cannot be solved in non-deterministic time f(n) but can be solved in non-deterministic time g(n). In other words, the complexity class NTIME(f(n)) is a strict subset of NTIME(g(n)).
+
+==Consequences==
+
+The time hierarchy theorems guarantee that the deterministic and non-deterministic versions of the exponential hierarchy are genuine hierarchies: in other words P ⊂ EXPTIME ⊂ 2-EXP ⊂ ... and NP ⊂ NEXPTIME ⊂ 2-NEXP ⊂ .... 
+For example, P ⊂ EXPTIME since P ⊆ DTIME(2n) ⊂ DTIME(22n) ⊆ EXPTIME.
+The theorem also guarantees that there are problems in P requiring arbitrary large exponents to solve; in other words, P does not collapse to DTIME(nk) for any fixed k. For example, there are problems solvable in n5000 time but not n4999 time. This is one argument against Cobham's thesis, the convention that P is a practical class of algorithms. If such a collapse did occur, we could deduce that P ≠ PSPACE, since it is a well-known theorem that DTIME(f(n)) is strictly contained in DSPACE(f(n)).
+However, the time hierarchy theorems provide no means to relate deterministic and non-deterministic complexity, or time and space complexity, so they cast no light on the great unsolved questions of computational complexity theory: whether P and NP, NP and PSPACE, PSPACE and EXPTIME, or EXPTIME and NEXPTIME are equal or not.
+
+==See Also==
+
+==References==
+
+

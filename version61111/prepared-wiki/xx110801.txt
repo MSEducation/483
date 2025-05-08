@@ -1,0 +1,48 @@
+[[Lovász local lemma]]
+
+CATEGORIES: Probability theorems, Combinatorics, Lemmas
+
+In probability theory, if a large number of events are all independent of one another and each has probability less than 1, then there is a positive (possibly small) probability that none of the events will occur. The Lovász local lemma (a weaker version was proved in 1975 by László Lovász and Paul Erdős in the article Problems and results on 3-chromatic hypergraphs and some related questions) allows one to relax the independence condition slightly: As long as the events are "mostly" independent from one another and aren't individually too likely, then there will still be a positive probability that none of them occurs.  It is most commonly used in the probabilistic method, in particular to give existence proofs.
+There are several different versions of the lemma.  The simplest and most frequently used is the symmetric version given below.  For other versions, see [tpl]harv|Alon|Spencer|2000[/tpl].
+
+==Statements of the Lemma (symmetric version)==
+
+Let A1, A2,..., Ak be a series of events such that each event occurs with probability at most p and such that each event is independent of all the other events except for at most d of them.
+ Lemma I (Lovász and Erdős 1973; published 1975) If 
+ then there is a nonzero probability that none of the events occurs.
+ Lemma II (Lovász 1977; published by Joel SpencerJ. Spencer. Asymptotic lower bounds for Ramsey functions. Discrete Mathematics, 20:69-76, 1977.) If
+ where e = 2.718... is the base of natural logarithms, then there is a nonzero probability that none of the events occurs.
+Lemma II today is usually referred to as Lovász Local Lemma.
+ Lemma III (Shearer 1985Shearer, J. On a problem of Spencer. Combinatorica 5(3):241-245, 1985, http://dx.doi.org/10.1007/BF02579368.) If 
+ then there is a nonzero probability that none of the events occurs.
+The threshold in Lemma III is optimal and it implies that the bound 
+is also sufficient.
+
+==Asymmetric Lovász local lemma==
+
+A statement of the asymmetric version (which allows for events with different probability bounds) is as follows:
+The symmetric version follows immediately from the asymmetric version by setting
+to get the sufficient condition
+since
+
+==Constructive versus non-constructive==
+
+Note that, as is often the case with probabilistic arguments, this theorem is nonconstructive and gives no method of determining an explicit element of the probability space in which no event occurs. However, algorithmic versions of the local lemma with stronger preconditions are also known (Beck 1991; Czumaj and Scheideler 2000).  More recently, a constructive version of the local lemma was given by Robin Moser and Gábor Tardos requiring no stronger preconditions.
+
+==Non-constructive Proof==
+
+Expanding the denominator by using Bayes' theorem and then using the inductive assumption, we get
+Which is what we had intended to prove.
+
+==Example==
+
+Suppose 11n points are placed around a circle and colored with n different colors in such a way that each color is applied to exactly 11 points.  In any such coloring, there must be a set of n points containing one point of each color but not containing any pair of adjacent points.
+To see this, imagine picking a point of each color randomly, with all points equally likely (i.e., having probability 1/11) to be chosen.  The 11n different events we want to avoid correspond to the 11n pairs of adjacent points on the circle.  For each pair our odds of picking both points in that pair is at most 1/121 (exactly 1/121 if the two points are of different colors, otherwise 0), so we will take p = 1/121.
+Whether a given pair (a, b) of points is chosen depends only on what happens in the colors of a and b, and not at all on whether any other collection of points in the other n − 2 colors are chosen.  This implies the event "a and b are both chosen" is dependent only on those pairs of adjacent points which share a color either with a or with b.
+There are 11 points on the circle sharing a color with a (including a itself), each of which is involved with 2 pairs.  This means there are 21 pairs other than (a, b) which include the same color as a, and the same holds true for b.  The worst that can happen is that these two sets are disjoint, so we can take d = 42 in the lemma.  This gives
+By the local lemma, there is a positive probability that none of the bad events occur, meaning that our set contains no pair of adjacent points. This implies that a set satisfying our conditions must exist.
+
+==Notes==
+
+==References==
+

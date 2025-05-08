@@ -1,0 +1,31 @@
+[[Weak operator topology]]
+
+CATEGORIES: Topology of function spaces
+
+In functional analysis, the weak operator topology, often abbreviated WOT, is the weakest topology on the set of bounded operators on a Hilbert space H, such that the functional sending an operator T to the complex number  is continuous for any vectors x and y in the Hilbert space. 
+Equivalently, a net Ti ⊂ B(H) of bounded operators converges to T ∈ B(H) in WOT if for all y* in H* and x in H, the net y*(Tix) converges to y*(Tx).
+
+==Relationship with other topologies on B(H)==
+
+The WOT is the weakest among all common topologies on B(H), the bounded operators on a Hilbert space H. 
+
+===Strong operator topology===
+
+The strong operator topology, or SOT, on B(H) is the topology of pointwise convergence. Because the inner product is a continuous function, the SOT is stronger than WOT. The following example shows that this inclusion is strict. Let H = ℓ 2(N) and consider the sequence {Tn} where T is the unilateral shift.  An application of Cauchy-Schwarz shows that Tn → 0 in WOT. But clearly Tn does not converge to 0 in SOT.
+The linear functionals on the set of bounded operators on a Hilbert space that are continuous in the strong operator topology are precisely those that are continuous in the WOT. Because of this fact, the closure of a convex set of operators in the WOT is the same as the closure of that set in the SOT.
+It follows from the polarization identity that a net Tα → 0 in SOT if and only if Tα*Tα → 0 in WOT.
+
+===Weak-star operator topology===
+
+The predual of B(H) is the trace class operators C1(H), and it generates the w*-topology on B(H), called the weak-star operator topology or σ-weak topology. The weak-operator and σ-weak topologies agree on norm-bounded sets in B(H). 
+A net {Tα} ⊂ B(H) converges to T in WOT if and only Tr(TαF) converges to Tr(TF) for all finite-rank operator F. Since every finite-rank operator is trace-class, this implies that WOT is weaker than the σ-weak topology. To see why the claim is true, recall that every finite-rank operator F is a finite sum F = ∑ λi uivi*. So {Tα} converges to T in WOT means Tr(TαF) = ∑ λi vi*(Tαui) converges to ∑ λi vi*(T ui) = Tr(TF).
+Extending slightly, one can say that the weak-operator and σ-weak topologies agree on norm-bounded sets in B(H): Every trace-class operator is of the form S = ∑ λi uivi*, where the series of positive numbers ∑λi converges. Suppose supα ||Tα|| = k α converges to T in WOT. For every trace-class S, Tr (TαS) = ∑λi vi*(Tαui) converges to ∑ λi vi*(T ui) = Tr(TS), by invoking, for instance, the dominated convergence theorem.
+Therefore every norm-bounded set is compact in WOT, by the Banach–Alaoglu theorem.
+
+==Other properties==
+
+The adjoint operation T → T*, as an immediate consequence of its definition, is continuous in WOT. 
+Multiplication is not jointly continuous in WOT: again let T be the unilateral shift. Appealing to Cauchy-Schwarz, one has that both Tn and T*n converges to 0 in WOT. But T*nTn is the identity operator for all n. (Because WOT coincides with the σ-weak topology on bounded sets, multiplication is not jointly continuous in the σ-weak topology.)
+However, a weaker claim can be made: multiplication is separately continuous in WOT. If a net Ti → T in WOT, then STi → ST and TiS → TS in WOT.
+== See also == 
+

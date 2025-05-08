@@ -1,0 +1,52 @@
+[[Extended ASCII]]
+
+CATEGORIES: Character sets, ASCII
+
+The term extended ASCII (or high ASCII) describes eight-bit or larger character encodings that include the standard seven-bit ASCII characters as well as others.  The use of the term is sometimes criticized,[ref]
+</ref> because it can be mistakenly interpreted that the ASCII standard has been updated to include more than 128 characters or that the term unambiguously identifies a single encoding, both of which are untrue.
+
+Motives for extending
+
+Because the number of symbols (or glyphs) used in common natural languages as well as in mathematics (· × ÷ ≠ ≥ ≈ π etc.) and many programming languages and technical applications far exceeds the 96 (128-32) printable ASCII codes, many extensions to it have been used.  Markets for computers and communication equipment outside English-speaking countries were historically open long before standards bodies had time to deliberate upon the best way to accommodate them, so there are many incompatible proprietary extensions to ASCII.
+Since ASCII is a seven-bit code and most computers manipulate data in eight-bit bytes, many extensions use the additional 128 codes available by using all eight bits of each byte.  This helps include many languages otherwise not easily representable in ASCII, but is still not enough to cover all languages of countries in which computers are sold, so even these eight-bit extensions had to have local variants.
+
+Proprietary extensions
+
+Various proprietary extensions appeared on non-EBCDIC mainframe computers and minicomputers, especially in universities. Atari and Commodore home computers added many graphic symbols to their non-standard ASCII (Respectively, ATASCII and PETSCII, based on the original ASCII standard of 1963).
+IBM introduced eight-bit extended ASCII codes on the original IBM PC and later produced variations for different languages and cultures. IBM called such character sets code pages and assigned numbers to both those they themselves invented as well as many invented and used by other manufacturers. Accordingly, character sets are very often indicated by their IBM code page number. In ASCII-compatible code pages, the lower 128 characters maintained their standard US-ASCII values, and different pages (or sets of characters) could be made available in the upper 128 characters.  DOS computers built for the North American market, for example, used code page 437, which included accented characters needed for French, German, and a few other European languages, as well as some graphical line-drawing characters. The larger character set made it possible to create documents in a combination of languages such as English and French (though French computers usually use code page 850), but not, for example, in English and Greek (which required code page 737).
+Apple Computer introduced their own 8-bit extended ASCII codes in Mac OS, such as Mac OS Roman.
+Digital Equipment Corporation developed the Multinational Character Set, which had
+fewer characters but more letter and diacritic combinations, based on draft versions of  ISO 8859. It was supported by the VT220 and later DEC computer terminals.
+
+ISO 8859 and proprietary adaptations
+
+Eventually, ISO released this standard as ISO 8859 describing its own set of eight-bit ASCII extensions.  The most popular is ISO 8859-1, also called ISO Latin 1, which contained characters sufficient for the most common Western European languages.
+Variations were standardized for other languages as well: ISO 8859-2 for Eastern European languages and ISO 8859-5 for Cyrillic languages, for example.
+One notable way in which ISO character sets differ from code pages is that the character positions 128 to 159, corresponding to ASCII control characters with the high-order bit set, are specifically unused and undefined in the ISO standards, though they had often been used for printable characters in proprietary code pages, a breaking of ISO standards that was almost universal.
+Microsoft later created code page 1252, a compatible superset of ISO 8859-1 with extra characters in the ISO unused range.
+Code page 1252 is the standard character encoding of western European language versions of Microsoft Windows, including English versions.
+ISO 8859-1 is the common character encoding used by the X Window System, and most Internet standards.
+
+Character set confusion
+
+Because these ASCII extensions have so many variants, it is necessary to identify which set is being used for a particular text for it to be interpreted correctly.  However, because the most-used characters (those in ASCII, the seven-bit code points) are common to all sets—even most proprietary ones—failure to correctly identify a character set often suffers no adverse consequences if the user is typing in English (for example software developers speaking only English might not notice bugs).  Further, because many Internet standards use ISO 8859-1, and because Microsoft Windows (using the code page 1252 superset of ISO 8859-1) is the dominant operating system for personal computers today, unannounced use of ISO 8859-1 is quite commonplace, and may generally be assumed without evidence to the contrary.
+In many protocols, most importantly e-mail and HTTP, the character encoding of content has to be tagged with IANA-assigned character set identifiers.
+
+Multi-byte character encodings
+
+There are multi-byte character encodings (character encodings that can handle more than 256 different characters) that are also true extended ASCII. That means all ASCII characters are encoded with a single byte with the value that is used in ASCII to encode that character. UTF-8 is such a character encoding, as are some Extended Unix Code encodings. ISO/IEC 6937 is not extended ASCII, as the code value 0x24 corresponds to the general currency sign (¤) rather than to the dollar sign ($), but is an extended version of the International Reference Version of ISO 646.
+They can be used in file formats where only ASCII bytes are used for keywords and file format syntax, while bytes 0x80-0xFF might be used for free text, including most programming languages, where language keywords, variable names, and function names must be in ASCII, but string constants and comments can use non-ASCII characters. This makes it much easier to introduce a multi-byte character set into existing systems that use extended ASCII.
+Other character encodings such as Shift JIS and UTF-16 are not true extended ASCII, since ASCII bytes (0x00-0x7F) can appear as part of other characters. Sometimes Shift JIS is called extended ASCII since ASCII characters are stored as ASCII bytes, but other characters can include ASCII bytes also. Shift JIS can directly be used in programming languages and languages such as HTML, since the bytes used for free text delimiters are not used as part of non-ASCII characters. UTF-16 is even less extended ASCII since ASCII characters are stored as two bytes with the other one equal to 0x00. Porting an existing system to support character sets as Shift JIS or UTF-16 is complicated and bug prone.
+
+Usage in computer readable languages
+
+For programming languages and document languages such as C and HTML, the principle of Extended ASCII is important, since it enables many different encodings and therefore many human languages to be supported with little extra programming effort in the software that interprets the computer readable language files.
+The principle of Extended ASCII means that:
+
+
+
+
+
+
+
+

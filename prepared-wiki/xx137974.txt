@@ -1,0 +1,18 @@
+[[Intuition (Amiga)]]
+
+CATEGORIES: AmigaOS, MorphOS, Amiga APIs
+
+Intuition is the native windowing system and user interface (UI) engine of AmigaOS. It was developed almost entirely by RJ Mical.[tpl]cite book | first1=Robert J. | last1=Mical | first2=Susan| last2=Deyl | authorlink1=RJ Mical | title=Amiga Intuition Reference Manual | series=Amiga Technical Reference Series | year=1987 | publisher=Addison-Wesley | isbn=0-201-11076-8[/tpl] Intuition should not be confused with Workbench, the AmigaOS spatial file manager, which relies on Intuition for handling windows and input events.
+Intuition is the internal widget and graphics system. It is not implemented primarily as an application-managed graphics library (as most systems, following Xerox' design, have done), but rather as a separate task that maintains the state of all the standard UI elements independently from the application. This makes it responsive because UI gadgets are live even when the application is busy. The Intuition task is driven by user events through the mouse, keyboard, and other input devices. It also arbitrates collisions of the mouse pointer and icons and control of "animated icons". Like most GUIs of the day, Amiga's Intuition followed Xerox's lead anteceding solutions, but pragmatically, a command line interface was also included and it extended the functionality of the platform. Later releases added more improvements, like support for high-color Workbench screens and 3D aspect. Replacement desktop file managers were also made available, such as Directory Opus Magellan, or Scalos interface.
+Users may remember the initial releases for the garish blue/orange/white/black palettes. This was intentional - in a time before cheap high-quality video monitors, the Commodore tested output on the worst televisions they could find, with the goal of obtaining the best possible contrast under these worst-case conditions.
+
+==Other GUI toolkits==
+
+Due to the limitations of Intuition's basic widget set, developers adopted other third-party GUI toolkits, such as Magic User Interface (MUI), and ReAction. These object oriented UI engines driven by "classes" of graphic objects and functions with new standard gadgets, animated buttons, true-color icons, etc. offered developers standardized and more attractive interfaces. MUI and similar systems abandoned the separation of the User Interface between the application (which specified gadgets to be displayed) and the Intuition task (which actually managed gadgets for all applications, even when they were busy).
+Heirs of Workbench are nowadays: Ambient for MorphOS, Scalos, Workbench for AmigaOS 4 and Wanderer for AROS.
+There is a brief article on Ambient and descriptions of MUI icons, menus and gadgets here (aps.fr) and images of Zune stay at main AROS site.
+A new object-oriented toolkit for all Amiga-like platforms (AmigaOS, MorphOS, AROS), Feelin, was introduced in 2005, and makes extensive use of XML guidelines. It uses its own memory management system, and its memory-pools system shares the embedded OS's semaphores. Feelin also features a non-centralized ID allocation system, a crash-free object invocation mechanism, and an advanced logging system. Details and images on Feelin can be found at its website.
+
+==References==
+
+

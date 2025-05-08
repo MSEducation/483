@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"Index-time joins","h":"package org.apache.lucene.search.join","d":"Section","u":"org/apache/lucene/search/join/package-summary.html#index-time-joins-heading"},{"l":"Query-time joins","h":"package org.apache.lucene.search.join","d":"Section","u":"org/apache/lucene/search/join/package-summary.html#query-time-joins-heading"}];updateSearchResults();

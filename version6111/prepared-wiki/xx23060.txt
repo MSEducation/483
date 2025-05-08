@@ -1,0 +1,57 @@
+[[Maildir]]
+
+CATEGORIES: Email storage formats
+
+The Maildir e-mail format is a common way of storing e-mail messages, where each message is kept in a separate file with a unique name, and each folder is a directory.  The local filesystem handles file locking as messages are added, moved and deleted. A major design goal of Maildir is to eliminate program code having to handle locking, which is often difficult.
+
+'''
+
+==Specifications==
+
+A Maildir directory (often named Maildir) usually has three subdirectories named tmp, new, and cur.
+
+===Maildir===
+
+The original Maildir specification was written by Daniel J. Bernstein, the author of qmail, djbdns, and other software.Daniel J. Bernstein. (1995) Using maildir format (the original specification) Although the original specification was written specifically for Bernstein's qmail, it is general enough to be implemented in many programs.
+
+===Maildir++===
+
+Sam Varshavchik, the author of the Courier Mail Server and other software, wrote an extensionVarshavchik, Sam (1998) Maildir++ and Maildir quotas which has the Maildir++ specification buried within it to the Maildir format called Maildir++ to support subfolders and mail quotas. Maildir++ directories contain subdirectories with names that start with a '.' (dot) that are also Maildir++ folders.  This extension is therefore a violation of the Maildir specification, which provides an exhaustive[tpl]citation needed|date=June 2013[/tpl] list of the possible contents of a Maildir, however it is a compatible violation and other Maildir software supports Maildir++.
+
+==Technical operation==
+
+The program (process) that delivers an e-mail message writes it to a file in the tmp directory with a unique filename. The current algorithm for generating the unique filename combines the time, the host name, and a number of pseudo-random parameters to ensure uniqueness.
+The delivery process stores the message in the maildir by creating and writing to tmp/unique, and then moving this file to new/unique. The moving is commonly done by hard linking the file to new and then unlinking the file from tmp, but some implementations simply rename() it there. This sequence guarantees that a maildir-reading program will not see a partially written message, as MUAs never look in tmp.
+When the mail user agent process finds messages in the new directory it moves them to cur (using rename() - link then unlink strategy may result in having the message duplicated) and appends an informational suffix to the filename before reading them. The information suffix consists of a colon (to separate the unique part of the filename from the actual information), a '2', a comma and various flags. The '2' specifies, loosely speaking, the version of the information that follows the comma. '2' is the only currently officially specified version, '1' being an experimental version. One can only assume that it was used while the Maildir format was under development.  The specification defines flags which show whether the message has been read, deleted and so on: the initial (capital) letter of Passed, Replied, Seen, Trashed, Draft, and Flagged.  Dovecot uses lowercase letters to match 26 IMAP keywords,Dovecot Wiki: maildir format which may include standardised keywords such as $MDNSent, and user defined flags.
+
+==Filesystem Compatibility Issues==
+
+The Maildir standard cannot be implemented without modification on systems that do not accept colons in filenames. This includes Microsoft Windows and some configurations of Novell Storage Services.
+Software running on these systems can use an alternative separator (such as ";", or "-"), and it is often trivial to patch free and open source software to use a different separator.mutt maildir support: workaround for filesystems that don't accept colons
+As there is currently no agreement on what character this alternative separator should be, there can be interoperability difficulties between different Maildir-supporting programs on these systems.  However, not all Maildir-related software needs to know what the separator character is, because not all Maildir-related software needs to be able to read or modify the flags of a message ("read", "replied to" etc.); software that merely delivers to a Maildir, or archives old messages from it based only on date, should work no matter what separator is in use.  If only the MUA needs to read or modify message flags, and only one is used, then non-standard alternative separators may be used without interoperability problems.
+
+==Software that supports Maildir directly==
+
+===Mail servers===
+
+===Delivery agents===
+
+===Mail readers===
+
+===Mail index and search tools===
+
+==Software that supports Maildir by implication==
+
+The list of software that can be used with Maildir is in fact much larger if you consider how this software can be plugged together, and the role of network access protocols.
+For example:
+
+==Notes and references==
+
+ 
+ 
+
+==See also==
+
+==External links==
+
+

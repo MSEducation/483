@@ -1,0 +1,172 @@
+[[Integration by parts]]
+
+CATEGORIES: Integral calculus
+
+In calculus, and more generally in mathematical analysis, integration by parts is a theorem that relates the integral of a product of functions to the integral of their derivative and antiderivative. It is frequently used to transform the antiderivative of a product of functions into an antiderivative for which a solution can be more easily found. The rule can be derived in one line simply by integrating the product rule of differentiation.
+If u = u(x), v = v(x), and the differentials du = u (x) dx and dv = v(x) dx, then integration by parts states that
+or more compactly:
+More general formulations of integration by parts exist for the Riemann–Stieltjes integral and Lebesgue–Stieltjes integral. The discrete analogue for sequences is called summation by parts.
+
+==Theorem==
+
+===Product of two functions===
+
+The theorem can be derived as follows. Suppose u(x) and v(x) are two continuously differentiable functions. The product rule states (in Leibniz’ notation):
+Integrating both sides with respect to x, over an interval a ≤ x ≤ b:
+then applying the fundamental theorem of calculus, 
+gives the formula for integration by parts:
+Since du and dv are differentials of a function of one variable x,
+The original integral ∫uv′ dx contains v′ (derivative of v); in order to apply the theorem, v (antiderivative of v′) must be found, and then the resulting integral ∫vu′ dx must be evaluated.
+
+===Product of many functions===
+
+Integrating the product rule for three multiplied functions, u(x), v(x), w(x), gives a similar result:
+In general for n factors
+which leads to
+where the product is of all functions except for the one differentiated in the same term.
+
+==Visualization==
+
+Define a parametric curve by (x, y) = (f(t), g(t)). Assuming that the curve is locally one-to-one, we can define
+The area of the blue region is 
+Similarly, the area of the red region is 
+The total area A1 + A2 is equal to the area of the bigger rectangle, x2y2, minus the area of the smaller one, x1y1:
+Assuming the curve is smooth within a neighborhood, this generalizes to indefinite integrals:
+Rearranging:
+Thus integration by parts may be thought of as deriving the area of the blue region from the total area and that of the red region.
+This visualisation also explains why integration by parts may help find the integral of an inverse function f−1(x) when the integral of the function f(xv) is known. Indeed, the functions x(y) and y(x) are inverses, and the integral ∫x dy may be calculated as above from knowing the integral ∫y dx.
+
+==Application to find antiderivatives==
+
+===Strategy===
+
+Integration by parts is a heuristic rather than a purely mechanical process for solving integrals; given a single function to integrate, the typical strategy is to carefully separate it into a product of two functions u(x)v(x) such that the integral produced by the integration by parts formula is easier to evaluate than the original one. The following form is useful in illustrating the best strategy to take:
+Note that on the right-hand side, u is differentiated and v is integrated; consequently it is useful to choose u as a function that simplifies when differentiated, and/or to choose v as a function that simplifies when integrated. As a simple example, consider:
+Since the derivative of ln x is 1/x, we make (ln x) part of u; since the antiderivative of 1/x2 is −1/x, we make (1/x2) part of v. The formula now yields:
+The antiderivative of −1/x2 can be found with the power rule and is 1/x.
+Alternatively, we may choose u and v such that the product u' (∫v dx) simplifies due to cancellation. For example, suppose we wish to integrate:
+If we choose u(x) = ln |sin x| and v(x) = sec2x, then u differentiates to 1/ tan x using the chain rule and v integrates to tan x; so the formula gives:
+The integrand simplifies to 1, so the antiderivative is x. Finding a simplifying combination frequently involves experimentation.
+In some applications, it may not be necessary to ensure that the integral produced by integration by parts has a simple form; for example, in numerical analysis, it may suffice that it has small magnitude and so contributes only a small error term. Some other special techniques are demonstrated in the examples below.
+In order to calculate 
+let:
+then:
+where C is an arbitrary constant of integration.
+For higher powers of x in the form
+repeatedly using integration by parts can evaluate integrals such as these; each application of the theorem lowers the power of x by one.
+An example commonly used to examine the workings of integration by parts is 
+Here, integration by parts is performed twice. First let
+then:
+Now, to evaluate the remaining integral, we use integration by parts again, with:
+Then:
+Putting these together,
+The same integral shows up on both sides of this equation. The integral can simply be added to both sides to get
+which rearranges to:
+where again C (and C = C/2) is an arbitrary constant of integration.
+A similar method is used to find the integral of secant cubed.
+Two other well-known examples are when integration by parts is applied to a function expressed as a product of 1 and itself. This works if the derivative of the function is known, and the integral of this derivative times x is also known.
+The first example is ∫ ln(x) dx. We write this as:
+Let:
+then:
+where C is the constant of integration.
+The second example is the inverse tangent function arctan(x):
+Rewrite this as
+Now let:
+then
+using a combination of the inverse chain rule method and the natural logarithm integral condition.
+
+===LIATE rule===
+
+A rule of thumb proposed by Herbert Kasube of Bradley University advises that whichever function comes first in the following list should be u:[tpl]Cite journal|jstor=2975556|first=Herbert E. |last=Kasube|title=A Technique for Integration by Parts |journal=The American Mathematical Monthly |volume=90 |issue=3|year=1983 |pages=210–211|doi=10.2307/2975556[/tpl]
+The function which is to be dv is whichever comes last in the list: functions lower on the list have easier antiderivatives than the functions above them. The rule is sometimes written as "DETAIL" where D stands for dv.  
+To demonstrate the LIATE rule, consider the integral
+Following the LIATE rule, u = x and dv = cos x dx, hence du = dx and v = sin x, which makes the integral become
+which equals
+In general, one tries to choose u and dv such that du is simpler than u and dv is easy to integrate. If instead cos x was chosen as u and x as dv, we would have the integral
+which, after recursive application of the integration by parts formula, would clearly result in an infinite recursion and lead nowhere.
+Although a useful rule of thumb, there are exceptions to the LIATE rule.  A common alternative is to consider the rules in the "ILATE" order instead.  Also, in some cases, polynomial terms need to be split in non-trivial ways.  For example, to integrate
+one would set
+so that
+Then
+Finally, this results in
+
+==Applications in pure mathematics==
+
+Integration by parts is often used as a tool to prove theorems in mathematical analysis. This section gives a few of examples.
+
+===Use in special functions===
+
+The gamma function is an example of a special function, defined as an improper integral. Integration by parts illustrates it to be an extension of the factorial:
+yielding the famous identity
+For integer z, applying this formula repeatedly gives the factorial (denoted by the !):
+
+===Use in harmonic analysis===
+
+Integration by parts is often used in harmonic analysis, particularly Fourier analysis, to show that quickly oscillating integrals with sufficiently smooth integrands decay quickly. The most common example of this is its use in showing that the decay of function's Fourier transform depends on the smoothness of that function, as described below.
+If f is a k-times continuously differentiable function and all derivatives up to the kth one decay to zero at infinity, then its Fourier transform satisfies 
+where [tpl]nowrap|f(k)[/tpl] is the kth derivative of f. (The exact constant on the right depends on the convention of the Fourier transform used.) This is proved by noting that
+so using integration by parts on the Fourier transform of the derivative we get
+Applying this inductively gives the result for general k. A similar method can be used to find the Laplace transform of a derivative of a function.
+The above result tells us about the decay of the Fourier transform, since it follows that if f and [tpl]nowrap|f(k)[/tpl] are integrable then 
+In other words, if f satisfies these conditions then its Fourier transform decays at infinity at least as quickly as [tpl]nowrap|1/[tpl]![/tpl]ξ[tpl]![/tpl]k[/tpl]. In particular, if [tpl]nowrap|k ≥ 2[/tpl] then the Fourier transform is integrable.
+The proof uses the fact, which is immediate from the definition of the Fourier transform, that
+Using the same idea on the equality stated at the start of this subsection gives
+Summing these two inequalities and then dividing by [tpl]nowrap|1 + [tpl]![/tpl]2πξk[tpl]![/tpl][/tpl] gives the stated inequality.
+
+===Use in operator theory===
+
+One use of integration by parts in operator theory is that it shows that the [tpl]nowrap|-∆[/tpl] (where ∆ is the Laplace operator) is a positive operator on [tpl]nowrap|L2[/tpl] (see Lp space). If f is smooth and compactly supported then, using integration by parts, we have
+
+===Other applications===
+
+==Recursive integration by parts==
+
+Integration by parts can often be applied recursively on the ∫ v du term to provide the following formula
+Here, u′ is the first derivative of u and u′′ is the second derivative. Further, u(n) is a notation to describe its nth derivative with respect to the independent variable. Another notation approved in the calculus theory has been adopted:
+There are n + 1 integrals.
+Note that the integrand above (uv) differs from the previous equation. The dv factor has been written as v purely for convenience.
+The above mentioned form is convenient because it can be evaluated by differentiating the first term and integrating the second (with a sign reversal each time), starting out with uv1. It is very useful especially in cases when u(k + 1) becomes zero for some k + 1. Hence, the integral evaluation can stop once the u(k) term has been reached.
+
+===Tabular integration by parts===
+
+While the aforementioned recursive definition is correct, it is often tedious to remember and implement. A much easier visual representation of this process is often taught to students and is dubbed either "the tabular method",[tpl]Cite journal|url=http://elib.mi.sanu.ac.rs/files/journals/tm/21/tm1125.pdu|first=Sanjay K. |last=Khattri|title=FOURIER SERIES AND LAPLACE TRANSFORM THROUGH TABULAR INTEGRATION|journal=The Teaching of Mathematics |volume=XI |issue=2|year=2008 |pages=97–103[/tpl] "the Stand and Deliver method",[tpl]Cite journal|url=http://www.maa.org/pubs/Calc_articles/ma035.pdu|first=David|last=Horowitz|title=Tabular Integration by Parts|journal=The College Mathematics Journal |volume=21 |issue=4|year=1990 |pages=307–311|doi=10.2307/2686368|jstor=2686368[/tpl] "rapid repeated integration" or "the tic-tac-toe method". This method works best when one of the two functions in the product is a polynomial, that is, after differentiating it several times one obtains zero. It may also be extended to work for functions that will repeat themselves.
+For example, consider the integral
+Let u = x3. Begin with this function and list in a column all the subsequent derivatives until zero is reached. Secondly, begin with the function v (in this case cos(x)) and list each integral of v until the size of the column is the same as that of u. The result should appear as follows.
+! Derivatives of u (Column A) !! Integrals of v (Column B)
+|-
+|-
+|-
+|-
+|-
+|}
+Now simply pair the 1st entry of column A with the 2nd entry of column B, the 2nd entry of column A with the 3rd entry of column B, etc... with alternating signs (beginning with the positive sign). Do so until further pairing leads to sums of zeros. The result is the following (notice the alternating signs in each term):
+Which, with simplification, leads to the result
+With proper understanding of the tabular method, it can be extended.  Consider
+! Derivatives of u (Column A) !! Integrals of v (Column B)
+|-
+|-
+|-
+|}
+In this case in the last step it is necessary to integrate the product of the two bottom cells obtaining:
+which leads to
+and yields the result:
+
+==Higher dimensions==
+
+The formula for integration by parts can be extended to functions of several variables. Instead of an interval one needs to integrate over an n-dimensional set. Also, one replaces the derivative with a partial derivative.
+More specifically, suppose Ω is an open bounded subset of ℝn with a piecewise smooth boundary Γ. If u and v are two continuously differentiable functions on the closure of Ω, then the formula for integration by parts is
+By replacing v in the above formula with vi and summing over i gives the vector formula
+where v is a vector-valued function with components v1, ..., vn.
+Setting u equal to the constant function 1 in the above formula gives the divergence theorem
+which is the first Green's identity.
+The regularity requirements of the theorem can be relaxed.  For instance, the boundary Γ need only be Lipschitz continuous.  In the first formula above, only u, v ∈ H1(Ω) is necessary (where H1 is a Sobolev space); the other formulas have similarly relaxed requirements.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

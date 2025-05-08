@@ -1,0 +1,108 @@
+[[Huffman coding]]
+
+CATEGORIES: 1952 in computer science, Lossless compression algorithms, Binary trees
+
+In computer science and information theory, Huffman coding is an entropy encoding algorithm used for lossless data compression. The term refers to the use of a variable-length code table for encoding a source symbol (such as a character in a file) where the variable-length code table has been derived in a particular way based on the estimated probability of occurrence for each possible value of the source symbol. It was developed by David A. Huffman while he was a Ph.D. student at MIT, and published in the 1952 paper "A Method for the Construction of Minimum-Redundancy Codes".[tpl]cite doi|10.1109/JRPROC.1952.273898[/tpl]
+For a set of symbols with a uniform probability distribution and a number of members which is a power of two, Huffman coding is equivalent to simple binary block encoding, e.g., ASCII coding. Huffman coding is such a widespread method for creating prefix codes that the term "Huffman code" is widely used as a synonym for "prefix code" even when such a code is not produced by Huffman's algorithm.
+Although Huffman's original algorithm is optimal for a symbol-by-symbol coding (i.e. a stream of unrelated symbols) with a known input probability distribution, it is not optimal when the symbol-by-symbol restriction is dropped, or when the probability mass functions are unknown, not identically distributed, or not independent (e.g., "cat" is more common than "cta").[tpl]citation needed|date=July 2013[/tpl]  Other methods such as arithmetic coding and LZW coding often have better compression capability:  both of these methods can combine an arbitrary number of symbols for more efficient coding, and generally adapt to the actual input statistics, the latter of which is useful when input probabilities are not precisely known or vary significantly within the stream.  However, the limitations of Huffman coding should not be overstated; it can be used adaptively, accommodating unknown, changing, or context-dependent probabilities.  In the case of known independent and identically distributed random variables, combining symbols reduces inefficiency in a way that approaches optimality as the number of symbols combined increases.
+
+==History==
+
+In 1951, David A. Huffman and his MIT information theory classmates were given the choice of a term paper or a final exam. The professor, Robert M. Fano, assigned a term paper on the problem of finding the most efficient binary code. Huffman, unable to prove any codes were the most efficient, was about to give up and start studying for the final when he hit upon the idea of using a frequency-sorted binary tree and quickly proved this method the most efficient.see Ken Huffman (1991)
+In doing so, the student outdid his professor, who had worked with information theory inventor Claude Shannon to develop a similar code.  By building the tree from the bottom up instead of the top down, Huffman avoided the major flaw of the suboptimal Shannon-Fano coding.
+
+==Problem definition==
+
+===Informal description===
+
+===Formalized description===
+
+Input. 
+ 
+Output. 
+ 
+Goal. 
+
+===Samples===
+
+For any code that is biunique, meaning that the code is uniquely decodeable, the sum of the probability budgets across all symbols is always less than or equal to one. In this example, the sum is strictly equal to one; as a result, the code is termed a complete code. If this is not the case, you can always derive an equivalent code by adding extra symbols (with associated null probabilities), to make the code complete while keeping it biunique.
+As defined by Shannon (1948), the information content h (in bits) of each symbol ai with non-null probability is
+The entropy H (in bits) is the weighted sum, across all symbols ai with non-zero probability wi, of the information content of each symbol:
+As a consequence of Shannon's source coding theorem, the entropy is a measure of the smallest codeword length that is theoretically possible for the given alphabet with associated weights. In this example, the weighted average codeword length is 2.25 bits per symbol, only slightly larger than the calculated entropy of 2.205 bits per symbol. So not only is this code optimal in the sense that no other feasible code performs better, but it is very close to the theoretical limit established by Shannon.
+
+==Basic technique==
+
+===Compression===
+
+The standard way to represent a signal made of 4 symbols is by using 2 bits/symbol, but the entropy of the source is 1.74 bits/symbol. If this Huffman code is used to represent the signal, then the average length is lowered to 1.85 bits/symbol; it is still far from the theoretical limit because the probabilities of the symbols are different from negative powers of two.]]
+The process essentially begins with the leaf nodes containing the probabilities of the symbol they represent, then a new node whose children are the 2 nodes with smallest probability is created, such that the new node's probability is equal to the sum of the children's probability. With the previous 2 nodes merged into one node (thus not considering them anymore), and with the new node being now considered, the procedure is repeated until only one node remains, the Huffman tree.
+The simplest construction algorithm uses a priority queue where the node with lowest probability is given highest priority:
+Since efficient priority queue data structures require O(log n) time per insertion, and a tree with n leaves has 2n−1 nodes, this algorithm operates in O(n log n) time, where n is the number of symbols.
+If the symbols are sorted by probability, there is a linear-time (O(n)) method to create a Huffman tree using two queues, the first one containing the initial weights (along with pointers to the associated leaves), and combined weights (along with pointers to the trees) being put in the back of the second queue. This assures that the lowest weight is always kept at the front of one of the two queues:
+Although this algorithm may appear "faster" complexity-wise than the previous algorithm using a priority queue, this is not actually the case because the symbols need to be sorted by probability before-hand, a process that takes O(n log n) time in itself.
+In many cases, time complexity is not very important in the choice of algorithm here, since n here is the number of symbols in the alphabet, which is typically a very small number (compared to the length of the message to be encoded); whereas complexity analysis concerns the behavior when n grows to be very large.
+It is generally beneficial to minimize the variance of codeword length. For example, a communication buffer receiving Huffman-encoded data may need to be larger to deal with especially long symbols if the tree is especially unbalanced. To minimize variance, simply break ties between queues by choosing the item in the first queue.   This modification will retain the mathematical optimality of the Huffman coding while both minimizing variance and minimizing the length of the longest character code.
+Here's an example of optimized Huffman coding using the French subject string "j'aime aller sur le bord de l'eau les jeudis ou les jours impairs". Note that original Huffman coding tree structure would be different from the given example:
+
+===Decompression===
+
+==Main properties==
+
+The probabilities used can be generic ones for the application domain that are based on average experience, or they can be the actual frequencies found in the text being compressed.
+This requires that a frequency table must be stored with the compressed text. See the Decompression section above for more information about the various techniques employed for this purpose.
+Huffman coding is optimal when the probability of each input symbol is the inverse of a power of two. Prefix codes tend to have inefficiency on small alphabets, where probabilities often fall between these optimal points. "Blocking", or expanding the alphabet size by grouping multiple symbols into "words" of fixed or variable-length before Huffman coding helps both to reduce that inefficiency and to take advantage of statistical dependencies between input symbols within the group (as in the case of natural language text). The worst case for Huffman coding can happen when the probability of a symbol exceeds 2−1 = 0.5, making the upper limit of inefficiency unbounded. These situations often respond well to a form of blocking called run-length encoding; for the simple case of Bernoulli processes, Golomb coding is a provably optimal run-length code.
+Arithmetic coding produces some gains over Huffman coding, although arithmetic coding has higher computational complexity. Also, arithmetic coding was historically a subject of some concern over patent issues. However, as of mid-2010, various well-known effective techniques for arithmetic coding have passed into the public domain as the early patents have expired.
+
+==Variations==
+
+Many variations of Huffman coding exist, some of which use a Huffman-like algorithm, and others of which find optimal prefix codes (while, for example, putting different restrictions on the output). Note that, in the latter case, the method need not be Huffman-like, and, indeed, need not even be polynomial time. An exhaustive list of papers on Huffman coding and its variations is given by "Code and Parse Trees for Lossless Source Encoding"http://scholar.google.com/scholar?hl=en&lr=&cluster=6556734736002074338.
+
+===n-ary Huffman coding===
+
+The ''n''-ary Huffman algorithm uses the {0, 1, ... , n − 1} alphabet to encode message and build an n-ary tree. This approach was considered by Huffman in his original paper. The same algorithm applies as for binary (n equals 2) codes, except that the n least probable symbols are taken together, instead of just the 2 least probable. Note that for n greater than 2, not all sets of source words can properly form an n-ary tree for Huffman coding. In this case, additional 0-probability place holders must be added. This is because the tree must form an n to 1 contractor; for binary coding, this is a 2 to 1 contractor, and any sized set can form such a contractor.  If the number of source words is congruent to 1 modulo n-1, then the set of source words will form a proper Huffman tree.
+
+===Adaptive Huffman coding===
+
+A variation called adaptive Huffman coding involves calculating the probabilities dynamically based on recent actual frequencies in the sequence of source symbols, and changing the coding tree structure to match the updated probability estimates. It is used rarely in practice, since the cost of updating the tree makes it slower than optimized adaptive arithmetic coding, that is more flexible and has a better compression.
+
+===Huffman template algorithm===
+
+===Length-limited Huffman coding/minimum variance huffman coding===
+
+===Huffman coding with unequal letter costs===
+
+In the standard Huffman coding problem, it is assumed that each symbol in the set that the code words are constructed from has an equal cost to transmit: a code word whose length is N digits will always have a cost of N, no matter how many of those digits are 0s, how many are 1s, etc. When working under this assumption, minimizing the total cost of the message and minimizing the total number of digits are the same thing.
+Huffman coding with unequal letter costs is the generalization without this assumption: the letters of the encoding alphabet may have non-uniform lengths, due to characteristics of the transmission medium. An example is the encoding alphabet of Morse code, where a 'dash' takes longer to send than a 'dot', and therefore the cost of a dash in transmission time is higher. The goal is still to minimize the weighted average codeword length, but it is no longer sufficient just to minimize the number of symbols used by the message. No algorithm is known to solve this in the same manner or with the same efficiency as conventional Huffman coding.
+
+===Optimal alphabetic binary trees (Hu-Tucker coding)===
+
+===The canonical Huffman code===
+
+==Applications==
+
+Arithmetic coding can be viewed as a generalization of Huffman coding, in the sense that they produce the same output when every symbol has a probability of the form 1/2k; in particular it tends to offer significantly better compression for small alphabet sizes. Huffman coding nevertheless remains in wide use because of its simplicity and high speed. Intuitively, arithmetic coding can offer better compression than Huffman coding because its "code words" can have effectively non-integer bit lengths, whereas code words in Huffman coding can only have an integer number of bits. Therefore, there is an inefficiency in Huffman coding where a code word of length k only optimally matches a symbol of probability 1/2k and other probabilities are not represented as optimally; whereas the code word length in arithmetic coding can be made to exactly match the true probability of the symbol.
+Huffman coding today is often used as a "back-end" to some other compression methods.
+DEFLATE (PKZIP's algorithm) and multimedia codecs such as JPEG and MP3 have a front-end model and quantization followed by Huffman coding (or variable-length prefix-free codes with a similar structure, although perhaps not necessarily designed by using Huffman's algorithm[tpl]clarify|date=February 2012[/tpl]).
+
+==Adding fractional bits into consideration - tANS==
+
+Huffman coding approximates informational content of symbols to a natural number of bits (approximates probabilities with powers of 1/2). Let us look at decoder to see that it can be improved to take also fractional bits into consideration - use accurate probabilities to improve compression rate, still maintaining decoding speed. If we denote the maximal depth of the tree by D, storing this number of bits in buffer/state (x =0 .. 2^D-1), we are able to immediately determine the next symbol to decode. So a step of quick decoder can look like this:
+//decoding step of Huffman and tANS
+
+ t = decodingTablex     // x∈ {0, .., 2^D − 1} is current state
+
+ useSymbol(t.symbol)      // use or store decoded symbol
+
+ x = t.newX + getBits(t.nbBits)     // state transition
+As most of symbols will use less than D bits, t.nbBits contains the number of actually used bits for a given symbol. The state transition operation shifts the unused bits to the beginning of buffer and refills used bits with new ones from bit sequence, so for Huffman decodingTablex.newX = (x  where mask=2^D-1 allows to extract D bits.
+However, instead of just shifting these remaining bits, we can modify them accordingly to remained fractional number of bits by a proper choice of decodingTablex.newX. Asymmetric numeral systems (tANS) https://github.com/Cyan4973/FiniteStateEntropy Yann Collet tANS implementation do it by using intuition that a natural number x contains log(x) bits of information. So to add information from a symbol of probability p: containing log(1/p) bits of information, x should increase to approximately x/p.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,144 @@
+[[Linear elasticity]]
+
+CATEGORIES: Elasticity (physics), Solid mechanics
+
+Linear elasticity is the mathematical study of how solid objects deform and become internally stressed due to prescribed loading conditions. Linear elasticity models materials as continua.  Linear elasticity is a simplification of the more general nonlinear theory of elasticity and is a branch of continuum mechanics.  The fundamental "linearizing" assumptions of linear elasticity are: infinitesimal strains or "small" deformations (or strains) and linear relationships between the components of stress and strain.  In addition linear elasticity is valid only for stress states that do not produce yielding.  These assumptions are reasonable for many engineering materials and engineering design scenarios.  Linear elasticity is therefore used extensively in structural analysis and engineering design, often with the aid of finite element analysis.
+
+Mathematical formulation
+
+Equations governing a linear elastic boundary value problem are based on three tensor partial differential equations for the balance of linear momentum and six infinitesimal strain-displacement relations.  The system of differential equations is completed  by a set of linear algebraic constitutive relations.
+
+Direct tensor form
+
+In direct tensor form that is independent of the choice of coordinate system, these governing equations are:Slaughter, W. S., (2002), The linearized theory of elasticity, Birkhauser.
+
+Cartesian coordinate form
+
+Expressed in terms of components with respect to a rectangular Cartesian coordinate system, the governing equations of linear elasticity are:
+!Engineering notation
+|-
+|}
+!Engineering notation
+|-
+|-
+|-
+|}
+An elastostatic boundary value problem for an isotropic-homogeneous media is a system of 15 independent equations and equal number of unknowns (3 equilibrium equations, 6 strain-displacement equations, and 6 constitutive equations). Specifying the boundary conditions, the boundary value problem is completely defined. To solve the system two approaches can be taken according to boundary conditions of the boundary value problem: a displacement formulation, and a stress formulation.
+
+Cylindrical coordinate form
+
+The strain-displacement relations are
+
+Spherical coordinate form
+
+The strain tensor in spherical coordinates is
+
+Isotropic homogeneous media
+
+In isotropic media, the stiffness tensor gives the relationship between the stresses (resulting internal stresses) and the strains (resulting deformations). For an isotropic medium, the stiffness tensor has no preferred direction: an applied force will give the same displacements (relative to the direction of the force) no matter the direction in which the force is applied. In the isotropic case, the stiffness tensor may be written:
+This expression separates the stress into a scalar part on the left which may be associated with a scalar pressure, and a traceless part on the right which may be associated with shear forces. A simpler expression is:
+where λ is Lamé's first parameter. Since the constitutive equation is simply a set of linear equations, the strain may be expressed as a function of the stresses as:
+which is again, a scalar part on the left and a traceless shear part on the right. More simply:
+where ν is Poisson's ratio and E  is Young's modulus.
+
+Elastostatics
+
+Elastostatics is the study of linear elasticity under the conditions of equilibrium, in which all forces on the elastic body sum to zero, and the displacements are not a function of time. The equilibrium equations are then
+!Engineering notation
+|-
+|}
+This section will discuss only the isotropic homogeneous case.
+
+=Displacement formulation=
+
+In this case, the displacements are prescribed everywhere in the boundary. In this approach, the strains and stresses are eliminated from the formulation, leaving the displacements as the unknowns to be solved for in the governing equations.
+First, the strain-displacement equations are substituted into the constitutive equations (Hooke's Law), eliminating the strains as unknowns:
+Differentiating yields:
+Substituting into the equilibrium equation yields:
+or
+In this way, the only unknowns left are the displacements, hence the name for this formulation. The governing equations obtained in this manner are called Navier-Cauchy equations or, alternatively, the elastostatic equations.
+!Derivation of Navier-Cauchy equations in Engineering notation
+|-
+These last 3 equations are the Navier-Cauchy equations, which can be also expressed in vector notation as
+|}
+Once the displacement field has been calculated, the displacements can be replaced into the strain-displacement equations to solve for strains, which later are used in the constitutive equations to solve for stresses.
+
+==The biharmonic equation==
+
+The elastostatic equation may be written:
+Noting that summed indices need not match, and that the partial derivatives commute, the two differential terms are seen to be the same and we have:
+from which we conclude that:
+From the divergence equation, the first term on the left is zero (Note: again, the summed indices need not match) and we have:
+from which we conclude that:
+
+=Stress formulation=
+
+In this case, the surface tractions are prescribed everywhere on the surface boundary. In this approach, the strains and displacements are eliminated leaving the stresses as the unknowns to be solved for in the governing equations. Once the stress field is found, the strains are then found using the constitutive equations.
+There are six independent components of the stress tensor which need to be determined, yet in the displacement formulation, there are only three components of the displacement vector which need to be determined. This means that there are some constraints which must be placed upon the stress tensor, to reduce the number of degrees of freedom to three. Using the constitutive equations, these constraints are derived directly from corresponding constraints which must hold for the strain tensor, which also has six independent components. The constraints on the strain tensor are derivable directly from the definition of the strain tensor as a function of the displacement vector field, which means that these constraints introduce no new concepts or information. It is the constraints on the strain tensor that are most easily understood. If the elastic medium is visualized as a set of infinitesimal cubes in the unstrained state, then after the medium is strained, an arbitrary strain tensor must yield a situation in which the distorted cubes still fit together without overlapping. In other words, for a given strain, there must exist a continuous vector field (the displacement) from which that strain tensor can be derived. The constraints on the strain tensor that are required to assure that this is the case were discovered by Saint Venant, and are called the "Saint Venant compatibility equations". These are 81 equations, 6 of which are independent non-trivial equations, which relate the different strain components. These are expressed in index notation as:
+!Engineering notation
+|-
+|}
+The strains in this equation are then expressed in terms of the stresses using the constitutive equations, which yields the corresponding constraints on the stress tensor. These constraints on the stress tensor are known as the Beltrami-Michell equations of compatibility:
+In the special situation where the body force is homogeneous, the above equations reduce to
+These constraints, along with the equilibrium equation (or equation of motion for elastodynamics) allow the calculation of the stress tensor field. Once the stress field has been calculated from these equations, the strains can be obtained from the constitutive equations, and the displacement field from the strain-displacement equations.
+An alternative solution technique is to express the stress tensor in terms of stress functions which automatically yield a solution to the equilibrium equation. The stress functions then obey a single differential equation which corresponds to the compatibility equations.
+
+=Solutions for elastostatic cases=
+
+!Thomson's solution - point force in an infinite isotropic medium
+|-
+|The most important solution of the Navier-Cauchy or elastostatic equation is for that of a force acting at a point in an infinite isotropic medium. This solution was found by William Thomson (later Lord Kelvin) in 1848 (Thomson 1848). This solution is the analog of Coulomb's law in electrostatics. A derivation is given in Landau & Lifshitz. Defining
+It may be also compactly written as:
+and it may be explicitly written as:
+where r is total distance to point.
+It can be seen that there is a component of the displacement in the direction of the force, which diminishes, as is the case for the potential in electrostatics, as 1/r for large r. There is also an additional ρ-directed component.
+|}
+!Boussinesq-Cerruti solution - point force at the origin of an infinite isotropic half-space
+|-
+|Another useful solution is that of a point force acting on the surface of an infinite half-space. It was derived by Boussinesq In this case, the solution is again written as a Green's tensor which goes to zero at infinity, and the component of the stress tensor normal to the surface vanishes. This solution may be written in Cartesian coordinates as a=(1-2ν) and b=2(1-ν),  ν== Poissons ratio:
+|}
+Other solutions:
+
+Elastodynamics – the wave equation
+
+Elastodynamics is the study of elastic waves and involves linear elasticity with variation in time.  An elastic wave is a type of mechanical wave that propagates in elastic or viscoelastic materials.  The elasticity of the material provides the restoring force of the wave.  When they occur in the Earth as the result of an earthquake or other disturbance, elastic waves are usually called seismic waves.
+The wave equation of elastodynamics is simply the equilibrium equation of elastostatics with an additional inertial term:
+If the material is isotropic and homogeneous (i.e. the stiffness tensor is constant throughout the material), the elastodynamic wave equation has the form:
+The elastodynamic wave equation can also be expressed as
+where
+In isotropic media, the stiffness tensor has the form
+where
+For plane waves, the above differential operator becomes the acoustic algebraic operator: 
+where
+
+Anisotropic homogeneous media
+
+With this notation, one can write the elasticity matrix for any linearly elastic medium as:
+The isotropic special case has 2 independent elements:
+The simplest anisotropic case, that of cubic symmetry has 3 independent elements:
+The case of transverse isotropy, also called polar anisotropy, (with a single axis (the 3-axis) of symmetry) has 5 independent elements:
+When the transverse isotropy is weak (i.e. close to isotropy), an alternative parametrization utilizing Thomsen parameters, is convenient for the formulas for wave speeds.
+The case of orthotropy (the symmetry of a brick) has 9 independent elements:
+
+Elastodynamics
+
+The elastodynamic wave equation for anisotropic media can be expressed as
+where
+
+=Plane waves and Christoffel equation=
+
+A plane wave has the form
+It is a solution of the wave equation with zero forcing, if and only if
+acoustic algebraic operator
+This propagation condition (also known as the Christoffel equation) may be written as
+where
+denotes propagation direction
+
+
+
+ 
+ 
+
+
+
+

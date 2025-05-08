@@ -1,0 +1,27 @@
+[[Functional reactive programming]]
+
+CATEGORIES: Functional programming, Evaluation strategy
+
+Functional reactive programming (FRP) is a programming paradigm for reactive programming using the building blocks of functional programming. FRP has been used for programming GUIs, robotics, and music, aiming to simplify these problems by explicitly modeling time.
+
+==Formulations of FRP==
+
+FRP has taken many forms since its introduction in 1997.[tpl]Citation | first = Evan | last = Czaplicki | url = http://www.testblogpleaseignore.com/wp-content/uploads/2012/04/thesis.pdf | format = PDF | title = Elm: Concurrent FRP for Functional GUIs | year = 2012 | publisher = Test blog, please ignore | place = Harvard | type = thesis | month = Apr[/tpl]. One axis of diversity is discrete vs. continuous semantics. Another axis is how FRP systems can be changed dynamically.[tpl]Citation | first1 = Henrik | last1 = Nilsson | first2 = Antony | last2 = Courtney | first3 = John | last3 = Peterson | format = PDF | contribution-url = http://haskell.cs.yale.edu/wp-content/uploads/2011/02/workshop-02.pdf | contribution = Functional Reactive Programming, Continued | title = Haskell Workshop | origyear = 2002 |date=Feb 2011 | number = 2[/tpl].
+
+===Discrete===
+
+Formulations such as Event-Driven FRP and Elm require that updates are discrete and event-driven.[tpl]Citation | format = PDF | first1 = Walid | last1 = Taha | first2 = Zhanyong | last2 = Wan | first3 = Paul | last3 = Hudak | url = http://www.cs.yale.edu/homes/zwan/papers/mcu/efrp.pdf | contribution = Event-Driven FRP | title = PADL | year = 2002 | publisher = Yale[/tpl]. These formulations have pushed for practical FRP, focusing on a semantics that have a simple API that can be implemented efficiently in a setting such as robotics or in a web-browser.[tpl]Citation | first1 = Evan | last1 = Czaplicki | first2 = Stephen | last2 = Chong | publisher = Harvard | contribution-url = http://people.seas.harvard.edu/~chong/abstracts/CzaplickiC13.html | contribution = Asynchronous Functional Reactive Programming for GUIs | title = PLDI | year = 2013[/tpl].
+In these formulations, it is common that the ideas of behaviors and events are combined into signals that always have a current value, but change discretely.[tpl]Citation |date=Feb 2011 | first1 = Zhanyong | last1 = Wan | first2 = Walid | last2 = Taha | first3 = Paul | last3 = Hudak | format = PDF | url = http://haskell.cs.yale.edu/wp-content/uploads/2011/02/rt-frp.pdf | contribution = Real-Time FRP | title = ICFP | number = 1[/tpl].
+
+===Continuous===
+
+The earliest formulation of FRP used a continuous semantics, aiming to abstract over many operational details that are not important to the meaning of a program.[tpl]Citation | first1 = Conal | last1 = Elliott | first2 = Paul | last2 = Hudak | contribution-url = http://conal.net/papers/icfp97/ | contribution = Functional Reactive Animation | title = ICFP | year = 1997[/tpl]. The key properties of this formulation are:
+This semantic model of FRP in side-effect free languages is typically in terms of continuous functions, and typically over time.[tpl]Citation | first1 = Antony | last1 = Courtney | first2 = Conal | last2 = Elliott | contribution-url = http://haskell.cs.yale.edu/wp-content/uploads/2011/02/genuinely-functional-guis.pdf |date=Feb 2011 | publisher = Yale | contribution = Genuinely Functional User Interfaces | origyear = 2001 | title = Haskell Workshop[/tpl].
+
+==See also==
+
+==References==
+
+==External links==
+
+

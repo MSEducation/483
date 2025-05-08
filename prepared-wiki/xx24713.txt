@@ -1,0 +1,64 @@
+[[Fast Ethernet]]
+
+CATEGORIES: Ethernet
+
+In computer networking, Fast Ethernet is a collective term for a number of Ethernet standards that carry traffic at the nominal rate of 100 Mbit/s, against the original Ethernet speed of 10 Mbit/s. Of the Fast Ethernet standards 100BASE-TX is by far the most common and is supported by the vast majority of Ethernet hardware currently produced. Fast Ethernet was introduced in 1995IEEE 802.3u-1995 and remained the fastest version of Ethernet for three years before being superseded by gigabit Ethernet.http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=15117&arnumber=690946&count=11&index=0 The 802.3z Gigabit Ethernet Standard was published
+
+==General design==
+
+Fast Ethernet is an extension of the existing Ethernet standard. It runs on UTP data or optical fiber cable in a star wired bus topology, similar to 10BASE-T where all cables are attached to a hub. And, it provides compatibility with existing 10BASE-T systems and thus enables plug-and-play upgrades from 10BASE-T. Fast Ethernet is sometimes referred to as 100BASE-X where X is a placeholder for the FX and TX variants.[tpl]Citation needed|date=February 2011[/tpl] The standard specifies the use of CSMA/CD for media access control, although in practice all modern networks use Ethernet switches and operate in full-duplex mode.
+The 100 in the media type designation refers to the transmission speed of 100 Mbit/s. The "BASE" refers to baseband signalling. The TX, FX and T4 refer to the physical medium that carries the signal.
+A Fast Ethernet adapter can be logically divided into a Media Access Controller (MAC) which deals with the higher level issues of medium availability and a Physical Layer Interface (PHY). The MAC may be linked to the PHY by a 4 bit 25 MHz synchronous parallel interface known as a Media Independent Interface (MII) or a 2 bit 50 MHz variant Reduced Media Independent Interface (RMII). Repeaters (hubs) are also allowed and connect to multiple PHYs for their different interfaces.
+The MII may (rarely) be an external connection but is usually a connection between ICs in a network adapter or even within a single IC. The specs are written based on the assumption that the interface between MAC and PHY will be a MII but they do not require it.
+The MII fixes the theoretical maximum data bit rate for all versions of Fast Ethernet to 100 Mbit/s. The data signaling rate actually observed on real networks is less than the theoretical maximum, due to the necessary header and trailer (addressing and error-detection bits) on every frame, the occasional "lost frame" due to noise, and time waiting after each sent frame for other devices on the network to finish transmitting.
+
+==Copper==
+
+100BASE-T is any of several Fast Ethernet standards for twisted pair cables, including: 100BASE-TX (100 Mbit/s over two-pair Cat5 or better cable), 100BASE-T4 (100 Mbit/s over four-pair Cat3 or better cable, defunct), 100BASE-T2 (100 Mbit/s over two-pair Cat3 or better cable, also defunct). The segment length for a 100BASE-T cable is limited to [tpl]convert|100|m|ft|0[/tpl] (as with 10BASE-T and gigabit Ethernet). All are or were standards under IEEE 802.3 (approved 1995). Almost all 100BASE-T installations are 100BASE-TX.
+In the early days of Fast Ethernet, much vendor advertising centered on claims by competing standards that said vendors' standards will work better with existing cables than other standards. In practice, it was quickly discovered that few existing networks actually met the assumed standards, because 10-megabit Ethernet was very tolerant of minor deviations from specified electrical characteristics and few installers ever bothered to make exact measurements of cable and connection quality; if Ethernet worked over a cable, no matter how well it worked, it was deemed acceptable. Thus most networks had to be rewired for 100-megabit speed whether or not there had supposedly been CAT3 or CAT5 cable runs.[tpl]Citation needed|date=July 2010[/tpl]
+
+===100BASE-TX===
+
+100BASE-TX is the predominant form of Fast Ethernet, and runs over two wire-pairs inside a category 5 or above cable. Like 10BASE-T, the active pairs in a standard connection are terminated on pins 1, 2, 3 and 6. Since a typical category 5 cable contains 4 pairs, it can support two 100BASE-TX links with a wiring adaptor.[tpl]cite web |url=http://www.trinetusa.com/images/catalog/pages31-40.pdf |title=CAT5E Adapters |accessdate=2012-12-17[/tpl] Cabling is conventional wired to TIA/EIA-568-B's termination standards, T568A or T568B. This places the active pairs on the orange and green pairs (canonical second and third pairs).
+Each network segment can have a maximum cabling distance of [tpl]convert|100|m|ft|0[/tpl].  In its typical configuration, 100BASE-TX uses one pair of twisted wires in each direction, providing 100 Mbit/s of throughput in each direction (full-duplex). See IEEE 802.3 for more details.
+The configuration of 100BASE-TX networks is very similar to 10BASE-T. When used to build a local area network, the devices on the network (computers, printers etc.) are typically connected to a hub or switch, creating a star network. Alternatively it is possible to connect two devices directly using a crossover cable.
+With 100BASE-TX hardware, the raw bits (4 bits wide clocked at 25 MHz at the MII) go through 4B5B binary encoding to generate a series of 0 and 1 symbols clocked at 125 MHz symbol rate. The 4B5B encoding provides DC equalization and spectrum shaping (see the standard for details). Just as in the 100BASE-FX case, the bits are then transferred to the physical medium attachment layer using NRZI encoding. However, 100BASE-TX introduces an additional, medium dependent sublayer, which employs MLT-3 as a final encoding of the data stream before transmission, resulting in a maximum "fundamental frequency" of 31.25 MHz. The procedure is borrowed from the ANSI X3.263 FDDI specifications, with minor discrepancies."The 100BASE-TX PMD (and MDI) is specified by incorporating the FDDI TP-PMD standard, ANSI X3.263: 1995 (TP-PMD), by reference, with the modifications noted below." (section 25.2 of IEEE802.3-2002).
+
+===100BASE-T4===
+
+100BASE-T4 was an early implementation of Fast Ethernet.  It requires four twisted copper pairs, but those pairs were only required to be category 3 rather than the category 5 required by TX. One pair is reserved for transmit, one for receive, and the remaining two will switch direction as negotiated. A very unusual 8B6T code is used to convert 8 data bits into 6 base-3 digits (the signal shaping is possible as there are nearly three times as many 6-digit base-3 numbers as there are 8-digit base-2 numbers). The two resulting 3-digit base-3 symbols are sent in parallel over 3 pairs using 3-level pulse-amplitude modulation (PAM-3). The fact that 3 pairs are used to transmit in each direction makes 100BASE-T4 inherently half-duplex.
+This standard can be implemented with CAT 3, 4, 5 UTP cables, or STP if needed against interference. Maximum distance is limited to 100 meters. 100BASE-T4 was not widely adopted but the technology developed for it is used in 1000BASE-T.[tpl]cite book |title=Ethernet: the Definitive Guide |author=Charles E. Spurgeon |publisher=O'Reilly Media |year=2000 |page=156 |isbn=978-1-56592-660-8 |url= http://books.google.com/books?id=MRChaUQr0Q0C&pg=PA156 [/tpl]
+
+===100BASE-T2===
+
+In 100BASE-T2, standardized in IEEE 802.3y, the data is transmitted over two copper pairs, 4 bits per symbol. It uses these two pairs for simultaneously transmitting and receiving on both pairs[tpl]cite book |title=Switched, Fast, and Gigabit Ethernet |author=Robert Breyer and Sean Riley |publisher=Macmillan Technical Publishing |year=1999 |page=107[/tpl] thus allowing full-duplex operation. First, a 4-bit symbol is expanded into two 3-bit symbols through a non-trivial scrambling procedure based on a linear feedback shift register; see the standard for details. This is needed to flatten the bandwidth and emission spectrum of the signal, as well as to match transmission line properties. The mapping of the original bits to the symbol codes is not constant in time and has a fairly large period (appearing as a pseudo-random sequence). The final mapping from symbols to PAM-5 line modulation levels obeys the table on the right. 100BASE-T2 was not widely adopted but the technology developed for it is used in 1000BASE-T.
+
+==Fiber optics==
+
+===100BASE-FX===
+
+100BASE-FX is a version of Fast Ethernet over optical fiber. It uses a 1300 nm near-infrared (NIR) light wavelength transmitted via two strands of optical fiber, one for receive(RX) and the other for transmit(TX). Maximum length is [tpl]convert|412|m|ft|-1[/tpl][tpl]cn|date=February 2013[/tpl] for half-duplex connections (to ensure collisions are detected), and [tpl]convert|2|km|ft|-2[/tpl] for full-duplex over multi-mode optical fiber.[tpl]cite web|url=http://www.hp.com/rnd/pdfs/100FXtechbrief.pdf |title=100BASE-FX Technical Brief |accessdate=2014-02-20 |publisher=hp.com |format=PDF[/tpl]  100BASE-FX uses the same 4B5B encoding and NRZI line code that 100BASE-TX does. 100BASE-FX should use SC, ST, LC, MTRJ or MIC connectors with SC being the preferred option.802.3-2008 section 26.4.1
+100BASE-FX is not compatible with 10BASE-FL, the 10 MBit/s version over optical fiber.
+
+===100BASE-SX===
+
+100BASE-SX is a version of Fast Ethernet over optical fiber. It uses two strands of multi-mode optical fiber for receive and transmit. It is a lower cost alternative to using 100BASE-FX, because it uses short wavelength optics which are significantly less expensive than the long wavelength optics used in 100BASE-FX. 100BASE-SX can operate at distances up to [tpl]convert|550|m|ft|-1[/tpl].
+100BASE-SX uses the same wavelength as 10BASE-FL, the 10 Mbit/s version over optical fiber. Unlike 100BASE-FX, this allows 100BASE-SX to be backwards-compatible with 10BASE-FL.
+Because of the shorter wavelength used (850 nm) and the shorter distance it can support, 100BASE-SX uses less expensive optical components (LEDs instead of lasers) which makes it an attractive option for those upgrading from 10BASE-FL and those who do not require long distances.
+100BASE-SX is not standardized by the IEEE 802.3 committee.  It is an industry de facto standard rather than a formal Ethernet standard.[tpl]Citation needed|date=May 2012[/tpl]
+
+===100BASE-BX===
+
+100BASE-BX is a version of Fast Ethernet over a single strand of optical fiber (unlike 100BASE-FX, which uses a pair of fibers). Single-mode fiber is used, along with a special multiplexer which splits the signal into transmit and receive wavelengths; the two wavelengths used for transmit and receive are 1310 nm and 1550 nm. The terminals on each side of the fiber are not equal, as the one transmitting "downstream" (from the center of the network to the outside) uses the 1550 nm wavelength, and the one transmitting "upstream" uses the 1310 nm wavelength. Distances can be 10, 20 or 40 km.IEEE 802.3-2012, section 5, chapter 58.
+
+===100BASE-LX10===
+
+100BASE-LX10 is a version of Fast Ethernet over two single-mode optical fibers. It has a nominal reach of 10 km and a nominal wavelength of 1310 nm.
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,37 @@
+[[File:Chua-chaotic-hidden-attractor.jpg|thumb|
+Chaotic hidden attractor (green domain) in Chua's system.
+Trajectories with initial data in neighborhoods of two saddle points (blue) tend (red arrow) to infinity or tend (black arrow) to stable zero equilibrium point (orange).]]
+An oscillation in a dynamical system can be easily localized numerically if initial conditions from its open neighborhood lead to long-time behavior that approaches the oscillation. Such oscillation (or a set of oscillations) is called an attractor, and its attracting set is called the basin of attraction. Thus, from a computational point of view the following classification of attractors based on the simplicity of finding basin of attraction in the phase space is suggested: an attractor is called hidden attractor if its basin of attraction does not intersect with small neighborhoods of equilibria, otherwise it is called self-excited attractor.
+
+==Self-excited attractor localization==
+
+Self-excited attractors can be localized numerically by the standard computational procedure, in which after a transient process a trajectory, started from a point of unstable manifold in a neighborhood of equilibrium, reaches a state of oscillation therefore one can easily identify it. Here It is essential to consider numerical localization procedures in forward and backward time, since computation in backward time may localize also an unstable oscillation.
+Classical attractors in the well-known dynamical systems of Van der Pol, Beluosov–Zhabotinsky, Lorenz, Rössler, Chua and many others are self-excited attractors and can be obtained numerically, with relative ease, by standard computational procedures described above.
+
+==Hidden attractor localization==
+
+For numerical localization of hidden attractors it is necessary to develop special analytical-numerical procedures, since there are no similar transient processes leading to such attractors from neighborhoods of equilibria. For example hidden attractor is periodic or chaotic attractor in the system without equilibria or with the only stable equilibrium (a special case of multistability and coexistence of attractors).
+One of the simplest examples of hidden oscillations is internal nested limit cycles in two-dimensional systems. Other examples of hidden oscillations are counterexamples to Aizerman's and Kalman's conjectures on absolute stability in automatic control theory (where unique stable equilibrium points and attracting periodic solutions coexist), which can be constructed for system dimensions not less than three and four respectively.
+In 2010, for the first time, a chaotic hidden attractor was discovered
+
+ 
+in Chua's circuit, which is described by a three-dimensional dynamical system.
+While for two-dimensional systems hidden oscillations can be investigated using analytical methods (see, e.g., results on the second part of Hilbert's 16th problem), for the study of stability and oscillations in complex nonlinear multidimensional systems numerical methods are often used.
+In the multi-dimensional case the integration of trajectories with random initial data is unlikely to provide localization of a hidden attractor, since a basin of attraction may be very small and the attractor dimension itself may be much less than the dimension of the considered system.
+Therefore for numerical localization of hidden attractors in multi-dimensional space it is necessary to develop special analytical-numerical computational procedures,
+
+ 
+
+ which allow one to choose initial data in the attraction domain of the hidden oscillation (which does not contain neighborhoods of equilibria) and then to perform trajectory computation there.
+Here it is turned out to be effective the methods based on 
+homotopy and numerical continuation:
+a sequence of similar systems is constructed, such that
+for the first (starting) system the initial
+data for numerical computation of oscillating solution
+(starting oscillation) can be obtained analytically, and then the transformation of this starting oscillation in the transition from one system to another is followed numerically.
+
+==References==
+
+==External links==
+
+

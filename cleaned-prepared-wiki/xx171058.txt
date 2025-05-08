@@ -1,0 +1,57 @@
+[[Range imaging]]
+
+CATEGORIES: Image sensor technology in computer vision, Cameras
+
+Range imaging is the name for a collection of techniques that are used to produce a 2D image showing the distance to points in a scene from a specific point, normally associated with some type of sensor device.
+The resulting image, the range image, has pixel values that correspond to the distance. If the sensor that is used to produce the range image is properly calibrated the pixel values can be given directly in physical units, such as meters.
+
+Different types of range cameras
+
+The sensor device that is used for producing the range image is sometimes referred to as a range camera. Range cameras can operate according to a number of different techniques, some of which are presented here.
+
+Stereo triangulation
+
+A stereo camera system can be used for determining the depth to points in the scene, for example, from the center point of the line between their focal points. In order to solve the depth measurement problem using a stereo camera system it is necessary to first find corresponding points in the different images. Solving the correspondence problem is one of the main problems when using this type of technique. For instance, it is difficult to solve the correspondence problem for image points that lie inside regions of homogeneous intensity or color. As a consequence, range imaging based on stereo triangulation can usually produce reliable depth estimates only for a subset of all points visible in the multiple cameras.
+The advantage of this technique is that the measurement is more or less passive; it does not require special conditions in terms of scene illumination. The other techniques mentioned here do not have to solve the correspondence problem but are instead dependent on particular scene illumination conditions.
+
+Sheet of light triangulation
+
+If the scene is illuminated with a sheet of light this creates a reflected line as seen from the light source. From any point out of the plane of the sheet the line will typically appear as a curve, the exact shape of which depends both on the distance between the observer and the light source, and the distance between the light source and the reflected points. By observing the reflected sheet of light using a camera (often a high resolution camera) and knowing the positions and orientations of both camera and light source, it is possible to determine the distances between the reflected points and the light source or camera.
+By moving either the light source (and normally also the camera) or the scene in front of the camera, a sequence of depth profiles of the scene can be generated. These can be represented as a 2D range image.
+
+Structured light
+
+By illuminating the scene with a specially designed light pattern, structured light, depth can be determined using only a single image of the reflected light. The structured light can be in the form of horizontal and vertical lines, points or checker board patterns.
+
+Time-of-flight
+
+The depth can also be measured using the standard time-of-flight technique, more or less similar to radar or LIDAR, in which a light pulse is used instead of an RF pulse. For example, a scanning laser, such as a rotating laser head, can be used to obtain a depth profile for points which lie in the scanning plane. This approach also produces a type of range image similar to a radar image. Time-of-flight cameras are relatively new devices that capture a whole scene in three dimensions with a dedicated image sensor, and therefore have no need for moving parts. A time-of-flight laser radar with a fast gating intensified CCD camera achieves sub-millimeter depth resolution. With this technique a short laser pulse illuminates a scene, and the intensified CCD camera opens its high speed shutter only for a few hundred picoseconds. The 3D information is calculated from a 2D image series that was gathered with increasing delay between the laser pulse and the shutter opening.High accuracy 3D laser radar Jens Busck and Henning Heiselberg, Danmarks Tekniske University, 2004
+
+Interferometry
+
+By illuminating points with coherent light and measuring the phase shift of the reflected light relative to the light source it is possible to determine depth. Under the assumption that the true range image is a more or less continuous function of the image coordinates, the correct depth can be obtained using a technique called phase-unwrapping.
+
+Coded Aperture
+
+Depth information may be partially or wholly inferred alongside intensity through reverse convolution of an image captured with a specially designed coded aperture pattern with a specific complex arrangement of holes through which the incoming light is either allowed through or blocked. The complex shape of the aperture creates a non-uniform blurring of the image for those parts of the scene not at the focal plane of the lens. Since the aperture design pattern is known, correct mathematical deconvolution taking account of this can identify where and by what degree the scene has become convoluted by out of focus light selectively falling on the capture surface, and reverse the process. Freeman, MIT Thus the blur-free scene may be retrieved and the extent of bluring across the scene is related to the displacement from the focal plane, which may be used to infer the depth. Since the depth for a point is inferred from its extent of blurring caused by the light spreading from the corresponding point in the scene arriving across the entire surface of the aperture and distorting according to this spread, this is a complex form of stereo triangulation. Each point in the image is effectively spatially sampled across the width of the aperture.
+
+
+
+
+
+| author=Bernd Jähne
+| title=Practical Handbook on Image Processing for Scientific Applications
+| publisher=CRC Press
+| year=1997
+| id=ISBN 0-8493-8906-2}}
+| author=Linda G. Shapiro and George C. Stockman
+| title=Computer Vision
+| publisher=Prentice Hall
+| year=2001
+| id=ISBN 0-13-030796-3}}
+| author=David A. Forsyth and Jean Ponce
+| title=Computer Vision, A Modern Approach
+| publisher=Prentice Hall
+| year=2003
+| id=ISBN 0-12-379777-2}}
+

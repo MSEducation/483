@@ -1,0 +1,43 @@
+[[Prefix code]]
+
+CATEGORIES: Coding theory, Prefixes, Data compression, Lossless compression algorithms
+
+A prefix code is a type of code system (typically a variable-length code) distinguished by its possession of the "prefix property"; which states that there is no valid code word in the system that is a prefix (start) of any other valid code word in the set. For example, a code with code words {9, 55} has the prefix property; a code consisting of {9, 5, 59, 55} does not, because "5" is a prefix of both "59" and "55". A prefix code is an example of a uniquely decodable code: a receiver can identify each word without requiring a special marker between words.
+Prefix codes are also known as prefix-free codes, prefix condition codes and instantaneous codes. Although Huffman coding is just one of many algorithms for deriving prefix codes, prefix codes are also widely referred to as "Huffman codes", even when the code was not produced by a Huffman algorithm. The term comma-free code is sometimes also applied as a synonym for prefix-free codesUS Federal Standard 1037C) it is used to mean self-synchronizing codes, a subclass of prefix codes.
+Using prefix codes, a message can be transmitted as a sequence of concatenated code words, without any out-of-band markers to frame the words in the message. The recipient can decode the message unambiguously, by repeatedly finding and removing prefixes that form valid code words. This is not always possible with codes that lack the prefix property, for example {0, 1, 10, 11}: a receiver reading a "1" at the start of a code word would not know whether that was the complete code word "1", or merely the prefix of the code word "10" or "11"; and the string "10" could be interpreted either as a single codeword or as the concatenation of the words "1" then "0".
+The variable-length Huffman codes, country calling codes, the country and publisher parts of ISBNs, the Secondary Synchronization Codes used in the UMTS W-CDMA 3G Wireless Standard, and the instruction sets (machine language) of most computer microarchitectures are prefix codes.
+Prefix codes are not error-correcting codes. In practice, a message might first be compressed with a prefix code, and then encoded again with channel coding (including error correction) before transmission.
+Kraft's inequality characterizes the sets of code word lengths that are possible in a uniquely decodable code.75
+
+Techniques
+
+Prefixes cannot exist in a fixed-length code without padding fixed codes to the shorter prefixes in order to meet the length of the longest prefixes (however such padding codes may be selected to introduce redundancy that allows autocorrection and/or synchronisation). However, fixed length encodings are inefficient in situations where some words are much more likely to be transmitted than others (in which case some or all of the redundancy may be eliminated for data compression).
+Huffman coding is a more sophisticated technique for constructing variable-length prefix codes. The Huffman coding algorithm takes as input the frequencies that the code words should have, and constructs a prefix code that minimizes the weighted average of the code word lengths. This is a form of lossless data compression based on entropy encoding.
+Some codes mark the end of a code word with a special "comma" symbol, different from normal data."Development of Trigger and Control Systems for CMS" by J. A. Jones: "Synchronisation" p. 70 This is somewhat analogous to the spaces between words in a sentence; they mark where one word ends and another begins. If every code word ends in a comma, and the comma does not appear elsewhere in a code word, the code is prefix-free. However, modern communication systems send everything as sequences of "1" and "0" – adding a third symbol would be expensive, and using it only at the ends of words would be inefficient. Morse code is an everyday example of a variable-length code with a comma. The long pauses between letters, and the even longer pauses between words, help people recognize where one letter (or word) ends, and the next begins. Similarly, Fibonacci coding uses a "11" to mark the end of every code word.
+Self-synchronizing codes are prefix codes that allow frame synchronization.
+
+Related concepts
+
+A suffix code is a set of words none of which is a suffix of any other; equivalently, a set of words which are the reverse of a prefix code.  As with a prefix code, the representation of a string as a concantenation of such words is unique.  A bifix code is a set of words which is both a prefix and a suffix code.58  
+
+Prefix codes in use today
+
+Examples of prefix codes include:
+ | url = 
+ | title = UTF-8 history
+ | first = Rob
+ | last = Pike
+ | date = 2003-04-03
+}}[/ref]
+
+Techniques
+
+Commonly used techniques for constructing prefix codes include Huffman codes and the earlier Shannon-Fano codes, and universal codes such as:
+
+Notes
+
+
+
+
+
+

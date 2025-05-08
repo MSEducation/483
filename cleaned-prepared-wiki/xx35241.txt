@@ -1,0 +1,88 @@
+[[Robots exclusion standard]]
+
+CATEGORIES: World Wide Web
+
+The Robot Exclusion Standard, also known as the Robots Exclusion Protocol or robots. Robots are often used by search engines to categorize and archive web sites, or by webmasters to proofread source code. The standard is different from, but can be used in conjunction with, Sitemaps, a robot inclusion standard for websites.
+
+History
+
+The standard was proposed by Martijn Koster,
+when working for Nexor
+in February, 1994
+on the www-talk mailing list, the main communication channel for WWW-related activities at the time. Charles Stross claims to have provoked Koster to suggest robots.
+It quickly became a de facto standard that present and future web crawlers were expected to follow; most complied, including those operated by search engines such as WebCrawler, Lycos and AltaVista.
+
+About the standard
+
+When a site owner wishes to give instructions to web robots they place a text file called robots.g. ). This text file contains the instructions in a specific format (see examples below). Robots that choose to follow the instructions try to fetch this file and read the instructions before fetching any other file from the web site. If this file doesn't exist, web robots assume that the web owner wishes to provide no specific instructions, and crawl the entire site.
+A robots. This might be, for example, out of a preference for privacy from search engine results, or the belief that the content of the selected directories might be misleading or irrelevant to the categorization of the site as a whole, or out of a desire that an application only operate on certain data. Links to pages listed in robots.
+A robots.
+For websites with multiple subdomains, each subdomain must have its own robots. If example.txt file but a.com did not, the rules that would apply for example.example.
+In addition, each protocol and port needs its own robots.
+Some major search engines following this standard include Ask,
+
+Disadvantages
+
+Despite the use of the terms "allow" and "disallow", the protocol is purely advisory.  It relies on the cooperation of the web robot, so that marking an area of a site out of bounds with robots. In particular, malicious web robots are unlikely to honor robots.txt as a guide and go straight to the disallowed urls.
+While it is possible to prevent directory searches by anybody including web robots by setting up the security of the server properly, when the disallow directives are provided in the robots.
+There is no official standards body or RFC for the robots. It was created by consensus in June 1994 by members of the robots mailing list (robots-request@nexor.co. in the top-level directory of the website.  The robots.
+
+Alternatives
+
+Many robots also pass a special user-agent to the web server when fetching content.
+
+Examples
+
+This example tells all robots that they can visit all files because the wildcard * specifies all robots:
+The same result can be accomplished with an empty or missing robots.
+This example tells all robots to stay out of a website:
+This example tells all robots not to enter three directories:
+This example tells all robots to stay away from one specific file:
+Note that all other files in the specified directory will be processed.
+This example tells a specific robot to stay out of a website:
+This example tells a specific robot not to enter one specific directory:
+Example demonstrating how comments can be used:
+It is also possible to list multiple robots with their own rules. The actual robot string is defined by the crawler.  A few sites, such as Google, support several user-agent strings that allow the operator to deny access to a subset of their services by using specific user-agent strings.
+Example demonstrating multiple user-agents:
+
+Nonstandard extensions
+
+Crawl-delay directive
+
+Several major crawlers support a Crawl-delay parameter, set to the number of seconds to wait between successive requests to the same server:
+
+Allow directive
+
+Some major crawlers support an Allow directive which can counteract a following Disallow directive.
+ This is useful when one tells robots to avoid an entire directory but still wants some HTML documents in that directory crawled and indexed. While by standard implementation the first matching robots. Bing uses either the Allow or Disallow directive, whichever is more specific, based on length, like Google.
+In order to be compatible to all robots, if one wants to allow single files inside an otherwise disallowed directory, it is necessary to place the Allow directive(s) first, followed by the Disallow, for example:
+This example will Disallow anything in /directory1/ except /directory1/myfile. The order is only important to robots that follow the standard; in the case of the Google or Bing bots, the order is not important.
+
+Sitemap
+
+Some crawlers support a Sitemap directive, allowing multiple Sitemaps in the same robots.txt in the form:
+
+Host
+
+Some crawlers (Yandex, Google) support a Host directive, allowing websites with multiple mirrors to specify their preferred domain.
+Or alternatively
+Note: This is not supported by all crawlers and if used, it should be inserted at the bottom of the robots.
+
+Universal "*" match
+
+The Robot Exclusion Standard does not mention anything about the "*" character in the Disallow: statement. Some crawlers like Googlebot recognize strings containing "*", while MSNbot and Teoma interpret it in different ways.''
+
+Meta tags and headers
+
+In addition to root-level robots.
+A "noindex" meta tag:
+A "noindex" HTTP response header:
+The X-Robots-Tag is only effective after the page has been requested and the server responds, and the robots meta tag is only effective after the page has loaded, whereas robots. Also, the robots meta tag only works on HTML pages, not images, text files, PDF documents, etc. Finally, if the pages/resources have already been excluded by a robots. This can have the counterintuitive effect that a web address is indexed by a search engine such as Google if it honors the site's robots.
+
+
+
+
+
+
+
+

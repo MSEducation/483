@@ -1,0 +1,34 @@
+[[Stride of an array]]
+
+CATEGORIES: Arrays, Articles with example C code
+
+In computer programming, the stride of an array (also referred to as increment, pitch or step size) refers to the number of locations in memory between beginnings of successive array elements, measured in bytes or in units of the size of the array's elements. In other words: stride is the number of bytes one has to move to get from one element to the next (or previous) one.
+Stride cannot be smaller than element size (it would mean that elements are overlapping) but can be larger (indicating extra space between elements).
+An array with stride of exactly the same size as the size of each of its elements is contiguous in memory. Such arrays are sometimes said to have unit stride. Unit stride arrays are sometimes more efficient than non-unit stride arrays, while non-unit stride arrays are sometimes more efficient than unit stride arrays, particularly for 2D or multi-dimensional arrays, depending on the effects of caching and the access patterns used. This can be attributed to the Principle of Locality, specifically spatial locality.
+
+==Reasons for non-unit stride==
+
+Arrays may have a stride larger than their elements' width in bytes in at least three cases: 
+
+===Padding===
+
+Many languages (including C and C++) allow structures to be padded to better take advantage either of the word length and/or cache line size of the machine. For example:
+In the above code snippet, myArray might well turn out to have a stride of four bytes, rather than three, if the C code were compiled for a 32-bit architecture, and the compiler had optimized (as is usually the case) for minimum processing time rather than minimum memory usage.
+
+===Overlapping parallel arrays===
+
+Some languages allow arrays of structures to be treated as overlapping parallel arrays with non-unit stride:
+This idiom is a form of type punning.
+
+===Array cross-section===
+
+Some languages like PL/I allow what is known as an array cross-section, which select certain columns  or rows from a larger array[tpl]cite book|last=Hughes|first=Joan K|title=PL/I Structured Programming (second ed.)|year=1979|publisher=John Wiley and Sons|location=New York|isbn=0-471-01908-9[/tpl][tpl]rp|p.262[/tpl].  For example, if a two-dimensional array is declared as
+an array consisting only of the second column may be referenced as
+
+===Example of multidimensional array with non-unit stride===
+
+Non-unit stride is particularly useful for images. It allows for creating subimages without copying the pixel data. Java example:
+
+==References==
+
+

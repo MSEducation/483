@@ -1,0 +1,135 @@
+[[Exponential distribution]]
+
+CATEGORIES: Continuous distributions, Exponentials, Poisson processes, Distributions with conjugate priors, Exponential family distributions, Infinitely divisible probability distributions, Probability distributions
+
+In probability theory and statistics, the exponential distribution (a.k.a. negative exponential distribution) is the probability distribution that describes the time between events in a Poisson process, i.e. a process in which events occur continuously and independently at a constant average rate. It is the continuous analogue of the geometric distribution, and it has the key property of being memoryless. In addition to being used for the analysis of Poisson processes, it is found in various other contexts.
+Note that the exponential distribution is not the same as the class of exponential families of distributions, which is a large class of probability distributions that includes the exponential distribution as one of its members, but also includes the normal distribution, binomial distribution, gamma distribution, Poisson, and many others.
+
+==Characterization==
+
+===Probability density function===
+
+The probability density function (pdf) of an exponential distribution is
+Alternatively, this can be defined using the Heaviside step function, H(x).
+Here λ > 0 is the parameter of the distribution, often called the rate parameter. The distribution is supported on the interval [0, ∞). If a random variable X has this distribution, we write X ~ Exp(λ).
+The exponential distribution exhibits infinite divisibility.
+
+===Cumulative distribution function===
+
+The cumulative distribution function is given by
+Alternatively, this can be defined using the Heaviside step function, H(x).
+
+===Alternative parameterization===
+
+A commonly used alternative parameterization is to define the probability density function (pdf) of an exponential distribution as
+where β > 0 is a scale parameter of the distribution and is the reciprocal of the rate parameter, λ, defined above. In this specification, β is a survival parameter in the sense that if a random variable X is the duration of time that a given biological or mechanical system manages to survive and X ~ Exp(β) then EX = β. That is to say, the expected duration of survival of the system is β units of time. The parameterisation involving the "rate" parameter arises in the context of events arriving at a rate λ, when the time between events (which might be modelled using an exponential distribution) has a mean of β = λ−1.
+The alternative specification is sometimes more convenient than the one given above, and some authors will use it as a standard definition. This alternative specification is not used here. Unfortunately this gives rise to a notational ambiguity. In general, the reader must check which of these two specifications is being used if an author writes "X ~ Exp(λ)", since either the notation in the previous (using λ) or the notation in this section (here, using β to avoid confusion) could be intended.
+
+==Properties==
+
+===Mean, variance, moments and median===
+
+The mean or expected value of an exponentially distributed random variable X with rate parameter λ is given by
+In light of the examples given above, this makes sense: if you receive phone calls at an average rate of 2 per hour, then you can expect to wait half an hour for every call.
+The variance of X is given by
+so the standard deviation is equal to the mean.
+The moments of X, for n = 1, 2, ..., are given by
+The median of X is given by
+where ln refers to the natural logarithm.  Thus the absolute difference between the mean and median is
+in accordance with the median-mean inequality.
+
+===Memorylessness===
+
+An exponentially distributed random variable T obeys the relation
+When T is interpreted as the waiting time for an event to occur relative to some initial time, this relation implies that, if T is conditioned on a failure to observe the event over some initial period of time s, the distribution of the remaining waiting time is the same as the original unconditional distribution. For example, if an event has not occurred after 30 seconds, the conditional probability that occurrence will take at least 10 more seconds is equal to the unconditioned probability of observing the event more than 10 seconds relative to the initial time.
+The exponential distributions and the geometric distributions are the only memoryless probability distributions.
+The exponential distribution is consequently also necessarily the only continuous probability distribution that has a constant Failure rate.
+
+===Quantiles===
+
+The quantile function (inverse cumulative distribution function) for Exp(λ) is
+The quartiles are therefore:
+And as a consequence the interquartile range is ln(3)/λ.
+
+===Kullback–Leibler divergence===
+
+===Maximum entropy distribution===
+
+===Distribution of the minimum of exponential random variables===
+
+Let X1, ..., Xn be independent exponentially distributed random variables with rate parameters λ1, ..., λn.  Then
+is also exponentially distributed, with parameter
+This can be seen by considering the complementary cumulative distribution function:
+The index of the variable which achieves the minimum is distributed according to the law
+Note that
+is not exponentially distributed.
+
+==Parameter estimation==
+
+Suppose a given variable is exponentially distributed and the rate parameter λ is to be estimated.
+
+===Maximum likelihood===
+
+The likelihood function for λ, given an independent and identically distributed sample x = (x1, ..., xn) drawn from the variable, is:
+where:
+is the sample mean.
+The derivative of the likelihood function's logarithm is:
+Consequently the maximum likelihood estimate for the rate parameter is:
+
+===Confidence intervals===
+
+The 100(1 − α)% confidence interval for the rate parameter of an exponential distribution is given by:[tpl]cite book|title=Introduction to probability and statistics for engineers and scientists|first=Sheldon M.|last=Ross|page=267|url=http://books.google.com/books?id=mXP_UEiUo9wC&pg=PA267| edition=4th|year=2009| publisher=Associated Press|isbn=978-0-12-370483-2[/tpl]
+which is also equal to:
+where [tpl]math|χ2p,v[/tpl] is the [tpl]math|100(1 – p)[/tpl] percentile of the  chi squared distribution with v degrees of freedom, n is the number of observations of inter-arrival times in the sample, and x-bar is the sample average. A simple approximation to the exact interval endpoints can be derived using a normal approximation to the [tpl]math|χ2p,v[/tpl] distribution. This approximation gives the following values for a 95% confidence interval:
+This approximation may be acceptable for samples containing at least 15 to 20 elements.
+
+===Bayesian inference===
+
+The conjugate prior for the exponential distribution is the gamma distribution (of which the exponential distribution is a special case).  The following parameterization of the gamma probability density function is useful:
+The posterior distribution p can then be expressed in terms of the likelihood function defined above and a gamma prior:
+Now the posterior density p has been specified up to a missing normalizing constant.  Since it has the form of a gamma pdf, this can easily be filled in, and one obtains:
+Here the parameter α can be interpreted as the number of prior observations, and β as the sum of the prior observations.
+The posterior mean here is:
+
+==Generating exponential variates==
+
+A conceptually very simple method for generating exponential variates is based on inverse transform sampling: Given a random variate U drawn from the uniform distribution on the unit interval (0, 1), the variate
+has an exponential distribution, where F −1 is the quantile function, defined by
+Moreover, if U is uniform on (0, 1), then so is 1 − U.  This means one can generate exponential variates as follows:
+Other methods for generating exponential variates are discussed by KnuthDonald E. Knuth (1998). The Art of Computer Programming, volume 2: Seminumerical Algorithms, 3rd edn. Boston: Addison–Wesley. ISBN 0-201-89684-2. See section 3.4.1, p. 133. and Devroye.Luc Devroye (1986). Non-Uniform Random Variate Generation. New York: Springer-Verlag. ISBN 0-387-96305-7. See chapter IX, section 2, pp. 392–401.
+The ziggurat algorithm is a fast method for generating exponential variates.
+A fast method for generating a set of ready-ordered exponential variates without using a sorting routine is also available.
+
+==Related distributions==
+
+Other related distributions:
+
+==Applications==
+
+===Occurrence of events===
+
+The exponential distribution occurs naturally when describing the lengths of the inter-arrival times in a homogeneous Poisson process.
+The exponential distribution may be viewed as a continuous counterpart of the geometric distribution, which describes the number of Bernoulli trials necessary for a discrete process to change state. In contrast, the exponential distribution describes the time for a continuous process to change state.
+In real-world scenarios, the assumption of a constant rate (or probability per unit time) is rarely satisfied. For example, the rate of incoming phone calls differs according to the time of day. But if we focus on a time interval during which the rate is roughly constant, such as from 2 to 4 p.m. during work days, the exponential distribution can be used as a good approximate model for the time until the next phone call arrives. Similar caveats apply to the following examples which yield approximately exponentially distributed variables:
+Exponential variables can also be used to model situations where certain events occur with a constant probability per unit length, such as the distance between mutations on a DNA strand, or between roadkills on a given road.[tpl]Citation needed|date=March 2009[/tpl]
+In queuing theory, the service times of agents in a system (e.g. how long it takes for a bank teller etc. to serve a customer) are often modeled as exponentially distributed variables.  (The arrival of customers for instance is also modeled by the Poisson distribution if the arrivals are independent and distributed identically.)  The length of a process that can be thought of as a sequence of several independent tasks follows the Erlang distribution (which is the distribution of the sum of several independent exponentially distributed variables).
+Reliability theory and reliability engineering also make extensive use of the exponential distribution. Because of the memoryless property of this distribution, it is well-suited to model the constant hazard rate portion of the bathtub curve used in reliability theory. It is also very convenient because it is so easy to add failure rates in a reliability model. The exponential distribution is however not appropriate to model the overall lifetime of organisms or technical devices, because the "failure rates" here are not constant: more failures occur for very young and for very old systems.
+In physics, if you observe a gas at a fixed temperature and pressure in a uniform gravitational field, the heights of the various molecules also follow an approximate exponential distribution, known as the Barometric formula. This is a consequence of the entropy property mentioned below.
+In hydrology, the exponential distribution is used to analyze extreme values of such variables as monthly and annual maximum values of daily rainfall and river discharge volumes.[tpl]cite book|last=Ritzema (ed.)|first=H.P.|title=Frequency and Regression Analysis|year=1994|publisher=Chapter 6 in: Drainage Principles and Applications, Publication 16, International Institute for Land Reclamation and Improvement (ILRI), Wageningen, The Netherlands|pages=175–224|url=http://www.waterlog.info/pdf/freqtxt.pdf|isbn=90-70754-33-9[/tpl]
+
+===Prediction===
+
+Having observed a sample of n data points from an unknown exponential distribution a common task is to use these samples to make predictions about future data from the same source. A common predictive distribution over future samples is the so-called plug-in distribution, formed by plugging a suitable estimate for the rate parameter λ into the exponential density function. A common choice of estimate is the one provided by the principle of maximum likelihood, and using this yields the predictive density over a future sample xn+1, conditioned on the observed samples x = (x1, ..., xn) given by
+The Bayesian approach provides a predictive distribution which takes into account the uncertainty of the estimated parameter, although this may depend crucially on the choice of prior.
+A predictive distribution free of the issues of choosing priors that arise under the subjective Bayesian approach is
+which can be considered as
+The accuracy of a predictive distribution may be measured using the distance or divergence between the true exponential distribution with rate parameter, λ0, and the predictive distribution based on the sample x. The Kullback–Leibler divergence is a commonly used, parameterisation free measure of the difference between two distributions. Letting Δ(λ0||p) denote the Kullback–Leibler divergence between an exponential with rate parameter λ0 and a predictive distribution p it can be shown that
+where the expectation is taken with respect to the exponential distribution with rate parameter [tpl]nowrap|λ0 ∈ (0, ∞)[/tpl], and [tpl]nowrap|ψ( · )[/tpl] is the digamma function. It is clear that the CNML predictive distribution is strictly superior to the maximum likelihood plug-in distribution in terms of average Kullback–Leibler divergence for all sample sizes [tpl]nowrap|n > 0[/tpl].
+
+==See also==
+
+==References==
+
+==External links==
+
+

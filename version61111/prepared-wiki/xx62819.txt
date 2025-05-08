@@ -1,0 +1,63 @@
+[[Polyglot (computing)]]
+
+CATEGORIES: Computer programming, Source code
+
+In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.
+Generally polyglots are written in a combination of C (which allows redefinition of tokens with a preprocessor) and a scripting language such as Lisp, Perl or sh.
+
+==Methods==
+
+The two most commonly used techniques for constructing a polyglot program are to make liberal use of languages which use different characters for comments and to redefine various tokens as others in different languages. Often good use is made of syntax quirks. These are demonstrated in this public domain polyglot written in ANSI C, PHP and bash:
+ #define a /*
+ #<?php
+ echo "\010Hello, world!\n";// 2> /dev/null > /dev/null \ ;
+ // 2> /dev/null; x=a;
+ $x=5; // 2> /dev/null \ ;
+ if (($x))
+ // 2> /dev/null; then
+ return 0;
+ // 2> /dev/null; fi
+ #define e ?>
+ #define b */
+ #include <stdio.h>
+ #define main() int main(void)
+ #define printf printf(
+ #define true )
+ #define function
+ function main()
+ {
+ printf "Hello, world!\n"true/* 2> /dev/null | grep -v true*/;
+ return 0;
+ }
+ #define c /*
+ main
+ #*/
+Note the following:
+Some less-common languages also offer possibilities to create Polyglot code. Here is a small sample, written simultaneously in SNOBOL4, Win32Forth, PureBasicv4.x, and REBOL:
+ *BUFFER : A.A ; .( Hello, world !) @ To Including?
+ Macro SkipThis; OUTPUT = Char(10) "Hello, World !"
+ ;OneKeyInput  Input('Char', 1, '[-f2-q1]')  ; Char
+ End; SNOBOL4 + PureBASIC + Win32Forth + REBOL = <3
+ EndMacro: OpenConsole() : PrintN("Hello, world !")
+ Repeat : Until Inkey() :  Macro SomeDummyMacroHere
+ REBOL  [ Title:  "'Hello, World !' in 4 languages"
+ CopyLeft:  "Developed in 2010 by Society" ]  Print
+ "Hello, world !"  EndMacro:  func  [][]  set-modes
+ system/ports/input [binary: true] Input  set-modes
+ system/ports/input  [binary: false] NOP:: EndMacro
+ ; Wishing to refine it with new language ? Go on !
+The term is sometimes applied to programs that are valid in more than one language, but do not strictly perform the same function in each. One use for this form is a file that runs as a DOS batch file, then re-runs itself in Perl:
+ @rem = ' --PERL--
+ @echo off
+ perl "%~dpnx0" %*
+ goto endofperl
+ @rem ';
+ #!perl
+ print "Hello, world!\n";
+ __END__
+ :endofperl
+This allows creating Perl scripts that can be run on DOS systems with minimal effort.
+
+==External links==
+
+

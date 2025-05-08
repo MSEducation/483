@@ -1,0 +1,76 @@
+ '''[[foreach]]''' (gap in gaps)
+ {
+     ''# Do a gapped insertion sort for this gap size.''
+     ''# The first gap elements a[0..gap-1] are already in gapped order''
+     ''# keep adding one more element until the entire array is gap sorted'' 
+     '''for''' (i = gap; i < n; i += 1)
+     {
+         ''# add a[i] to the elements that have been gap sorted''
+         ''# save a[i] in temp and make a hole at position i''
+         temp = a[i]
+         ''# shift earlier gap-sorted elements up until the correct location for a[i] is found''
+         '''for''' (j = i; j >= gap and a[j - gap] > temp; j -= gap)
+         {
+             a[j] = a[j - gap]
+         }
+         ''# put temp (the original a[i]) in its correct location''
+         a[j] = temp
+     }
+ }
+
+==Gap sequences==
+
+The question of deciding which gap sequence to use is difficult. Every gap sequence that contains 1 yields a correct sort; however, the properties of thus obtained versions of Shellsort may be very different. 
+The table below compares most proposed gap sequences published so far. Some of them have decreasing elements that depend on the size of the sorted array (N). Others are increasing infinite sequences, whose elements less than N should be used in reverse order.
+|- style="background-color: #efefef;"
+! General term (k ≥ 1)
+! Concrete gaps
+! Worst-case time complexity
+! Author and year of publication
+|----
+| Shell, 1959
+|----
+| Frank & Lazarus, 1960[ref]
+</ref>
+|----
+| Hibbard, 1963[ref]
+</ref>
+|----
+| Papernov & Stasevich, 1965[ref]
+</ref>
+|----
+| Pratt, 1971[ref]
+</ref>
+|----
+| Knuth, 1973[ref]
+</ref>
+|----
+| Incerpi & Sedgewick, 1985[ref]
+</ref>
+|----
+| Sedgewick, 1986
+|----
+| Sedgewick, 1986[ref]
+</ref>
+|----
+| ?
+| Gonnet & [tpl]j|Baeza-Yates[/tpl], 1991[ref]
+</ref>
+|----
+| ?
+| Tokuda, 1992[ref]
+</ref>
+|----
+| unknown
+| ?
+| Ciura, 2001[ref]
+</ref>
+|}
+When the binary representation of N contains many consecutive zeroes, Shellsort using Shell's original gap sequence makes Θ(N2) comparisons in the worst case. For instance, this case occurs for N equal to a power of two when elements greater and smaller than the median occupy odd and even positions respectively, since they are compared only in the last pass.
+Although it has higher complexity than the O(NlogN) that is optimal for comparison sorts, Pratt's version lends itself to sorting networks and has the same asymptotic gate complexity as Batcher's bitonic sorter.
+Gonnet and Baeza-Yates observed that Shellsort makes the fewest comparisons on average when the ratios of successive gaps are roughly equal to 2.2. This is why their sequence with ratio 2.2 and Tokuda's sequence with ratio 2.25 prove efficient. However, it is not known why this is so. Sedgewick recommends to use gaps that have low greatest common divisors or are pairwise coprime.[ref]
+</ref>
+
+==Computational complexity==
+
+The following property holds: after h2-sorting of any h1-sorted array, the array remains h1-sorted.[ref]

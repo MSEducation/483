@@ -1,0 +1,53 @@
+[[JQuery]]
+
+CATEGORIES: JavaScript libraries, Free software programmed in JavaScript, Ajax (programming), Software using the MIT license, 2006 software
+
+jQuery is a cross-platform JavaScript library designed to simplify the  client-side scripting of HTML.[tpl]cite web|url=http://jquery.com/|title=jQuery: The write less, do more, JavaScript library|publisher=The jQuery Project|accessdate=29 April 2010[/tpl] It was released in January 2006 at BarCamp NYC by John Resig. It is currently developed by a team of developers led by Dave Methvin. Used by over 80% of the 10,000 most visited websites,"JavaScript libraries usage statistics", Analysis by SimilarTech jQuery is the most popular JavaScript library in use today.[tpl]cite web |url=http://trends.builtwith.com/javascript/JQuery |title=jQuery Usage Statistics|accessdate=2013-05-17[/tpl][tpl]cite web |url=http://w3techs.com/technologies/overview/javascript_library/all|title=Usage of JavaScript libraries for websites|publisher=W3Techs|accessdate=2010-07-08[/tpl]
+jQuery is free, open source software, licensed under the MIT License.[tpl]cite web |url=http://docs.jquery.com/License |title=License – JQuery JavaScript Library |accessdate=2009-11-26[/tpl] jQuery's syntax is designed to make it easier to navigate a document, select DOM elements, create animations, handle events, and develop Ajax applications. jQuery also provides capabilities for developers to create plug-ins on top of the JavaScript library. This enables developers to create abstractions for low-level interaction and animation, advanced effects and high-level, theme-able widgets. The modular approach to the jQuery library allows the creation of powerful dynamic web pages and web applications.
+The set of jQuery core features—DOM element selections, traversal and  manipulation—enabled by its selector engine (named "Sizzle" from v1.3), created a new "programming style", fusing algorithms and DOM-data-structures; and influenced the architecture of other JavaScript frameworks like YUI v3 and Dojo.
+Microsoft and Nokia bundle jQuery on their platforms.[tpl]cite web |url=http://jquery.com/blog/2008/09/28/jquery-microsoft-nokia/ |title=jQuery, Microsoft, and Nokia |date=2008-09-28 |last=Resig |first=John |publisher=jQuery |work=jQuery Blog |accessdate=2009-01-29 [/tpl] Microsoft includes it with Visual Studio[tpl]cite web |url=http://weblogs.asp.net/scottgu/archive/2008/09/28/jquery-and-microsoft.aspx |title=jQuery and Microsoft |last=Guthrie |first=Scott |work=ScottGu's Blog |date=2008-09-28 |accessdate=2009-01-29 [/tpl] for use within Microsoft's ASP.NET AJAX framework and ASP.NET MVC Framework while Nokia has integrated it into the Web Run-Time widget development platform.[tpl]cite web |url=http://wiki.forum.nokia.com/index.php/Guarana_UI:_a_jQuery-Based_UI_Library_for_Nokia_WRT |title=Guarana UI: A jQuery Based UI Library for Nokia WRT |accessdate=2010-03-30 |work=Forum Nokia[/tpl] jQuery has also been used in MediaWiki since version 1.16.[tpl]cite web|url=http://www.mediawiki.org/wiki/JQuery |title=jQuery |publisher=MediaWiki |date=January 19, 2012 |accessdate=March 11, 2012[/tpl]
+
+==Features==
+
+jQuery includes the following features:
+
+===Browser support===
+
+Both version 1.x and 2.x of jQuery support "current-1 versions" (meaning the current stable version of the browser and the version that preceded it) of Firefox, Google Chrome, Safari, and Opera. The version 1.x also supports Internet Explorer 6 or higher. However, jQuery version 2.x dropped Internet Explorer 6–8 support  (which represents less than 28% of all browsers in use) and can run only with IE 9 or higher.Browser Support | jQuery
+
+==Including the library==
+
+The jQuery library is a single JavaScript file, containing all of its common DOM, event, effects, and Ajax functions. It can be included within a web page by linking to a local copy, or to one of the many copies available from public servers. jQuery has a CDN hosted by MaxCDN"jQuery CDN" – http://code.jquery.com/ (moved from MediaTemple[tpl]cite web|url=https://github.com/jquery/jquery.com/pull/43 |title=replace (mt) with maxcdn on pages/download.md |date=August 7, 2013 |accessdate=December 6, 2013[/tpl] and, before that, Amazon"CloudFront CDN for jQuery", November 19th, 2008 by John Resig, blog.jquery.com). Google[tpl]cite web|url=http://code.google.com/apis/ajaxlibs/documentation/#jquery |title=Google Libraries API - Developer's Guide |publisher=code.google.com |date= |accessdate=March 11, 2012[/tpl] and Microsoft[tpl]cite web | url=http://www.asp.net/ajaxlibrary/cdn.ashx | title=Microsoft Ajax Content Delivery Network | publisher=Microsoft Corporation | work=ASP.net | accessdate=June 19, 2012[/tpl] host it as well.
+It is also possible to include jQuery directly from content delivery networks.
+
+==Usage styles==
+
+jQuery has two usage styles:
+Typically, access to and manipulation of multiple DOM nodes begins with the $ function being called with a CSS selector string, which results in a jQuery object referencing matching elements in the HTML page. This node set can be manipulated by calling instance methods on the jQuery object, or on the nodes themselves. For example:
+This line finds the union of all div tags with class attribute test and all p tags with CSS class attribute quote, adds the class attribute blue to each matched element, and then increases their height with an animation. The $ and add functions affect the matched set, while the addClass and slideDown affect the referenced nodes.
+Besides accessing DOM nodes through jQuery object hierarchy, it is also possible to create new DOM elements if a string  passed as the argument to $() looks like HTML. For example, this line finds an HTML SELECT element with ID="carmakes", and adds an OPTION element with value "VAG" and text "Volkswagen":
+The methods prefixed with $. are convenience methods or affect global properties and behaviour. For example, the following is an example of the iterating function called each in jQuery:
+This writes "2", "3", "4" to the console.
+It is possible to perform browser-independent Ajax queries using $.ajax and associated methods to load and manipulate remote data.
+This example posts the data name=John and location=Boston to example.php on the server. When this request finishes successfully, the success function is called to alert the user. If the request fails, it will alert the user to the failure, the status of the request, and the specific error.
+
+==jQuery plug-ins==
+
+jQuery's architecture allows developers to create plug-in code to extend its functionality. Currently there are thousands of jQuery plug-ins available on the web[tpl]cite web|title=Plugins|url=http://plugins.jquery.com/|publisher=The jQuery Project|accessdate=26 August 2010[/tpl] that cover a wide range of functionality such as Ajax helpers, web services, datagrids, dynamic lists, XML and XSLT tools, drag and drop, events, cookie handling, modal windows, and even a jQuery-based Commodore 64 emulator.[tpl]cite web|title=JavaScript Commodore Emulator |url=http://www.kingsquare.nl/jsc64|publisher=Kingsquare|accessdate=26 August 2010[/tpl]
+An important source of jQuery plug-ins is the plugins subdomain of the jQuery Project website. However, in an effort to rid the site of spam, the plugins in this subdomain were accidentally deleted in December 2011.http://blog.jquery.com/2011/12/08/what-is-happening-to-the-jquery-plugins-site/#pluginstldr The new site will include a GitHub-hosted repository, which will require developers to resubmit their plugins and to conform to new submission requirements.https://github.com/jquery/plugins.jquery.com There are alternative plug-in search engines[tpl]cite web|title=jQuery Plugins Search|url=http://www.jqueryplugins.com/search/?q=/|accessdate=13 September 2012[/tpl][tpl]cite web|last=Kanakiya|first=Jay|title=jquery plugins|url=http://jquer.in[/tpl] like jquer.in that take more specialized approaches, such as listing only plug-ins that meet certain criteria (e.g. those that have a public code repository). The tutorials page on the jQuery site has a list of links to jQuery plug-in tutorials under the "Plugin development" section.[tpl]cite web|title=Tutorials|url=http://docs.jquery.com/Tutorials|publisher=The jQuery Project|accessdate=26 August 2010[/tpl]
+
+==Release history==
+
+==Testing framework==
+
+QUnit is a test automation framework used to test the jQuery project. The jQuery team developed it as an in-house unit testing library.Qunit section of jQuery website, 2011 http://docs.jquery.com/Qunit The jQuery team uses it to test its code and plugins but it can test any generic JavaScript code, including server-side JavaScript code.Qunit section of jQuery website, 2012 http://docs.jquery.com/QUnit
+As of 2011, the jQuery Testing Team uses QUnit with TestSwarm to test each jQuery codebase release.jQuery Testing Team Wiki http://jquerytesting.pbworks.com/w/page/41556026/FrontPage
+
+==See also==
+
+==References==
+
+==Further reading==
+
+ | title = jQuery Eases JavaScript, AJAX Development
+ | last = Taft | first = Darryl K.

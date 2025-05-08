@@ -1,0 +1,164 @@
+[[Shifting nth root algorithm]]
+
+CATEGORIES: Root-finding algorithms
+
+The shifting ''n''th root algorithm is an algorithm for extracting the nth root of a positive real number which proceeds iteratively by shifting in n digits of the radicand, starting with the most significant, and produces one digit of the root on each iteration, in a manner similar to long division.
+
+==Algorithm==
+
+===Notation===
+
+Let B be the base of the number system you are using, and n be the degree of the root to be extracted.  Let x be the radicand processed thus far, y be the root extracted thus far, and r be the remainder.  Let α be the next n digits of the radicand, and β be the next digit of the root.  Let x be the new value of x for the next iteration, y be the new value of y for the next iteration, and r be the new value of r for the next iteration.  These are all integers.
+
+===Invariants===
+
+===Initialization===
+
+The initial values of x, y, and r should be 0.  The value of α for the first iteration should be the most significant aligned block of n digits of the radicand.  An aligned block of n digits means a block of digits aligned so that the decimal point falls between blocks.  For example, in 123.4 the most significant aligned block of 2 digits is 01, the next most significant is 23, and the third most significant is 40.
+
+===Main loop===
+
+The first invariant says that:
+or
+So, pick the largest integer β such that
+and let
+but the second invariant implies that
+Now consider the second invariant.  It says:
+or
+This violates the second invariant, so to satisfy both invariants we must pick the largest β allowed by the first invariant.  Thus we have proven the existence and uniqueness of β and r.
+To summarize, on each iteration:
+is equivalent to
+and
+is equivalent to
+
+===Summary===
+
+==Paper-and-pencil nth roots==
+
+As noted above, this algorithm is similar to long division, and it lends itself to the same notation:
+      1.  4   4   2   2   4
+     ----------------------
+ _ 3/ 3.000 000 000 000 000
+  \/  1 = 300×(0<sup>2</sup>)×1+30×0×(1<sup>2</sup>)+1<sup>3</sup>
+      -
+      2 000
+      1 744 = 300×(1<sup>2</sup>)×4+30×1×(4<sup>2</sup>)+4<sup>3</sup>
+      -----
+        256 000
+        241 984 = 300×(14<sup>2</sup>)×4+30×14×(4<sup>2</sup>)+4<sup>3</sup>
+        -------
+         14 016 000
+         12 458 888 = 300×(144<sup>2</sup>)×2+30×144×(2<sup>2</sup>)+2<sup>3</sup>
+         ----------
+          1 557 112 000
+          1 247 791 448 = 300×(1442<sup>2</sup>)×2+30×1442×(2<sup>2</sup>)+2<sup>3</sup>
+          -------------
+            309 320 552 000
+            249 599 823 424 = 300×(14422<sup>2</sup>)×4+30×14422×(4<sup>2</sup>)+4<sup>3</sup>
+            ---------------
+             59 720 728 576
+Note that after the first iteration or two the leading term dominates the
+
+==Performance==
+
+==Examples==
+
+===Square root of 2 in binary===
+
+       1. 0  1  1  0  1
+     ------------------
+ _  / 10.00 00 00 00 00     1
+  \/   1                  + 1
+      -----               ----
+       1 00                100
+          0               +  0
+      --------            -----
+       1 00 00             1001
+         10 01            +   1
+      -----------         ------
+          1 11 00          10101
+          1 01 01         +    1
+          ----------      -------
+             1 11 00       101100
+                   0      +     0
+             ----------   --------
+             1 11 00 00    1011001
+             1 01 10 01          1
+             ----------
+                1 01 11 remainder
+
+===Square root of 3===
+
+      1. 7  3  2  0  5
+     ----------------------
+ _  / 3.00 00 00 00 00
+  \/  1 = 20×0×1+1^2
+      -
+      2 00
+      1 89 = 20×1×7+7^2
+      ----
+        11 00
+        10 29 = 20×17×3+3^2
+        -----
+           71 00
+           69 24 = 20×173×2+2^2
+           -----
+            1 76 00
+                  0 = 20×1732×0+0^2
+            -------
+            1 76 00 00
+            1 73 20 25 = 20×17320×5+5^2
+            ----------
+               2 79 75
+
+===Cube root of 5===
+
+      1.  7   0   9   9   7
+     ----------------------
+ _ 3/ 5.000 000 000 000 000
+  \/  1 = 300×(0^2)×1+30×0×(1^2)+1^3
+      -
+      4 000
+      3 913 = 300×(1^2)×7+30×1×(7^2)+7^3
+      -----
+         87 000
+              0 = 300×(17^2)*0+30×17×(0^2)+0^3
+        -------
+         87 000 000
+         78 443 829 = 300×(170^2)×9+30×170×(9^2)+9^3
+         ----------
+          8 556 171 000
+          7 889 992 299 = 300×(1709^2)×9+30×1709×(9^2)+9^3
+          -------------
+            666 178 701 000
+            614 014 317 973 = 300×(17099^2)×7+30×17099×(7^2)+7^3
+            ---------------
+             52 164 383 027
+
+===Fourth root of 7===
+
+      1.   6    2    6    5    7
+     ---------------------------
+ _ 4/ 7.0000 0000 0000 0000 0000
+  \/  1 = 4000×(0^3)×1+400×(0^2)×(1^2)+40×0×(1^3)+1^4
+      -
+      6 0000
+      5 5536 = 4000×(1^3)×6+600×(1^2)×(6^2)+40×1×(6^3)+6^4
+      ------
+        4464 0000
+        3338 7536 = 4000×(16^3)×2+600*(16^2)×(2^2)+40×16×(2^3)+2^4
+        ---------
+        1125 2464 0000
+        1026 0494 3376 = 4000×(162^3)×6+600×(162^2)×(6^2)+40×162×(6^3)+6^4
+        --------------
+          99 1969 6624 0000
+          86 0185 1379 0625 = 4000×(1626^3)×5+600×(1626^2)×(5^2)+
+          -----------------   40×1626×(5^3)+5^4
+          13 1784 5244 9375 0000
+          12 0489 2414 6927 3201 = 4000×(16265^3)×7+600×(16265^2)×(7^2)+
+          ----------------------   40×16265×(7^3)+7^4
+           1 1295 2830 2447 6799
+
+==External links==
+
+

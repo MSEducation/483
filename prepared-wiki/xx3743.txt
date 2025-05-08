@@ -1,0 +1,122 @@
+[[Transclusion]]
+
+CATEGORIES: HTML, Hypertext, Metadata, Ted Nelson
+
+In computer science, transclusion is the inclusion of a document or part of a document into another document by reference.
+For example, an article about a country might include a chart or a paragraph describing that country's agricultural exports from a different article about agriculture.  Rather than copying the included data and storing it in two places, a transclusion embodies modular design, by allowing it to be stored only once (and perhaps corrected and updated if the link type supported that) and viewed in different contexts.  The reference also serves to link both articles.
+Transclusion is usually performed on demand at the time one document referencing another is opened, and is normally automatic and transparent to the end user.  The result appears to be a single integrated document, even though its parts were assembled on-the-fly from several separate documents which may have come from different computers located in different places.
+The term was coined by hypertext pioneer Ted Nelson in 1963.
+
+==Technical considerations==
+
+===Context neutrality===
+
+Transclusion works better when transcluded sections of text are self-contained, so that the meaning and validity of the text is independent of the context in which it appears. For example, formulations like "as explained in the previous section" are problematic, because the transcluded section may appear in a different context, causing confusion. What constitutes "context neutral" text varies, but often includes things like company information or boilerplate.
+
+===Parameterization===
+
+Under some circumstances, and in some technical contexts, transcluded sections of text may not require strict adherence to the "context neutrality" principle, because the transcluded sections are capable of parameterization. Parameterization implies the ability to modify certain portions or subsections of a transcluded text depending on exogenous variables that can be changed independently. This is customarily done by supplying a transcluded text with one or more substitution placeholders. These placeholders are then replaced with the corresponding variable values prior to rendering the final transcluded output in context.
+
+==History and implementation by Project Xanadu==
+
+Ted Nelson (who had also originated the words "hypertext" and "hypermedia") coined the term "transclusion" in his 1982 book, Literary Machines. Part of his proposal was the idea that micropayments could be automatically exacted from the reader for all the text, no matter how many snippets of content are taken from various places.
+However, according to Nelson, the concept of transclusion had already formed part of his 1965 descriptionTheodor H. Nelson, "A File Structure for the Complex, the Changing and the Indeterminate." Proceedings of the ACM 20th National Conference (1965), pp. 84-100 of hypertext; 
+Nelson defines transclusion as "the same content knowably in more than one place", setting it apart from more special cases such as the inclusion of content stored in a different location (which he calls "transdelivery") or "explicit quotation which remains connected to its origins" (which he calls "transquotation").
+Some hypertext systems, including Ted Nelson's own Xanadu Project, support transclusion.
+Nelson has delivered a demonstration of Web transclusion, the Little Transquoter (programmed to Nelson's specification by Andrew Pam in 2004-2005).The Little Transquoter Xanadu.com.au  It creates a new format built on portion addresses from Web pages; when dereferenced, each portion on the resulting page remains click-connected to its original context.
+
+==Implementation on the Web==
+
+HTTP, as a transmission protocol, does not support transclusion itself. Instead, transclusion occurs either before (server-side) or after (client-side) transmission. For example:
+Publishers of web content may object to the transclusion of material from their own web sites into other web sites, or they may require an agreement to do so. Critics of the practice may refer to various forms of inline linking as bandwidth theft or leeching. 
+Other publishers may seek specifically to have their materials transcluded into other web sites, as in the form of web advertising, or as widgets like a hit counter or web bug.
+Mashups make use of transclusion to assemble resources or data into a new application, as by placing geo-tagged photos on an interactive map, or by displaying business metrics in an interactive dashboard.
+
+===Client-side HTML===
+
+HTML defines elements for client-side transclusion of images, scripts, stylesheets, other documents, and other types of media. 
+Through techniques such as Ajax, scripts associated with an HTML document can instruct a web browser to modify the document in-place. Such scripts may transclude elements or documents from a server after the web browser has rendered the page, in response to user input or changing conditions, for example.
+Future versions of HTML may support deeper transclusion of portions of documents using XML technologies such as entities, XPointer document referencing, and XSLT manipulations. (XPointer is patent-encumbered.https://lists.w3.org/Archives/Member/w3c-xml-linking-ig/2001Apr/0056.html)
+Proxy servers may employ transclusion to reduce redundant transmissions of commonly-requested resources.
+
+===Server-side transclusion===
+
+Transclusion can be accomplished on the server side, as through Server Side Includes and markup entity references resolved by the server software. It is a feature of substitution templates. 
+
+===Transclusion of source code===
+
+The transclusion of source code into software design or reference materials allows the source code to be presented within the document, but not interpreted as part of the document, preserving the semantic consistency of the inserted code in relation to its source codebase.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+  | last = Di Iorio
+  | first = A.
+  | last2 = Vitali
+  | first2 = F.
+  | title = A Xanalogical Collaborative Editing Environment
+  | booktitle = Proceedings of the Second International Workshop of Web Document Analysis 2003 (WDA2003)
+  |date=August 2003
+  | location = Edinburgh, UK
+  | url = http://www.csc.liv.ac.uk/~wda2003/Papers/Section_III/Paper_11.pdf
+  | format = PDF
+ }}
+  | last = Kolbitsch
+  | first = J.
+  | last2 = Maurer
+  | first2 = H.
+  | title = Transclusions in an HTML-Based Environment
+  | journal = Journal of Computing and Information Technology
+  | volume = 14
+  | issue = 2
+  | pages = 161–174
+  |date=June 2006
+  | url = http://cit.zesoi.fer.hr/browseIssue.php?issue=25
+  | doi = 10.2498/cit.2006.02.07
+ }}
+  | last = Kolbitsch
+  | first = J.
+  | title = Fine-Grained Transclusions of Multimedia Documents in HTML
+  | journal = Journal of Universal Computer Science
+  | volume = 11
+  | issue = 6
+  |date=June 2005
+  | url = http://www.jucs.org/jucs_11_6/fine_grained_transclusions_of/
+ }}
+  | first = H.
+  | last = Krottmaier
+  | title = Transcluded Documents: Advantages of Reusing Document Fragments
+  | booktitle = Proceedings of the 6th International ICCC/IFIP Conference on Electronic Publishing (ELPUB2002)
+  | pages = 359–367
+  | publisher = Karlovy Vary
+  | year = 2002
+  | location = Czech Republic
+  | url = http://hkrott.iicm.edu/docs/publications/elpub-2002.pdf
+  | format = PDF
+ }}
+  | first = H.
+  | last = Krottmaier
+  | first2 = Helic
+  | last2 = D.
+  | title = Issues of Transclusions
+  | booktitle = Proceedings of the World Conference on E-Learning in Corporate, Government, Healthcare, & Higher Education (E-Learn 2002)
+  | pages = 1730–1733
+  | year = 2002
+  | location = Montreal, Canada
+  | url = http://coronet.iicm.edu/denis/pubs/elearn2002b.pdf
+  | format = PDF
+ }}
+  | last = Krottmaier
+  | first = H.
+  | last2 = Maurer
+  | first2 = H.
+  | title = Transclusions in the 21st Century
+  | journal = Journal of Universal Computer Science
+  | volume = 7
+  | issue = 12
+  | pages = 1125–1136
+  |date=July 2001
+  | url = http://www.jucs.org/jucs_7_12/transclusions_in_the_21st/

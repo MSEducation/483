@@ -1,0 +1,10 @@
+[[Pulay Stress]]
+
+CATEGORIES: Density functional theory
+
+The Pulay Stress (named for Peter Pulay) is an error that occurs in the stress tensor when using density functional theory. It comes about when trying to relax the volume of a crystal using a constant basis set.
+A simple example would be, if you ran a density functional code on a specified volume to get the ground state energy. This will get you set of plane waves that all have energies below the specified energy cutoff. Now, I want to change the volume but keep a constant number of plane waves for this new calculation. So if I increase the volume, then the reciprocal lattice vectors will shrink in size. This is because the reciprocal lattice vector is inversely proportional to the direct lattice vector. That means the energy cutoff will now decrease in different directions. Now our energy sphere for the cutoff energy will look more like an ellipsoid for our new volume with a new energy cutoff. This odd shaped energy cutoff will give a different ground state energy if the density functional code is run again using a spherical cutoff energy.
+This error due to changing the volume but keeping the same plane waves can be seen in the stress tensor. The diagonal elements of the stress tensor are changed by a constant amount. So the Pulay stress is isotropic and has the effect to decrease the real fully relaxed volume.
+One way to remove the Pulay stress is to start with a much larger energy cutoff than the default, recommended is 30% larger. Another way of relaxing the volume without getting Pulay stress is to relax it with a constant energy cutoff. This means keeping the energy cutoff constant and not the number of plane waves.
+==External links== 
+

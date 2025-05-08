@@ -1,0 +1,53 @@
+[[Diophantine set]]
+
+CATEGORIES: Diophantine equations, Hilbert's problems
+
+In mathematics, a Diophantine equation is an equation of the form P(x1, ..., xj, y1, ..., yk)=0 (usually abbreviated P([tpl]overline|x[/tpl],[tpl]overline|y[/tpl])=0 ) where P([tpl]overline|x[/tpl],[tpl]overline|y[/tpl]) is a polynomial  with integer coefficients.  A Diophantine set is a subset S of Nj  Planet Math Definition so that for some Diophantine equation P([tpl]overline|x[/tpl],[tpl]overline|y[/tpl])=0.
+ The MRDP theorem states that a set of integers is Diophantine if and only if it is computably enumerable.The final piece of this result was published in 1970 by Matiyasevich and is thus also known as Matiyasevich's theorem but pedantically speaking Matiyasevich's theorem refers to the representability of exponentiation in Diophantine sets and the mathematical community has moved to calling the equivalence result the MRDP theorem or the Davis-Putnam-Robinson-Matiyasevich theorem after the mathematicians providing key pieces of the theorem. A set of integers S is recursively enumerable if and only if there is an algorithm that, when given an integer, halts if that integer is a member of S and runs forever otherwise. This means that the concept of general Diophantine set, apparently belonging to number theory, can be taken rather in logical or recursion-theoretic terms. This is far from obvious, however, and represented the culmination of some decades of work.
+Matiyasevich's completion of the MRDP theorem settled Hilbert's tenth problem. Hilbert's tenth problemDavid Hilbert posed the problem in his celebrated list, from his 1900 address to the International Congress of Mathematicians. was to find a general algorithm which can decide whether a given Diophantine equation has a solution among the integers.  While Hilbert's tenth problem is not a formal mathematical statement as such the nearly universal acceptance of the (philosophical) identification of a decision algorithm with a total computable predicate allows us to use the MRDP theorem to conclude the tenth problem is unsolvable.
+
+==Examples==
+
+The well known Pell equation 
+consisting of 0 and the natural numbers that are not perfect squares. Other examples of Diophantine definitions are as follows: 
+
+==Matiyasevich's theorem==
+
+Matiyasevich's theorem says:
+A set S of integers is computably enumerable if there is an algorithm such that: For each integer input n, if n is a member of S, then the algorithm eventually halts; otherwise it runs forever.  That is equivalent to saying there is an algorithm that runs forever and lists the members of S.  A set S is Diophantine precisely if there is some polynomial with integer coefficients f(n, x1, ..., xk)
+such that an integer n is in S if and only if there exist some integers
+x1, ..., xk
+such that f(n, x1, ..., xk) = 0.
+It is not hard to see that every Diophantine set is recursively enumerable:
+consider a Diophantine equation f(n, x1, ..., xk) = 0.
+Now we make an algorithm which simply tries all possible values for
+n, x1, ..., xk, in the increasing order of the sum of their absolute values,
+and prints n every time f(n, x1, ..., xk) = 0.
+This algorithm will obviously run forever and will list exactly the n
+for which f(n, x1, ..., xk) = 0 has a solution
+in x1, ..., xk.
+
+===Proof technique===
+
+Yuri Matiyasevich utilized a method involving Fibonacci numbers in order to show that solutions to Diophantine equations may grow exponentially. Earlier work by Julia Robinson, Martin Davis and Hilary Putnam had shown that this suffices to show that every computably enumerable set is Diophantine.
+
+==Application to Hilbert's Tenth problem==
+
+Hilbert's tenth problem asks for a general algorithm deciding the solvability of Diophantine equations. The conjunction of Matiyasevich's theorem with earlier results known collectively as the MRDP theorem implies that a solution to Hilbert's tenth problem is impossible.
+
+===Refinements===
+
+Later work has shown that the question of solvability of a Diophantine equation is undecidable even if the equation only has 9 natural number variables (Matiyasevich, 1977) or 11 integer variables (Zhi Wei Sun, 1992).
+
+==Further applications==
+
+Matiyasevich's theorem has since been used to prove that many problems from calculus and differential equations are unsolvable.
+One can also derive the following stronger form of Gödel's first incompleteness theorem from Matiyasevich's result:
+
+==Notes==
+
+==References==
+
+==External links==
+
+

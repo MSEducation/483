@@ -1,0 +1,124 @@
+[[Group cohomology]]
+
+CATEGORIES: Algebraic number theory, Cohomology theories, Group theory, Homological algebra
+
+These algebraic ideas are closely related to topological ideas.  The group cohomology of a group G can be thought of as, and is motivated by, the singular cohomology of a suitable space having G as its fundamental group, namely the corresponding Eilenberg–MacLane space.  Thus, the group cohomology of Z can be thought of as the singular cohomology of the circle S1, and similarly for Z/2Z and P∞(R).
+A great deal is known about the cohomology of groups, including interpretations of low-dimensional cohomology, functoriality, and how to change groups.  The subject of group cohomology began in the 1920s, matured in the late 1940s, and continues as an area of active research today.
+
+==Motivation==
+
+A general paradigm in group theory is that a group G should be studied via its group representations. A slight generalization of those representations are the G-modules: a G-module is an abelian group M together with a group action of G on M, with every element of G acting as an automorphism of M. In the sequel we will write G multiplicatively and M additively.
+Given such a G-module M, it is natural to consider the submodule of G-invariant elements:
+Now, if N is a submodule of M (i.e. a subgroup of M mapped to itself by the action of G), it isn't in general true that the invariants in M/N are found as the quotient of the invariants in M by those in N: being invariant 'modulo N ' is broader. The first group cohomology H1(G,N) precisely measures the difference. The group cohomology functors H* in general measure the extent to which taking invariants doesn't respect exact sequences. This is expressed by a long exact sequence.
+
+==Formal constructions==
+
+In this article, G is a finite group. The collection of all G-modules is a category (the morphisms are group homomorphisms f with the property f(gx) = g(f(x)) for all g in G and x in M). This category of G-modules is an abelian category with enough injectives (since it is isomorphic to the category of all modules over the group ring ZG).
+Sending each module M to the group of invariants MG yields a functor from this category to the category Ab of abelian groups. This functor is left exact but not necessarily right exact. We may therefore form its right derived functors; their values are abelian groups and they are denoted by Hn(G, M), "the n-th cohomology group of G with coefficients in M". H0(G, M) is identified with MG.
+
+===Long exact sequence of cohomology===
+
+In practice, one often computes the cohomology groups using the following fact: if
+is a short exact sequence of G-modules, then a long exact sequence
+is induced. The maps δn are called the "connecting homomorphisms" and can be obtained from the snake lemma.Section VII.2 of Serre 1979
+
+===Cochain complexes===
+
+Rather than using the machinery of derived functors, the cohomology groups can also be defined more concretely, as follows.Page 62 of Milne 2008 or section VII.3 of Serre 1979 For n ≥ 0, let Cn(G, M) be the group of all functions from Gn to M. This is an abelian group; its elements are called the (inhomogeneous)  ''n''-cochains. The coboundary homomorphisms
+are defined as
+The crucial thing to check here is
+thus we have a cochain complex and we can compute cohomology. For n ≥ 0, define the group of  ''n''-cocycles as:
+and the group of ''n''-coboundaries as
+and
+
+===The functors Extn and formal definition of group cohomology===
+
+Yet another approach is to treat G-modules as modules over the group ring ZG, which allows one to define group cohomology  via Ext functors:
+where M is a ZG-module.
+Here Z is treated as the trivial G-module: every element of G acts as the identity. These Ext groups can also be computed via a projective resolution of Z, the advantage being that such a resolution only depends on G and not on M. We recall the definition of Ext more explicitly for this context. Let F be a projective ZG-resolution (e.g. a  free ZG-resolution) of the trivial ZG-module Z:
+e.g., one may always take the resolution of group rings, Fn = ZGn+1, with morphisms
+Recall that for ZG-modules N and M, HomG(N, M) is an abelian group consisting of ZG-homomorphisms from N to M. Since HomG(–, M) is a contravariant functor and reverses the arrows, applying HomG(–, M) to F termwise produces a cochain complex HomG(F, M):
+The cohomology groups H*(G, M) of G with coefficients in the module M are defined as the cohomology of the above cochain complex:
+for n ≥ 0.
+This construction initially leads to a coboundary operator that acts on  the  "homogeneous" cochains. These are the elements of  HomG(F, M) i.e functions φn: Gn → M that obey
+The  coboundary operator δ: Cn → Cn+1 is now naturally defined by, for example,
+and so on. Thus
+as in the preceding section.
+
+===Group homology===
+
+Dually to the construction of group cohomology there is the following definition of group homology: given a G-module M, set DM to be the submodule generated by elements of the form g·m − m, g ∈ G, m ∈ M. Assigning to M its so-called coinvariants, the quotient
+is a right exact functor. Its left derived functors are by definition the group homology
+Note that the superscript/subscript convention for cohomology/homology agrees with the convention for group invariants/coinvariants, while which is denoted "co-" switches:
+The covariant functor which assigns MG to M is isomorphic to the functor which sends M to Z ⊗ZG M, where Z is endowed with the trivial G-action. Hence one also gets an expression for group homology in terms of the Tor functors,
+Recall that the tensor product N ⊗ZG M is defined whenever N is a right ZG-module and M is a left  ZG-module. If N is a left ZG-module, we turn it into a right ZG-module by setting a g = g−1 a for every g ∈ G and every a ∈ N. This convention allows to define the tensor product N ⊗ZG M in the case where both M and N are left ZG-modules.
+Specifically, the homology groups Hn(G, M) can be computed as follows. Start with a projective resolution F of the trivial ZG-module Z, as in the previous section. Apply the covariant functor ⋅ ⊗ZG M to F termwise  to get a chain complex F ⊗ZG M:
+Group homology and cohomology can be treated uniformly for some groups, especially finite groups, in terms of complete resolutions and the Tate cohomology groups.
+
+==Functorial maps in terms of cochains==
+
+===Connecting homomorphisms===
+
+For a short exact sequence 0 → L → M → N → 0, the connecting homomorphisms δn : Hn(G, N) → Hn+1(G, L) can be described in terms of inhomogeneous cochains as follows.Remark II.1.21 of Milne 2008 If c is an element of Hn(G, N) represented by an n-cocycle φ : Gn → N, then δn(c) is represented by dn(ψ), where ψ is an n-cochain Gn → M "lifting" φ (i.e. such that φ is the composition of ψ with the surjective map M → N).
+
+==Non-abelian group cohomology==
+
+Using the G-invariants and the 1-cochains, one can construct the zeroth and first group cohomology for a group G with coefficients in a non-abelian group. Specifically, a G-group is a (not necessarily abelian) group A together with an action by G.
+The zeroth cohomology of G with coefficients in A is defined to be the subgroup
+of elements of A fixed by G.
+Using explicit calculations, one still obtains a truncated long exact sequence in cohomology. Specifically, let
+be a short exact sequence of G-groups, then there is an exact sequence of pointed sets
+
+==Connections with topological cohomology theories==
+
+Group cohomology can be related to topological cohomology theories: to the topological group G there is an associated classifying space BG.  (If G has no topology about which we care, then we assign the discrete topology to G.  In this case, BG is an Eilenberg-MacLane space K(G,1), whose fundamental group is G and whose higher homotopy groups vanish). The n-th cohomology of BG, with coefficients in M (in the topological sense), is the same as the group cohomology of G with coefficients in M.  This will involve a local coefficient system unless M is a trivial G-module.  The connection holds because the total space EG is contractible, so its chain complex forms a projective resolution of M. These connections are explained in [tpl]harv|Adem-Milgram|2004[/tpl], Chapter II.
+When M is a ring with trivial G-action, we inherit good properties which are familiar from the topological context: in particular, there is a cup product under which
+is a graded module, and a Künneth formula applies.
+If, furthermore, M = k is a field, then H*(G; k) is a graded k-algebra.  In this case, the Künneth formula yields
+For example, let G be the group with two elements, under the discrete topology.  The real projective space P∞(R) is a classifying space for G.  Let k = F2, the field of two elements.  Then
+a polynomial k-algebra on a single generator, since this is the cellular cohomology ring of P∞(R).
+Hence, as a second example, if G is an elementary abelian 2-group of rank r, and k = F2, then the Künneth formula gives
+a polynomial k-algebra generated by r classes in H1(G; k).
+
+==Properties==
+
+In the following, let M be a G-module.
+
+===Functoriality===
+
+Group cohomology depends contravariantly on the group G, in the following sense: if f : H → G is a group homomorphism, then we have a naturally induced morphism Hn(G,M) → Hn(H,M) (where in the latter, M is treated as an H-module via f).
+Given a morphism of G-modules M→N, one gets a morphism of cohomology groups in the Hn(G,M) → Hn(G,N).
+
+===H1===
+
+The first cohomology group is the quotient of the so-called crossed homomorphisms, i.e. maps (of sets) f : G → M satisfying f(ab) = f(a) + af(b) for all a, b in G, modulo the so-called principal crossed homomorphisms, i.e. maps f : G → M given by f(a) = am−m for some fixed m ∈ M. This follows from the definition of cochains above.
+If the action of G on M is trivial, then the above boils down to H1(G,M) = Hom(G, M), the group of group homomorphisms G → M.
+
+===H2===
+
+If M is a trivial G-module (i.e. the action of G on M is trivial), the second cohomology group H2(G,M) is in one-to-one correspondence with the set of central extensions of G by M (up to a natural equivalence relation).  More generally, if the action of G on M is nontrivial, H2(G,M) classifies the isomorphism classes of all extensions of G by M in which the induced action of G on M by inner automorphisms agrees with the given action.
+
+===Change of group===
+
+The Hochschild–Serre spectral sequence relates the cohomology of a normal subgroup N of G and the quotient G/N to the cohomology of the group G (for (pro-)finite groups G). From it, one gets the inflation-restriction exact sequence.
+
+===Cohomology of finite groups is torsion===
+
+The cohomology groups of finite groups are all torsion. Indeed, by Maschke's theorem the category of representations of a finite group is semi-simple over any field of characteristic zero (or more generally, any field whose characteristic does not divide the order of the group), hence, viewing group cohomology as a derived functor in this abelian category, one obtains that it is zero. The other argument is  that over a field of characteristic zero, the group algebra of a finite group is a direct sum of matrix algebras (possibly over division algebras which are extensions of the original field), while a matrix algebra is Morita equivalent to its base field and hence has trivial cohomology.
+
+==History and relation to other fields==
+
+The low-dimensional cohomology of a group was classically studied in other guises, long before the notion of group cohomology was formulated in 1943–45.  The first theorem of the subject can be identified as Hilbert's Theorem 90 in 1897; this was recast into Noether's equations in Galois theory (an appearance of cocycles for H1). The idea of factor sets for the extension problem for groups (connected with H2) arose in the work of Hölder (1893), in Issai Schur's 1904 study of projective representations, in Schreier's 1926 treatment, and in  Richard Brauer's 1928 study of simple algebras and the Brauer group. A fuller discussion of this history may be found in [tpl]harv|Weibel|1999|pp=806–811[/tpl].
+In 1941, while studying H2(G, Z) (which plays a special role in groups), Hopf discovered what is now called Hopf's integral homology formula [tpl]harv|Hopf|1942[/tpl], which is identical to Schur's formula for the Schur multiplier of a finite, finitely presented group:
+where G ≅ F/R and F is a free group.
+Hopf's result led to the independent discovery of group cohomology by several groups in 1943-45: Eilenberg and Mac Lane in the USA [tpl]Harv|Rotman|1995|p=358[/tpl]; Hopf and Eckmann in Switzerland; and Freudenthal in the Netherlands [tpl]harv|Weibel|1999|p=807[/tpl]. The situation was chaotic because communication between these countries was difficult during World War II.
+From a topological point of view, the homology and cohomology of G was first defined as the homology and cohomology of a model for the topological classifying space BG as discussed in #Connections with topological cohomology theories above. In practice, this meant using topology to produce the chain complexes used in formal algebraic definitions. From a module-theoretic point of view this was integrated into the Cartan–Eilenberg theory of homological algebra in the early 1950s.
+The application in algebraic number theory to class field theory provided theorems valid for general Galois extensions (not just abelian extensions). The cohomological part of class field theory was axiomatized as the theory of class formations. In turn, this led to the notion of Galois cohomology and étale cohomology (which builds on it) [tpl]harv|Weibel|1999|p=822[/tpl]. Some refinements in the theory post-1960 have been made, such as continuous cocycles and Tate's redefinition, but the basic outlines remain the same. This is a large field, and now basic in the theories of algebraic groups.
+The analogous theory for Lie algebras, called Lie algebra cohomology, was first developed in the late 1940s, by Chevalley–Eilenberg, and  Koszul [tpl]harv|Weibel|1999|p=810[/tpl]. It is formally similar, using the corresponding definition of invariant for the action of a Lie algebra. It is much applied in representation theory, and is closely connected with the BRST quantization of theoretical physics.
+Group cohomology theory also has a direct application in condensed matter physics. Just like group theory being the mathematical foundation of spontaneous symmetry breaking phases, group cohomology theory is the mathematical foundation of a class of quantum states of matter -- short-range entangled states with symmetry. Short-range entangled states with symmetry are also known as symmetry protected topological states.
+
+==Notes==
+
+==References==
+
+

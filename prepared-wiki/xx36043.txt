@@ -1,0 +1,46 @@
+[[Blitter]]
+
+CATEGORIES: Graphics processing units
+
+In a computer system, a blitter is a circuit, sometimes as a coprocessor or a logic block on a microprocessor, that is dedicated to the rapid movement and modification of data within that computer's memory. A blitter is capable of copying large quantities of data from one memory area to another relatively quickly, and in parallel with the CPU, whilst freeing up the CPU's more complex ISA for more general operations.
+The name comes from BLIT, which is not an acronym[tpl]cite web | url = https://plus.google.com/101960720994009339267/posts/LJU1Aao612X | first = Rob | last = Pike | accessdate = 8 June 2012 | title = 1984 Unix/mpx Exit quiz[/tpl] but is often interpreted as BLock Image Transfer. A typical use for a blitter is the movement of a bitmap, such as windows and fonts in a graphical user interface or sprites and backgrounds in a 2D computer game.
+
+==The historical need for a blitter==
+
+In early computers with raster-graphics output, the screen buffer was normally held in main memory and updated using software running on the CPU. For many simple graphics routines, like sprite support or flood filling polygons, large amounts of memory had to be manipulated, and many CPU cycles were spent fetching and decoding instructions for repetitive loops of simple shift/masking operations. For CPUs without caches, this bus requirement for instructions was as significant as data.
+
+==Blitters in home computing==
+
+Computer manufacturers introduced blitters to make their systems more efficient for graphics. Several home computers manufactured in the 1980s included a graphics coprocessor that contained a blitter.
+The Commodore Amiga was the first personal computer to use a full-featured blitter, and the first US patent filing to use the term blitter was "Personal computer apparatus for block transfer of bit-mapped image data," assigned to Commodore-Amiga, Inc.[tpl]cite web | title = US Patent 4874164 "Personal computer apparatus for block transfer of bit-mapped image data" | url = http://www.google.com/patents?id=n_M9AAAAEBAJ&printsec=abstract&zoom=4&vq=blitter&dq=blitter&as_drrb_ap=b&as_minm_ap=1&as_miny_ap=1970&as_maxm_ap=1&as_maxy_ap=1990&as_drrb_is=q&as_minm_is=1&as_miny_is=2008&as_maxm_is=1&as_maxy_is=2008#PPP1,M1 [/tpl] On top of the ability to copy and manipulate large areas of graphics, the hardware that contained the Amiga's blitter also included line drawing and area-filling hardware.
+The blitter made the amiga popular with enthusiast demo scene programmers.
+Compared to the MC68000 processor (also found in rival computers of the time) the blitter needed no memory cycles for fetching instructions, no silicon for decoding, and contained a barrel shifter to assist shifting pixel-accurate graphics in bitplanes. It also performed a "4 operand" boolean operation (typically destination:=op(destination, source, mask))
+Later models of the Atari ST also included a blitter co-processor, which was named in capitals as the BLiTTER chip. One story[tpl]Citation needed|date=May 2008[/tpl] states that manufacturing delays deferred its introduction into the ST line until after the first STs had shipped. Another is that the Atari ST's main competitor, the Amiga, was famous for its blitter, and so Atari introduced one as well. Although Atari planned an upgrade to allow dealers to install the blitter chip, this plan was later dropped. Instead, the BLITTER was introduced on the Mega series, and then also supported on most later machines (except the Atari TT).
+Cross-platform software would often rely on fallback CPU implementations of bitblit algorithms, which made good use the 68000's large 32-bit register file, movem instructions, and postincrement addressing modes.
+
+==Other approaches==
+
+Hardware sprites were a more common system for moving graphics in games machines, which used two different graphics pathways to draw images that were then combined in the video display circuitry into a single image. Sprites were small bitmaps that were positioned on the screen independent of the normal bitmap background, allowing them to be moved on-screen by adjusting the values of several timers. The video circuitry started drawing the sprites after the timer had expired, allowing them to be displayed with no manipulation of memory. Sprite systems were more efficient for moving graphics, typically requiring 1/3 the memory cycles as only image data needed to be fetched, with the subsequent compositing happening on-chip.
+Sprites were usually seen in conjunction with indexed "character map" backgrounds, also known as "tiles", as opposed to the more general, memory-hungry linear framebuffers that are ubiquitous today. These were also used for displaying text, where pages could be rapidly refreshed and scrolled by simply replacing a grid of character indices, at the expense of limited precision placement and character-set. Characters were often fonts held in ROM on non-gaming systems such as the IBM PC. The drive toward blitters happened with a move toward GUIs and WYSIWIG interfaces for productivity software. Sprites could be used as hardware cursors in GUIs.
+The downside of sprites is a limit of moving graphics per scanline, often between two (the Atari VCS) and eight (Commodore 64 and Atari 8-bits), and inability to update a permanent bitmap making them unsuitable for general desktop GUI acceleration.  However, hardware sprites are still useful as a mouse pointer in a GUI, since the sprite requires no pixel manipulation of the desktop metaphor on screen.  Though the Amiga includes a blitter its desktop GUI still uses a sprite for its mouse pointer.  
+Some sprite systems could be seen as "blitters in disguise", for example a single scanline on-chip framebuffer composited on scanout by a blitter, or blitters operating with dedicated memory pathways for framebuffers and source images. Some optimised Amiga games used a mix of blitting and hardware sprites: the more limited hardware sprites were used for 60fps "players" (with unique colours distinct from backgrounds) and/or "missiles" (a large number of small moving objects with limited palettes, multiplexed between scanlines, saving the need for padding words), whilst the blitter would update larger areas. Furthermore, hardware scolling (sometimes multiple overlapping planes) could shift entire backgrounds without main memory manipulation; again the Amiga's GUI utilized the "Copper" chip to display horizontal portions of several screens in the UI, which could be scrolled vertically.
+
+==Operation==
+
+Typically, a computer program would put information into certain registers describing what memory transfer needed to be completed and the logical operations to perform on the data, then trigger the blitter to begin operating. The CPU is then free to begin some other operation while the blitter operates. 
+The destination for the transfer is usually the frame buffer. However, a blitter can also be used for non-graphics work. For example, an area of memory might be zeroed (filled with zeroes) using a blitter more quickly than can be accomplished with the CPU. Additionally, simple mathematical operations can be built from basic logical operations. 
+The image at right helps illustrate how a blitter may use a 'mask' to decide which pixels to transfer and which to leave untouched. The mask operates like a stencil, showing which pixels in the source image will be written to destination memory. The logical operation would be Dest = ((Background) AND (Mask)) OR (Sprite).
+The Amiga stored framebuffers in separate 'bitplanes' (e.g. a series of 5 1bit images combining to produce a 32-colour display), which made masking very convenient, as masks needed only one bitplane. Other systems could perform masking with a transparent colour.
+
+==Current technology==
+
+Blitters have been replaced by the modern graphics processing unit. 
+Modern GPUs are designed primarily for 3D graphics, and have added the ability to modify bitmaps in mathematically advanced ways, allowing arbitrary image transformations, texture decompression and filtering, shading for illumination models, alpha blend compositing operations, and depth-buffer comparison/update.
+Graphics processing units have evolved beyond pure graphics accelerators with the addition of general purpose programmable floating point units applicable to gpgpu, differing from the CPU in being massively parallel processors optimized for data-parallel throughput instead of rapid individual-instructions of low latency. 
+In this respect, GPU's have also taken over a role that used to be filled by DSPs such as the Motorola 56001 that were sometimes used for geometry, image and sound processing in intermediate 16/32bit era workstations, accelerator cards and gaming machines, like the Atari Falcon.
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,78 @@
+[[Cocktail sort]]
+
+CATEGORIES: Sorting algorithms, Comparison sorts, Stable sorts, Articles with example pseudocode
+
+Cocktail sort, also known as bidirectional bubble sort, cocktail shaker sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort,Martin Duhl: Die schrittweise Entwicklung und Beschreibung einer Shuffle-Sort-Array Schaltung in HYPERKARL aus der Algorithmischen Darstellung des BUBBLE-SORT-ALGORITHMUS, Projektarbeit, 1986, Technical University of Kaiserslautern or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list. This sorting algorithm is only marginally more difficult to implement than a bubble sort, and solves the problem of turtles in bubble sorts. It provides only marginal performance improvements, and does not improve asymptotic performance; like the bubble sort, it is not of practical interest (insertion sort is preferred for simple sorts), though it finds some use in education.
+
+Pseudocode
+
+The simplest form of cocktail sort goes through the whole list each time:
+ '''procedure''' cocktailSort( A ''':''' list of sortable items ) '''defined as:'''
+   '''do'''
+     swapped := false
+     '''for each''' i '''in''' 0 '''to''' length( A ) - 2 '''do:'''
+       '''if''' A[ i ] > A[ i + 1 ] '''then''' <span style="color:green">// test whether the two elements are in the wrong order</span>
+         swap( A[ i ], A[ i + 1 ] ) <span style="color:green">// let the two elements change places</span>
+         swapped := true
+       '''end if'''
+     '''end for'''
+     '''if''' swapped = false '''then'''
+       <span style="color:green">// we can exit the outer loop here if no swaps occurred.</span>
+       '''break do-while loop'''
+     '''end if'''
+     swapped := false
+     '''for each''' i '''in''' length( A ) - 2 '''to''' 0 '''do:'''
+       '''if''' A[ i ] > A[ i + 1 ] '''then'''
+         swap( A[ i ], A[ i + 1 ] )
+         swapped := true
+       '''end if'''
+     '''end for'''
+   '''while''' swapped <span style="color:green">// if no elements have been swapped, then the list is sorted</span>
+ '''end procedure'''
+The first rightward pass will shift the largest element to its correct place at the end, and the following leftward pass will shift the smallest element to its correct place at the beginning. The second complete pass will shift the second largest and second smallest elements to their correct places, and so on. After i passes, the first i and the last i elements in the list are in their correct positions, and do not need to be checked. By shortening the part of the list that is sorted each time, the number of operations can be halved (see bubble sort).
+ '''procedure''' cocktailSort( A ''':''' list of sortable items ) '''defined as:'''
+   <span style="color:green">// `begin` and `end` marks the first and last index to check</span>
+   begin := -1
+   end := length( A ) - 2
+   '''do'''
+     swapped := false
+     <span style="color:green">// increases `begin` because the elements before `begin` are in correct order</span>
+     begin := begin + 1
+     '''for each''' i '''in''' begin '''to''' end '''do:'''
+       '''if''' A[ i ] > A[ i + 1 ] '''then'''
+         swap( A[ i ], A[ i + 1 ] )
+         swapped := true
+       '''end if'''
+     '''end for'''
+     '''if''' swapped = false '''then'''
+       '''break do-while loop'''
+     '''end if'''
+     swapped := false
+     <span style="color:green">// decreases `end` because the elements after `end` are in correct order</span>
+     end := end - 1
+     '''for each''' i '''in''' end '''to''' begin '''do:'''
+       '''if''' A[ i ] > A[ i + 1 ] '''then'''
+         swap( A[ i ], A[ i + 1 ] )
+         swapped := true
+       '''end if'''
+     '''end for'''
+   '''while''' swapped
+ '''end procedure'''
+
+Differences from bubble sort
+
+Cocktail sort is a slight variation of bubble sort. It differs in that instead of repeatedly passing through the list from bottom to top, it passes alternately from bottom to top and then from top to bottom. It can achieve slightly better performance than a standard bubble sort. The reason for this is that bubble sort only passes through the list in one direction and therefore can only move items backward one step each iteration.
+An example of a list that proves this point is the list (2,3,4,5,1), which would only need to go through one pass of cocktail sort to become sorted, but if using an ascending bubble sort would take four passes. However one cocktail sort pass should be counted as two bubble sort passes. Typically cocktail sort is less than two times faster than bubble sort.
+Another optimization can be that the algorithm remembers where the last actual swap has been done. In the next iteration, there will be no swaps beyond this limit and the algorithm has shorter passes. As the Cocktail sort goes bidirectionally, the range of possible swaps, which is the range to be tested, will reduce per pass, thus reducing the overall running time.
+
+Complexity
+
+Cocktail sort is also briefly discussed in the book The Art of Computer Programming, along with similar refinements of bubble sort. In conclusion, Knuth states about bubble sort and its improvements (Knuth 1998, p. 110):
+
+Notes
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+[[B-spline]]
+
+CATEGORIES: Splines, Interpolation
+
+In the mathematical subfield of numerical analysis, a B-spline, or Basis spline, is a spline function that has minimal support with respect to a given degree, smoothness, and domain partition. Any spline function of given degree can be expressed as a linear combination of B-splines of that degree. Cardinal B-splines have knots that are equidistant from each other. B-splines can be used for curve-fitting and numerical differentiation of experimental data.
+In the computer-aided design and computer graphics, spline functions are constructed as linear combinations of B-splines with a set of control points.
+
+Introduction
+
+B-splines were investigated as early as the nineteenth century by Nikolai Lobachevsky. The term "B-spline" was coined by Isaac Jacob Schoenbergde Boor, p 114 and is short for basis spline. Knott (2000), Interpolating cubic splines. Springer. p. 151 A spline function is a piecewise polynomial function of degree k in a variable x. The places where the pieces meet are known as knots. The number of knots must be equal to, or greater than k+1. Thus the spline function has limited support. The key property of spline functions is that they are continuous at the knots. Some derivatives of the spline function may also be continuous, depending on whether the knots are distinct or not. A fundamental theorem states that every spline function of a given degree, smoothness, and domain partition, can be uniquely represented as a linear combination of B-splines of that same degree and smoothness, and over that same partition.
+
+Definition
+
+A B-spline is a piecewise polynomial function of degree k in a variable x. It is defined over a range t 0 ≤ x ≤ tm, m = k+1. The points where x = t j are known as knots or break-points. The number of internal knots is equal to the degree of the polynomial. The knots must be in ascending order. The number of knots is the minimum for the degree of the B-spline, which has a non-zero value only in the range between the first and last knot. Each piece of the function is a polynomial of degree k between and including adjacent knots. A B-spline is a continuous function at the knots. If internal knots are coincident at a given value of x, the continuity of derivative order is reduced by 1 for each additional knot.
+For any given set of knots, the B-spline is unique, hence the name, B being short for Basis. The usefulness of B-splines lies in the fact that any spline function of degree k on a given set of knots can be expressed as a linear combination of B-splines.
+This follows from the fact that all pieces have the same continuity properties, within their individual range of support, at the knots.
+Expressions for the polynomial pieces can be derived by means of a  recursion formulade Boor, p 131.
+This relation leads directly to the FORTRAN-coded algorithm BSPLV which generates values of the B-splines of order k at x. 134. The following scheme illustrates how each piece of degree k is a linear combination of the pieces of B-splines of degree k-1 to its left.
+Application of the recursion formula with the knots at 0, 1, 2, and 3 gives the pieces of the uniform B-spline of degree 2 
+These pieces are shown in the diagram. The continuity property of a quadratic spline function and its first derivative at the internal knots are illustrated, as follows
+The second derivative of a spline function of degree 2 is discontinuous at the knots.
+Faster variants of the de Boor algorithm have been proposed but they suffer from comparatively lower stability.
+
+Cardinal B-spline
+
+A cardinal B-spline has a constant separation, h, between knots. The cardinal B-splines for a given degree k are just shifted copies of each other. They can be obtained from the simpler definition.
+See Irwin–Hall distribution#Special cases for algebraic expressions for the cardinal B-splines of degree 1-4.
+
+P-spline
+
+The term P-spline stands for "penalized B-spline". It refers to using the B-spline representation where the coefficients are determined partly by the data to be fitted, and partly by an additional penalty function that aims to impose smoothness to avoid overfitting.H.C. and Marx, B.D. (1996). Flexible smoothing with B-splines and penalties (with comments and rejoinder). Statistical Science 11(2): 89-121.
+
+Derivative expressions
+
+The derivative of a B-spline of degree k is simply a function of B-splines of degree k-1. 138
+This implies that
+which shows that there is a simple relationship between the derivative of a spline function and the B-splines of degree one less.
+
+Curve fitting
+
+Usually in curve fitting, a set of data points is fitted with a curve defined by some mathematical function. For example common types of curve fitting use a polynomial or a set of exponential functions. When there is no theoretical basis for choosing a fitting function, the curve may be fitted with a spline function composed of a sum of B-splines, using the method of least squares. 235de Boor gives FORTRAN routines for least-squares fitting of experimental data. Thus, the objective function for least squares minimization is, for a spline function of degree k,
+The main difficulty in applying this process is in determining the number of knots to use and where they should be placed. de Boor suggests various strategies to address this problem. For instance, the spacing between knots is decreased in proportion to the curvature (2nd. derivative) of the data. A few applications have been published. For instance, the use of B-splines for fitting single Lorentzian and Gaussian curves has been investigated. Optimal spline functions of degrees 3-7 inclusive, based on symmetric arrangements of 5, 6, and 7 knots, have been computed and the method was applied for smoothing and differentiation of spectroscopic curves.
+
+Computer graphics
+
+In computer graphics  Non-uniform rational B-spline (NURBS curve) is defined by its order, a set of weighted control points, and a knot vector.  NURBS curves and surfaces are generalizations of both B-splines and Bézier curves and surfaces, the primary difference being the weighting of the control points which makes NURBS curves "rational". 
+Whereas Bézier curves evolve into only one parametric direction, usually called s or u, NURBS surfaces evolve into two parametric directions, called s and t or u and v.
+By evaluating a Bézier or a NURBS curve at various values of the parameter, the curve can be represented in Cartesian two- or three-dimensional space.  Likewise, by evaluating a NURBS surface at various values of the two parameters, the surface can be represented in Cartesian space.
+The control points determine the shape of the curve. Typically, each point of the curve is computed by taking a weighted sum of a number of control points. The weight of each point varies according to the governing parameter. For a curve of degree d, the weight of any control point is only nonzero in d+1 intervals of the parameter space. Within those intervals, the weight changes according to a polynomial function (basis functions) of degree d. At the boundaries of the intervals, the basis functions go smoothly to zero, the smoothness being determined by the degree of the polynomial.
+The knot vector is a sequence of parameter values that determines where and how the control points affect the NURBS curve. The number of knots is always equal to the number of control points plus curve degree plus one. Each time the parameter value enters a new knot span, a new control point becomes active, while an old control point is discarded.
+A NURBS curve takes the following form:Piegl and Tiller, chapter 4, sec. 2
+Here the notation is as follows. u is the independent variable (instead of x), k is the number of control points, N is a B-spline (used instead of B),  n is the polynomial degree, P is a control point and w is a weight. The denominator is a normalizing factor that evaluates to one if all weights are one.
+It is customary to write this as
+in which the functions
+are known as the rational basis functions.
+A NURBS surface is obtained as the tensor product of two NURBS curves, thus using two independent parameters u and v (with indices i and j respectively):Piegl and Tiller, chapter 4, sec. 4
+with
+as rational basis functions.
+
+
+
+Notes
+
+
+
+
+
+

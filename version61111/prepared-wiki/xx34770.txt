@@ -1,0 +1,56 @@
+</ref> Variable bit rate encoding is also commonly used on [[MPEG-2]] video, [[MPEG-4 Part 2]] video ([[Xvid]], [[DivX]], etc.), [[MPEG-4 Part 10]]/H.264 video, [[Theora]], [[Dirac (codec)|Dirac]] and other video compression formats. Additionally, variable rate encoding is inherent in lossless compression schemes such as [[FLAC]] and [[Apple Lossless]].
+
+==Advantages and disadvantages of VBR==
+
+The advantages of VBR are that it produces a better quality-to-space ratio compared to a CBR file of the same data.  The bits available are used more flexibly to encode the sound or video data more accurately, with fewer bits used in less demanding passages and more bits used in difficult-to-encode passages.[ref]
+</ref>
+The disadvantages are that it may take more time to encode, as the process is more complex, and that some hardware might not be compatible with VBR files.  VBR may also pose problems during streaming when the instantaneous bitrate exceeds the data rate of the communications path. These problems can be avoided by limiting the instantaneous bitrate during encoding or (at the cost of increased latency) by enlarging the playout buffer.
+Also, encryption of VBR-encoded speech (or other signals including video) gives only limited privacy, as the patterns of variation of the bit rate may reveal what language is being spoken.[tpl]Citation | format = PDF | publisher = JHU | url = http://www.cs.jhu.edu/~fabian/papers/oakland08.pdf | title = Spot me if you can: Uncovering Spoken Phrases in Encrypted VoIP Conversations | first1 = CV | last1 = Wright | first2 = L | last2 = Ballard | first3 = SE | last3 = Coull | first4 = F | last4 = Monrose | first5 = GM | last5 = Masson[/tpl].
+In the past, many hardware and software players could not decode variable bitrate files properly, partly because the various VBR encoders used were not well developed.[tpl]Citation needed|date=August 2010[/tpl] This resulted in common use of CBR over VBR for the sake of compatibility. As of December 2006, devices that support only CBR encoded files are largely obsolete, as the vast majority of modern portable music devices and software support VBR encoded files.[tpl]Citation needed|date=April 2007[/tpl]  
+Support for VBR in AAC and MP3 files is found in most modern digital audio players, including those released by Apple, Microsoft, Creative Technology, and SanDisk.  Early VBR algorithms occasionally introduced audible artifacts when encoding monotone or minimal tones (for example audiobooks and acoustic music).  These artifacts often mimicked a "digital chirp" during the quiet portions of the song or when there was only speaking. As VBR encoding algorithms have improved, these problems have been resolved in subsequent generations of the VBR standard.[tpl]Citation needed | date = April 2007[/tpl]
+
+==Methods of VBR encoding==
+
+Note that the choice of a variable bitrate (VBR) method only affects the encoding process. Decoding a VBR stream is performed identically in all cases, regardless of how the encoder chooses to allocate bits.
+
+===Multi-pass encoding and single-pass encoding===
+
+VBR is created using the so-called single-pass encoding or multi-pass encoding. Single-pass encoding analyzes and encodes the data "on the fly" and it is also used in constant bitrate encoding. Single-pass encoding is used when the encoding speed is most important — e.g. for real-time encoding. Single-pass VBR encoding is usually controlled by the fixed quality setting or by the bitrate range (minimum and maximum allowed bitrate) or by the average bitrate setting. Multi-pass encoding is used when the encoding quality is most important. Multi-pass encoding cannot be used in real-time encoding, live broadcast or live streaming. Multi-pass encoding takes much longer than single-pass encoding, because every pass means one pass through the input data (usually through the whole input file).  Multi-pass encoding is used only for VBR encoding, because CBR encoding doesn't offer any flexibility to change the bitrate.  The most common multi-pass encoding is two-pass encoding. In the first pass of two-pass encoding, the input data is being analyzed and the result is stored in a log file. In the second pass, the collected data from the first pass is used to achieve the best encoding quality. In a video encoding, two-pass encoding is usually controlled by the average bitrate setting or by the bitrate range setting (minimal and maximal allowed bitrate) or by the target video file size setting.[ref]
+</ref><ref name="digitaldigest-multipass">
+</ref><ref name="doom9-multipass">
+</ref><ref name="avidemux-h264">
+</ref><ref name="mencoder-h264">
+</ref><ref name ="xvid-dd">
+</ref><ref name="divx-dd">
+</ref><ref name="tmpgenc-dd">
+</ref><ref name="hydrogen-ABR">
+</ref>
+
+===Fixed quality===
+
+One means of VBR encoding is fixed quantizer or fixed quality encoding. It is usually single-pass encoding. The user specifies a given subjective quality value, and the encoder allocates bits as needed to achieve the given level of quality.  This ensures the output stream will have consistent quality throughout.  A quality level usually has an associated bitrate range.  The disadvantage of this encoding method is that the average bitrate (and hence file size) will not be known ahead of time, and achieving a certain average bitrate requires trial and error.  This is typically more of a concern for video than for audio, since file sizes are much larger and encoding can take much longer.
+
+===Bitrate range===
+
+This VBR encoding method allows the user to specify a bitrate range — a minimum and/or maximum allowed bitrate.[ref]
+</ref> Some encoders extend this method with an average bitrate. The minimum and maximum allowed bitrate set bounds in which the bitrate may vary. The disadvantage of this method is that the average bitrate (and hence file size) will not be known ahead of time.  The bitrate range is also used in some fixed quality encoding methods, but usually without permission to change a particular bitrate.<ref name="hydrogen-LAME-VBR">
+</ref>
+
+===Average bitrate===
+
+Average bitrate (ABR) encoding may be used to ensure the output stream achieves a predictable long-term average bitrate.  This is typically implemented using multi-pass encoding, where one or more initial passes are used to collect data on the stream, and a final pass uses that data to achieve uniform quality at the specified average bitrate.
+Alternatively, periodic averaging may be used, either by performing ABR on smaller chunks of the output, or by reacting to fluctuations in the ABR by increasing or reducing the overall quality.  These can achieve ABR in a single pass, but do not produce the same degree of uniformity as multi-pass ABR.  Some encoders use "ABR encoding" and "multi-pass encoding" to refer to single- and multi-pass ABR encoding respectively.
+Some encoders also allow the user to specify a maximum allowed bitrate or maximum quality value.  This is sometimes called Constrained Variable Bitrate (CVBR), and is typically applied to ABR algorithms.
+The disadvantage of single pass ABR encoding (with or without CVBR) is the opposite of fixed quantizer VBR — the size of the output is known ahead of time, but the resulting quality is unknown, although still better than CBR. Specifying a higher average or maximum may simply make the file bigger with no discernible quality effect, and an increased maximum bitrate may introduce stutter when streaming the file.  However, reducing these criteria too low will eventually lead to quite drastic losses in quality.  The effect on video is typically an increased blockiness, because the frames are no longer being fully detailed in their rendering.
+The multi-pass ABR encoding is more similar to fixed quantizer VBR, because a higher average will really increase the quality.
+There are no ideal "one-size-fits-all" settings for ABR in video encoding.  For low resolution (320 or 640 lines) video encoded with MPEG-1 or MPEG-2, the average bit rate can be as low as 1000 kbit/s and still achieve acceptable results.  For a high resolution video such as 1080, this average may need to be 6000 kbit/s or higher.  The main factor in determining a minimum video bitrate is how efficiently the video can be encoded.  Using more efficient video encodings such as MPEG-4 will help promote a lower bit rate, while significant amounts of motion or white noise will require a higher bit rate to encode without visible artifacts.  In the end, the user may have to use trial and error to achieve a minimum file size for a given video stream, by encoding at a given bitrate and then viewing the results.
+
+===File size===
+
+VBR encoding using the file size setting is usually multi-pass encoding. It allows the user to specify a specific target file size. In the first pass, the encoder analyzes the input file and automatically calculates possible bitrate range and/or average bitrate. In the last pass, the encoder distributes the available bits among the entire video to achieve uniform quality.
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,97 @@
+[[Implied volatility]]
+
+CATEGORIES: Derivatives (finance), Mathematical finance
+
+In financial mathematics, the implied volatility of an option contract is that value of the volatility of the  underlying instrument which, when input in an option pricing model (such as Black–Scholes) will return a theoretical value equal to the current market price of the option.  A non-option financial instrument that has embedded optionality, such as an interest rate cap, can also have an implied volatility.  Implied volatility, a forward-looking and subjective measure, differs from historical volatility because the latter is calculated from known past returns of a security.
+
+==Motivation==
+
+An option pricing model, such as Black–Scholes, uses a variety of inputs to derive a theoretical value for an option. Inputs to pricing models vary depending on the type of option being priced and the pricing model used. However, in general, the value of an option depends on an estimate of the future realized price volatility, σ, of the underlying. Or, mathematically:
+where C is the theoretical value of an option, and f is a pricing model that depends on σ, along with other inputs.
+Put in other terms, assume that there is some inverse function g = f−1, such that
+In general, it is not possible to give a closed form formula for implied volatility in terms of call price. However, in some cases (large strike, low strike, short expiry, large expiry) it is possible to give an asymptotic expansion of implied volatility in terms of call price.Asymptotic Expansions of the Lognormal Implied Volatility, Grunspan, C. (2011)
+
+===Example===
+
+To verify, we apply the implied volatility back into the pricing model, f and we generate a theoretical value of $2.0004:
+which confirms our computation of the market implied volatility.
+
+==Solving the inverse pricing model function==
+
+In general, a pricing model function, f, does not have a closed-form solution for its inverse, g. Instead, a root finding technique is used to solve the equation:
+While there are many techniques for finding roots, two of the most commonly used are Newton's method and Brent's method. Because options prices can move very quickly, it is often important to use the most efficient method when calculating implied volatilities.
+
+==Implied volatility as measure of relative value==
+
+Often, the implied volatility of an option is a more useful measure of the option's relative value than its price. The reason is that the price of an option depends most directly on the price of its underlying asset. If an option is held as part of a delta neutral portfolio (that is, a portfolio that is hedged against small moves in the underlying's price), then the next most important factor in determining the value of the option will be its implied volatility.
+Implied volatility is so important that options are often quoted in terms of volatility rather than price, particularly between professional traders.
+
+===Example===
+
+A call option is trading at $1.50 with the underlying trading at $42.05. The implied volatility of the option is determined to be 18.0%. A short time later, the option is trading at $2.10 with the underlying at $43.34, yielding an implied volatility of 17.2%. Even though the option's price is higher at the second measurement, it is still considered cheaper based on volatility. 
+The reason is that the underlying needed to hedge the call option can be sold for a higher price.
+
+==Implied volatility as a price==
+
+Another way to look at implied volatility is to think of it as a price, not as a measure of future stock moves.
+In this view it simply is a more convenient way to communicate option prices than currency. Prices are different in nature from statistical quantities: one can estimate volatility of future underlying returns using any of a large number of estimation methods; however, the number one gets is not a price. A price requires two counterparties, a buyer and a seller. Prices are determined by supply and demand. Statistical estimates depend on the time-series and the mathematical structure of the model used. 
+It is a mistake to confuse a price, which implies a transaction, with the result of a statistical estimation, which is merely what comes out of a calculation. Implied volatilities are prices: they have been derived from actual transactions. Seen in this light, it should not be surprising that implied volatilities might not conform to what a particular statistical model would predict.
+
+==Non-constant implied volatility==
+
+In general, options based on the same underlying but with different strike values and expiration times will yield different implied volatilities. This is generally viewed as evidence that an underlying's volatility is not constant but instead depends on factors such as the price level of the underlying, the underlying's recent price variance, and the passage of time. There exist few known parametrisation of the volatility surface (Schonbusher, SVI and gSVI) as well as their de-arbitraging methodologies. 
+[tpl]cite journal | author=Babak Mahdavi Damghani | title=De-arbitraging with a weak smile |  publisher=Wilmott | year = 2013[/tpl]http://www.readcube.com/articles/10.1002/wilm.10201?locale=en See stochastic volatility and volatility smile for more information.
+
+==Volatility instruments==
+
+Volatility instruments are financial instruments that track the value of implied volatility of other derivative securities. For instance, the CBOE Volatility Index (VIX) is calculated from a weighted average of implied volatilities of various options on the S&P 500 Index. There are also other commonly referenced volatility indices such as the VXN index (Nasdaq 100 index futures volatility measure), the QQV (QQQ volatility measure), IVX - Implied Volatility Index (an expected stock volatility over a future period for any of US securities and exchange traded instruments), as well as options and futures derivatives based directly on these volatility indices themselves.
+
+==See also==
+
+==Notes==
+
+==References==
+
+ | doi = 10.1016/0378-4266(81)90032-7
+ | title = Standard deviations implied in option prices as predictors of future stock price variability
+ | url = http://ideas.repec.org/a/eee/jbfina/v5y1981i3p363-381.html
+ | year = 1981
+ | author = Beckers, S.
+ | journal = Journal of Banking and Finance
+ | pages = 363–381
+ | volume = 5
+ | issue = 3
+ | accessdate = 2009-07-07
+}}
+ | title = Implied volatility
+ | doi = 10.2469/faj.v51.n4.1916
+ | year = 1995
+ | author = Mayhew, S.
+ | journal = Financial Analysts Journal
+ | pages = 8–20
+ | volume = 51
+ | issue = 4
+}}
+ | title = Implied volatility skews and stock index skewness and kurtosis implied by S
+ | url = http://www.smartquant.com/references/Volatility/vol17.pdf
+ | year = 1997
+ | journal = The Journal of Derivatives
+ | issue = SUMMER 1997
+ | last1 = Corrado	 | first1 =  C.J.
+ | last2 =  Su	 | first2 =  T.
+ | accessdate = 2009-07-07	}}
+ | title = A Note on the Equivalence between the Normal and the Lognormal Implied Volatility: A Model Free Approach
+ | url = http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1894652
+ | year = 2011
+ | author = Grunspan, C.
+ | journal = preprint
+}}
+ | title = Asymptotics Expansions for the Implied Lognormal Volatility in a Model Free Approach
+ | url = http://papers.ssrn.com/sol3/papers.cfm?abstract_id=1965977 | year = 2011
+ | author = Grunspan, C.
+ | journal = preprint
+}}
+
+==External links==
+
+

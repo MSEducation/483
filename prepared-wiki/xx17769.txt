@@ -1,0 +1,32 @@
+[[Thread safety]]
+
+CATEGORIES: Threads (computing), Programming language topics
+
+Thread safety is a computer programming concept applicable in the context of multi-threaded programs. A piece of code is thread-safe if it only manipulates shared data structures in a manner that guarantees safe execution by multiple threads at the same time. There are various strategies for making thread-safe data structures.[tpl]cite book|last=Kerrisk|first=Michael|title=The Linux Programing Interface|year=2010|publisher=No Starch Press|page=655[/tpl][tpl]cite web|url=http://download.oracle.com/docs/cd/E19963-01/html/821-1601/docinfo.html|title=Multithreaded Programming Guide|date=November 2010|publisher=Oracle Corporation|quote=A procedure is thread safe when the procedure is logically correct when executed simultaneously by several threads.[/tpl]
+A key challenge in multi-threaded programming, thread safety was not a concern for most application developers until the 1990s when operating systems began to expose multiple threads for code execution. Today, a program may execute code on several threads simultaneously in a shared address space where each of those threads has access to virtually all of the memory of every other thread. Thread safety is a property that allows code to run in multi-threaded environments by re-establishing some of the correspondences between the actual flow of control and the text of the program, by means of synchronization.
+
+==Levels of thread safety==
+
+Software libraries can provide certain thread-safety guarantees. For example, concurrent reads might be guaranteed to be thread-safe, but concurrent writes might not be. Whether or not a program using such a library is thread-safe depends on whether it uses the library in a manner consistent with those guarantees.
+Different vendors use slightly different terminology for thread-safety:[tpl]cite web|url=http://qt-project.org/doc/qt-5.0/threads-reentrancy.html |title=Qt 5.1 | QtDoc 5.1 | Documentation |publisher=Qt Project |date= |accessdate=2013-10-16[/tpl][tpl]cite web|url=http://www.boost.org/doc/libs/1_51_0/doc/html/boost_asio/reference/ip__tcp.html |title=ip::tcp - 1.51.0 |publisher=Boost.org |date= |accessdate=2013-10-16[/tpl][tpl]cite web|url=http://publib.boulder.ibm.com/html/as400/ic2924/info/RZAHWM40.HTM |title=API thread safety classifications |publisher=Publib.boulder.ibm.com |date=1998-06-09 |accessdate=2013-10-16[/tpl][tpl]cite web|url=http://docs.oracle.com/cd/E19963-01/html/821-1601/compat-59005.html |title=MT Interface Safety Levels - Multithreaded Programming Guide |publisher=Docs.oracle.com |date=2010-11-01 |accessdate=2013-10-16[/tpl]
+Thread safety guarantees usually also include design steps to prevent or limit the risk of different forms of deadlocks, as well as optimizations to maximize concurrent performance. However, deadlock-free guarantees can not always be given, since deadlocks can be caused by callbacks and violation of architectural layering independent of the library itself.
+
+==Implementation approaches==
+
+There are several approaches for avoiding race conditions to achieve thread safety. The first class of approaches focuses on avoiding shared state, and includes:
+The second class of approaches are synchronization-related, and are used in situations where shared state cannot be avoided:
+
+==Examples==
+
+In the following piece of Java code, the function is thread-safe:
+In the following piece of C code, the function is thread-safe, but not reentrant:
+In the above, increment_counter can be called by different threads without any problem since a mutex is used to synchronize all access to the shared counter variable. But if the function is used in a reentrant interrupt handler and a second interrupt arises inside the function, the second routine will hang forever. As interrupt servicing can disable other interrupts, the whole system could suffer.
+The same function can be implemented to be both thread-safe and reentrant using the lock-free atomics in C++11:
+
+==See also==
+
+==References==
+
+==External links==
+
+

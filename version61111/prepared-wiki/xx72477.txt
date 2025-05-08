@@ -1,0 +1,37 @@
+[[Bus sniffing]]
+
+CATEGORIES: Cache coherency
+
+Bus sniffing or Bus snooping is a technique used in distributed shared memory systems and multiprocessors to  achieve cache coherence. Although there is one main memory, there are several caches (one or more per processor), and unless preventative steps are taken, the same memory location may be loaded into two caches, and given two different values. To prevent this, every cache controller monitors the bus, listening for broadcasts which may cause it to invalidate its cache line.
+Each cache line is in one of the following states: "dirty" (has been updated by local processor), "valid", "invalid" or "shared".  The set of operations is thus: a value can be read or written.  Writing it changes the value.  Each value is either in main memory (which is very slow to access), or in one or more local caches (which is fast).  When a block is first loaded in the cache it is marked "valid".
+On a read miss to the local cache, the read request is broadcast on the bus. All cache controllers monitor the bus. If one has cached that address and it is in the state "dirty", it changes the state to "valid" and sends the copy to requesting node.  The "valid" state means that the cache line is current.
+On a local write miss (an attempt to write that value is made, but it's not in the cache), bus snooping ensures that any copies in other caches are set to "invalid". "Invalid" means that a copy used to exist in the cache, but it is no longer current. 
+When writing a block in state "valid" its state is changed to "dirty" and a broadcast is sent out to all cache controllers to invalidate their copies.
+Since snooping does not scale well, larger cache coherent NUMA (ccNUMA) systems tend to use directory-based coherence protocols.
+
+==Implementation==
+
+The cache would have 3 extra bits
+ V: valid
+ D: Dirty bit, signifies that data in the cache is not the same as in memory
+ S: Shared
+ Tag  | ID | V | D | S
+ ---------------------
+ 1111 | 00 | 1 | 0 | 0
+ 0000 | 01 | 0 | 0 | 0
+ 0000 | 10 | 1 | 0 | 1
+ 0000 | 11 | 0 | 0 | 0
+ ...After a write of address 1111 00
+ Tag  | ID | V | D | S
+ ---------------------
+ 1111 | 00 | 1 | 1 | 0
+ 0000 | 01 | 0 | 0 | 0
+ 0000 | 10 | 1 | 0 | 1
+ 0000 | 11 | 0 | 0 | 0
+The caching logic monitors the bus and detects if any cached memory is requested.
+If the cache is dirty and shared and the bus requests that memory, the snooping elements will supply the value from the cache then notify every unit that needs that memory, that the memory was updated. When the other units are notified of the updated cache, they will turn off the valid bit for their cache of that variable. Thus the original cache will be marked as exclusive (S bit would be 0)
+When invalidating an address marked as dirty (i.e. one cache would have a dirty address and the other cache is writing) then the cache will ignore that request. The new cache will be marked as dirty, valid and exclusive and that cache will now take responsibility for the address
+
+==External links==
+
+

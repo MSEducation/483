@@ -1,0 +1,64 @@
+[[Multiversion concurrency control]]
+
+CATEGORIES: Concurrency control, Concurrency control algorithms, Transaction processing
+
+Multiversion concurrency control (MCC or MVCC), is a concurrency control method commonly used by database management systems to provide concurrent access to the database and in programming languages to implement transactional memory.refs. Clojure. Retrieved on 2013-09-18.
+If someone is reading from a database at the same time as someone else is writing to it, it is possible that the reader will see a half-written or inconsistent piece of data. There are several ways of solving this problem, known as  concurrency control methods. The simplest way is to make all readers wait until the writer is done, which is known as a lock. This can be very slow, so MVCC takes a different approach: each user connected to the database sees a snapshot of the database at a particular instant in time. Any changes made by a writer will not be seen by other users of the database until the changes have been completed (or, in database terms: until the transaction has been committed.)
+When an MVCC database needs to update an item of data, it will not overwrite the old data with new data, but instead mark the old data as obsolete and add the newer version elsewhere.  Thus there are multiple versions stored, but only one is the latest.  This allows readers to access the data that was there when they began reading, even if it was modified or deleted part way through by someone else. It also allows the database to avoid the overhead of filling in holes in memory or disk structures but requires (generally) the system to periodically sweep through and delete the old, obsolete data objects.  For a document-oriented database it also allows the system to optimize documents by writing entire documents onto contiguous sections of disk—when updated, the entire document can be re-written rather than bits and pieces cut out or maintained in a linked, non-contiguous database structure.
+MVCC provides point in time consistent views. Read transactions under MVCC typically use a timestamp or transaction ID to determine what state of the DB to read, and read these versions of the data.  This avoids managing locks for read transactions because writes can be isolated by virtue of the old versions being maintained, rather than through a process of locks or mutexes.  Writes affect a future version but at the transaction ID that the read is working at, everything is guaranteed to be consistent because the writes are occurring at a later transaction ID.
+
+==Implementation==
+
+MVCC uses timestamps or increasing transaction IDs to achieve transactional consistency. MVCC ensures a transaction never has to wait for a database object by maintaining several versions of an object. Each version would have a write timestamp and it would let a transaction (Ti) read the most recent version of an object which precedes the transaction timestamp (TS(Ti)).
+If a transaction (Ti) wants to write to an object, and if there is another transaction (Tk), the timestamp of Ti must precede the timestamp of Tk (i.e., TS(Ti) k)) for the object write operation to succeed. Which is to say a write cannot complete if there are outstanding transactions with an earlier timestamp.
+Every object would also have a read timestamp, and if a transaction Ti wanted to write to object P, and the timestamp of that transaction is earlier than the object's read timestamp (TS(Ti) i is aborted and restarted. Otherwise, Ti creates a new version of P and sets the read/write timestamps of P to the timestamp of the transaction TS(Ti).
+The obvious drawback to this system is the cost of storing multiple versions of objects in the database. On the other hand reads are never blocked, which can be important for workloads mostly involving reading values from the database. MVCC is particularly adept at implementing true snapshot isolation, something which other methods of concurrency control frequently do either incompletely or with high performance costs.
+
+==Anomalies==
+
+MVCC fails to achieve true snapshot isolation contrary to what the original paper was claiming. Under some circumstances some anomalies can arise called skew write and read-read anomaly. Those anomalies can be fixed using Serializable Snapshot Isolation and Precisely Serializable Snapshot Isolation at the expense of increasing the number of aborted transactions.
+
+==Examples==
+
+===Concurrent read-write===
+
+At Time = 1, the state of a database could be:
+T0 wrote Object 1="Foo" and Object 2="Bar". After that T1 wrote Object 1="Hello" leaving Object 2 at its original value. The new value of Object 1 will supersede the value at 0 for all transaction that starts after T1 commits at which point version 0 of Object 1 can be garbage collected.
+If a long running transaction T2 starts a read operation of Object 2 and Object 1 after T1 committed and there is a concurrent update transaction T3 which deletes Object 2 and adds Object 3="Foo-Bar", the database state will look like at time 2:
+There is a new version as of time 2 of Object 2 which is marked as deleted and a new Object 3. Since T2 and T3 run concurrently T2 sees another the version of the database before 2 i.e. before T3 committed writes, as such T2 reads Object 2="Bar" and Object 1="Hello". This is how MVCC allows snapshot isolation reads in almost every case without any locks.
+
+==History==
+
+Multiversion concurrency control is described in some detail in the 1981 paper "Concurrency Control in Distributed Database Systems"[ref]
+[tpl]cite web |url=http://portal.acm.org/citation.cfm?id=356842.356846 |title=Concurrency Control in Distributed Database Systems |last1=Bernstein |first1=Philip A. |last2=Goodman |first2=Nathan |authorlink=Phil Bernstein |year=1981 |work=ACM Computing Surveys[/tpl][/ref] by Philip Bernstein and Nathan Goodman, then employed by the Computer Corporation of America. Bernstein and Goodman's paper cites a 1978 dissertation[tpl]cite web |url=http://www.lcs.mit.edu/publications/specpub.php?id=773 |title=Naming and Synchronization in a Decentralized Computer System |last=Reed |first=David P. |authorlink=David P. Reed |work=MIT dissertation |date=September 21, 1978 [/tpl] by David P. Reed which quite clearly describes MVCC and claims it as an original work.
+The first shipping, commercial database software product featuring MVCC was Digital's VAX Rdb/ELN. The second was InterBase, which is still an active, commercial product.
+
+==Databases with MVCC==
+
+| last = Todd
+| first = Bill
+| year = 2000
+| url = http://dbginc.com/tech_pprs/IB.html
+| title = InterBase: What Sets It Apart
+| accessdate = 4 May 2006
+|archiveurl = http://web.archive.org/web/20060226083331/http://www.dbginc.com/tech_pprs/IB.html  |archivedate = 26 February 2006}}[/ref]
+ | url = http://www.orafaq.com/wiki/Oracle_4
+ | title = Oracle 4
+ | work = Oracle FAQ
+ | accessdate = 21 March 2013
+}}[/ref]
+
+==Other software with MVCC==
+
+===Version control systems===
+
+Any version control system that has the internal notion of a version (e.g. Subversion, Git, probably almost any current VCS with the notable exception of CVS) will provide explicit MVCC (you only ever access data by its version identifier).
+Among the VCSs that don't provide MVCC at the repository level, most still work with the notion of a working copy, which is a file tree checked out from the repository, edited without using the VCS itself and checked in after the edit. This working copy provides MVCC while it is checked out.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+

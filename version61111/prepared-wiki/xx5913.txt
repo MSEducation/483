@@ -1,0 +1,63 @@
+[[Hash-based message authentication code]]
+
+CATEGORIES: Message authentication codes, Hashing
+
+thumb|right|400px|SHA-1 HMAC Generation.In cryptography, a keyed-hash message authentication code (HMAC) is a specific construction for calculating a message authentication code (MAC) involving a cryptographic hash function in combination with a secret cryptographic key.  As with any MAC, it may be used to simultaneously verify both the data integrity and the authentication of a message.  Any cryptographic hash function, such as MD5 or SHA-1, may be used in the calculation of an HMAC; the resulting MAC algorithm is termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of the HMAC depends upon the cryptographic strength of the underlying hash function, the size of its hash output, and on the size and quality of the key.
+An iterative hash function breaks up a message into blocks of a fixed size and iterates over them with a compression function. For example, MD5 and SHA-1 operate on 512-bit blocks. The size of the output of HMAC is the same as that of the underlying hash function (128 or 160 bits in the case of MD5 or SHA-1, respectively), although it can be truncated if desired.
+The definition and analysis of the HMAC construction was first published in 1996 by Mihir Bellare, Ran Canetti, and Hugo Krawczyk, who also wrote RFC 2104.  This paper also defined a variant called NMAC that is rarely, if ever, used. FIPS PUB 198 generalizes and standardizes the use of HMACs. HMAC-SHA1 and HMAC-MD5 are used within the IPsec and TLS protocols.
+
+==Definition (from RFC 2104)==
+
+where
+
+==Implementation==
+
+The following pseudocode demonstrates how HMAC may be implemented.  Blocksize is 64 (bytes) when using one of the following hash functions: SHA-1, MD5, RIPEMD-128/160.RFC 2104, section 2, "Definition of HMAC", page 3.
+ '''function''' hmac (key, message)
+     '''if''' (length(key) > blocksize) '''then'''
+         key = hash(key) <span style="color: green;">''// keys longer than blocksize are shortened''</span>
+     '''end if'''
+     '''if''' (length(key) < blocksize) '''then'''
+         key = key ∥ [0x00 * (blocksize - length(key))] <span style="color:green;">''// keys shorter than blocksize are zero-padded (where ''∥'' is concatenation)''</span>
+     '''end if'''
+     o_key_pad = [0x5c * blocksize] ⊕ key <span style="color: green;">''// Where blocksize is that of the underlying hash function''</span>
+     i_key_pad = [0x36 * blocksize] ⊕ key <span style="color: green;">''// Where ⊕ is exclusive or (XOR)''</span>
+     '''return''' hash(o_key_pad ∥ hash(i_key_pad ∥ message)) <span style="color: green;">''// Where ''∥'' is concatenation''</span>
+ '''end function'''
+The following is a Python implementation of HMAC-MD5:
+
+==Example usage==
+
+A business that suffers from attackers that place fraudulent Internet orders may insist that all its customers deposit a secret symmetric key with them. Along with an order, a customer must supply the order's HMAC digest, computed using the customer's key. The business, knowing the customer's key, can then verify that the order originated from the stated customer and has not been tampered with.
+
+==Design principles==
+
+The design of the HMAC specification was motivated by the existence of attacks on more trivial mechanisms for combining a key with a hash function.  For example, one might assume the same security that HMAC provides could be achieved with MAC = H(key ∥ message).  However, this method suffers from a serious flaw: with most hash functions, it is easy to append data to the message without knowing the key and obtain another valid MAC ("length-extension attack").  The alternative, appending the key using MAC = H(message ∥ key), suffers from the problem that an attacker who can find a collision in the (unkeyed) hash function has a collision in the MAC (as two messages m1 and m2 yielding the same hash will provide the same start condition to the hash function before the appended key is hashed, hence the final hash will be the same).   Using MAC = H(key ∥ message ∥ key) is better, however various security papers have suggested vulnerabilities with this approach, even when two different keys are used.[tpl]Cite web |title=Keying Hash Functions for Message Authentication |first1=Mihir |last1=Bellare |authorlink1=Mihir Bellare |first2=Ran |last2=Canetti |first3=Hugo |last3=Krawczyk |url=http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.134.8430 |year=1996 |postscript=.[/tpl][tpl]Cite web |title=MDx-MAC and Building Fast MACs from Hash Functions |year=1995 |first1=Bart |last1=Preneel |authorlink1=Bart Preneel |first2=Paul C. |last2=van Oorschot |authorlink2=Paul van Oorschot |url=http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.3855 |accessdate=28 August 2009 |postscript=.[/tpl][tpl]Cite web |title=On the Security of Two MAC Algorithms |year=1995 |first1=Bart |last1=Preneel |authorlink1=Bart Preneel |first2=Paul C. |last2=van Oorschot |authorlink2=Paul van Oorschot |url=http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.42.8908 |accessdate=28 August 2009 |postscript=.[/tpl]
+No known extensions attacks have been found against the current HMAC specification which is defined as H(key ∥ H(key ∥ message)) because the outer application of the hash function masks the intermediate result of the internal hash.  The values of ipad and opad are not critical to the security of the algorithm, but were defined in such a way to have a large Hamming distance from each other and so the inner and outer keys will have fewer bits in common. The security reduction of HMAC does require them to be different in at least one bit.
+The Keccak hash function, that was selected by NIST as the SHA-3 competition winner, doesn't need this nested approach and can be used to generate a MAC by simply prepending the key to the message.
+
+==Security==
+
+The cryptographic strength of the HMAC depends upon the size of the secret key that is used.  The most common attack against HMACs is brute force to uncover the secret key.  HMACs are substantially less affected by collisions than their underlying hashing algorithms alone.
+
+ Therefore, HMAC-MD5 does not suffer from the same weaknesses that have been found in MD5.
+In 2006, Jongsung Kim, Alex Biryukov, Bart Preneel, and Seokhie Hong showed how to distinguish HMAC with reduced versions of MD5 and SHA-1 or full versions of HAVAL, MD4, and SHA-0 from a random function or HMAC with a random function. Differential distinguishers allow an attacker to devise a forgery attack on HMAC. Furthermore, differential and rectangle distinguishers can lead to second-preimage attacks. HMAC with the full version of MD4 can be forged with this knowledge. These attacks do not contradict the security proof of HMAC, but provide insight into HMAC based on existing cryptographic hash functions.
+
+In improperly-secured systems a timing attack can be performed to find out a HMAC digit by digit.Briefly mentioned at the end of this session Sebastian Schinzel:Time is on my Side - Exploiting Timing Side Channel Vulnerabilities on the Web 28th Chaos Communication Congress, 2011.
+
+==Examples of HMAC (MD5, SHA1, SHA256)==
+
+Here are some empty HMAC values:
+ HMAC_MD5("", "") = 0x74e6f7298a9c2d168935f58c001bad88
+ HMAC_SHA1("", "") = 0xfbdb1d1b18aa6c08324b7d64b71fb76370690e1d
+ HMAC_SHA256("", "") = 0xb613679a0814d9ec772f95d778c35fc5ff1697c493715653c6c712144292c5ad
+Here are some non-empty HMAC values, assuming 8-bit ASCII or UTF-8 encoding:
+ HMAC_MD5("key", "The quick brown fox jumps over the lazy dog") = 0x80070713463e7749b90c2dc24911e275
+ HMAC_SHA1("key", "The quick brown fox jumps over the lazy dog") = 0xde7c9b85b8b78aa6bc8a7a36f70a90701c9db4d9
+ HMAC_SHA256("key", "The quick brown fox jumps over the lazy dog") = 0xf7bc83f430538424b13298e6aa6fb143ef4d59a14946175997479dbc2d1a3cd8
+
+==References==
+
+==External links==
+
+

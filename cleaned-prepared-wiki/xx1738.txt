@@ -1,0 +1,115 @@
+[[Cauchy distribution]]
+
+CATEGORIES: Continuous distributions, Probability distributions with non-finite variance, Power laws, Stable distributions, Probability distributions
+
+The Cauchy distribution, named after Augustin Cauchy, is a continuous probability distribution.  It is also known, especially among physicists, as the Lorentz distribution (after Hendrik Lorentz), Cauchy–Lorentz distribution, Lorentz(ian) function, or Breit–Wigner distribution.
+The simplest Cauchy distribution is called the standard Cauchy distribution. It is the distribution of a random variable that is the ratio of two independent standard normal variables and has the probability density function
+Its cumulative distribution function has the shape of an arctangent function arctan(x):
+The Cauchy distribution is often used in statistics as the canonical example of a "pathological" distribution since both its mean and its variance are undefined. (But see the section Explanation of undefined moments below.) The Cauchy distribution does not have finite moments of order greater than or equal to one; only fractional absolute moments exist., Chapter 16. The Cauchy distribution has no moment generating function.
+Its importance in physics is the result of it being the solution to the differential equation describing forced resonance.davidson.html  Note that the intensity, which follows the Cauchy distribution, is the square of the amplitude. In mathematics, it is closely related to the Poisson kernel, which is the fundamental solution for the Laplace equation in the upper half-plane.  In spectroscopy, it is the description of the shape of spectral lines which are subject to homogeneous broadening in which all atoms interact in the same way with the frequency range contained in the line shape. Many mechanisms cause homogeneous broadening, most notably collision broadening, and Chantler–Alda radiation. 
+
+Characterisation
+
+Probability density function
+
+The Cauchy distribution has the probability density function
+where x0 is the location parameter, specifying the location of the peak of the distribution, and γ is the scale parameter which specifies the half-width at half-maximum (HWHM), alternatively 2γ is full width at half maximum (FWHM). γ is also equal to half the interquartile range and is sometimes called the probable error.  Augustin-Louis Cauchy exploited such a density function in 1827 with an infinitesimal scale parameter, defining what would now be called a Dirac delta function.
+The amplitude of the above Lorentzian function is given by
+The special case when x0 = 0 and γ = 1 is called the standard Cauchy distribution with the probability density function
+In physics, a three-parameter Lorentzian function is often used:
+where I is the height of the peak.
+
+Cumulative distribution function
+
+The cumulative distribution function is:
+and the quantile function (inverse cdf) of the Cauchy distribution is
+It follows that the first and third quartiles are (x0−γ, x0+γ), and hence the interquartile range is 2γ.
+The derivative of the quantile function, the quantile density function, for the Cauchy distribution is:
+The differential entropy of a distribution can be defined in terms of its quantile density, specifically
+
+Properties
+
+The Cauchy distribution is an example of a distribution which has no mean, variance or higher moments defined. Its mode and median are well defined and are both equal to x0.
+When U and V are two independent normally distributed random variables with expected value 0 and variance 1, then the ratio U/V has the standard Cauchy distribution.
+If X1, ..., Xn are independent and identically distributed random variables, each with a standard Cauchy distribution, then the sample mean (X1+ ... +Xn)/n has the same standard Cauchy distribution. To see that this is true, compute the characteristic function of the sample mean:
+The Cauchy distribution is an infinitely divisible probability distribution. It is also a strictly stable distribution.
+The standard Cauchy distribution coincides with the Student's t-distribution with one degree of freedom.
+Like all stable distributions, the location-scale family to which the Cauchy distribution belongs is closed under linear transformations with real coefficients. In addition, the Cauchy distribution is the only univariate distribution which is closed under linear fractional transformations with real coefficients. In this connection, see also McCullagh's parametrization of the Cauchy distributions.
+
+Characteristic function
+
+Let X denote a Cauchy distributed random variable. The characteristic function of the Cauchy distribution is given by
+which is just the Fourier transform of the probability density.  The original probability density may be expressed in terms of the characteristic function, essentially by using the inverse Fourier transform:
+Observe that the characteristic function is not differentiable at the origin: this corresponds to the fact that the Cauchy distribution does not have an expected value.
+
+Explanation of undefined moments
+
+Mean
+
+If a probability distribution has a density function f(x), then the mean is
+The question is now whether this is the same thing as
+If at most one of the two terms in (2) is infinite, then (1) is the same as (2). But in the case of the Cauchy distribution, both the positive and negative terms of (2) are infinite.  This means (2) is undefined. Moreover, if (1) is construed as a Lebesgue integral, then (1) is also undefined, because (1) is then defined simply as the difference (2) between positive and negative parts.
+However, if (1) is constructed as an improper integral rather than a Lebesgue integral, then (2) is undefined, and (1) is not necessarily well-defined.  We may take (1) to mean
+and this is its Cauchy principal value, which is zero, but we could also take (1) to mean, for example,
+which is not zero, as can be seen easily by computing the integral.
+Because the integrand is bounded and is not Lebesgue integrable, it is not even Henstock–Kurzweil integrable.  Various results in probability theory about expected values, such as the strong law of large numbers, will not work in such cases.
+
+Higher moments
+
+The Cauchy distribution does not have finite moments of any order.  Some of the higher raw moments do exist and have a value of infinity, for example the raw second moment:
+By re-arranging the formula, one can see that the second moment is essentially the infinite integral of a constant (here 1).  Higher even-powered raw moments will also evaluate to infinity.  Odd-powered raw moments, however, do not exist at all (i.e. are undefined), which is distinctly different from existing with the value of infinity. The odd-powered raw moments are undefined because their values are essentially equivalent to ∞ − ∞ since the two halves of the integral both diverge and have opposite signs.  The first raw moment is the mean, which, being odd, does not exist. (See also the discussion above about this.) This in turn means that all of the central moments and standardized moments do not exist (are undefined), since they are all based on the mean.  The variance — which is the second central moment — is likewise non-existent (despite the fact that the raw second moment exists with the value infinity).
+The results for higher moments follow from Hölder's inequality, which implies that higher moments (or halves of moments) diverge if lower ones do.
+
+Estimation of parameters
+
+Because the parameters of the Cauchy distribution don't correspond to a mean and variance, attempting to estimate the parameters of the Cauchy distribution by using a sample mean and a sample variance will not succeed. For example, if n samples are taken from a Cauchy distribution, one may calculate the sample mean as:
+Although the sample values xi will be concentrated about the central value x0, the sample mean will become increasingly variable as more samples are taken, because of the increased likelihood of encountering sample points with a large absolute value. In fact, the distribution of the sample mean will be equal to the distribution of the samples themselves; i.e., the sample mean of a large sample is no better (or worse) an estimator of x0 than any single observation from the sample.  Similarly, calculating the sample variance will result in values that grow larger as more samples are taken.
+Therefore, more robust means of estimating the central value x0 and the scaling parameter γ are needed. One simple method is to take the median value of the sample as an estimator of x0 and half the sample interquartile range as an estimator of γ. Other, more precise and robust methods have been developed  However, because of the fat tails of the Cauchy distribution, the efficiency of the estimator decreases if more than 24% of the sample is used.
+Maximum likelihood can also be used to estimate the parameters x0 and γ. However, this tends to be complicated by the fact that this requires finding the roots of a high degree polynomial, and there can be multiple roots that represent local maxima.  The log-likelihood function for the Cauchy distribution for sample size n is:
+Maximizing the log likelihood function with respect to x0 and γ produces the following system of equations:
+Note that
+is a monotone function in γ and that the solution γ must satisfy
+Solving just for x0 requires solving a polynomial of degree 2n−1, and solving just for γ requires solving a polynomial of degree n (first for γ2, then x0).  Therefore, whether solving for one parameter or for both parameters simultaneously, a numerical solution on a computer is typically required. The benefit of maximum likelihood estimation is asymptotic efficiency; estimating x0 using the sample median is only about 81% as asymptotically efficient as estimating x0 by maximum likelihood. The truncated sample mean using the middle 24% order statistics is about 88% as asymptotically efficient an estimator of x0 as the maximum likelihood estimate. When Newton's method is used to find the solution for the maximum likelihood estimate, the middle 24% order statistics can be used as an initial solution for x0.
+
+Circular Cauchy distribution
+
+If X is Cauchy distributed with median μ and scale parameter γ, then the complex variable
+has unit modulus and is distributed on the unit circle with density:
+with respect to the angular variable θ = arg(z), where
+and ψ expresses the two parameters of the associated linear Cauchy distribution for x as a complex number:
+See also McCullagh's parametrization of the Cauchy distributions and Poisson kernel for related concepts.
+The circular Cauchy distribution expressed in complex form has finite moments of all orders
+for integer r ≥ 1. For |φ| is holomorphic on the unit disk, and the transformed variable U(Z, φ) is distributed as complex Cauchy with parameter U(ζ, φ).
+Given a sample z1, ..., zn of size n > 2, the maximum-likelihood equation
+can be solved by a simple fixed-point iteration:
+starting with ζ(0) = 0. The sequence of likelihood values is non-decreasing, and the solution is unique for samples containing at least three distinct values.
+where
+Formulae for p3 and p4 are available.
+
+Multivariate Cauchy distribution
+
+A random vector   The characteristic function of a multivariate Cauchy distribution is given by:
+where x0(t) and γ(t) are real functions with x0(t) a homogeneous function of degree one and γ(t) a positive homogeneous function of degree one.  More formally:
+for all t.
+An example of a bivariate Cauchy distribution can be given by:
+Note that in this example, even though there is no analogue to a covariance matrix, x and y are not statistically independent.
+Analogously to the univariate density, the multidimensional Cauchy density also relates to the multivariate Student distribution. They are equivalent when the degrees of freedom parameter is equal to one.  The density of a k dimension Student distribution with one degree of freedom becomes:
+Properties and details for this density can be obtained by taking it as a particular case of the multivariate Student density.
+
+Transformation properties
+
+where a,b,c and d are real numbers.
+
+Related distributions
+
+Relativistic Breit–Wigner distribution
+
+In nuclear and particle physics, the energy profile of a resonance is described by the relativistic Breit–Wigner distribution, while the Cauchy distribution is the (non-relativistic) Breit–Wigner distribution.
+
+
+
+
+
+
+
+

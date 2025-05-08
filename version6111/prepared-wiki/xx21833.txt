@@ -1,0 +1,75 @@
+[[Grover's algorithm]]
+
+CATEGORIES: Quantum algorithms, Search algorithms
+
+Grover's algorithm is a quantum algorithm for searching an unsorted database with N entries in O(N1/2) time and using O(log N) storage space (see big O notation). Lov Grover formulated it in 1996.
+In models of classical computation, searching an unsorted database cannot be done in less than linear time (so merely searching through every item is optimal). Grover's algorithm illustrates that in the quantum model searching can be done faster than this; in fact its time complexity O(N1/2) is asymptotically the fastest possible for searching an unsorted database in the linear quantum model.Bennett C.H., Bernstein E., Brassard G., Vazirani U., The strengths and weaknesses of quantum computation. SIAM Journal on Computing 26(5): 1510–1523 (1997). Shows the optimality of Grover's algorithm. It provides a quadratic speedup, unlike other quantum algorithms, which may provide exponential speedup over their classical counterparts. However, even quadratic speedup is considerable when N is large.
+Like many quantum algorithms, Grover's algorithm is probabilistic in the sense that it gives the correct answer with high probability. The probability of failure can be decreased by repeating the algorithm.  (An example of a deterministic quantum algorithm is the Deutsch-Jozsa algorithm, which always produces the correct answer.)
+
+==Applications==
+
+Although the purpose of Grover's algorithm is usually described as "searching a database", it may be more accurate to describe it as "inverting a function". Roughly speaking, if we have a function y=f(x) that can be evaluated on a quantum computer, this algorithm allows us to calculate x when given y. Inverting a function is related to the searching of a database because we could come up with a function that produces a particular value of y if x matches a desired entry in a database, and another value of y for other values of x.
+Grover's algorithm can also be used for estimating the mean and median of a set of numbers, and for solving the Collision problem. The algorithm can be further optimized if there is more than one matching entry and the number of matches is known beforehand.
+
+==Setup==
+
+Consider an unsorted database with N entries. The algorithm requires an N-dimensional state space H, which can be supplied by n=log2 N qubits. Consider the problem of determining the index of the database entry which satisfies some search criterion. Let f be the function which maps database entries to 0 or 1, where f(ω)=1 if and only if ω satisfies the search criterion. We are provided with (quantum black box) access to a subroutine in the form of a unitary operator, Uω, which acts as follows (for the ω for which f(ω)=1):
+
+==Algorithm steps==
+
+Then the operator
+is known as the Grover diffusion operator.
+Here is the algorithm:
+
+==The first iteration==
+
+A preliminary observation, in parallel with our definition
+is that Uω can be expressed in an alternate way:
+To prove this it suffices to check how Uω acts on basis states:
+The following computations show what happens in the first iteration:
+
+==Description of Uω==
+
+==Geometric proof of correctness==
+
+where r is the (integer) number of Grover iterations.
+
+==Algebraic proof of correctness==
+
+It follows that rth power of the matrix (corresponding to r iterations) is 
+Using this form we can use trigonometric identities to compute the probability of observing ω after r iterations mentioned in the previous section, 
+A short calculation now shows that the observation yields the correct answer ω with error O(1/N).
+
+==Extension to space with multiple targets==
+
+If, instead of 1 matching entry, there are k matching entries, the same algorithm works but the number of iterations must be π(N/k)1/2/4 instead of πN1/2/4.
+There are several ways to handle the case if k is unknown. For example, one could run Grover's algorithm several times, with
+iterations. For any k, one of the iterations will find a matching entry with a sufficiently high probability. The total number of iterations is at most
+author=Andris Ambainis|title=Quantum search algorithms|journal=SIGACT News|volume=35|number=2|pages=22–35|year= 2004|arxiv=quant-ph/0504012|bibcode = 2005quant.ph..4012A }}
+[/ref]
+
+==Quantum partial search==
+
+A  modification of Grover's algorithm called quantum partial search was described by Grover and Radhakrishnan in 2004.L.K. Grover and J. Radhakrishnan,Is partial quantum search of a database any easier?. quant-ph/0407122 In partial search, one is not interested in finding the exact address of the target item, only the first few digits of the address. Equivalently, we can think of "chunking" the search space into blocks, and then asking "in which block is the target item?". In many applications, such a search yields enough information if the target address contains the information wanted. For instance, to use the example given by L.K. Grover, if one has a list of students organized by class rank, we may only be interested in whether a student is in the lower 25%, 25-50%, 50-70% or 75-100% percentile.
+The global Grover operator acts on the blocks. Essentially, it is given as follows:
+
+==Optimality==
+
+It is known that Grover's algorithm is optimal. That is, any algorithm that accesses the database only by using the operator Uω must apply Uω at least as many times as Grover's algorithm. This result is important in understanding the limits of quantum computation. 
+If the Grover's search problem was solvable with logc N applications of Uω, that would imply that NP is contained in BQP, by transforming problems in NP into Grover-type search problems. The optimality of 
+Grover's algorithm suggests (but does not prove) that NP is not contained in BQP.
+The number of iterations for k matching entries, π(N/k)1/2/4, is also optimal.
+
+==Applicability and Limitations==
+
+When applications of Grover's algorithm are considered, it should be emphasized that the database is not represented explicitly. Instead, an oracle is invoked to evaluate an item by its index. Reading a full data-base item by item and converting it into such a representation may take a lot longer than Grover's search. To account for such effects, Grover's algorithm can be viewed as solving an equation or satisfying a constraint. In such applications, the oracle is a way to check the constraint and is not related to the search algorithm. This separation usually prevents algorithmic optimizations, whereas conventional search algorithms often rely on such optimizations and avoid exhaustive search. These and other considerations about using Grover's algorithm are discussed in [tpl]Citation| author1=Viamontes G.F.|author2=Markov I.L.|author3=Hayes J.P.|title="Is Quantum Search Practical?"|journal=IEEE/AIP Computing in Science and Engineering|pages=62-70|volume=7|issue=3|year=2005|url=http://web.eecs.umich.edu/~imarkov/pubs/jour/cise05-grov.pdf[/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

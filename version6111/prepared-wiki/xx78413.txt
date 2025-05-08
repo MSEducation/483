@@ -1,0 +1,38 @@
+[[Operator associativity]]
+
+CATEGORIES: Parsing, Programming language topics, Operators (programming)
+
+In programming languages and mathematical notation, the associativity (or fixity) of an operator is a property that determines how operators of the same precedence are grouped in the absence of parentheses.  If an operand is both preceded and followed by operators (for example, "^ 4 ^"), and those operators have equal precedence, then the operand may be used as input to two different operations (i.e. the two operations indicated by the two operators). The choice of which operations to apply the operand to, is determined by the "associativity" of the operators. Operators may be left-associative (meaning the operations are grouped from the left), right-associative (meaning the operations are grouped from the right) or non-associative (meaning there is no defined grouping). The associativity and precedence of an operator is a part of the definition of the programming language; different programming languages may have different associativity and precedence for the same type of operator.
+Consider the expression a ~ b ~ c. If the operator ~ has left associativity, this expression would be interpreted as (a ~ b) ~ c. If the operator has right associativity, the expression would be interpreted as a ~ (b ~ c). If the operator is non-associative, the expression might be a syntax error, or it might have some special meaning. Some mathematical operators have inherent associativity. For example, subtraction
+and division, as used in conventional math notation, are inherently left-associative. Addition and multiplication, by contrast, have no inherent associativity, though most programming languages define an associativity for these operations as well.
+Many programming language manuals provide a table of operator precedence and associativity; see, for example, the table for C and C++.
+The concept of notational associativity described here is related to, but different from the mathematical associativity. An operation that is mathematically associative, by definition requires no notational associativity (e.g. addition has the associative property, therefore it does not have to be either left associative or right associative). An operation that is not mathematically associative, however, must be notationally left-, right-, or non-associative (e.g. subtraction does not have the associative property, therefore it must have notational associativity).
+
+==Examples==
+
+Associativity is only needed when the operators in an expression have the same precedence. Usually + and - have the same precedence. Consider the expression 7 − 4 + 2. The result could be either (7 − 4) + 2 = 5 or 7 − (4 + 2) = 1. The former result corresponds to the case when + and − are left-associative, the latter to when + and - are right-associative.
+In order to reflect normal mathematical usage, addition, subtraction, multiplication, and division operators are usually left-associative while an exponentiation operator (if present) is right-associative. Any assignment operators are also typically right-associative. To prevent cases where operands would be associated with two operators, or no operator at all, operators with the same precedence must have the same associativity.
+
+===A detailed example===
+
+Consider the expression 5^4^3^2. A parser reading the tokens from left to right would apply the associativity rule to a branch, because of the right-associativity of ^, in the following way:
+This can then be evaluated depth-first, starting at the top node (the first ^):
+A left-associative evaluation would have resulted in the parse tree  ((5^4)^3)^2 and the completely different results 625, 244140625 and finally ~5.9604645 × 1016.
+
+==Right-associativity of assignment operators==
+
+In many imperative programming languages, the assignment operator is defined to be right-associative, and assignment is defined to be an expression (with a value), not just a statement. This allows chained assignment by using the value of one assignment expression as the input (right operand) of the next.
+For example, in C, the assignment a = b is an expression that returns a value (namely, b converted to the type of a) with the side effect of setting a to this value.[tpl]efn|1=An expression can be made into a statement by following it with a semicolon; i.e. a = b is an expression but a = b; is a statement.[/tpl] An assignment can be performed in the middle of an expression. The right-associativity of the = operator allows expressions such as a = b = c to be interpreted as a = (b = c), thereby setting both a and b to the value of c. In C, the alternative (a = b) = c does not make sense because a = b is not an L-Value, just an r-value. However, in C++ an assignment a = b returns a value referring to the left term in the assignment. Therefore (a = b) = c can be interpreted as a = b; a = c;.
+
+==Non-associative operators==
+
+Non-associative operators are operators that have no defined behavior when used in sequence in an expression. In Prolog, the infix operator :- is non-associative because constructs such as "a :- b :- c" constitute syntax errors.
+Another possibility is that sequences of certain operators are interpreted in some other way, which cannot be expressed as associativity. This generally means that syntactically, there is a special rule for sequences of these operations, and semantically the behavior is different. A good example is in Python, which has several such constructs.The Python Language Reference, "6. Expressions" The assignment operator does not have a value (assignments are statements, not operations), and is not associative. Chained assignment is instead implemented by having a grammar rule for sequences of assignments a = b = c, which are then assigned left-to-right. Further, combinations of assignment and augmented assignment, like a = b += c are not legal in Python, though they are legal C. Another example are comparison operators, such as >, ==, and <=. A chained comparison like a < b < c is interpreted as (a < b) and (b < c), not equivalent to either (a < b) < c or a < (b < c).The Python Language Reference, "6. Expressions": 6.9. Comparisons
+
+==See also==
+
+==Notes==
+
+==References==
+
+

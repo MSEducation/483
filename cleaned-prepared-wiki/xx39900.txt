@@ -1,0 +1,68 @@
+[[Network Time Protocol]]
+
+CATEGORIES: Network time-related software, Internet Standards, Internet protocols, Application layer protocols
+
+Network Time Protocol (NTP) is a networking protocol for clock synchronization between computer systems over packet-switched, variable-latency data networks.
+In operation since before 1985, NTP is one of the oldest Internet protocols in use. NTP was originally designed by David L. Mills of the University of Delaware, who still develops and maintains it with a team of volunteers.
+
+
+
+NTP is intended to synchronize all participating computers to within a few milliseconds of Coordinated Universal Time (UTC).
+The protocol is usually described in terms of a client-server model, but can as easily be used in peer-to-peer relationships where both peers consider the other to be a potential time source. NTP supplies a warning of any impending leap second adjustment, but no information about local time zones or daylight saving time is transmitted.
+, the current protocol is version 4 (NTPv4), which is a proposed standard as documented in RFC 5905. It is backward compatible with version 3, specified in RFC 1305.
+
+Clock strata
+
+NTP uses a hierarchical, semi-layered system of time sources. Each level of this hierarchy is termed a "stratum" and is assigned a number starting with zero at the top. The number represents the distance from the reference clock and is used to prevent cyclical dependencies in the hierarchy. Stratum is not always an indication of quality or reliability; it is common to find stratum 3 time sources that are higher quality than other stratum 2 time sources. Telecommunication systems use a different definition for clock strata.
+Only strata 0 to 15 are valid; stratum 16 is used to indicate that a device is unsynchronized. The NTP algorithms on each computer interact to construct a Bellman-Ford shortest-path spanning tree, to minimize the accumulated round-trip delay to the stratum 1 servers for all the clients.
+
+Timestamps
+
+The 64-bit timestamps used by NTP consist of a 32-bit part for seconds and a 32-bit part for fractional second, giving a time scale that rolls over every 232 seconds (136 years) and a theoretical resolution of 2−32 seconds (233 picoseconds). NTP uses an epoch of January 1, 1900. The first rollover occurs in 2036,Implementations can determine whether rollover has occurred using a knowledge of the approximate time from other sources. Since NTP only works with the differences between timestamps and never their absolute values, the 2036 rollover is invisible as long as the timestamps are within 68 years of each other. This means that the rollover will be invisible for most running systems, since they will have the correct time to within a very small tolerance. However, systems that are starting up need to know the date within no more than 68 years. Given the large allowed error, it is not expected that this is too onerous a requirement. One suggested method is to set the clock to no earlier than the system build date. Many systems use a battery powered hardware clock to avoid this problem. prior to the UNIX year 2038 problem.
+Future versions of NTP may extend the time representation to 128 bits: 64 bits for the second and 64 bits for the fractional-second. The current NTPv4 format has support for Era Number and Era Offset, that when used properly should aid fixing date rollover issues. According to Mills, "the 64 bit value for the fraction is enough to resolve the amount of time it takes a photon to pass an electron at the speed of light. The 64 bit second value is enough to provide unambiguous time representation until the universe goes dim."University of Delaware Digital Systems Seminar presentation by David Mills, 2006-04-262−64 seconds is about 54 zeptoseconds (light would travel 16.26 picometres, or approximately 0.31 × Bohr radius), and 264 seconds is about 585 billion years.
+
+Clock synchronization algorithm
+
+A typical NTP client will regularly poll three or more servers on diverse networks. To synchronize its clock with a remote server, the client must compute the round-trip delay time and the offset. The round-trip delay δ is computed as
+where
+Therefore
+The offset θ is given by
+The calculated δ and θ are passed through filters and subjected to statistical analysis. Outliers are discarded and an estimate of time offset is derived from the best three remaining candidates. The clock frequency is then adjusted to steadily reduce the offset, creating a feedback loop.
+The synchronization is correct when both the incoming and outgoing routes between the client and the server have symmetrical nominal delay. If the routes do not have a common nominal delay, the synchronization has a systematic bias of half the difference between the forward and backward travel times.
+
+Software implementations
+
+Reference implementation
+
+The NTP reference implementation, along with the protocol, has been continuously developed for over 20 years. Backwards compatibility has been maintained as new features have been added. It contains several sensitive algorithms, especially to discipline  the clock, that can misbehave when synchronized to servers that use different algorithms. The software has been ported to almost every computing platform, including PCs.
+
+SNTP
+
+A less complex implementation of NTP, using the same protocol but without requiring the storage of state over extended periods of time, is known as the Simple Network Time Protocol (SNTP). It is used in some embedded devices and in applications where high accuracy timing is not required.RFC 4330RFC 5905
+
+Windows Time service
+
+All Microsoft Windows versions since Windows 2000 and Windows XP include the Windows Time service ("W32Time"),
+
+Leap seconds
+
+On the day of a leap second event, ntpd receives notification from either a configuration file, an attached reference clock or a remote server. Because of the requirement that time must appear to be monotonically increasing, a leap second is inserted with the sequence 23:59:59, 23:59:60, 00:00:00. Although the clock is actually halted during the event, any processes that query the system time cause it to increase by a tiny amount, preserving the order of events. If it should ever become necessary, a leap second would be deleted by skipping 23:59:59.
+
+Security concerns
+
+NTP servers are susceptible to man-in-the-middle attacks unless packets are cryptographically signed for authentication. The computational overhead involved can make this impractical on busy servers, particularly during denial of service attacks.
+Only a few security problems have been identified in the reference implementation of the NTP codebase in its 25+ year history.
+Several NTP server misuse and abuse practices exist which cause damage or degradation to a Network Time Protocol (NTP) server.
+NTP has been used to facilitate DDoS attacks.
+
+
+
+Notes
+
+
+
+Relevant RFCs
+
+
+
+

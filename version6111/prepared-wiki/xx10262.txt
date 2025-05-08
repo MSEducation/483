@@ -1,0 +1,228 @@
+[[Image:Complex zeta.jpg|right|thumb|300px|Riemann zeta function ζ(s) in the complex plane. The color of a point s encodes the value of ζ(s): colors close to black denote values close to zero, while hue encodes the value's argument.
+The white spot at s = 1 is the pole of the zeta function; the black spots on the negative real axis and on the critical line Re(s) = 1/2 are its zeros. Values with arguments close to zero including positive reals on the real half-line are presented in red.]]
+This function, as a function of a real argument, was introduced and studied by Leonhard Euler in the first half of the eighteenth century without using complex analysis, which was not available at that time. Bernhard Riemann  in his  article "On the Number of Primes Less Than a Given Magnitude" published in 1859  extended the Euler definition to a complex variable, proved its meromorphic continuation and functional equation and established a relation between its zeros and the distribution of prime numbers.This paper also contained the Riemann hypothesis, a conjecture about the distribution of complex zeros of the Riemann zeta function that is considered by many mathematicians to be the most important unsolved problem in pure mathematics.[tpl]cite web|last=Bombieri|first= Enrico|url=http://www.claymath.org/millennium/Riemann_Hypothesis/riemann.pdf|title=The Riemann Hypothesis – official problem description|publisher=Clay Mathematics Institute|accessdate=2008-10-25[/tpl]
+The values of the Riemann zeta function at even positive integers were computed by Euler. The first of them, ζ(2), provides a solution to the Basel problem. In 1979 Apéry proved the irrationality of ζ(3). The values at negative integer points, also found by Euler, are rational numbers and play an important role in the theory of modular forms. Many generalizations of the Riemann zeta function, such as Dirichlet series, Dirichlet L-functions and L-functions, are known.
+
+==Definition==
+
+The Riemann zeta function ζ(s) is a function of a complex variable s = σ + it.  (The notation with s, σ, and t is traditionally used in the study of the ζ-function, following Riemann.)  
+The following infinite series converges for all complex numbers s with real part greater than 1, and defines ζ(s) in this case:
+The Riemann zeta function is defined as the analytic continuation of the function defined for σ > 1 by the sum of the preceding series.
+Leonhard Euler considered the above series in 1740 for positive integer values of s, and later Chebyshev extended the definition to real s > 1.[tpl]cite book | last = Devlin | first = Keith | authorlink = Keith Devlin | title = The Millennium Problems: The Seven Greatest Unsolved Mathematical Puzzles of Our Time | publisher = Barnes & Noble | year = 2002 | location = New York | pages = 43–47 | isbn = 978-0-7607-8659-8[/tpl]
+The above series is a prototypical Dirichlet series that converges absolutely to an analytic function for s such that [tpl]nowrap|σ > 1[/tpl] and diverges for all other values of s. Riemann showed that the function defined by the series on the half-plane of convergence can be continued analytically to all complex values [tpl]nowrap|s ≠ 1[/tpl]. For s = 1 the series is the harmonic series which diverges to +∞, and
+Thus the Riemann zeta function is a meromorphic function on the whole complex s-plane, which is holomorphic everywhere except for a simple pole at s = 1 with residue 1.
+
+==Specific values==
+
+For any positive even integer 2n:
+where B2n is a Bernoulli number.
+For negative integers, one has
+for [tpl]nowrap|n ≥ 1[/tpl], so in particular ζ vanishes at the negative even integers because Bm = 0 for all odd m other than 1. For odd positive integers, no such simple expression is known.
+Via analytic continuation, one can show that 
+
+==Euler product formula==
+
+The connection between the zeta function and prime numbers was discovered by Euler, who proved the identity
+where, by definition, the left hand side is ζ(s) and the infinite product on the right hand side extends over all prime numbers p (such expressions are called Euler products):
+The Euler product formula can be used to calculate the asymptotic probability that s randomly selected integers are set-wise coprime. Intuitively, the probability that any single number is divisible by a prime (or any integer), p is 1/p. Hence the probability that s numbers are all divisible by this prime is 1/ps, and the probability that at least one of them is not is [tpl]nowrap|1 − 1/ps[/tpl]. Now, for distinct primes, these divisibility events are mutually independent because the candidate divisors are coprime (a number is divisible by coprime divisors n and m if and only if it is divisible by nm, an event which occurs with probability 1/(nm)). Thus the asymptotic probability that s numbers are coprime is given by a product over all primes,
+(More work is required to derive this result formally.)[tpl]cite journal|author=J. E. Nymann|title=On the probability that k positive integers are relatively prime|journal=Journal of Number Theory|volume=4|year=1972|pages=469–473|doi=10.1016/0022-314X(72)90038-8|issue=5|bibcode = 1972JNT.....4..469N [/tpl]
+
+==The functional equation==
+
+The Riemann zeta function satisfies the functional equation (known as the Riemann functional equation or  Riemann's functional equation)
+where Γ(s) is the gamma function, which is an equality of meromorphic functions valid on the whole complex plane. This equation relates values of the Riemann zeta function at the points s and [tpl]nowrap|1 − s[/tpl]. The functional equation (owing to the properties of the sine function) implies that ζ(s) has a simple zero at each even negative integer s = −2n — these are known as the trivial zeros of ζ(s). For s an even positive integer, the product sin(πs/2)Γ(1−s) is regular and the functional equation relates the values of the Riemann zeta function at odd negative integers and even positive integers.
+The functional equation was established by Riemann in his 1859 paper On the Number of Primes Less Than a Given Magnitude and used to construct the analytic continuation in the first place. An equivalent relationship had been conjectured by Euler over a hundred years earlier, in 1749, for the Dirichlet eta function (alternating zeta function)
+Incidentally, this relation is interesting also because it actually exhibits ζ(s) as a Dirichlet series (of the η-function) which is convergent (albeit non-absolutely) in the larger half-plane σ > 0 (not just σ > 1), up to an elementary factor.
+Riemann also found a symmetric version of the functional equation, given by first defining
+The functional equation is then given by
+(Riemann defined a similar but different function which he called ξ(t).)
+
+==Zeros, the critical line, and the Riemann hypothesis==
+
+The functional equation shows that the Riemann zeta function has zeros at [tpl]nowrap|−2, −4, .[/tpl].. . These are called the trivial zeros. They are trivial in the sense that their existence is relatively easy to prove, for example, from sin(πs/2) being 0 in the functional equation. The non-trivial zeros have captured far more attention because their distribution not only is far less understood but, more importantly, their study yields impressive results concerning prime numbers and related objects in number theory. It is known that any non-trivial zero lies in the open strip {s ∈ C : 0 
+===The Hardy–Littlewood conjectures===
+
+These two conjectures opened up new directions in the investigation of the Riemann zeta function.
+
+===Other results===
+
+The location of the Riemann zeta function's zeros is of great importance in the theory of numbers. The prime number theorem is equivalent to the fact that there are no zeros of the zeta function on the Re(s) = 1 line.[tpl]citation|first=Harold G.|last=Diamond|title=Elementary methods in the study of the distribution of prime numbers|journal=Bulletin of the American Mathematical Society|volume=7|issue=3|year=1982|pages=553–89|mr=670132|doi=10.1090/S0273-0979-1982-15057-1[/tpl]. A better result[tpl]cite journal | last1 = Ford | first1 = K. | year = 2002 | title = Vinogradov's integral and bounds for the Riemann zeta function | url = | journal = Proc. London Math. Soc. | volume = 85 | issue = 3| pages = 565–633 | doi = 10.1112/S0024611502013655 [/tpl] is that [tpl]nowrap|ζ(σ + it)[/tpl] ≠ 0 whenever | t | ≥ 3 and
+The strongest result of this kind one can hope for is the truth of the Riemann hypothesis, which would have many profound consequences in the theory of numbers.
+It is known that there are infinitely many zeros on the critical line. Littlewood showed that if the sequence (γn) contains the imaginary parts of all zeros in the upper half-plane in ascending order, then
+The critical line theorem asserts that a positive percentage of the nontrivial zeros lies on the critical line.
+
+==Various properties==
+
+For sums involving the zeta-function at integer and half-integer values, see rational zeta series.
+
+===Reciprocal===
+
+The reciprocal of the zeta function may be expressed as a Dirichlet series over the Möbius function μ(n):
+for every complex number s with real part > 1. There are a number of similar relations involving various well-known multiplicative functions; these are given in the article on the Dirichlet series.
+The Riemann hypothesis is equivalent to the claim that this expression is valid when the real part of s is greater than 1/2.
+
+===Universality===
+
+The critical strip of the Riemann zeta function has the remarkable property of universality. This zeta-function universality states that there exists some location on the critical strip that approximates any holomorphic function arbitrarily well. Since holomorphic functions are very general, this property is quite remarkable.
+
+===Estimates of the maximum of the modulus of the zeta function===
+
+===The argument of the Riemann zeta-function===
+
+==Representations==
+
+===Mellin transform===
+
+The Mellin transform of a function ƒ(x) is defined as
+in the region where the integral is defined. There are various expressions for the zeta-function as a Mellin transform. If the real part of s is greater than one, we have
+where Γ denotes the Gamma function. By modifying the contour, Riemann showed that
+for all s, where the contour C starts and ends at +∞ and circles the origin once.
+We can also find expressions which relate to prime numbers and the prime number theorem. If π(x) is the prime-counting function, then
+for values with [tpl]nowrap|Re(s) > 1[/tpl].
+A similar Mellin transform involves the Riemann prime-counting function J(x), which counts prime powers pn with a weight of 1/n, so that
+Now we have
+These expressions can be used to prove the prime number theorem by means of the inverse Mellin transform. Riemann's prime-counting function is easier to work with, and π(x) can be recovered from it by Möbius inversion.
+
+===Theta functions===
+
+The Riemann zeta function can be given formally by a divergent Mellin transform
+in terms of Jacobi's theta function
+However this integral does not converge for any value of s and so needs to be regularized: this gives the following expression for the zeta function:
+
+===Laurent series===
+
+The Riemann zeta function is meromorphic with a single pole of order one at
+s = 1. It can therefore be expanded as a Laurent series about s = 1;
+the series development then is
+The constants γn here are called the Stieltjes constants and can be defined
+by the limit
+The constant term γ0 is the Euler–Mascheroni constant.
+
+===Integral===
+
+holds true, which may be used for a numerical evaluation of the zeta-function.Mathematik-Online-Kurs: Numerik – Numerische Integration der Riemannschen Zeta-Funktion
+
+===Rising factorial===
+
+Another series development using the rising factorial valid for the entire complex plane is
+This can be used recursively to extend the Dirichlet series definition to all complex numbers.
+The Riemann zeta function also appears in a form similar to the Mellin transform in an integral over the Gauss–Kuzmin–Wirsing operator acting on xs−1; that context gives rise to a series expansion in terms of the falling factorial.
+
+===Hadamard product===
+
+[tpl]Other uses|Matrix multiplication#Hadamard product[tpl]![/tpl]Matrix multiplication[/tpl]
+On the basis of Weierstrass's factorization theorem, Hadamard gave the infinite product expansion
+where the product is over the non-trivial zeros ρ of ζ and the letter γ again denotes the Euler–Mascheroni constant. A simpler infinite product expansion is
+This form clearly displays the simple pole at s = 1, the trivial zeros at −2, −4, ... due to the gamma function term in the denominator, and the non-trivial zeros at s = ρ (To ensure convergence in the latter formula, the product should be taken over "matching pairs" of zeroes, i.e. the factors for a pair of zeroes of the form ρ and 1 − ρ should be combined.)
+
+===Logarithmic derivative on the critical strip===
+
+===Globally convergent series===
+
+A globally convergent series for the zeta function, valid for all complex numbers s except [tpl]nowrap|s [tpl]=[/tpl] 1 + [tpl]sfrac|2πi[tpl]hsp[/tpl]n|log(2)[/tpl][/tpl] for some integer n, was conjectured by Konrad Knopp and proved by Helmut Hasse in 1930 (cf. Euler summation):
+The series only appeared in an Appendix to Hasse's paper, and did not become generally known until it was rediscovered more than 60 years later (see Sondow, 1994).
+Hasse also proved the globally converging series
+in the same publication.
+Peter Borwein has shown a very rapidly convergent series suitable for high precision numerical calculations. The algorithm, making use of Chebyshev polynomials, is described in the article on the Dirichlet eta function.
+
+==Applications==
+
+The zeta function occurs in applied statistics (see Zipf's law and Zipf–Mandelbrot law).
+Zeta function regularization is used as one possible means of regularization of divergent series and divergent integrals in quantum field theory. In one notable example, the Riemann
+zeta-function shows up explicitly in the calculation of the Casimir effect. The zeta function is also useful for the analysis of dynamical systems.[tpl]cite web|title=Dynamical systems and number theory |url=http://empslocal.ex.ac.uk/people/staff/mrwatkin/zeta/spinchains.htm[/tpl]
+
+===Infinite series===
+
+The zeta function evaluated at positive integers appears in infinite series representations of a number of constants.Unless otherwise noted, the formulas in this section are from  § 4 of J. M. Borwein et al. (2000) There are more formulas in the article Harmonic number.
+\sum_{n=1}^{\infty}(\zeta(2n)-1)=\tfrac34
+Some zeta series evaluate to more complicated expressions
+
+==Generalizations==
+
+There are a number of related zeta functions that can be considered to be generalizations of the Riemann zeta function. These include the Hurwitz zeta function
+(the convergent series representation was given by Helmut Hasse in 1930,[tpl]Cite journal |first=Helmut |last=Hasse |title=Ein Summierungsverfahren für die Riemannsche ζ-Reihe |year=1930 |journal=Mathematische Zeitschrift |volume=32 |issue=1 |pages=458–464 |doi=10.1007/BF01194645 |postscript=[tpl]inconsistent citations[/tpl] [/tpl] cf. Hurwitz zeta function), which coincides with the Riemann zeta function when q = 1 (note that the lower limit of summation in the Hurwitz zeta function is 0, not 1), the Dirichlet L-functions and the Dedekind zeta-function. For other related functions see the articles Zeta function and L-function.
+The polylogarithm is given by
+which coincides with the Riemann zeta function when z = 1.
+The Lerch transcendent is given by
+which coincides with the Riemann zeta function when z = 1 and q = 1 (note that the lower limit of summation in the Lerch transcendent is 0, not 1).
+The Clausen function Cls(θ) that can be chosen as the real or imaginary part of Lis(e iθ).
+The multiple zeta functions are defined by
+One can analytically continue these functions to the n-dimensional complex space. The special values of these functions are called multiple zeta values by number theorists and have been connected to many different branches in mathematics and physics.
+
+==See also==
+
+==Notes==
+
+==References==
+
+| url = http://www.maths.ex.ac.uk/~mwatkins/zeta/borwein1.pdf|format=PDF
+| title = Computational Strategies for the Riemann Zeta Function| journal=J. Comp. App. Math.| year=2000| volume=121
+| pages=247–296
+|doi=10.1016/S0377-0427(00)00336-8
+|issue=1–2|bibcode = 2000JCoAM.121..247B }} [tpl]bibcode|2000JCoAM.121..247B[/tpl]
+|first1=Djurdje
+|last1= Cvijović
+|first2=Jacek
+|last2= Klinowski
+| title = Integral Representations of the Riemann Zeta Function for Odd-Integer Arguments
+| journal=J. Comp. App. Math.| year=2002| volume=142| pages=435–439
+| doi = 10.1016/S0377-0427(02)00358-8
+|mr=1906742
+|issue=2|bibcode = 2002JCoAM.142..435C }} [tpl]bibcode|2002JCoAM.142..435C[/tpl]
+| first1=Djurdje
+|last1= Cvijović
+|first2= Jacek
+|last2= Klinowski
+| title = Continued-fraction expansions for the Riemann zeta function and polylogarithms| journal=Proc. Amer. Math. Soc.| year=1997| volume=125| pages=2543–2550| doi = 10.1090/S0002-9939-97-04102-6
+| issue=9}}
+|authorlink=Helmut Hasse
+|first1=Helmut
+|last1=Hasse
+|title=Ein Summierungsverfahren für die Riemannsche ζ-Reihe
+|year=1930
+|journal=Math. Z.
+|volume=32
+|pages=458–464
+|mr=1545177
+|doi=10.1007/BF01194645
+}} (Globally convergent series expression.)''
+|first1=István
+|last1=Mező
+|first2=Ayhan
+|last2=Dil
+|doi=10.1016/j.jnt.2009.08.005
+|title=Hyperharmonic series involving Hurwitz zeta function
+|journal= Journal of Number Theory
+|year=2010
+|volume=130
+|issue=2
+|pages=360–369
+|mr=2564902
+}}
+|first1=Guo
+|last1=Raoh
+|title=The Distribution of the Logarithmic Derivative of the Riemann Zeta Function
+|journal=Proceedings of the London Mathematical Society
+|year=1996
+|volume=s3–72
+|doi=10.1112/plms/s3-72.1.1 
+|pages=1–27
+}}
+|first1=Jonathan
+|last1=Sondow
+|doi=10.1090/S0002-9939-1994-1172954-7
+|title= Analytic continuation of Riemann's zeta function and values at negative integers via Euler's transformation of series
+|journal=Proc. Amer. Math. Soc.
+|year=1994
+|pages=421–424
+|issue=120
+|volume=120
+}}
+|last1=Zhao
+|doi=10.1090/S0002-9939-99-05398-8 
+| title = Analytic continuation of multiple zeta functions| journal=Proc. Amer. Math. Soc.| year=1999| volume=128| pages=1275–1283|mr=1670846|issue=5
+}}
+
+==External links==
+
+

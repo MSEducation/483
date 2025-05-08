@@ -1,0 +1,24 @@
+[[Blue Pill (software)]]
+
+CATEGORIES: Rootkits, Virtualization software
+
+Blue Pill is the codename for a rootkit based on x86 virtualization. Blue Pill originally required AMD-V (Pacifica) virtualization support, but was later ported to support Intel VT-x (Vanderpool) as well. It was designed by Joanna Rutkowska and originally demonstrated at the Black Hat Briefings on August 3, 2006, with a reference implementation for the Microsoft Windows Vista kernel. 
+
+==Overview==
+
+The Blue Pill concept is to trap a running instance of the operating system by starting a thin hypervisor and virtualizing the rest of the machine under it.  The previous operating system would still maintain its existing references to all devices and files, but nearly anything, including hardware interrupts, requests for data and even the system time could be intercepted (and a fake response sent) by the hypervisor. The original concept of Blue Pill was published by another researcher at IEEE Oakland on May 2006, under the name VMBR (virtual-machine based rootkit).[tpl]Cite doi|10.1109/SP.2006.38[/tpl]
+Joanna Rutkowska claims that, since any detection program could be fooled by the hypervisor, such a system could be "100% undetectable". Since AMD virtualization is seamless by design, a virtualized guest is not supposed to be able to query whether it is a guest or not.  Therefore, the only way Blue Pill could be detected is if the virtualization implementation were not functioning as specified.'Blue Pill' Prototype Creates 100% Undetectable Malware, Ryan Naraine, eWeek.com
+This assessment, repeated in numerous press articles, is disputed: AMD issued a statement dismissing the claim of full undetectability.Faceoff: AMD vs. Joanna Rutkowska, eWeek.com Some other security researchers and journalists also dismissed the concept as implausible.Debunking Blue Pill Myth, virtualization.info Virtualization could be detected by a timing attack relying on external sources of time.http://securitywatch.eweek.com/showdown_at_the_blue_pill_corral.html
+In 2007, a group of researchers led by Thomas Ptacek of Matasano Security challenged Rutkowska to put Blue Pill against their rootkit detector software at that year's Black Hat conference,Rutkowska faces ‘100% undetectable malware’ challenge, Ryan Naraine at zdnet.com but the deal was deemed a no-go following Rutkowska's request for $384,000 in funding as a prerequisite for entering the competition.Blue Pill hacker challenge update: It’s a no-go, Ryan Naraine at zdnet.com Rutkowska and Alexander Tereshkin countered detractors' claims during a subsequent Black Hat speech, arguing that the proposed detection methods were inaccurate.Showdown at the Blue Pill Corral
+The source code for Blue Pill has since been made public,Blue Pill 2007Blue Pill 2008 under the following license: Any unauthorized use (including publishing and distribution) of this software requires a valid license from the copyright holder. This software has been provided for the educational use only during the Black Hat training and conference.http://web.archive.org/web/20080418123748/http://www.bluepillproject.org/
+
+==Red Pill==
+
+[tpl]See also|Red Pill (software)[tpl]![/tpl]Red Pill[/tpl]
+Red Pill is a technique to detect the presence of a virtual machine also developed by Joanna Rutkowska.http://invisiblethings.org/papers/redpill.html
+
+==References==
+
+==External links==
+
+

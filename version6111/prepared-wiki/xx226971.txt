@@ -1,0 +1,91 @@
+[[GLBasic]]
+
+CATEGORIES: Video game development, Application programming interfaces, Articles with example BASIC code, BASIC compilers, BASIC interpreters, Video game development software
+
+GLBasic is a commercial BASIC programming language, that can compile to various platforms, including Windows, Linux, Mac OS X, as well as some handheld devices. The language is designed to be simple and intuitive. 
+
+==Overview==
+
+GLBasic started as an interpreted language with 2D commands but now uses the GCC compiler for many different platforms to achieve fast, native code results. The GLBasic precompiler "GPC" converts the simple BASIC language into C++ code and compiles that later. Thus, the user can extend GLBasic using the INLINE command to mix C/C++ code directly with GLBasic source code. Due to this, GLBasic can easily access third-party dynamic libraries on all platforms.
+The GLBasic SDK comes with an IDE, debugger and a graphics engine built on OpenGL (or OpenGL|ES) for the platforms Windows, Linux, Mac OS X, iOS and WebOS. For handheld devices (Windows Mobile, GP2X and GP2X Wiz), GLBasic uses its own close-to-hardware routines for fast graphics.
+To compile for the iPhone or iPad, you will need an iMac (on which to compile the generated code - to comply with Apple's requirements) and the latest version of Xcode, which is a free download from Apple.  
+To be able to actually run the program on an iPhone or iPad (GLBasic programs will not work on the emulator), you need to be a member of the iPhone Apple Developer Connection.
+Since the release of the 8.054 beta, it became possible to compile for the Open Pandora machine as well.  However, with the lack of Windows programming tools half of the compiling process is performed on Windows, and the other half on the actual machine. Since version 10, the IDE directly builds packages on Windows for the Pandora.
+Version 8.230 and above can compile for the WebOS devices like the Palm Pre without additional hardware or developer program membership requirements. Support for the HP TouchPad was added in September 2011 via a web-update.
+Version 10.057 added support to build application packages running on Android devices.
+GLBasic comes with numerous examples.
+
+==App Store / Online Shop acceptance==
+
+Apps created with GLBasic for the Apple iPhone, iPad and iPod are acceptable for sale through their AppStore. This would require an account with Apple’s iOS Developer Program, which costs US$99.00 per year. Apps have to be submitted for review and approval, which could take up to two weeks or more.
+Similarly, apps created for the webOS also qualify for sale through HP’s App Catalog, which requires an account with HP’s webOS Developer Program. This account is free, but apps would still be subjected to review and approval, which usually take around five days.
+Google Play is another online store that accepts apps created with GLBasic, for the Android platform. As with Apple and HP, an account with the developer program is required, and this would incur a one-time fee of US$25.00. Unlike the others, apps can be published directly and almost instantaneously, barring any issues.
+A wrapper for the Intel AppUp Centre SDK is also available for GLBasic.
+
+==Features==
+
+GLBasic has the following features:
+
+===General===
+
+===3D Features===
+
+===2D Features===
+
+===Network Features===
+
+===Compiler===
+
+===IDE===
+
+==GUI system==
+
+GLBasic comes with the source code to DDgui, an easy-to-use GUI system, allowing all supported platforms to have the same look at feel across all platforms.
+For Windows, Linux and Mac GLBasic has ported a Tcl/Tk wrapper that offers a native OS look.
+
+==Versions==
+
+GLBasic has gone through the following revisions :
+
+==Sample code==
+
+Hello World
+ // this is a comment
+ // Print "Hello World" to the screen position 0,0 (top, left)
+ PRINT "Hello World", 0,0
+ // swap backbuffer and visible screen, prepare backbuffer for next rendering
+ SHOWSCREEN
+ // wait for a key to be pressed
+ KEYWAIT
+
+==Limited Object Oriented Scope==
+
+With Version 8, GLBasic added basic object oriented commands to the TYPE command. This allows structures to access itself (using the 'self' command) and to have functions within TYPEs
+
+==Simple OOP Test==
+
+  TYPE Tvec
+   x;y;z
+   FUNCTION null:
+    self.x = 0; self.y=0;
+   ENDFUNCTION
+   FUNCTION add: v AS Tvec
+    INC self.x, v.x
+    INC self.y, v.y
+    INC self.z, v.z
+   ENDFUNCTION
+  ENDTYPE
+  LOCAL vec AS Tvec, vec2 AS Tvec
+  vec.null()
+  vec.x=50
+  vec2.x = 100
+  vec.add(vec2)
+Version 8 also has the ability to encrypt (using 128-bit Blowfish) and decrypt strings.
+
+==See also==
+
+==References==
+
+==External links==
+
+

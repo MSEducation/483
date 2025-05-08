@@ -1,0 +1,60 @@
+[[Kerberos (protocol)]]
+
+CATEGORIES: Authentication protocols, Key transport protocols, Symmetric-key algorithms, Computer network security, Computer access control protocols
+
+Kerberos  is a computer network authentication protocol which works on the basis of 'tickets' to allow nodes communicating over a non-secure network to prove their identity to one another in a secure manner.  Its designers aimed it primarily at a client–server model and it provides mutual authentication—both the user and the server verify each other's identity. Kerberos protocol messages are protected against eavesdropping and replay attacks.
+Kerberos builds on symmetric key cryptography and requires a trusted third party, and optionally may use public-key cryptography during certain phases of authentication. RFC 4556, abstract Kerberos uses UDP port 88 by default.
+
+History and development
+
+MIT developed Kerberos to protect network services provided by Project Athena.  The protocol is based on the earlier Needham-Schroeder Symmetric Key Protocol.  The protocol was named after the character Kerberos (or Cerberus) from  Greek mythology, which was a monstrous three-headed guard dog of Hades.  Several versions of the protocol exist; versions 1–3 occurred only internally at MIT.
+Steve Miller and Clifford Neuman, the primary designers of Kerberos version 4, published that version in the late 1980s, although they had targeted it primarily for Project Athena.
+Version 5, designed by John Kohl and Clifford Neuman, appeared as RFC 1510 in 1993 (made obsolete by RFC 4120 in 2005), with the intention of overcoming the limitations and security problems of version 4.
+MIT makes an implementation of Kerberos freely available, under copyright permissions similar to those used for BSD. In 2007, MIT formed the Kerberos Consortium to foster continued development. Founding sponsors include vendors such as Oracle, Apple Inc., Google, Microsoft, Centrify Corporation and TeamF1 Inc., and academic institutions such as the Royal Institute of Technology in Sweden, Stanford University, MIT, and vendors such as CyberSafe offering commercially supported versions.
+Authorities in the United States classified Kerberos as auxiliary military technology and banned its export because it used the DES encryption algorithm (with 56-bit keys). A non-US Kerberos 4 implementation, KTH-KRB developed at the Royal Institute of Technology in Sweden, made the system available outside the US before the US changed its cryptography export regulations (circa 2000). The Swedish implementation was based on a limited version called eBones. eBones was based on the exported MIT Bones release (stripped of both the encryption functions and the calls to them) based on version Kerberos 4 patch-level 9.
+, the IETF Kerberos working group  is updating the specifications. Recent updates include:
+
+Microsoft Windows
+
+Windows 2000 and later uses Kerberos as its default authentication method. Some Microsoft additions to the Kerberos suite of protocols are documented in RFC 3244 "Microsoft Windows 2000 Kerberos Change Password and Set Password Protocols". RFC 4757 documents Microsoft's use of the RC4 cipher.  While Microsoft uses the Kerberos protocol, it does not use the MIT software.
+Kerberos is used as preferred authentication method:
+In general, joining a client to a Windows domain means enabling Kerberos as default protocol for authentications from that client to services in the Windows domain and all domains with trust relationships to that domain.
+In contrast, when either client or server or both are not joined to a domain (or not part of the same trusted domain environment), Windows will instead use NTLM for authentication between client and server.
+
+UNIX and UNIX-like operating systems
+
+Many UNIX and UNIX-like operating systems, including FreeBSD, Apple's Mac OS X, Red Hat Enterprise Linux, Oracle's Solaris, IBM's AIX and Z/OS, HP's OpenVMS and others, include software for Kerberos authentication of users or services. Embedded implementation of the Kerberos V authentication protocol for client agents and network services running on embedded platforms is also available from companies such as TeamF1, Inc.
+
+Protocol
+
+Description
+
+The client authenticates itself to the Authentication Server (AS) which forwards the username to a Key distribution center (KDC). The KDC issues a Ticket Granting Ticket (TGT), which is time stamped, encrypts it using the user's password and returns the encrypted result to the user's workstation.  This is done infrequently, typically at user logon; the TGT expires at some point, though may be transparently renewed by the user's session manager while they are logged in.
+When the client needs to communicate with another node ("principal" in Kerberos parlance) the client sends the TGT to the Ticket Granting Service (TGS), which usually shares the same host as the KDC.  After verifying the TGT is valid and the user is permitted to access the requested service, the TGS issues a Ticket and session keys, which are returned to the client. The client then sends the Ticket to the service server (SS) along with its service request.
+The protocol is described in detail below.
+
+=User Client-based Logon=
+
+=Client Authentication=
+
+=Client Service Authorization=
+
+=Client Service Request=
+
+Drawbacks and Limitations
+
+
+
+
+
+Further reading
+
+ |url=
+ |title= Novell Inc's Comment to the Proposed Settlement between Microsoft and the Department of Justice, pusuant to the Tunney Act
+ |work=Civil Action No. 98-1232 (CKK): United States of America v. Microsoft Corporation
+ |publisher=Department of Justice
+ |date=29 January 2002 |accessdate=15 August 2012
+}}
+ |url=
+ |title=Designing an Authentication System: A Dialogue in Four Scenes
+ |work=Humorous play concerning how the design of Kerberos evolved

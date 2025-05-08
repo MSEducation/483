@@ -1,0 +1,27 @@
+[[Bitstream]]
+
+CATEGORIES: Data transmission, Computer networking, Binary sequences, Reconfigurable computing
+
+A bitstream or bit stream is a time series or sequence of bits.
+A bytestream is a series of bytes. Typically these are values from a range of 256 distinct values (octets), and so the term octet stream is sometimes used to refer to the same thing. An octet may be encoded as a sequence of 8 bits in multiple different ways (see endianness) so there is no unique and direct translation between bytestreams and bitstreams. In practice, bitstreams are not used directly to encode bytestreams; a communication channel may use a signalling method that does not directly translate to bits (for instance, by transmitting signals of multiple frequencies) and typically also encodes other information such as framing and error correction together with its data.
+Bitstreams  and bytestreams are used extensively in telecommunications and computing: for example, the SDH communications technology transports synchronous bitstreams, and the TCP communications protocol transports a byte stream without synchronous timing.
+
+==Definition==
+
+Formally, a byte stream is a certain abstraction, a communication channel down which one entity can send a sequence of bytes to the entity on the other end. Such channel is often bidirectional, but sometimes unidirectional. In almost all instances, the channel has the property that it is reliable; i.e. exactly the same bytes emerge, in exactly the same order, at the other end.
+Less formally, one can think of it as a conduit between the two entities; one entity can insert bytes into the conduit, and the other entity then receives them. This conduit can be ephemeral or persistent.
+
+==Examples==
+
+The term bitstream is frequently used to describe the configuration data to be loaded into a field programmable gate array (FPGA). This usage may have originated based on the common method of configuring the FPGA from a serial bit stream, typically from a serial PROM or flash memory chip, although most FPGAs also support a byte-parallel loading method as well. The detailed format of the bitstream for a particular FPGA chip is usually considered proprietary to the FPGA vendor.
+In mathematics, several specific infinite sequences of bits have been studied for their mathematical properties; these include the Baum–Sweet sequence, Ehrenfeucht–Mycielski sequence, Fibonacci word, Kolakoski sequence, regular paperfolding sequence, Rudin–Shapiro sequence, and Thue–Morse sequence.
+On most operating systems, including Unix-like and Windows, standard I/O libraries convert lower-level paged or buffered  file access to a byte stream paradigm. In particular in Unix-like operating systems, each process has three standard streams, that are examples of unidirectional byte streams. The unix pipe mechanism provides byte stream communications between different processes.
+One well-known example of a communication protocol which provides a byte-stream service to its clients is the Transmission Control Protocol (TCP) of the Internet protocol suite, which provides a bidirectional byte stream.
+The Internet media type for an arbitrary byte stream is application/octet-stream. Other media types are defined for byte streams in well-known formats.
+Often the contents of a byte stream are dynamically created, such as the data from the keyboard and other peripherals (/dev/tty), data from the pseudorandom number generator /dev/urandom, etc.
+In those cases, when the destination of a byte stream (the consumer) uses bytes faster than they can be generated, the system uses process synchronization to make the destination wait until the next byte is available.
+When bytes are generated faster than the destination can use them, there are several techniques to deal with the situation:
+
+==See also==
+
+

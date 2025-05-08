@@ -1,0 +1,36 @@
+[[Internet exchange point]]
+
+CATEGORIES: Internet exchange points, Routing
+
+An Internet exchange point (IX or IXP) is a physical infrastructure through which Internet service providers (ISPs) exchange Internet traffic between their networks (autonomous systems).
+IXPs reduce the portion of an ISP's traffic which must be delivered via their upstream transit providers, thereby reducing the average per-bit delivery cost of their service.  Furthermore, the increased number of paths learned through the IXP improves routing efficiency and fault-tolerance.
+
+==Function==
+
+The primary purpose of an IXP is to allow networks to interconnect directly, via the exchange, rather than through one or more third-party networks.  The advantages of the direct interconnection are numerous, but the primary reasons are cost, latency, and bandwidth.[tpl]cite web|url=http://www.bgp4.as/internet-exchanges |title= Global Internet Exchange Points / BGP Peering Points / IXP |work=BGP: the Border Gateway Protocol Advanced Internet Routing Resources  |publisher=Bgp4.as |date=2011-10-20 |accessdate=2011-11-22[/tpl]
+Traffic passing through an exchange is typically not billed by any party, whereas traffic to an ISP's upstream provider is.[tpl]cite book |authors=Ryan, Patrick S. and Gerson, Jason |title=A Primer on Internet Exchange Points for Policymakers and Non-Engineers |date=August 11, 2012 |publisher=Social Science Research Network (SSRN) |url=http://ssrn.com/abstract=2128103[/tpl]  The direct interconnection, often located in the same city as both networks, avoids the need for data to travel to other cities (potentially on other continents) to get from one network to another, thus reducing latency.[tpl]cite web|url=http://www.bgp4.as/internet-exchanges |title=BGP: the Border Gateway Protocol Advanced Internet Routing Resources. (viewed July 10, 2010) |publisher=Bgp4.as |date=2011-10-20 |accessdate=2011-11-22[/tpl]
+The third advantage, speed, is most noticeable in areas that have poorly developed long-distance connections.  ISPs in these regions might have to pay between 10 or 100 times more for data transport than ISPs in North America, Europe or Japan.  Therefore, these ISPs typically have slower, more limited connections to the rest of the Internet.  However, a connection to a local IXP may allow them to transfer data without limit, and without cost, vastly improving the bandwidth between customers of the two adjacent ISPs.[tpl]cite web|url=http://www.bgp4.as/internet-exchanges |title=BGP: the Border Gateway Protocol Advanced Internet Routing Resources. (viewed July 10, 2010) |publisher=Bgp4.as |date=2011-10-20 |accessdate=2011-11-22[/tpl]
+
+==Operation==
+
+A typical IXP consists of one or more network switches, to which each of the participating ISPs connect.  Prior to the existence of switches, IXPs typically employed fiber-optic inter-repeater link (FOIRL) hubs or Fiber Distributed Data Interface (FDDI) rings, migrating to Ethernet and FDDI switches as those became available in 1993 and 1994.
+Asynchronous Transfer Mode (ATM) switches were briefly used at a few IXPs in the late 1990s, accounting for approximately 4% of the market at their peak, and there was an abortive attempt by the Stockholm IXP, NetNod, to use SRP/DPT, but Ethernet has prevailed, accounting for more than 95% of all existing Internet exchange switch fabrics.  All Ethernet port speeds are to be found at modern IXPs, ranging from 10 Mbit/s ports in use in small developing-country IXes, to ganged 10 Gbit/s ports in major centers like Seoul, New York, London, Frankfurt, Amsterdam, and Palo Alto. Ports with 100 Gbit/s are available at e.g. the AMS-IX in Amsterdam and the DE-CIX in Frankfurt.
+The technical and business logistics of traffic exchange between ISPs is governed by mutual peering agreements. Under such agreements, traffic is often exchanged without compensation. When an IXP incurs operating costs, they are typically shared among all of its participants.
+At the more expensive exchanges, participants pay a monthly or annual fee, usually determined by the speed of the port or ports which they are using, or much less commonly by the volume of traffic which they are passing across the exchange. Fees based on volume of traffic are unpopular because they provide a counterincentive to growth of the exchange. Some exchanges charge a setup fee to offset the costs of the switch port and any media adaptors (gigabit interface converters, small form-factor pluggable transceivers, XFP transceivers, XENPAKs, etc.) that the new participant requires.
+
+==Traffic exchange across an Internet exchange point==
+
+Internet traffic exchange between two participants on an IXP is facilitated by Border Gateway Protocol (BGP) routing configurations between them. They choose to announce routes via the peering relationship — either routes to their own addresses, or routes to addresses of other ISPs that they connect to, possibly via other mechanisms. The other party to the peering can then apply route filtering, where it chooses to accept those routes, and route traffic accordingly, or to ignore those routes, and use other routes to reach those addresses.
+In many cases, an ISP will have both a direct link to another ISP and accept a route (normally ignored) to the other ISP through the IXP; if the direct link fails, traffic will then start flowing over the IXP. In this way, the IXP acts as a backup link.
+When these conditions are met, and a contractual structure exists to create a market to purchase network services, the IXP is sometimes called a transit exchange.  The Vancouver Transit Exchange, for example, is described as a "shopping mall" of service providers at one central location, making it easy to switch providers - "as simple as getting a VLAN to a new provider."[tpl]cite web |url=http://billstarnaud.blogspot.com/2009/06/how-r-networks-can-help-small-business.html |title=Transit Exchange helps Novus Entertainment Save on Internet Costs and Improve Performance  |work=How R&E networks can help small business |author=BCnet |publisher=Bill St. Arnaud  |date=2009-06-04 |accessdate=2012-09-11[/tpl] The VTE is run by BCNET, a public entity.
+Advocates of green broadband schemes and more competitive telecom services often advocate aggressive expansion of transit exchanges into every municipal area network so that competing service providers can place such equipment as video on demand hosts and PSTN switches to serve existing phone equipment, without being answerable to any monopoly incumbent.
+
+==See also==
+
+Historical:
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,46 @@
+[[Prepared statement]]
+
+CATEGORIES: Databases, SQL
+
+In database management systems, a prepared statement or parameterized statement is a feature used to execute the same or similar database statements repeatedly with high efficiency. Typically used with SQL statements such as queries or updates, the prepared statement takes the form of a template into which certain constant values are substituted during each execution.
+The typical workflow of using a prepared statement is as follows:
+As compared to executing SQL statements directly, prepared statements offer two main advantages:
+On the other hand, if a query is executed only once, server-side prepared statements can be slower because of the additional round-trip to the server.
+A stored procedure, which is also precompiled and stored on the server for later execution, has similar advantages. Unlike a stored procedure, a prepared statement is not normally written in a procedural language and cannot use or modify variables or use control flow structures, relying instead on the declarative database query language. Due to their simplicity and client-side emulation, prepared statements are more portable across vendors.
+
+Software support
+
+Prepared statements are widely supported by major DBMSs, including MySQL,
+A number of programming languages support prepared statements in their standard libraries and will emulate them on the client side even if the underlying DBMS does not support them, including Java's JDBC, Client-side emulation can be faster for queries which are executed only once, by reducing the number of round trips to the server, but is usually slower for queries executed many times. It resists SQL injection attacks equally effectively.
+Many types of SQL injection attacks can be eliminated by disabling literals, effectively requiring the use of prepared statements; as of 2007 only H2 supports this feature.
+
+Examples
+
+Java JDBC
+
+This example uses Java and the JDBC API:
+Java PreparedStatement provides "setters" (setInt(int), setString(String), setDouble(double), etc.) for all major built-in data types.
+
+PHP PDO
+
+This example uses PHP and PHP Data Objects (PDO):
+
+PERL DBI
+
+This example uses Perl and DBI:
+
+C# ADO.NET
+
+This example uses C# and ADO.NET:
+ADO. Note the use of "named parameters" (i.e. "@username") rather than "?" - this allows you to use a parameter multiple times and in any arbitrary order within the query command text.
+However, the AddWithValue method should not be used with variable length data types, like varchar and nvarchar. This is because . The consequence of this is that a different query plan is compiled and stored for each different length. In general, the maximum number of 'duplicate' plans is the product of the lengths of the variable length columns as specified in the database. For this reason, it is important to use the standard Add method for variable length columns:
+command.Add(ParamName, VarChar, ParamLength).
+Since the standard Add method needs to be used for variable length data types, it is a good habit to use it for all parameter types.
+
+Python DB-API
+
+This example uses Python DB-API with SQLite and paramstyle='qmark':
+
+
+
+

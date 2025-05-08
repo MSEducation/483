@@ -1,0 +1,34 @@
+#!/usr/bin/env /bin/bash
+rm -r cleaned-prepared-wiki 2>/dev/null
+mkdir cleaned-prepared-wiki
+cd cleaned-prepared-wiki
+files=( ../prepared-wiki/* )
+min_size=$((1024 * 5)) # 5KB in bytes
+SDQUO=$(echo -ne '\u2018\u2019')
+RDQUO=$(echo -ne '\u201C\u201D') # Source: https://opensource.com/article/21/9/sed-replace-smart-quotes
+# I could not use cat "${files[@]}" code like in make_docs because "${files[@]}" had more filenames than the kernel's MAX_ARG limit for a exec() syscall or something.
+# Source: https://stackoverflow.com/a/8880633
+for file in "${files[@]}"
+do
+	first_line=$(head -n 1 "$file")
+	if [[ "$first_line" =~ ^\[\[ ]]; then
+		# include file in final list, because it matched the pattern.	
+		file_size=$(stat -c %s "$file")
+    		if [[ "$file_size" -gt "$min_size" ]]; then
+			#cat $file | sed -E "s/^CATEGORIES: .*$//" > $(basename "$file")
+			#|(\|\S+=[^\|\[]+)
+			# Source for using @ as sed delimiter: https://stackoverflow.com/a/9366940
+			cat $file | sed -E "s@(==Overview==)|(==References==)|(==See also==)|(==External links==)|(^===)|(===$)|(^==)|(==$)|(\[tpl\].*\[/tpl\])|( Retrieved on [A-z]+ [0-9]+, [0-9]{4}\.)@@g" > $(basename "$file")
+			#cat $(basename "$file") | sed -E "s/(\.[A-z]{2,} \([0-9]{4}\), p\. [0-9]+(-[0-9]+)?)|(\.[A-z]{2}[^\.])/./g" > $(basename "$file")
+			#cat $(basename "$file") | sed -E "s/(\.[A-z]{2,} \([0-9]{4}\)(,|\.) p\. ?[0-9]+(-[0-9]+)?)|(\.[A-z]{2}[^\.]+)/./g" > $(basename "$file")BLAH
+			sed -i -E "s/(\.[A-z]{2,} \([0-9]{4}\)(,|\.))|(p\.[ ]?[0-9]+\. ISBN[- A-z0-9,]+\.)|(\.[A-z]{2}[^\.]+\.)/./g" $(basename "$file")
+			#sed -i "s/”|“|“/\"/g" $(basename "$file")
+			sed -i -e "s/[$SDQUO]/\'/g" -e "s/[$RDQUO]/\"/g" $(basename "$file") # Source: https://opensource.com/article/21/9/sed-replace-smart-quotes
+			sed -i -E "s@https?://\S+@@g" $(basename "$file")
+		fi
+	#else
+		# do not include file in the final list
+		#rm
+	fi
+#sed -i -n '/==/q;p' $file # Source: https://stackoverflow.com/a/5227429
+done

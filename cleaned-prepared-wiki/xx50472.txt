@@ -1,0 +1,43 @@
+[[Kernel panic]]
+
+CATEGORIES: Screens of death, Computer errors, Operating system kernels
+
+A kernel panic is an action taken by an operating system upon detecting an internal fatal error from which it cannot safely recover.  The term is largely specific to Unix and Unix-like systems; for Microsoft Windows operating systems the equivalent term is "stop error" (or, colloquially, "Blue Screen of Death").
+The kernel routines that handle panics, known as panic() in AT&T-derived and BSD Unix source code, are generally designed to output an error message to the console, dump an image of kernel memory to disk for post-mortem debugging and then either wait for the system to be manually rebooted, or initiate an automatic reboot.unix. Kernel panics can also be caused by errors originating outside of kernel space. For example, many Unix OSes panic if the init process, which runs in userspace, terminates.HP-UX init died panicIRIX init died panic
+
+History
+
+The Unix kernel maintains internal consistency and runtime correctness with assertions as the fault detection mechanism. The basic assumption is that the hardware and the software should perform correctly and a failure of an assertion results in a panic, i.e. a voluntary halt to all system activity. The kernel panic was introduced in an early version of Unix and demonstrated a major difference between the design philosophies of Unix and its predecessor Multics. Multics developer Tom van Vleck recalls a discussion of this change with Unix developer Dennis Ritchie:
+ I remarked to Dennis that easily half the code I was writing in Multics was error recovery code. He said, "We left all that stuff out. If there's an error, we have this routine called panic, and when it is called, the machine crashes, and you holler down the hall, 'Hey, reboot it.'"Unix and Multics 
+The original panic() function was essentially unchanged from Fifth Edition UNIX to the VAX-based UNIX 32V and output only an error message with no other information, then dropped the system into an endless idle loop.
+Source code of panic() function in UNIX V6:Source code /usr/sys/ken/prf.c from UNIX V6
+As the Unix codebase was enhanced, the panic() function was also enhanced to dump various forms of debugging information to the console.
+
+Causes
+
+A panic may occur as a result of a hardware failure or a software bug in the operating system. In many cases, the operating system is capable of continued operation after an error has occurred. However, the system is in an unstable state and rather than risking security breaches and data corruption, the operating system stops to prevent further damage and facilitate diagnosis of the error and, in usual cases, restart.
+After recompiling a kernel binary image from source code, a kernel panic during booting the resulting kernel is a common problem if the kernel was not correctly configured, compiled or installed.
+The following is an implementation of the Linux kernel final initialization in kernel_init():linux/init/main.c, LXR Cross Referencer
+
+Operating-system-dependent details
+
+Linux
+
+Kernel panics appear in Linux like other Unix-like systems, but they can also generate another kind of error condition, known as a kernel oops. As an oops could cause some subsystems or resources to become unavailable, they can later lead to a full kernel panic.
+
+Mac OS X
+
+When a kernel panic occurs in Mac OS X 10.2 through 10.7, the computer displays a multilingual message informing the user that they need to reboot the system."You need to restart your computer" (kernel panic) message appears (Mac OS X v10.5, 10.6) Prior to 10.2, a more traditional Unix-style panic message was displayed; in 10.8 and later, the computer automatically reboots and displays a message after the restart.  The format of the message varies from version to version:A New Screen of Death for Mac OS X
+In all versions above 10.2, the text is in superimposed on a standby symbol and is not full screen. Debugging information is saved in NVRAM and written to a log file on reboot. In 10.7 there is a feature to automatically restart after a kernel panic. In some cases, on 10.2 and later, white text detailing the error may appear in addition to the standby symbol.
+
+Image:Mac OS X 10.0 10.1 Kernel Panic.0 - 10.1 kernel panic
+Image:Mac OS X 10.2 Kernel Panic.2 kernel panic
+Image:MacOSX kernel panic.3 – 10.5 kernel panic
+Image:Panic10.6.6 and 10.7 kernel panic.
+Image:OS X Mountain Lion kernel panic.8 and later versions like OS X 10.9.
+
+
+
+
+
+

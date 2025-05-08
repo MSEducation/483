@@ -1,0 +1,21 @@
+[[Stunnel]]
+
+CATEGORIES: Cryptographic software, Free security software, Unix network-related software
+
+Stunnel is an open-source multi-platform computer program, used to provide universal TLS/SSL tunneling service.
+Stunnel can be used to provide secure encrypted connections for clients or servers that do not speak [tpl]Abbr|TLS|Transport Layer Security[/tpl] or [tpl]Abbr|SSL|Secure Socket Layer[/tpl] natively.O'Donovan, Barry Secure Communication with Stunnel, Linux Gazette, Issue 107, October 2004 It runs on a variety of operating systems,Stunnel Ports including most Unix-like operating systems and Windows.  Stunnel relies on a separate library, such as OpenSSL or SSLeay, to implement the underlying TLS or SSL protocol.
+Stunnel uses public-key cryptography with X.509 digital certificates to secure the SSL connection.  Clients can optionally be authenticated via a certificate too.stunnel(8) manual
+If linked against libwrap, it can be configured to act as a proxy-firewall service as well.
+Stunnel is maintained by Michał Trojnara. Released under the terms of the GNU General Public License (GPL) with OpenSSL exception.
+
+==Example scenario==
+
+For example, one could use Stunnel to provide a secure SSL connection to an existing non-SSL-aware SMTP mail server.  Assume the SMTP server expects TCP connections on port 25. One would configure Stunnel to map the SSL port 465 to non-SSL port 25.  A mail client connects via SSL to port 465.  Network traffic from the client initially passes over SSL to the Stunnel application, which transparently encrypts/decrypts traffic and forwards unsecured traffic to port 25 locally.  The mail server sees a non-SSL mail client.
+The Stunnel process could be running on the same or a different server from the unsecured mail application; however, both machines would typically be behind a firewall on a secure internal network (so that an intruder could not make its own unsecured connection directly to port 25).
+Another typical example is to use it to bypass an over secure firewall: You're on a LAN with no SSH access to the Web. But the SSL protocol (port 443) can get through. Using stunnel you can encapsulate your SSH connection in SSLSimple SSH tunneling http://timok.tumblr.com/post/83605697848/simple-ssh-tunneling-from-work-to-home.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,70 @@
+[[Z-buffering]]
+
+CATEGORIES: 3D rendering
+
+In computer graphics, z-buffering, also known as depth buffering, is the management of image depth coordinates in three-dimensional (3-D) graphics, usually done in hardware, sometimes in software. It is one solution to the visibility problem, which is the problem of deciding which elements of a rendered scene are visible, and which are hidden. The painter's algorithm is another common solution which, though less efficient, can also handle non-opaque scene elements.
+When an object is rendered, the depth of a generated pixel (z coordinate) is stored in a buffer (the z-buffer or depth buffer). This buffer is usually arranged as a two-dimensional array (x-y) with one element for each screen pixel. If another object of the scene must be rendered in the same pixel, the method compares the two depths and overrides the current pixel if the object is closer to the observer. The chosen depth is then saved to the z-buffer, replacing the old one. In the end, the z-buffer will allow the method to correctly reproduce the usual depth perception: a close object hides a farther one. This is called z-culling.
+The granularity of a z-buffer has a great influence on the scene quality: a 16-bit z-buffer can result in artifacts (called "z-fighting") when two objects are very close to each other. A 24-bit or 32-bit z-buffer behaves much better, although the problem cannot be entirely eliminated without additional algorithms. An 8-bit z-buffer is almost never used since it has too little precision.
+
+==Uses==
+
+The Z-buffer is a technology used in almost all contemporary computers, laptops and mobile phones for performing 3-D (3 dimensional) graphics, for example for computer games. The Z-buffer is implemented as hardware in the silicon ICs (integrated circuits) within these computers. The Z-buffer is also used (implemented as software as opposed to hardware) for producing computer-generated special effects for films.
+Furthermore, Z-buffer data obtained from rendering a surface from a light's point-of-view permits the creation of shadows by the "shadow mapping" technique.
+
+==Developments==
+
+Even with small enough granularity, quality problems may arise when precision in the z-buffer's distance values is not spread evenly over distance. Nearer values are much more precise (and hence can display closer objects better) than values which are farther away. Generally, this is desirable, but sometimes it will cause artifacts to appear as objects become more distant. A variation on z-buffering which results in more evenly distributed precision is called w-buffering (see below).
+At the start of a new scene, the z-buffer must be cleared to a defined value, usually 1.0, because this value is the upper limit (on a scale of 0 to 1) of depth, meaning that no object is present at this point through the viewing frustum. 
+The invention of the z-buffer concept is most often attributed to Edwin Catmull, although Wolfgang Straßer also described this idea in his 1974 Ph.D. thesis1.
+On recent PC graphics cards (1999–2005), z-buffer management uses a significant chunk of the available memory bandwidth. Various methods have been employed to reduce the performance cost of z-buffering, such as lossless compression (computer resources to compress/decompress are cheaper than bandwidth) and ultra fast hardware z-clear that makes obsolete the "one frame positive, one frame negative" trick (skipping inter-frame clear altogether using signed numbers to cleverly check depths).
+
+==Z-culling==
+
+In rendering, z-culling is early pixel elimination based on depth, a method that provides an increase in performance when rendering of hidden surfaces is costly. It is a direct consequence of z-buffering, where the depth of each pixel candidate is compared to the depth of existing geometry behind which it might be hidden. 
+When using a z-buffer, a pixel can be culled (discarded) as soon as its depth is known, which makes it possible to skip the entire process of lighting and texturing a pixel that would not be visible anyway. Also, time-consuming pixel shaders will generally not be executed for the culled pixels. This makes z-culling a good optimization candidate in situations where fillrate, lighting, texturing or pixel shaders are the main bottlenecks.
+While z-buffering allows the geometry to be unsorted, sorting polygons by increasing depth (thus using a reverse painter's algorithm) allows each screen pixel to be rendered fewer times. This can increase performance in fillrate-limited scenes with large amounts of overdraw, but if not combined with z-buffering it suffers from severe problems such as: 
+As such, a reverse painter's algorithm cannot be used as an alternative to Z-culling (without strenuous re-engineering), except as an optimization to Z-culling. For example, an optimization might be to keep polygons sorted according to x/y-location and z-depth to provide bounds, in an effort to quickly determine if two polygons might possibly have an occlusion interaction.
+
+==Algorithm==
+
+Given: A list of polygons {P1,P2,.....Pn}
+
+Output: A COLOR array, which displays the intensity of the visible polygon surfaces.
+
+Initialize:
+           note : z-depth and z-buffer(x,y) is positive........
+            z-buffer(x,y)=max depth; and
+            COLOR(x,y)=background color.
+Begin:
+       for(each polygon P in the polygon list) 
+       do{
+           for(each pixel(x,y) that intersects P) 
+           do{
+                Calculate z-depth of P at (x,y)
+                If (z-depth < z-buffer[x,y]) 
+                then{
+                       z-buffer[x,y]=z-depth;
+                       COLOR(x,y)=Intensity of P at(x,y);
+                    }
+             }
+         }
+   display COLOR array.
+
+==Mathematics==
+
+===Fixed-point representation===
+
+===W-buffer===
+
+Whether a z-buffer or w-buffer results in a better image depends on the application.
+
+==See also==
+
+==References==
+
+==External links==
+
+==Notes==
+
+Note 1: see W.K. Giloi, J.L. Encarnação, W. Straßer. "The Giloi’s School of Computer Graphics". Computer Graphics 35 4:12–16.
+

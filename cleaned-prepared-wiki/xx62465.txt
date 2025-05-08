@@ -1,0 +1,47 @@
+[[Martingale (probability theory)]]
+
+CATEGORIES: Stochastic processes, Martingale theory, Game theory
+
+In probability theory, a martingale is a model of a fair game where knowledge of past events never helps predict the mean of the future winnings. In particular, a martingale is a sequence of random variables (i.e., a stochastic process) for which, at a particular time in the realized sequence, the expectation of the next value in the sequence is equal to the present observed value even given knowledge of all prior observed values at a current time.
+To contrast, in a process that is not a martingale, it may still be the case that the expected value of the process at one time is equal to the expected value of the process at the next time. However, knowledge of the prior outcomes (e.g., all prior cards drawn from a card deck) may be able to reduce the uncertainty of future outcomes. Thus, the expected value of the next outcome given knowledge of the present and all prior outcomes may be higher than the current outcome if a winning strategy is used. Martingales exclude the possibility of winning strategies based on game history, and thus they are a model of fair games.
+
+History
+
+Originally, martingale referred to a class of betting strategies that was popular in 18th-century France.  The simplest of these strategies was designed for a game in which the gambler wins his stake if a coin comes up heads and loses it if the coin comes up tails.  The strategy had the gambler double his bet after every loss so that the first win would recover all previous losses plus win a profit equal to the original stake.  As the gambler's wealth and available time jointly approach infinity, his probability of eventually flipping heads approaches 1, which makes the martingale betting strategy seem like a sure thing.  However, the exponential growth of the bets eventually bankrupts its users, assuming the obvious and realistic i.e. finite bankrolls (one of the reasons casinos, though normatively enjoying a mathematical edge in the games offered to their patrons, impose betting limits). Stopped Brownian motion, which is a martingale process, can be used to model the trajectory of such games.
+The concept of martingale in probability theory was introduced by Paul Lévy in 1934, though he did not name them: the term "martingale" was introduced later by , who also extended the definition to continuous martingales. Much of the original development of the theory was done by Joseph Leo Doob among others.  Part of the motivation for that work was to show the impossibility of successful betting strategies.
+
+Definitions
+
+A basic definition of a discrete-time martingale is a discrete-time stochastic process (i.e., a sequence of random variables) X1, X2, X3, ... that satisfies for any time n,
+That is, the conditional expected value of the next observation, given all the past observations, is equal to the last observation. Due to the linearity of expectation, this second requirement is equivalent to:
+
+Martingale sequences with respect to another sequence
+
+More generally, a sequence Y1, Y2, Y3 ... is said to be a martingale with respect to another sequence X1, X2, X3 ... if for all n
+Similarly, a continuous-time martingale with respect to the stochastic process Xt is a stochastic process Yt such that for all t
+
+General definition
+
+It is important to note that the property of being a martingale involves both the filtration and the probability measure (with respect to which the expectations are taken).  It is possible that Y could be a martingale with respect to one measure but not another one; the Girsanov theorem offers a way to find a measure with respect to which an Itō process is a martingale.
+
+Examples of martingales
+
+Submartingales, supermartingales, and relationship to harmonic functions
+
+There are two popular generalizations of a martingale that also include cases when the current observation Xn is not necessarily equal to the future conditional expectation EXn+1|X1,...,Xn but instead an upper or lower bound on the conditional expectation. These definitions reflect a relationship between martingale theory and potential theory, which is the study of harmonic functions. Just as a continuous-time martingale satisfies EXt|{Xτ : τ≤s} − Xs = 0 ∀s ≤ t, a harmonic function f satisfies the partial stochastic differential equation Δf = 0 where Δ is the Laplacian operator. Given a Brownian motion process Wt and a harmonic function f, the resulting process f(Wt) is also a martingale.
+
+Examples of submartingales and supermartingales
+
+Martingales and stopping times
+
+A stopping time with respect to a sequence of random variables X1, X2, X3, ... is a random variable τ with the property that for each t, the occurrence or non-occurrence of the event τ = t depends only on the values of X1, X2, X3, ..., Xt. The intuition behind the definition is that at any particular time t, you can look at the sequence so far and tell if it is time to stop.  An example in real life might be the time at which a gambler leaves the gambling table, which might be a function of his previous winnings (for example, he might leave only when he goes broke), but he can't choose to go or stay based on the outcome of games that haven't been played yet.
+In some contexts the concept of stopping time is defined by requiring only that the occurrence or non-occurrence of the event τ = t be probabilistically independent of Xt + 1, Xt + 2, ... but not that it be completely determined by the history of the process up to time t.  That is a weaker condition than the one appearing in the paragraph above, but is strong enough to serve in some of the proofs in which stopping times are used.
+The concept of a stopped martingale leads to a series of important theorems, including, for example, the optional stopping theorem which states that, under certain conditions, the expected value of a martingale at a stopping time is equal to its initial value.
+
+
+
+Notes
+
+
+
+

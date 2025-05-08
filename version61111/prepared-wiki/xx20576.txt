@@ -1,0 +1,53 @@
+ Zweig, George Biography on Scienceworld.wolfram.com</ref> Pierre Goupillaud, [[Alex Grossman|Grossmann]] and [[Jean Morlet|Morlet]]'s formulation of what is now known as the CWT (1982), Jan-Olov Strömberg's early work on discrete wavelets (1983), [[Ingrid Daubechies|Daubechies]]' orthogonal wavelets with compact support (1988), [[Stephane Mallat|Mallat]]'s multiresolution framework (1989), [[Ali Akansu|Akansu]]'s [[Binomial QMF]] (1990), Nathalie Delprat's time-frequency interpretation of the CWT (1991), Newland's [[harmonic wavelet transform]] (1993) and many others since.
+
+===Timeline===
+
+==Wavelet transforms==
+
+A wavelet is a mathematical function used to divide a given function or continuous-time signal into different scale components. Usually one can assign a frequency range to each scale component. Each scale component can then be studied with a resolution that matches its scale.  A wavelet transform is the representation of a function by wavelets.  The wavelets are scaled and translated copies (known as "daughter wavelets") of a finite-length or fast-decaying oscillating waveform (known as the "mother wavelet").  Wavelet transforms have advantages over traditional Fourier transforms for representing functions that have discontinuities and sharp peaks, and for accurately deconstructing and reconstructing finite, non-periodic and/or non-stationary signals.
+Wavelet transforms are classified into discrete wavelet transforms (DWTs) and continuous wavelet transforms (CWTs).  Note that both DWT and CWT are continuous-time (analog) transforms. They can be used to represent continuous-time (analog) signals. CWTs operate over every possible scale and translation whereas DWTs use a specific subset of scale and translation values or representation grid.
+There are a large number of wavelet transforms each suitable for different applications.  For a full list see list of wavelet-related transforms but the common ones are listed below:
+
+===Generalized transforms===
+
+There are a number of generalized transforms of which the wavelet transform is a special case.  For example, Joseph [tpl]Proper name|Segman[/tpl] introduced scale into the Heisenberg group, giving rise to a continuous transform space that is a function of time, scale, and frequency.  The CWT is a two-dimensional slice through the resulting 3d time-scale-frequency volume.
+Another example of a generalized transform is the chirplet transform in which the CWT is also a two dimensional slice through the chirplet transform.
+An important application area for generalized transforms involves systems in which high frequency resolution is crucial.  For example, darkfield electron optical transforms intermediate between direct and reciprocal space have been widely used in the harmonic analysis of atom clustering, i.e. in the study of crystals and crystal defects.P. Hirsch, A. Howie, R. Nicholson, D. W. Pashley and M. J. Whelan (1965/1977) Electron microscopy of thin crystals (Butterworths, London/Krieger, Malabar FLA) ISBN 0-88275-376-2  Now that transmission electron microscopes are capable of providing digital images with picometer-scale information on atomic periodicity in nanostructure of all sorts, the range of pattern recognitionP. Fraundorf, J. Wang, E. Mandell and M. Rose (2006) Digital darkfield tableaus, Microscopy and Microanalysis 12:S2, 1010–1011 (cf. arXiv:cond-mat/0403017) and strainM. J. Hÿtch, E. Snoeck and R. Kilaas (1998) Quantitative measurement of displacement and strain fields from HRTEM micrographs, Ultramicroscopy 74:131-146./metrologyMartin Rose (2006) Spacing measurements of lattice fringes in HRTEM image using digital darkfield decomposition (M.S. Thesis in Physics, U. Missouri – St. Louis) applications for intermediate transforms with high frequency resolution (like brushletsF. G. Meyer and R. R. Coifman (1997) Applied and Computational Harmonic Analysis 4:147. and ridgeletsA. G. Flesia, H. Hel-Or, A. Averbuch, E. J. Candes, R. R. Coifman and D. L. Donoho (2001) Digital implementation of ridgelet packets (Academic Press, New York).) is growing rapidly.
+Fractional wavelet transform (FRWT) is a generalization of the classical wavelet transform in the fractional Fourier transform domains. This transform is capable of providing the time- and fractional-domain information simultaneously and representing signals in the time-fractional-frequency plane.J. Shi, N.-T. Zhang, and X.-P. Liu, "A novel fractional wavelet transform and its applications," Sci. China Inf. Sci., vol. 55, no. 6, pp. 1270–1279, June 2012. URL: http://www.springerlink.com/content/q01np2848m388647/
+
+==Applications of Wavelet Transform==
+
+Generally, an approximation to DWT is used for data compression if a signal is already sampled, and the CWT for signal analysis.A.N. Akansu, W.A. Serdijn and I.W. Selesnick, Emerging applications of wavelets: A review, Physical Communication, Elsevier, vol. 3, issue 1, pp. 1-18, March 2010. Thus, DWT approximation is commonly used in engineering and computer science, and the CWT in scientific research.
+Like some other transforms, wavelet transforms can be used to transform data, then encode the transformed data, resulting in effective compression. For example, JPEG 2000 is an image compression standard that uses biorthogonal wavelets.  This means that although the frame is overcomplete, it is a tight frame (see types of Frame of a vector space), and the same frame functions (except for conjugation in the case of complex wavelets) are used for both analysis and synthesis, i.e., in both the forward and inverse transform. For details see wavelet compression.
+A related use is for smoothing/denoising data based on wavelet coefficient thresholding, also called wavelet shrinkage.  By adaptively thresholding the wavelet coefficients that correspond to undesired frequency components smoothing and/or denoising operations can be performed.
+Wavelet transforms are also starting to be used for communication applications. Wavelet OFDM is the basic modulation scheme used in HD-PLC (a power line communications technology developed by Panasonic), and in one of the optional modes included in the IEEE 1901 standard.  Wavelet OFDM can achieve deeper notches than traditional FFT OFDM, and wavelet OFDM does not require a guard interval (which usually represents significant overhead in FFT OFDM systems).[tpl]cite journal |title= Recent Developments in the Standardization of Power Line Communications within the IEEE |authors= Stefano Galli, O. Logvinov |work= IEEE Communications Magazine |date= July 2008 |volume= 46 |number= 7 |pages= 64–71 |doi= 10.1109/MCOM.2008.4557044 [/tpl] An overview of P1901 PHY/MAC proposal.
+
+===As a representation of a signal===
+
+Often, signals can be represented well as a sum of sinusoids. However, consider a non-continuous signal with an abrupt discontinuity; this signal can still be represented as a sum of sinusoids, but requires an infinite number, which is an observation known as Gibbs phenomenon. This, then, requires an infinite number of Fourier coefficients, which is not practical for many applications, such as compression. Wavelets are more useful for describing these signals with discontinuities because of their time-localized behavior (both Fourier and wavelet transforms are frequency-localized, but wavelets have an additional time-localization property). Because of this, many types of signals in practice may be non-sparse in the Fourier domain, but very sparse in the wavelet domain. This is particularly useful in signal reconstruction, especially in the recently popular field of compressed sensing. (Note that the Short-time Fourier transform (STFT) is also localized in time and frequency, but there are often problems with the frequency-time resolution trade-off. Wavelets are better signal representations because of multiresolution analysis.)
+This motivates why wavelet transforms are now being adopted for a vast number of applications, often replacing the conventional Fourier Transform. Many areas of physics have seen this paradigm shift, including molecular dynamics, ab initio calculations, astrophysics, density-matrix localisation, seismology, optics, turbulence and quantum mechanics.  This change has also occurred in image processing, EEG, EMG,J. Rafiee et al. Feature extraction of forearm EMG signals for prosthetics, Expert Systems with Applications 38 (2011) 4058–67. ECG analyses, brain rhythms, DNA analysis, protein analysis, climatology, human sexual response analysis,J. Rafiee et al. Female sexual responses using signal processing techniques, The Journal of Sexual Medicine 6 (2009) 3086–96. (pdf) general signal processing, speech recognition, acoustics, vibration signals,J. Rafiee and Peter W. Tse, Use of autocorrelation in wavelet coefficients for fault diagnosis, Mechanical Systems and Signal Processing 23 (2009) 1554–72. computer graphics, multifractal analysis, and sparse coding. In computer vision and image processing, the notion of scale space representation and Gaussian derivative operators is regarded as a canonical multi-scale representation.
+
+===Wavelet Denoising===
+
+Since W is orthogonal, the estimation problem amounts to recovery of a signal in iid Gaussian noise. As p is sparse, one method is to apply a gaussian mixture model for p.
+Small coefficients are mostly noises, and large coefficients contain actual signal.
+
+==List of wavelets==
+
+===Discrete wavelets===
+
+===Continuous wavelets===
+
+====Real-valued====
+
+====Complex-valued====
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

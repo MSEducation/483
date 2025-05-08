@@ -1,0 +1,62 @@
+[[Twistor memory]]
+
+CATEGORIES: History of computing hardware, Computer memory, Non-volatile memory
+
+Twistor is a form of computer memory formed by wrapping magnetic tape around a current-carrying wire. Operationally, twistor was very similar to core memory. Twistor could also be used to make ROM memories, including a re-programmable form known as piggyback twistor. Both forms were able to be manufactured using automated processes, which was expected to lead to much lower production costs than core-based systems.
+Introduced by Bell Labs in 1957, the first commercial use was in their 1ESS switch which went into operation in 1965. Twistor was used only briefly in the late 1960s and early 1970s, when semiconductor memory devices replaced almost all earlier memory systems. The basic ideas behind twistor also led to the development of bubble memory, although this had a similarly short commercial lifespan.
+
+==Core Memory==
+
+===Construction===
+
+In core memory, small ring-shaped magnets - the cores - are threaded by two crossed wires, X and Y, to make a matrix known as a plane. When one X and one Y wire are powered, a magnetic field is generated at a 45-degree angle to the wires. The core magnets sit on the wires at a 45-degree angle, so the single core wrapped around the crossing point of the powered X and Y wires will pick up the induced field.
+The materials used for the core magnets were specially chosen to have a very "square" magnetic hysteresis pattern. This meant that fields just below a certain threshold will do nothing, but those just above this threshold will cause the core to pick up that magnetic field. The square pattern and sharp flipping states ensures that a single core can be addressed within a grid; nearby cores will see a slightly different field, and not be selected.
+
+===Data retrieval===
+
+The basic operation in a core memory is writing. This is accomplished by powering a selected X and Y wire both to the current level that will, by itself, create ½ the critical magnetic field. This will cause the field at the crossing point to be greater than the core's saturation point, and the core will pick up the external field. Ones and zeros are represented by the direction of the field, which can be set simply by changing the direction of the current flow in one of the two wires.
+In core memory, a third wire - the sense/inhibit line - is needed to write or read a bit. Reading uses the process of writing; the X and Y lines are powered in the same fashion that they would be to write a "0" to the selected core. If that core held a "1" at that time, a short pulse of electricity is induced into the sense/inhibit line. If no pulse is seen, the core held a "0". This process is destructive; if the core did hold a "1", that pattern is destroyed during the read, and has to be re-set in a subsequent operation.
+The sense/inhibit line is shared by all of the cores in a particular plane, meaning that only one bit can be read (or written) at once. Core planes were typically stacked in order to store one bit of a word per plane, and a word could be read or written in a single operation by working all of the planes at once.
+Between reads or writes the data was stored magnetically. This means that core is a non-volatile memory.
+
+===Manufacturing===
+
+Manufacturing core was a major issue. The X and Y wires had to be threaded through the cores in a weave pattern, and the sense/inhibit line passed through every core in a plane. In spite of considerable effort, no one successfully automated the production of core, which remained a manual task into the 1970s. To increase memory density one had to use smaller cores, which greatly increased the difficulty of wiring them onto the lines. Although the density of core increased many times over its operational lifetime, the per-bit cost of core remained steady.
+
+==Twistor==
+
+Twistor was similar in concept to core memory, but replaced the circular magnets with magnetic tape to store the patterns. The tape was wrapped around one set of the wires, the equivalent of the X line, in such a way that it formed a 45-degree helix. The Y wires were replaced by solenoids wrapping a number of twistor wires. Selection of a particular bit was the same as in core, with one X and Y line being powered, generating a field at 45 degrees. The magnetic tape was specifically selected to only allow magnetization along the length of the tape, so only a single point of the twistor would have the right direction of field to become magnetized.
+The original twistor system used permalloy tape wrapped around a 3 mil copper wire. For any given length of wire, the tape was wound up over only the first half. The copper wire was then bent at the point where the tape ended, and ran back alongside the portion with the tape, forming a return conductor. This meant all the connections were at one end. Several such twistor lines were laid side-by-side and then laminated into a PET film plastic sheet, with the twistors and their return wires about 1/10th of an inch apart. A typical tape might have five twistor wires and their returns, so the sheet was just over an inch wide. The solenoid was similarly constructed, consisting of a number of 0.15 inch wide copper tapes laminated into a plastic tape of the same basic dimensions as the twistor. Unlike a traditional solenoid with many turns of wire around an open core, this system was essentially nothing more than single wires in a sheet of plastic.
+To build the complete memory system, a sheet of the solenoid was laid out flat, say along the X direction, and then a sheet of the twistor was laid on top at right angles to it along the Y axis. The solenoid tape was then folded over, so that it wrapped the twistor sheet, producing a series of U-shaped solenoids. Now another layer of the solenoid tape is laid over the first, the twistor tape folded over so it now runs along the negative Y axis across the top of the new solenoid tape, and then the solenoid tape is folded over to form a second set of loops. This process continues until the twistor strip is "used up", forming a compact cube of memory. Along one side of the memory, connected to each of the solenoid loops, was a series of small cores used solely for switching (their original purpose, development as a memory came later).
+The main reason for Bell's development of twistor is that the process could be highly automated. Although the folding process that completed the twistor might be carried out by hand, the layup and laminating of the sheets was easily handled by machine. Improved versions of twistor also wrapped the section of bare copper initially used solely for the return path, thereby doubling density without any changes to the production techniques.
+
+===Operation===
+
+Writing to twistor was effectively identical to core; a particular bit was selected by powering one of the twistor wires and one of the solenoid loops to ½ of the required power, such that the required field strength was created only at the intersection of the two.
+Reading used a different process. Unlike core, twistor did not have a sense/inhibit line. Instead, it used a larger current in the solenoid, large enough to flip all of the bits in that loop, and then used the twistor wires as the read line.
+Twistor was thus read and written one plane at a time, rather than in core, where only one bit per plane could be used at once.
+
+===Permanent magnet twistor===
+
+Twistor could be modified to produce a ROM that could be easily re-programmed. To do this, one-half of each solenoid loop was replaced with an aluminum card into which tiny vicalloy bar magnets were embedded. As the solenoids have to be complete circuits in order for current to flow through them, they were still inserted as folded sheets, but in this case the loop was inserted between the folds of twistor instead of around them. This allowed the single sheet to act as one half of a solenoid loop for two folds of the twistor, above and below. To complete the loop, the card of magnets was placed on the other side of the twistor tape.
+Reads were preformed by powering the solenoid to a point about half of that needed to produce a write. This field was "reflected" by the aluminum sheet, closing the loop, magnetically. The resulting field was greater than the write strength, causing the permaloy state to flip. If the bit was beside an unmagnetized bar magnet in the card, the field was not opposed and the flip caused a current pulse in the twistor wire, reading a "1". However, by magnetizing the bar at that bit, the bar magnet opposed the field being created by the solenoid current, causing it to be below the write strength, and preventing the flip. This read a "0".
+The permanent magnet twistor (PMT) was re-programmed by removing the plates and placing them over a custom writer. Vicalloy was used because it required much more power to re-magnetize than the permaloy tape, so that the system would never come close to re-setting the permanent magnets while in use in the memory system. The writer system used much larger currents that overcame this resistance.
+The PMT that was used in the 1ESS system used modules with 128 cards with 2880 magnets on each. This produced a module with 8096 44-bit words. The complete store used 16 modules for a total of 131,000 words, or 731,500 bytes.
+
+===Piggyback twistor===
+
+Another form of twistor ROM replaced the permanent magnet cards with a second magnetic tape wrapped around the first on the twistor lines, in a "piggyback" configuration. This tape was coated with coballoy instead of permaloy, which is much "harder" magnetically, requiring about twice the field in order to flip. To make the system even harder, the coballoy tape was about two and a half times thicker than the permaloy one, so the resulting field strength was five times. The external current required to flip the state of the coballoy tape was about 15 times that of the normal operational current.
+Read operations in the piggyback are identical to the permanent magnet version. Writes were slightly more complex, due to the fact that piggyback twistors all featured the magnetic tape along the entire length of the X wire. This meant that any one solenoid was wrapping both the bit that is being written as well as the one on the section of return wire. To set the one both and not the other, the solenoid was first powered in one direction and then the other, while the current in the twistor line remained constant. This created two magnetic fields in turn, one aligned with the first section of wire and then the second. All reads and writes were carried out on paired bits in this fashion.
+
+==Applications==
+
+Twistor was used in a number of applications. Much of the development funding was supplied by the US Air Force, as twistor was to be used as the main memory in the LIM-49 Nike Zeus project. 
+In the United States the Bell System (American Telephone & Telegraph) also used twistors with permanent magnets as the "Program Store" or main memory in their first electronic telephone switching system, the 1ESS as well as others in the ESS series of electronic telephone switches, and did so up to the 4ESS switch introduced in 1976 and sold into the 1980s. 
+In addition, twistor was used in the Traffic Service Position System (TSPS), Bell's successor to cord telephone switchboards which controlled call handling and coin collection for local and international calls. 
+As of October, 2008 some remaining TSPS and ESS installations continue to provide telephone service in rural areas of the United States, as well as Mexico and Colombia where many U.S. systems were sold and re-installed after being removed from service in the United States.
+
+==References==
+
+==External links==
+
+

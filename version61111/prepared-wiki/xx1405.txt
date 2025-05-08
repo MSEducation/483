@@ -1,0 +1,25 @@
+[[Control store]]
+
+CATEGORIES: Instruction processing, Firmware
+
+A control store is the part of a CPU's control unit that stores the CPU's microprogram.  It is usually accessed by a microsequencer.
+
+==Implementation==
+
+===Early use===
+
+Early control stores were implemented as a diode-array accessed via address decoders, a form of read-only memory. This tradition dates back to the program timing matrix on the MIT Whirlwind, first described in 1947. Modern VLSI processors instead use matrices of field-effect transistors to build the ROM and/or PLA structures used to control the processor as well as its internal sequencer in a microcoded implementation.
+
+===Writable stores===
+
+Some computers were built using "writable microcode" — rather than storing the microcode in ROM or hard-wired logic, the microcode was stored in a RAM called a writable control store or WCS.
+Such a computer is sometimes called a Writable Instruction Set Computer or WISC.[ref]
+"Writable instruction set, stack oriented computers: The WISC Concept" article by Philip Koopman Jr. 1987
+[/ref]
+Many of these machines were experimental laboratory prototypes, such as the WISC CPU/16[ref]
+by Phil Koopman 1989
+[/ref]
+and the RTX 32P.[ref]
+by Philip Koopman 1989
+[/ref]
+The original System/360 models of IBM mainframe had read-only control store, but later System/360, System/370 and successor models loaded part or all of their microprograms from floppy disks or other DASD into a writable control store consisting of ultra-high speed random-access read-write memory. The System/370 architecture included a facility called Initial-Microprogram Load (IML or IMPL)[ref]

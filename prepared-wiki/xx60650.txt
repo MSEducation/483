@@ -1,0 +1,57 @@
+[[DDR2 SDRAM]]
+
+CATEGORIES: SDRAM
+
+DDR2 SDRAM is a double data rate synchronous dynamic random-access memory interface. It superseded the original DDR SDRAM specification, and has since been superseded by DDR3 SDRAM. DDR2 DIMMs are neither forward compatible with DDR3 nor backward compatible with DDR.
+In addition to double pumping the data bus as in DDR SDRAM (transferring data on the rising and falling edges of the bus clock signal), DDR2 allows higher bus speed and requires lower power by running the internal clock at half the speed of the data bus. The two factors combine to produce a total of four data transfers per internal clock cycle. With data being transferred 64 bits at a time, DDR2 SDRAM gives a transfer rate of (memory clock rate) × 2 (for bus clock multiplier) × 2 (for dual rate) × 64 (number of bits transferred) / 8 (number of bits/byte). Thus with a memory clock frequency of 100 MHz, DDR2 SDRAM gives a maximum transfer rate of 3200 MB/s.
+Since the DDR2 internal clock runs at half the DDR external clock rate, DDR2 memory operating at the same external data bus clock rate as DDR results in DDR2 being able to provide the same bandwidth but with higher latency. Alternatively, DDR2 memory operating at twice the external data bus clock rate as DDR may provide twice the bandwidth with the same latency. The best-rated DDR2 memory modules are at least twice as fast as the best-rated DDR memory modules.
+
+==Overview==
+
+Like all SDRAM implementations, DDR2 stores data in memory cells that are activated with the use of a clock signal to synchronize their operation with an external data bus. Like DDR before it, the DDR2 I/O buffer transfers data both on the rising and falling edges of the clock signal (a technique called "double pumping"). The key difference between DDR and DDR2 is that for DDR2 the memory cells are clocked at 1 quarter (rather than half) the rate of the bus. This requires a 4-bit-deep prefetch queue, but, without changing the memory cells themselves, DDR2 can effectively operate at twice the bus speed of DDR. 
+DDR2's bus frequency is boosted by electrical interface improvements, on-die termination, prefetch buffers and off-chip drivers. However, latency is greatly increased as a trade-off. The DDR2 prefetch buffer is 4 bits deep, whereas it is two bits deep for DDR and eight bits deep for DDR3. While DDR SDRAM has typical read latencies of between 2 and 3 bus cycles, DDR2 may have read latencies between 4 and 6 cycles. Thus, DDR2 memory must be operated at twice the data rate to achieve the same latency.
+Another cost of the increased bandwidth is the requirement that the chips are packaged in a more expensive and more difficult to assemble BGA package as compared to the TSSOP package of the previous memory generations such as DDR SDRAM and SDR SDRAM.  This packaging change was necessary to maintain signal integrity at higher bus speeds.
+Power savings are achieved primarily due to an improved manufacturing process through die shrinkage, resulting in a drop in operating voltage (1.8 V compared to DDR's 2.5 V). The lower memory clock frequency may also enable power reductions in applications that do not require the highest available data rates.
+According to JEDECJEDEC JESD 208 (section 5, tables 15 and 16) the maximum recommended voltage is 1.9 volts and should be considered the absolute maximum when memory stability is an issue (such as in servers or other mission critical devices). In addition, JEDEC states that memory modules must withstand up to 2.3 volts before incurring permanent damage (although they may not actually function correctly at that level).
+
+==Specification standards==
+
+===Chips and modules===
+
+For use in computers, DDR2 SDRAM is supplied in DIMMs with 240 pins and a single locating notch. Laptop DDR2 SO-DIMMs have 200 pins and often come identified by an additional S in their designation. DIMMs are identified by their peak transfer capacity (often called bandwidth). 
+ Some manufacturers label their DDR2 modules as PC2-4300, PC2-5400 or PC2-8600 instead of the respective names suggested by JEDEC. At least one manufacturer has reported this reflects successful testing at a higher-than-standard data rateMushkin PC2-5300 vs. Corsair PC2-5400 whilst others simply round up for the name.
+Note: DDR2-xxx denotes data transfer rate, and describes raw DDR chips, whereas PC2-xxxx denotes theoretical bandwidth (with the last two digits truncated), and is used to describe assembled DIMMs. Bandwidth is calculated by taking transfers per second and multiplying by eight. This is because DDR2 memory modules transfer data on a bus that is 64 data bits wide, and since a byte comprises 8 bits, this equates to 8 bytes of data per transfer.
+In addition to bandwidth and capacity variants, modules can 
+''Note: registered and un-buffered SDRAM generally cannot be mixed on the same channel.
+Note that the highest-rated DDR2 modules in 2009 operate at 533 MHz (1066 MT/s), compared to the highest-rated DDR modules operating at 200 MHz (400 MT/s). At the same time, the CAS latency of 11.2 ns = 6 / (Bus clock rate) for the best PC2-8500 modules is comparable to that of 10 ns = 4 / (Bus clock rate) for the best PC-3200 modules.
+
+==Debut==
+
+DDR2 was introduced in the second quarter of 2003 at two initial clock rates: 200 MHz (referred to as PC2-3200) and 266 MHz (PC2-4200). Both performed worse than the original DDR specification due to higher latency, which made total access times longer. However, the original DDR technology tops out at a clock rate around 200 MHz (400 MT/s). Higher performance DDR chips exist, but JEDEC has stated that they will not be standardized. These modules are mostly manufacturer optimizations of highest-yielding chips, drawing significantly more power than slower-clocked modules, and usually do not offer much, if any, greater real-world performance.
+DDR2 started to become competitive with the older DDR standard by the end of 2004, as modules with lower latencies became available.[tpl]cite web |url=http://www.xbitlabs.com/articles/memory/display/ddr2-ddr.html |title=DDR2 vs. DDR: Revenge gained |author=Ilya Gavrichenkov |publisher=X-bit Laboratories[/tpl]
+
+==Backward compatibility==
+
+DDR2 DIMMs are not backward compatible with DDR DIMMs. The notch on DDR2 DIMMs is in a different position from DDR DIMMs, and the pin density is higher than DDR DIMMs in desktops. DDR2 is a 240-pin module, DDR is a 184-pin module. Notebooks have 200-pin modules for DDR and DDR2; however, the notch on DDR2 modules is in a slightly different position than on DDR modules.
+Higher-speed DDR2 DIMMs are compatible with lower-speed DDR2 DIMMs although the motherboard or CPU memory controller will be bound to the limits of the lower-performance modules.
+
+==Relation to GDDR memory==
+
+The first commercial product to claim using the "DDR2" technology was the NVIDIA GeForce FX 5800 graphics card. However, it is important to note that this GDDR2 memory used on graphics cards is not DDR2 per se, but rather an early midpoint between DDR and DDR2 technologies. Using "DDR2" to refer to GDDR2 is a colloquial misnomer. In particular, the performance-enhancing doubling of the I/O clock rate is missing. It had severe overheating issues due to the nominal DDR voltages. ATI has since designed the GDDR technology further into GDDR3, which is based on DDR2-SDRAM, though with several additions suited for graphics cards.
+GDDR3 is now commonly used in modern graphics cards and some tablet PCs. However, further confusion has been added to the mix with the appearance of budget and mid-range graphics cards which claim to use "GDDR2". These cards actually use standard DDR2 chips designed for use as main system memory although operating with higher latencies to achieve higher clockrates. These chips cannot achieve the clock rates of GDDR3 but are inexpensive and fast enough to be used as memory on mid-range cards.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+|url=http://www.eetasia.com/ARTICLES/2006OCT/PDF/EEOL_2006OCT16_INTD_STOR_TA.pdf
+|title=DDR2 SDRAM interfaces for next-gen systems
+|author=Razak Mohammed Ali
+|publisher=Electronic Engineering Times|format=PDF}}
+Note**: JEDEC website requires registration ($2,500 membership) for viewing or downloading of these documents: http://www.jedec.org/standards-documents
+
+==External links==
+
+

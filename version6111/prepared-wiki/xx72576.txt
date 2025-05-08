@@ -1,0 +1,54 @@
+[[Induced representation]]
+
+CATEGORIES: Group theory
+
+In mathematics, and in particular group representation theory, the induced representation is one of the major general operations for passing from a representation of a subgroup [tpl]mvar|H[/tpl] to a representation of the (whole)  group [tpl]mvar|G[/tpl] itself. It was initially defined as a construction by Frobenius, for linear representations of finite groups. It includes as special cases the action of [tpl]mvar|G[/tpl] on the cosets [tpl]math|G/H[/tpl] by permutation, which is the case of the induced representation starting with the trivial one-dimensional representation of [tpl]mvar|H[/tpl]. If [tpl]math|H [tpl]=[/tpl] {e} [/tpl] this becomes the regular representation of [tpl]mvar|G[/tpl]. Therefore induced representations are rich objects, in the sense that they include or detect many interesting representations. The idea is by no means limited to the case of finite groups, but the theory in that case is particularly well-behaved.
+
+==Alternate formulations==
+
+The central theorem in the finite group case is the Frobenius reciprocity theorem. It is stated in terms of another construction of representations, the restriction map (which is a functor): any linear representation of [tpl]mvar|G[/tpl], as a [tpl]math|KG[/tpl]-module where [tpl]math|KG[/tpl] is the group ring of [tpl]mvar|G[/tpl] over a field [tpl]mvar|K[/tpl], is also a [tpl]math|KH[/tpl]-module. The theorem states that, given representations [tpl]mvar|ρ[/tpl] of [tpl]mvar|G[/tpl] and [tpl]mvar|σ[/tpl] of [tpl]mvar|H[/tpl], the space of [tpl]mvar|G[/tpl]-equivariant linear maps from [tpl]mvar|ρ[/tpl] to [tpl]math|Ind(σ)[/tpl] has the same dimension as that of the [tpl]mvar|H[/tpl]-equivariant linear maps from [tpl]math|Res(ρ)[/tpl] to [tpl]mvar|σ[/tpl]. (Here Res stands for restricted representation, and Ind for induced representation.) It is  useful (in the typical case of non-modular representations, anyway - say with [tpl]math|K [tpl]=[/tpl] C[/tpl]) for computing the decomposition of the induced representation: we can do calculations on the side of [tpl]mvar|H[/tpl], which is the 'small' group.
+The Frobenius formula states that if [tpl]mvar|χ[/tpl] is the character of the representation [tpl]mvar|σ[/tpl], given by [tpl]math|χ(h) [tpl]=[/tpl] Tr σ(h)[/tpl], then the character [tpl]mvar|ψ[/tpl] of the induced representation is given by
+where 
+Frobenius reciprocity shows that Res and Ind are adjoint functors. More precisely, Ind is the right adjoint to Res. But in the finite group case, it is also a right adjoint, so (Res, Ind) is a Frobenius pair. The content of that statement is more than the dimensions: it requires that the isomorphism of vector spaces of intertwining maps be natural, in the sense of category theory. It actually suggests that induced representation can in this case be defined by means of the adjunction. That's not the only way to do it - and perhaps not the only helpful way - but it means that the theory will not be ad hoc in its start.
+One can therefore make the reciprocity theorem the way to define the induced representation. There is another way, suggested by the permutation examples of the introductory paragraph. The induced representation [tpl]math|Ind(σ)[/tpl] should be realized as a space of functions on [tpl]mvar|G[/tpl] transforming under [tpl]mvar|H[/tpl] according to the representation [tpl]mvar|σ[/tpl]. Therefore if [tpl]mvar|σ[/tpl] acts on the vector space [tpl]mvar|V[/tpl], we should look at [tpl]mvar|V[/tpl]-valued functions on [tpl]mvar|G[/tpl] on which [tpl]mvar|H[/tpl] acts via [tpl]mvar|σ[/tpl] (this must be said carefully with explicit talk about left- and right-actions; see below). This approach allows the induced representation to be a kind of free module construction. 
+The two approaches outlined above can be reconciled in the case of finite groups, by using the tensor product with [tpl]math|KG[/tpl] as a [tpl]math|KH[/tpl]-module. There is a third and classical approach, of simply writing down the character (trace) of the induced representation, in terms of conjugation in [tpl]mvar|G[/tpl] of elements [tpl]mvar|g[/tpl] into [tpl]mvar|H[/tpl].
+The reciprocity formula can sometimes be generalized to more general topological groups; for example, the Selberg trace formula and the Arthur-Selberg trace formula are  generalizations of Frobenius reciprocity to discrete cofinite subgroups of certain locally compact groups.
+
+==Construction==
+
+===Algebraic===
+
+Let [tpl]mvar|G[/tpl] be a finite group and [tpl]mvar|H[/tpl] any subgroup of [tpl]mvar|G[/tpl].  Furthermore let [tpl]math|(π, V)[/tpl] be a representation of [tpl]mvar|H[/tpl].  Let [tpl]math|n [tpl]=[/tpl] : H[/tpl] be the index of [tpl]mvar|H[/tpl] in [tpl]mvar|G[/tpl] and let [tpl]math|x1, ..., xn[/tpl] be a full set of representatives in [tpl]mvar|G[/tpl] of the cosets in [tpl]math|G/H[/tpl]. The induced representation [tpl]math|Ind[tpl]su|b=H|p=G[/tpl] π[/tpl] can be thought of as acting on the following space:
+Here each [tpl]math|xi V[/tpl] is an isomorphic copy of the vector space V. For each g in [tpl]mvar|G[/tpl] and each xi there is an h = hi in [tpl]mvar|H[/tpl] and j = j(i) in {1, ..., n} such that gxi = xjh. This is just another way of saying that [tpl]math|x1, ..., xn[/tpl] is a full set of representatives. Via the induced representation [tpl]mvar|G[/tpl] acts on [tpl]mvar|W[/tpl] as follows:
+As mentioned earlier this construction is equivalent to defining [tpl]math|Ind[tpl]su|b=H|p=G[/tpl] π [tpl]=[/tpl] KG ⊗KH V[/tpl]. This latter formula can also be used to define [tpl]math|Ind[tpl]su|b=H|p=G[/tpl] π[/tpl] for any group [tpl]mvar|G[/tpl] and subgroup [tpl]mvar|H[/tpl], without requiring any finiteness.Brown, Cohomology of Grups, III.5
+
+===Analytic===
+
+If [tpl]mvar|G[/tpl] is a locally compact topological group (possibly infinite) and [tpl]mvar|H[/tpl] is a closed subgroup then there is a common analytic construction of the induced representation.  Let [tpl]math|(π, V)[/tpl] be a continuous representation of [tpl]mvar|H[/tpl] into a Hilbert space V.  We can then let:
+Here [tpl]math|L2(G)[/tpl] is taken with respect to a Haar measure.  The group [tpl]mvar|G[/tpl] acts on the induced representation space by right translation, that is, (g·f)(x) = f(xg).
+This construction is often modified in various ways to fit the applications needed.  A common version is called normalized induction and usually uses the same notation.  The definition of the representation space is as follows:
+Here [tpl]math|ΔG, ΔH[/tpl] are the modular functions of [tpl]mvar|G[/tpl] and [tpl]mvar|H[/tpl] respectively.  With the addition of the normalizing factors this induction functor takes unitary representations to unitary representations.
+One other variation on induction is called compact induction.  This is just standard induction restricted to functions with compact support. Formally it is denoted by ind and defined as:
+Note that if [tpl]math|G/H[/tpl] is compact then Ind and ind are the same functor.
+
+===Geometric===
+
+Suppose [tpl]mvar|G[/tpl] is a topological group and [tpl]mvar|H[/tpl] is a closed subgroup of [tpl]mvar|G[/tpl]. Also, suppose [tpl]mvar|σ[/tpl] is a realization of [tpl]mvar|H[/tpl] over the space [tpl]math|V[/tpl]. The product [tpl]math|V × G[/tpl] is a realization of [tpl]mvar|G[/tpl] as follows:
+where [tpl]math|g[/tpl] and [tpl]math|g′[/tpl] are elements of [tpl]mvar|G[/tpl] and [tpl]math|x[/tpl] is an element of [tpl]math|V[/tpl].
+Define the equivalence relation
+Note that this equivalence relation is invariant under the action of [tpl]mvar|G[/tpl]. In other words, [tpl]math|V × G/~[/tpl] is a realization of [tpl]mvar|G[/tpl],
+In other words, [tpl]math|V × G/~[/tpl] is a fiber bundle over the quotient space [tpl]math|G/H[/tpl] with [tpl]math|H[/tpl] as the structure group and [tpl]math|V[/tpl] as the fiber.
+Now suppose [tpl]math|σ[/tpl] is a representation and [tpl]math|V[/tpl] is a vector space. The previous construction defines a vector bundle over [tpl]math|G/H[/tpl]. The space of sections of this vector bundle is the induced representation.
+In the case of unitary representations of locally compact groups, the induction construction can be formulated in terms of systems of imprimitivity.
+
+==Examples==
+
+For any group, the induced representation of the trivial representation of the trivial subgroup is the right regular representation.  More generally the induced representation of the trivial representation of any subgroup is the permutation representation on the cosets of that subgroup.
+An induced representation of a one dimensional representation is called a monomial representation, because it can be represented as monomial matrices.  Some groups have the property that all of their irreducible representations are monomial, the so-called monomial groups.
+In Lie theory, an extremely important example is parabolic induction: inducing representations of a reductive group from representations of its parabolic subgroups. This leads, via the philosophy of cusp forms, to the Langlands program.
+
+==See also==
+
+==References==
+
+

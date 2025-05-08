@@ -1,0 +1,61 @@
+[[Code coverage]]
+
+CATEGORIES: Software testing, Software metrics, Software testing tools
+
+In computer science, code coverage is a measure used to describe the degree to which the source code of a program is tested by a particular test suite. A program with high code coverage has been more thoroughly tested and has a lower chance of containing software bugs than a program with low code coverage. Many different metrics can be used to calculate code coverage; some of the most basic are the percent of program subroutines and the percent of program statements called during execution of the test suite.
+Code coverage was among the first methods invented for systematic software testing.  The first published reference was by Miller and Maloney in Communications of the ACM in 1963.
+
+Coverage criteria
+
+To measure what percentage of code has been exercised by a test suite, one or more coverage criteria are used. Coverage criteria is usually defined as a rule or requirement, which test suite needs to satisfy. 
+
+Basic coverage criteria
+
+There are a number of coverage criteria, the main ones being:
+For example, consider the following C++ function:
+Assume this function is a part of some bigger program and this program was run with some test suite. 
+Condition coverage does not necessarily imply branch coverage. For example, consider the following fragment of code:
+Condition coverage can be satisfied by two tests:
+However, this set of tests does not satisfy branch coverage since neither case will meet the if condition.
+Fault injection may be necessary to ensure that all conditions and branches of exception handling code have adequate coverage during testing.
+
+Modified condition/decision coverage
+
+Combination of function coverage and branch coverage is sometimes also called
+decision coverage. This criteria requires that every point of entry and exit in the program have been invoked at least once, and every decision in the program have taken on all possible outcomes at least once. In this context the decision is a boolean expression composed of conditions and zero or more boolean operators. This definition is not the same as branch coverage,Position Paper CAST-10 (June 2002). What is a "Decision" in Application of Modified Condition/Decision Coverage (MC/DC) and Decision Coverage (DC)? however, some do use the term decision coverage as a synonym for branch coverage. Types of Model Coverage.
+Condition/decision coverage requires that both decision and condition coverage been satisfied. However, for safety-critical applications (e.g., for avionics software) it is often required that modified condition/decision coverage (MC/DC) be satisfied. This criterion extends condition/decision criteria with requirements that each condition should affect the decision outcome independently. For example, consider the following code:
+The condition/decision criteria will be satisfied by the following set of tests:
+However, the above tests set will not satisfy modified condition/decision coverage, since in the first test, the value of 'b' and in the second test the value of 'c' would not influence the output. So, the following test set is needed to satisfy MC/DC:
+
+Multiple condition coverage
+
+This criterion requires that all combinations of conditions inside each decision are tested. For example, the code fragment from the previous section will require eight tests:
+
+Parameter value coverage
+
+Parameter value coverage (PVC) requires that in a method taking parameters, all the common values for such parameters been considered. 
+The idea is that all common possible values for a parameter are tested. It may also be appropriate to use very long strings. Failure to test each possible parameter value may leave a bug. Testing only one of these could result in 100% code coverage as each line is covered, but as only one of seven options are tested, there is only 14.2% PVC.
+
+Other coverage criteria
+
+There are further coverage criteria, which are used less often:
+Safety-critical applications are often required to demonstrate that testing achieves 100% of some form of code coverage.
+Some of the coverage criteria above are connected. For instance, path coverage implies decision, statement and entry/exit coverage. Decision coverage implies statement coverage, because every statement is part of a branch.
+
+In practice
+
+The target software is built with special options or libraries and/or run under a special environment such that every function that is exercised (executed) in the program(s) is mapped back to the function points in the source code. This process allows developers and quality assurance personnel to look for parts of a system that are rarely or never accessed under normal conditions (error handling and the like) and helps reassure test engineers that the most important conditions (function points) have been tested.  The resulting output is then analyzed to see what areas of code have not been exercised and the tests are updated to include these areas as necessary.  Combined with other code coverage methods, the aim is to develop a rigorous, yet manageable, set of regression tests.
+In implementing code coverage policies within a software development environment, one must consider the following:
+Test engineers can look at code coverage test results to help them devise test cases and input or configuration sets that will increase the code coverage over vital functions. Two common forms of code coverage used by testers are statement (or line) coverage and branch (or edge) coverage. Line coverage reports on the execution footprint of testing in terms of which lines of code were executed to complete the test. Edge coverage reports which branches or code decision points were executed to complete the test. They both report a coverage metric, measured as a percentage.  The meaning of this depends on what form(s) of code coverage have been used, as 67% branch coverage is more comprehensive than 67% statement coverage.
+Generally, code coverage tools incur computation and logging in addition to the actual program thereby slowing down the application, so typically this analysis is not done in production.  As one might expect, there are classes of software that cannot be feasibly subjected to these coverage tests, though a degree of coverage mapping can be approximated through analysis rather than direct testing.
+There are also some sorts of defects which are affected by such tools. In particular, some race conditions or similar real time sensitive operations can be masked when run under code coverage environments; and conversely, and reliably, some of these defects may become easier to find as a result of the additional overhead of the testing code.
+
+Usage in industry
+
+Code coverage is one consideration in the safety certification of avionics equipment.  The guidelines by which avionics gear is certified by the Federal Aviation Administration (FAA) is documented in DO-178BRTCA/DO-178B, Software Considerations in Airborne Systems and Equipment Certification, Radio Technical Commission for Aeronautics, December 1, 1992 and the recently released DO-178C.
+
+
+
+
+
+

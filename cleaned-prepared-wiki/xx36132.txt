@@ -1,0 +1,68 @@
+[[Hercules Graphics Card]]
+
+CATEGORIES: Video cards, Computer display standards, 1982 introductions
+
+The Hercules Graphics Card (HGC) was a computer graphics controller made by Hercules Computer Technology, Inc. that combined IBM's text-only MDA display standard with a CGA-emulating graphics mode. This allowed the HGC to offer both high quality text and graphics from a single card. The HGC was very popular, and became a widely supported de facto display standard on IBM PC compatibles connected to a monochrome monitor. The HGC standard was used long after more technically capable systems had entered the market, especially on dual-monitor setups.
+
+History
+
+Background
+
+When the IBM Personal Computer was launched in 1981 with the Color Graphics Adapter (CGA), offering two basic operating modes: a 320×200 pixel (or 40x25 character) version, or a 640x200 (or 80×25 characters) version, supporting up to 16 colors in each mode. The other modes available limited selections to reduce the amount of memory used. While the low-resolution mode was very comparable to 8-bit home computers of the era, the higher-resolution mode offered a fair advance, as long as it was used with a suitable monitor. Following soon after was the Monochrome Display Adapter (MDA) which did not support bit-addressable graphics of any sort, but did offer a high-quality 80x25 character mode that could be used on low-cost monochrome monitors. The MDA also included a Centronics port for printers. For business users, MDA was especially popular.
+
+Hercules
+
+The Hercules was developed in 1982 by Van Suwannukul, founder of Hercules Computer Technology. The system was created by Suwannukul initially so that he could work on his doctoral thesis on an IBM PC using the Thai alphabet (his native language). It was essentially an MDA-compatible monochrome card, but through the use of drivers (TSRs) it could also run most programs written for the CGA card's standard graphics modes. As the Hercules did not actually have color-generating circuitry, color appeared as greyscale on-screen. In 1984 its list price was 499 USD although it was often sold for less than the manufacturer's suggested price.PC Magazine March 6, 1984 page 5 advertisement
+Programming for the Hercules card's native graphics mode was somewhat hindered by a lack of BIOS support and standardization from IBM — after all, the HGC was a competing technology.  Popular IBM PC programs at the time (such as Lotus 1-2-3 spreadsheet and Autocad computer-aided drafting) came with their own drivers to allow use of the Hercules graphics mode.
+Long after its prime, the Hercules card continued to be popular for dual-monitor setups alongside another (colour) graphics adaptor.  Certain software detected the HGC and used the monochrome display for extra data display while running the application on the other screen—for example a CAD work area would be displayed on the main (non-Hercules driven) screen, and a list of drawing commands would be shown on the HGC-driven monochrome screen.  Some software debuggers could take advantage of an HGC to run the main program on the colour monitor and the debugger on the HGC.  Later on, the multi-monitor trick became obsolete with OS-related improvements such as the introduction of GUIs for debug commands as a software analogy for debug command modules.
+
+Connector
+
+DE9F connector. Using 5V TTL electrical signaling. 071105 whitefiles.org
+Horizontal frequency 18.425 ±0.500 kHz, Vertical frequency 50 Hz. 070822 adm-electronic.de
+
+Technical specifications
+
+Like the IBM Monochrome Display Adapter it improved on, the Hercules Graphics Card had both a parallel printer port and a video output port. Its monochrome text mode could display 80×25 text characters and was MDA-compatible. As such, it rendered characters in a box of 9×14 pixels, of which 7×11 made out the character itself (the other pixels being used for space between character columns and lines). This amounted to markedly clearer text display than the competing CGA adapter could offer. The total theoretical resolution of this text mode was 720×350 pixels. This number is arrived at through multiplying the character width of 9 pixels by the number of text columns possible on screen (80) as well as multiplying the character height of 14 pixels by the number of text lines (25). In the MDA-compatible text mode, however, these pixels were not individually addressable.
+The Hercules card's single monochrome graphics mode simply made all pixels directly addressable. This translated to a resolution of not 720×350, but only 720×348 pixels (at 1 bit per pixel) because, for technical reasons, the screen height had to be a multiple of four.
+The Hercules card supported two graphic pages, one at address B0000h and one at address B8000h. The second page could be enabled or disabled by software. When it was disabled, the addresses used by the card did not overlap with those used by color adapters such as CGA or VGA. This made dual-screen operation possible simply through installation of a Hercules card next to, for instance, a VGA adapter.
+Hercules also made a CGA-compatible card, the Hercules Color Card, which could coexist with a monochrome HGC and still allow both graphics pages to be used. It would detect when the second graphics page was selected and disable access to its own memory, which would otherwise have been at the same addresses.
+
+Programming
+
+As part of its commercial packaging, the Hercules Graphics Card included a diskette with HBASIC, an interpreted version of the BASIC computer language that enabled programming graphics on a monochrome monitor. An integrated development environment with the same name (HBasic) has appeared.
+In text modes, the memory appears just like an MDA card. The screen has 80×25 chars, so there are 80 ASCII code/attribute pairs per line (160 bytes per line, 2 bytes per symbol). The address of a given screen location in memory is given by the formula:
+ address = (0xb0000) + ( row * 160 ) + (column * 2)
+In graphics mode, the lines are interleaved and thus addressing is slightly more complicated. There are 8 pixels per byte, 90 bytes per line. Consecutive lines on the screen are interleaved by 4 lines in memory, so in memory it looks like this:
+Screen Line #0 starts at B000:0000
+Screen Line #1 starts at B000:2000
+Screen Line #2 starts at B000:4000
+Screen Line #3 starts at B000:6000
+Screen Line #4 starts at B000:005A
+...
+The memory address that contains a given pixel is given by:
+ mem = (0xb8000) + ((y&3)<<13)+(y>>2)*90+(x>>3)
+This code would set the correct pixel in that byte:
+ bitwise or contents with (128 >> (x & 7))
+
+CGA Emulation
+
+CGA emulation on a Hercules card could be done almost entirely via hardware, or through software via "brute force" copying of data on a regular interrupt.  Hardware emulation was normally something done by programmers of an application, such as a game, as a "quick and dirty" way to add Hercules support.  Software emulation was performed by third-party utilities as a way to get graphics programs with only CGA support working on a Hercules.
+Hardware emulation was achieved by enabling the second Hercules video page, which would appear at segment B800h just like CGA, and then making it the visible page.  The HGC onboard Motorola 6845 would then be reprogrammed to display 80 "columns" of data (640 pixels - each character is an 8x8 dot pattern) instead of the usual 80 (720 - each character is an 9x14 dot pattern).  Data was then written just as it would on a real CGA (i.e. the video display was updated by writing to segment B800h) with only minor changes due to the different memory interlacing structure.  The advantage of this method was no loss of speed during the emulation:  Data did not need to be significantly reformatted from the original CGA data while written, only interlaced differently.  The disadvantage was that the image appeared vertically "squashed", as CGA data only used 200 lines of the 350 available.
+Software emulation would copy from the CGA video memory location to the Hercules memory location.  It would reformat the CGA data (320 or 640 x 200 pixels) to the higher resolution (720 x 348) Hercules.  Because of the reformatting of data while copying to completely fill the 720x348 graphics space, and the speed penalty introduced via that method, this introduced an interlacing type of display artifact since the copying could not complete before the beginning of the next display cycle.
+
+Later cards
+
+The HGC standard was extended by two later cards:
+
+Reception
+
+Although it cited flaws in the hardware and software, BYTE called the Hercules Graphics Card "a fine product" that gave owners of monochrome monitors graphics capability.
+
+
+
+Notes
+
+
+
+

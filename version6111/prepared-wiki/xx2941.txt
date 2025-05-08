@@ -1,0 +1,67 @@
+</ref> This is in contrast with [[token passing]] LANs (token ring, token bus), all of which suffer throughput degradation as each new node comes into the LAN, due to token waits. This report was controversial, as modeling showed that collision-based networks theoretically became unstable under loads as low as 37% of nominal capacity. Many early researchers failed to understand these results. Performance on real networks is significantly better.<ref>
+</ref>
+In a modern Ethernet, the stations do not all share one channel through a shared cable or a simple repeater hub; instead, each station communicates with a switch, which in turn forwards that traffic to the destination station. In this topology, collisions are only possible if station and switch attempt to communicate with each other at the same time, and collisions are limited to this link. Furthermore, the 10BASE-T standard introduced a full duplex mode of operation which has become extremely common. In full duplex, switch and station can communicate with each other simultaneously, and therefore modern Ethernets are completely collision-free.
+
+===Repeaters and hubs===
+
+thumb|A 1990s network interface card supporting both coaxial cable-based 10BASE2 (BNC connector, left) and twisted pair-based 10BASE-T (8P8C connector, right)[tpl]Main|Ethernet hub[/tpl]
+For signal degradation and timing reasons, coaxial Ethernet segments had a restricted size. Somewhat larger networks could be built by using an Ethernet repeater. Early repeaters had only two ports, allowing, at most, a doubling of network size. Once repeaters with more than two ports became available, it was possible to wire the network in a star topology. Early experiments with star topologies (called "Fibernet") using optical fiber were published by 1978.[tpl]cite journal |title= Fibemet: Multimode Optical Fibers for Local Computer Networks |author1= Eric G. Rawson |author2= Robert M. Metcalfe |journal=IEEE transactions on communications |date= July 1978 |volume=26 |issue=7 |pages= 983–990 |url= http://ethernethistory.typepad.com/papers/Fibernet.pdf |doi= 10.1109/TCOM.1978.1094189 |accessdate= June 11, 2011 [/tpl]
+Shared cable Ethernet was always hard to install in offices because its bus topology was in conflict with the star topology cable plans designed into buildings for telephony. Modifying Ethernet to conform to twisted pair telephone wiring already installed in commercial buildings provided another opportunity to lower costs, expand the installed base, and leverage building design, and, thus, twisted-pair Ethernet was the next logical development in the mid-1980s.
+Ethernet on unshielded twisted-pair cables (UTP) began with StarLAN at 1 Mbit/s in the mid-1980s.  In 1987 SynOptics introduced the first twisted-pair Ethernet at 10 Mbit/s in a star-wired cabling topology with a central hub, later called LattisNet.
+These evolved into 10BASE-T, which was designed for point-to-point links only, and all termination was built into the device. This changed repeaters from a specialist device used at the center of large networks to a device that every twisted pair-based network with more than two machines had to use. The tree structure that resulted from this made Ethernet networks easier to maintain by preventing most faults with one peer or its associated cable from affecting other devices on the network.
+Despite the physical star topology and the presence of separate transmit and receive channels in the twisted pair and fiber media, repeater based Ethernet networks still use half-duplex and CSMA/CD, with only minimal activity by the repeater, primarily the Collision Enforcement signal, in dealing with packet collisions. Every packet is sent to every port on the repeater, so bandwidth and security problems are not addressed. The total throughput of the repeater is limited to that of a single link, and all links must operate at the same speed.
+
+===Bridging and switching===
+
+While repeaters could isolate some aspects of Ethernet segments, such as cable breakages, they still forwarded all traffic to all Ethernet devices. This created practical limits on how many machines could communicate on an Ethernet network. The entire network was one collision domain, and all hosts had to be able to detect collisions anywhere on the network. This limited the number of repeaters between the farthest nodes. Segments joined by repeaters had to all operate at the same speed, making phased-in upgrades impossible.
+To alleviate these problems, bridging was created to communicate at the data link layer while isolating the physical layer. With bridging, only well-formed Ethernet packets are forwarded from one Ethernet segment to another; collisions and packet errors are isolated. At initial startup, Ethernet bridges (and switches) work somewhat like Ethernet repeaters, passing all traffic between segments. By observing the source addresses of incoming frames, the bridge then builds an address table associating addresses to segments. Once an address is learned, the bridge forwards network traffic destined for that address only to the associated segment, improving overall performance. Broadcast traffic is still forwarded to all network segments. Bridges also overcame the limits on total segments between two hosts and allowed the mixing of speeds, both of which are critical to deployment of Fast Ethernet.
+In 1989, the networking company Kalpana introduced their EtherSwitch, the first Ethernet switch.[tpl]Efn|The term switch was invented by device manufacturers and does not appear in the 802.3 standard.[/tpl] This worked somewhat differently from an Ethernet bridge, where only the header of the incoming packet would be examined before it was either dropped or forwarded to another segment.  This greatly reduced the forwarding latency and the processing load on the network device.   One drawback of this cut-through switching method was that packets that had been corrupted would still be propagated through the network, so a jabbering station could continue to disrupt the entire network.  The eventual remedy for this was a return to the original store and forward approach of bridging, where the packet would be read into a buffer on the switch in its entirety, verified against its checksum and then forwarded, but using more powerful application-specific integrated circuits. Hence, the bridging is then done in hardware, allowing packets to be forwarded at full wire speed.
+When a twisted pair or fiber link segment is used and neither end is connected to a repeater, full-duplex Ethernet becomes possible over that segment.  In full-duplex mode, both devices can transmit and receive to and from each other at the same time, and there is no collision domain.  This doubles the aggregate bandwidth of the link and is sometimes advertised as double the link speed (for example, 200 Mbit/s).[tpl]Efn|This is misleading, as performance will double only if traffic patterns are symmetrical.[/tpl] The elimination of the collision domain for these connections also means that all the link's bandwidth can be used by the two devices on that segment and that segment length is not limited by the need for correct collision detection.
+Since packets are typically delivered only to the port they are intended for, traffic on a switched Ethernet is less public than on shared-medium Ethernet. Despite this, switched Ethernet should still be regarded as an insecure network technology, because it is easy to subvert switched Ethernet systems by means such as ARP spoofing and MAC flooding.
+The bandwidth advantages, the improved isolation of devices from each other, the ability to easily mix different speeds of devices and the elimination of the chaining limits inherent in non-switched Ethernet have made switched Ethernet the dominant network technology.[tpl]cite web |url=http://www.cisco.com/en/US/solutions/collateral/ns340/ns394/ns74/ns149/net_business_benefit09186a00800c92b9_ps6600_Products_White_Paper.html |quote=Respondents were first asked about their current and planned desktop LAN attachment standards. The results were clear—switched Fast Ethernet is the dominant choice for desktop connectivity to the network |title=Token Ring-to-Ethernet Migration |publisher=Cisco |accessdate=October 22, 2010[/tpl]
+
+===Advanced networking===
+
+Simple switched Ethernet networks, while a great improvement over repeater-based Ethernet, suffer from single points of failure, attacks that trick switches or hosts into sending data to a machine even if it is not intended for it, scalability and security issues with regard to broadcast radiation and multicast traffic, and bandwidth choke points where a lot of traffic is forced down a single link.[tpl]Citation needed|date=October 2010[/tpl]
+Advanced networking features in switches and routers combat these issues through means including spanning-tree protocol to maintain the active links of the network as a tree while allowing physical loops for redundancy, port security and protection features such as MAC lock down and broadcast radiation filtering, virtual LANs to keep different classes of users separate while using the same physical infrastructure, multilayer switching to route between different classes and link aggregation to add bandwidth to overloaded links and to provide some measure of redundancy.
+IEEE 802.1aq (shortest path bridging) includes the use of the link-state routing protocol IS-IS to allow larger networks with shortest path routes between devices.  In 2012, it was stated by David Allan and Nigel Bragg, in 802.1aq Shortest Path Bridging Design and Evolution: The Architect's Perspective that shortest path bridging is one of the most significant enhancements in Ethernet's history.[tpl]cite book|last=Allan|first=David|title=802.1aq Shortest Path Bridging Design and Evolution : The Architects' Perspective|date=2012|publisher=Wiley|location=New York|isbn=978-1-118-14866-2|first2=Nigel|last2=Bragg|url=http://www.wiley.com/WileyCDA/WileyTitle/productCd-1118148665.html[/tpl]
+
+==Varieties of Ethernet==
+
+The Ethernet physical layer evolved over a considerable time span and encompasses coaxial, twisted pair and fiber optic physical media interfaces and speeds from 10 Mbit to 100 Gbit. The most common forms used are 10BASE-T, 100BASE-TX, and 1000BASE-T. All three utilize twisted pair cables and 8P8C modular connectors. They run at [tpl]nowrap|10 Mbit/s[/tpl], [tpl]nowrap|100 Mbit/s[/tpl], and [tpl]nowrap|1 Gbit/s[/tpl], respectively. Fiber optic variants of Ethernet offer high performance, electrical isolation and distance (tens of kilometers with some versions). In general, network protocol stack software will work similarly on all varieties.
+
+==Layer 2 – Datagrams==
+
+In IEEE 802.3, a datagram is called a packet or frame. Packet is used to describe the overall transmission unit and includes the preamble, start frame delimiter (SFD) and carrier extension (if present).[tpl]Efn|The carrier extension is defined to assist collision detection on shared-media gigabit Ethernet.[/tpl] The frame begins after the start frame delimiter with a frame header featuring source and destination MAC addresses. The middle section of the frame consists of payload data including any headers for other protocols (for example, Internet Protocol) carried in the frame. The frame ends with a 32-bit cyclic redundancy check, which is used to detect corruption of data in transit.[tpl]rp|sections 3.1.1 and 3.2[/tpl]
+
+==Autonegotiation==
+
+Autonegotiation is the procedure by which two connected devices choose common transmission parameters, e.g. speed and duplex mode. Autonegotiation was an optional feature on first introduction of 100BASE-TX, while it is also backward compatible with 10BASE-T. Autonegotiation is mandatory for 1000BASE-T.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==Further reading==
+
+ | author=Digital Equipment Corporation, Intel Corporation, Xerox Corporation
+ | date = September 1980
+ | title = The Ethernet: A Local Area Network
+ | url = http://portal.acm.org/citation.cfm?id=1015591.1015594
+ | doi=10.1145/1015591.1015594
+ | journal=ACM SIGCOMM Computer Communication Review
+ | volume=11
+ | issue=3
+ | pages=20
+ }}&nbsp;— Version 1.0 of the DIX specification.
+ | author = Charles E. Spurgeon
+ | title = Ethernet: The Definitive Guide
+ | year = 2000
+ | publisher = O'Reilly Media | isbn = 978-1565-9266-08
+}}
+
+==External links==
+
+

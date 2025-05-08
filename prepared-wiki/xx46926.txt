@@ -1,0 +1,60 @@
+[[NMEA 0183]]
+
+CATEGORIES: Global Positioning System, Network protocols
+
+NMEA 0183 is a combined electrical and data specification for communication between marine electronics such as echo sounder, sonars, anemometer, gyrocompass, autopilot, GPS receivers and many other types of instruments. It has been defined by, and is controlled by, the National Marine Electronics Association. It replaces the earlier NMEA 0180 and NMEA 0182 standards.[tpl]cite web|url=http://www.kh-gps.de/nmea.faq |title=The NMEA FAQ |author=Peter Bennett |date=Sep 15, 1997 |accessdate=2013-10-21[/tpl] In marine applications, it is slowly being phased out in favor of the newer NMEA 2000 standard.
+The electrical standard that is used is EIA-422, although most hardware with NMEA-0183 outputs are also able to drive a single EIA-232 port. Although the standard calls for isolated inputs and outputs, there are various series of hardware that do not adhere to this requirement.
+The NMEA 0183 standard uses a simple ASCII, serial communications protocol that defines how data are transmitted in a "sentence" from one "talker" to multiple "listeners" at a time.  Through the use of intermediate expanders, a talker can have a unidirectional conversation with a nearly unlimited number of listeners, and using multiplexers, multiple sensors can talk to a single computer port.
+At the application layer, the standard also defines the contents of each sentence (message) type, so that all listeners can parse messages accurately.
+
+==Serial configuration (data link layer)==
+
+There is a variation of the standard called NMEA-0183HS that specifies a baud rate of 38,400. This is in general use by AIS devices.
+
+==Application layer protocol rules==
+
+As an example, a waypoint arrival alarm has the form:
+where:
+The new standard, NMEA 2000, accommodates several talkers at a higher baud rate, without using a central hub, or round-robin packet buffering.
+The NMEA standard is proprietary and sells for at least US$ 250 (except for members of the NMEA) as of June 2013.[tpl]cite web|url=http://www.nmea.org/content/nmea_standards/nmea_0183_v_410.asp |title=Publications and Standards from the National Marine Electronics Association (NMEA) / NMEA 0183 |publisher=NMEA |date=November 2008 |accessdate=2013-10-21[/tpl] However, much of it has been reverse-engineered from public sources.gpsd[tpl]cite web|url=http://www.gpsinformation.org/dale/nmea.htm |title=NMEA data |author=Dale DePriest |accessdate=2013-10-21[/tpl]
+
+==Vendor extensions==
+
+Most GPS manufacturers include special messages in addition to the standard NMEA set in their products for maintenance and diagnostics purposes. Extended messages begin with "$P". These extended messages are not standardized.
+
+==Software compatibility==
+
+==Sample file==
+
+A sample file produced by a Tripmate 850 GPS logger. This file was produced in Leixlip, County Kildare, Ireland. The record lasts two seconds.
+ 
+ $GPGGA,092750.000,5321.6802,N,00630.3372,W,1,8,1.03,61.7,M,55.2,M,,*76
+$GPGSA,A,3,10,07,05,02,29,04,08,13,,,,,1.72,1.03,1.38*0A
+$GPGSV,3,1,11,10,63,137,17,07,61,098,15,05,59,290,20,08,54,157,30*70
+$GPGSV,3,2,11,02,39,223,19,13,28,070,17,26,23,252,,04,14,186,14*79
+$GPGSV,3,3,11,29,09,301,24,16,09,020,,36,,,*76
+$GPRMC,092750.000,A,5321.6802,N,00630.3372,W,0.02,31.66,280511,,,A*43
+$GPGGA,092751.000,5321.6802,N,00630.3371,W,1,8,1.03,61.7,M,55.3,M,,*75
+$GPGSA,A,3,10,07,05,02,29,04,08,13,,,,,1.72,1.03,1.38*0A
+$GPGSV,3,1,11,10,63,137,17,07,61,098,15,05,59,290,20,08,54,157,30*70
+$GPGSV,3,2,11,02,39,223,16,13,28,070,17,26,23,252,,04,14,186,15*77
+$GPGSV,3,3,11,29,09,301,24,16,09,020,,36,,,*76
+$GPRMC,092751.000,A,5321.6802,N,00630.3371,W,0.06,31.66,280511,,,A*45
+
+Note some blank fields, for example:
+
+==C implementation of checksum generation==
+
+The checksum at the end of each sentence is the XOR of all of the bytes in the sentence, excluding the initial dollar sign. The following C code generates a checksum for the string entered as "mystring" and prints it to the output stream. In the example, a sentence from the sample file is used.
+
+==Status==
+
+NMEA 0183 continued to be maintained separately: V4.10 was published in early May 2012, and an erratum noted on 12 May 2012.[tpl]cite web|url=http://www.nmea.org/Assets/0183120512%20spo_errata.pdf |title=ERRATA # 0183 120512 |publisher=NMEA |date= |accessdate=2013-10-21[/tpl] It is not clear whether there is any active development.  The latest NMEA announcement on the subject is older than the V4.10 standard.[tpl]cite web|url=http://www.nmea.org/Assets/20120315%20nmea%20standards%20update%20march%202012.pdf |title=NMEA Standards Update March 2012 |publisher=NMEA |date=March 2012 |accessdate=2013-10-21[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

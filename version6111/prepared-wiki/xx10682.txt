@@ -1,0 +1,12 @@
+[[Red–black tree]]
+
+CATEGORIES: 1972 in computer science, Articles containing proofs, Articles with example C code, Binary trees
+
+A red–black tree is a data structure which is a type of self-balancing binary search tree.
+Balance is preserved by painting each node of the tree with one of two colors (typically called 'red' and 'black') in a way that satisfies certain properties, which collectively constrain how unbalanced the tree can become in the worst case. When the tree is modified, the new tree is subsequently rearranged and repainted to restore the coloring properties. The properties are designed in such a way that this rearranging and recoloring can be performed efficiently.
+The balancing of the tree is not perfect but it is good enough to allow it to guarantee searching in O(log n) time, where n is the total number of elements in the tree. The insertion and deletion operations, along with the tree rearrangement and recoloring, are also performed in O(log n) time.[tpl]cite web |url=http://www.cs.auckland.ac.nz/~jmor159/PLDS210/red_black.html |title=Red–Black Trees |author=John Morris[/tpl]
+Tracking the color of each node requires only 1 bit of information per node because there are only two colors. The tree does not contain any other data specific to its being a red–black tree so its memory footprint is almost identical to a classic (uncolored) binary search tree. In many cases the additional bit of information can be stored at no additional memory cost.
+
+==History==
+
+The original data structure was invented in 1972 by Rudolf Bayer and named "symmetric binary B-tree," but acquired its modern name in a paper in 1978 by Leonidas J. Guibas and Robert Sedgewick entitled "A Dichromatic Framework for Balanced Trees".[ref]

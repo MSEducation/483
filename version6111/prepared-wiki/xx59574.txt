@@ -1,0 +1,61 @@
+[[Procmail]]
+
+CATEGORIES: Mail delivery agents, Cross-platform software
+
+procmail is a mail delivery agent (MDA) capable of sorting incoming mail into various directories and filtering out spam messages. Procmail is stable, but no longer maintained.[tpl]cite web|last=Willis|first=Nathan|title=Reports of procmail's death are not terribly exaggerated|url=https://lwn.net/Articles/416901/|publisher=Linux Weekly News|accessdate=27 October 2013[/tpl]  Users who wish to use a maintained program are advised to use an alternative MDA, such as maildrop.
+
+==Invocation==
+
+The procmail mail delivery agent is generally not started from the command line, but is usually invoked by mail delivery subsystems, such as a mail transport agent (like Sendmail or Postfix), or from a mail retrieval agent (such as fetchmail).
+This makes the mail processing event-driven.  The companion tool formail allows procmail to be used in batch-processing on mail that already is in a user's mailbox.
+
+==Recipes==
+
+The procmail agent uses recipes, to determine where to deliver the various mail messages.
+
+===Elements of a recipe===
+
+Each recipe that procmail uses consists of:
+
+===Recipes can be conditional or unconditional===
+
+Recipes used by procmail can be conditional or unconditional. If the conditions are left out, the recipe is unconditional.
+
+===Types of recipes===
+
+Procmail has two kinds of recipes:
+
+===Processing of recipes===
+
+Recipes are read from top to bottom. The first delivering recipe terminates the delivery process (unless the mode flag specifies otherwise).
+
+==Conditions==
+
+Conditions are usually extended regular expressions, although there are other forms of condition also.
+
+==Basic operation==
+
+The procmail tool reads mail messages given to it from standard input. The procmail tool will process the recipes before distributing the mail messages into the appropriate mailboxes.
+
+==Other operations==
+
+Other common operations carried out with procmail include filtering and sorting of emails into different folders according to keywords in from, to, subject, text of the mail, or sending autoreplies, but more sophisticated operations
+are also possible.
+
+===Spam filtering===
+
+A common practice is to let procmail call an external spam filter program, such as SpamAssassin. This method can allow for spam to be filtered or even deleted.
+
+===Managing mailing lists===
+
+The procmail developers have built a mailing list manager called SmartList on top of procmail.
+
+==Further reading==
+
+==See also==
+
+==External links==
+
+==References==
+
+

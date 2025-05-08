@@ -1,0 +1,36 @@
+[[Factory method pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code, Method (computer programming)
+
+In class-based programming, the factory method pattern is a  creational pattern which uses factory methods to deal with the problem of creating objects without specifying the exact class of object that will be created. This is done by creating objects via a factory method, which is either specified in an interface (abstract class) and implemented in implementing classes (concrete classes); or implemented in a base class, which can be overridden when inherited in derived classes; rather than by a constructor.
+
+==Definition==
+
+The factory method pattern should not be confused with the more general notion of factories and factory methods. The factory method pattern is the best-known use of factories and factory methods, but not all uses of factory methods are examples of the factory method pattern – only when inheritance is involved (a class implementing an interface, or derived class, implements a factory method) is it an example of the factory method pattern. More basic uses of factories are not examples of the factory method pattern, and may instead be referred to as the factory pattern"Factory Pattern", OODesign.com or a simple factory;Chapter 4. The Factory Pattern: Baking with OO Goodness: The Simple Factory defined these are discussed at factory.
+The essence of this pattern is to "Define an interface for creating an object, but let the classes that implement the interface decide which class to instantiate. The Factory method lets a class defer instantiation to subclasses."Design Patterns: Elements of Reusable Object-Oriented Software from the Gang Of Four
+Creating an object often requires complex processes not appropriate to include within a composing object. The object's creation may lead to a significant duplication of code, may require information not accessible to the composing object, may not provide a sufficient level of abstraction, or may otherwise not be part of the composing object's concerns. The factory method design pattern handles these problems by defining a separate method for creating the objects, which subclasses can then override to specify the derived type of product that will be created.
+The factory method pattern relies on inheritance, as object creation is delegated to subclasses that implement the factory method to create objects.
+
+==Example implementations==
+
+===Java===
+
+A maze game may be played in two modes, one with regular rooms that are only connected with adjacent rooms, and one with magic rooms that allow players to be transported at random (this Java example is similar to one in the book Design Patterns). The regular game mode could use this template method:
+In the above snippet, the MazeGame constructor is a template method that makes some common logic. It refers to the makeRoom factory method that encapsulates the creation of rooms such that other rooms can be used in a subclass. To implement the other game mode that has magic rooms, it suffices to override the makeRoom method:
+
+===PHP===
+
+Another example in PHP follows, this time using interface implementations as opposed to subclassing (however the same can be achieved through subclassing). It is important to note that the factory method can also be defined as public and called directly by the client code (in contrast the Java example above).
+
+==Limitations==
+
+There are three limitations associated with the use of the factory method. The first relates to refactoring existing code; the other two relate to extending a class.
+All three problems could be alleviated by altering the underlying programming language to make factories first-class class members (see also Virtual class).
+
+==Uses==
+
+==See also==
+
+==References==
+
+ | last = Fowler | first = Martin

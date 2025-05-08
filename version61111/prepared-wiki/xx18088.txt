@@ -1,0 +1,12 @@
+    --[[ Redefine print function, the usual print function can still be used 
+         through oldprint. The new one has only one argument.]]
+    oldprint(s == "foo" and "bar" or s)
+  end
+end
+
+Any future calls to print will now be routed through the new function, and because of Lua's lexical scoping, the old print function will only be accessible by the new, modified print.
+Lua also supports closures, as demonstrated below:
+
+function addto(x)
+  -- Return a new function that adds x to the argument
+  return function(y)

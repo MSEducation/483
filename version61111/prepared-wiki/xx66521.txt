@@ -1,0 +1,80 @@
+[[Web colors]]
+
+CATEGORIES: Web colors, Color, Web design
+
+Web colors are colors used in designing web pages, and the methods for describing and specifying those colors. Colors may be specified as an RGB triplet or in hexadecimal format (a hex triplet). They may also be specified according to their common English names in some cases. Often a color tool or other graphics software is used to generate color values. In some uses, hexadecimal color codes are specified with notation using a leading number sign (#).[tpl]cite book | last = Niederst Robbins | first = Jennifer | title = Web Design in a Nutshell | publisher = O'Reilly |date=February 2006 |page=830 | isbn = 978-0-596-00987-8 |chapter=Appendix D: Specifying Color [/tpl]York, Richard. Beginning CSS, pp. 71–72. A color is specified according to the intensity of its red, green and blue components, each represented by eight bits. Thus, there are 24 bits used to specify a web color, and 16,777,216 colors that may be so specified.
+The first versions of Mosaic and Netscape Navigator used the X11 color names as the basis for their color lists, as both started as X Window System applications.Guide to Graphics. SPLUS, splus.com. Page 13.
+Web colors have an unambiguous colorimetric definition, sRGB, which relates the chromaticities of a particular phosphor set, a given transfer curve, adaptive whitepoint, and viewing conditions.Digital Color Imaging Handbook By Gaurav Sharma. ISBN 0-8493-0900-X These have been chosen to be similar to many real-world monitors and viewing conditions, so that even without color management rendering is fairly close to the specified values. However, user agents vary in the fidelity with which they represent the specified colors. More advanced user agents use color management to provide better color fidelity; this is particularly important for Web-to-print applications.
+
+==Hex triplet==
+
+A hex triplet is a six-digit, three-byte hexadecimal number used in HTML, CSS, SVG, and other computing applications, to represent colors. The bytes represent the red, green and blue components of the color. One byte represents a number in the range 00 to FF (in hexadecimal notation), or 0 to 255 in decimal notation. This represents the least (0) to the most (255) intensity of each of the color components. Thus web colors specify colors in the Truecolor (24-bit RGB) color scheme. The hex triplet is formed by concatenating three bytes in hexadecimal notation, in the following order:
+For example, consider the color where the red/green/blue values are decimal numbers: red=36, green=104, blue=160 (a greyish-blue color). The decimal numbers 36, 104 and 160 are equivalent to the hexadecimal numbers 24, 68 and A0 respectively. The hex triplet is obtained by concatenating the 6 hexadecimal digits together, 2468A0 in this example.
+Note that if any one of the three color values is less than 16 (decimal) or 10 (hex), it must be represented with a leading zero so that the triplet always has exactly six digits. For example, the decimal triplet 4, 8, 16 would be represented by the hex digits 04, 08, 10, forming the hex triplet 040810.
+The number of colors that can be represented by this system is 2563 or 224 = 16,777,216.
+
+===Shorthand hexadecimal form===
+
+An abbreviated, three (hexadecimal) digits form is sometimes used.[tpl]cite web |url=http://www.w3.org/TR/css3-color/#rgb-color |publisher=W3C |work=CSS Color Module Level 3 |title=4.2.1. RGB color values |date=7 June 2011 |editor1-first=Tantek |editor1-last=Çelik |editor2-first=Chris |editor2-last=Lilley |editor3-first=L. David |editor3-last=Baron |first1=Steven |last1=Pemberton |first2=Brad |last2=Pettit |accessdate=19 March 2013 [/tpl] Expanding this form to the six-digit form is as simple as doubling each digit: 09C becomes 0099CC as presented on the following CSS example:
+The three-digit form is described in the CSS specification, not in HTML. As a result, the three-digit form in an attribute other than "style" is not interpreted as a valid color in some browsers.
+This shorthand form reduces the palette to 4,096 colors, equivalent of 12-bit color as opposed to 24-bit color using the whole six-digit form (16,777,216 colors). However, this limitation is often sufficient for text based documents.
+
+===Converting RGB to hexadecimal===
+
+RGB values are usually given in the 0–255 range; if they are in the 0–1 range, the values are multiplied by 255 before conversion. This number divided by 16 (integer division; ignoring any remainder) gives us the first hexadecimal digit (between 0 and F, where the letters A to F represent the numbers 10 to 15. See hexadecimal for more details). The remainder gives us the second hexadecimal digit. For instance the RGB value 201 divides into 12 groups of 16, thus the first digit is C. A remainder of 9 gives us the hexadecimal number C9. This process is repeated for each of the three color values.
+Conversion between number bases is a common feature of calculators, including both hand-held models and the software calculators bundled with most modern operating systems. Web-based tools specifically for converting color values are also available.
+
+==HTML color names==
+
+The HTML 4.01 specification[tpl]cite web|url=http://www.w3.org/TR/REC-html40/types.html#h-6.5 |title=HTML 4.01 Specification section 6.5 "Colors" |publisher=W3.org |date= |accessdate=2013-07-08[/tpl] defines 16 named colors, as follows (names are defined in this context to be case-insensitive):
+These 16 were labelled as sRGB and included in the HTML 3.0 specification, which noted they were "the standard 16 colors supported with the Windows VGA palette."[tpl]cite web|url=http://www.w3.org/TR/REC-html32#body |title=HTML 3.2 Specification "The BODY element" |publisher=W3.org |date= |accessdate=2013-07-08[/tpl]
+
+==X11 color names==
+
+In addition, a number of colors are defined by web browsers. A particular browser may not recognize all of these colors, but as of 2005 all modern general-use browsers support the full list of colors. Many of these colors are from the list of X11 color names distributed with the X Window System. These colors were standardized by SVG 1.0, and are accepted by SVG Full user agents. They are not part of SVG Tiny.
+The list of colors actually shipped with the X11 product varies between implementations, and clashes with certain of the HTML names such as green. Furthermore, X11 colors are defined as simple RGB (hence, no particular color space), rather than sRGB. This means that the list of colors found in X11 (e.g. in /usr/lib/X11/rgb.txt) should not directly be used to choose colors for the web.[tpl]cite web|url=http://lists.w3.org/Archives/Public/www-svg/2002Apr/0052.html |title=Public discussion on SVG mailing list Re: color names in SVG-1.0 conflict with /usr/lib/X11/rgb.txt |publisher=Lists.w3.org |date= |accessdate=2013-07-08[/tpl]
+The list of web "X11 colors" from the CSS3 specification, along with their hexadecimal and decimal equivalents, is shown below, compare the alphabetical lists in the W3C standards. Note that this includes the common synonyms: aqua (HTML4/CSS 1.0 standard name) and cyan (common sRGB name), magenta (common sRGB name) and fuchsia (HTML4/CSS 1.0 standard name), gray (HTML4/CSS 1.0 standard name) and grey.[tpl]cite web|url=http://www.w3.org/TR/SVG/types.html#ColorKeywords |title=W3C TR SVG 1.0, recognized color keyword names |publisher=W3.org |date=2011-08-16 |accessdate=2013-07-08[/tpl]
+|
+|
+|}
+
+==Web-safe colors==
+
+At one time many computer displays were only capable of displaying 256 colors. These may be dictated by the hardware or changeable by a "color table". When a color is found (e.g., in an image) that is not one available, a different one has to be used. This can be done by either using the closest color, which greatly speeds up the load time, or by using dithering, which results in more accurate results, but takes longer to load due to the complex calculations.
+There were various attempts to make a "standard" color palette. A set of colors was needed that could be shown without dithering on 256-color displays; the number 216 was chosen partly because computer operating systems customarily reserved sixteen to twenty colors for their own use; it was also selected because it allows exactly six equally-spaced shades of red, green, and blue (6 × 6 × 6 = 216), each from 00 to FF (including both limits).
+The list of colors is often presented as if it has special properties that render them immune to dithering. In fact, on 256-color displays applications can set a palette of any selection of colors that they choose, dithering the rest. These colors were chosen specifically because they matched the palettes selected by the then leading browser applications. Fortunately, there were not radically different palettes in use in different popular browsers.[tpl]Citation needed|date=May 2011[/tpl] 
+"Web-safe" colors had a flaw in that, on systems such as X11 where the palette is shared between applications, smaller color cubes (5×5×5 or 4×4×4) were often allocated by browsers—thus, the "web safe" colors would actually dither on such systems. Better results were obtained by providing an image with a larger range of colors and allowing the browser to quantize the color space if needed, rather than suffer the quality loss of a double quantization.
+[tpl]As of|2011[/tpl], personal computers typically[tpl]cite web|url=http://www.w3schools.com/browsers/browsers_display.asp |title=Browser Display Statistics |publisher=W3schools.com |date= |accessdate=2013-07-08[/tpl] have 24-bit (TrueColor) and the use of "web-safe" colors has fallen into practical disuse. Even mobile devices have at least 16-bit color, driven by the inclusion of cameras on cellphones.[tpl]citation needed|date=April 2012[/tpl]
+The "web-safe" colors do not all have standard names, but each can be specified by an RGB triplet: each component (red, green, and blue) takes one of the six values from the following table (out of the 256 possible values available for each component in full 24-bit color).
+The following table shows all of the "web-safe" colors. (One shortcoming of the web-safe palette is its poor selection of light background colors.) The intensities at the low end of the range, especially the two darkest, are often hard to distinguish.
+
+===Color table===
+
+In the table below, each color code listed is a shorthand for the RGB value; for example, code 609 is equivalent to RGB code 102-0-153 or HEX code #660099.
+ 
+ 
+===Safest web colors===
+
+Designers were often encouraged to stick to these 216 "web-safe" colors in their websites; however, 8-bit color displays were much more common when the 216-color palette was developed than they are now. David Lehn and Hadley Stern have since discovered that only 22 of the 216 colors in the web-safe palette are reliably displayed without inconsistent remapping on 16-bit computer displays. They called these 22 colors the "really safe" palette; it consists mainly of shades of green, yellow, and blue, as can be seen in the table below.[tpl]cite web|url=http://www.physics.ohio-state.edu/~wilkins/color/websafecolors.html |title=Death of the Websafe Color Palette? |publisher=Physics.ohio-state.edu |date= |accessdate=2013-07-08[/tpl]
+ 
+ 
+==CSS colors==
+
+The Cascading Style Sheets language defines the same number of named colors as the HTML 4 spec, namely the 16 listed previously.
+Additionally, CSS 2.1 adds the 'orange' color name to the list:[tpl]cite web |url=http://www.w3.org/TR/CSS21/syndata.html#color-units |title=CSS 2.1 Specification: Syntax and basic data types: Colors |date=8 September 2009 |accessdate=2009-12-21 [/tpl]
+|}
+CSS 2, SVG and CSS 2.1 also allow web authors to use so-called system colors, which are color names whose values are taken from the operating system, for example, picking the operating system's highlighted text color, or the background color for tooltip controls. This enables web authors to style their content in line with the operating system of the user agent.[tpl]cite web|url=http://www.w3.org/TR/CSS21/ui.html#system-colors |title=User interface – System colors |publisher=W3.org |date= |accessdate=2013-07-08[/tpl] The CSS3 color module has deprecated the use of system colors in favor of CSS3 UI System Appearance property,[tpl]cite web |url=http://www.w3.org/TR/css3-color/#css2-system |publisher=W3C |work=CSS Color Module Level 3 |title=4.5.1. CSS2 system colors |date=7 June 2011 |editor1-first=Tantek |editor1-last=Çelik |editor2-first=Chris |editor2-last=Lilley |editor3-first=L. David |editor3-last=Baron |first1=Steven |last1=Pemberton |first2=Brad |last2=Pettit |accessdate=19 March 2013 [/tpl][tpl]cite web|url=http://www.w3.org/TR/2004/CR-css3-ui-20040511/#system |title=CSS3 Basic User Interface Module, W3C Candidate Recommendation 11 May 2004: System Appearance |publisher=W3.org |date= |accessdate=2013-07-08[/tpl] which itself was subsequently dropped from CSS3.[tpl]cite web |url=http://www.w3.org/TR/css3-ui/#changes-list |work=CSS Basic User Interface Module Level 3 |publisher=W3C |date=17 January 2012 |title=List of substantial changes |quote=System Appearance has been dropped, including appearance values & property, and system fonts / extension of the 'font' property shorthand. |editor-first=Tantek |editor-last=Çelik |accessdate=19 March 2013 [/tpl]
+The developing CSS3 specification also introduces HSL color space values to style sheets:[tpl]cite web |url=http://www.w3.org/TR/css3-color/#hsl-color |publisher=W3C |work=CSS Color Module Level 3 |title=4.2.4. HSL color values |date=7 June 2011 |editor1-first=Tantek |editor1-last=Çelik |editor2-first=Chris |editor2-last=Lilley |editor3-first=L. David |editor3-last=Baron |first1=Steven |last1=Pemberton |first2=Brad |last2=Pettit |accessdate=19 March 2013 [/tpl]
+
+==Accessibility==
+
+Some browsers and devices do not support colors. For these displays, or for blind and colorblind users, Web content depending on colors can be unusable or difficult to use.
+Either no colors should be specified (to invoke the browser's default colors), or both the background and all foreground colors (primarily the colors of plain text, unvisited links, hovered links, active links, and visited links) should be specified to avoid black on black or white on white effects.[tpl]cite web|url=http://www.w3.org/QA/Tips/color |title=If You Pick One Color, Pick Them All |publisher=W3.org |date= |accessdate=2013-07-08[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,107 @@
+[[Bayes' theorem]]
+
+CATEGORIES: Bayesian statistics, Probability theorems, Statistical theorems
+
+In probability theory and statistics, Bayes' theorem (alternatively Bayes' law or Bayes' rule) is a result that is of importance in the mathematical manipulation of conditional probabilities. Bayes rule can be derived from  more basic axioms of probability, specifically conditional probability.
+When applied, the probabilities involved in Bayes' theorem may have any of a number of probability interpretations. In one of these interpretations, the theorem is used directly as part of a particular approach to statistical inference. ln particular, with the Bayesian interpretation of probability, the theorem expresses how a subjective degree of belief should rationally change to account for evidence: this is Bayesian inference, which is  fundamental to Bayesian statistics. However, Bayes' theorem has applications in a wide range of calculations involving probabilities, not just in Bayesian inference.
+Bayes' theorem is named after Thomas Bayes ([tpl]IPAc-en|ˈ|b|eɪ|z[/tpl]; 1701–1761), who first suggested using the theorem to update beliefs. His work was significantly edited and updated by Richard Price before it was posthumously read at the Royal Society. The ideas gained limited exposure until they were independently rediscovered and further developed by Laplace, who first published the modern formulation in his 1812 Théorie analytique des probabilités.
+Sir Harold Jeffreys wrote that Bayes' theorem “is to the theory of probability what Pythagoras's theorem is to geometry”.[tpl]Citation | last = Jeffreys | first = Harold | author-link = Harold Jeffreys | year = 1973 | title = Scientific Inference | publisher = Cambridge University Press | edition = 3rd | isbn = 978-0-521-18078-8 | page = 31[/tpl]
+
+==Introductory example==
+
+Suppose a man told you he had a nice conversation with someone on the train. Not knowing anything about this conversation, the probability that he was speaking to a woman is 50% (assuming the train had an equal number of men and women and the speaker was as likely to strike up a conversation with a man as with a woman). Now suppose he also told you that his conversational partner had long hair. It is now more likely he was speaking to a woman, since women are more likely to have long hair than men. Bayes' theorem can be used to calculate the probability that the person was a woman.
+To see how this is done, let W represent the event that the conversation was held with a woman, and L denote the event that the conversation was held with a long-haired person. It can be assumed that women constitute half the population for this example. So, not knowing anything else, the probability that W occurs is  P(W) = 0.5.
+Suppose it is also known that 75% of women have long hair, which we denote as P(L |W) = 0.75 (read: the probability of event L given event W is 0.75, meaning that the probability of a person having long hair (event "L"), given that we already know that the person is a woman ("event W") is 75%). Likewise, suppose it is known that 15% of men have long hair, or P(L |M) = 0.15, where M is the complementary event of W, i.e., the event that the conversation was held with a man (assuming that every human is either a man or a woman).
+Our goal is to calculate the probability that the conversation was held with a woman, given the fact that the person had long hair, or, in our notation, P(W |L). Using the formula for Bayes' theorem, we have:
+i.e., the probability that the conversation was held with a woman, given that the person had long hair, is about 83%. More examples are provided below.
+Another way to do this calculation is as follows. Initially, it is equally likely that the conversation is held with a woman as with a man, so the prior odds are 1:1. The respective chances that a man and a woman have long hair are 15% and 75%. It is 5 times more likely that a woman has long hair than that a man has long hair. We say that the likelihood ratio or Bayes factor is 5:1. Bayes' theorem in odds form, also known as Bayes' rule, tells us that the posterior odds that the person was a woman is also 5:1 (the prior odds, 1:1, times the likelihood ratio, 5:1). In a formula:
+
+==Statement and interpretation==
+
+Mathematically, Bayes' theorem gives the relationship between the probabilities of A and B, P(A) and P(B), and the conditional probabilities of A given B and B given A, P(A|B) and P(B|A). In its most common form, it is:
+The meaning of this statement depends on the interpretation of probability ascribed to the terms:
+
+===Bayesian interpretation===
+
+In the Bayesian (or epistemological) interpretation, probability measures a degree of belief. Bayes' theorem then links the degree of belief in a proposition before and after accounting for evidence. For example, suppose somebody proposes that a biased coin is twice as likely to land heads than tails. Degree of belief in this might initially be 50%. The coin is then flipped a number of times to collect evidence. Belief may rise to 70% if the evidence supports the proposition.
+For proposition A and evidence B,
+For more on the application of Bayes' theorem under the Bayesian interpretation of probability, see Bayesian inference.
+
+===Frequentist interpretation===
+
+In the frequentist interpretation, probability measures a proportion of outcomes. For example, suppose an experiment is performed many times. P(A) is the proportion of outcomes with property A, and P(B) that with property B. P(B|A) is the proportion of outcomes with property B out of outcomes with property A, and P(A|B) the proportion of those with A out of those with B.
+The role of Bayes' theorem is best visualized with tree diagrams, as shown to the right. The two diagrams partition the same outcomes by A and B in opposite orders, to obtain the inverse probabilities. Bayes' theorem serves as the link between these different partitionings.
+
+==Forms==
+
+===Events===
+
+====Simple form====
+
+For events A and B, provided that P(B) ≠ 0,
+In many applications, for instance in Bayesian inference, the event B is fixed in the discussion, and we wish to consider the impact of its having been observed on our belief in various possible events A.  In such a situation the denominator of the last expression, the probability of the given evidence B, is fixed; what we want to vary is A.  Bayes theorem then shows that the posterior probabilities are proportional to the numerator:
+In words: posterior is proportional to prior times likelihood (see Lee, 2012, Chapter 1).
+If events A1, A2, …, are mutually exclusive and exhaustive, i.e., one of them is certain to occur but no two can occur together, and we know their probabilities up to proportionality, then we can determine the proportionality constant by using the fact that their probabilities must add up to one. For instance, for a given event A, the event A itself and its complement ¬A are exclusive and exhaustive.  Denoting the constant of proportionality by c we have
+Adding these two formulas we deduce that
+
+====Extended form====
+
+Often, for some partition {Aj} of the event space, the event space is given or conceptualized in terms of P(Aj) and P(B|Aj). It is then useful to compute P(B) using the law of total probability:
+In the special case where A is a binary variable:
+
+===Random variables===
+
+Consider a sample space Ω generated by two random variables X and  Y. In principle, Bayes' theorem applies to the events A = {X = x} and B = {Y = y}. However, terms become 0 at points where either variable has finite probability density. To remain useful, Bayes' theorem may be formulated in terms of the relevant densities (see Derivation).
+
+====Simple form====
+
+If X is continuous and Y is discrete,
+If X is discrete and Y is continuous,
+If both X and Y are continuous,
+
+====Extended form====
+
+A continuous event space is often conceptualized in terms of the numerator terms. It is then useful to eliminate the denominator using the law of total probability. For fY(y), this becomes an integral:
+
+===Bayes' rule===
+
+Bayes' rule is Bayes' theorem in odds form.
+where
+is called the Bayes factor or likelihood ratio and the odds between two events is simply the ratio of the probabilities of the two events. Thus
+So the rule says that the posterior odds are the prior odds times the Bayes factor, or in other words, posterior is proportional to prior times likelihood.
+
+==Derivation==
+
+===For events===
+
+Bayes' theorem may be derived from the definition of conditional probability:
+
+===For random variables===
+
+For two continuous random variables X and Y, Bayes' theorem may be analogously derived from the definition of conditional density:
+
+==Examples==
+
+===Frequentist example===
+
+An entomologist spots what might be a rare subspecies of beetle, due to the pattern on its back. In the rare subspecies, 98% have the pattern, or P(Pattern|Rare) = 98%. In the common subspecies, 5% have the pattern. The rare subspecies accounts for only 0.1% of the population. How likely is the beetle having the pattern to be rare, or what is P(Rare|Pattern)?
+From the extended form of Bayes' theorem (since any beetle can be only rare or common),
+
+===Coin flip example===
+
+Concrete example from 5 August 2011 New York Times article by John Allen Paulos (quoted verbatim):
+"Assume that you’re presented with three coins, two of them fair and the other a counterfeit that always lands heads. If you randomly pick one of the three coins, the probability that it’s the counterfeit is 1 in 3. This is the prior probability of the hypothesis that the coin is counterfeit. Now after picking the coin, you flip it three times and observe that it lands heads each time. Seeing this new evidence that your chosen coin has landed heads three times in a row, you want to know the revised posterior probability that it is the counterfeit. The answer to this question, found using Bayes’s theorem (calculation mercifully omitted), is 4 in 5. You thus revise your probability estimate of the coin’s being counterfeit upward from 1 in 3 to 4 in 5."
+The calculation ("mercifully supplied") follows:
+
+===Drug testing===
+
+Suppose a drug test is 99% sensitive and 99% specific. That is, the test will produce 99% true positive results for drug users and 99% true negative results for non-drug users. Suppose that 0.5% of people are users of the drug. If a randomly selected individual tests positive, what is the probability he or she is a user?
+Despite the apparent accuracy of the test, if an individual tests positive, it is more likely that they do not use the drug than that they do.
+This surprising result arises because the number of non-users is very large compared to the number of users; thus the number of false positives (0.995%) outweighs the number of true positives (0.495%). To use concrete numbers, if 1000 individuals are tested, there are expected to be 995 non-users and 5 users. From the 995 non-users, 0.01 × 995 ≃ 10 false positives are expected. From the 5 users, 0.99 × 5 ≃ 5 true positives are expected. Out of 15 positive results, only 5, about 33%, are genuine.
+Note: The importance of specificity can be illustrated by showing that even if sensitivity is 100% and specificity is at 99% the probability of the person being a drug user is ~33% but if the specificity is changed to 99.5% and the sensitivity is dropped down to 99% the probability of the person being a drug user raises to 49.8%. Even at 90% sensitivity and 99.5% specificity the probability of a person being a drug user is 47.5%.
+
+==Applications==
+
+Bayes' Theorem is significantly important in inverse problem theory, where the a posteriori probability density function is obtained from the product of prior probability density function and the likelihood probability density function. 
+An important application is constructing computational models of oil reservoirs given the observed data.Gharib Shirangi, M.,  History matching production data and uncertainty assessment with an efficient TSVD parameterization algorithm, Journal of Petroleum Science and Engineering, http://www.sciencedirect.com/science/article/pii/S0920410513003227
+Although Bayes' theorem is commonly used to determine the probability of an event occurring, it can also be applied to verify someones credibility as a prognosticator. Many pundits claim to be able to predict the outcome of an event; political elections, trials, the weather and even sporting events. Larry Sabato, founder of Sabato’s Crystal Ball, is a perfect example. His website provides free political analysis and election predictions. His success at predictions has even led him to be called a “pundit with an opinion for every reporter’s phone call.” [ref]

@@ -1,0 +1,183 @@
+[[Methods of contour integration]]
+
+CATEGORIES: Complex analysis
+
+In the mathematical field of complex analysis, contour integration is a method of evaluating certain integrals along paths in the complex plane.[tpl]Cite book|title=Complex Analysis: Fundamentals of the Classical Theory of Functions |author=John Stalker |page=77 | url=http://books.google.com/books?id=yl3GIXd3dFIC&pg=PP12&dq=%22calculus+of+residues%22#PPA77,M1|isbn=0-8176-4038-X |publisher=Springer |year=1998[/tpl][tpl]Cite book|title=Complex Analysis |author=Joseph Bak & Donald J. Newman |at=Chapters 11 & 12, pp. 130–156 |url=http://books.google.com/books?id=JX2YSgfZwbYC&pg=PA130&dq=%22contour+integral%22#PPA130,M1 |isbn=0-387-94756-6 |year=1997 |publisher=Springer[/tpl][tpl]Cite book|title=Handbook of Complex Variables |author=Steven George Krantz |chapter= Chapter 2 |url=http://books.google.com/books?id=aYU2AdF_0dIC&pg=PT13&dq=Calculus++Residues+inauthor:krantz#PPT47,M1 |isbn=0-8176-4011-8 |year=1999 |publisher=Springer [/tpl]
+Contour integration is closely related to the calculus of residues, a methodology of complex analysis.
+One use for contour integrals is the evaluation of integrals along the real line that are not readily found by using only real variable methods.[tpl]Cite book|title=Chapter 5 |url=http://books.google.com/books?id=-suKhxfPH5AC&printsec=frontcover&dq=%22calculus+of+residues%22#PPA108,M1 | author=Dragoslav S. Mitrinovic & Jovan D. Keckic|year=1984 |isbn=90-277-1623-4 [/tpl]
+Contour integration methods include
+One method can be used, or a combination of these methods, or various limiting processes, for the purpose of finding these integrals or sums.
+
+==Curves in the complex plane==
+
+In complex analysis a contour is a type of curve in the complex plane. In contour integration, contours provide a precise definition of the curves on which an integral may be suitably defined. A curve in the complex plane is defined as a continuous function from a closed interval of the real line to the complex plane: z : b → C.
+This is a generalization of the concept of a path in topology where the domain is restricted to the unit interval 1.
+This definition of a curve coincides with the intuitive notion of a curve, but includes a parametrization by a continuous function from a closed interval. This more precise definition allows us to consider what properties a curve must have for it to be useful for integration. In the following subsections we narrow down the set of curves that we can integrate to only include ones that can be built up out of a finite number of continuous curves that can be given a direction. Moreover, we will restrict the "pieces" from crossing over themselves, and we require that each piece have a finite (non-vanishing) continuous derivative. These requirements correspond to requiring that we consider only curves that can be traced, such as by a pen, in a sequence of even, steady strokes, which only stop to start a new piece of the curve, all without picking up the pen.
+
+===Directed smooth curves===
+
+Contours are often defined in terms of directed smooth curves. These provide a precise definition of a "piece" of a smooth curve, of which a contour is made.
+|author=Edward B. Saff & Arthur David Snider|year=2003 |isbn=01-390-7874-6}}[/ref]
+The parametrization of a curve provides a natural ordering of points on the curve: z(x) comes before z(y) if x 
+===Contours===
+
+==Contour integrals==
+
+The contour integral of a complex function f : C → C is a generalization of the integral for real-valued functions. For continuous functions in the complex plane, the contour integral can be defined in analogy to the line integral by first defining the integral along a directed smooth curve in terms of an integral over a real valued parameter. A more general definition can be given in terms of partitions of the contour in analogy with the partition of an interval and the Riemann integral. In both cases the integral over a contour is defined as the sum of the integrals over the directed smooth curves that make up the contour.
+
+===For continuous functions===
+
+To define the contour integral in this way one must first consider the integral, over a real variable, of a complex-valued function. Let f : R → C be a complex-valued function of a real variable, t. The real and imaginary parts of f are often denoted as u(t) and v(t), respectively, so that
+Then the integral of the complex-valued function f over the interval b is given by 
+Let f : C → C be a continuous function on the directed smooth curve γ. Let z : R → C be any parametrization of γ that is consistent with its order (direction). Then the integral along γ is denoted
+and is given by
+This definition is well defined. That is, the result is independent of the curve chosen. In the case where the real integral on the right side does not exist the integral along γ is said not to exist.
+
+===As a generalization of the Riemann integral===
+
+The generalization of the Riemann integral to functions of a complex variable is done in complete analogy to its definition for functions from the real numbers. The partition of a directed smooth curve γ is defined as a finite, ordered set of points on γ. The integral over the curve is the limit of finite sums of function values, taken at the points on the partition, in the limit that the maximum distance between any two points on the partition (in the two-dimensional complex plane), also known as the mesh, goes to zero.
+
+==Direct methods==
+
+Direct methods involve the calculation of the integral by means of methods similar to those in calculating line integrals in several-variable calculus. This means that we use the following method:
+
+===Example===
+
+A fundamental result in complex analysis is that the contour integral of z−1 is 2πi, where the path of the contour is taken to be the unit circle traversed counterclockwise (or any Jordan curve about 0). In the case of the unit circle there is a direct method to evaluate the integral
+In evaluating this integral, use the unit circle |z| = 1 as contour, parametrized by z(t) = eit, with t ∈ 0, 2π, then [tpl]nowrap begin[/tpl]dz/dt = ieit''[tpl]nowrap end[/tpl] and
+which is the value of the integral.
+
+==Applications of integral theorems==
+
+Applications of integral theorems are also often used to evaluate the contour integral along a contour, which means that the real-valued integral is calculated simultaneously along with calculating the contour integral.
+Integral theorems such as the Cauchy integral formula or residue theorem are generally used in the following method:
+
+===Example (I)===
+
+Consider
+To evaluate this integral, we look at the complex-valued function
+which has singularities at i and −i. However, we will want to choose a contour that will enclose the real-valued integral, so we choose a semicircle like the one shown on the left, which we will let expand as to contain the whole real axis (a → ∞). Call this contour C.
+Now, there are two ways of proceeding, using the Cauchy integral formula or by the method of residues.
+
+====Using the Cauchy integral formula====
+
+Note that:
+thus
+Furthermore observe that
+Since the only singularity in the contour is the one at i, then we can write
+which puts the function in the form for direct application of the formula. Then, by using Cauchy's integral formula,
+(We take the first derivative, in the above steps, because the pole is a second-order pole.  That is, [tpl]nowrap|(z − i )[/tpl] is taken to the second power, so we employ the first derivative of f(z).  If it were [tpl]nowrap|(z − i )[/tpl] taken to the third power, we would use the second derivative and divide by 2!, etc.  The case of [tpl]nowrap|(z − i )[/tpl] to the first power corresponds to a zero order derivative—just f(z) itself.)
+If we call the arc of the semicircle Arc, we need to show that the integral over Arc tends to zero as a → ∞ — using the estimation lemma
+where M is an upper bound on |f(z)| along the Arc and L the length of Arc. Now,
+So
+
+====Using the method of residues====
+
+Consider the Laurent series of f(z) about i, the only singularity we need to consider. We then have
+(See Sample Laurent Calculation from Laurent series for the derivation of this series.)
+It is clear by inspection that the residue is −i/4 (to see this, imagine that the above equation were multiplied by z − i, then both sides integrated via the Cauchy integral formula—only the second term would integrate to a non-zero quantity), so, by the residue theorem, we have
+Thus we get the same result as before.
+
+====Contour note====
+
+As an aside, a question can arise whether we do not take the semicircle to include the other singularity, enclosing −i. To have the integral along the real axis moving in the correct direction, the contour must travel clockwise, i.e., in a negative direction, reversing the sign of the integral overall.
+This does not affect the use of the method of residues by series.
+
+===Example (II) – Cauchy distribution===
+
+The integral
+(which arises in probability theory as a scalar multiple of the characteristic function of the Cauchy distribution) resists the techniques of elementary calculus.  We will evaluate it by expressing it as a limit of contour integrals along the contour C that goes along the real line from −a to a and then counterclockwise along a semicircle centered at 0 from a to −a.  Take a to be greater than 1, so that the imaginary unit i is enclosed within the curve.  The contour integral is
+Since eitz is an entire function (having no singularities at any point in the complex plane), this function has singularities only where the denominator z2 + 1 is zero. Since z2 + 1 = (z + i)(z − i), that happens only where z = i or z = −i. Only one of those points is in the region bounded by this contour.  The residue of f(z) at z = i is
+According to the residue theorem, then, we have
+The contour C may be split into a "straight" part and a curved arc, so that
+and thus
+It can be shown that if ''t'' > 0 then
+Therefore if ''t'' > 0 then
+A similar argument with an arc that winds around −i rather than i shows that if ''t'' and finally we have this:
+(If t = 0 then the integral yields immediately to real-valued calculus methods and its value is π.)
+
+===Example (III) – trigonometric integrals===
+
+Certain substitutions can be made to integrals involving trigonometric functions, so the integral is transformed into a rational function of a complex variable and then the above methods can be used in order to evaluate the integral.
+As an example, consider
+We seek to make a substitution of z = eit. Now, recall
+and
+Taking C to be the unit circle, we substitute to get:
+The singularities to be considered are at 3−1/2i, −3−1/2i. Let C1 be a small circle about 3−1/2i, and C2 be a small circle about −3−1/2i.  Then we arrive at the following:
+
+===Example (IIIa) trigonometric integrals, the general procedure===
+
+The above method may be applied to all integrals of the type
+where P and Q are polynomials, i.e. a rational function in trigonometric terms is being integrated. Note that the bounds of integration may as well be π and -π, as in the previous example, or any other pair of endpoints 2π apart.
+This substitution maps the interval 2π to the unit circle. Furthermore,
+and
+so that a rational function f(z) in z results from the substitution, and the integral becomes
+The image at right illustrates this for
+which we now compute. The first step is to recognize that
+The substitution yields
+The poles of this function are at 1 ± √2 and −1 ± √2. Of these, 1 + √2 and −1 −√2 are outside the unit circle (shown in red, not to scale), whereas 1 − √2 and −1 + √2 are inside the unit circle (shown in blue). The corresponding residues are both equal to −i√2/16, so that the value of the integral is
+
+===Example (IV) – branch cuts===
+
+Consider
+We can begin by formulating the complex integral
+We can use the Cauchy integral formula or residue theorem again to obtain the relevant residues. However, the important thing to note is that z1/2 = e1/2·Log(z), so z1/2 has a  branch cut. This affects our choice of the contour C. Normally the logarithm branch cut is defined as the negative real axis, however, this makes the calculation of the integral slightly more complicated, so we define it to be the positive real axis.
+Then, we use the so-called keyhole contour, which consists of a small circle about the origin of radius ε say, extending to a line segment parallel and close to the positive real axis but not touching it, to an almost full circle, returning to a line segment parallel, close, and below the positive real axis in the negative sense, returning to the small circle in the middle.
+Note that z = −2 and z = −4 are inside the big circle.  These are the two remaining poles, derivable by factoring the denominator of the integrand.  The branch point at z = 0 was avoided by detouring around the origin.
+ 
+Let γ be the small circle of radius ε, Γ the larger, with radius R, then
+It can be shown that the integrals over Γ and γ both tend to zero as ε → 0 and R → ∞, by an estimation argument above, that leaves two terms. Now since z1/2 = e(1/2)Log(z), on the contour outside the branch cut, we have gained 2π in argument along γ (by Euler's Identity, eiπ represents the unit vector, which therefore has π as its log. This π is what is meant by the argument of z.  The coefficient of 1/2 forces us to use 2π), so
+Therefore:
+By using the residue theorem or the Cauchy integral formula (first employing the partial fractions method to derive a sum of two simple contour integrals) one obtains
+
+===Example (V) – the square of the logarithm===
+
+This section treats a type of integral of which
+is an example.
+To calculate this integral, one uses the function
+We will calculate the integral of f(z) along the keyhole contour shown at right.  As it turns out this integral is a multiple of the initial integral that we wish to calculate and by the Cauchy residue theorem we have
+Let R be the radius of the large circle, and r the radius of the small one. We will denote the upper line by M, and the lower line by N.  As before we take the limit when R → ∞ and r → 0. The contributions from the two circles vanish. For example, one has the following upper bound with the ML-lemma:
+which gives
+
+===Example (VI) – logarithms and the residue at infinity===
+
+We seek to evaluate
+This requires a close study of
+We will construct f(z) so that it has a branch cut on 3, shown in red in the diagram. To do this, we choose two branches of the logarithm, setting
+and
+The cut of z3/4 is therefore (−∞, 0] and the cut of (3−z)1/4 is (−∞, 3]. It is easy to see that the cut of the product of the two, i.e. f(z), is 3, because f(z) is actually continuous across (−∞, 0). This is because when z = −r When we approach from below, f(z) has the value
+But
+so that we have continuity across the cut.  This is illustrated in the diagram, where the two black oriented circles are labelled with the corresponding value of the argument of the logarithm used in z3/4 and (3−z)1/4.
+We will use the contour shown in green in the diagram. To do this we must compute the value of f(z) along the line segments just above and just below the cut.
+Let z = r (in the limit, i.e. as the two green circles shrink to radius zero), where 0 ≤ r ≤ 3. Along the upper segment, we find that f(z) has the value
+and along the lower segment,
+It follows that the integral of
+along the upper segment is −iI in the limit, and along the lower segment, I.
+If we can show that the integrals along the two green circles vanish in the limit, then we also have the value of I, by the Cauchy residue theorem.  Let the radius of the green circles be ρ, where ρ L on the left, we find
+Similarly, for the circle CR on the right, we have
+Now using the Cauchy residue theorem, we have
+where the minus sign is due to the clockwise direction around the residues. Using the branch of the logarithm from before, clearly
+The pole is shown in blue in the diagram. The value simplifies to
+We use the following formula for the residue at infinity:
+Substituting, we find
+and
+where we have used the fact that −1 = eiπ for the second branch of the logarithm.  Next we apply the binomial expansion, obtaining
+The conclusion is that
+Finally, it follows that the value of I is
+which yields
+
+==Integral representation==
+
+An integral representation of a function is an expression of the function involving a contour integral. Various integral representations are known for many special functions. Integral representations can be important for theoretical reasons, e.g. giving analytic continuation or functional equations, or sometimes for numerical evaluations.
+
+==See also==
+
+==References and notes==
+
+==Further reading==
+
+isbn=0-19-853349-7}}
+
+==External links==
+
+

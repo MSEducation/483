@@ -1,0 +1,120 @@
+[[Chinese remainder theorem]]
+
+CATEGORIES: Modular arithmetic, Commutative algebra, Theorems in number theory, Articles containing proofs, Chinese mathematical discoveries
+
+The Chinese remainder theorem is a result about congruences in number theory and its generalizations in abstract algebra. It was first published in the 3rd to 5th centuries by Chinese mathematician Sun Tzu.
+In its basic form, the Chinese remainder theorem will determine a number n that when divided by some given divisors leaves given remainders. For example, what is the lowest number n that when divided by 3 leaves a remainder of 2, when divided by 5 leaves a remainder of 3, and when divided by 7 leaves a remainder of 2? 
+
+Theorem statement
+
+The original form of the theorem, contained in the 5th-century book Sunzi's Mathematical Classic (, Shushu Jiuzhang), is a statement about simultaneous congruences.
+Suppose n1, n2, …, nk are positive integers that are pairwise coprime. Then, for any given sequence of integers a1,a2, …, ak, there exists an integer x solving the following system of simultaneous congruences.
+Furthermore, all solutions x of this system are congruent modulo the product, N = n1n2…nk.
+Sometimes, the simultaneous congruences can be solved even if the ni's are not pairwise coprime. A solution x exists if and only if:
+All solutions x are then congruent modulo the least common multiple of the ni.
+Sun Tzu's work contains neither a proof nor a full algorithm. What amounts to an algorithm for solving this problem was described by Aryabhata (6th century; see ). Special cases of the Chinese remainder theorem were also known to Brahmagupta (7th century), and appear in Fibonacci's Liber Abaci (1202).
+The theorem can also be restated in the language of combinatorics as the fact that the infinite arithmetic progressions of integers form a Helly family .
+
+Existence and uniqueness
+
+The existence and uniqueness of the solution can easily be seen through a non-constructive argument. There are N = n1n2... Let us call this set R. And there are also N different numbers between 1 and N. For each number between 1 and N, there corresponds member of R. Can two numbers a, b, between 1 and N correspond to the same member of R? That is, can they have the same set of remainders when divided by n1, n2..., nk? If they did then a - b would be divisible by each n. Since the n's are relatively prime, a - b would be divisible by their product: N. This can't be. So this function from {1, ... N } to R is one-to-one. Since {1, ... , N} and R have the same number of elements, this function must also be onto. Thus we have established the existence of a bijection. 
+
+Case of two equations
+
+But we know that
+We can now define the value
+and it is seen to satisfy both congruences by reducing. For example
+
+General case
+
+and this is seen to satisfy the system of congruences by a similar calculation as before.
+
+Finding the solution with basic algebra and modular arithmetic
+
+For example, consider the problem of finding an integer x such that
+A brute-force approach converts these congruences into sets and writes the elements out to the product of  (the solutions modulo 60 for each congruence):
+To find an x that satisfies all three congruences, intersect the three sets to get:
+Which can be expressed as
+Another way to find a solution is with basic algebra, modular arithmetic, and stepwise substitution.
+We start by translating these congruences into equations for some t, s, and u:
+Start by substituting the x from equation 1 into congruence 2:
+Substitute t into equation 1:
+Substitute this x into congruence 3:
+Casting out fives, we get
+meaning that
+for some integer u.
+Finally,
+So, we have solutions 11, 71, 131, 191, …
+Notice that 60 = lcm(3,4,5). If the moduli are pairwise coprime (as they are in this example), the solutions will be congruent modulo their product.
+
+A constructive algorithm to find the solution
+
+Suppose, as above, that a solution is required for the system of congruences:
+Because of this, and the multiplication rules allowed in congruences, one solution to the system of simultaneous congruences is:
+For example, consider the problem of finding an integer x such that
+Using the extended Euclidean algorithm, for x modulo 3 and 20 4×5, we find (−13) × 3 + 2 × 20 = 1; i.e., e1 = 40. For x modulo 4 and 15 3×5, we get (−11) × 4 + 3 × 15 = 1, i.e. e2 = 45. Finally, for x modulo 5 and 12 3×4, we get 5 × 5 + (−2) × 12 = 1, i.e. e3 = −24. A solution x is therefore 2 × 40 + 3 × 45 + 1 × (−24) = 191. All other solutions are congruent to 191 modulo 60, × 4 × 5 = 60, which means they are all congruent to 11 modulo 60.
+
+Statement for principal ideal domains
+
+For a principal ideal domain R the Chinese remainder theorem takes the following form: If u1, …, uk are elements of R which are pairwise coprime, and u denotes the product u1…uk, then the quotient ring R/uR and the product ring R/u1R× … × R/ukR are isomorphic via the isomorphism
+such that
+This map is well-defined and an isomorphism of rings; the inverse isomorphism can be constructed as follows. For each i, the elements ui and u/ui are coprime, and therefore there exist elements r and s in R with
+This statement is a straightforward generalization of the above theorem about integer congruences: the ring Z of integers is a principal ideal domain, the surjectivity of the map f shows that every system of congruences of the form
+can be solved for x, and the injectivity of the map f shows that all the solutions x are congruent modulo u.
+
+Statement for general rings
+
+such that
+Here is a version of the theorem where R is not required to be commutative:
+
+Applications
+
+Non-commutative case: a caveat
+
+Proof
+
+
+
+
+
+ | title = Fibonacci's Liber Abaci
+ | author = Laurence E. Sigler (trans.)
+ | publisher = Springer-Verlag
+ | year = 2002
+ | isbn = 0-387-95419-8
+ | pages = 402–403}}
+ | last = Kak | first = Subhash
+ | issue = 1
+ | journal = Indian Journal of History of Science
+ | pages = 62–71
+ | title = Computational aspects of the Aryabhata algorithm
+ | url = 
+ | volume = 21
+ | year = 1986}}.
+| title = Algebra
+| author = Thomas W. Hungerford
+| publisher = Springer-Verlag
+| year = 1974
+| isbn = 0-387-90518-9
+| pages = 131–132}}
+| title = Chinese Remainder Theorem: Applications in Computing, Coding, Cryptography
+| author = Cunsheng Ding, Dingyi Pei, and Arto Salomaa
+| publisher = World Scientific Publishing
+| year = 1996
+| isbn = 981-02-2827-9
+| pages = 1–213}}
+ | last = Duchet | first = Pierre
+ | editor1-last = Graham | editor1-first = R. L.
+ | editor2-last = Grötschel | editor2-first = M.
+ | editor3-last = Lovász | editor3-first = L.
+ | contribution = Hypergraphs
+ | location = Amsterdam
+ | mr = 1373663
+ | pages = 381–432
+ | publisher = Elsevier
+ | title = Handbook of combinatorics, Vol. 1, 2
+ | year = 1995}}. See in particular Section 2.5, "Helly Property", [ pp.&nbsp;393–394].
+
+
+
+

@@ -1,0 +1,56 @@
+[[Rebol]]
+
+CATEGORIES: AmigaOS 4 software, Dynamic programming languages, Dynamically typed programming languages, Functional languages, Prototype-based programming languages, Scripting languages, Extensible syntax programming languages, Formerly proprietary software
+
+Rebol ([tpl]IPAc-en|ˈ|r|ɛ|b|əl[/tpl] [tpl]respell|REB|əl[/tpl]; historically REBOL) is a cross-platform data exchange language and a multi-paradigm dynamic programming language designed by Carl Sassenrath for network communications and distributed computing.  It introduces the concept of dialecting: small, optimized, domain-specific languages for code and data,Roberts, Ralph (2000). REBOL for Dummies. Hungry Minds. ISBN 0-7645-0745-1.Auverlot, Olivier (2001). Rebol Programmation. Eyrolles. ISBN 2-212-11017-0. which is also the most notable property of the language according to its designer:
+Douglas Crockford of JavaScript fame has described Rebol as "a more modern language, but with some very similar ideas to Lisp, in that it's all built upon a representation of data which is then executable as programs" and as one of JSON's influences.
+Originally, the language and its official implementation were proprietary and closed source, developed by REBOL Technologies.  Following the discussion with Lawrence Rosen,[tpl]cite web|url=http://www.rebol.com/article/0511.html |title=REBOL to become open source |publisher=Rebol.com |date=2012-09-25 |accessdate=2014-01-23[/tpl] the Rebol version 3 interpreter was released under the Apache 2.0 license on 12/12/2012.  Older versions are only available in binary form, and no source release for them is planned.
+Rebol has been used to program Internet applications (both client- and server-side), database applications, utilities, and multimedia applications.Auverlot, Olivier (2007). Rebol – Guide du programmeur.In English: Auverlot, Olivier, Wood, Peter W.A. (2008). Rebol – A programmer's guide. Lulu.com.
+
+==Etymology==
+
+Rebol was initially an acronym for Relative Expression Based Object Language.  To align with modern trends in language naming, most writers ceased the practice of writing it in all caps.  Sassenrath eventually put the question to the community debate on his blog.[tpl]cite web |url=http://www.rebol.com/cgi-bin/blog.r?view=0525 |title=Calling REBOL Rebol? |last1= |first1= |last2= |first2= |date=14 December 2012  |website= |publisher= |accessdate=2 December 2013[/tpl]
+In subsequent writing, Sassenrath adopted the convention of writing the language name as "Rebol".
+
+==History==
+
+First released in 1997, Rebol was designed over a 20 year period by Carl Sassenrath, the architect and primary developer of AmigaOS, based on his study of denotational semantics and using concepts from the programming languages Lisp, Forth, Logo, and Self.
+REBOL Technologies was founded in 1998.
+REBOL 2, the interpreter, which became the core of extended interpreter editions, was first released in 1999.
+REBOL/Command, which added strong encryption and ODBC access, was released in September 2000.
+REBOL/View was released in April 2001, adding graphical abilities on the core language.
+REBOL/IOS, an extensible collaboration environment built with REBOL was released in August 2001.
+REBOL/SDK, providing a choice of kernels to bind against, as well as a preprocessor, was released in December 2002.
+Rebol 3, the newest version of the interpreter, had alpha versions released by REBOL Technologies since January 2008.  Since its release as an Apache 2 project in December 2012, it is being developed by the Rebol community.
+
+==Ease of use==
+
+One of the Rebol design principles is "to do simple things in simple ways". In the following example the Visual interface dialect is used to describe a simple Hello world program with a graphical user interface:
+This is how a similar example looks in R3-GUI:
+
+==Dialects==
+
+Rebol dialects, now popular as domain-specific languages (DSLs), are micro-languages optimized for a specific purpose. Dialects can be used to define business rules, graphical user interfaces or sequences of screens during the installation of a program. Users can define their own dialects, reusing any existing Rebol word and giving it a specific meaning in that dialect. Dialects are interpreted by functions processing Rebol blocks (or parsing strings) in a specific way.
+An example of Rebol's dialecting abilities can be seen with the word return. In the data exchange dialect return is just a word not having any specific meaning. In the do dialect, return is a global variable referring to a native function passing back a function result value.Goldman, E., Blanton, J. (2000). REBOL: The Official Guide. McGraw-Hill Osborne Media. ISBN 0-07-212279-X. In the visual interface dialect (VID), return is a keyword causing the layout engine to simulate a carriage return, moving the "rendering pen" down to the beginning of the next line.
+A Rebol interpreter with graphical abilities must understand and interpret many dialects. The table below lists the most important ones in order of significance.
+
+==Syntax==
+
+Rebol syntax is free-form, not requiring specific positioning. However, indentation is recommended to better convey the structure of the text to human readers.
+Syntactic properties of different dialects may differ. The common platform for all Rebol dialects is the data exchange dialect; other dialects are usually derived from it. In addition to being the common platform for all dialects, the data exchange dialect is directly used to represent data and metadata, populate data structures, send data over Internet, and save them in data storage.
+In contrast to programming languages like C, the data exchange dialect does not consist of declarations, statements, expressions or keywords. A valid data exchange dialect text stream is a tree data structure consisting of blocks (the root block is implicit, subblocks are delimited by square brackets), parens (delimited by round brackets), strings (delimited by double quotes or curly brackets suitable for multi-line strings; caret notation is used for unprintable characters), URLs, e-mail addresses, files, paths or other composite values. Unlike ALGOL blocks, Rebol blocks are composite values similar to quoted s-expressions in Lisp. The fact that code is written in the form of Rebol blocks makes the language homoiconic.
+Blocks as well as parens may contain other composite values (a block may contain subblocks, parens, strings, ...) or scalar values like words, set-words (words suffixed by the colon), get-words (words prefixed by the colon), lit-words (words prefixed by the apostrophe), numbers, money, characters, etc., separated by whitespace. Note that special characters are allowed in words, so a+b is a word unlike a + b, which is a sequence of three words separated by spaces.
+Comments may appear following the semicolon until the end of the line. Multi-line comments or comments not ignored by the lexical parser can be written using "ordinary" datatypes like multi-line strings.
+
+==Semantics==
+
+Blocks containing domain-specific language can be submitted as arguments to specific evaluator functions.
+
+===do===
+
+The most frequently used evaluator is the do function. It is used by default to interpret the text input to the interpreter console.
+The do dialect interpreted by the do function, is an expression-oriented sublanguage of the data exchange dialect. The main semantic unit of the language is the expression. In contrast to imperative programming languages descending from ALGOL, the do dialect has neither keywords, nor statements.
+Words are used as case-insensitive variables. Like in all dynamically typed languages, variables don't have an associated type, type is associated with values. The result, i.e. the evaluation of a word is returned, when a word is encountered by the do function. The set-word form of a word can be used for assignment. While not having statements, assignment, together with functions with side-effects can be used for imperative programming.
+Subblocks of the root block evaluate to themselves. This property is used to handle data blocks, for structured programming by submitting blocks as arguments to control functions like if, either, loop, etc., and for dialecting, when a block is passed to a specific interpreter function.
+A specific problem worth noting is that composite values, assigned to variables, are not copied. To make a copy, the value must be passed to the copy function.
+The do function normally follows a prefix style of evaluation, where a function processes the arguments that follow it. However, infix evaluation using infix operators exists too. Infix evaluation takes precedence over the prefix evaluation. For example,

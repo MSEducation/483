@@ -1,0 +1,35 @@
+[[PostScript Printer Description]]
+
+CATEGORIES: PostScript, Computer file formats
+
+PostScript Printer Description (PPD) files are created by vendors to describe the entire set of features and capabilities available for their PostScript printers.
+A PPD also contains the PostScript code (commands) used to invoke features for the print job. As such, PPDs function as drivers for all PostScript printers, by providing a unified interface for the printer's capabilities and features. For example, a generic PPD file for all models of HP Color LaserJet contains:
+ *% =================================
+ *% Basic Device Capabilities
+ *% =================================
+ *LanguageLevel: "2"
+ *ColorDevice: True
+ *DefaultColorSpace: CMYK
+ *TTRasterizer: Type42
+ *FileSystem: False
+ *Throughput: "10"
+which specifies that the printer understands PostScript Level 2, is a color device, and so forth. The PPD can describe allowable paper sizes, memory configurations, the minimum font set for the printer, and even specify a tree-based user interface for printer-specific configuration.
+
+==CUPS==
+
+CUPS uses PPD drivers for all of its PostScript printers, and has even extended the concept to allow for PostScript printing to non-PostScript printing devices, by directing output through a CUPS filter. Such a file is no longer a standard PPD, but rather a "CUPS-PPD".
+CUPS clients usually read the current PPD file from the server every time a new print job is created.
+
+==Windows==
+
+Microsoft Windows also uses PPD files but converts these to a binary .BPD file format before using them. These are normally stored in C:\WINDOWS\system32\spool\drivers\w32x86\3 on a x86 system, or C:\Windows\System32\spool\drivers\x64\3 on a 64 bit system. Updating the PPD files requires removing and then reinstalling the printer.
+
+==MIME Type==
+
+The MIME type for the CUPS variant of PPD is application/vnd.cups.ppd.IANA: http://www.iana.org/assignments/media-types/application/vnd.cups-ppd
+
+==References==
+
+==External links==
+
+

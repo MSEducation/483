@@ -1,0 +1,46 @@
+[[Heine–Borel theorem]]
+
+CATEGORIES: Theorems in real analysis, General topology, Properties of topological spaces, Compactness theorems, Articles containing proofs
+
+In the topology of metric spaces the Heine–Borel theorem, named after Eduard Heine and Émile Borel, states:
+For a subset S of Euclidean space Rn, the following two statements are equivalent:
+In the context of real analysis, the former property is sometimes used as the defining property of compactness. However, the two definitions cease to be equivalent when we consider subsets of more general metric spaces and in this generality only the latter property is used to define compactness. In fact, the Heine–Borel theorem for arbitrary metric spaces reads:
+
+==History and motivation==
+
+The history of what today is called the Heine–Borel theorem starts in the 19th century, with the search for solid foundations of real analysis. Central to the theory was the concept of uniform continuity and the theorem stating that every continuous function on a closed interval is uniformly continuous. Peter Gustav Lejeune Dirichlet was the first to prove this and implicitly he used the existence of a finite subcover of a given open cover of a closed interval in his proof. He used this proof in his 1862 lectures, which were published only in 1904. Later Eduard Heine, Karl Weierstrass and Salvatore Pincherle used similar techniques. Émile Borel in 1895 was the first to state and prove a form of what is now called the Heine–Borel theorem. His formulation was restricted to countable covers. Pierre Cousin (1895), Lebesgue (1898) and Schoenflies (1900) generalized it to arbitrary covers.[tpl]cite arXiv |last=Sundström |first=Manya Raman | eprint=1006.4131 |title=A pedagogical history of compactness |class=math.HO |year=2010 |version=v1 | ref=harv[/tpl]
+
+==Proof==
+
+If a set is compact, then it must be closed.
+Let S be a subset of Rn.  Observe first the following: if a is a limit point of S, then any finite collection C of open sets, such that each open set U ∈ C is disjoint from some neighborhood VU of a, fails to be a cover of S.  Indeed, the intersection of the finite family of sets VU is a neighborhood W of a in Rn. Since a is a limit point of S, W must contain a point x in S. This x ∈ S is not covered by the family C, because every U in C is disjoint from VU and hence disjoint from W, which contains x. 
+If S is compact but not closed, then it has an accumulation point a not in S.  Consider a collection [tpl]nowrap|C ′[/tpl] consisting of an open neighborhood N(x) for each x ∈ S, chosen small enough to not intersect some neighborhood Vx of a.  Then [tpl]nowrap|C ′[/tpl] is an open cover of S, but any finite subcollection of [tpl]nowrap|C ′[/tpl] has the form of C discussed previously, and thus cannot be an open subcover of S.  This contradicts the compactness of S.  Hence, every accumulation point of S is in S, so S is closed.
+The proof above applies with almost no change to showing that any compact subset S of a Hausdorff topological space X is closed in X.
+If a set is compact, then it is bounded.
+Consider the open balls centered upon a common point, with any radius. This can cover any set, because all points in the set are some distance away from that point. Any finite subcover of this cover must be bounded, because all balls in the subcover are contained in the largest open ball within that subcover.  Therefore, any set covered by this subcover must also be bounded.
+A closed subset of a compact set is compact.
+Let K be a closed subset of a compact set T in Rn and let CK be an open cover of K.  Then [tpl]nowrap|U [tpl]=[/tpl] Rn \ K[/tpl] is an open set and
+If a set is closed and bounded, then it is compact.
+If a set S in Rn is bounded, then it can be enclosed within an n-box
+where a > 0.  By the property above, it is enough to show that T0 is compact.
+Assume, by way of contradiction, that T0 is not compact.  Then there exists an infinite open cover C of T0 that does not admit any finite subcover.  Through bisection of each of the sides of T0, the box T0 can be broken up into 2n sub n-boxes, each of which has diameter equal to half the diameter of T0.  Then at least one of the 2n sections of T0 must require an infinite subcover of C, otherwise C itself would have a finite subcover, by uniting together the finite covers of the sections.  Call this section T1.
+Likewise, the sides of T1 can be bisected, yielding 2n sections of T1, at least one of which must require an infinite subcover of C.  Continuing in like manner yields a decreasing sequence of nested n-boxes:
+where the side length of Tk is [tpl]nowrap|(2 a) / 2k[/tpl], which tends to 0 as k tends to infinity.  Then, by Cantor's intersection theorem, the infinite intersection
+is not empty,  but instead contains some point p ∈ T0.  Since C covers T0, then it has some member U ∈ C such that p ∈ U.  Since U is open, there is an n-ball [tpl]nowrap|B(p) ⊆ U[/tpl].  For large enough k, one has [tpl]nowrap|Tk ⊆ B(p) ⊆ U[/tpl], but then the infinite number of members of C needed to cover Tk can be replaced by just one: U, a contradiction.
+Thus, T0 is compact.  Since S is closed and a subset of the compact set T0, then S is also compact (see above).
+
+==Generalizations==
+
+The Heine–Borel theorem can be generalized to arbitrary metric spaces by strengthening the conditions required for compactness:
+This generalisation also applies to topological vector spaces and, more generally, to uniform spaces.
+Axiom of dependent choice.)
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

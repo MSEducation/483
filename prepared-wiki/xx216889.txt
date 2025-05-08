@@ -1,0 +1,32 @@
+[[MODCA]]
+
+CATEGORIES: Graphics file formats, Printing, Computer printing, IBM software
+
+MO:DCA
+(Mixed Object:Document Content Architecture) is an IBM compound document format for text and graphics elements in a document. The 'Mixed Object' refers to the fact that an MO:DCA file can contain multiple types of objects, including text, images, vector graphics, and barcodes.[tpl]efn|To generate a barcode an application provides a string of digits along with controls that identify a specific type of barcode, and the rendering of bars will be done on the output platform (physical printer hardware or software emulation).[/tpl] 
+MO:DCA supports Revisable Documents, which are editable like revisable-form text, Presentation Documents, which provide specific output formatting similar to final-form text, and Resource Documents, which hold control information such as fonts. An MO:DCA file consists of a sequential, ordered hierarchy of independent objects - documents, pages, data objects, and resource objects such as fonts and ICC profiles. Each object is delimited by begin/end structures, and objects to be rendered specify presentation parameters and resource requirements in structures called "environment groups". Since the pages in MO:DCA documents appear in sequential order, presentation can start as soon as the first page is received.IBM MO:DCA
+Formats for specific objects are specified in various OCAs (Object Content Architectures): PTOCA for presentation text that has been formatted for output, GOCA for vector graphics objects, IOCA for bitmapped Images, FOCA for fonts, and BCOCA for barcodes. MO:DCA is implemented as IBM's Advanced Function Presentation (AFP) page description language. MO:DCA Definition
+
+==ConsiderationsRegistration of MO:DCA==
+
+===Encoding===
+
+MO:DCA-P carries text, image, and graphics data objects, therefore the data is a mixture of binary data and character data. The recommended content-transfer-encoding is base64.
+
+===Security===
+
+MO:DCA-P is a specification of final-form presentation data of an Image. It is not a programming language, does not contain any file operators, and therefore cannot corrupt a receiver's file system or programming environment. MO:DCA and Mixed Object Document Content Architecture are trademarks of the IBM Corporation.
+===Interoperability=== 
+MO:DCA-P defines interchange sets to support interoperability. Currently defined sets are Interchange Set 1 (IS/1) and Interchange Set 2 (IS/2). 
+
+==Applications That Use MODCA==
+
+==External links==
+
+==References==
+
+==See also==
+
+==Notes==
+
+

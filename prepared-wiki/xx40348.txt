@@ -1,0 +1,16 @@
+[[Plesiochronous system]]
+
+CATEGORIES: Network architecture, Synchronization
+
+In telecommunications, a plesiochronous system is one where different parts of the system are almost, but not quite, perfectly synchronised. According to ITU-T standards, a pair of signals are plesiochronous if their significant instants occur at nominally the same rate, with any variation in rate being constrained within specified limits. A sender and receiver operate plesiosynchronously if they operate at the same nominal frequency but may have a slight frequency mismatch, which leads to a drifting phase.P. Teehan, M. Greenstreet, G. Lemieux: A Survey and Taxonomy of GALS Design Styles, IEEE Design & Test of Computers September–October 2007, p.419S. Johnson, S. Scott: A Supercomputer System Interconnect and Scalable IOS, 14th IEEE Symposium on Mass Storage Systems, 1995, Footnote on p.358 The mismatch between the two systems' clocks is known as the plesiochronous difference.
+In general, plesiochronous systems behave similarly to synchronous systems, except they must employ some means in order to cope with "sync slips", which will happen at intervals due to the plesiochronous nature of the system. The most common example of a plesiochronous system design is the plesiochronous digital hierarchy networking standard.
+The asynchronous serial communication protocol is asynchronous on the byte level, but plesiochronous on the bit level. The receiver detects the start of a byte by detecting a transition that may occur at a random time after the preceding byte. The indefinite wait and lack of external synchronizaton signals makes byte detection asynchronous. Then the receiver samples at predefined intervals to determine the values of the bits in the byte; this is plesiochronous since it depends on the transmitter to transmit at roughly the same rate the receiver expects, without coordination of the rate while the bits are being transmitted.
+The modern tendency in systems engineering is towards using systems that are either fundamentally asynchronous (such as Ethernet), or fundamentally synchronous (such as synchronous optical networking), and layering these where necessary, rather than using a mixture between the two in a single technology.
+The term plesiochronous comes from the Greek πλησίον plesion, "near" and χρόνος chrónos, "time".
+
+==See also==
+
+==References==
+
+Contains material from FOLDOC, used with permission
+

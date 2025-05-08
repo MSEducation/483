@@ -1,0 +1,46 @@
+[[Assembly (CLI)]]
+
+CATEGORIES: Common Language Infrastructure
+
+An assembly in the Common Language Infrastructure (CLI) is a compiled code library used for deployment, versioning, and security. There are two types: process assemblies (EXE) and library assemblies (DLL). A process assembly represents a process that will use classes defined in library assemblies. CLI assemblies contain code in CIL, which is usually generated from a CLI language, and then compiled into machine language at run time by the just-in-time compiler. In the .NET Framework implementation, this compiler is part of the Common Language Runtime (CLR).
+An assembly can consist of one or more files. Code files are called modules. An assembly can contain more than one code module. And since it is possible to use different languages to create code modules, it is technically possible to use several different languages to create an assembly. Visual Studio however does not support using different languages in one assembly.
+
+==Assembly names==
+
+The name of an assembly consists of four parts
+The public key token is used to make the assembly name unique. Thus, two strong named assemblies can have the same PE file name and yet the CLI will recognize them as different assemblies. The Windows file system (FAT32 and NTFS) only recognizes the PE file name, so two assemblies with the same PE file name (but different culture, version or public key token) cannot exist in the same Windows folder. To solve this issue the CLI introduces the GAC (Global Assembly Cache) that is treated as a single folder by run-time, but is actually implemented using nested file system folders.
+To prevent spoofing attacks, where a cracker would try to pass off an assembly appearing as something else, the assembly is signed with a private key. The developer of the intended assembly keeps the private key secret, so a cracker cannot have access to it nor simply guess it. Thus the cracker cannot make his assembly impersonate something else, lacking the possibility to sign it correctly after the change. Signing the assembly involves taking a hash of important parts of the assembly and then encrypting the hash with the private key. The signed hash is stored in the assembly along with the public key. The public key will decrypt the signed hash. When the CLR loads a strongly named assembly it will generate a hash from the assembly and then compare this with the decrypted hash. If the comparison succeeds then it means that the public key in the file (and hence the public key token) is associated with the private key used to sign the assembly. This will mean that the public key in the assembly is the public key of the assembly publisher and hence a spoofing attack is prevented.
+
+==Assembly versions==
+
+CLI assemblies can have version information, allowing them to eliminate most conflicts between applications caused by shared assemblies. However, this does not eliminate all possible versioning conflicts between assemblies.
+
+==Assemblies and CLI security==
+
+CLI Code Access Security is based on assemblies and evidence. Evidence can be anything deduced from the assembly, but typically it is created from the source of the assembly — whether the assembly was downloaded from the Internet, an intranet, or installed on the local machine (if the assembly is downloaded from another machine it will be stored in a sandboxed location within the GAC and hence is not treated as being installed locally). Permissions are applied to entire assemblies, and an assembly can specify the minimum permissions it requires through custom attributes (see CLI metadata). When the assembly is loaded the CLR will use the evidence for the assembly to create a permission set of one or more code access permissions. The CLR will then check to make sure that this permission set contains the required permissions specified by the assembly.
+CLI code can perform a code access security demand. This means that the code will perform some privileged action only if all of the assemblies of all of the methods in the call stack have the specified permission. If one assembly does not have the permission a security exception is thrown.
+The CLI code can also perform Linked Demand for getting the permission from the call stack. In this case the CLR will look at only one method in the call stack in the TOP position for the specified permission. Here the stack walk-through is bound to one method in the call stack by which the CLR assumes that all the other methods in the CALL STACK have the specified permission. The Assembly is a combination of METADATA and MSIL file.
+
+==Satellite assemblies==
+
+In general, assemblies should contain culture-neutral resources. If you want to localize your assembly (for example use different strings for different locales) you should use satellite assemblies — special, resource-only assemblies. As the name suggests, a satellite is associated with an assembly called the main assembly. That assembly (say, lib.dll) will contain the neutral resources (that Microsoft says is International English, but implies to be US English). Each satellite has the name of the associated library appended with .resources (for example lib.resources.dll). The satellite is given a non-neutral culture name, but since this is ignored by existing Windows file systems (FAT32 and NTFS) this would mean that there could be several files with the same PE name in one folder. Since this is not possible, satellites must be stored in subfolders under the application folder. For example, a satellite with the UK English resources will have a CLI name of "lib.resources Version=0.0.0.0 Culture=en-GB PublicKeyToken=null", a PE file name of lib.resources.dll, and will be stored in a subfolder called en-GB.
+Satellites are loaded by a CLI class called System.Resources.ResourceManager. The developer has to provide the name of the resource and information about the main assembly (with the neutral resources). The ResourceManager class will read the locale of the machine and use this information and the name of the main assembly to get the name of the satellite and the name of the subfolder that contains it. ResourceManager can then load the satellite and obtain the localized resource.
+
+==Referencing assemblies==
+
+One can reference an executable code library by using the /reference flag of the C# compiler.
+
+==Delay-signing of an assembly==
+
+The shared assemblies need to give a strong name for uniquely identifying the assembly that might be shared among the applications. The strong naming consists of the public key token, culture, version and PE file name. If an assembly is likely to be used for the development purpose which is a shared assembly, the strong naming procedure contains only public key generation. The private key is not generated at that time. It is generated only when the assembly is deployed.
+
+==Language of an assembly==
+
+The assembly is built up with the CIL code, which is an intermediate language. The framework internally converts the CIL bytecode into native assembly code. If we have a program that prints "Hello World", the equivalent CIL code for the method is:
+So the CIL code loads the String onto the stack. Then it calls the WriteLine function and returns.'''
+
+==See also==
+
+==References==
+
+

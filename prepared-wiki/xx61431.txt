@@ -1,0 +1,112 @@
+[[Numerical methods for ordinary differential equations]]
+
+CATEGORIES: Numerical differential equations, Ordinary differential equations
+
+This subject is the part of numerical analysis which studies the methods for finding numerical approximations to the solutions of ordinary differential equations (ODEs). This field is also known under the name numerical integration, but some people reserve this term for the computation of integrals.
+Many differential equations cannot be solved analytically; however, in science and engineering, a numeric approximation to the solution is often good enough to solve a problem. The algorithms studied here can be used to compute such an approximation. An alternative method is to use techniques from calculus to obtain a series expansion of the solution.
+Ordinary differential equations occur in many scientific disciplines, for instance in physics, chemistry, biology, and economics. In addition, some methods in numerical partial differential equations convert the partial differential equation into an ordinary differential equation, which must then be solved.
+
+==The problem==
+
+A first-order differential equation is an Initial value problem (IVP) of the form,[tpl]harvtxt|Bradie|2006|pp=533–655[/tpl]
+where f is a function that maps [t0,∞) × Rd to Rd, and the initial condition y0 ∈ Rd is a given vector.  First-order means that only the first derivative of y appears in the equation, and higher derivatives are absent.
+Without loss of generality to higher-order systems, we restrict ourselves to first-order differential equations, because a higher-order ODE can be converted into a larger system of first-order equations by introducing extra variables.  For example, the second-order equation 
+y = −y 
+can be rewritten as two first-order equations: y = z and z = −y.
+In this section, we describe numerical methods for IVPs, and remark that boundary value problems (BVPs) require a different set of tools.  In a BVP, one defines values, or components of the solution y at more than one point.  Because of this, different methods need to be used to solve BVPs.  For example, the shooting method (and its variants) or global methods like finite differences, Galerkin methods, or collocation methods are appropriate for that class of problems.
+The Picard–Lindelöf theorem states that there is a unique solution, provided f is Lipschitz continuous.
+
+==Methods==
+
+Numerical methods for solving first-order IVPs often fall into one of two large categories: linear multistep methods, or Runge-Kutta methods.  A further division can be realized by dividing methods into those that are explicit and those that are implicit.  For example,  implicit linear multistep methods include Adams-Moulton methods, and backward differentiation methods (BDF), whereas implicit Runge-Kutta methods[tpl]harvtxt|Hairer|Nørsett|Wanner|1993|pages=204–215[/tpl] include  diagonally implicit Runge-Kutta (DIRK), singly diagonally implicit runge kutta (SDIRK), and Gauss-Radau (based on Gaussian quadrature) numerical methods.
+Explicit examples from the linear multistep family include the
+Adams-Bashforth methods, and any Runge-Kutta method 
+with a lower diagonal Butcher tableau is explicit.
+A loose rule of thumb dictates that stiff differential equations require the use of implicit schemes, whereas non-stiff problems can be solved more efficiently with explicit schemes.
+We point out that the so-called general linear methods (GLMs) are a generalization of the above two large classes of methods.
+
+===The Euler method===
+
+A brief explanation:
+From any point on a curve, you can find an approximation of a nearby point on the curve by moving a short distance along a line tangent to the curve.
+Rigorous development:
+Starting with the differential equation (1), we replace the derivative y by the finite difference approximation
+which when re-arranged yields the following formula
+and using (1) gives:
+This formula is usually applied in the following way. We choose a step size h, and we construct the sequence t0, t1 = t0 + h, t2 = t0 + 2h, … We denote by yn a numerical estimate of the exact solution y(tn). Motivated by (3), we compute these estimates by the following recursive scheme 
+This is the Euler method (or forward Euler method, in contrast with the backward Euler method, to be described below). The method is named after Leonhard Euler who described it in 1768.
+The Euler method is an example of an explicit method. This means that the new value yn+1 is defined in terms of things that are already known, like yn.
+
+===The backward Euler method===
+
+If, instead of (2), we use the approximation
+we get the backward Euler method:
+The backward Euler method is an implicit method, meaning that we have to solve an equation to find yn+1. One often uses fixed point iteration or (some modification of) the Newton–Raphson method to achieve this.
+It costs more time to solve this equation than explicit methods; this cost must be taken into consideration when one selects the method to use. The advantage of implicit methods such as (6) is that they are usually more stable for solving a stiff equation, meaning that a larger step size h can be used.
+
+===The first-order exponential integrator method===
+
+Exponential integrators describe a large class of integrators that have recently seen a lot of development.[tpl]harvtxt|Hochbruck|2010|pp=209–286[/tpl] This is a modern and extensive review paper for exponential integrators  They date back to at least the 1960s.
+In place of (1), we assume the differential equation is either of the form
+This approximation is exact, but it doesn't define the integral.
+
+===Generalizations===
+
+The Euler method is often not accurate enough. In more precise terms, it only has order one (the concept of order is explained below). This caused mathematicians to look for higher-order methods.
+One possibility is to use not only the previously computed value yn to determine yn+1, but to make the solution depend on more past values. This yields a so-called multistep method. Perhaps the simplest is the Leapfrog method which is second order and (roughly speaking) relies on two time values.
+Almost all practical multistep methods fall within the family of linear multistep methods, which have the form
+Another possibility is to use more points in the interval tn,tn+1. This leads to the family of Runge–Kutta methods, named after Carl Runge and Martin Kutta. One of their fourth-order methods is especially popular.
+
+===Advanced features===
+
+A good implementation of one of these methods for solving an ODE entails more than the time-stepping formula.
+It is often inefficient to use the same step size all the time, so variable step-size methods have been developed. Usually, the step size is chosen such that the (local) error per step is below some tolerance level. This means that the methods must also compute an error indicator, an estimate of the local error.
+An extension of this idea is to choose dynamically between different methods of different orders (this is called a variable order method). Methods based on Richardson extrapolation, such as the Bulirsch–Stoer algorithm, are often used to construct various methods of different orders.
+Other desirable features include: 
+
+===Alternative methods===
+
+Many methods do not fall within the framework discussed here. Some classes of alternative methods are:
+
+==Analysis==
+
+Numerical analysis is not only the design of numerical methods, but also their analysis. Three central concepts in this analysis are:
+
+===Convergence===
+
+A numerical method is said to be convergent if the numerical solution approaches the exact solution as the step size h goes to 0. More precisely, we require that for every ODE (1) with a Lipschitz function f and every t* > 0,
+All the methods mentioned above are convergent. In fact, a numerical scheme has to be convergent to be of any use.
+
+===Consistency and order===
+
+Suppose the numerical method is
+The local (truncation) error of the method is the error committed by one step of the method. That is, it is the difference between the result given by the method, assuming that no error was made in earlier steps, and the exact solution:
+The method is said to be consistent if 
+Hence a method is consistent if it has an order greater than 0. The (forward) Euler method (4) and the backward Euler method (6) introduced above both have order 1, so they are consistent. Most methods being used in practice attain higher order. Consistency is a necessary condition for convergence, but not sufficient; for a method to be convergent, it must be both consistent and zero-stable.
+A related concept is the global (truncation) error, the error sustained in all the steps one needs to reach a fixed time t. Explicitly, the global error at time t is yN − y(t) where N = (t−t0)/h. The global error of a pth order one-step method is O(hp); in particular, such a method is convergent.  This statement is not necessarily true for multi-step methods.
+
+===Stability and stiffness===
+
+For some differential equations, application of standard methods —such as the Euler method, explicit Runge–Kutta methods, or multistep methods (e.g., Adams–Bashforth methods)— exhibit instability in the solutions, though other methods may produce stable solutions. This "difficult behaviour" in the equation (which may not necessarily be complex itself) is described as stiffness, and is often caused by the presence of different time scales in the underlying problem. Stiff problems are ubiquitous in chemical kinetics, control theory, solid mechanics, weather forecasting, biology, plasma physics, and electronics.
+
+==History==
+
+Below is a timeline of some important developments in this field.
+
+==Numerical Solutions to Second Order One Dimensional boundary value problems==
+
+Boundary value problems (BVPs) are usually solved numerically by solving an approximately equivalent matrix problem obtained by discretizing the original BVP. The most commonly used method for numerically solving BVPs in one dimension is called the Finite Difference Method.  This method takes advantage of linear combinations of point values to construct finite difference coefficients that describe derivatives of the function.  For example,
+the second-order central difference approximation to the first derivative is given by:
+and the second-order central difference for the second derivative is given by:
+The next step would be to discretize the problem and use linear derivative approximations such as
+and solve the resulting system of linear equations. This would lead to equations such as:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

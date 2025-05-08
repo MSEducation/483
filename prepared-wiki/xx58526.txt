@@ -1,0 +1,45 @@
+[[Rewrite engine]]
+
+CATEGORIES: Uniform resource locator
+
+A rewrite engine is software located in a Web application framework running on a Web server that modifies a web URL's appearance. This modification is called URL rewriting. Rewritten URLs (sometimes known as short, fancy URLs, search engine friendly - SEF URLs, or slugs) are used to provide shorter and more relevant-looking links to web pages. The technique adds a layer of abstraction between the files used to generate a web page and the URL that is presented to the outside world.
+
+==Usage==
+
+Web sites with dynamic content use URLs that generate pages from the server using query string parameters. These are often rewritten to resemble URLs for static pages on a site with a subdirectory hierarchy. For example, the URL to a wiki page might be:
+ <nowiki>http://example.com/wiki/index.php?title=Page_title</nowiki>
+but can be rewritten as:
+ <nowiki>http://example.com/wiki/Page_title</nowiki>
+A blog might have a URL that encodes the dates of each entry:
+ <nowiki>http://www.example.com/Blog/Posts.php?Year=2006&Month=12&Day=19</nowiki>
+It can be altered like this:
+ <nowiki>http://www.example.com/Blog/2006/12/19/</nowiki>
+which also allows the user to change the URL to see all postings available in December, simply by removing the text encoding the day '19', as though navigating "up" a directory:
+ <nowiki>http://www.example.com/Blog/2006/12/</nowiki>
+A site can pass specialized terms from the url to its search engine as a search term. This would allow users to search directly from their browser. For example, the URL as entered into the browser's location bar:
+ <nowiki>http://example.com/search term</nowiki>
+Will be urlencoded by the browser before it makes the http request. The server could rewrite this to:
+ <nowiki>http://example.com/search.php?q=search%20term</nowiki>
+
+==Benefits and drawbacks==
+
+There are several benefits to using a rewrite engine for URLs:Many of these only apply to HTTP servers whose default behavior is to map URLs to filesystem entities (i.e. files and directories); certain environments, such as many HTTP application server platforms, make this irrelevant.
+There can, however be drawbacks as well; if a user wants to modify a URL to retrieve new data, the rewrite engine may hinder the construction of custom queries due to the lack of named variables. For example, it may be difficult to determine the date from the following format:
+ <nowiki>http://www.example.com/Blog/06/04/02/</nowiki>
+In this case, the original query string was more useful, since the query variables indicated month and day:
+ <nowiki>http://www.example.com/Blog/Posts.php?Year=2006&Month=04&Day=02</nowiki>
+
+==Web frameworks==
+
+Many web frameworks include URL rewriting, either directly or through extension modules.
+From a software development perspective, URL rewriting can aid in code modularization and control flow,[tpl]cite web|title=Clean URL|url=http://docforge.com/wiki/Clean_URL|publisher=DocForge|accessdate=25 April 2014[/tpl]  making it a useful feature of modern web frameworks.
+
+==See also==
+
+==Notes==
+
+==External links==
+
+===Apache===
+
+

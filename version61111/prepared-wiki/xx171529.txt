@@ -1,0 +1,25 @@
+[[Basic access control]]
+
+CATEGORIES: Contactless smart cards
+
+Basic access control (BAC) is a mechanism specified to ensure only authorized parties[tpl]cite web|url=http://hasbrouck.org/documents/ICAO9303-pt1-vol2.pdf |title=ICAO Document 9303, Part 1, Volume 2 (e-passports) |format=PDF |date= |accessdate=2012-01-15[/tpl] can wirelessly read personal information from passports with an RFID chip. It uses data such as the passport number, date of birth and expiration date to negotiate a session key. This key can then be used to encrypt the communication between the passports chip and a reading device. This mechanism is intended to ensure that the owner of a passport can decide who can read the electronic contents of the passport. This mechanism was first introduced into the German passport on 1 November 2005 (correction; Norway started to use this 3 October 2005, Sweden started also to use this in October 2005) and is now also used in many other countries (e.g., United States passports since August 2007).[tpl]dead link|date=January 2012[/tpl]
+
+==Inner workings==
+
+The data used to encrypt the BAC communication can be read electronically from the bottom of the passport called the machine readable zone. Because physical access to the passport is assumed to be needed to know this part of the passport it is assumed that the owner of the passport has given permission to read the passport. Equipment for optically scanning this part of the passport is already widely used. It uses an OCR system to read the text which is printed in a standardized format.
+
+==Security==
+
+There is a replay attack against the basic access control protocol that allows an individual passport to be traced.[tpl]cite web|last=Goodin |first=Dan |url=http://www.theregister.co.uk/2010/01/26/epassport_rfid_weakness/ |title=Defects in e-passports allow real-time tracking, The Register, Dan Goodin, 26th Jan 2010 |publisher=Theregister.co.uk |date=2010-01-26 |accessdate=2012-01-15[/tpl][tpl]cite web|url=http://www.cs.bham.ac.uk/~tpc/Papers/PassportTrace.pdf |title=A Traceability Attack Against e-Passports, Tom Chothia and Vitaliy Smirnov, 14th International Conference on Financial Cryptography and Data Security 2010 |format=PDF |date= |accessdate=2012-01-15[/tpl] The attack is based on being able to distinguish a failed nonce check from a failed MAC check and works against passports with randomized unique identifiers and hard to guess keys.
+The basic access control mechanism has been criticized as offering too little protection from unauthorized interception. Researchers claim [tpl]cite web|last=Hancke|first=Gerhard|url=http://www.rfidblog.org.uk/Hancke-IEEESP-RFIDPracAttacks.pdf |title=Practical Attacks on Proximity Identiﬁcation Systems (Short Paper), Security and Privacy, 2006 IEEE Symposium on, Gerhard Hancke, 10 April 2012 |publisher=Security and Privacy, 2006 IEEE Symposium on |date=2006 |accessdate=2012-05-10[/tpl] that because there are only limited numbers of passport issued, many theoretically possible passport numbers will not be in use in practice. The limited range of human age ranges further reduce the space of possibilities.
+In other words, the data used as an encryption key has a low entropy, meaning that guessing the session key is possible via a modest brute force attack.
+This effect increases when passport numbers are issued sequentially or contain a redundant checksum. Both are proven to be the case in passports issued by the Netherlands. There are other factors that can be potentially used to speed up a brute force attack. There is the fact that dates of birth are typically not distributed randomly in populations. Dates of birth may be distributed even less randomly for the segments of a population that pass, for example, a check-in desk at an airport. And the fact that passports are often not issued on all days of the week and during all weeks of a year. Therefore not all theoretically possible expiration dates may get used. In addition, the fact that real existing dates are used further limits the number of possible combinations: The month makes up two of the digits used for generating the key. Usually, two digits would mean 100 (00−99) combinations in decimal code or (36×36=1296) combinations in alphanumeric code. But as there are only 12 months, there are only 12 combinations. It is the same with the day (two digits and 31 combinations).
+The German passport serial-number format (previously 10-digit, all-numeric, sequentially assigned) was modified on 1 November 2007, in response to concerns about the low entropy of BAC session keys. The new 10-character serial number is alphanumeric and generated with the help of a specially-designed block cipher, to avoid a recognizable relationship with the expiry date and increase entropy. In addition, a public-key based extended access control mechanism is now used to protect any information in the RFID chip that goes beyond the minimum ICAO requirements, in particular fingerprint images.
+
+==References==
+
+==Sources==
+
+==External links==
+
+

@@ -1,0 +1,20 @@
+[[Multiple granularity locking]]
+
+CATEGORIES: Concurrency control
+
+In computer science, multiple granularity locking (MGL) is a locking method used in database management systems (DBMS) and relational databases. 
+In MGL, locks are set on objects that contain other objects.  MGL exploits the hierarchical nature of the contains relationship.  For example, a database may have files, which contain pages, which further contain records.  This can be thought of as a tree of objects, where each node contains its children.  A lock on such as a shared or exclusive lock locks the targeted node as well as all of its descendants. 
+Multiple granularity locking is usually used with non-strict two-phase locking to guarantee serializability. 
+
+==Lock Modes==
+
+In addition to shared (S) locks and exclusive (X) locks from other locking schemes, like strict two-phase locking, MGL also uses intention shared and intention exclusive locks.  IS locks conflict with X locks, while IX locks conflict with S and X locks.  The null lock (NL) is compatible with everything.
+To lock a node in S (or X), MGL has the transaction lock on all of its ancestors with IS (or IX), so if a transaction locks a node in S (or X), no other transaction can access its ancestors in X (or S and X). This protocol is shown in the following table:
+Determining what level of granularity to use for locking is done by locking the finest level possible (at the lowest leaf level), and then escalating these locks to higher levels in the file hierarchy to cover more records or file elements as needed. This process is known as Lock Escalation.
+MGL locking modes are compatible with each other as defined in the following matrix.
+Following the locking protocol and the compatibility matrix, if one transaction holds a node in S mode, no other transactions can have locked any ancestor in X mode. 
+
+==References==
+
+Granularity of Locks and Degrees of Consistency, J. Gray, R. Lorie, G.F. Putzolu, and I.L. Traiger, Modeling in Data Base Management Systems, G.M. Nijssen ed., North Holland Pub., 1976, pp. 364-394.
+

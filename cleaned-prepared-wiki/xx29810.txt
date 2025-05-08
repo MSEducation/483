@@ -1,0 +1,59 @@
+[[DEFLATE]]
+
+CATEGORIES: Lossless compression algorithms
+
+In computing, deflate is a data compression algorithm that uses a combination of the LZ77 algorithm and Huffman coding. It was originally defined by Phil Katz for version 2 of his PKZIP archiving tool and was later specified in RFC 1951.
+The original algorithm as designed by Katz was patented as US patent 5051745 and assigned to PKWARE. As stated in the RFC document, Deflate is widely thought to be implementable in a manner not covered by patents. This has led to its widespread use, for example in gzip compressed files, PNG image files and the ZIP file format for which Katz originally designed it.
+
+Stream format
+
+A Deflate stream consists of a series of blocks.  Each block is preceded by a 3-bit header:
+Most blocks will end up being encoded using method 10, the dynamic Huffman encoding, which produces an optimised Huffman tree customised for each block of data individually.   Instructions to generate the necessary Huffman tree immediately follow the block header.
+Compression is achieved through two steps
+
+Duplicate string elimination
+
+Within compressed blocks, if a duplicate series of bytes is spotted (a repeated string), then a back-reference is inserted, linking to the previous location of that identical string instead.  An encoded match to an earlier string consists of a length (3–258 bytes) and a distance (1–32,768 bytes).  Relative back-references can be made across any number of blocks, as long as the distance appears within the last 32 kB of uncompressed data decoded (termed the sliding window).
+
+Bit reduction
+
+The second compression stage consists of replacing commonly used symbols with shorter representations and less commonly used symbols with longer representations.  The method used is Huffman coding which creates an unprefixed tree of non-overlapping intervals, where the length of each sequence is inversely proportional to the probability of that symbol needing to be encoded. The more likely a symbol has to be encoded, the shorter its bit-sequence will be.
+A tree is created which contains space for 288 symbols:
+A match length code will always be followed by a distance code. Based on the distance code read, further "extra" bits may be read in order to produce the final distance.  The distance tree contains space for 32 symbols:
+
+Encoder/compressor
+
+During the compression stage, it is the encoder that chooses the amount of time spent looking for matching strings.  The zlib/gzip reference implementation allows the user to select from a sliding scale of likely resulting compression-level vs. speed of encoding.  Options range from -0 (do not attempt compression, just store uncompressed) to -9 representing the maximum capability of the reference implementation in zlib/gzip.
+Other Deflate encoders have been produced, all of which will also produce a compatible bitstream capable of being decompressed by any existing Deflate decoder.  Differing implementations will likely produce variations on the final encoded bit-stream produced.  The focus with non-zlib versions of an encoder has normally been to produce a more efficiently compressed and smaller encoded stream.
+
+Deflate64/Enhanced Deflate
+
+Deflate64, specified by PKWare, is a proprietary variant of the Deflate procedure. The fundamental mechanisms remain the same. What has changed is the increase in dictionary size from 32kB to 64kB, an addition of 14 bits to the distance codes so that they may address a range of 64kB, and the length code has been extended by 16 bits so that it may define lengths of 3 to 65538 bytes.Binary Essence - "Calgary Corpus" compression comparisons Several free and/or open source projects support Deflate64, such as 7-Zip,7-Zip Manual and Documentation - compression Method while others, such as zlib, do not, as a result of the proprietary nature of the procedure  and the very modest performance increase over Deflate.zlib FAQ - Does zlib support the new "Deflate64" format introduced by PKWare?
+
+Using Deflate in new software
+
+Implementations of Deflate are freely available in many languages. C programs typically use the zlib library (under the old BSD license without advertising clause). Programs written using the Borland dialects of Pascal can use paszlib; a C++ library is included as part of 7-Zip/AdvanceCOMP. Java includes support as part of the standard library (in java.zip). Microsoft .0 base class library supports it in the System.IO.
+
+Encoder implementations
+
+AdvanceCOMP uses the higher compression ratio version of Deflate as implemented by 7-Zip to enable recompression of gzip, PNG, MNG and ZIP files with the possibility of achieving  smaller file sizes than zlib is able to at maximum settings. An even more effective (but also more user-input-demanding and CPU intensive) Deflate encoder is employed inside Ken Silverman's KZIP and PNGOUT utilities.
+
+Hardware encoders
+
+Decoder/decompressor
+
+Inflate is the decoding process that takes a Deflate bit stream for decompression and correctly produces the original full-size data or file.
+
+Inflate-only implementations
+
+The normal intent with an alternative Inflate implementation is highly optimised decoding speed, or extremely predictable RAM usage for micro-controller embedded systems.
+
+Hardware decoders
+
+
+
+
+
+
+
+

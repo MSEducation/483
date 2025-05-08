@@ -1,0 +1,48 @@
+[[Variadic macro]]
+
+CATEGORIES: C programming language, C++
+
+A variadic macro is a feature of some computer programming languages, especially the C preprocessor, whereby a macro may be declared to accept a varying number of arguments.
+Variable-argument macros were introduced in 1999 in the ISO/IEC 9899:1999 (C99) revision of the C language standard, and in 2011 in ISO/IEC 14882:2011 (C++11) revision of the C++ language standard.Working draft changes for C99 preprocessor synchronization -  http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2004/n1653.htm
+
+==Declaration syntax==
+
+The declaration syntax is similar to that of variadic functions: an ellipsis "..." is used to indicate that one or more arguments must be passed.  Common compilers also permit passing zero arguments to such a macro, however.Variadic Macros - Using the GNU Compiler Collection (GCC)Variadic Macros (C++)  During macro expansion each occurrence of the special identifier __VA_ARGS__ in the macro replacement list is replaced by the passed arguments.
+No means is provided to access individual arguments in the variable argument list, nor to find out how many were passed. However, macros can be written to count the number of arguments that have been passed.
+
+==Support==
+
+Several compilers support variable-argument macros when compiling C and C++ code: the GNU Compiler Collection 3.0, Visual Studio 2005, C++Builder 2006, and Oracle Solaris Studio (formerly Sun Studio) Forte Developer 6 update 2 (C++ version 5.3).Sun Studio feature comparison -  http://developers.sun.com/sunstudio/support/CCcompare.html  GCC also supports such macros when compiling Objective-C.
+
+==Example==
+
+If a printf-like function dbgprintf() were desired, which would take the file and line number from which it was called as arguments, the following macro might be used:
+dbgprintf() could then be called as:
+which expands to: 
+or:
+which expands to:
+Without variadic macros, writing wrappers to printf is not directly possible.  The standard workaround is to use the stdargs functionality of C/C++, and have the function call vprintf instead.
+
+==Trailing comma==
+
+There is portability issue with generating a  trailing comma with empty args for variadic macros in C99. Some compilers (e.g.: Visual Studio) will quietly get rid of that trailing comma for you. Other compilers (e.g.: GCC) support putting ## in front of __VA_ARGS__
+The following application works
+which expands to
+which is equivalent to
+But look at this application:
+which expands to
+which generates a syntax error with GCC.
+GCC support the following (non-portable) extension:
+which removes the trailing comma when __VA_ARGS__ is empty.
+
+==Alternatives==
+
+Before the existence of variable-arguments in C99, it was quite common to use doubly-nested parenthesis to exploit the variable number of arguments that could be supplied to the printf() function :
+dbgprintf() could then be called as:
+which expands to: 
+
+==References==
+
+==See also==
+
+

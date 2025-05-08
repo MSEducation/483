@@ -1,0 +1,54 @@
+[[Preadditive category]]
+
+CATEGORIES: Additive categories
+
+In mathematics, specifically in category theory, a preadditive category is a category that is enriched over the monoidal category of abelian groups. In other words, the category C is preadditive if every hom-set Hom(A,B) in C has the structure of an abelian group, and composition of morphisms is bilinear.
+A preadditive category is also called an Ab-category, after the notation Ab for the category of abelian groups. Some authors have used the term additive category for preadditive categories, but here we follow the current trend of reserving this word for certain special preadditive categories (see special cases below).
+
+==Examples==
+
+The most obvious example of a preadditive category is the category Ab itself. More precisely, Ab is a closed monoidal category. Note that commutativity is crucial here; it ensures that the sum of two group homomorphisms is again a homomorphism. In contrast, the category of all groups is not closed. See medial category.
+Other common examples:
+These will give you an idea of what to think of; for more examples, follow the links to special cases below.
+
+==Elementary properties==
+
+Because every hom-set Hom(A,B) is an abelian group, it has a zero element 0. This is the zero morphism from A to B. Because composition of morphisms is bilinear, the composition of a zero morphism and any other morphism (on either side) must be another zero morphism. If you think of composition as analogous to multiplication, then this says that multiplication by zero always results in a product of zero, which is a familiar intuition. Extending this analogy, the fact that composition is bilinear in general becomes the distributivity of multiplication over addition.
+Focusing on a single object A in a preadditive category, these facts say that the endomorphism hom-set Hom(A,A) is a ring, if we define multiplication in the ring to be composition. This ring is the endomorphism ring of A. Conversely, every ring (with identity) is the endomorphism ring of some object in some preadditive category. Indeed, given a ring R, we can define a preadditive category R to have a single object A, let Hom(A,A) be R, and let composition be ring multiplication. Since R is an Abelian group and multiplication in a ring is bilinear (distributive), this makes R a preadditive category. Category theorists will often think of the ring R and the category R as two different representations of the same thing, so that a particularly perverse category theorist might define a ring as a preadditive category with exactly one object (in the same way that a monoid can be viewed as a category with only one object - and forgetting the additive structure of the ring gives us a monoid).
+In this way, preadditive categories can be seen as a generalisation of rings. Many concepts from ring theory, such as ideals, Jacobson radicals, and factor rings can be generalized in a straightforward manner to this setting. When attempting to write down these generalizations, one should think of the morphisms in the preadditive category as the "elements" of the "generalized ring". We won't go into such depth in this article.
+
+==Additive functors==
+
+If C and D are preadditive categories, then a functor F: C → D is additive if it too is enriched over the category Ab. That is, F is additive if and only if, given any objects A and B of C, the function f: Hom(A,B) → Hom(F(A),F(B)) is a group homomorphism. Most functors studied between preadditive categories are additive.
+For a simple example, if the rings R and S are represented by the one-object preadditive categories R and S, then a ring homomorphism from R to S is represented by an additive functor from R to S, and conversely.
+If C and D are categories and D is preadditive, then the functor category Fun(C,D) is also preadditive, because natural transformations can be added in a natural way.
+If C is preadditive too, then the category Add(C,D) of additive functors and all natural transformations between them is also preadditive.
+The latter example leads to a generalization of modules over rings: If C is a preadditive category, then Mod(C) := Add(C,Ab) is called the module category over C. When C is the one-object preadditive category corresponding to the ring R, this reduces to the ordinary category of (left) R-modules. Again, virtually all concepts from the theory of modules can be generalised to this setting.
+
+==Biproducts==
+
+Any finite product in a preadditive category must also be a coproduct, and conversely. In fact, finite products and coproducts in preadditive categories can be characterised by the following biproduct condition:
+This biproduct is often written A1 ⊕ ··· ⊕ An, borrowing the notation for the direct sum. This is because the biproduct in well known preadditive categories like Ab is the direct sum. However, although infinite direct sums make sense in some categories, like Ab, infinite biproducts do not make sense.
+The biproduct condition in the case n = 0 simplifies drastically; B is a nullary biproduct if and only if the identity morphism of B is the zero morphism from B to itself, or equivalently if the hom-set Hom(B,B) is the trivial ring. Note that because a nullary biproduct will be both terminal (a nullary product) and coterminal (a nullary coproduct), it will in fact be a zero object.
+Indeed, the term "zero object" originated in the study of preadditive categories like Ab, where the zero object is the zero group.
+A preadditive category in which every biproduct exists (including a zero object) is called additive. Further facts about biproducts that are mainly useful in the context of additive categories may be found under that subject.
+
+==Kernels and cokernels==
+
+Because the hom-sets in a preadditive category have zero morphisms,
+the notion of kernel and cokernel
+make sense. That is, if f: A → B is a
+morphism in a preadditive category, then the kernel of f is the
+equaliser of f and the zero morphism from A to B, while the cokernel of f is the coequaliser of f and this zero morphism. Unlike with products and coproducts, the kernel and cokernel of f are generally not equal in a preadditive category. 
+When specializing to the preadditive categories of abelian groups or modules over a ring, this notion of kernel coincides with the ordinary notion of a kernel of a homomorphism, if one identifies the ordinary kernel K of f: A → B with its embedding K → A. However, in a general preadditive category there may exist morphisms without kernels and/or cokernels.
+There is a convenient relationship between the kernel and cokernel and the Abelian group structure on the hom-sets. Given parallel morphisms f and g, the equaliser of f and g is just the kernel of g − f, if either exists, and the analogous fact is true for coequalisers. The alternative term "difference kernel" for binary equalisers derives from this fact.
+A preadditive category in which all biproducts, kernels, and cokernels exist is called pre-Abelian. Further facts about kernels and cokernels in preadditive categories that are mainly useful in the context of pre-Abelian categories may be found under that subject.
+
+==Special cases==
+
+Most of these special cases of preadditive categories have all been mentioned above, but they're gathered here for reference.
+The preadditive categories most commonly studied are in fact Abelian categories; for example, Ab is an Abelian category.
+
+==References==
+
+

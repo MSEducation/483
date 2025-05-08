@@ -1,0 +1,28 @@
+[[Merkle's Puzzles]]
+
+CATEGORIES: Key-agreement protocols
+
+In cryptography, Merkle's Puzzles is an early construction for a public-key cryptosystem, a protocol devised by Ralph Merkle in 1974 and published in 1978. It allows two parties to agree on a shared secret by exchanging messages, even if they have no secrets in common beforehand.
+
+==Description==
+
+Suppose Alice and Bob wish to communicate. Bob can send a message to Alice as follows: first he creates a large number of puzzles, each of a moderate amount of difficulty — it must be possible for Alice to solve the puzzle with a moderate amount of computing effort. The puzzles are in the form of an encrypted message with an unknown key; the key must be short enough to allow a brute force attack. Bob sends all of the puzzles to Alice, who chooses one randomly, and solves it. The encrypted solution contains an identifier, as well as a session key, so Alice can communicate back to Bob which puzzle she has solved. Both parties now have a common key; Alice, because she solved a puzzle, and Bob, because he sent the puzzle. Any eavesdropper (Eve, say) has a harder task — she does not know which puzzle was solved by Alice. Her best strategy is to solve all the puzzles, but since there are so many, this is more computationally expensive for Eve than it is for Alice.
+
+==Actual Complexity==
+
+Suppose that the number of puzzles sent by Bob is m, and it takes both Bob and Alice n steps of computation to solve one puzzle. Then both can deduce a common session key within a time complexity of O(m+n). Eve, in contrast, is required to solve all puzzles, which takes her O(m*n) of time. If m ≈ n, the effort for Eve has roughly quadratic complexity compared to Alice and Bob. n should thus be selected such that computation is still feasible for Alice and Bob while it surmounts the capabilities of Eve.
+Quadratic complexity is typically not considered secure enough against an attacker (or on the other extreme, for large m,n, convenient enough for the participants) for practical real-world cryptographic applications. However, this scheme has the distinction of being one of the first examples of public-key cryptography, and was an inspiration for the Diffie-Hellman key exchange protocol, which has much higher complexity, relying on the discrete logarithm problem.
+
+==References==
+
+ | doi = 10.1145/359460.359473
+ | first = R. C. | last = Merkle
+ | title = Secure Communications over Insecure Channels
+ | journal = Communications of the ACM
+ | volume = 21 | issue =4 | pages = 294–299
+ |date=April 1978
+}}
+
+==External links==
+
+

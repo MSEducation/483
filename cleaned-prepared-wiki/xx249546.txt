@@ -1,0 +1,125 @@
+[[Year 2000 problem]]
+
+CATEGORIES: Time formatting and storage bugs, Calendars, COBOL, Software bugs, 2000 in computer science, Hazards
+
+The Year 2000 problem (also known as the Y2K problem, the Millennium bug, the Y2K bug, or simply Y2K) was a problem for both digital (computer-related) and non-digital documentation and data storage situations which resulted from the practice of abbreviating a four-digit year to two digits.
+In 1997, The British Standards Institute (BSI) developed a standard, DISC PD2000-1,BSI Standard, on year 2000 which defines "Year 2000 Conformity requirements" as four rules:
+It identifies two problems that may exist in many computer programs.
+Firstly, the practice of representing the year with two digits becomes problematic with logical error(s) arising upon "rollover" from x99 to x00. This has caused some date-related processing to operate incorrectly for dates and times on and after 1 January 2000, and on other critical dates which were billed "event horizons". Without corrective action, long-working systems would break down when the "... 97, 98, 99, 00 ..." ascending numbering assumption suddenly became invalid.
+Secondly, some programmers had misunderstood the rule that determines whether years that are exactly divisible by 100 are leap years, and assumed the year 2000 would not be a leap year. Although most years divisible by 100 are not leap years, if they are divisible by 400 then they are. Thus the year 2000 was a leap year.
+Companies and organizations worldwide checked, fixed, and upgraded their computer systems.
+The number of computer failures that occurred when the clocks rolled over into 2000 in spite of remedial work is not known; amongst other reasons is the reticence of organisations to report problems.
+
+Background
+
+Y2K is a numeronym and was the common abbreviation for the year 2000 software problem. The abbreviation combines the letter Y for "year", and k for the SI unit prefix kilo meaning 1000; hence, 2K signifies 2000. It was also named the Millennium Bug because it was associated with the popular (rather than literal) roll-over of the millennium, even though the problem could have occurred at the end of any ordinary century.
+The Year 2000 problem was the subject of the early book, Computers in Crisis by Jerome and Marilyn Murray (Petrocelli, 1984; reissued by McGraw-Hill under the title The Year 2000 Computing Crisis in 1996). The first recorded mention of the Year 2000 Problem on a Usenet newsgroup occurred Friday, 18 January 1985, by Usenet poster Spencer Bolles.
+
+The acronym Y2K has been attributed to David Eddy, a Massachusetts programmer,American RadioWorks Y2K Notebook Problems – The Surprising Legacy of Y2K. Retrieved on 22 April 2007. in an e-mail sent on 12 June 1995. He later said, "People were calling it CDC (Century Date Change), FADL (Faulty Date Logic) and other names."
+Many computer programs stored years with only two decimal digits; for example, 1980 would be stored as 80. Some such programs could not distinguish between the year 2000 and the year 1900. Other programs would try to represent the year 2000 as 19100. This could cause a complete failure and cause date comparisons to produce incorrect results. Some embedded systems, making use of similar date logic, were expected to fail and cause utilities and other crucial infrastructure to fail.
+Some warnings of what would happen if nothing was done were particularly dire:
+ The Y2K problem is the electronic equivalent of the El Niño and there will be nasty surprises around the globe. — John Hamre, United States Deputy Secretary of DefenseLooking at the Y2K bug, portal on CNN.com 
+Special committees were set up by governments to monitor remedial work and contingency planning, particularly by crucial infrastructures such as telecommunications, utilities and the like, to ensure that the most critical services had fixed their own problems and were prepared for problems with others. While some commentators and experts argued that the coverage of the problem largely amounted to scaremongering, it was only the safe passing of the main "event horizon" itself, 1 January 2000, that fully quelled public fears. Some experts who argued that scaremongering was occurring, such as Ross Anderson, Professor of Security Engineering at the University of Cambridge Computer Laboratory, have since claimed that despite sending out hundreds of press releases about research results suggesting that the problem was not likely to be as big a problem as some had suggested, they were largely ignored by the media.
+
+Programming problem
+
+The practice of using two-digit dates for convenience predates computers, but was never a problem until stored dates were used in calculations.
+
+The need for bit conservation
+
+In the first half of the 20th century, well before the computer era, business data processing was done using unit record equipment and punched cards, most commonly the 80-column variety employed by IBM, which dominated the industry. Many tricks were used to squeeze needed data into fixed-field 80-character records. Saving two digits for every date field was significant in this effort.
+In the 1960s, computer memory and mass storage were scarce and expensive. Early core memory cost one dollar per bit. Popular commercial computers, such as the IBM 1401, shipped with as little as 2 Kbytes of memory. Programs often mimicked card processing techniques. Commercial programming languages of the time, such as COBOL and RPG, processed numbers in their character representations. Over time the punched cards were converted to magnetic tape and then disk files, but the structure of the data usually changed very little. Data was still input using punched cards until the mid-1970s. Machine architectures, programming languages and application designs were evolving rapidly. Neither managers nor programmers of that time expected their programs to remain in use for many decades. The realization that databases were a new type of program with different characteristics had not yet come.
+There were exceptions, of course. The first person known to publicly address this issue was Bob Bemer, who had noticed it in 1958 as a result of work on genealogical software. He spent the next twenty years trying to make programmers, IBM, the U.S. government and the ISO aware of the problem, with little result. This included the recommendation that the COBOL PICTURE clause should be used to specify four digit years for dates.
+Saving space on stored dates persisted into the Unix era, with most systems representing dates to a single 32-bit word, typically representing dates as elapsed seconds from some fixed date.
+
+Resulting bugs from date programming
+
+Storage of a combined date and time within a fixed binary field is often considered a solution, but the possibility for software to misinterpret dates remains because such date and time representations must be relative to some known origin. Rollover of such systems is still a problem but can happen at varying dates and can fail in various ways. For example:
+|url= June 2009}}[/ref]
+
+Date bugs similar to Y2K
+
+=9 September 1999=
+
+Even before 1 January 2000 arrived, there were also some worries about 9 September 1999 (albeit lesser compared to those generated by Y2K). Because this date could also be written in the numeric format 9/9/99, it could have conflicted with the date value 9999, frequently used to specify an unknown date. It was thus possible that database programs might act on the records containing unknown dates on that day. Data-entry operators commonly entered 9999, into required-fields for an unknown future-date, (e.g. a termination date for cable-television or telephone service), in order to process computer forms using CICS software. Stockton, J.R., "Critical and Significant Dates" Merlyn Somewhat similar to this is the end-of-file code 9999, used in older programming languages. While fears arose that some programs might unexpectedly terminate on that date, the bug was more likely to confuse computer operators than machines.
+
+=Leap years=
+
+Mostly, a year is a leap year if it is evenly divisible by four. A year divisible by 100, however, is not a leap year on the Gregorian calendar unless it is also divisible by 400. For example, 1600 was a leap year, but 1700, 1800 and 1900 were not. Some programs may have relied on the oversimplified rule that a year divisible by four is a leap year. This method works fine for the year 2000 (because it is a leap year), and will not become a problem until 2100, when older legacy programs will likely have long since been replaced. Other programs contained incorrect leap year logic, assuming for instance that no year divisible by 100 could be a leap year. An assessment of this leap year problem including a number of real life code fragments appeared in 1998.A. van Deursen, "The Leap Year Problem" The Year/2000 Journal 2(4):65–70, July/August, 1998 For information on why century years are treated differently, see Gregorian calendar.
+
+=Year 2010 problem=
+
+Some systems had problems once the year rolled over to 2010. This was dubbed by some in the media as the "Y2K+10" or "Y2.01k" problem.
+The main source of problems was confusion between hexadecimal number encoding and Binary-coded decimal encodings of numbers. Both hexadecimal and BCD encode the numbers 0–9 as 0x0–0x9. But BCD encodes the number 10 as 0x10, whereas hexadecimal encodes the number 10 as 0x0A; 0x10 interpreted as a hexadecimal encoding represents the number 16.
+For example, because the SMS protocol uses BCD for dates, some mobile phone software incorrectly reported dates of SMSes as 2016 instead of 2010. Windows Mobile is the first software reported to have been affected by this glitch; in some cases WM6 changes the date of any incoming SMS message sent after 1 January 2010 from the year "2010" to "2016".
+Other systems affected include EFTPOS terminals,
+The most important occurrence of such a glitch was in Germany, where upwards of 20 million bank cards became unusable, and with Citibank Belgium, whose digipass customer identification chips failed.
+
+=Year 2038 problem=
+
+The original Unix timestamp datatype (time t) stores a date and time as a signed 32-bit integer representing the number of seconds since 1 January 1970. During and after 2038, this number will exceed 2 − 1, the largest number representable by a signed 32-bit integer, causing the Year 2038 problem (also known as the Unix Millennium bug or Y2K38). To solve this problem, many systems and languages have switched to a 64-bit timestamp or supplied 64-bit alternatives.
+
+Programming solutions
+
+Several very different approaches were used to solve the Year 2000 problem in legacy systems. Three of them follow:
+
+Documented errors
+
+Before 2000
+
+On 1 January 2000
+
+When 1 January 2000 arrived, there were problems generally regarded as minor. Consequences did not always result precisely at midnight. Some programs were not active at that moment and would only show up when they were invoked. Not all problems recorded were directly linked to Y2K programming in a causality; minor technological glitches occur on a regular basis. Some caused erroneous results, some caused machines to stop working, some caused date errors, and two caused malfunctions.
+Reported problems include:
+
+Government responses
+
+Bulgaria
+
+Although only two digits are allocated for the birth year in the Bulgarian national identification number, the year 1900 problem and subsequently the Y2K problem were addressed by the use of unused values above 12 in the month range. For all persons born before 1900, the month is stored as calendar month + 20, and for all persons born after 1999, the month is stored as calendar month + 40.
+
+Uganda
+
+The Uganda Government responded to the Y2K threat by setting up a Y2K Task Force.
+
+United States
+
+The United States government responded to the Y2K threat by passing the Year 2000 Information and Readiness Disclosure Act, by working with private sector counterparts in order to ensure readiness, and by creating internal continuity of operations plans in the event of problems. The effort was coordinated out of the White House by the President's Council on Year 2000 Conversion, headed by John Koskinen. The White House effort was conducted in coordination with the then-independent Federal Emergency Management Agency (FEMA), and an interim Critical Infrastructure Protection Group, then in the Department of Justice, now in Homeland Security. The Dutch Government promoted Y2K Information Sharing and Analysis Centers (ISACs) to share readiness between industries, without threat of antitrust violations or liability based on information shared.
+The U.S. Government followed a three-part approach to the problem: (1) Outreach and Advocacy (2) Monitoring and Assessment and (3) Contingency Planning and Regulation.
+A feature of U.S. Government outreach was Y2K websites including Y2K. Presently, many U.S. Government agencies have taken down their Y2K websites. Some of these documents may be available through National Archives and Records AdministrationSee President Clinton: Addressing the Y2K Problem, White House, 19 Oct. 1998 or the Wayback Machine.
+Each federal agency had its own Y2K task force which worked with its private sector counterparts. The FCC had the FCC Year 2000 Task Force.
+Most industries had contingency plans that relied upon the Internet for backup communications. However, as no federal agency had clear authority with regard to the Internet at this time (it had passed from the U.S. Department of Defense to the U.S. National Science Foundation and then to the U.S. Department of Commerce), no agency was assessing the readiness of the Internet itself. Therefore on 30 July 1999, the White House held the White House Internet Y2K Roundtable.
+
+Norway and Finland
+
+Norway and Finland changed their national identification number, to indicate the century in which a person was born. In both countries the birth year was indicated with two digits only. However, a similar problem already existed, the "Year 1900 problem", about distinguishing between people born in the 20th or 19th century, so the timing was more because of the Y2K attention than a solution to a new problem. In Finland the problem was solved by replacing the hyphen ("") in the number with the letter "A" for people born in the 21st century. In Norway, the range or the individual numbers following the birth date was altered from 0–499 to 500–999.
+
+International cooperation
+
+The International Y2K Cooperation Center (IY2KCC) was established at the behest of national Y2K coordinators from over 120 countries when they met at the First Global Meeting of National Y2K Coordinators at the United Nations in December 1988. IY2KCC established an office in Washington, D.C. in March 1999. Funding was provided by the World Bank, and Bruce W. McConnell was appointed as director.
+IY2KCC's mission was to "promote increased strategic cooperation and action among governments, peoples, and the private sector to minimize adverse Y2K effects on the global society and economy." Activities of IY2KCC were conducted in six areas:
+IY2KCC closed down in March 2000.International Y2K Cooperation Center Records, Charles Babbage Institute
+
+Private sector response
+
+The Y2K issue was a major topic of discussion in the late 1990s and as such showed up in most popular media. A number of "Y2K disaster" books were published such as Deadline Y2K by Mark Joseph. Movies such as Y2K: Year to Kill capitalized on the currency of Y2K, as did numerous TV shows, comic strips, and computer games.
+
+Cost
+
+The total cost of the work done in preparation for Y2K is estimated at over US$300 billion ($ There are two ways to view the events of 2000 from the perspective of its aftermath:
+
+Supporting view
+
+This view holds that the vast majority of problems had been fixed correctly, and the money was well spent. The situation was essentially one of preemptive alarm. Those who hold this view claim that the lack of problems at the date change reflects the completeness of the project, and that many computer applications would not have continued to function into the 21st century without correction or remediation.
+
+Opposing view
+
+Others have claimed that there were no, or very few, critical problems to begin with, and that correcting the few minor mistakes as they occurred, the "fix on failure" approach, would have been the most efficient and cost-effective way to solve the problem. Editorial writing in The Wall Street Journal called Y2K an "end-of-the-world cult" and the "hoax of the century". This opposing view was bolstered by a number of observations.
+
+
+
+
+
+
+
+

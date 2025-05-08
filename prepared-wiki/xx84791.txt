@@ -1,0 +1,41 @@
+[[M4 (computer language)]]
+
+CATEGORIES: Macro programming languages, Unix programming tools, Unix SUS2008 utilities
+
+m4 is a general purpose macro processor designed by Brian Kernighan and Dennis Ritchie. m4 is an extension of an earlier macro processor m3, written by Ritchie for the AP-3 minicomputer.Brian W. Kernighan and Dennis M. Ritchie. The M4 macro processor. Technical report, Bell Laboratories, Murray Hill, New Jersey, USA, 1977. pdf
+
+==Use==
+
+All UNIXes make the m4 macro processor available, and POSIX has standardized it. Most users require m4 simply as a dependency of GNU autoconf, although the language is used in other contexts.
+A macro processor (or a preprocessor) operates as a text-replacement tool. End-users often employ it to re-use text templates, typically in computer programming applications, but also in text editing and text-processing applications.
+
+==History==
+
+Macro processors became popular when programmers commonly used assembly language. In those early days of programming, programmers noted that much of their programs consisted of repeated text, and they invented simple means for reusing this text. Programmers soon discovered the advantages not only of reusing entire blocks of text, but also of substituting different values for similar parameters. This defined the usage range of macro processors.
+Kernighan and Ritchie developed m4 in 1977, basing it on the ideas of Christopher Strachey. The distinguishing features of this style of macro preprocessing included:
+The implementation of Rational Fortran used m4 as its macro engine from the beginning; and most Unix variants ship with it. 
+[tpl]As of | 2009[/tpl] many applications continue to use m4 as part of the GNU Project's autoconf. It also appears in the configuration process of sendmail (a widespread mail transfer agent) and for generating footprints in the gEDA toolsuite. 
+m4 has many uses in code generation, but (as with any macro processor) problems can be hard to debug.Kenneth J. Turner. Exploiting the m4 macro language. Technical Report CSM-126, Department of Computing Science and Mathematics, University of Stirling, Scotland, September 1994. pdf
+
+==Features==
+
+m4 offers these facilities:
+Unlike most earlier macro processors, m4 does not target any particular computer or human language; historically, however, its development originated for supporting the Ratfor dialect of Fortran. Unlike some other macro processors, m4 is Turing-complete as well as a practical programming language.
+Unquoted identifiers which match defined macros are replaced with their definitions. Placing identifiers in quotes suppresses expansion until possibly later, such as when a quoted string is expanded as part of macro replacement. Unlike most languages, strings in m4 are quoted using the backtick (`) as the starting delimiter, and apostrophe (') as the ending delimiter. The use of separate starting and ending delimiters allows for the arbitrary nesting of quotation marks in strings, allowing a fine degree of control of how and when macro expansion takes place in different parts of a string.
+
+==Example==
+
+The following fragment gives a simple example that could form part of a library for generating HTML code. It defines a commented macro to number sections automatically:
+Processing this code with m4 should generate the following text:
+
+==Free software implementations==
+
+A GNU version of m4 exists.GNU m4 web site "GNU M4", accessed 7 Oct 2010.GNU m4 manual, online and for download in HTML, PDF, and other forms. "GNU M4 — GNU macro processor", accessed 7 Oct 2010.  FreeBSD, NetBSD, and OpenBSD also provide independent implementations of the m4 language. Furthermore, the Heirloom Project Development Tools includes a free version of the m4 language, derived from OpenSolaris.
+
+==See also==
+
+==References==
+
+==External links==
+
+

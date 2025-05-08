@@ -1,0 +1,32 @@
+[[Keyboard matrix circuit]]
+
+CATEGORIES: Synthesizer electronics, Computer keyboards, Switches
+
+Most electronic keyboards used in synthesizers, electronic organs, and digital pianos use a keyboard matrix circuit in which eight rows and eight columns of wires cross. In this way, 16 wires can provide (8x8) 64 crossings — sufficient for a full five octaves of range (61 notes). By scanning these crossings, a keyboard controller can determine which key was pressed.Dave Dribin: "Keyboard Matrix Help", (June 24, 2000)
+
+==Description==
+
+Without a matrix circuit, a 61-key keyboard would require 62 wires to connect (one for each note, and a ground) — an awkwardly thick bundle of wiring. With a matrix circuit, any of 61 notes can be determined with only 16 wires. This is drawn schematically as a matrix of 8 columns and 8 rows of wires, with a switch at every intersection. The keyboard controller scans the columns. If a key has been pressed, the controller scans the rows — and in a manner analogous to the board game "Battleship!", the controller determines the row-column combination at which a key has been pressed, and generates a note corresponding to that key. This process occurs so quickly that the performer is unaware of any delay.[ref]
+Dave Dribin.
+"Keyboard Matrix Help". 2000.
+[/ref]
+There are at least two limitations with this system. The first is that it provides only a crude binary on/off signal for each key. Better electronic keyboards employ two sets of switches for each key that are slightly offset. By determining the timing between the activation of the first and second switches, the velocity of a key press can be determined — greatly improving the performance dynamic of a keyboard. 
+The second is that instruments with a matrix circuit can only play in a monophonic fashion without the addition of a diode for each key crossing.Jim Cairns, "Keyboard Encoders" http://www.jimspage.co.nz/encoders.htm The diode is a one-way valve which prevents unwanted notes ("phantom keys") from being triggered, or intended notes from being masked ("phantom key blocking").
+Monophonic instruments and most low-cost computer keyboards reduce costs by leaving out most or all of those diodes.
+To avoid "phantom keys", the keyboard controller in modern low-cost computer keyboards will ignore further key presses once two keys (other than modifier keys) have been pressed, which is known as jamming.
+The matrix circuit approach is also used in other types of non-musical keyboards, such as in the keypads for calculators and the "QWERTY" alphabetic and numeric keyboards used to enter information into computers.[ref]
+Jeff Tyson and Tracy V. Wilson.
+[/ref]
+The same matrix circuit approach is also used
+in many pinball machines.
+Often in pocket calculators the  multiplexed digit drive lines would be used to scan the keyboard as well, providing further savings.[ref]
+Stan D’Souza.
+"Microchip AN529: Multiplexing LED Drive and a 4x4 Keypad Sampling".
+1997.
+[/ref]
+
+==References==
+
+==See also==
+
+

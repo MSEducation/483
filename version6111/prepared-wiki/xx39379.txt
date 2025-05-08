@@ -1,0 +1,94 @@
+[[Tree decomposition]]
+
+CATEGORIES: Trees (graph theory), Graph minor theory, Graph theory objects
+
+In graph theory, a tree decomposition is a mapping of a graph into a tree that can be used to define the treewidth of the graph and speed up solving certain computational problems on the graph.
+In machine learning, tree decompositions are also called junction trees, clique trees, or join trees; they
+play an important role in problems like probabilistic inference, constraint satisfaction, query optimization, and matrix decomposition.
+The concept of tree decompositions was originally introduced by [tpl]harvs|last=Halin|first=Rudolf|authorlink=Rudolf Halin|year=1976|txt[/tpl]. Later it was rediscovered by [tpl]harvs|first1=Neil|last1=Robertson|author1-link=Neil Robertson (mathematician)|first2=Paul|last2=Seymour|author2-link=Paul Seymour (mathematician)|year=1984|txt[/tpl] and has since been studied by many other authors.[tpl]harvtxt|Diestel|2005[/tpl] pp.354–355
+
+==Definition==
+
+Intuitively, a tree decomposition represents the vertices of a given graph G as subtrees of a tree, in such a way that vertices in the given graph are adjacent only when the corresponding subtrees intersect. Thus, G forms a subgraph of the intersection graph of the subtrees. The full intersection graph is a chordal graph.
+Each subtree associates a graph vertex with a set of tree nodes. To define this formally, we represent each tree node as the set of vertices associated with it.
+Thus, given a graph G = (V, E), a tree decomposition is a pair (X, T), where X = {X1, ..., Xn} is a family of subsets of V, and T is a tree whose nodes are the subsets Xi, satisfying the following properties:[tpl]harvtxt|Diestel|2005[/tpl] section 12.3
+The tree decomposition of a graph is far from unique; for example, a trivial tree decomposition contains all vertices of the graph in its single root node.
+A tree decomposition in which the underlying tree is a path graph is called a path decomposition, and the width parameter derived from these special types of tree decompositions is known as pathwidth.
+
+==Treewidth==
+
+The width of a tree decomposition is the size of its largest set Xi minus one.   The treewidth tw(G) of a graph G is the minimum width among all possible tree decompositions of G. In this definition, the size of the largest set is diminished by one in order to make the treewidth of a tree equal to one. Treewidth may also be defined from other structures than tree decompositions, including chordal graphs, brambles, and havens.
+It is NP-complete to determine whether a given graph G has treewidth at most a given variable k.[tpl]harvtxt|Arnborg|Corneil|Proskurowski|1987[/tpl].
+However, when k is any fixed constant, the graphs with treewidth k can be recognized, and a width k tree decomposition constructed for them, in linear time.[tpl]harvtxt|Bodlaender|1996[/tpl]. The time dependence of this algorithm on k is exponential.
+
+==Dynamic programming==
+
+At the beginning of the 1970s, it was observed that a large class of combinatorial optimization problems defined on graphs could be efficiently solved by non serial dynamic programming as long as the graph had a bounded dimension,[tpl]sfnp|Bertelé|Brioschi|1972[/tpl] a parameter related to treewidth. Later, several authors independently observed at the end of the 1980s[tpl]harvtxt|Arnborg|Proskurowski|1989[/tpl]; [tpl]harvtxt|Bern|Lawler|Wong|1987[/tpl]; [tpl]harvtxt|Bodlaender|1988[/tpl]. that many algorithmic problems that are NP-complete for arbitrary graphs may be solved efficiently by dynamic programming for graphs of bounded treewidth, using the tree-decompositions of these graphs.
+As an example, consider the problem of finding the maximum independent set in a graph of treewidth k. To solve this problem, first choose one of the nodes of the tree decomposition to be the root, arbitrarily. For a node Xi of the tree decomposition, let Di be the union of the sets Xj descending from Xi. For an independent set S ⊂ Xi, let A(S,i) denote the size of the largest independent subset I of Di such that I ∩ Xi = S. Similarly, for an adjacent pair of nodes Xi and Xj, with Xi farther from the root of the tree than Xj, and an independent set S ⊂ Xi ∩ Xj, let B(S,i,j) denote the size of the largest independent subset I of Di such that I ∩ Xi ∩ Xj = S. We may calculate these A and B values by a bottom-up traversal of the tree:
+At each node or edge, there are at most 2k sets S for which we need to calculate these values, so if k is a constant then the whole calculation takes constant time per edge or node. The size of the maximum independent set is the largest value stored at the root node, and the maximum independent set itself can be found (as is standard in dynamic programming algorithms) by backtracking through these stored values starting from this largest value. Thus, in graphs of bounded treewidth, the maximum independent set problem may be solved in linear time. Similar algorithms apply to many other graph problems.
+This dynamic programming approach is used in machine learning via the junction tree algorithm for belief propagation in graphs of bounded treewidth. It also plays a key role in algorithms for computing the treewidth and constructing tree decompositions: typically, such algorithms have a first step that approximates the treewidth, constructing a tree decomposition with this approximate width, and then a second step that performs dynamic programming in the approximate tree decomposition to compute the exact value of the treewidth.
+
+==See also==
+
+==Notes==
+
+==References==
+
+ | last1 = Arnborg | first1 = S.
+ | last2 = Corneil | first2 = D. | author2-link = Derek Corneil
+ | last3 = Proskurowski | first3 = A.
+ | title = Complexity of finding embeddings in a ''k''-tree
+ | journal = SIAM Journal on Matrix Analysis and Applications
+ | volume = 8 | issue = 2 | year = 1987 | pages = 277–284 | doi = 10.1137/0608024}}. 
+ | last1 = Arnborg | first1 = S.
+ | last2 = Proskurowski | first2 = A.
+ | title = Linear time algorithms for NP-hard problems restricted to partial ''k''-trees
+ | journal = Discrete Applied Mathematics
+ | volume = 23 | issue = 1 | year = 1989 | pages = 11–24 | doi = 10.1016/0166-218X(89)90031-0}}.
+ | last1 = Bern | first1 = M. W.
+ | last2 = Lawler | first2 = E. L. | author2-link = Eugene Lawler
+ | last3 = Wong | first3 = A. L.
+ | title = Linear-time computation of optimal subgraphs of decomposable graphs
+ | journal = Journal of Algorithms
+ | volume = 8 | issue = 2 | year = 1987 | pages = 216–235 | doi = 10.1016/0196-6774(87)90039-3}}.
+ | last1 = Bertelé | first1 = Umberto
+ | last2 = Brioschi | first2 = Francesco
+ | title = Nonserial Dynamic Programming
+ | year = 1972
+ | publisher = Academic Press
+ | isbn = 0-12-093450-7}}.
+ | last = Bodlaender | first = Hans L. | authorlink = Hans L. Bodlaender
+ | contribution = Dynamic programming on graphs with bounded treewidth
+ | title = Proc. 15th International Colloquium on Automata, Languages and Programming
+ | publisher = Springer-Verlag
+ | series = Lecture Notes in Computer Science
+ | volume = 317 | year = 1988 | pages = 105–118
+ | doi = 10.1007/3-540-19488-6_110}}.
+ | last = Bodlaender | first = Hans L. | authorlink = Hans L. Bodlaender
+ | title = A linear time algorithm for finding tree-decompositions of small treewidth
+ | journal = SIAM Journal on Computing
+ | volume = 25 | issue = 6 | year = 1996 | pages = 1305–1317 | doi = 10.1137/S0097539793251219}}.
+| last=Diestel | first=Reinhard
+| title=Graph Theory
+| publisher=Springer
+| year=2005
+| edition=3rd
+| isbn=3-540-26182-6
+| url=http://www.math.uni-hamburg.de/home/diestel/books/graph.theory/
+}}.
+ | title = ''S''-functions for graphs
+ | year = 1976
+ | last = Halin | first = Rudolf | authorlink = Rudolf Halin
+ | journal = Journal of Geometry
+ | pages = 171–186
+ | volume = 8
+ | doi=10.1007/BF01917434
+}}.
+ | last1 = Robertson | first1 = Neil | authorlink1 = Neil Robertson (mathematician)
+ | last2 = Seymour | first2 = Paul D. | authorlink2 = Paul Seymour (mathematician)
+ | title = Graph minors III: Planar tree-width
+ | journal = Journal of Combinatorial Theory, Series B
+ | volume = 36
+ | issue = 1 | year = 1984 | pages = 49–64
+ | doi = 10.1016/0095-8956(84)90013-3}}.
+

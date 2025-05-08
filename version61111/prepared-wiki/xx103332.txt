@@ -1,0 +1,48 @@
+[[One-pass compiler]]
+
+CATEGORIES: Compilers, Articles with example Pascal code
+
+In computer programming, a one-pass compiler is a compiler that passes through the parts of each compilation unit only once, immediately translating each part into its final machine code.  This is in contrast to a multi-pass compiler which converts the program into one or more intermediate representations steps in between source code and machine code, and which reprocesses the entire compilation unit in each sequential pass.
+
+==Advantages==
+
+One-pass compilers are smaller and faster than multi-pass compilers.
+
+==Disadvantages==
+
+One-pass compilers are unable to generate as efficient programs, due to the limited scope of available information. Many effective compiler optimizations require multiple passes over a basic block, loop, subroutine, or entire module.  Some require passes over an entire program.  Some programming languages simply cannot be compiled in a single pass, as a result of their design.  For example PL/I allows data declarations to be placed anywhere within a program, so no code can be generated until the entire program has been scanned.  In contrast, many programming languages have been designed specifically to be compiled with one-pass compilers, and include special constructs to allow one-pass compilation. 
+
+==Pascal Example==
+
+An example of such a construct is the forward declaration in Pascal. Pascal requires that procedures be declared or fully defined before use. This helps a one-pass compiler with its type checking: calling a procedure that hasn't been declared anywhere is a clear error. Forward declarations help mutually recursive procedures call each other directly, despite the declare-before-use rule:
+
+ '''function''' odd(n : '''integer''') : '''boolean''';
+ '''begin'''
+    '''if''' n = 0 '''then'''
+        odd := '''false'''
+    '''else if''' n < 0 '''then'''
+        odd := even(n + 1) { ''Compiler error: 'even' is not defined'' }
+    '''else''' 
+        odd := even(n - 1)
+ '''end''';
+ '''function''' even(n : '''integer''') : '''boolean''';
+ '''begin'''
+    '''if''' n = 0 '''then'''
+        even := '''true'''
+    '''else if''' n < 0 '''then'''
+        even := odd(n + 1)
+    '''else''' 
+        even := odd(n - 1)
+ '''end''';
+
+By adding a forward declaration for the function even before the function odd, the one-pass compiler is told that there will be a definition of even later on in the program.
+
+ '''function''' even(n : '''integer''') : '''boolean'''; '''forward''';
+ '''function''' odd(n : '''integer''') : '''boolean''';
+ { ''Et cetera'' }
+
+When the actual declaration of the body of the function is made, either the parameters are omitted or must be absolutely identical to the original forward declaration, or an error will be flagged.
+
+==See also==
+
+

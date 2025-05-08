@@ -1,0 +1,111 @@
+[[Recursive least squares filter]]
+
+CATEGORIES: Digital signal processing, Filter theory, Time series analysis
+
+The Recursive least squares (RLS) adaptive filter is an algorithm which recursively finds the filter coefficients that minimize a weighted linear least squares cost function relating to the input signals. This is in contrast to other algorithms such as the least mean squares (LMS) that aim to reduce the mean square error. In the derivation of the RLS, the input signals are considered deterministic, while for the LMS and similar algorithm they are considered stochastic. Compared to most of its competitors, the RLS exhibits extremely fast convergence. However, this benefit comes at the cost of high computational complexity.
+
+==Motivation==
+
+RLS was discovered by Gauss but lay unused or ignored until 1950 when Plackett rediscovered the original work of Gauss from 1821.  In general, the RLS can be used to solve any problem that can be solved by adaptive filters. For example, suppose that a signal d(n) is transmitted over an echoey, noisy channel that causes it to be received as
+The benefit of the RLS algorithm is that there is no need to invert matrices, thereby saving computational power.  Another advantage is that it provides intuition behind such results as the Kalman filter.
+
+==Discussion==
+
+Rearranging the equation yields
+This form can be expressed in terms of matrices
+This is the main result of the discussion.
+
+===Choosing \lambda===
+
+==Recursive algorithm==
+
+The discussion resulted in a single equation to determine a coefficient vector which minimizes the cost function. In this section we want to derive a recursive solution of the form
+|-
+|-
+|
+|-
+|
+|}
+|-
+|-
+|
+|}
+In order to generate the coefficient vector we are interested in the inverse of the deterministic auto-covariance matrix. For that task the Woodbury matrix identity comes in handy. With
+|-
+|-
+|-
+|-
+|}
+The Woodbury matrix identity follows
+|-
+|-
+|
+|-
+|
+|
+|-
+|
+|
+|}
+To come in line with the standard literature, we define
+|-
+|-
+|
+|}
+|-
+|-
+|
+|}
+|-
+|-
+|}
+Subtracting the second term on the left side yields
+|-
+|-
+|
+|}
+Now we are ready to complete the recursion. As discussed
+|-
+|-
+|
+|}
+|-
+|-
+|
+|-
+|
+|}
+|-
+|-
+|
+|}
+is the a priori error. Compare this with the a posteriori error; the error calculated after the filter is updated:
+That means we found the correction factor
+
+==RLS algorithm summary==
+
+The RLS algorithm for a p-th order RLS filter can be summarized as
+
+==Lattice recursive least squares filter (LRLS)==
+
+===Parameter Summary===
+
+===LRLS Algorithm Summary===
+
+The algorithm for a LRLS filter can be summarized as
+
+==Normalized lattice recursive least squares filter (NLRLS)==
+
+The normalized form of the LRLS has fewer recursions and variables. It can be calculated by applying a normalization to the internal variables of the algorithm which will keep their magnitude bounded by one. This is generally not used in real-time applications because of the number of division and square-root operations which comes with a high computational load.
+
+===NLRLS algorithm summary===
+
+The algorithm for a NLRLS filter can be summarized as
+
+==See also==
+
+==References==
+
+==Notes==
+
+

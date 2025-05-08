@@ -1,0 +1,200 @@
+[[Convergence of random variables]]
+
+CATEGORIES: Probability theory, Statistical theory, Stochastic processes, Convergence (mathematics)
+
+In probability theory, there exist several different notions of convergence of random variables.  The convergence of sequences of random variables to some limit random variable is an important concept in probability theory, and its applications to statistics and stochastic processes. The same concepts are known in more general mathematics as stochastic convergence and they formalize the idea that a sequence of essentially random or unpredictable events can sometimes be expected to settle down into a behaviour that is essentially unchanging when items far enough into the sequence are studied. The different possible notions of convergence relate to how such a behaviour can be characterised: two readily understood behaviours are that the sequence eventually takes a constant value, and that values in the sequence continue to change but can be described by an unchanging probability distribution.
+
+==Background==
+
+"Stochastic convergence" formalizes the idea that a sequence of essentially random or unpredictable events can sometimes be expected to settle into a pattern. The pattern may for instance be
+Some less obvious, more theoretical patterns could be
+These other types of patterns that may arise are reflected in the different types of stochastic convergence that have been studied.
+While the above discussion has related to the convergence of a single series to a limiting value, the notion of the convergence of two series towards each other is also important, but this is easily handled by studying the sequence defined as either the difference or the ratio of the two series.
+For example, if the average of n independent random variables Yi, i = 1, ..., n, all having the same finite mean and variance, is given by
+then as n tends to infinity, Xn converges in probability (see below) to the common mean, μ, of the random variables Yi.  This result is known as the weak law of large numbers.  Other forms of convergence are important in other useful theorems, including the central limit theorem.
+
+==Convergence in distribution==
+
+With this mode of convergence,  we increasingly expect to see the next outcome in a sequence of random experiments becoming better and better modeled by a given probability distribution.
+Convergence in distribution is the weakest form of convergence, since it is implied by all other types of convergence mentioned in this article. However convergence in distribution is very frequently used in practice; most often it arises from application of the central limit theorem.
+
+===Definition===
+
+Convergence in distribution may be denoted as
+For random vectors {X1, X2, …} ⊂ Rk the convergence in distribution is defined similarly. We say that this sequence converges in distribution to a random k-vector X if
+for every A ⊂ Rk which is a continuity set of X.
+The definition of convergence in distribution may be extended from random vectors to more general random elements in arbitrary metric spaces, and even to the “random variables” which are not measurable — a situation which occurs for example in the study of empirical processes. This is the “weak convergence of laws without laws being defined” — except asymptotically.[tpl]harvnb|Bickel|Klaassen|Ritov|Wellner|1998|loc=A.8, page 475[/tpl]
+In this case the term weak convergence is preferable (see weak convergence of measures), and we say that a sequence of random elements {Xn} converges weakly to X (denoted as Xn ⇒ X) if
+for all continuous bounded functions h(·).[tpl]harvnb|van der Vaart|Wellner|1996|page=4[/tpl] Here E* denotes the outer expectation, that is the expectation of a “smallest measurable function g that dominates h(Xn)”.
+
+===Properties===
+
+==Convergence in probability==
+
+The basic idea behind this type of convergence is that the probability of an “unusual” outcome becomes smaller and smaller as the sequence progresses.
+The concept of convergence in probability is used very often in statistics. For example, an estimator is called consistent if it converges in probability to the quantity being estimated. Convergence in probability is also the type of convergence established by the weak law of large numbers.
+
+===Definition===
+
+A sequence {Xn} of random variables converges in probability towards the random variable X if for all ε > 0
+Formally, pick any ε > 0 and any δ > 0.  Let Pn be the probability that Xn is outside the ball of radius ε centered at X.  Then for Xn to converge in probability to X there should exist a number N (which will depend on ε and δ) such that for all n ≥ N the probability Pn is less than δ.
+Convergence in probability is denoted by adding the letter p over an arrow indicating convergence, or using the “plim” probability limit operator:
+For random elements {Xn} on a separable metric space (S, d), convergence in probability is defined similarly by[tpl]harvnb|Dudley|2002|loc=Chapter 9.2, page 287[/tpl]
+
+===Properties===
+
+or 
+
+==Almost sure convergence==
+
+This is the type of stochastic convergence that is most similar to pointwise convergence known from elementary real analysis.
+
+===Definition===
+
+To say that the sequence Xn converges almost surely or almost everywhere or with probability 1 or strongly towards X means that
+Another, equivalent, way of defining almost sure convergence is as follows:
+Almost sure convergence is often denoted by adding the letters a.s. over an arrow indicating convergence:
+For generic random elements {Xn} on a metric space (S, d), convergence almost surely is defined similarly:
+
+===Properties===
+
+==Sure convergence==
+
+To say that the sequence of random variables (Xn) defined over the same probability space (i.e., a random process) converges surely or everywhere or pointwise  towards X means
+where Ω is the sample space of the underlying probability space over which the random variables are defined.
+This is the notion of pointwise convergence of sequence functions extended to sequence of random variables. (Note that random variables themselves are functions).
+Sure convergence of a random variable implies all the other kinds of convergence stated above, but there is no payoff in probability theory by using sure convergence compared to using almost sure convergence. The difference between the two only exists on sets with probability zero. This is why the concept of sure convergence of random variables is very rarely used.
+
+==Convergence in mean==
+
+Given a real number [tpl]nowrap|r ≥ 1[/tpl], we say that the sequence Xn converges in the ''r''-th mean (or in the ''Lr''-norm) towards the random variable X, if the [tpl]nowrap|r-th[/tpl] absolute moments E(|Xn|r) and E(|X|r) of Xn and X exist, and
+where the operator E denotes the expected value. Convergence in [tpl]nowrap|r-th[/tpl] mean tells us that the expectation of the [tpl]nowrap|r-th[/tpl] power of the difference between Xn and X converges to zero.
+This type of convergence is often denoted by adding the letter Lr over an arrow indicating convergence:
+The most important cases of convergence in r-th mean are:
+Convergence in the r-th mean, for r ≥ 1, implies convergence in probability (by Markov's inequality). Furthermore, if r > s ≥ 1, convergence in r-th mean implies convergence in s-th mean.  Hence, convergence in mean square implies convergence in mean.
+
+==Properties==
+
+The chain of implications between the various notions of convergence are noted in their respective sections. They are, using the arrow notation:
+These properties, together with a number of other special cases, are summarized in the following list:
+
+==See also==
+
+==Notes==
+
+==References==
+
+  | last = Bickel
+  | first = Peter J.
+  | coauthors = Klaassen, Chris A.J.; Ritov, Ya’acov; Wellner, Jon A.
+  | year = 1998
+  | title = Efficient and adaptive estimation for semiparametric models
+  | publisher = Springer-Verlag
+  | location = New York
+  | isbn = 0-387-98473-9
+  | lccn = QA276.8.E374
+  | ref = CITEREFBickelKlaassenRitovWellner1998
+  }}
+  | last = Billingsley
+  | first = Patrick
+  | title = Probability and Measure
+  | year = 1986
+  | edition = 2nd
+  | series = Wiley Series in Probability and Mathematical Statistics
+  | publisher = Wiley
+  }}
+  | last = Billingsley
+  | first = Patrick
+  | year = 1999
+  | title = Convergence of probability measures
+  | publisher = John Wiley & Sons
+  | edition = 2nd
+  | pages = 1–28
+  | isbn = 0-471-19745-9
+  }}
+  | last = Dudley
+  | first = R.M.
+  | year = 2002
+  | title = Real analysis and probability
+  | publisher = Cambridge University Press
+  | location = Cambridge, UK
+  | isbn = 0-521-80972-X
+  }}
+  | first = G.R.
+  | last = Grimmett
+  | coauthors = Stirzaker, D.R.
+  | year = 1992
+  | title = Probability and random processes
+  | edition = 2nd
+  | publisher = Clarendon Press, Oxford
+  | pages = 271–285
+  | isbn = 0-19-853665-8
+  }}
+  | first = M.
+  | last = Jacobsen
+  | year = 1992
+  | title = Videregående Sandsynlighedsregning (Advanced Probability Theory)
+  | edition = 3rd
+  | publisher = HCØ-tryk, Copenhagen
+  | pages = 18–20
+  | isbn = 87-91180-71-6
+  }}
+| last1 = Ledoux
+| first1 = Michel
+| last2 = Talagrand | first2 = Michel | author2-link = Michel Talagrand
+  | title = Probability in Banach spaces
+  | publisher = Springer-Verlag
+  | location = Berlin
+  | year = 1991
+  | pages = xii+480
+  | isbn = 3-540-52013-9
+  | mr = 1102015 
+  }}
+  | last = Romano
+  | first = Joseph P.
+  | coauthor = Siegel, Andrew F.
+  | year = 1985
+  | title = Counterexamples in probability and statistics
+  | publisher = Chapman & Hall
+  | location = Great Britain
+  | isbn = 0-412-98901-8
+  | lccn = QA273.R58 1985
+  | ref = CITEREFRomanoSiegel1985
+  }}
+  | last = van der Vaart
+  | first = Aad W.
+  | coauthor = Wellner, Jon A.
+  | year = 1996
+  | title = Weak convergence and empirical processes
+  | publisher = Springer-Verlag
+  | location = New York
+  | isbn = 0-387-94640-3
+  | lccn = QA274.V33 1996
+  | ref = CITEREFvan_der_VaartWellner1996
+  }}
+  | last = van der Vaart
+  | first = Aad W.
+  | title = Asymptotic statistics
+  | year = 1998
+  | publisher = Cambridge University Press
+  | location = New York
+  | isbn = 978-0-521-49603-2
+  | lccn = QA276.V22 1998
+  | ref = CITEREFvan_der_Vaart1998
+  }}
+  | last = Williams
+  | first = D.
+  | title = Probability with Martingales
+  | publisher = Cambridge University Press
+  | year = 1991
+  | isbn = 0-521-40605-6
+  }}
+  | last = Wong
+  | first = E.
+  | coauthors = Hájek, B.
+  | title = Stochastic Processes in Engineering Systems
+  | publisher = Springer–Verlag
+  | location = New York
+  | year = 1985
+  }}
+

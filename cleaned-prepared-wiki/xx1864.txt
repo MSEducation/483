@@ -1,0 +1,44 @@
+[[Common Gateway Interface]]
+
+CATEGORIES: Servers (computing), Web technology, World Wide Web
+
+Common Gateway Interface (CGI) is a standard method used to generate dynamic content on web pages and web applications. CGI, when implemented on a web server, provides an interface between the web server and programs that generate the web content.  These programs are known as CGI scripts or simply CGIs; they are usually written in a scripting language, but can be written in any programming language.
+
+History
+
+In 1993, the World Wide Web (WWW) was small but flourishing. WWW software developers and Web site developers kept in touch on the www-talk mailing list, so it was there that a standard for calling command line executables was agreed upon. The NCSA team wrote the specification;Server Scripts, by Rob McCool, www-talk mailing list, Sun, 14 Nov 1993 19:24:47 -0600 however, NCSA no longer hosts this.org The other Web server developers adopted it, and it has been a standard for Web servers ever since. A work group chaired by Ken Coar started in November 1997 to get the NCSA definition of CGI more formally defined.1. Specifically mentioned in the RFC are the following contributors:RFC3875: The Common Gateway Interface (CGI) Version 1.1
+
+Syntax
+
+The following CGI program shows all the environment variables passed by the web server:
+If a web browser issues a request for the environment variables at , a 64-bit Microsoft Windows web server running cygwin returns the following information:
+From the environment, it can be seen that the web browser is Firefox running on a Windows 7 PC, the web server is Apache running on a system which emulates Unix, and the CGI script is named cgi-bin/printenv.pl.
+The program could then generate any content, write that to standard output, and the web server will transmit it to the browser.
+The following are environment variables passed to CGI programs:
+The program returns the result to the web server in the form of standard output, beginning with a header and a blank line.
+The header is encoded in the same way as an HTTP header and must include the MIME type of the document returned.ru) The headers, supplemented by the web server, are generally forwarded with the response back to the user.
+
+Deployment
+
+A web server that supports CGI can be configured to interpret a URL that it serves as a reference to a CGI script. A common convention is to have a cgi-bin/ directory at the base of the directory tree and treat all executable files within this directory (and no other, for security) as CGI scripts. Another popular convention is to use filename extensions; for instance, if CGI scripts are consistently given the extension . While convenient, and required by many prepackaged scripts,it opens the server to attack if a remote user can upload executable code with the proper extension.
+In the case of HTTP PUT or POSTs, the user-submitted data is provided to the program via the standard input. The web server creates a subset of the environment variables passed to it and adds details pertinent to the HTTP environment.
+
+Uses
+
+An example of a CGI program is one implementing a Wiki. The user agent requests the name of an entry; the web server executes the CGI; the CGI program retrieves the source of that entry's page (if one exists), transforms it into HTML, and prints the result. The web server receives the input from the CGI and transmits it to the user agent. If the "Edit this page" link is clicked, the CGI populates an HTML textarea or other editing control with the page's contents, and saves it back to the server when the user submits the form.
+
+Alternatives
+
+Calling a command generally means the invocation of a newly created process on the server. Starting the process can consume much more time and memory than the actual work of generating the output, especially when the program still needs to be interpreted or compiled.
+If the command is called often, the resulting workload can quickly overwhelm the web server.
+The overhead involved in interpretation may be reduced by using compiled CGI programs, such as those in C/C++, rather than using Perl or other interpreted languages. The overhead involved in process creation can be reduced by techniques such as FastCGI that "prefork" interpreter processes, or by running the application code entirely within the web server using extension modules such as mod_php.
+Several approaches can be adopted for remedying this:
+The optimal configuration for any web application depends on application-specific details, amount of traffic, and complexity of the transaction; these tradeoffs need to be analyzed to determine the best implementation for a given task and time budget.
+
+
+
+
+
+
+
+

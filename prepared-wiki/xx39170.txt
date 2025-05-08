@@ -1,0 +1,56 @@
+[[Ls]]
+
+CATEGORIES: Standard Unix programs, Unix SUS2008 utilities
+
+In computing, ls is a command to list files in Unix and Unix-like operating systems. ls is specified by POSIX and the Single UNIX Specification.
+
+==History==
+
+An ls utility appeared in the original version of AT&T UNIX.  Today, two popular versions of ls are the Free Software Foundation's (part of the GNU coreutils package) and the one released by various BSD variants, such as FreeBSD, OpenBSD, NetBSD, and Apple's Darwin. Both are free software and open source. The name 'ls' comes from a similar command in Multics
+
+==Behavior==
+
+Unix and Unix-like operating systems maintain the idea of a current working directory, that is, where one is currently positioned in the hierarchy of directories.
+When invoked without any arguments, ls lists the files in the current working directory. A directory that is not the current working directory can be specified and ls will list the files there.  The user also may specify any list of files and directories.  In this case, all files and all contents of specified directories will be listed.
+Files whose names start with "." are not listed, unless the -a flag is specified, the -A flag is specified, or the files are specified explicitly.
+Without options, ls displays files in a bare format. This bare format however makes it difficult to establish the type, permissions, and size of the files. The most common options to reveal this information or change the list of files are:
+In some environments, providing the option --color (for GNU ls) or -G (FreeBSD ls) causes ls to highlight different types of files with different colors, instead of with characters as -F would.  To determine what color to use for a file, GNU ls checks the Unix file type, the file permissions, and the file extension, while FreeBSD ls checks only the Unix file type and file permissions.  On the other hand, the FreeBSD implementation uses the termcap database[tpl]cite web |url=http://www.freebsd.org/cgi/man.cgi?query=ls |title=FreeBSD Man Pages — ls |accessdate=June 23, 2013 [/tpl] while the GNU program uses its own database which does not necessarily match the termcap data on a given system.[tpl]cite web |url=http://invisible-island.net/ncurses/ncurses.faq.html#no_color |title= NCURSES — Frequently Asked Questions (FAQ): My terminal doesn't recognize color |accessdate=June 23, 2013[/tpl]
+When the option to use color to indicate file types is selected, the output might look like:
+ <strong><span style="background:#000000; color:#c0c0c0"> brw-r--r--    1 unixguy staff 64,  64 Jan 27 05:52 <span style="color:yellow     ">block         </span>
+  crw-r--r--    1 unixguy staff 64, 255 Jan 26 13:57 <span style="color:#ffff00    ">character     </span>
+  -rw-r--r--    1 unixguy staff     290 Jan 26 14:08 <span style="color:#ff00ff    ">compressed.gz </span>
+  -rw-r--r--    1 unixguy staff  331836 Jan 26 14:06 <span style="color:#ff00ff    ">data.ppm      </span>
+  drwxrwxr-x    2 unixguy staff      48 Jan 26 11:28 <span style="color:#0000ff    ">directory     </span>
+  -rwxrwxr-x    1 unixguy staff      29 Jan 26 14:03 <span style="color:#00ff00    ">executable    </span>
+  prw-r--r--    1 unixguy staff       0 Jan 26 11:50 <span style="color:#ffffaa    ">fifo          </span>
+  srw-rw-rw-    1 unixguy staff       0 Jan 26 12:00 <span style="color:#ff00ff    ">socket        </span>
+  lrwxrwxrwx    1 unixguy staff       3 Jan 26 11:44 <span style="color:#00ffaa    ">link</span> -> <span style="color:blue">dir   </span>
+  -rw-rw----    1 unixguy staff     217 Jan 26 14:08 regularfile   </span></strong>
+ls has a large number of other options (see: man ls). It is a frequently used tool that provides an interface to the file system via the command line.
+On some systems (e.g. PCLinuxOS), ls has an alias of just l.  Many systems[tpl]Which|date=March 2011[/tpl] also alias ls -l to ll or ls -la to la (e.g. PC-BSD, zsh preset).[tpl]Citation needed|date=March 2011[/tpl]
+
+==Sample usage==
+
+The following example demonstrates the output of the ls command given two different arguments (pwd is a command that shows the present working directory, or in other words, the folder you are currently in):
+ $ '''pwd'''
+ /home/fred
+ $ '''ls -l'''
+ drwxr--r--   1 fred  editors   4096  drafts
+ -rw-r--r--   1 fred  editors  30405  edition-32
+ -r-xr-xr-x   1 fred  fred      8460  edit
+ $ '''ls -F'''
+ drafts/
+ edition-32
+ edit*
+In this example, the user fred has a directory named drafts, a regular file called edition-32, and an executable named edit in his home directory. ls uses Unix file permission notation to indicate which users or groups are allowed to access each file or directory.
+ drwxr--r--   1 fred  editors   4096  Mar 1  2007 drafts
+This means that the letters behind the file descriptor (d), which indicates a folder or 'directory', list three characters to indicate permissions for the owner of 'drafts' (rwx), then the group to which the file belongs (r--), and the rights of others (r--).
+'drafts' is a directory (d), the owner of which has the right to read (r) write (w) and execute (x): rwx, group members have (r--), meaning read only, and others have (r--), meaning read only access. See Unix file permission notation for a more detailed description.
+
+==See also==
+
+==Notes==
+
+==External links==
+
+

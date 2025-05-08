@@ -1,0 +1,29 @@
+[[Known-plaintext attack]]
+
+CATEGORIES: Cryptographic attacks
+
+The known-plaintext attack (KPA) is an attack model for cryptanalysis where the attacker has samples of both the plaintext (called a crib), and its encrypted version (ciphertext). These can be used to reveal further secret information such as secret keys and code books.  The term "crib" originated at Bletchley Park, the British World War II decryption operation. 78. Jack Copeland, ed., Colossus: The Secrets of Bletchley Park's Codebreaking Computers.
+
+History
+
+The usage "crib" was adapted from a slang term referring to cheating: for example,"I cribbed my answer from your test paper." A "crib" originally was a literal or interlinear translation of a foreign-language text — usually a Latin or Greek text — that students might be assigned to translate from the original language.
+The idea behind a crib is that cryptologists were looking at  incomprehensible ciphertext, but if they had a clue about some  word or phrase that might be expected to be in the ciphertext, they would have a "wedge," a test to break into it. If their otherwise random attacks on the cipher managed to sometimes produce those words or (preferably) phrases, they would know they might be on the right track. When those words or phrases appeared, they would feed the settings they had used to reveal them back into the whole encrypted message to good effect.
+In the case of Enigma, the German High Command was very meticulous about the overall security of the Enigma system and understood the possible problem of cribs.  The day-to-day trench operators, on the other hand, were less careful. The Bletchley Park team would guess some of the plaintext based upon when the message was sent. For instance, a daily weather report was transmitted by the Germans, at the same time every day. Due to the regimented style of military reports, it would contain the word Wetter (German for "weather") at the same location in every message and knowing the local weather conditions helped Bletchley Park guess other parts of the plaintext as well. Another example was an officer in the Africa Corps who helped greatly by constantly sending, "Nothing to report." Other operators too would send standard salutations or introductions.
+At Bletchley Park in World War II, strenuous efforts were made to use and even force the Germans to produce messages with known plaintext. For example, when cribs were lacking, Bletchley Park would sometimes ask the Royal Air Force to "seed" a particular area in the North Sea with mines (a process that came to be known as gardening, by obvious reference). The Enigma messages that were soon sent out would most likely contain the name of the area or the harbour threatened by the mines.
+When a captured German revealed under interrogation that Enigma operators had been instructed to encode numbers by spelling them out, Alan Turing reviewed decrypted messages and determined that the number "eins" ("1") was the commonest string in the plaintext. He automated the crib process, creating the Eins Catalogue, which assumed that "eins" was encoded at all positions in the plaintext. The catalogue included every possible position of the various rotors, starting positions, and keysettings of the Enigma.
+The Polish Cipher Bureau had likewise exploited "cribs" in the "ANX method" before World War II (the Germans' use of "ANX," German for "to," followed by "X" as a spacer.)Marian Rejewski, "Summary of Our Methods for Reconstructing ENIGMA and Reconstructing Daily Keys, and of German Efforts to Frustrate Those Methods," Appendix C to Władysław Kozaczuk, Enigma, 1984, pp. 243–44.
+Classical ciphers are typically vulnerable to known-plaintext attack. For example, a Caesar cipher can be solved using a single letter of corresponding plaintext and ciphertext to decrypt entirely. A general monoalphabetic substitution cipher needs several character pairs and some guessing if there are fewer than 26 distinct pairs.
+
+Present day
+
+Modern ciphers such as Advanced Encryption Standard are not currently known to be susceptible to known-plaintext attacks.
+The PKZIP stream cipher used by older versions of the zip format specification  is prone to this attack. For example, an attacker with an encrypted ZIP file needs only (part of) one unencrypted file from the archive which forms the "known-plaintext".  Then using some publicly available software they can quickly calculate the key required to decrypt the entire archive.  To obtain this unencrypted file the attacker could search the website for a suitable file, find it from another archive they can open, or manually try to reconstruct a plaintext file armed with the knowledge of the filename from the encrypted archive.
+However, the attack does not work on AES-encrypted zip files.
+
+
+
+Notes
+
+
+
+

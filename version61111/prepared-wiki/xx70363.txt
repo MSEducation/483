@@ -1,0 +1,24 @@
+[[Object file]]
+
+CATEGORIES: Executable file formats, Compiler construction, Computer libraries, Programming language implementation
+
+An object file is a file containing object code, meaning relocatable format machine code that is usually not directly executable. Object files are produced by an assembler, compiler, or other language translator, and used as input to the linker, which in turn typically generates an executable or library by combining parts of object files. There are various formats for object files, and the same object code can be packaged in different object files.
+In addition to the object code itself, object files may contain metadata used for linking or debugging, including: information to resolve symbolic cross-references between different modules, relocation information, stack unwinding information, comments, program symbols, debugging or profiling information.
+
+==Object file formats==
+
+An object file format is a computer file format used for the storage of object code and related data.
+There are many different object file formats; originally each type of computer had its own unique format, but with the advent of Unix and other portable operating systems, some formats, such as COFF and ELF have been defined and used on different kinds of systems. It is possible for the same file format to be used both as linker input and output, and thus as the library and executable file format.[tpl]cite book|last=IBM Corporation|title=IBM OS Linkage Editor and Loader|year=1973|url=http://www.bitsavers.org/pdf/ibm/360/os/R21.7_Apr73/GC28-6538-10_Linkage_Editor_Rel_21_Apr73.pdf[/tpl][tpl]rp|p.16[/tpl]
+The design and/or choice of an object file format is a key part of overall system design.  It affects the performance of the linker and thus programmer turnaround while developing.  If the format is used for executables, the design also affects the time programs take to begin running, and thus the responsiveness for users. Most object file formats are structured as blocks of data, each block containing a certain type of data (see Memory segmentation).  These blocks can be paged in as needed by the virtual memory system, needing no further processing to be ready to use.
+Debugging information may either be an integral part of the object file format, as in COFF, or a semi-independent format which may be used with several object formats, such as stabs or DWARF.
+The GNU Project's Binary File Descriptor library (BFD library) provides a common API for the manipulation of object files in a variety of formats.
+Object files are usually divided into segments or sections, not to be confused with memory segmentation. Segments in different object files may be combined by the linker according to rules specified when the segments are defined. Conventions exist for segments shared between object files; for instance, in DOS there are different memory models that specify the names of special segments and whether or not they may be combined.
+Types of data supported by typical object file formats:
+
+==See also==
+
+==References==
+
+==Further reading==
+
+

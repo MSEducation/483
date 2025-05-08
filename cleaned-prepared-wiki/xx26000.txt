@@ -1,0 +1,50 @@
+[[Role-based access control]]
+
+CATEGORIES: Computer security models, Access control
+
+In computer systems security, role-based access control (RBAC) and can implement mandatory access control (MAC) or discretionary access control (DAC). RBAC is sometimes referred to as role-based security.
+
+Design
+
+Within an organization, roles are created for various job functions. The permissions to perform certain operations are assigned to specific roles. Members or staff (or other system users) are assigned particular roles, and through those role assignments acquire the computer permissions to perform particular computer-system functions. Since users are not assigned permissions directly, but only acquire them through their role (or roles), management of individual user rights becomes a matter of simply assigning appropriate roles to the user's account; this simplifies common operations, such as adding a user, or changing a user's department.
+Three primary rules are defined for RBAC:
+Additional constraints may be applied as well, and roles can be combined in a hierarchy where higher-level roles subsume permissions owned by sub-roles.
+With the concepts of role hierarchy and constraints, one can control RBAC to create or simulate lattice-based access control (LBAC). Thus RBAC can be considered to be a superset of LBAC.
+When defining an RBAC model, the following conventions are useful:
+A constraint places a restrictive rule on the potential inheritance of permissions from opposing roles, thus it can be used to achieve appropriate separation of duties. For example, the same person should not be allowed to both create a login account and to authorize the account creation.
+Thus, using set theory notation:
+A subject may have multiple simultaneous sessions with different permissions.thumb|RBAC
+
+Standardized levels
+
+The NIST/ANSI/INCITS RBAC standard (2004) recognizes three levels of RBAC:
+
+Relation to other models
+
+RBAC is a flexible access control technology whose flexibility allows it to implement DAC
+Prior to the development of RBAC, the Bell-LaPadula (BLP) model was synonymous with MAC and file system permissions were synonymous with DAC. These were considered to be the only known models for access control: if a model was not BLP, it was considered to be a DAC model, and vice versa. Research in the late 1990s demonstrated that RBAC falls in neither category. RBAC has also been criticized for leading to role explosion, a problem in large enterprise systems which require access control of finer granularity than what RBAC can provide as roles are inherently assigned to operations and data types. In resemblance to CBAC, an Entity-Relationship Based Access Control (ERBAC, although the same acronym is also used for modified RBAC systems, Bhavani Thuraisingham and Srinivasan Iyer (PPT)) system is able to secure instances of data by considering their association to the executing subject.Kalle Korhonen: tapestry-security-jpa, a JPA/Tapestry 5 specific implementation of the ERBAC concept
+RBAC differs from access control lists (ACLs), used in traditional discretionary access-control systems, in that it assigns permissions to specific operations with meaning in the organization, rather than to low level data objects. For example, an access control list could be used to grant or deny write access to a particular system file, but it would not dictate how that file could be changed. In an RBAC-based system, an operation might be to 'create a credit account' transaction in a financial application or to 'populate a blood sugar level test' record in a medical application. The assignment of permission to perform a particular operation is meaningful, because the operations are granular with meaning within the application. RBAC has been shown to be particularly well suited to separation of duties (SoD) requirements, which ensure that two or more people must be involved in authorizing critical operations. Necessary and sufficient conditions for safety of SoD in RBAC have been analyzed. An underlying principle of SoD is that no individual should be able to effect a breach of security through dual privilege. By extension, no person may hold a role that exercises audit, control or review authority over another, concurrently held role.
+
+Use and availability
+
+The use of RBAC to manage user privileges (computer permissions) within a single system or application is widely accepted as a best practice. Systems including Microsoft Active Directory, Microsoft SQL Server, SELinux, grsecurity, FreeBSD, Solaris, Oracle DBMS, PostgreSQL 8.1, SAP R/3, ISIS Papyrus, FusionForge, Wikipedia, and  many others effectively implement some form of RBAC. A 2010 report prepared for NIST by the Research Triangle Institute analyzed the economic value of RBAC for enterprises, and estimated benefits per employee from reduced employee downtime, more efficient provisioning, and more efficient access control policy administration.
+In an organization with a heterogeneous IT infrastructure and requirements that span dozens or hundreds of systems and applications, using RBAC to manage sufficient roles and assign adequate role memberships becomes extremely complex without hierarchical creation of roles and privilege assignments.Beyond Roles: A Practical Approach to Enterprise User Provisioning Newer systems extend the older NIST RBAC model
+
+Comparing with ACL
+
+The main option to the RBAC model is the ACL model. A "minimal RBAC Model", RBACm, can be compared with an ACL mechanism, ACLg, where only groups are permitted as entries in the ACL. Barkley (1997)J. Barkley (1997) "Comparing simple role based access control models and access control lists", In "Proceedings of the second ACM workshop on Role-based access control", pages 127-132. showed that RBACm and ACLg are equivalent.
+In modern SQL implementations, like ACL of the CakePHP framework, ACL also manage groups and inheritance in a hierarchy of groups. So, specific "modern ACL" implementations can be compared with specific "modern RBAC" implementations, better than "old (file system) implementations".
+
+
+
+Similar "restricting system access" and complements to RBAC:
+Related concepts:
+Other things:
+
+
+
+Further reading
+
+
+
+

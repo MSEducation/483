@@ -1,0 +1,29 @@
+[[Useless rules]]
+
+CATEGORIES: Formal languages, Rules
+
+In theoretical computer science, in particular in the theory of formal languages, useless rules of a formal grammar are those rules of symbol production that are unreachable or unproductive, that is, that can or need never be applied.
+
+==Definition==
+
+Given a context-free grammar, a nonterminal symbol X is called productive, or generating, if there is a derivation X ⇒* w for some string w of terminal symbols. A nonterminal symbol X is called reachable if there is a derivation S ⇒* αXβ for some strings α, β of non-terminal and terminal symbols, and where S denotes the grammar's start symbol.
+A rule with an unproductive or unreachable symbol on its left-hand side can be deleted from the grammar without changing the accepted (or generated) language.
+Likewise, an alternative containing such a symbol can be deleted from the right-hand side of a rule without changing the language.
+Such rules and alternatives are called useless.[tpl]cite book| author=John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman| title=Introduction to Automata Theory, Languages, and Computation| year=2003| publisher=Addison Wesley[/tpl]; here: Sect.7.1.1, p.256
+For formal grammars that are not context-free, similar definitions apply.[tpl]cn|date=March 2014[/tpl]
+
+==Examples==
+
+Denoting nonterminal and terminal symbol|terminal symbols by upper and lower case letters, respectively,
+in the following regular grammar with start symbol S
+the nonterminal D is unreachable, and E is unproductive.
+Hence, omitting the last two rules doesn't change the language accepted by the grammar, nor does omitting the alternative "| Ee" from the right-hand side of the rule for S.
+
+==Cleaning Useless Rules==
+
+Hopcroft, et al.Theorem 7.2, Sect.7.1, p.255ff give an algorithm to eliminate useless rules from a context-free grammar.
+Aiken and Murphy[tpl]cite conference|first1=A.|last1=Aiken|first2=B.|last2=Murphy|title=Implementing Regular Tree Expressions|booktitle=ACM Conference on Functional Programming Languages and Computer Architecture|pages=427-447|year=1991|url=http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.3766[/tpl]; here: Sect.4 give a fixpoint algorithm to detect which nonterminals of a given regular tree grammar are unproductive.
+
+==References==
+
+

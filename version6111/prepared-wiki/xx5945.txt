@@ -1,0 +1,39 @@
+[[Killer poke]]
+
+CATEGORIES: Computer jargon, Hardware bugs
+
+In computer jargon, a killer poke is a method of inducing physical hardware damage on a machine and/or its peripherals by the insertion of invalid values, via, for example, BASIC's POKE command, into a memory-mapped control register. The term is typically used to describe a family of fairly well known tricks that can overload the analog electronics in the CRT monitors of computers lacking hardware sanity checking (notable examples being the IBM Portable[tpl]cite web|url=http://trixter.oldskool.org/2006/02/02/computing-myth-1-software-cannot-damage-hardware/|title=Computing Myth #1: Software cannot damage hardware|publisher=Oldskooler Ramblings|date=2 February 2006[/tpl] and Commodore PET.)
+
+==Specific examples==
+
+===The Commodore PET===
+
+The PET-specific killer poke is connected to the architecture of that machine's video rasterizer circuits. In early model PETs, writing a certain value to the memory address of a certain I/O register ( POKE 59458,62 [tpl]cite web|url=http://oldcomputers.net/pet2001.html|title=Commodore PET 2001 computer|publisher=oldcomputers.net[/tpl]) made the machine able to display text on the screen much faster. When the PET range was revamped with updated hardware, it was quickly discovered that performing the old trick on the new hardware led to disastrous behavior by the new video chip, causing it to destroy the PET's integrated CRT monitor.[tpl]cite web|url=http://www.6502.org/users/andre/petindex/poke/index.html |title=Killer Poke |work=PET index |first=André |last=Fachat |publisher=6502.org[/tpl]
+
+===TRS-80 Model III===
+
+The TRS-80 Model III had the ability to switch between a 32-character-wide display and a 64-character display. Doing so actuated a relay in the video hardware, and was accomplished by writing to a specific memory-mapped control register. Programs that repeatedly switched between 32 and 64 character modes at high speed (either on purpose or accidentally) could permanently damage the video hardware. While this is not a single "killer poke", it demonstrates a software failure mode that could permanently damage the hardware.[tpl]Citation needed|date=June 2009[/tpl]
+
+===Cassette Tape Relay===
+
+The TRS-80 Color Computer, IBM PC, IBM PCjr, NASCOM, MSX, and BBC Micro from Acorn Computers all contained a built-in relay for controlling an external tape recorder.[tpl]cite journal|url=http://www.atarimagazines.com/creative/v11n6/58_Computerized_security_ala.php|title=Computerized security alarms |work=Creative Computing Magazine |first=Forrest M. |last=Mims |authorlink=Forrest Mims |volume=11 |number=6 |date=June 1985 |page=58[/tpl] Toggling the motor control relay in a tight loop would reduce the relay's longevity.[tpl]Citation needed|date=June 2009[/tpl]
+
+===Commodore Amiga===
+
+The floppy drive of the Commodore Amiga personal computer could be made to produce noises of various pitches, by making the drive heads move back and forth. A program existed which could play El Cóndor Pasa, more or less correctly, on the Amiga's floppy drive.[tpl]cite web |url=http://www.minimalvideo.com/weblog/minimalvideo/2008/09/post-17.html |title=El Condor Pasa |publisher=minimal video |date=16 September 2008[/tpl] As some sounds relied on the head assembly hitting the stop, this gradually sent the head out of alignment. The same problem existed on the Commodore 1541 disk drive made for the Commodore 64.
+
+===LG CD-ROM drives===
+
+Certain models of LG CD-ROM drives with specific firmware used an abnormal command for "update firmware": the "clear buffer" command usually used on CD-RW drives. Linux uses this command to tell the difference between CD-ROM and CD-RW drives. Most CD-ROM drives dependably return an error for the unsupported CD-RW command, but the faulty drives interpreted it as "Update Firmware", causing them to be bricked.[tpl]cite web |url=http://www.mail-archive.com/newbie@linux-mandrake.com/msg142409.html |title=Re: LG CDRoms |work=newbie@linux-mandrake.com |publisher=The Mail Archive |date=29 October 2003[/tpl]
+
+===Game Boy===
+
+The Game Boy's LCD screen can be turned off by game software. Doing so outside of the vertical blanking interval can damage the hardware.[tpl]cite web|url=http://nocash.emubase.de/pandocs.htm#lcdcontrolregister|title=LCD Control Register|work=Pan Docs[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

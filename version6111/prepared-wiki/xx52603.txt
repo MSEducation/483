@@ -1,0 +1,97 @@
+[[Algebraic variety]]
+
+CATEGORIES: Algebraic geometry, Algebraic varieties
+
+In mathematics, algebraic varieties (also called varieties) are one of the central objects of study in algebraic geometry. Classically, an algebraic variety was defined to be the set of solutions of a system of polynomial equations, over the real or complex numbers. Modern definitions of an algebraic variety generalize this notion in several different ways, while attempting to preserve the geometric intuition behind the original definition.[tpl]r|Hartshorne|page1=58[/tpl]
+Conventions regarding the definition of an algebraic variety differ slightly. For example, some authors require that an "algebraic variety" is, by definition, irreducible (which means that it is not the union of two smaller sets that are closed in the Zariski topology), while others do not. When the former convention is used, non-irreducible algebraic varieties are called algebraic sets.
+The notion of variety is similar to that of manifold, the difference being that a variety may have singular points, while a manifold will not. In many languages, both varieties and manifolds are named by the same word.
+Proven around the year 1800, the fundamental theorem of algebra establishes a link between algebra and geometry by showing that a monic polynomial in one variable with complex coefficients (an algebraic object) is determined by the set of its roots (a geometric object). Generalizing this result, Hilbert's Nullstellensatz provides a fundamental correspondence between ideals of polynomial rings and algebraic sets. Using the Nullstellensatz and related results, mathematicians have established a strong correspondence between questions on algebraic sets and questions of ring theory. This correspondence is the specifity of algebraic geometry among the other subareas of geometry.
+
+==Introduction and definitions==
+
+An affine variety over an algebraically closed field is conceptually the easiest type of variety to define, which will be done in this section. Next, one can define projective and quasi-projective varieties in a similar way. The most general definition of a variety is obtained by patching together smaller quasi-projective varieties. It is not obvious that one can construct genuinely new examples of varieties in this way, but Nagata gave an example of such a new variety in the 1950s.
+
+===Affine varieties===
+
+Let [tpl]mvar|k[/tpl] be an algebraically closed field and let [tpl]math|An[/tpl] be an affine n-space over [tpl]mvar|k[/tpl]. The polynomials [tpl]math| f [/tpl] in the ring [tpl]math|k..., xn[/tpl] can be viewed as [tpl]mvar|k[/tpl]-valued functions on [tpl]math|An[/tpl] by evaluating [tpl]math| f [/tpl] at the points in [tpl]math|An[/tpl], i.e. by choosing values in A for each xi. For each set S of polynomials in [tpl]math|k..., xn[/tpl], define the zero-locus Z(S) to be the set of points in [tpl]math|An[/tpl] on which the functions in S simultaneously vanish, that is to say
+A subset V of [tpl]math|An[/tpl] is called an affine algebraic set if V = Z(S) for some S.[tpl]r|Hartshorne|page1=2[/tpl] A nonempty affine algebraic set V is called irreducible if it cannot be written as the union of two proper algebraic subsets.[tpl]r|Hartshorne|page1=3[/tpl] An irreducible affine algebraic set is also called an affine variety.[tpl]r|Hartshorne|page1=3[/tpl] (Many authors use the phrase affine variety to refer to any affine algebraic set, irreducible or notHartshorne, p.xv, notes that his choice is not conventional; see for example, Harris, p.3)
+Affine varieties can be given a natural topology by declaring the closed sets to be precisely the affine algebraic sets. This topology is called the Zariski topology.[tpl]r|Hartshorne|page1=2[/tpl]
+Given a subset V of [tpl]math|An[/tpl], we define I(V) to be the ideal of all polynomial functions vanishing on V:
+For any affine algebraic set V, the coordinate ring or structure ring of V is the quotient of the polynomial ring by this ideal.[tpl]r|Hartshorne|page1=4[/tpl]
+
+===[tpl]anchor|Projective variety[/tpl]Projective varieties and quasi-projective varieties===
+
+Let [tpl]mvar|k[/tpl] be an algebraically closed field and let [tpl]math|Pn[/tpl] be the projective n-space over [tpl]mvar|k[/tpl].  Let [tpl]math| f [/tpl] in [tpl]math|k..., xn[/tpl] be a homogeneous polynomial of degree d.  It is not well-defined to evaluate [tpl]math| f [/tpl] on points in [tpl]math|Pn[/tpl] in homogeneous coordinates.  However, because [tpl]math| f [/tpl] is homogeneous, [tpl]math| f (λx0, ..., λxn) [tpl]=[/tpl] λd f (x0, ..., xn)[/tpl], it does make sense to ask whether [tpl]math| f [/tpl] vanishes at a point [tpl]math|: ... : xn[/tpl].  For each set S of homogeneous polynomials, define the zero-locus of S to be the set of points in [tpl]math|Pn[/tpl] on which the functions in S vanish:
+A subset V of [tpl]math|Pn[/tpl] is called a projective algebraic set if V = Z(S) for some S.[tpl]r|Hartshorne|page1=9[/tpl] An irreducible projective algebraic set is called a projective variety.[tpl]r|Hartshorne|page1=10[/tpl]
+Projective varieties are also equipped with the Zariski topology by declaring all algebraic sets to be closed.
+Given a subset V of [tpl]math|Pn[/tpl], let I(V) be the ideal generated by all homogeneous polynomials vanishing on V. For any projective algebraic set V, the coordinate ring of V is the quotient of the polynomial ring by this ideal.[tpl]r|Hartshorne|page1=10[/tpl]
+A quasi-projective variety is a Zariski open subset of a projective variety. Notice that every affine variety is quasi-projective.Hartshorne, Exercise I.2.9, p.12 Notice also that the complement of an algebraic set in an affine variety is a quasi-projective variety; in the context of affine varieties, such a quasi-projective variety is usually not called a variety but a constructible set.
+
+===[tpl]anchor|Abstract varieties[/tpl]Abstract varieties===
+
+In classical algebraic geometry, all varieties were by definition quasiprojective varieties, meaning that they were open subvarieties of closed subvarieties of projective space. For example, in Chapter 1 of Hartshorne a variety over an algebraically closed field is defined to be a quasi-projective variety,[tpl]r|Hartshorne|page1=15[/tpl] but from Chapter 2 onwards, the term variety (also called an abstract variety) refers to a more general object, which locally is a quasi-projective variety, but when viewed as a whole is not necessarily quasi-projective; i.e. it might not have an embedding into projective space.[tpl]r|Hartshorne|page1=105[/tpl] So classically the definition of an algebraic variety required an embedding into projective space, and this embedding was used to define the topology on the variety and the regular functions on the variety. The disadvantage of such a definition is that not all varieties come with natural embeddings into projective space. For example, under this definition, the product [tpl]math|P1 × P1[/tpl] is not a variety until it is embedded into the projective space; this is usually done by the Segre embedding. However, any variety that admits one embedding into projective space admits many others by composing the embedding with the Veronese embedding. Consequently many notions that should be intrinsic, such as the concept of a regular function, are not obviously so.
+The earliest successful attempt to define an algebraic variety abstractly, without an embedding, was made by André Weil. In his Foundations of Algebraic Geometry, Weil defined an abstract algebraic variety using valuations. Claude Chevalley made a definition of a scheme, which served a similar purpose, but was more general. However, it was Alexander Grothendieck's definition of a scheme that was both most general and found the most widespread acceptance. In Grothendieck's language, an abstract algebraic variety is usually defined to be an integral, separated scheme of finite type over an algebraically closed field,[tpl]Harvnb|Hartshorne|1976|pp=104–105[/tpl] although some authors drop the irreducibility or the reducedness or the separateness condition or allow the underlying field to be not algebraically closed.Liu, Qing. Algebraic Geometry and Arithmetic Curves, p. 55 Definition 2.3.47, and p. 88 Example 3.2.3 Classical algebraic varieties are the quasiprojective integral separated finite type schemes over an algebraically closed field.
+
+====Existence of non-quasiprojective abstract algebraic varieties====
+
+One of the earliest examples of a non-quasiprojective algebraic variety were given by Nagata. Nagata's example was not complete (the analog of compactness), but soon afterwards he found an algebraic surface that was complete and non-projective. Since then other examples have been found.
+
+==Examples==
+
+===Subvariety===
+
+A subvariety is a subset of a variety that is itself a variety.
+
+===Affine algebraic variety===
+
+====Example 1====
+
+Let [tpl]math|k [tpl]=[/tpl] C[/tpl], and A2 be the two-dimensional affine space over C. Polynomials in the ring Cy can be viewed as complex valued functions on A2 by evaluating at the points in A2. Let subset S of Cy contain a single element [tpl]math| f (x, y)[/tpl]:
+The zero-locus of [tpl]math| f (x, y)[/tpl] is the set of points in A2 on which this function vanishes: it is the set of all pairs of complex numbers (x, y) such that y = 1 − x, commonly known as a line. This is the set [tpl]math|Z( f )[/tpl]:
+Thus the subset [tpl]math|V [tpl]=[/tpl] Z( f )[/tpl] of A2 is an algebraic set. The set V is not empty. It is irreducible, as it cannot be written as the union of two proper algebraic subsets. Thus it is an affine algebraic variety.
+
+====Example 2====
+
+Let [tpl]math|k [tpl]=[/tpl] C[/tpl], and A2 be the two-dimensional affine space over C. PPolynomials in the ring Cy can be viewed as complex valued functions on A2 by evaluating at the points in A2. Let subset S of Cy contain a single element g(x, y):
+The zero-locus of g(x, y) is the set of points in A2 on which this function vanishes, that is the set of points (x,y) such that x2 + y2 = 1. As g(x, y) is an absolutely irreducible polynomial, this is an algebraic variety. The set of its real points (that is the points for which x and y are real numbers), is known as the unit circle; this name is also often given to the whole variety.
+
+====Example 3====
+
+The following example is neither a hypersurface, nor a linear space, nor a single point. Let A3 be the three-dimensional affine space over C. The set of points (x, x2, x3) for x in C is an algebraic variety, and more precisely an algebraic curve that is not contained in any plane.Harris, p.9; that it is irreducible is stated as an exercise in Hartshorne p.7 It is the twisted cubic shown in the above figure. It may be defined by the equations
+The fact that the set of the solutions of this system of equations is irreducible needs a proof. The simplest results from the fact that the projection (x, y, z) → (x, y) is injective on the set of the solutions and that its image is an irreducible plane curve.
+For more difficult examples, a similar proof may always be given, but may imply a difficult computation: first a Gröbner basis computation to compute the dimension, followed by a random linear change of variables (not always needed); then a Gröbner basis computation for another monomial ordering to compute the projection and to prove that it is injective, and finally a polynomial factorization to prove the irreducibility of the image.
+
+==Basic results==
+
+==Isomorphism of algebraic varieties==
+
+Let [tpl]math|V1, V2[/tpl] be algebraic varieties. We say [tpl]math|V1[/tpl] and [tpl]math|V2[/tpl] are isomorphic, and write [tpl]math|V1 ≅ V2[/tpl], if there are regular maps [tpl]math|φ : V1 → V2[/tpl] and [tpl]math|ψ : V2 → V1[/tpl] such that the compositions [tpl]math|ψ ∘ φ[/tpl] and [tpl]math|φ ∘ ψ[/tpl] are the identity maps on [tpl]math|V1[/tpl] and [tpl]math|V2[/tpl] respectively.
+
+==Discussion and generalizations==
+
+The basic definitions and facts above enable one to do classical algebraic geometry. To be able to do more — for example, to deal with varieties over fields that are not algebraically closed — some foundational changes are required. The modern notion of a variety is considerably more abstract than the one above, though equivalent in the case of varieties over algebraically closed fields. An abstract algebraic variety is a particular kind of scheme; the generalization to schemes on the geometric side enables an extension of the correspondence described above to a wider class of rings. A scheme is a locally ringed space such that every point has a neighbourhood that, as a locally ringed space, is isomorphic to a spectrum of a ring. Basically, a variety over [tpl]mvar|k[/tpl] is a scheme whose structure sheaf is a sheaf of [tpl]mvar|k[/tpl]-algebras with the property that the rings R that occur above are all integral domains and are all finitely generated [tpl]mvar|k[/tpl]-algebras, that is to say, they are quotients of polynomial algebras by prime ideals.
+This definition works over any field [tpl]mvar|k[/tpl]. It allows you to glue affine varieties (along common open sets) without worrying whether the resulting object can be put into some projective space. This also leads to difficulties since one can introduce somewhat pathological objects, e.g. an affine line with zero doubled. Such objects are usually not considered varieties, and are eliminated by requiring the schemes underlying a variety to be separated. (Strictly speaking, there is also a third condition, namely, that one needs only finitely many affine patches in the definition above.)
+Some modern researchers also remove the restriction on a variety having integral domain affine charts, and when speaking of a variety only require that the affine charts have trivial nilradical.
+A complete variety is a variety such that any map from an open subset of a nonsingular curve into it can be extended uniquely to the whole curve. Every projective variety is complete, but not vice versa.
+These varieties have been called 'varieties in the sense of Serre', since Serre's foundational paper FAC on sheaf cohomology was written for them. They remain typical objects to start studying in algebraic geometry, even if more general objects are also used in an auxiliary way.
+One way that leads to generalisations is to allow reducible algebraic sets (and fields [tpl]mvar|k[/tpl] that aren't algebraically closed), so the rings R may not be integral domains. A more significant modification is to allow nilpotents in the sheaf of rings. A nilpotent in a field must be 0: these if allowed in coordinate rings aren't seen as coordinate functions.
+From the categorical point of view, nilpotents must be allowed, in order to have finite limits of varieties (to get fiber products).[tpl]citation needed|date=August 2012[/tpl] Geometrically this says that fibres of good mappings may have 'infinitesimal' structure. In the theory of schemes of Grothendieck these points are all reconciled: but the general scheme is far from having the immediate geometric content of a variety.
+There are further generalizations called  algebraic spaces and stacks.
+
+==Algebraic manifolds==
+
+An algebraic manifold is an algebraic variety that is also an m-dimensional manifold, and hence every sufficiently small local patch is isomorphic to km. Equivalently, the variety is smooth (free from singular points). When [tpl]mvar|k[/tpl] is the real numbers, R, algebraic manifolds are called Nash manifolds. Algebraic manifolds can be defined as the zero set of a finite collection of analytic algebraic functions. Projective algebraic manifolds are an equivalent definition for projective varieties. The Riemann sphere is one example.
+
+==See also==
+
+==Footnotes==
+
+==References==
+
+ | last = Cox
+ | first = David
+ | authorlink = David Cox (mathematician)
+ | coauthors = John Little, Don O'Shea
+ | year = 1997
+ | title = Ideals, Varieties, and Algorithms
+ | edition = second

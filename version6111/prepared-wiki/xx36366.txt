@@ -1,0 +1,13 @@
+[[Plumber (program)]]
+
+CATEGORIES: Plan 9 from Bell Labs, Inferno (operating system), Free special purpose file systems
+
+The plumber, in the Plan 9 from Bell Labs and Inferno operating systems, is a mechanism for reliable uni- or multicast inter-process communication of formatted textual messages.  It uses the Plan 9 network file protocol, 9P, rather than a special-purpose IPC mechanism.
+Any number of clients may listen on a named port (a file) for messages.  Ports and port routing are defined by plumbing rules. These rules are dynamic.  Each listening program receives a copy of matching messages. For example, if the data /sys/lib/plumb/basic is plumbed with the standard rules, it is sent to the edit port.  The port will write a copy of the message to each listener.  In this case, all running editors will interpret this message as a file name, and open the file.
+The plumber is the 9P file server that provides this service.  Clients may use libplumb to format messages.  Since the messages are 9P, they are network transparent.
+
+==See also==
+
+==External links==
+
+

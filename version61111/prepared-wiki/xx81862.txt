@@ -1,0 +1,49 @@
+[[Tridiagonal matrix]]
+
+CATEGORIES: Sparse matrices
+
+In linear algebra, a tridiagonal matrix is a matrix that has nonzero elements only on the main diagonal, the first diagonal below this, and the first diagonal above the main diagonal.
+For example, the following matrix is tridiagonal:
+The determinant of a tridiagonal matrix is given by a continuant of its elements.[tpl]cite book | author=Thomas Muir | authorlink=Thomas Muir (mathematician) | title=A treatise on the theory of determinants | year=1960 | publisher=Dover Publications | pages=516–525 [/tpl]
+An orthogonal transformation of a symmetric (or Hermitian) matrix to tridiagonal form can be done with the Lanczos algorithm.
+
+==Properties==
+
+A tridiagonal matrix is a matrix that is both upper and lower Hessenberg matrix.[tpl]cite book|first1=Roger A.| last1=Horn | first2=Charles R. | last2=Johnson | title = Matrix Analysis | publisher= Cambridge University Press |year= 1985 |isbn = 0521386322 | page=28[/tpl] In particular, a tridiagonal matrix is a direct sum of p 1-by-1 and  q 2-by-2 matrices such that p + q/2 = n -- the dimension of the tridiagonal.  Although a general tridiagonal matrix is not necessarily symmetric or Hermitian, many of those that arise when solving linear algebra problems have one of these properties. Furthermore, if a real tridiagonal matrix A satisfies ak,k+1 ak+1,k > 0 for all k, so that the signs of its entries are symmetric, then it is similar to a Hermitian matrix, by a diagonal change of basis matrix. Hence, its eigenvalues are real. If we replace the strict inequality by ak,k+1 ak+1,k ≥ 0, then by continuity, the eigenvalues are still guaranteed to be real, but the matrix need no longer be similar to a Hermitian matrix.Horn & Johnson, page 174
+The set of all n × n tridiagonal matrices forms a 3n-2
+dimensional vector space.
+Many linear algebra algorithms require significantly less computational effort when applied to diagonal matrices, and this improvement often carries over to tridiagonal matrices as well.
+
+===Determinant===
+
+The determinant of a tridiagonal matrix A of order n can be computed from a three-term recurrence relation.[tpl]cite doi|10.1016/S0096-3003(03)00298-4[/tpl] Write f1 = |a1| = a1 and
+The sequence (fi) is called the continuant and satisfies the recurrence relation
+with initial values f0 = 1 and f-1 = 0. The cost of computing the determinant of a tridiagonal matrix using this formula is linear in n, while the cost is cubic for a general matrix.
+
+===Inversion===
+
+The inverse of a non-singular tridiagonal matrix T
+is given by
+where the θi satisfy the recurrence relation
+with initial conditions θ0 = 1, θ1 = a1 and the ϕi satisfy
+with initial conditions ϕn+1 = 1 and ϕn = an.[tpl]cite doi|10.1016/j.cam.2005.08.047[/tpl][tpl]cite doi|10.1016/0024-3795(94)90414-6[/tpl]
+Closed form solutions can be computed for special cases such as symmetric matrices with all off-diagonal elements equal[tpl]cite doi|10.1088/0305-4470/29/7/020[/tpl] or Toeplitz matrices[tpl]cite doi|10.1088/0305-4470/30/22/026[/tpl] and for the general case as well.[tpl]cite doi|10.1016/S0024-3795(00)00262-7[/tpl][tpl]cite doi|10.1016/j.amc.2007.07.046[/tpl]
+
+===Solution of linear system===
+
+===Eigenvalues===
+
+When a tridiagonal matrix is also Toeplitz, there is a simple closed-form solution for its eigenvalues, namely
+
+==Computer programming==
+
+A transformation that reduces a general matrix to Hessenberg form will reduce a Hermitian matrix to tridiagonal form.  So, many eigenvalue algorithms, when applied to a Hermitian matrix, reduce the input Hermitian matrix to tridiagonal form as a first step.
+A tridiagonal matrix can also be stored more efficiently than a general matrix by using a special storage scheme. For instance, the LAPACK Fortran package stores an unsymmetric tridiagonal matrix of order n in three one-dimensional arrays, one of length n containing the diagonal elements, and two of length n − 1 containing the subdiagonal and superdiagonal elements.
+
+==See also==
+
+==Notes==
+
+==External links==
+
+

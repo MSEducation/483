@@ -1,0 +1,51 @@
+[[Antenna gain]]
+
+CATEGORIES: Antennas (radio), Telecommunications engineering
+
+In electromagnetics, an antenna's power gain or simply gain is a key performance figure which combines the antenna's directivity and electrical efficiency.  As a transmitting antenna, the figure describes how well the antenna converts input power into radio waves headed in a specified direction. As a receiving antenna, the figure describes how well the antenna converts radio waves arriving from a specified direction into electrical power. When no direction is specified, "gain" is understood to refer to the peak value of the gain. A plot of the gain as a function of direction is called the radiation pattern.
+Antenna gain is usually defined as the ratio of the power produced by the antenna from a far-field source on the antenna's beam axis to the power produced by a hypothetical lossless isotropic antenna, which is equally sensitive to signals from all directions.  Usually this ratio is expressed in decibels, and these units are referred to as "decibels-isotropic" (dBi). An alternate definition compares the antenna to the power received by a lossless half-wave dipole antenna, in which case the units are written as dBd.  Since a lossless dipole antenna has a gain of 2.15 dBi,  the relation between these units is: gain in dBd = gain in dBi - 2.15 dB . For a given frequency, the antenna's effective area is proportional to the power gain. An antenna's effective length is proportional to the square root of the antenna's gain for a particular frequency and radiation resistance. Due to reciprocity, the gain of any antenna when receiving is equal to its gain when transmitting.
+Directive gain or directivity is a different measure which does not take an antenna's electrical efficiency into account. This term is sometimes more relevant in the case of a receiving antenna where one is concerned mainly with the ability of an antenna to receive signals from one direction while rejecting interfering signals coming from a different direction.
+
+==Power gain==
+
+Power gain (or simply gain) is a unitless measure that combines an antenna's efficiency Eantenna and directivity D:
+The power gain, on the other hand, signifies the ratio of radiated power in a given direction relative to that of an isotropic radiator which is radiating the total amount of electrical power received by the antenna in question. This is in contrast to the directive gain which ignores any reduction in efficiency. If only a certain portion of the electrical power received from the transmitter is actually radiated by the antenna (i.e. less than 100% efficiency), then the directive gain compares the power radiated in a given direction to that reduced power (instead of the total power received), ignoring the inefficiency. On the other hand, the power gain takes into account the poorer efficiency by comparing the radiated power in a given direction to the actual power that the antenna receives from the transmitter, which makes it a more useful figure of merit for the ability of a transmitter in sending a radio wave toward a receiver.
+where Pin signifies the net electrical power entering the antenna terminals. Note that in the case of an impedance mismatch, Pin would be computed as the transmission line's incident power minus reflected power. Or equivalently, in terms of the rms voltage V at the antenna terminals:
+where Zin is the feedpoint impedance.
+
+==Figures used for antenna gain==
+
+Published figures for antenna gain are almost always expressed in decibels (dB), a logarithmic scale.  From the gain factor G, one finds the gain in decibels as:
+Therefore an antenna with a peak power gain of 5 would be said to have a gain of 7 dBi. "dBi" is used rather than just "dB" to emphasize that this is the gain according to the basic definition, in which the antenna is compared to an isotropic radiator.
+When actual measurements of an antenna's gain are made by a laboratory, the field strength of the test antenna is measured when supplied with, say, 1 watt of transmitter power, at a certain distance. That field strength is compared to the field strength found using a so-called reference antenna at the same distance receiving the same power in order to determine the gain of the antenna under test. That ratio would be equal to G if the reference antenna were an isotropic radiator.
+However a true isotropic radiator cannot be built, so in practice a different antenna is used. This will often be a half-wave dipole, a very well understood and repeatable antenna that can be easily built for any frequency. The directive gain of a half-wave dipole is known to be 1.64 and it can be made nearly 100% efficient. Since the gain has been measured with respect to this reference antenna, the difference in the gain of the test antenna is often compared to that of the dipole. The "gain relative to a dipole" is thus often quoted and is denoted using "dBd" instead of "dBi" to avoid confusion. Therefore in terms of the true gain (relative to an isotropic radiator) G, this figure for the gain is given by:
+For instance, the above antenna with a gain G=5 would have a gain with respect to a dipole of 5/1.64 = 3.05, or in decibels one would call this 10 log(3.05) = 4.84 dBd. In general:
+Both dBi and dBd are in common use. When an antenna's maximum gain is specified in decibels (for instance, by a manufacturer) one must be certain as to whether this means the gain relative to an isotropic radiator or with respect to a dipole. If it specifies "dBi" or "dBd" then there is no ambiguity, but if only "dB" is specified then the fine print must be consulted. Either figure can be easily converted into the other using the above relationship.
+Note that when considering an antenna's directional pattern, "gain with respect to a dipole" does not imply a comparison of that antenna's gain in each direction to a dipole's gain in that direction. Rather, it is a comparison between the antenna's gain in each direction to the peak gain of the dipole (1.64). In any direction, therefore, such numbers are 2.15 dB smaller than the gain expressed in dBi.
+
+==Partial gain==
+
+As a result of this definition, we can conclude that the total gain of an antenna is the sum of partial gains for any two orthogonal polarizations.
+
+==Example calculation==
+
+Suppose a lossless antenna has a radiation pattern given by:
+Let us find the gain of such an antenna.
+Solution:
+First we find the peak radiation intensity of this antenna:
+The total radiated power can be found by integrating over all directions:
+Since the antenna is specified as being lossless the radiation efficiency is 1. The maximum gain is then equal to:
+Expressed relative to the gain of a dipole we would find:
+
+==Total radiated power==
+
+Total radiated power is a measurement of antenna gain with or without the power absorption effects (loss) that may be caused by objects in the proximity of the antenna. TRP is measured in the lab as radiated power compared to an Isotropic Antenna. TRP can also be measured while in the close proximity of power-absorbing losses such as the body and hand of the Mobile Device Under Test User.Mobile Broadband Multimedia Networks: Techniques, Models and Tools for 4G by Luís M. Correia
+The TRP can be used to determine Body Loss (BoL). The Body Loss is considered as the ratio of TRP measured in the presence of losses and TRP measured while in open space.
+
+==See also==
+
+==References==
+
+==Bibliography==
+
+

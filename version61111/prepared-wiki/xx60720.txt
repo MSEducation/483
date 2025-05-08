@@ -1,0 +1,14 @@
+[[Words (Unix)]]
+
+CATEGORIES: Unix, Unix software
+
+words is a standard file on all Unix and Unix-like operating systems, and is simply a newline-delimited list of dictionary words. It is used, for instance, by spell-checking programs.
+With Unix's text processing capabilities, one can use the words file for many purposes.  For example, using the grep tool, one can find all three-letter words without any vowels, using regular expressions:
+ egrep -i "^[^aeiouy']{3}$" /usr/share/dict/words
+The words file is usually stored in /usr/share/dict/words, or /usr/dict/words.
+On Debian and Ubuntu, the words file is provided by the wordlist package, or its provider packages wbritish, wamerican, etc. On Fedora and Arch, the words file is provided by the words package.
+A words file is also used to contain words related to a specific topic. One such example of this is for profanity censoring software that replaces profanities, for example, posted on the web with strings such as "###" or some other replacement. Words that are posted in this example are compared with a "bad-words" file and then, if there is an occurrence of such a word, it is summarily replaced.
+
+==External links==
+
+

@@ -1,0 +1,43 @@
+[[Smoothsort]]
+
+CATEGORIES: Sorting algorithms, Comparison sorts, Heaps (data structures), Articles with example Java code, Dutch inventions
+
+Smoothsort[tpl]Cite EWD|796a|Smoothsort – an alternative to sorting in situ[/tpl] (method) is a comparison-based sorting algorithm. It is a variation of heapsort developed by Edsger Dijkstra in 1981. Like heapsort, smoothsort's upper bound is O(n log n). The advantage of smoothsort is that it comes closer to O(n) time if the input is already sorted to some degree, whereas heapsort averages O(n log n) regardless of the initial sorted state.
+
+==Overview==
+
+Breaking the input up into a sequence of heaps is simple – the leftmost nodes of the array are made into the largest heap possible, and the remainder is likewise divided up.  It can be proven Smoothsort Demystified. Keithschwarz.com. Retrieved on 2010-11-20. that:
+Each heap, having a size of L(x), is structured from left to right as a sub-heap of size [tpl]nowrap|L(x − 1)[/tpl], a sub-heap of size [tpl]nowrap|L(x − 2)[/tpl], and a root node, with the exception of heaps with a size of L(1) and L(0), which are singleton nodes. Each heap maintains the heap property that a root node is always at least as large as the root nodes of its child heaps (and therefore at least as large as all nodes in its child heaps), and the string of heaps as a whole maintains the string property that the root node of each heap is at least as large as the root node of the heap to the left.
+The consequence of this is that the rightmost node in the string will always be the largest of the nodes, and, importantly, an array that is already sorted needs no rearrangement to be made into a valid series of heaps. This is the source of the adaptive qualities of the algorithm.
+The algorithm is simple. We start by dividing up our unsorted array into a single heap of one element, followed by an unsorted portion. A one-element array is trivially a valid sequence of heaps. This sequence is then grown by adding one element at a time to the right, performing swaps to keep the sequence property and the heap property, until it fills the entire original array.
+From this point on, the rightmost element of the sequence of heaps will be the largest element in any of the heaps, and will therefore be in its correct, final position. We then reduce the series of heaps back down to a single heap of one element by removing the rightmost node (which stays in place) and performing re-arrangements to restore the heap condition. When we are back down to a single heap of one element, the array is sorted.
+
+==Operations==
+
+Ignoring (for the moment) Dijkstra's optimisations, two operations are necessary – increase the string by adding one element to the right, and decrease the string by removing the right most element (the root of the last heap), preserving the heap and string conditions.
+
+===Grow the string by adding an element to the right===
+
+After this, the heap and string properties must be restored, which is usually done via a variant of insertion sort.  This is done as follows:
+The filter operation is greatly simplified by the use of Leonardo numbers, as a heap will always either be a single node, or will have two children. One does not need to manage the condition of one of the child heaps not being present.
+
+====Optimisation====
+
+===Shrink the string by removing the rightmost element===
+
+If the rightmost heap has a size of 1 (i.e., L(1) or L(0)), then nothing needs to be done. Simply remove that rightmost heap.
+If the rightmost heap does not have a size of 1, then remove the root, exposing the two sub-heaps as members of the string.  Restore the string property first on the left one and then on the right one.
+
+====Optimisation====
+
+==Memory usage==
+
+The smoothsort algorithm needs to be able to hold in memory the sizes of all of the heaps in the string.  Since all these values are distinct, this is usually done using a bit vector.  Moreover, since there are at most O(log n) numbers in the sequence, these bits can be encoded in O(1) machine words, assuming a transdichotomous machine model.
+
+==Java implementation==
+
+This code uses lo and hi as the bounds of the array inclusive. Note that this is not the usual convention. Further note, that this implementation is a little flawed: The bitmap p only holds 32 bits and therefore limits the maximum number of heaps in the entire string to 32 (not counting the right-most heap of size LP0), which will eventually overflow if you try to sort an array of more than LP32+1 = 7049156 elements. This can be solved by using a long-bitmap wide enough to hold a single bit for every Leonardo number that could be used as an array index in Java, which is exactly one more than the index of the largest such number (i.e. the largest one that fits into a 32-bit signed integer, as commented on LP) and is therefore equal to the length of LP which is 43.
+
+==Notes==
+
+

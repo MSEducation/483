@@ -1,0 +1,58 @@
+[[Deming regression]]
+
+CATEGORIES: Regression analysis
+
+In statistics, Deming regression, named after W. Edwards Deming, is an errors-in-variables model which tries to find the line of best fit for a two-dimensional dataset. It differs from the simple linear regression in that it accounts for errors in observations on both the x- and the y- axis. It is a special case of total least squares, which allows for any number of predictors and a more complicated error structure.
+Deming regression is equivalent to the maximum likelihood estimation of an errors-in-variables model in which the errors for the two variables are assumed to be independent and normally distributed, and the ratio of their variances, denoted δ, is known.[tpl]harv|Linnet|1993[/tpl] In practice, this ratio might be estimated from related data-sources; however the regression procedure takes no account for possible errors in estimating this ratio.
+The Deming regression is only slightly more difficult to compute compared to the simple linear regression. Many software packages used in clinical chemistry, such as Analyse-it, EP Evaluator, MedCalc, R, S-PLUS and StatsDirect offer Deming regression.
+The model was originally introduced by [tpl]harvtxt|Adcock|1878[/tpl] who considered the case δ = 1, and then more generally by [tpl]harvtxt|Kummell|1879[/tpl] with arbitrary δ.  However their ideas remained largely unnoticed for more than 50 years, until they were revived by [tpl]harvtxt|Koopmans|1937[/tpl] and later propagated even more by [tpl]harvtxt|Deming|1943[/tpl].  The latter book became so popular in clinical chemistry and related fields that the method was even dubbed Deming regression in those fields.Cornbleet, Gochman (1979)
+
+==Specification==
+
+Assume that the available data (yi, xi) are measured observations of the "true" values (yi*, xi*):
+where errors ε and η are independent and the ratio of their variances is assumed to be known:
+We seek to find the line of "best fit" y* = β0 + β1x*, such that the weighted sum of squared residuals of the model is minimized:Fuller, ch.1.3.3
+
+==Solution==
+
+The solution can be expressed in terms of the second-degree sample moments. That is, we first calculate the following quantities (all sums go from i = 1 to n):
+Finally, the least-squares estimates of model's parameters will beGlaister (2001)
+
+==The case of equal error variances==
+
+A trigonometric representation of the orthogonal regression line was given by Coolidge in 1913.Coolidge, J. L. (1913).
+
+===Application===
+
+In the case of three non-collinear points in the plane, the triangle with these points as its vertices has a unique Steiner inellipse that is tangent to the triangle's sides at their midpoints. The major axis of this ellipse falls on the orthogonal regression line for the three vertices.Minda and Phelps (2008), Corollary 2.4.
+
+==Notes==
+
+==References==
+
+  | last = Kummell
+  | first = C. H.
+  | year = 1879
+  | title = Reduction of observation equations which contain more than one observed quantity
+  | journal = The Analyst
+  | volume = 6
+  | issue = 4
+  | pages = 97–105
+  | publisher = Annals of Mathematics
+  | doi = 10.2307/2635646
+  | jstor = 2635646
+  }}
+  | last = Linnet
+  | first = K.
+  | year = 1993
+  | title = Evaluation of regression procedures for method comparison studies
+  | journal = Clinical Chemistry
+  | volume = 39
+  | issue = 3
+  | pages = 424–432
+  | url = http://www.clinchem.org/cgi/reprint/39/3/424
+  | pmid = 8448852
+  }}
+ | last1 = Minda | first1 = D. | author1-link = David Minda
+ | last2 = Phelps | first2 = S.
+ | issue = 8

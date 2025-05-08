@@ -1,0 +1,94 @@
+[[Simultaneous equations model]]
+
+CATEGORIES: Multivariate statistics, Econometrics
+
+Simultaneous equation models are a form of statistical model in the form of a set of linear simultaneous equations. They are often used in econometrics.
+
+==Structural and reduced form==
+
+Suppose there are m regression equations of the form
+where i is the equation number, and [tpl]nowrap|t [tpl]=[/tpl] 1, ..., T[/tpl] is the observation index. In these equations xit is the ki×1 vector of exogenous variables, yit is the dependent variable, y−i,t is the ni×1 vector of all other endogenous variables which enter the ith equation on the right-hand side, and uit are the error terms. The “−i” notation indicates that the vector y−i,t may contain any of the y’s except for yit (since it is already present on the left-hand side). The regression coefficients βi and γi are of dimensions ki×1 and ni×1 correspondingly. Vertically stacking the T observations corresponding to the ith equation, we can write each equation in vector form as
+where yi and ui are T×1 vectors, Xi is a T×ki matrix of exogenous regressors, and Y−i is a T×ni matrix of endogenous regressors on the right-hand side of the ith equation. Finally, we can move all endogenous variables to the left-hand side and write the m equations jointly in vector form as
+This representation is known as the structural form. In this equation [tpl]nowrap|Y [tpl]=[/tpl] y2 ... ym[/tpl] is the T×m matrix of dependent variables. Each of the matrices Y−i is in fact an ni-columned submatrix of this Y. The m×m matrix Γ, which describes the relation between the dependent variables, has a complicated structure. It has ones on the diagonal, and all other elements of each column i are either the components of the vector −γi or zeros, depending on which columns of Y were included in the matrix Y−i. The T×k matrix X contains all exogenous regressors from all equations, but without repetitions (that is, matrix X should be of full rank). Thus, each Xi is a ki-columned submatrix of X. Matrix Β has size k×m, and each of its columns consists of the components of vectors βi and zeros, depending on which of the regressors from X were included or excluded from Xi. Finally, [tpl]nowrap|U [tpl]=[/tpl] u2 ... um[/tpl] is a T×m matrix of the error terms.
+Postmultiplying the structural equation by [tpl]nowrap|Γ −1[/tpl], the system can be written in the reduced form as
+
+===Assumptions===
+
+Secondly, error terms are assumed to be serially independent and identically distributed. That is, if the tth row of matrix U is denoted by u(t), then the sequence of vectors {u(t)} should be iid, with zero mean and some covariance matrix Σ (which is unknown). In particular, this implies that [tpl]nowrap|EU [tpl]=[/tpl] 0[/tpl], and [tpl]nowrap|EU′U [tpl]=[/tpl] T Σ[/tpl].
+Lastly, the identification conditions require that the number of unknowns in this system of equations should not exceed the number of equations. More specifically, the order condition requires that for each equation [tpl]nowrap|ki + ni ≤ k[/tpl], which can be phrased as “the number of excluded exogenous variables is greater or equal to the number of included endogenous variables”. The rank condition of identifiability is that [tpl]nowrap|rank(Πi0) [tpl]=[/tpl] ni[/tpl], where Πi0 is a [tpl]nowrap|(k − ki)×ni[/tpl] matrix which is obtained from Π by crossing out those columns which correspond to the excluded endogenous variables, and those rows which correspond to the included exogenous variables.
+
+==Estimation==
+
+===Two-stages least squares (2SLS)===
+
+The simplest and the most common[tpl]harvtxt|Greene|2003|loc=p. 398[/tpl] estimation method for the simultaneous equations model is the so-called two-stage least squares method, developed independently by [tpl]harvtxt|Theil|1953[/tpl] and [tpl]harvtxt|Basmann|1957[/tpl]. It is an equation-by-equation technique, where the endogenous regressors on the right-hand side of each equation are being instrumented with the regressors X from all other equations. The method is called “two-stage” because it conducts estimation in two steps:[tpl]harvtxt|Greene|2003|loc=p. 399[/tpl]
+If the ith equation in the model is written as
+where Zi is a T×(ni + ki) matrix of both endogenous and exogenous regressors in the ith equation, and δi is an (ni + ki)-dimensional vector of regression coefficients, then the 2SLS estimator of δi will be given by[tpl]harvtxt|Greene|2003|loc=p. 399[/tpl]
+where [tpl]nowrap|P [tpl]=[/tpl] X (X ′X)−1X ′[/tpl] is the projection matrix onto the linear space spanned by the exogenous regressors X.
+
+===Indirect least squares===
+
+Indirect least squares is an approach in econometrics where the coefficients in a simultaneous equations model are estimated from the reduced form model using ordinary least squares.Park, S-B. (1974) "On Indirect Least Squares Estimation of a Simultaneous Equation System", The Canadian Journal of Statistics / La Revue Canadienne de Statistique, 2 (1), 75–82 [tpl]JSTOR|3314964[/tpl]Vajda, S., Valko, P. Godfrey, K.R. (1987) "Direct and indirect least squares methods in continuous-time parameter estimation", Automatica, 23 (6), 707–718 [tpl]DOI|10.1016/0005-1098(87)90027-6[/tpl]  For this, the structural system of equations is transformed into the reduced form first. Once the coefficients are estimated the model is put back into the structural form.
+
+===Limited information maximum likelihood (LIML)===
+
+The “limited information” maximum likelihood method was suggested by [tpl]harvtxt|Anderson|Rubin|1949[/tpl]. It is used when one is interested in estimating a single structural equation at a time (hence its name of limited information), say for variable i:
+The structural equations for the remaining endogeneous variables Y−1 are not specified, and they are given in their reduced form:
+Notation in this context is different than for the simple IV case. One has:
+The explicit formula for the LIML is:[tpl]harvtxt|Amemiya|1985|loc=p. 235[/tpl]
+where [tpl]nowrap|M [tpl]=[/tpl] I − X (X ′X)−1X ′[/tpl], and λ is the smallest characteristic root of the matrix:
+where, in a similar way,  [tpl]nowrap|Mi [tpl]=[/tpl] I − Xi (Xi′Xi)−1Xi′[/tpl].
+In other words, λ is the smallest solution of the generalized eigenvalue problem, see [tpl]harvtxt|Theil|1971|loc=p. 503[/tpl]:
+
+====K class estimators====
+
+The LIML is a special case of the K-class estimators:[tpl]harvtxt|Davidson|Mackinnon|1993|loc=p. 649[/tpl]
+with:
+Several estimators belong to this class:
+
+===Three-stage least squares (3SLS)===
+
+The three-stage least squares estimator was introduced by [tpl]harvtxt|Zellner|Theil|1962[/tpl].  It combines two-stage least squares (2SLS) with seemingly unrelated regressions (SUR).
+
+==See also==
+
+==Notes==
+
+==References==
+
+  | last = Amemiya | first = Takeshi
+  | title = Advanced econometrics
+  | year = 1985
+  | publisher = Harvard University Press
+  | location = Cambridge, Massachusetts
+  | isbn = 0-674-00560-0
+  | ref = harv
+  }}
+  | last1 = Anderson | first1 = T.W.
+  | last2 = Rubin    | first2 = H.
+  | title = Estimator of the parameters of a single equation in a complete system of stochastic equations
+  | year = 1949
+  | journal = Annals of Mathematical Statistics
+  | volume = 20 | issue = 1
+  | pages = 46–63
+  | jstor = 2236803
+  | ref = harv
+  | doi=10.1214/aoms/1177730090
+  }}
+  | last = Basmann | first = R.L.
+  | title = A generalized classical method of linear estimation of coefficients in a structural equation
+  | year = 1957
+  | journal = Econometrica
+  | volume = 25 | issue = 1
+  | pages = 77–83
+  | jstor = 1907743
+  | ref = harv
+  }}
+  | last1 = Davidson | first1 = Russell
+  | last2 = MacKinnon | first2 = James G.
+  | title = Estimation and inference in econometrics
+  | year = 1993
+  | publisher = Oxford University Press
+  | isbn = 978-0-19-506011-9
+  | ref = harv
+  }}

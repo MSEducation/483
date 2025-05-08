@@ -1,0 +1,42 @@
+[[EJBCA]]
+
+CATEGORIES: Java enterprise platform
+
+Enterprise Java Bean Certificate Authority, or EJBCA, is a free software public key infrastructure (PKI) certificate authority software package maintained and sponsored by the Swedish for-profit company PrimeKey Solutions AB, which holds the copyright to most of the codebase. The project's source code is available under terms of the Lesser GNU General Public License.
+
+==Design==
+
+The system is implemented in Java EE and designed to be platform independent and fully clusterable,Typical large scale setup to permit a greater degree of scalability than is typical of similar software packages. Multiple instances of EJBCA are run simultaneously, sharing a database containing the current certificate authorities (CAs). This permits each instance of the software to access any CA. The software also supports the use of a Hardware Security Module (HSM), which provides additional security. Larger-scale installations would use multiple instances of EJBCA running on a cluster, a fully distributed database on a separate cluster and a third cluster with HSMs keeping the different CA keys.
+
+==Features==
+
+EJBCA follows the major standards in the PKI area, such as X.509, OCSP, CMP, XKMS, SCEP, and Elliptic curves,List of features including the new Card Verifiable Certificate (CVC) EU standard for machine readable passports containing fingerprints, which will be mandatory as of June 26, 2009.
+EJBCA supports all common asymmetric encryption algorithms, RSA, DSA and ECC, as well as the modern hash algorithms, SHA1, SHA256, SHA384, SHA512.
+Apart from the features would expect from a Certificate Authority. EJBCA includes a few interesting features from a PKI point-of-view. In normal operation everything is stored and audit logged, including user entries in the built in RA. In the normal mode all properties that you would expect from a Certificate Authority applies, transactional behaviour, audit, revocation and CRL issuance. 
+You can however also configure EJBCA in a "throw away CA" mode, where nothing is stored in the database, but instead certificates are simply issued, to an RA, very fast. This is convenient if you don't need to store revocation information on the CA, and you need to issue huge volumes of certificates fast. In "throw away CA" mode EJBCA can issue hundreds of certificates per second from a single server.
+
+==Common Criteria Certification==
+
+During 2011 a project ran to Common Criteria Certify EJBCA. EJBCA was delivered for evaluation in January 2012, evaluation was completed in March 2012, and the final certificate was delivered in October 2012.
+EJBCA is certified under the CIMC Protection Profile, under Common Criteria v3.1. The Evaluation Assurance Level selected is EAL4+.
+The certified version of EJBCA is EJBCA 5.0.4, and the Sponsor of the certification is PrimeKey Solutions AB.
+
+==Development==
+
+EJBCA is licensed under the standard GNU Lesser General Public License (LGPL v2.1). The source code repository is, due to Common Criteria requirements, hosted by PrimeKey. It was first posted there in November 2001. At that time the amount of source code was around 6,000 lines of code including test code. As of October 2012, it contains about 260,000 lines of code (sloccount).
+
+==Known major installations==
+
+There are many knownReference installations installations all over the world, among them:
+Note for the reader:
+EJBCA is besides above samples of deployments - now (2010) also tested - in over 25 countries (Europe and outside Europe) for different national projects: as health care cards, NeID, ePassports, Tachographs and driving licenses.
+Over 250 commercial projects/deployments have been done by PrimeKey 2002–2011. 
+EJBCA is downloaded over 100,000 times on Global level at www.ejbca.org
+
+==References==
+
+==External links==
+
+==EJBCA in literature==
+
+

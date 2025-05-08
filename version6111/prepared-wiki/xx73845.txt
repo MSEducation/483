@@ -1,0 +1,29 @@
+[[Canonical correlation]]
+
+CATEGORIES: Covariance and correlation, Multivariate statistics
+
+In statistics, canonical-correlation analysis (CCA) is a way of making sense of cross-covariance matrices. If we have two vectors X = (X1, ..., Xn) and Y = (Y1, ..., Ym)  of random variables, and there are correlations among the variables, then canonical-correlation analysis will find linear combinations of the Xi and Yj which have maximum correlation with each other.[tpl]cite doi|10.1007/978-3-540-72244-1_14[/tpl] T. R. Knapp notes "virtually all of the commonly encountered parametric tests of significance can be treated as special cases of canonical-correlation analysis, which is the general procedure for investigating the relationships between two sets of variables."[tpl]cite doi|10.1037/0033-2909.85.2.410[/tpl] The method was first introduced by Harold Hotelling in 1936.[tpl]cite doi|10.1093/biomet/28.3-4.321[/tpl]
+
+==Definition==
+
+==Computation==
+
+===Derivation===
+
+The first step is to define a change of basis and define
+And thus we have
+By the Cauchy-Schwarz inequality, we have
+
+===Solution===
+
+The solution is therefore:
+Reciprocally, there is also:
+Reversing the change of coordinates, we have that
+The canonical variables are defined by:
+
+===Implementation===
+
+CCA can be computed using singular value decomposition on a correlation matrix.[tpl]cite doi|10.1016/j.jcss.2011.12.025[/tpl] It is available as a function in[tpl]cite doi|10.1016/j.jspi.2008.10.011[/tpl]
+
+==Hypothesis testing==
+

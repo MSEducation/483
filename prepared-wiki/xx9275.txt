@@ -1,0 +1,88 @@
+[[Ordered pair]]
+
+CATEGORIES: Basic concepts in set theory, Order theory, Type theory
+
+In mathematics, an ordered pair (a, b) is a pair of mathematical objects. The order in which the objects appear in the pair is significant: the ordered pair (a, b) is different from the ordered pair (b, a) unless a = b.  (In contrast, the unordered pair {a, b} equals the unordered pair {b, a}.)
+Ordered pairs are also called 2-tuples, or sequences of length 2; ordered pairs of scalars are also called 2-dimensional vectors.
+The entries of an ordered pair can be other ordered pairs, enabling the recursive definition of ordered n-tuples (ordered lists of n objects). For example, the ordered triple (a,b,c) can be defined as (a, (b,c)), i.e., as one pair nested in another.
+In the ordered pair (a, b), the object a is called the first entry, and the object b the second entry of the pair. Alternatively, the objects are called the first and second coordinates, or the left and right projections of the ordered pair.
+Cartesian products and binary relations (and hence functions) are defined in terms of ordered pairs.
+
+==Generalities==
+
+The set of all ordered pairs whose first entry is in some set A and whose second entry is in some set B is called the Cartesian product of A and B, and written A × B. A binary relation between sets A and B is a subset of A × B.
+The left and right projection of a pair p is usually denoted by π1(p) and π2(p), or by πl(p) and πr(p), respectively.
+In contexts where arbitrary n-tuples are considered, πni(t) is a common notation for the i-th component of an n tuple t.
+
+==Defining the ordered pair using set theory==
+
+The above characteristic property of ordered pairs is all that is required to understand the role of ordered pairs in mathematics. Hence the ordered pair can be taken as a primitive notion, whose associated axiom is the characteristic property. This was the approach taken by the N. Bourbaki group in its Theory of Sets, published in 1954, long after Kuratowski discovered his reduction (below). The Kuratowski definition was added in the second edition of Theory of Sets, published in 1970.
+If one agrees that set theory is an appealing foundation of mathematics, then all mathematical objects must be defined as sets of some sort. Hence if the ordered pair is not taken as primitive, it must be defined as a set.[ref]Quine has argued that the set-theoretical implementations of the concept of the ordered pair   is a paradigm for the clarification of philosophical  ideas (see  "Word and Object", section 53). 
+The general notion of such definitions or implementations  are discussed in Thomas Forster "Reasoning about theoretical entities".
+[/ref] Several set-theoretic definitions of the ordered pair are given below.
+
+===Wiener's definition===
+
+Norbert Wiener proposed the first set theoretical definition of the ordered pair in 1914:Wiener's paper "A Simplification of the logic of relations" is reprinted, together with a valuable commentary on pages 224ff in van Heijenoort, Jean (1967), From Frege to Gödel: A Source Book in Mathematical Logic, 1979-1931, Harvard University Press, Cambridge MA, ISBN 0-674-32449-8 (pbk.). van Heijenoort states the simplification this way: "By giving a definition of the ordered pair of two elements in terms of class operations, the note reduced the theory of relations to that of classes".
+He observed that this definition made it possible to define the types of Principia Mathematica as sets. Principia Mathematica had taken types, and hence relations of all arities, as primitive.
+
+===Hausdorff's definition===
+
+About the same time as Wiener (1914), Felix Hausdorff proposed his definition:
+"where 1 and 2 are two distinct objects different from a and b."cf introduction to Wiener's paper in van Heijenoort 1967:224
+
+===Kuratowski definition===
+
+In 1921 Kazimierz Kuratowski offered the now-accepted definitioncf introduction to Wiener's paper in van Heijenoort 1967:224. van Heijenoort observes that the resulting set that represents the ordered pair "has a type higher by 2 than the elements (when they are of the same type)"; he offers references that show how, under certain circumstances, the type can be reduced to 1 or 0.[tpl]cite journal|title=Sur la notion de l'ordre dans la Théorie des Ensembles|first=Casimir|last=Kuratowski|authorlink=Kazimierz Kuratowski|year=1921|journal=Fundamenta Mathematicae|pages=161–171|volume=2|number=1|url=http://matwbn.icm.edu.pl/ksiazki/fm/fm2/fm2122.pdf[/tpl]
+of the ordered pair (a, b):
+Note that this definition is used even when the first and the second coordinates are identical:
+Given some ordered pair p, the property "x is the first coordinate of p" can be formulated as:
+The property "x is the second coordinate of p" can be formulated as:
+This is how we can extract the first coordinate of a pair (using the notation for arbitrary intersection and arbitrary union):
+This is how the second coordinate can be extracted:
+
+====Variants====
+
+The reverse definition is merely a trivial variant of the Kuratowski definition, and as such is of no independent interest. The definition short is so-called because it requires two rather than three pairs of braces. Proving that short satisfies the characteristic property requires the Zermelo–Fraenkel set theory axiom of regularity.Tourlakis, George (2003) Lectures in Logic and Set Theory. Vol. 2: Set Theory. Cambridge Univ. Press. Proposition III.10.1. Moreover, if one accepts the standard set-theoretic construction of the natural numbers, then 2 is defined as the set {0, 1} = {0, {0}}, which is indistinguishable from the pair (0, 0)short. Yet another disadvantage of the short pair is the fact, that even if a and b are of the same type, the elements of the short pair are not. (However, if a = b then the short version keeps having cardinality 2, which is something one might expect of any "pair", including any "ordered pair". Also note that the short version is used in Tarski–Grothendieck set theory, upon which the Mizar system is founded.)
+
+====Proving that definitions satisfy the characteristic property====
+
+Prove: (a, b) = (c, d) if and only if a = c and b = d.
+Kuratowski: 
+If. If a = c and b = d, then [tpl]a}, {a, b[/tpl] = [tpl]c}, {c, d[/tpl]. Thus (a, b)K = (c, d)K.
+Only if. Two cases: a = b, and a ≠ b.
+If a = b:
+If a ≠ b, then (a, b)K = (c, d)K implies [tpl]a}, {a, b[/tpl] = [tpl]c}, {c, d[/tpl].
+Reverse: 
+(a, b)reverse = [tpl]b}, {a, b[/tpl] = [tpl]b}, {b, a[/tpl] = (b, a)K.
+If. If (a, b)reverse = (c, d)reverse,
+(b, a)K = (d, c)K. Therefore b = d and a = c.
+Only if. If a = c and b = d, then [tpl]b}, {a, b[/tpl] = [tpl]d}, {c, d[/tpl].
+Thus (a, b)reverse = (c, d)reverse.
+Short:For a formal Metamath proof of the adequacy of short, see here (opthreg). Also see Tourlakis (2003), Proposition III.10.1.
+If: If a = c and b = d, then {a, {a, b}} = {c, {c, d}}. Thus (a, b)short = (c, d)short.
+Only if: Suppose {a, {a, b}} = {c, {c, d}}. 
+Then a is in the left hand side, and thus in the right hand side. 
+Because equal sets have equal elements, one of a = c or a = {c, d} must be the case.
+Again, we see that {a, b} = c or {a, b} = {c, d}.
+
+===Quine-Rosser definition===
+
+Define the ordered pair (A, B) as
+In type theory and in outgrowths thereof such as the axiomatic set theory NF, the Quine-Rosser pair has the same type as its projections and hence is termed a "type-level" ordered pair. Hence this definition has the advantage of enabling a function, defined as a set of ordered pairs, to have a type only 1 higher than the type of its arguments. This definition works only if the set of natural numbers is infinite. This is the case in NF, but not in type theory or in NFU. J. Barkley Rosser showed that the existence of such a type-level ordered pair (or even a "type-raising by 1" ordered pair) implies the axiom of infinity. For an extensive discussion of the ordered pair in the context of Quinian set theories, see Holmes (1998).Holmes, Randall (1998) Elementary Set Theory with a Universal Set. Academia-Bruylant. The publisher has graciously consented to permit diffusion of this monograph via the web. Copyright is reserved.
+
+===Morse definition===
+
+Morse-Kelley set theory (Morse 1965)Morse, Anthony P., 1965. A Theory of Sets. Academic Press makes free use of proper classes. Morse defined the ordered pair so that its projections could be proper classes as well as sets. (The Kuratowski definition does not allow this.) He first defined ordered pairs whose projections are sets in Kuratowski's manner. He then redefined the pair 
+where the component Cartesian products are Kuratowski pairs of sets and where
+This renders possible pairs whose projections are proper classes. The Quine-Rosser definition above  also admits proper classes as projections. Similarly the triple is defined as a 3-tuple as follows:
+property that if a is an n-tuple and b is an m-tuple
+and a = b then n = m.  Ordered triples which are defined as ordered pairs do not have this property with respect to ordered pairs.
+
+==Category theory==
+
+A category-theoretic product A × B in a category of sets represents the set of ordered pairs, with the first element coming from A and the second coming from B. In this context the characteristic property above is a consequence of the universal property of the product and the fact that elements of a set X can be identified with morphisms from 1 (a one element set) to X. While different objects may have the universal property, they are all naturally isomorphic.
+
+==References==
+
+

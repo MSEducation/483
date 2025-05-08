@@ -1,0 +1,113 @@
+[[BMP file format]]
+
+CATEGORIES: Graphics file formats, Microsoft Windows multimedia technology
+
+The BMP file format, also known as bitmap image file or device independent bitmap (DIB) file format or simply a bitmap, is a raster graphics image file format used to store bitmap digital images, independently of the display device (such as a graphics adapter), especially on Microsoft Windows and OS/2 operating systems.
+The BMP file format is capable of storing 2D digital images of arbitrary width, height, and resolution, both monochrome and color, in various color depths, and optionally with data compression, alpha channels, and color profiles. The Windows Metafile (WMF) specification covers the BMP file format.[tpl]cite web|url=http://msdn.microsoft.com/en-us/library/cc250370.aspx|title= Windows Metafile Format|publisher=MSDN|date=2014-02-13|accessdate=2014-03-12[/tpl] Among others wingdi.h defines BMP constants and structures. 
+
+==Device-independent bitmaps and the BMP file format==
+
+Microsoft has defined a particular representation of color bitmaps of different color depths, as an aid to exchanging bitmaps between devices and applications with a variety of internal representations.  They called these device-independent bitmaps or DIBs, and the file format for them is called DIB file format or BMP image file format.  
+According to Microsoft support:[tpl]cite web | url = http://support.microsoft.com/kb/q81498/ | title = DIBs and Their Uses | work = Microsoft Help and Support | date = 2005-02-11[/tpl] A device-independent bitmap (DIB) is a format used to define device-independent bitmaps in various color resolutions. The main purpose of DIBs is to allow bitmaps to be moved from one device to another (hence, the device-independent part of the name). A DIB is an external format, in contrast to a device-dependent bitmap, which appears in the system as a bitmap object (created by an application...). A DIB is normally transported in metafiles (usually using the StretchDIBits() function), BMP files, and the Clipboard (CF_DIB data format). 
+The following sections discuss the data stored in the BMP file or DIB in detail. This is the standard BMP file format. Some applications create bitmap image files which are not compliant with the current Microsoft documentation. Also, not all fields are used; a value of 0 will be found in these unused fields.
+
+==File structure==
+
+The bitmap image file consists of fixed-size structures (headers) as well as variable-size structures appearing in a predetermined sequence. Many different versions of some of these structures can appear in the file, due to the long evolution of this file format.
+Referring to the diagram 1, the bitmap file is composed of structures in the following order:
+
+===DIBs in memory===
+
+A bitmap image file loaded into memory becomes a DIB data structure – an important component of the Windows GDI API. The in-memory DIB data structure is almost the same as the BMP file format, but it does not contain the 14-byte bitmap file header and begins with the DIB header.  For DIBs loaded in memory, the color table can also consist of 16 bit entries, that constitute indexes to the currently realized paletteMSDN BITMAPINFO Structure (an additional level of indirection), instead of explicit RGB color definitions.  In all cases, the pixel array must begin at a memory address that is a multiple of 4 bytes. In non-packed DIBs loaded in memory, the optional color profile data should be located immediately after the color table and before the gap1 and pixel array (unlike in diag. 1).
+When the size of gap1 and gap2 is zero, the in-memory DIB data structure is customarily referred to as "packed DIB" and can be referred to by a single pointer pointing to the beginning of the DIB header.  In all cases, the pixel array must begin at a memory address that is a multiple of 4 bytes. In some cases it may be necessary to adjust the number of entries in the color table in order to force the memory address of the pixel array to a multiple of 4 bytes.  For "packed DIBs" loaded in memory, the optional color profile data should immediately follow the pixel array, as depicted in diag. 1 (with gap1=0 and gap2=0).   "Packed DIBs" are required by Windows clipboard API functions as well as by some Windows patterned brush and resource functions.Feng Yuan - Windows graphics programming: Win32 GDI and DirectDraw: Packed Device-Independent Bitmap (CreateDIBPatternBrush, CreateDIBPatternBrushPt, FindResource, LoadResource, LockResource)
+
+===Bitmap file header===
+
+This block of bytes is at the start of the file and is used to identify the file. A typical application reads this block first to ensure that the file is actually a BMP file and that it is not damaged. The first two bytes of the BMP file format are the character 'B' then the character 'M' in 1-byte ASCII encoding.  All of the integer values are stored in little-endian format (i.e. least-significant byte first).
+The size value occupies 4 bytes by default. However, with the use of the 4 reserved bytes, this value can occupy 8 bytes (64 bits) while still conforming to the BMPfile header format.
+
+===DIB header (bitmap information header)===
+
+This block of bytes tells the application detailed information about the image, which will be used to display the image on the screen. The block also matches the header used internally by Windows and OS/2 and has several different variants. All of them contain a dword (32 bit) field, specifying their size, so that an application can easily determine which header is used in the image. The reason that there are different headers is that Microsoft extended the DIB format several times. The new extended headers can be used with some GDI functions instead of the older ones, providing more functionality. Since the GDI supports a function for loading bitmap files, typical Windows applications use that functionality. One consequence of this is that for such applications, the BMP formats that they support match the formats supported by the Windows version being run. See the table below for more information.
+Versions after BITMAPCOREHEADER only add fields to the end of the header of the previous version. 
+For example: BITMAPV2INFOHEADER adds fields to BITMAPINFOHEADER and BITMAPV3INFOHEADER adds fields to BITMAPV2INFOHEADER.
+An integrated alpha channel has been introduced with the undocumented BITMAPV3INFOHEADER and with the documented BITMAPV4HEADER (since Windows 95) and is used within Windows XP logon and theme system as well as Microsoft Office (since v2000); it is supported by some image editing software, such as Adobe Photoshop since version 7 and Adobe Flash since version MX 2004 (then known as Macromedia Flash). It is also supported by GIMP, Google Chrome, Microsoft PowerPoint and Microsoft Word.
+For compatibility reasons, most applications use the older DIB headers for saving files. With OS/2 not more supported after Windows 2000, for now the common Windows format is the BITMAPINFOHEADER header. See next table for its description. All values are stored as unsigned integers, unless explicitly noted.[tpl]-[/tpl]
+An OS/2 2.x OS22XBITMAPHEADER aka BITMAPCOREHEADER2 contains 24 additional bytes not yet explained here. The compression method (offset 30) can be:
+
+===Color table===
+
+The color table (palette) occurs in the BMP image file directly after the BMP file header, the DIB header (and after optional three red, green and blue bitmasks if the BITMAPINFOHEADER header with BI_BITFIELDS option is used).  Therefore, its offset is the size of the BITMAPFILEHEADER plus the size of the DIB header (plus optional 12 bytes for the three bit masks). 
+Note: On Windows CE the BITMAPINFOHEADER header can be used with the BI_ALPHABITFIELDSMSDN - BITMAPINFOHEADER (Windows CE 5.0): BI_ALPHABITFIELDS in biCompression member option in the biCompression member.  
+The number of entries in the palette is either 2n or a smaller number specified in the header (in the OS/2 BITMAPCOREHEADER header format, only the full-size palette is supported). In most cases, each entry in the color table occupies 4 bytes, in the order blue, green, red, 0x00 (see below for exceptions).  This is indexed in the BITMAPINFOHEADER under the function biBitCount. 
+The color table is a block of bytes (a table) listing the colors used by the image.  Each pixel in an indexed color image is described by a number of bits (1, 4, or 8) which is an index of a single color described by this table. The purpose of the color palette in indexed color bitmaps is to inform the application about the actual color that each of these index values corresponds to.  The purpose of the color table in non-indexed (non-palettized) bitmaps is to list the colors used by the bitmap for the purposes of optimization on devices with limited color display capability and to facilitate future conversion to different pixel formats and paletization.
+The colors in the color table are usually specified in the 4-byte per entry RGBA32 format. The color table used with the OS/2 BITMAPCOREHEADER uses the 3-byte per entry RGB24 format.  For DIBs loaded in memory, the color table can optionally consist of 2-byte entries - these entries constitute indexes to the currently realized palette instead of explicit RGB color definitions.
+Microsoft does not disallow the presence of a valid alpha channel bit maskMSDN - BITMAPV4HEADER: The member bV4AlphaMask in BITMAPV4HEADER and BITMAPV5HEADER for 1bpp, 4bpp and 8bpp indexed color images, which indicates that the color table entries can also specify an alpha component using the 8.8.8.0-8.0-8 format via the RGBQUAD.rgbReservedMSDN - RGBQUAD: rgbReserved member member. However, some versions of Microsoft's documentation disallow this feature by stating that the RGBQUAD.rgbReserved member "must be zero".
+As mentioned above, the color table is normally not used when the pixels are in the 16-bit per pixel (16bpp) format (and higher); there are normally no color table entries in those bitmap image files.  However, the Microsoft documentation (on the MSDN web site as of Nov. 16, 2010see note under biClrUsed MSDN BITMAPINFOHEADER) specifies that for 16bpp (and higher), the color table can be present to store a list of colors intended for optimization on devices with limited color display capability, while it also specifies, that in such cases, no indexed palette entries are present in this Color Table.  This may seem like a contradiction if no distinction is made between the mandatory palette entries and the optional color list.
+
+===Pixel storage===
+
+The bits representing the bitmap pixels are packed in rows.  The size of each row is rounded up to a multiple of 4 bytes (a 32-bit DWORD) by padding. 
+For images with height > 1, multiple padded rows are stored consecutively, forming a Pixel Array.
+The total number of bytes necessary to store one row of pixels can be calculated as:
+The total amount of bytes necessary to store an array of pixels in an n bits per pixel (bpp) image, with 2n colors,  can be calculated by accounting for the effect of rounding up the size of each row to a multiple of a 4 bytes, as follows:
+
+====Pixel array (bitmap data)====
+
+The pixel array is a block of 32-bit DWORDs, that describes the image pixel by pixel. Normally pixels are stored "upside-down" with respect to normal image raster scan order, starting in the lower left corner, going from left to right, and then row by row from the bottom to the top of the image. Unless BITMAPCOREHEADER is used, uncompressed Windows bitmaps also can be stored from the top to bottom, when the Image Height value is negative.
+In the original OS/2 DIB, the only four legal values of color depth were 1, 4, 8, and 24 bits per pixel (bpp). 
+Contemporary DIB Headers allow pixel formats with 1, 2, 4, 8, 16, 24 and 32 bits per pixel (bpp).MSDN - BITMAPINFOHEADER: The member biBitCount GDI+ also permits 64 bits per pixel.[tpl]cite web|url=http://msdn.microsoft.com/en-us/library/ms536393(v=vs.85).aspx|publisher=MSDN|title=Types of Bitmaps|date=2012-06-03|accessdate=2014-03-16[/tpl]
+Padding bytes (not necessarily 0) must be appended to the end of the rows in order to bring up the length of the rows to a multiple of four bytes. When the pixel array is loaded into memory, each row must begin at a memory address that is a multiple of 4.  This address/offset restriction is mandatory only for Pixel Arrays loaded in memory. For file storage purposes, only the size of each row must be a multiple of 4 bytes while the file offset can be arbitrary. A 24-bit bitmap with Width=1, would have 3 bytes of data per row (blue, green, red) and 1 byte of padding, while Width=2 would have 2 bytes of padding, Width=3 would have 3 bytes of padding, and Width=4 would not have any padding at all.
+
+====Compression====
+
+====Pixel format====
+
+In a bitmap image file on a disk or a bitmap image in memory, the pixels can be defined by a varying number of bits.  
+In order to resolve the ambiguity of which bits define which samples, the DIB Headers provide certain defaults as well as specific BITFIELDS which are bit masks that define the membership of particular group of bits in a pixel to a particular channel. The following diagram defines this mechanism:
+Diag. 2 – The BITFIELDS mechanism for a 32 bit pixel depicted in RGBAX sample length notation
+The sample fields defined by the BITFIELDS bit masks have to be contiguous and non-overlapping but the order of the sample fields is arbitrary. The most ubiquitous field order is: Alpha, Blue, Green, Red (MSB to LSB). The red, green and blue bit masks are valid only when the Compression member of the DIB header is set to BI_BITFIELDS. The alpha bit mask is valid whenever it is present in the DIB header or when the Compression member of the DIB header is set to BI_ALPHABITFIELDS (Windows CE only).
+Diag. 3 – The pixel format with an alpha channel in a 16 bit pixel (in RGBAX sample Length notation) actually generated by Adobe PhotoshopAdobe Photoshop: BMP Format
+
+===RGB video subtypes===
+
+The BITFIELD mechanism described above allows for the definition of tens of thousands different pixel formats, however only several of them are used in practice, all palettized formats RGB8, RGB4, and RGB1 (marked in yellow in the table above, dshow.h MEDIASUBTYPE names) and:
+In version 2.1.4 FFmpeg supported (in its own terminology) the BMP pixel formats bgra, bgr24, rgb565le, rgb555le, rgb444le, rgb8, bgr8, rgb4_byte, bgr4_byte, gray, pal8, and monob; i.e., bgra was the only supported pixel format with transparency.[tpl]cite web|url=http://www.ffmpeg.org/general.html#Image-Formats|title=Image Formats|work=FFmpeg General Documentation|year=2014|accessdate=2014-02-23[/tpl]
+
+===Example 1===
+
+Following is an example of a 2×2 pixel, 24-bit bitmap (Windows DIB header BITMAPINFOHEADER) with pixel format RGB24.
+
+File:Bmp_format2.svg|frame|right|Example 2 of a 4×2 pixel bitmap, with 32 bits/pixel encoding
+rect  50  50 100 100 0,0: blue FF0000 FF
+rect 100  50 150 100 0,1: green 00FF00 FF
+rect 150  50 200 100 0,2: red 00000FF FF
+rect 200  50 250 100 0,3: white FFFFFF FF
+rect  50 100 100 150 1,0: blue FF0000 7F, half transparent
+rect 100 100 150 150 1,1: green 00FF00 7F, half transparent
+rect 150 100 200 150 1,2: red 0000FF 7F, half transparent
+rect 200 100 250 150 1,3: white FFFFFF 7F, half transparent
+default Netpbm#Transparency
+desc top-left
+
+===Example 2===
+
+Following is an example of a 4×2 pixel, 32-bit bitmap with opacity values in the alpha channel (Windows DIB Header BITMAPV4HEADER) with pixel format ARGB32.
+Note that the bitmap data starts with the lower left hand corner of the image.
+
+==Usage of BMP format==
+
+The simplicity of the BMP file format, and its widespread familiarity in Windows and elsewhere, as well as the fact that this format is relatively well documented and free of patents, makes it a very common format that image processing programs from many operating systems can read and write. ICO and CUR files contain bitmaps starting with a BITMAPINFOHEADER.
+Many older graphical user interfaces used bitmaps in their built-in graphics subsystems;[tpl]cite book | title = Cross-Platform GUI Programming with Wxwidgets | author = Julian Smart, Stefan Csomor, and Kevin Hock | url = http://books.google.com/books?id=CyMsvtgnq0QC&pg=PA265&dq=bitmap+pixmap+gui| publisher = Prentice Hall | year = 2006 | isbn = 0-13-147381-6 [/tpl] for example, the Microsoft Windows and OS/2 platforms' GDI subsystem, where the specific format used is the Windows and OS/2 bitmap file format, usually named with the file extension of .BMP.[tpl]cite web|url=http://www.digitalpreservation.gov/formats/fdd/fdd000189.shtml|title=Bitmap Image File (BMP), Version 5|publisher=Library of Congress|work=Digital Preservation|date=2014-01-08|accessdate=2014-03-11[/tpl]
+While most BMP files have a relatively large file size due to lack of any compression (or generally low-ratio run-length encoding on palletized images), many BMP files can be considerably compressed with lossless data compression algorithms such as ZIP because they contain redundant data. Some formats, such as RAR, even include routines specifically targeted at efficient compression of such data.
+
+==Related formats==
+
+The X Window System uses a similar XBM format for black-and-white images, and XPM (pixelmap) for color images. There are also a variety of "raw" formats, which saves raw data with no other information. The Portable Pixmap (PPM) and Truevision TGA formats also exist, but are less often used – or only for special purposes; for example, TGA can contain transparency information. Other bitmap file formats are in existence.[ref]
+</ref>
+
+==References==
+
+==External links==
+
+

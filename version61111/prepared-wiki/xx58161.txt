@@ -1,0 +1,61 @@
+[[ICER]]
+
+CATEGORIES: Graphics file formats, Spaceflight technologies, ISO standards, Wavelets
+
+ICER is a wavelet-based image compression file format used by the NASA Mars Rovers. ICER has both lossy and lossless compression modes.
+The Mars Exploration Rovers “Spirit” (MER-A) and “Opportunity” (MER-B) both use ICER.  Onboard image compression is used extensively to make best use of the downlink resources. The Mars Science Lab supports the use of ICER for its navigation cameras (but all other cameras use other file formats).
+Most of the MER images are compressed with the ICER image compression software. The remaining MER images that are compressed make use of modified Low Complexity Lossless Compression (LOCO) software, a lossless submode of ICER.
+ICER is a wavelet-based image compressor that allows for a graceful trade-off between the amount of compression (expressed in terms of compressed data volume in bits/pixel) and the resulting degradation in image quality (distortion). ICER has some similarities to JPEG2000, with respect to select wavelet operations.
+The development of ICER was driven by the desire to achieve high compression performance while meeting the specialized needs of deep space[tpl]disambiguation needed|date=December 2013[/tpl] applications.
+
+==Practical considerations==
+
+To control the image quality and amount of compression in ICER, the user specifies a byte quota (the nominal number of bytes to be used to store the compressed image) and a quality level parameter (which is essentially a quality goal).
+This arrangement provides added flexibility compared to compressors (like the JPEG compressor used on Mars Pathfinder) that provide only a single parameter to control image quality. Using ICER, when the primary concern is the bandwidth available to transmit the compressed image, one can set the quality goal to lossless and the given byte quota will determine the amount of compression obtained.
+At the other extreme—when the only important consideration is a minimum acceptable image quality it is possible to specify sufficiently large byte quota and the amount of compression will be determined by the quality level specified.
+To achieve error containment, ICER produces the compressed bitstream in separate pieces or segments that can be decoded independently. These segments represent rectangular regions of the original image, but are defined in the transform domain.
+If the image were partitioned directly and the wavelet transform separately applied to each segment, under lossy compression the boundaries between segments would tend to be noticeable in the reconstructed image even when no
+compressed data is lost.
+Since ICER provides a facility for automated flexibility in choosing the number of segments, compression effectiveness can be traded against packet loss protection, thereby accommodating different channel error rates.
+Note also that more segments are not always bad for compression effectiveness: many images are most effectively compressed using 4 to 6 segments (for megapixel images) because disparate regions of the image end up in different segments.
+
+==Design commonalities with the JPEG2000 compressor==
+
+JPEG 2000 has some design commonalities with the ICER image compression format that is used to send images back from the Mars rovers.
+ICER (like JPEG 2000) is wavelet-based and provides
+ICER overall provides lossy compression performance
+competitive with the JPEG2000 image compression standard.
+ICER-JPEG 2000 Common Features
+
+==ICER-JPEG 2000 differences==
+
+JPEG2000 and ICER have many important internal differences
+
+==When should one use ICER or ICER 3D==
+
+ICER was created for low end 32 bit CPUs (essentially embedded computers) on spacecraft. It was finally used for the Mars Exploration Rovers. It has never been used for any real time application, only near real time.
+JPEG2000 has been used by many image processing applications in near real time and real-time (Digital Cinema, Broadcast). Main advantages of the codec is that it is License free (JPEG2000 PART1). The JPEG committee has stated: “It has always been a strong goal of the JPEG committee that its standards should be implementable in their baseline form without payment of royalty and license fees.... Agreements have been reached with over 20 large organizations holding many patents in this area to allow use of their intellectual property in connection with the standard without payment of license fees or royalties”.
+Hewlett-Packard's Remote Graphics Software uses a video codec called HP3 (codec) which claims to derive from Mars Rover compression - this could be a real-time implementation of ICER.
+[ref]
+Autodesk User Group International: "April 2008" "HP Remote Graphics Software (RGS) ... uses ... an HP patented compression algorithm developed for the NASA Mars Rover program that compresses and encrypts graphics data"
+[/ref]
+ICER offers a new mode called Spectral+ICER that makes possible lower rate distortion levels (aka grey level errors) with ICER images. This mode is only so far being used with the Mars Pathfinders, but may see wider implementation in the ICER standard http://web99.arc.nasa.gov/~vgulick/GSOM/LPSC2000/SPEC_Path.pdf.
+
+==ICER 3D==
+
+Error-containment segments in ICER-3D are defined spatially (in the wavelet transform domain) similarly to JPEG 2000. The wavelet-transformed data are partitioned in much the same way as in ICER, except that in ICER-3D the segments extend through all spectral bands. Error-containment segments in ICER and ICER-3D are defined using an unmodified form of the ICER rectangle partitioning algorithm.
+In ICER-3D, contexts are defined based on two neighboring coefficients in the spectral dimension and no neighboring coefficients in the same spatial plane. This contrasts with the context modeling scheme used by ICER, which makes use of previously encoded information from spatially neighboring coefficients.
+ICER-3D exploits 3D data dependencies in part by using a 3-D wavelet decomposition. The particular
+decomposition used by ICER-3D includes additional spatial decomposition steps compared to a 3-D Mallat
+decomposition. This modified decomposition provides benefits in the form of quantitatively improved
+rate-distortion performance and in the elimination of spectral ringing artifacts.
+ICER-3D takes advantage of the correlation properties of wavelet-transformed hyperspectral data by
+using a context modeling procedure that emphasizes spectral (rather than spatial) dependencies in the
+wavelet-transformed data. This provides a significant gain over the alternative spatial context modeler considered.
+ICER-3D also inherits most of the  important features of ICER, including progressive compression, the ability to perform lossless and lossy compression, and an effective error-containment scheme to limit the effects of data loss on the deep-space channel.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,13 @@
+[[Partial redundancy elimination]]
+
+CATEGORIES: Compiler optimizations, Articles with example code
+
+In compiler theory, partial redundancy elimination (PRE) is a compiler optimization that eliminates expressions that are redundant on some but not necessarily all paths through a program. PRE is a form of common subexpression elimination.
+An expression is called partially redundant if the value computed by the expression is already available on some but not all paths through a program to that expression.  An expression is fully redundant if the value computed by the expression is available on all paths through the program to that expression. PRE can eliminate partially redundant expressions by inserting the partially redundant expression on the paths that do not already compute it, thereby making the partially redundant expression fully redundant.
+For instance, in the following code:
+the expression x+4 assigned to z is partially redundant because it is computed twice if some_condition is true.  PRE would perform code motion on the expression to yield the following optimized code:
+An interesting property of PRE is that it performs (a form of) common subexpression elimination and loop-invariant code motion at the same time. In addition, PRE can be extended to eliminate injured partial redundancies, thereby effectively performing strength reduction. This makes PRE one of the most important optimizations in optimizing compilers. Traditionally, PRE is applied to lexically equivalent expressions, but recently formulations of PRE based on static single assignment form have been published that apply the PRE algorithm to values instead of expressions, unifying PRE and global value numbering.
+
+==Further reading==
+
+

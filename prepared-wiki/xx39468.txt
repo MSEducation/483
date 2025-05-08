@@ -1,0 +1,26 @@
+[[Working directory]]
+
+CATEGORIES: File system directories
+
+In computing, the working directory of a process is a directory of a hierarchical file system, if any,There are operating systems that support a hierarchical file system but have no concept of "working directory"; for example Texas Instruments' DX10, used for the TI-990 series. dynamically associated with each process.  When the process refers to a file using a simple file name or relative path (as opposed to a file designated by a full path from a root directory), the reference is interpreted relative to the current working directory of the process.  So for example a process with working directory /rabbit-hats that asks to create the file foo.txt will end up creating the file /rabbit-hats/foo.txt.
+
+==In operating systems==
+
+In most computer file systems, every directory has an entry (usually named ".") which points to the directory itself.
+In most DOS and UNIX command shells, as well as in the Microsoft Windows command line interpreters cmd.exe and Windows PowerShell, the working directory can be changed by using the cd or chdir commands. In Unix shells, the pwd command outputs a full pathname of the current working directory; the equivalent command in DOS and Windows is cd without arguments (whereas in Unix, cd used without arguments takes the user back to his/her home directory). The environment variable PWD (in Unix/Linux shells) or CD (in DOS/Windows shells) is also set for use in scripts, so that one need not start an external program. Microsoft Windows file shortcuts have the ability to store the working directory.
+
+==In programming languages==
+
+Most programming languages provides an interface to the file system functions of the operating system, including the ability to set (change) the working directory of the program.
+In the C language, the POSIX function chdir() effects the system call which changes the working directory.The Open Group Base Specifications Issue 6 and IEEE Std 1003.1, 2004 Edition Its argument is a text string with a path to the new directory, either absolute or relative to the old one. Where available, it can be called by a process to set its working directory.
+There is the same function in other languages. In Visual Basic it is usually spelled CHDIR().
+Unlike the Windows API or POSIX C function, neither the Java programming language nor the Java Virtual Machine supports chdir() directly;[tpl]clarification needed|reason=So, how the working directory can be changed?|date=February 2014[/tpl] a change request remained open for over a decade while the team responsible for Java considered the alternatives, though by 2008 the request was denied after only limited support was introduced (affecting first java.lang.Runtime and later, java.lang.ProcessBuilder
+).[tpl]cite web| url=http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4045688 |title=Java - Bug ID: 4045688 |work=Bug Database |date=1997-04-17 |publisher=Sun Microsystems |accessdate=2011-02-20[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

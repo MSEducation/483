@@ -1,0 +1,12 @@
+[[Wildcard mask]]
+
+CATEGORIES: Routing, Network addressing, Internet architecture
+
+A wildcard mask is a mask of bits that indicates which parts of an IP address are available for examination. In the Cisco IOS,Cisco Wide Area Application Services Command Reference Cisco Command Reference they are used in several places, for example:
+At a simplistic level a wildcard mask can be thought of as an inverted subnet mask. For example, a subnet mask of 255.255.255.0 (binary equivalent = 11111111.11111111.11111111.00000000) inverts to a wildcard mask of 0.0.0.255.
+A wild card mask is a matching rule Matching Guide OmniSecu Site The rule for a wildcard mask is:
+Any wildcard bit-pattern can be masked for examination: For example, a wildcard mask of 0.0.0.254 (binary equivalent = 00000000.00000000.00000000.11111110) will allow even-numbered IP addresses to be examined. A 0 octet in the wildcard mask indicates that the corresponding octet in the network must match exactly. On the other hand, a 254 indicates that you don't care what the corresponding octet is in the network except for the host(255) bit.
+A network and wildcard mask combination of 1.1.1.1 0.0.0.0 would match an interface configured exactly with 1.1.1.1 only, and nothing else. This is really useful if you want to activate OSPF on a specific interface in a very clear and simple way. 
+If you insist on matching a range of networks, the network and wildcard mask combination of 1.1.0.0 0.0.255.255 would match any interface in the range of 1.1.0.0 to 1.1.255.255. Because of this, it's simpler and safer to stick to using wildcard masks of 0.0.0.0 and identify each OSPF interface individually, but once configured, they function exactly the same- one way is not better than the other.
+Wildcard masks are used in situations where subnet masks may not apply. For example, when two affected hosts fall in different subnets, the use of a wildcard mask will group them together.
+

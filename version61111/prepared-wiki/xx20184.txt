@@ -1,0 +1,169 @@
+[[Multivariate normal distribution]]
+
+CATEGORIES: Continuous distributions, Multivariate continuous distributions, Normal distribution, Exponential family distributions, Stable distributions, Probability distributions
+
+In probability theory and statistics, the multivariate normal distribution or multivariate Gaussian distribution, is a generalization of the one-dimensional (univariate) normal distribution to higher dimensions.  One possible definition is that a random vector is said to be k-variate normally distributed if every linear combination of its k components has a univariate normal distribution. However, its importance derives mainly from the multivariate central limit theorem. The multivariate normal distribution is often used to describe, at least approximately, any set of (possibly) correlated real-valued random variables each of which clusters around a mean value.
+
+==Notation and parametrization==
+
+The multivariate normal distribution of a k-dimensional random vector [tpl]nowrap|x [tpl]=[/tpl] X2, …, Xk[/tpl] can be written in the following notation:
+or to make it explicitly known that X is k-dimensional,
+with k-dimensional mean vector
+and k x k covariance matrix
+
+==Definition==
+
+A random vector [tpl]nowrap|1=x = (X1, …, Xk)'[/tpl] is said to have the multivariate normal distribution if it satisfies the following equivalent conditions.Gut, Allan (2009) An Intermediate Course in Probability, Springer. ISBN 9781441901613 (Chapter 5)
+The covariance matrix is allowed to be singular (in which case the corresponding distribution has no density).  This case arises frequently in statistics; for example, in the distribution of the vector of residuals in the ordinary least squares regression.  Note also that the Xi are in general not independent; they can be seen as the result of applying the matrix A to a collection of independent Gaussian variables z.
+
+==Properties==
+
+===Density function===
+
+====Non-degenerate case====
+
+Each iso-density locus—the locus of points in k-dimensional space each of which gives the same particular value of the density—is an ellipse or its higher-dimensional generalization; hence the multivariate normal is a special case of the elliptical distributions.
+In the 2-dimensional nonsingular case ([tpl]nowrap|1=k = rank(Σ) = 2[/tpl]), the probability density function of a vector [tpl]nowrap|Y′[/tpl] is
+where ρ is the correlation between X and Y and 
+In the bivariate case, the first equivalent condition for multivariate normality can be made less restrictive: it is sufficient to verify that countably many distinct linear combinations of X and Y are normal in order to conclude that the vector [tpl]nowrap|Y′[/tpl] is bivariate normal.
+The bivariate iso-density loci plotted in the x,y-plane are ellipses. As the correlation parameter ρ increases, these loci appear to be squeezed to the following line :
+This is because the above expression - but without the rho being inside a signum function - is the best linear unbiased prediction of Y given a value of X.
+
+====Degenerate case====
+
+===Higher moments===
+
+The kth-order moments of x are defined by
+where [tpl]nowrap|r1 + r2 + ⋯ + rN [tpl]=[/tpl] k.[/tpl]
+The central k-order central moments are given as follows
+(a) If k is odd, [tpl]nowrap|μ1, …, N(x − μ) [tpl]=[/tpl] 0[/tpl].
+(b) If k is even with [tpl]nowrap|k [tpl]=[/tpl] 2λ[/tpl], then
+
+===Likelihood function===
+
+If the mean and variance matrix are unknown, a suitable log likelihood function for a single observation x  would be:[tpl]citation needed|date=March 2012[/tpl]
+where x is a vector of real numbers.   The complex case, where z is a vector of complex numbers, would be
+
+===Entropy===
+
+The differential entropy of the multivariate normal distribution is
+where the bars denote the matrix determinant.
+
+===Kullback–Leibler divergence===
+
+The logarithm must be taken to base e since the two terms following the logarithm are themselves base-e logarithms of expressions that are either factors of the density function or otherwise arise naturally.  The equation therefore gives a result measured in nats.  Dividing the entire expression above by loge 2 yields the divergence in bits.
+
+===Cumulative distribution function===
+
+The notion of cumulative distribution function (cdf) in dimension 1 can be extended in two ways to the multidimensional case.
+.Bensimhoun Michael, N-Dimensional Cumulative Function, And Other Useful Facts About Gaussians and Normal Densities (2006)
+In order to compute the values of this function, closed analytic formulae exist. 
+Another way to extend the notion of cumulative distribution function is to define 
+the cumulative distribution function (cdf) F(x0) of a random vector x as the probability that all components of x are less than or equal to the corresponding values in the vector x0.  Though there is no closed form for F(x), there are a number of algorithms that estimate it numerically.[tpl]cite book|last=Genz|first=Alan|title=Computation of Multivariate Normal and t Probabilities|date=2009|publisher=Springer|isbn=978-3-642-01689-9|url=http://www.springer.com/statistics/computational+statistics/book/978-3-642-01688-2[/tpl]
+
+===Prediction Interval===
+
+The prediction interval for the multivariate normal distribution yields a region consisting of those vectors x satisfying
+
+==Joint normality==
+
+===Normally distributed and independent===
+
+===Two normally distributed random variables need not be jointly bivariate normal===
+
+The fact that two random variables X and Y both have a normal distribution does not imply that the pair (X, Y) has a joint normal distribution.  A simple example is one in which X has a normal distribution with expected value 0 and variance 1, and Y = X if |X| > c and Y = −X if |X|  0.  There are similar counterexamples for more than two random variables. In general, they sum to a mixture model.
+
+===Correlations and independence===
+
+In general, random variables may be uncorrelated but highly dependent.  But if a random vector has a multivariate normal distribution then any two or more of its components that are uncorrelated are independent.  This implies that any two or more of its components that are pairwise independent are independent.
+But it is not true that two random variables that are (separately, marginally) normally distributed and uncorrelated are independent.  Two random variables that are normally distributed may fail to be jointly normally distributed, i.e., the vector whose components they are may fail to have a multivariate normal distribution.  In the preceding example, clearly X and Y are not independent, yet choosing c to be 1.54 makes them uncorrelated.
+
+==Conditional distributions==
+
+If μ and Σ are partitioned as follows
+then, the distribution of x1 conditional on x2 = a is multivariate normal [tpl]nowrap|(x1[tpl]![/tpl]x2 [tpl]=[/tpl] a) ~ N(μ, Σ)[/tpl] where
+and covariance matrix
+The matrix Σ12Σ22−1 is known as the matrix of regression coefficients.
+
+===Bivariate case===
+
+In the bivariate case where x is partitioned into X1 and X2, the conditional distribution of X1 given X2 is[tpl]cite book|last=Jensen|first=J|title=Statistics for Petroleum Engineers and Geoscientists|year=2000|publisher=Elsevier|location=Amsterdam|pages=207[/tpl]
+
+===Bivariate conditional expectation===
+
+====In the general case====
+
+The conditional expectation of X1 given X2 is:
+
+====In the standard normal case====
+
+The conditional expectation of X1 given X2 is:
+and the conditional expectation of X1 given that X2 is smaller/bigger than z is (Maddala 1983, p. 367[tpl]cite book|last=Gangadharrao|first=Maddala|title=Limited Dependent and Qualitative Variables in Econometrics|year=1983|publisher=Cambridge University Press[/tpl]) :
+where the final ratio here is called the inverse Mills ratio.
+\operatorname{E}(X_1 | X_2  and then using the properties of the expectation of a truncated normal distribution.
+
+==Marginal distributions==
+
+To obtain the marginal distribution over a subset of multivariate normal random variables, one only needs to drop the irrelevant variables (the variables that one wants to marginalize out) from the mean vector and the covariance matrix.  The proof for this follows from the definitions of multivariate normal distributions and linear algebra.The formal proof for marginal distribution is shown here http://fourier.eng.hmc.edu/e161/lectures/gaussianprocess/node7.html
+Example
+Let [tpl]nowrap|x [tpl]=[/tpl] X2, X3[/tpl] be multivariate normal random variables with mean vector [tpl]nowrap|μ [tpl]=[/tpl] μ2, μ3[/tpl] and covariance matrix Σ (standard parametrization for multivariate normal distributions). Then the joint distribution of [tpl]nowrap|x′ [tpl]=[/tpl] X3[/tpl] is multivariate normal with mean vector [tpl]nowrap|μ′ [tpl]=[/tpl] μ3[/tpl] and covariance matrix
+
+==Affine transformation==
+
+To see this, consider the following example: to extract the subset (x1, x2, x4)T, use
+which extracts the desired elements directly.
+Observe how the positive-definiteness of Σ implies that the variance of the dot product must be positive.
+An affine transformation of x such as 2x is not the same as the sum of two independent realisations of x.
+
+==Geometric interpretation==
+
+The equidensity contours of a non-singular multivariate normal distribution are ellipsoids (i.e. linear transformations of hyperspheres) centered at the mean.[tpl]cite web|author=Nikolaus Hansen|title=The CMA Evolution Strategy: A Tutorial|url=http://www.lri.fr/~hansen/cmatutorial.pdf|format=PDF[/tpl] Hence the multivariate normal distribution is an example of the class of elliptical distributions. The directions of the principal axes of the ellipsoids are given by the eigenvectors of the covariance matrix Σ. The squared relative lengths of the principal axes are given by the corresponding eigenvalues.
+If [tpl]nowrap|Σ [tpl]=[/tpl] UΛUT [tpl]=[/tpl] UΛ1/2(UΛ1/2)T[/tpl] is an eigendecomposition where the columns of U are unit eigenvectors and Λ is a diagonal matrix of the eigenvalues, then we have
+Moreover, U can be chosen to be a rotation matrix, as inverting an axis does not have any effect on N(0, Λ), but inverting a column changes the sign of U's determinant. The distribution N(μ, Σ) is in effect N(0, I) scaled by Λ1/2, rotated by U and translated by μ.
+Conversely, any choice of μ, full rank matrix U, and positive diagonal entries Λi yields a non-singular multivariate normal distribution. If any Λi is zero and U is square, the resulting covariance matrix UΛUT is singular. Geometrically this means that every contour ellipsoid is infinitely thin and has zero volume in n-dimensional space, as at least one of the principal axes has length of zero.
+
+==Estimation of parameters==
+
+The derivation of the maximum-likelihood estimator of the covariance matrix of a multivariate normal distribution is perhaps surprisingly subtle and elegant. See estimation of covariance matrices.
+In short, the  probability density function (pdf) of a multivariate normal is
+and the ML estimator of the covariance matrix from a sample of n observations is
+which is simply the sample covariance matrix.  This is a biased estimator whose expectation is
+An unbiased sample covariance is
+The Fisher information matrix for estimating the parameters of a multivariate normal distribution has a closed form expression. This can be used, for example, to compute the Cramér–Rao bound for parameter estimation in this setting. See Fisher information for more details.
+
+==Bayesian inference==
+
+and that a conjugate prior has been assigned, where
+where
+and
+Then,[tpl]citation needed|date=July 2012[/tpl]
+where
+
+==Multivariate normality tests==
+
+Multivariate normality tests check a given set of data for similarity to the multivariate normal distribution.  The null hypothesis is that the data set is similar to the normal distribution, therefore a sufficiently small p-value indicates non-normal data. Multivariate normality tests include the Cox-Small test[tpl]cite doi | 10.1093/biomet/65.2.263[/tpl]
+and Smith and Jain's adaptation[tpl]cite doi | 10.1109/34.6789[/tpl] of the Friedman-Rafsky test.[tpl]cite doi|10.1214/aos/1176344722[/tpl]
+Mardia's test is based on multivariate extensions of skewness and kurtosis measures. For a sample {x1, ..., xn} of k-dimensional vectors we compute
+Under the null hypothesis of multivariate normality, the statistic A will have approximately a chi-squared distribution with [tpl]nowrap|[tpl]frac2|1|6[/tpl]⋅k(k + 1)(k + 2)[/tpl] degrees of freedom, and B will be approximately standard normal N(0,1).
+Mardia's tests are affine invariant but not consistent.  For example, the multivariate skewness test is not consistent against
+symmetric non-normal alternatives.[tpl]cite doi|10.1016/0047-259X(91)90031-V[/tpl]
+The limiting distribution of this test statistic is a weighted sum of chi-squared random variables, however in practice it is more convenient to compute the sample quantiles using the Monte-Carlo simulations.[tpl]citation needed|date=July 2012[/tpl]
+A detailed survey of these and other test procedures is available.
+
+==Drawing values from the distribution==
+
+A widely used method for drawing a random vector x from the N-dimensional multivariate normal distribution with mean vector μ and covariance matrix Σ works as follows:
+
+==See also==
+
+==References==
+
+===Literature===
+
+  | author = Rencher, A.C. 
+  | title =  Methods of Multivariate Analysis 
+  |year = 1995 
+  |publisher = Wiley 
+  |location = New York
+  }}
+

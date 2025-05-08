@@ -1,0 +1,61 @@
+[[World file]]
+
+CATEGORIES: GIS file formats, Cartography
+
+A world file is a plain text computer data file used by geographic information systems (GIS) to georeference raster map images. The file specification was introduced by Esri.[tpl]cite web |title=FAQ: What is the format of the world file used for georeferencing images? |publisher=Esri |date=2007-03-21 |accessdate=2007-04-17 |url=http://support.esri.com/index.cfm?fa=knowledgebase.techarticles.articleShow&d=17489 [/tpl]Esri also has another world file format that applies to computer-aided design or CAD drawing files.  That standard refers to the format of plain text computer files with names ending in .wld and is not discussed in this article.
+Small-scale rectangular raster image maps can have an associated world file for GIS map software which describes the location, scale and rotation of the map.  These world files are six-line files with decimal numbers on each line.
+
+==Definition==
+
+World files do not specify a coordinate system; this information is generally stored somewhere else in the raster file itself or in another companion file, e.g. Esri's .prj file. The generic meaning of world file parameters are:
+This description is however misleading in that the D and B rotation parameters are not really rotations (in degrees or gradients) and in that as soon as D or B are not zero, the A and E parameters do not correspond to the pixel size any more. The A, D, B and E  parameters are sometimes named "x-scale", "y-skew", "x-skew" and "y-scale". A better description of the A, D, B and E parameters would be:
+All four parameters are expressed in the map units depending on the coordinate system associated with the raster.
+When D or B are different from zero the pixel width is given by:
+and the pixel height by
+World files describing a map on the Universal Transverse Mercator coordinate system (UTM) use these conventions:
+The above description applies also to a rectangular, non-rotated image which might be, for example, overlaid on an orthogonally projected map. If the world file describes an image that is rotated from the axis of the target projection, however, then A, D, B and E must be derived from the required affine transformation (see below). Specifically, A and E will no longer be the meter/pixel measurement on their respective axes.
+These values are used in a six-parameter affine transformation:
+which can be written as this set of equations:
+where:
+The y-scale (E) is negative because the origins of an image and the UTM coordinate system are different. The origin of an image is located in the upper-left corner, whereas the origin of the map coordinate system is located in the lower-left corner. Row values in the image increase from the origin downward, while y-coordinate values in the map increase from the origin upward. Many mapping programs are unable to handle "upside down" images (i.e. those with a positive y-scale).
+To go from UTM(x'y') to pixel position(x,y) one can use the equation:
+Example:
+Original falknermap.jpg is 800×600 pixels (map not shown).
+Its world file is falknermap.jgw and contains:
+ 32.0
+ 0.0
+ 0.0
+ -32.0
+ 691200.0
+ 4576000.0
+The position of Falkner Island light on the map image is:
+ x = 171 pixels from left
+ y = 343 pixels from top
+This gives:
+ x1 = 696672 meters Easting
+ y1 = 4565024 meters Northing
+The UTM (grid) zone is not given so the coordinates are ambiguous — they can represent a position in any of the approximately 120 UTM grid zones. In this case, approximate latitude and longitude (41.2, −072.7) were looked up in a gazetteer and the UTM (grid) zone was found to be 18 using a Web-based converter.
+
+==The filename==
+
+The name of the world file is based on the raster file's name.
+One convention is to append the letter "w" to the end of the raster filename:
+falknermap.jpg → falknermap.jpgw.
+An alternative naming convention is also honored, and in fact is more widespread.
+The second letter of the original filename extension is removed, and the letter "w"
+is added at the end. For example,
+falknermap.jpg → falknermap.jgw or
+falknermap.tif → falknermap.tfw.
+This convention was developed for filenames that need to conform to the 8.3 file naming convention.
+
+==Localization==
+
+When writing World Files it is advisable to ignore localization settings and always use '.' as the decimal separator.  Also, negative numbers should be specified with the '-' character exclusively.  This ensures maximum portability of the images.
+
+==See also==
+
+==Notes and references==
+
+==External links==
+
+

@@ -1,0 +1,36 @@
+[[Connection Machine]]
+
+CATEGORIES: Supercomputers, Parallel computing, Massively parallel computers
+
+The Connection Machine was a series of supercomputers that grew out of Danny Hillis' research in the early 1980s at MIT on alternatives to the traditional von Neumann architecture of computation. The Connection Machine was originally intended for applications in artificial intelligence and symbolic processing, but later versions found greater success in the field of computational science.
+
+==Basis==
+
+Danny Hillis' original thesis paper on which the CM-1 Connection Machine was based is The Connection Machine (MIT Press Series in Artificial Intelligence) (ISBN 0-262-08157-1). The title is out of print as of 2005. The book provides an overview of the philosophy, architecture and software for the Connection Machine, including data routing between CPU nodes, memory handling, Lisp programming for parallel machines, etc.
+
+==History==
+
+Danny Hillis and Sheryl Handler founded Thinking Machines in Waltham, Massachusetts (it was later moved to Cambridge, Massachusetts) in 1983 and assembled a team to develop the CM-1 Connection Machine. This was a "massively parallel" hypercubic arrangement of thousands of microprocessors, each with its own 4 kbits of RAM, which together executed in a SIMD fashion. The CM-1, depending on the configuration, had as many as 65,536 processors. The individual processors were extremely simple, processing one bit at a time. 
+The CM-1 and CM-2 took the form of a cube 1.5 meters on a side, divided equally into eight smaller cubes. Each sub-cube contained 16 printed circuit boards and a main processor called a sequencer. Each printed circuit board contained 32 chips. Each chip contained a communication channel called a router, 16 processors, 16 RAMs. The CM-1 as a whole had a hypercubic routing network, a main RAM, and an input/output processor. It was connected to a switching device called a nexus. 
+In order to improve its commercial viability, the CM-2, launched in 1987, added Weitek 3132 floating-point numeric co-processors and more RAM to the system. 32 of the original one-bit processors shared each numeric processor. The CM-2 could be configured with up to 512 MB of RAM, and a RAID hard disk array, called a DataVault, of up to 25 GB.
+Two later variants of the CM-2 were also produced, the smaller CM-2a with either 4096 or 8192 single-bit processors, and the faster CM-200.
+Due to its origins in AI research, the software for the CM-1/2/200 single-bit processor was influenced by the Lisp programming language and a version of Common Lisp, *Lisp (spoken: "Star-Lisp"), was implemented on the CM-1. Other early languages included Karl Sims' IK and Cliff Lasser's URDU. Much system utility software for the CM-1/2 was written in *Lisp.  Many applications for the CM-2, however, were written in C*, a data-parallel superset of ANSI C.
+With the CM-5, announced in 1991, Thinking Machines switched from the CM-2's hypercubic architecture of simple processors to an entirely new MIMD architecture based on a fat tree network of SPARC RISC processors. The later CM-5E replaced the SPARC processors with faster SuperSPARCs.The CM-5 was the fastest system in the November 1993 TOP500 list, running 1024 cores with Rpeak of 131.0 GFlop/s.http://www.top500.org/lists/2013/06/
+
+==Visual Design==
+
+Connection Machines were noted for their (intentionally) striking visual design.  The CM-1 and CM-2 design teams were led by Tamiko Thiel.DesignIssues, (Vol. 10, No. 1, Spring 1994) ISSN-0747-9360  MIT Press, Cambridge, MA.
+The physical form of the CM-1, CM-2, and CM-200 chassis was a cube-of-cubes, referencing the machine's internal 12-dimensional hypercube network,
+with the red LEDs, by default indicating the processor status, visible through the doors of each cube.
+By default, when a processor was executing an instruction, its LED was on.  In a SIMD program, the goal is to have as many processors as possible working the program at the same time - indicated by having all LEDs being steady on. Those unfamiliar with the use of the LEDs wanted to see the LEDs blink - or even spell out messages to visitors.  The result was that finished programs often had superfluous operations to blink the LEDs.
+The CM-5, in plain view, had a "staircase"-like shape, and also had large panels of red blinking LEDs.  Perhaps because of its design, a CM-5 was featured in the movie Jurassic Park in the control room for the island (instead of a Cray X-MP supercomputer as in the novel). Prominent sculptor/architect Maya Lin contributed to the CM-5 design.[tpl]fact|date=January 2014[/tpl]
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

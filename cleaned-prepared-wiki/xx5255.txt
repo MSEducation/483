@@ -1,0 +1,63 @@
+[[Java virtual machine]]
+
+CATEGORIES: Java platform, Java platform software, Java programming language, Java specification requests, Java virtual machine, Stack-based virtual machines
+
+A Java virtual machine (JVM) is a process virtual machine that can execute Java bytecode. It is the code execution component of the Java platform. Sun Microsystems has stated that there are over 5.5 billion JVM-enabled devices.Learn about Java Technology
+
+
+
+A Java virtual machine (JVM) interprets compiled Java binary code (called bytecode) for a computer's processor (or "hardware platform") so that it can perform a Java program's instructions. Java was designed to allow application programs to be built that could be run on any platform without having to be rewritten or recompiled by the programmer for each separate platform. A Java virtual machine makes this possible because it is aware of the specific instruction lengths and other particularities of the platform.techtarget.com/definition/Java-virtual-machine
+JIT compiling, not interpreting, is used in most JVMs today to achieve greater speed
+
+JVM languages
+
+|
+|}
+Although the JVM was primarily aimed at running compiled Java programs, many other languages can now run on top of it.
+The JVM has currently no built-in support for dynamically typed languages: the existing JVM instruction set is statically typed,
+
+Bytecode verifier
+
+A basic philosophy of Java is that it is inherently safe from the standpoint that no user program can crash the host machine or otherwise interfere inappropriately with other operations on the host machine, and that it is possible to protect certain methods and data structures belonging to trusted code from access or corruption by untrusted code executing within the same JVM. Furthermore, common programmer errors that often lead to data corruption or unpredictable behavior such as accessing off the end of an array or using an uninitialized pointer are not allowed to occur. Several features of Java combine to provide this safety, including the class model, the garbage-collected heap, and the verifier.
+The JVM verifies all bytecode before it is executed. This verification consists primarily of three types of checks:
+The first two of these checks take place primarily during the verification step that occurs when a class is loaded and made eligible for use. The third is primarily performed dynamically, when data items or methods of a class are first accessed by another class.
+The verifier permits only some bytecode sequences in valid programs, e.g. a jump (branch) instruction can only target an instruction within the same method. Furthermore, the verifier ensures that any given instruction operates on a fixed stack location, allowing the JIT compiler to transform stack accesses into fixed register accesses. Because of this, that the JVM is a stack architecture does not imply a speed penalty for emulation on register-based architectures when using a JIT compiler. In the face of the code-verified JVM architecture, it makes no difference to a JIT compiler whether it gets named imaginary registers or imaginary stack positions that must be allocated to the target architecture's registers. In fact, code verification makes the JVM different from a classic stack architecture, of which efficient emulation with a JIT compiler is more complicated and typically carried out by a slower interpreter.
+Code verification also ensures that arbitrary bit patterns cannot get used as an address. Memory protection is achieved without the need for a memory management unit (MMU). Thus, JVM is an efficient way to get memory protection on simple architectures that lack an MMU. This is analogous to managed code in Microsoft's .
+The original specification for the bytecode verifier used natural language that was incomplete or incorrect in some respects. A number of attempts have been made to specify the JVM as a formal system. By doing this, the security of current JVM implementations can more thoroughly be analyzed, and potential security exploits prevented. It will also be possible to optimize the JVM by skipping unnecessary safety checks, if the application being run is proved to be safe. Freund and John C. Mitchell. 1999. A formal framework for the Java bytecode language and verifier. In Proceedings of the 14th ACM SIGPLAN conference on Object-oriented programming, systems, languages, and applications (OOPSLA '99), A. Michael Berman (Ed.). ACM, New York, NY, USA, 147–166. DOI=10.1145/320384.320397 
+
+Bytecode instructions
+
+The JVM has instructions for the following groups of tasks:
+The aim is binary compatibility. Each particular host operating system needs its own implementation of the JVM and runtime. These JVMs interpret the bytecode semantically the same way, but the actual implementation may be different. More complex than just emulating bytecode is compatibly and efficiently implementing the Java core API that must be mapped to each host operating system.
+
+Heap
+
+The Java virtual machine heap is the area of memory used by the JVM, specifically HotSpot, for dynamic memory allocation. The heap is divided into generations:
+The permanent generation (or permgen) was used for class definitions and associated metadata prior to Java 8. Permanent generation was not part of the heap. The permanent generation was removed from Java 8.
+Originally there was no permanent generation, and objects and classes were stored together in the same area. But as class unloading occurs much more rarely than objects are collected, moving class structures to a specific area allowed significant performance improvements.
+
+Secure execution of remote code
+
+A virtual machine architecture allows very fine-grained control over the actions that code within the machine is permitted to take. This is designed to allow safe execution of untrusted code from remote sources, a model used by Java applets. Applets run within a VM incorporated into a user's browser, executing code downloaded from a remote HTTP server. The remote code runs in a restricted sandbox, which is designed to protect the user from misbehaving or malicious code. Publishers can purchase a certificate with which to digitally sign applets as safe, giving them permission to ask the user to break out of the sandbox and access the local file system, clipboard, execute external pieces of software, or network.
+
+C to bytecode compilers
+
+From the viewpoint of a compiler, the Java virtual machine is just another processor with an instruction set, Java bytecode, for which code can be generated. The JVM was originally designed to execute programs written in the Java language. However, the JVM provides an execution environment in the form of a bytecode instruction set and a runtime system that is general enough that it can be used as the target for compilers of other languages.
+Because of its close association with the Java language, the JVM performs the strict runtime checks mandated by the Java specification. That requires C to bytecode compilers to provide their own lax machine abstraction, for instance producing compiled code that uses a Java array to represent main memory (so pointers can be compiled to integers), and linking the C library to a centralized Java class that emulates system calls. Most or all of the compilers listed below use a similar approach.
+Several C to bytecode compilers exist:
+Compilers targeting Java bytecode have been written for other programming languages, including Ada and COBOL.
+
+Licensing
+
+Starting with Java Platform, Standard Edition (J2SE) 5.0, changes to the JVM specification have been developed under the Java Community Process as JSR 924.0 , changes to specification to support changes proposed to the class file format (JSR 202)JSR 202, specifies a number of changes to the class file format are being done as a maintenance release of JSR 924. The specification for the JVM is published in book form,The Java Virtual Machine Specification (the first and second editions are also available online) known as blue book. The preface states:
+One of Oracle's JVMs is named HotSpot. Clean-room Java implementations include Kaffe and IBM J9. Oracle retains control over the Java trademark, which it uses to certify implementation suites as fully compatible with Oracle's specification.
+
+
+
+Notes
+
+
+
+
+
+

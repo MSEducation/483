@@ -1,0 +1,41 @@
+[[Blaster (computer worm)]]
+
+CATEGORIES: Exploit-based worms
+
+The Blaster Worm  (also known as Lovsan, Lovesan or MSBlast) was a computer worm that spread on computers running the Microsoft operating systems Windows XP and Windows 2000, during August 2003.
+The worm was first noticed and started spreading on August 11, 2003.  The rate that it spread increased until the number of infections peaked on August 13, 2003. Filtering by ISPs and widespread publicity about the worm curbed the spread of Blaster.
+On August 29, 2003, Jeffrey Lee Parson, an 18-year-old from Hopkins, Minnesota, was arrested for creating the B variant of the Blaster worm; he admitted responsibility and was sentenced to an 18-month prison term in January 2005.
+
+Creation and effects
+
+According to court papers, the original Blaster was created after security researchers from the Chinese group Xfocus reverse engineered the original Microsoft patch that allowed for execution of the attack.
+The worm spread by exploiting a buffer overflow discovered by the Polish security research group Last Stage of Delirium in the DCOM RPC service on the affected operating systems, for which a patch had been released one month earlier in MS03-026 and later in
+MS03-039. This allowed the worm to spread without users opening attachments simply by spamming itself to large numbers of random IP addresses. Four versions have been detected in the wild.
+The worm was programmed to start a SYN flood against port 80 of windowsupdate.
+The worm's executable contains two messages. The first reads:
+ 
+ I just want to say LOVE YOU SAN!!
+
+This message gave the worm the alternative name of Lovesan.
+The second reads:
+ 
+ Billy Gates why do you make this possible ? Stop making money
+
+and fix your software!!
+
+This is a message to Bill Gates, the co-founder of Microsoft and the target of the worm.
+The worm also creates the following registry entry so that it is launched every time Windows starts:
+ 
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\windows auto update=msblast.exe
+
+Side effects
+
+Although the worm can only spread on systems running Windows 2000 or Windows XP (32 bit) it can cause instability in the RPC service on systems running Windows NT, Windows XP (64 bit), and Windows Server 2003. In particular, the worm does not spread in Windows Server 2003 because Windows Server 2003 was compiled with the /GS switch, which detected the buffer overflow and shut the RPCSS process down.
+
+This was the first indication many users had an infection; it often occurred a few minutes after every startup on compromised machines. A simple resolution to stop countdown is to run the "shutdown -a" command in the Windows command line,  The Welchia worm had a similar effect. Months later, the Sasser worm surfaced, which caused a similar message to appear.
+
+
+
+
+
+

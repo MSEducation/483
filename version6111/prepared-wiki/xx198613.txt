@@ -1,0 +1,13 @@
+[[Solaris Live Upgrade]]
+
+CATEGORIES: OpenSolaris, NCR products
+
+Solaris Live Upgrade is a tool created in 2001 by Sun Microsystems, and introduced in Solaris 8 10/01, that allows computers running the Solaris OS to be patched or upgraded online, with only a single reboot required to activate changes.  Prior to Live Upgrade, upgrading a Solaris system required either reinstalling the system with the new operating system version, or rebooting from the distribution media and performing an interactive upgrade.  Live Upgrade was originally developed by NCR Corporation under the name VM&F (Version Migration & Fallback).http://docs.google.com/viewer?a=v&q=cache:oEtSG_-yQckJ:www.info.teradata.com/eDownload.cfm%3Fitemid%3D003670275%26redirectfromfle%3Dy
+Live Upgrade shipped with Solaris versions 8, 9, and 10, and could be installed on Solaris 2.6 and 7.  Live Upgrade was also part of Solaris Express, until the Solaris Express program was discontinued.  OpenSolaris does not include Live Upgrade, but includes another tool, beadm, that works on similar principles.
+Live Upgrade works by copying the currently running operating system (called a boot environment) into a new boot environment on a different disk slice.  Operating system upgrades or patches can then be applied to the new environment, and will not affect the running system.  When the upgrade is complete, the system can be rebooted into the new environment.  If the upgrade is found to cause problems, it can be rolled back by rebooting back into the old environment.http://www.sun.com/bigadmin/features/articles/live_upgrade.jsp"
+In a typical Solaris configuration, with two root disks mirrored using Solaris Volume Manager, the lengthy initial copy can be avoided by splitting the mirror into two separate disks, one of which would remain the current root disk, and the other one would become the new boot environment.  On systems using ZFS as the root filesystem, this is no longer necessary, as Live Upgrade can quickly create a ZFS clone of the current environment to become the new boot environment.
+Live Upgrade can be used for installing operating system patches without actually upgrading the system.  This avoids the requirement to reboot into single user mode before applying certain patches, and allows the system to be rolled back if the new patches cause problems.
+
+==References==
+
+

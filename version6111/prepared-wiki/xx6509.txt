@@ -1,0 +1,108 @@
+[[Logic programming]]
+
+CATEGORIES: 1972 introductions, Logic programming, Programming paradigms
+
+Logic programming is a programming paradigm based on formal logic. Programs written in a logical programming language are sets of logical sentences, expressing facts and rules about some problem domain. Together with an inference algorithm, they form a program. Major logic programming languages include Prolog and Datalog.
+A form of logical sentences commonly found in logic programming, but not exclusively, is the Horn clause. An example is:
+Logical sentences can be understood purely declaratively. They can also be understood procedurally as goal-reduction procedures: to solve p(X, Y), first solve q(X), then solve r(Y).
+The programmer can use the declarative reading of logic programs to verify their correctness. In addition, the programmer can use the known behaviour of the program executor to develop a procedural understanding of his program. This may be helpful when seeking better execution speed. However, many logic-based program transformation techniques have been developed to transform logic programs automatically and make them efficient.
+
+==History==
+
+The use of mathematical logic to represent and execute computer programs is also a feature of the lambda calculus, developed by Alonzo Church in the 1930s. However, the first proposal to use the clausal form of logic for representing computer programs was made by Cordell Green (1969). This used an axiomatization of a subset of LISP, together with a representation of an input-output relation, to compute the relation by simulating the execution of the program in LISP. Foster and Elcock's Absys (1969), on the other hand, employed a combination of equations and lambda calculus in an assertional programming language which places no constraints on the order in which operations are performed.[tpl]citation needed|date=July 2013[/tpl]
+Logic programming in its present form can be traced back to debates in the late 1960s and early 1970s about declarative versus procedural representations of knowledge in Artificial Intelligence. Advocates of declarative representations were notably working at Stanford, associated with John McCarthy, Bertram Raphael and Cordell Green, and in Edinburgh, with John Alan Robinson (an academic visitor from Syracuse University), Pat Hayes, and Robert Kowalski. Advocates of procedural representations were mainly centered at MIT, under the leadership of Marvin Minsky and Seymour Papert.[tpl]citation needed|date=July 2013[/tpl]
+Although it was based on the proof methods of logic, Planner, developed at MIT, was the first language to emerge within this proceduralist paradigm 1969.  Planner featured pattern-directed invocation of procedural plans from goals (i.e. goal-reduction or backward chaining) and from assertions (i.e. forward chaining).  The most influential implementation of Planner was the subset of Planner, called Micro-Planner, implemented by Gerry Sussman, Eugene Charniak and Terry Winograd. It was used to implement Winograd's natural-language understanding program SHRDLU, which was a landmark at that time. To cope with the very limited memory systems at the time, Planner used a backtracking control structure so that only one possible computation path had to be stored at a time. Planner gave rise to the programming languages QA-4, Popler, Conniver, QLISP, and the concurrent language Ether.[tpl]citation needed|date=July 2013[/tpl]
+Hayes and Kowalski in Edinburgh tried to reconcile the logic-based declarative approach to knowledge representation with Planner's procedural approach. Hayes (1973) developed an equational language, Golux, in which different procedures could be obtained by altering the behavior of the theorem prover. Kowalski, on the other hand, showed how SL-resolution treats implications as goal-reduction procedures. Kowalski collaborated with Colmerauer in Marseille, who developed these ideas in the design and implementation of the programming language Prolog. Prolog gave rise to the programming languages  ALF, Fril, Gödel, Mercury, Oz, Ciao, Visual Prolog, XSB, and λProlog, as well as a variety of concurrent logic programming languages (see Shapiro (1989) for a survey), constraint logic programming languages and datalog.[tpl]citation needed|date=July 2013[/tpl]
+In 1997, the Association of Logic Programming bestowed to fifteen recognized researchers in logic programming the title Founders of Logic Programming to recognize them as pioneers in the field:[tpl]cite web|title=ALP Awards|url=http://www.cs.nmsu.edu/ALP/the-association-for-logic-programming/alp-awards/|accessdate=12 May 2013[/tpl]
+
+==Prolog==
+
+The programming language Prolog  was developed in 1972 by Alain Colmerauer. It emerged from a collaboration between Colmerauer in Marseille and Robert Kowalski in Edinburgh. Colmerauer was working on natural language understanding, using logic to represent semantics and using resolution for question-answering. During the summer of 1971, Colmerauer and Kowalski discovered that the clausal form of logic could be used to represent formal grammars and that resolution theorem provers could be used for parsing. They observed that some theorem provers, like hyper-resolution, behave as bottom-up parsers and others, like SL-resolution (1971), behave as top-down parsers.
+It was in the following summer of 1972, that Kowalski, again working with Colmerauer, developed the procedural interpretation of implications. This dual declarative/procedural interpretation later became formalised in the Prolog notation
+which can be read (and used) both declaratively and procedurally. It also became clear that such clauses could be restricted to definite clauses or Horn clauses, where H, B1, …, Bn are all atomic predicate logic formulae, and that SL-resolution could be restricted (and generalised) to LUSH or SLD-resolution. Kowalski's procedural interpretation and LUSH were described in a 1973 memo, published in 1974.
+Colmerauer, with Philippe Roussel, used this dual interpretation of clauses as the basis of Prolog, which was implemented in the summer and autumn of 1972. The first Prolog program, also written in 1972 and implemented in Marseille, was a French question-answering system. The use of Prolog as a practical programming language was given great momentum by the development of a compiler by David Warren in Edinburgh in 1977.  Experiments demonstrated that Edinburgh Prolog could compete with the processing speed of other symbolic programming languages such as Lisp.  Edinburgh Prolog became the de facto standard and strongly influenced the definition of ISO standard Prolog.
+
+==Negation as failure==
+
+Micro-Planner had a construct, called "thnot", which when applied to an expression returns the value true if (and only if) the evaluation of the expression fails. An equivalent operator is normally built-in in modern Prolog's implementations and has been called "negation as failure". It is normally written as not(Goal) or \+ Goal, where Goal is some goal (proposition) to be proved by the program. This operator differs from negation in first-order logic: a negation such as \+ X == 1 fails when the variable X has been bound to the atom 1, but it succeeds in all other cases, including when X is unbound. This makes Prolog's reasoning non-monotonic: X = 1, \+ X == 1 always fails, while \+ X == 1, X = 1 can succeed, binding X to 1, depending on whether X was initially bound (note that standard Prolog executes goals in left-to-right order).
+The logical status of negation as failure was unresolved until Keith Clark 1978 showed that, under certain natural conditions, it is a correct (and sometimes complete) implementation of classical negation with respect to the completion of the program. Completion amounts roughly to regarding the set of all the program clauses with the same predicate on the left hand side, say
+as a definition of the predicate
+where "iff" means "if and only if". Writing the completion also requires explicit use of the equality predicate and the inclusion of a set of appropriate axioms for equality. However, the implementation of negation by failure needs only the if-halves of the definitions without the axioms of equality.
+The notion of completion is closely related to McCarthy's circumscription semantics for default reasoning, and to the closed world assumption.
+As an alternative to the completion semantics, negation as failure can also be interpreted epistemically, as in the stable model semantics of answer set programming. In this interpretation not(Bi) means literally that Bi is not known or not believed. The epistemic interpretation has the advantage that it can be combined very simply with  classical negation, as in "extended logic programming", to formalise such phrases as "the contrary can not be shown", where "contrary" is classical negation and "can not be shown" is the epistemic interpretation of negation as failure.
+
+==Problem solving==
+
+In the simplified, propositional case in which a logic program and a top-level atomic goal contain no variables, backward reasoning determines an and-or tree, which constitutes the search space for solving the goal. The top-level goal is the root of the tree. Given any node in the tree and any clause whose head matches the node, there exists a set of child nodes corresponding to the sub-goals in the body of the clause. These child nodes are grouped together by an "and". The alternative sets of children corresponding to alternative ways of solving the node are grouped together by an "or".
+Any search strategy can be used to search this space. Prolog uses a sequential, last-in-first-out, backtracking strategy, in which only one alternative and one sub-goal is considered at a time. Other search strategies, such as parallel search, intelligent backtracking, or best-first search to find an optimal solution, are also possible.
+In the more general case, where sub-goals share variables, other strategies can be used, such as choosing the subgoal that is most highly instantiated or that is sufficiently instantiated so that only one  procedure applies. Such strategies are used, for example, in concurrent logic programming.
+The fact that there are alternative ways of executing a logic program has been characterised by the slogan
+where "Logic" represents a logic program and "Control" represents different theorem-proving strategies.[tpl]cite journal|author=R.A.Kowalski|title=Algorithm=Logic + Control|journal=Communications of the ACM|volume=22| issue = 7|date=July 1979|pages=424–436|doi=10.1145/359131.359136[/tpl]
+
+==Knowledge representation==
+
+The fact that Horn clauses can be given a procedural interpretation and, vice versa, that goal-reduction procedures can be understood as Horn clauses + backward reasoning means that logic programs combine declarative and procedural representations of knowledge. The inclusion of negation as failure means that logic programming is a kind of non-monotonic logic.
+Despite its simplicity compared with classical logic, this combination of Horn clauses and negation as failure has proved to be surprisingly expressive. For example, it has been shown to correspond, with some further extensions, quite naturally to the semi-formal language of legislation. It is also a natural language for expressing common-sense laws of cause and effect, as in the situation calculus and event calculus.
+
+==Abductive logic programming==
+
+Abductive Logic Programming is an extension of normal Logic Programming that allows some predicates, declared as abducible predicates, to be incompletely defined. Problem solving is achieved by deriving hypotheses expressed in terms of the abducible predicates as solutions of problems to be solved. These problems can be either observations that need to be explained (as in classical abductive reasoning) or goals to be achieved (as in normal logic programming). It has been used to solve problems in Diagnosis, Planning, Natural Language and Machine Learning. It has also been used to interpret Negation as Failure as a form of abductive reasoning.
+
+==Metalogic programming==
+
+Because mathematical logic has a long tradition of distinguishing between object language and metalanguage, logic programming also allows metalevel programming.  The simplest metalogic program is the so-called "vanilla" meta-interpreter:
+    solve(true).
+    solve((A,B)):- solve(A),solve(B).
+    solve(A):- clause(A,B),solve(B).
+where true represents an empty conjunction, and clause(A,B) means there is an object-level clause of the form	A :- B.
+Metalogic programming allows object-level and metalevel representations to be combined, as in natural language. It can also be used to implement any logic that is specified by means of inference rules.
+
+==Constraint logic programming==
+
+Constraint logic programming is an extension of normal Logic Programming that allows some predicates, declared as constraint predicates, to occur as literals in the body of clauses. These literals are not solved by goal-reduction using program clauses, but are added to a store of constraints, which is required to be consistent with some built-in semantics of the constraint predicates.
+Problem solving is achieved by reducing the initial problem to a satisfiable set of constraints. Constraint logic programming has been used to solve problems in such fields as civil engineering, mechanical engineering, digital circuit verification, automated timetabling, air traffic control, and finance. It is closely related to abductive logic programming.
+
+==Concurrent logic programming==
+
+Keith Clark, Steve Gregory, Ehud Shapiro, Kazunori Ueda, Vijay Saraswat, etc. developed a family of concurrent logic programming languages, which integrated concepts of logic programming and concurrent programming. Much of this development was inspired by the Japanese Fifth Generation Project (FGCS). The Fifth Generation Computer Systems project (FGCS) was a $400M initiative by Japan's Ministry of International Trade and Industry, begun in 1982, to create an "epoch-making computer" with-supercomputer-like performance using massively parallel computing/processing. The aim was to build parallel computers for artificial intelligence applications using logic programming as the “missing link” between the two. The rapid development of concurrent logic programming encouraged the FGS project to choose it as its software foundation. The FGCS project and its findings contributed greatly to the development of the concurrent logic programming field.
+In 1982 the government decided to go ahead with the project, and established the Institute for New Generation Computer Technology (ICOT). In his 1982 visit to the ICOT, Ehud Shapiro invented Concurrent Prolog, a novel concurrent programming language that integrated logic programming and concurrent programming. Concurrent Prolog is a logic programming language designed for concurrent programming and parallel execution. It is a process oriented language, which embodies dataflow synchronization and guarded-command indeterminacy as its basic control mechanisms.
+The language was described in a Report marked as ICOT Technical Report 003,Shapiro E. A subset of Concurrent Prolog and its interpreter, ICOT Technical Report TR-003, Institute for New Generation Computer Technology, Tokyo, 1983. Also in Concurrent Prolog: Collected Papers, E. Shapiro (ed.), MIT Press, 1987, Chapter 2. which presented a Concurrent Prolog interpreter written in Prolog. The concurrent logic programming presented in this work inspired the concurrent logic programming language Guarded Horn Clauses (GHC) by Ueda, which was the basis of KL1, the programming language that was finally designed and implemented by FGCS and served as “machine language” of the FGCS project — the basic operating system and application programming language of the planned parallel machines. Shapiro and his team at the Weizmann Institute in Israel proceeded in developing the parallel and distributed implementation of Concurrent Prolog, also contributing to the burst of research into concurrent logic programming, a new discipline of high-level concurrent programming.Shapiro E. A subset of Concurrent Prolog and its interpreter, ICOT Technical Report TR-003, Institute for New Generation Computer Technology, Tokyo, 1983. Also in Concurrent Prolog: Collected Papers, E. Shapiro (ed.), MIT Press, 1987, Chapter 2.
+
+==Concurrent constraint logic programming==
+
+However, the Prolog-like concurrent systems were based on message passing and consequently were subject to the same indeterminacy as other concurrent message-passing systems, such as Actors (see Indeterminacy in concurrent computation). Although it was argued that, the ICOT languages were not based on logic in the sense that computational steps could not be logically deduced and Agha, 1988, this statement is not quite true.[tpl]Citation needed|date=March 2014[/tpl] In concurrent logic programming, any result of a terminating computation is a logical consequence of the program, and any partial result of a partial computation is a logical consequence of the program and the residual goal (process network). However, the indeterminacy of computations implies that not all logical consequences of the program can be deduced.
+Concurrent constraint logic programming combines concurrent logic programming and constraint logic programming, using constraints to control concurrency. A clause can contain a guard, which is a set of constraints that may block the applicability of the clause. When the guards of several clauses are satisfied, concurrent constraint logic programming makes a committed choice to the use of only one.
+
+==Inductive logic programming==
+
+Inductive logic programming is concerned with generalizing positive and negative examples in the context of background knowledge: machine learning of logic programs. Recent work in this area, combining logic programming, learning and probability, has given rise to the new field of statistical relational learning and probabilistic inductive logic programming.
+
+==Higher-order logic programming==
+
+Several researchers have extended logic programming with higher-order programming features derived from higher-order logic, such as predicate variables. Such languages include the Prolog extensions HiLog and λProlog.
+
+==Linear logic programming==
+
+Basing logic programming within linear logic has resulted in the design of logic programming languages that are considerably more expressive than those based on classical logic.  Horn clause programs can only represent state change by the change in arguments to predicates.  In linear logic programming, one can use the ambient linear logic to support state change.  Some early designs of logic programming languages based on linear logic include LO & Pareschi, 1991, Lolli & Miller, 1994, ACL & Yonezawa, 1994, and Forum 1996.  Forum provides a goal-directed interpretation of all of linear logic.
+
+==Object-oriented logic programming==
+
+F-logic extends logic programming with objects and the frame syntax. A number of systems are based on F-logic, including Flora-2, FLORID, and a highly scalable commercial system Ontobroker.
+
+==Transaction logic programming==
+
+Transaction logic is an extension of logic programming with a logical theory of state-modifying updates. It has both a model-theoretic semantics and a procedural one. An implementation of a subset of Transaction logic is available in the Flora-2 system. Other prototypes are also available.
+
+==See also==
+
+==References==
+
+===General introductions===
+
+===Other sources===
+
+==Further reading==
+
+==External links==
+
+

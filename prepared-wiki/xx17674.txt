@@ -1,0 +1,75 @@
+[[Mersenne twister]]
+
+CATEGORIES: Pseudorandom number generators, Articles with example pseudocode
+
+The Mersenne twister is a pseudorandom number generator (PRNG).  It is, by far, the most widely used PRNG.E.g. Marsland S. (2011) Machine Learning (CRC Press), §4.1.1. Also see the section "Adoption in software systems". Its name derives from the fact that its period length is chosen to be a Mersenne prime.
+The Mersenne Twister was developed in 1997 by [tpl]nihongo|Makoto Matsumoto|松本 眞[/tpl] and [tpl]nihongo|Takuji Nishimura|西村 拓士[/tpl].[tpl]cite doi|10.1145/272991.272995[/tpl] It was designed specifically to rectify most of the flaws found in older PRNGs.  It was the first PRNG to provide fast generation of high-quality pseudorandom integers.
+The most commonly-used version of the Mersenne Twister algorithm is based on the Mersenne prime 219937−1.  The standard implementation of that, MT19937, uses a 32-bit word length. There is another  implementation that uses a 64-bit word length, MT19937-64; it generates a different sequence.
+
+==Adoption in software systems==
+
+The Mersenne Twister is the default PRNG for 
+R,
+Python,
+Ruby,
+IDL,
+Free Pascal, 
+PHP, 
+Maple,[tpl]cite web|title=random number generator|work=Maple Online Help | url=http://www.maplesoft.com/support/help/Maple/view.aspx?path=rand|accessdate=2013-11-21[/tpl] 
+MATLAB, 
+GAUSS,GAUSS 14 Language Reference
+CMU Common Lisp,
+the GNU Multiple Precision Arithmetic Library,[tpl]cite web|title=Randum Number Algorithms | work= GNU MP| url=http://gmplib.org/manual/Random-Number-Algorithms.html |accessdate=2013-11-21[/tpl]
+and the GNU Scientific Library.[tpl]cite web|title=Random number environment variables| work=GNU Scientific Library| url=http://www.gnu.org/software/gsl/manual/html_node/Random-number-environment-variables.html | accessdate=2013-11-24[/tpl]
+It is also available in C++ since C++11.  Add-on implementations are provided by the Boost C++ Libraries,
+Glib,
+and the NAG Numerical Library.
+The Mersenne Twister is one of two PRNGs in SPSS: the other generator is kept only for compatibility with older programs, and the Mersenne Twister is stated to be "more reliable".[tpl]cite web| title=Random Number Generators | work=IBM SPSS Statistics| url= http://pic.dhe.ibm.com/infocenter/spssstat/v20r0m0/index.jsp?topic=%2Fcom.ibm.spss.statistics.help%2Fidh_seed.htm | accessdate=2013-11-21[/tpl]
+The Mersenne Twister is similarly one of the PRNGs in SAS: the other generators are older and deprecated.[tpl]cite web| title=Using Random-Number Functions| work=SAS Language Reference|url=http://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a001281561.htm | accessdate=2013-11-21[/tpl]
+
+==Advantages==
+
+The commonly-used version of Mersenne Twister, MT19937, which produces a sequence of 32-bit integers, has the following desirable properties:
+
+==Disadvantages==
+
+The state space is too large and uselessly stresses the CPU cache (a period above [tpl]math|2512[/tpl] is enough for any application). The authors have proposed a version with worse statistical properties but using just 127 bits of state space.
+By today's standards, it is fairly slow, unless you use the SFMT implementation.
+It passes most, but not all, of the stringent TestU01 Crush randomness tests.P. L'Ecuyer and R. Simard, TestU01: "A C Library for Empirical Testing of Random Number Generators", ACM Transactions on Mathematical Software, 33, 4, Article 22, August 2007.
+It can take a long time to turn a non-random initial state—particularly an initial state with many zeros—into output that passes randomness tests. A consequence of this is that two instances of the generator, started with initial states that are almost the same, will output nearly the same sequence for many iterations before eventually diverging.
+
+==k-distribution==
+
+A pseudorandom sequence xi of w-bit integers of period P is said to be k-distributed to v-bit accuracy if the following holds.
+
+==Alternatives==
+
+The algorithm in its native form is not suitable for cryptography (i.e. it is not a CSPRNG). The reason is that observing a sufficient number of iterations (624 in the case of MT19937, since this is the size of the state vector from which future iterations are produced) allows one to predict all future iterations. 
+A pair of cryptographic stream ciphers based on output from the Mersenne Twister has been proposed by Matsumoto, Nishimura, and co-authors.  The authors claim speeds 1.5 to 2 times faster than Advanced Encryption Standard in counter mode.[tpl]Cite web|title=Cryptographic Mersenne Twister and Fubuki Stream/Block Cipher|last1=Matsumoto|first1=Makoto|last2=Nishimura|first2=Takuji|last3=Hagita|first3=Mariko|last4=Saito|first4=Mutsuo|year=2005|url=http://eprint.iacr.org/2005/165.pdf[/tpl]
+The Mersenne Twister is sensitive to poor initialization and can take many iterations to recover from a zero-excess initial state. An alternative generator, WELL ("Well Equidistributed Long-period Linear"), offers quicker recovery, the same or better performance, and equal randomness.P. L'Ecuyer, "Uniform Random Number Generators", International Encyclopedia of Statistical Science, Lovric, Miodrag (Ed.), Springer-Verlag, 2010. Marsaglia's xorshift generators and variants are the fastest in this class.[tpl]cite web|title=xorshift*/xorshift+ generators and the PRNG shootout|url=http://prng.di.unimi.it[/tpl]
+
+==Algorithmic detail==
+
+For a k-bit word length, the Mersenne Twister generates integers in the range 2k−2.
+The Mersenne Twister algorithm is based on a matrix linear recurrence over a finite binary field F2.  The  algorithm is a twisted generalised feedback shift register[tpl]cite doi|10.1145/146382.146383[/tpl] (twisted GFSR, or TGFSR) of rational normal form (TGFSR(R)), with state bit reflection and tempering. It is characterized by the following quantities:
+with the restriction that 2nw − r − 1 is a Mersenne prime. This choice simplifies the primitivity test and k-distribution test that are needed in the parameter search.
+For a word x with w bit width, it is expressed as the recurrence relation
+with In − 1 as the (n − 1) × (n − 1) identity matrix (and in contrast to normal matrix multiplication, bitwise XOR replaces addition). The rational normal form has the benefit that it can be efficiently expressed as
+where
+In order to achieve the 2nw − r − 1 theoretical upper limit of the period in a TGFSR, φB(t) must be a primitive polynomial, φB(t) being the characteristic polynomial of
+The twist transformation improves the classical GFSR with the following key properties:
+As like TGFSR(R), the Mersenne Twister is cascaded with a tempering transform to compensate for the reduced dimensionality of equidistribution (because of the choice of A being in the rational normal form), which is equivalent to the transformation A = R → A = T−1RT, T invertible. The tempering is defined in the case of Mersenne Twister as
+The coefficients for MT19937 are:
+A small lagged Fibonacci generator or linear congruential generator usually is used to seed the Mersenne Twister with random initial values.[tpl]Citation needed|date=February 2013[/tpl]
+
+==Pseudocode==
+
+The following piece of pseudocode generates uniformly distributed 32-bit integers in the range 232 − 1 with the MT19937 algorithm:
+  ''// Create a length 624 array to store the state of the generator''
+  '''int'''[0..623] MT
+  '''int''' index = 0
+  ''// Initialize the generator from a seed''
+  '''function''' initialize_generator('''int''' seed) {
+      index := 0
+      MT[0] := seed
+      '''for''' i '''from''' 1 '''to''' 623 { ''// loop over each other element''

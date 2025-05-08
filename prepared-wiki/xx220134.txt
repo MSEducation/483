@@ -1,0 +1,16 @@
+[[OpenGL Multipipe]]
+
+CATEGORIES: OpenGL, IRIX software
+
+OpenGL Multipipe is the default SGI solution for handling parallel rendering on a single desktop using multiple displays on Irix and Linux.http://techpubs.sgi.com/library/tpl/cgi-bin/getdoc.cgi?cmd=getdoc&coll=&db=man&fname=/usr/share/catman/u_man/cat1/omp/multipipe.z It first appeared in Irix 6.5.10 as a solution for creating desktops on SGI Onyx Visualization Systems (their so called Reality Centers) which took advantage of multiple Raster/Geometry Managers in multiple pipelines.http://www.sgi.com/products/software/multipipe/overview.html The package was originally composed of Xinerama, a Xinerama aware version of 4DWM (called omp4Dwmhttp://techpubs.sgi.com/library/tpl/cgi-bin/getdoc.cgi?cmd=getdoc&coll=&db=man&fname=/usr/share/catman/u_man/cat1/multipipe/start_ompwm.z) and a backend server to handle and distribute all OpenGL threads to the various physical pipes called Transparent OpenGL (or tgl).http://techpubs.sgi.com/library/tpl/cgi-bin/getdoc.cgi?cmd=getdoc&coll=&db=man&fname=/usr/share/catman/u_man/cat1/multipipe/multipipe.z
+In SGI parlance, a pipe (see Graphics pipeline) is akin to a PCI Video Card connected to other cards that handle Geometry and/or Rasterization in a "pipeline" (hence the name and the relevant nature of OpenGL), somewhat similar to 3Dfx's Voodoo Graphics card (though many considered the latter hackish and not at all a true pipe). Nowadays a pipe is solely on a single board and on a single chip (GPU). More to the point, a single SGI pipeline (e.g. InfiniteReality4) could be configured to have up to 8 Video Outputs, each with its own Raster Manager (or 4 with additional Texture memory and a Geometry manager). SGI's Implementation of Xinerama would transparently handle OpenGL on all display outputs (including multiple pipes), but usually offloaded all OpenGL calls to a blanket OpenGL API called transparent OpenGLhttp://techpubs.sgi.com/library/tpl/cgi-bin/getdoc.cgi?coll=0650&db=man&fname=/usr/share/catman/u_man/cat1/multipipe/tgl.z(like running Xdmx without Chromium).
+Programming for a single display on multiple pipes was always possible in OpenGL using threads (and subsequently in Open Inventor and OpenGL Performer), making them "multipipe aware", but this proved challenging for scientists and architects who cringed at C/C++ multithreading. SGI decided to lighten the burden by developing a package that would encompass a halfway optimized solution for applications programmed for only one pipe via Multipipe.
+OpenGL Multipipe was part one of a three tiered approach to escalate applications towards multipipe awareness. The second part was Multipipe SDK which provided a simple set of libraries that made an OpenGL application multipipe aware.http://www.sgi.com/products/software/multipipe The third was moving on to the multipipe aware OpenGL Performer. The latest versions of Multipipe include Xdmx as a better suited solution for multiple displays.http://www.sgi.com/products/software/multipipe/faq.html Ultimately this solution would be superseded by working Xdmx, Xinerama and Chromium in tandem on linux graphics clusters. Programming multiple pipes in OpenGL would be facilitated by Equalizer or by a variety of SceneGraph Libraries.
+
+==See also==
+
+==Notes and references==
+
+==External links==
+
+

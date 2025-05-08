@@ -1,0 +1,34 @@
+[[Hidden file and hidden directory]]
+
+CATEGORIES: Microsoft Windows file system technology, Unix file system technology, OS X, Computer file systems
+
+In computing, a hidden directory or hidden file is a directory (folder) or file which file system utilities do not display by default. They are commonly used for storing user preferences or preserving the state of a utility and are frequently created implicitly by using various utilities. Usually the intent is to not "clutter" the display of the contents of a directory with files the user did not create.[tpl]cite web|url=http://new.linuxfocus.org/English/March1998/article24.html |title=Configuring X: What are all those dotfiles for anyway? |publisher=Linux Focus |date=March 1998 |accessdate=2013-09-08[/tpl][tpl]cite web|url=http://tldp.org/LDP/abs/html/sample-bashrc.html|title=Sample .bashrc and .bash_profile Files|publisher=Linux Documentation Project[/tpl][tpl]cite web|url=http://www.ibm.com/developerworks/linux/library/l-config/index.html |title=Understanding Linux configuration files |publisher=IBM.com |date= |accessdate=2012-02-13[/tpl]
+
+==Unix and Unix-like environments==
+
+In Unix-like operating systems any file or directory that starts with a period or full stop character (for example, /home/user/.config) is to be treated as hidden – that is, the ls command does not display them unless the -a flag (ls -a) is used.
+In most command line shells, wildcards will not match files whose names start with . unless the wildcard itself starts with an explicit . (although this is sometimes configurable; for example, the dotglob[tpl]cite web|url=http://www.gnu.org/software/bash/manual/bashref.html#Filename-Expansion|title=Bash Reference Manual|at=3.5.8 Filename Expansion|accessdate=January 23, 2014[/tpl] option in bash).
+According to Rob Pike, the notion that filenames preceded by a . should be hidden in Unix was probably an unintended consequence of trying to make ls not show . and ... To avoid showing . and .., a simple test to exclude any file whose name started with a . character, rather than the exact names . and .., was added to ls, and that happened to make all files starting with . hidden.[tpl]cite web|url=https://plus.google.com/u/0/+RobPikeTheHuman/posts/R58WgWwN9jp|title=A lesson in shortcuts.|publisher=Google Plus|author=Rob Pike[/tpl] The convention of putting lots of hidden dotfiles directly in the home directory considered was bad design by Rob Pike and other Plan 9 developers, and they consequently put user config files in $HOME/cfg and $HOME/lib in Plan 9. The Unix/Linux freedesktop.org XDG Base Directory Specification also aims to migrate user config files from dotfiles in $HOME to non-hidden files in $HOME/.config.http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+
+===GNOME===
+
+In the GNOME desktop environment (as well as all programs written using GLib[tpl]cite web|title=GLib commit: Support for .hidden files|url=https://git.gnome.org/browse/glib/commit/?id=510ba9b4efe1813e24c6dfa7405c3547bf9efdd7|accessdate=2013-08-07[/tpl]), filenames listed in a file named .hidden in each directory are also excluded from display. In GNOME's file manager, the keyboard shortcut [tpl]keypress|Ctrl[/tpl]+[tpl]keypress|H[/tpl] enables the display of both kinds of hidden files.
+
+===Mac OS X===
+
+In addition to the "dotfile" behaviour, files with the "Invisible" attribute are hidden in Finder, although not in ls. The "Invisible" attribute can be set or cleared using the SetFile command; for example, invoking SetFile -a V jimbo will hide the file "jimbo".  Starting in Mac OS X Snow Leopard, the chflags command can also be used; for example, chflags hidden jimbo will hide the file "jimbo".
+
+==DOS and MS Windows==
+
+In MS-DOS and other DOS systems, file directory entries include a Hidden File attribute which is manipulated using attrib command. Use the command line command  dir /ah to display the files with the attribute of hidden.
+Under Windows Explorer, content of a directory can be hidden just by appending a pre-defined CLSID Canonical Names of Control Panel Items to the end of the folder name. The directory is still visible, but its content becomes one of the Windows Special Folders.The Secret BEHIND the Windows 7 “GodMode” However, the real content of this directory can still be seen using CLI command dir.
+
+==Abuse==
+
+Malicious programs can use this functionality to hide their presence.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,117 @@
+[[Vorbis]]
+
+CATEGORIES: Free audio codecs, Lossy compression algorithms, Xiph.Org projects
+
+
+
+Vorbis is a free and open-source software project headed by the Xiph. The project produces an audio format specification and software implementation (codec) for lossy audio compression. Vorbis is most commonly used in conjunction with the Ogg container format and it is therefore often referred to as Ogg Vorbis.
+Vorbis is a continuation of audio compression development started in 1993 by Chris Montgomery.
+The Xiph. There are also some fine-tuned forks, most notably aoTuV, that offer better audio quality, particularly at low bitrates. These improvements are periodically merged back into the reference codebase.
+
+Name
+
+"Vorbis" is named after a Discworld character, Exquisitor Vorbis in Small Gods by Terry Pratchett. The Ogg format, however, is not named after Nanny Ogg, another Discworld character; the name is in fact derived from ogging, jargon that arose in the computer game Netrek.
+
+Usage
+
+The Vorbis format has proven popular among supporters of free software. They argue that its higher fidelity and completely free nature, unencumbered by patents, make it a well-suited replacement for patented and restricted formats like MP3.
+Vorbis has different uses for consumer products. Many video game titles store in-game audio as Vorbis, examples include 18 Wheels of Steel, Bookworm Adventures, Halo: Combat Evolved, Minecraft, Unreal Tournament 2004, Unreal Tournament 3, Mafia: The City of Lost Heaven, Jets 'n' guns, Grand Theft Auto: San Andreas, Crimsonland, Devil May Cry 3, Live For Speed, Guitar Hero: On Tour, Eve Online, World of Warcraft and Amnesia: The Dark Descent. Popular software players support Vorbis playback either natively or through an external plugin. A number of Web sites, including Wikipedia, use it.
+
+Quality
+
+Vorbis had been shown to perform significantly better than many other lossy audio formats in the past in that it produced smaller files at equivalent or higher quality while retaining computational complexity comparable to other MDCT formats such as AAC or Windows Media Audio., not many further significant tests had been made.
+Listening tests have attempted to find the best quality lossy audio codecs at certain bitrates. Some conclusions made by listening tests:
+Due to the ever-evolving nature of audio codecs, the results of many of these tests have become outdated.
+
+Listening tests
+
+Listening tests are normally carried out as ABX tests, i.e., the listener has to identify an unknown sample X as being A or B, with A (the original) and B (the encoded version) available for reference. The outcome of a test must be statistically significant. This setup ensures that the listener is not biased by his/her expectations, and that the outcome is very unlikely to be the result of chance. If sample X can be identified reliably, the listener can assign a score as a subjective judgment of the quality. Otherwise, the encoded version is considered to be transparent. Below are links to several listening test results.
+
+Characteristic artifacts
+
+As with most modern formats, the most consistently cited problem with Vorbis is pre-echo, a faint copy of a sharp attack that occurs just before the actual sound (this artifact is most obvious when reproducing the sound of castanets).
+When the bitrate is too low to encode the audio without perceptible loss, Vorbis exhibits an analog noise-like failure mode, which can be described as reverberations in a room or amphitheater. Vorbis's behavior is due to the noise floor approach to encoding; see technical details.
+
+Battery life
+
+Ogg Vorbis decoding requires significantly more battery power than for MP3 files. This reduces playing time per battery charge on battery-powered devices. The actual reduction will depend on the hardware and firmware; a typical report is that battery duration with Ogg Vorbis files was about half that for MP3s.Cowon iAudio MP3 player site: Ogg Vorbis battery life test results, 2005
+
+Technical details
+
+Vorbis is intended for sample rates from 8 kHz telephony to 192 kHz digital masters and a range of channel representations (monaural, polyphonic, stereo, quadraphonic, 5.1, ambisonic, or up to 255 discrete channels).)
+Vorbis aims to be more efficient than MP3, with data compression transparency being available at lower bitrates.
+
+Outline of coder algorithm
+
+Vorbis I is a forward-adaptive monolithic transform codec based on the modified discrete cosine transform (MDCT). Vorbis uses the modified discrete cosine transform for converting sound data from the time domain to the frequency domain. The resulting frequency-domain data is broken into noise floor and residue components, and then quantized and entropy coded using a codebook-based vector quantization algorithm. The decompression algorithm reverses these stages. The noise floor approach gives Vorbis its characteristic analog noise-like failure mode when the bitrate is too low to encode the audio without perceptible loss. The sound of compression artifacts at low bitrates can be perhaps described as reverberations in an amphitheater or a room.
+
+Tuned versions
+
+Various tuned versions of the encoder (Garf, aoTuV or MegaMix) attempt to provide better sound at a specified quality setting, usually by dealing with certain problematic waveforms by temporarily increasing the bitrate. Most of the tuned versions of Vorbis attempt to fix the pre-echo problem and to increase the sound quality of lower quality settings (-q-2 through -q4). Some tuning suggestions created by the Vorbis user community (especially the aoTuV beta 2 tunings) have been incorporated into the 1.1.0 release.
+
+Bitrate peeling
+
+The Vorbis format supports bitrate peeling for reducing the bitrate of already encoded files without re-encoding, and several experimental implementations exist.
+The reason that peeling programs degrade quality so severely is that the format does not specify the relative importance of signal data, nor do existing encoders order the data in order of importance, hence peelers cannot easily determine if data is important or not.
+
+Container formats
+
+Vorbis streams can be encapsulated in other media container formats besides Ogg.
+
+Metadata
+
+Vorbis metadata, called Vorbis comments, supports metadata tags similar to those implemented in the ID3 standard for MP3. The metadata is stored in a vector of eight-bit-clean strings of arbitrary length and size. The size of the vector and the size of each string in bytes is limited to 232-1 (about 4.3 billion, or any positive integer that can be expressed in 32 bits). This vector is stored in the second header packet that begins a Vorbis bitstream.
+The strings are assumed to be encoded as UTF-8. Music tags are typically implemented as strings of the form "TAG=VALUE", for instance, "ARTIST=The John Smith Band". The tags are case-insensitive, thus typing "ARTIST=The John Smith Band" would be the same as "artist=The John Smith Band". Like the current version of ID3, users and encoding software are free to use whichever tags are appropriate for the content. For example, an encoder could use localized tag labels, live music tracks might contain a "Venue=" tag or files could have multiple genre definitions. Most applications also support common de facto standards such as discnumber and ReplayGain information.
+
+Licensing
+
+Knowledge of Vorbis' specifications is in the public domain.
+The Xiph. Such issues cannot be resolved outside of a court of law.
+Vorbis is supported by several large digital audio player manufacturers such as Samsung, SanDisk, Rio, Neuros Technology, Cowon, and iriver.
+
+Support
+
+Hardware
+
+Tremor, a version of the Vorbis decoder which uses fixed-point arithmetic (rather than floating point), was made available to the public on September 2, 2002 (also under a BSD-style license).
+Apple's iPod does not natively support Vorbis but through the use of Rockbox, an open-source firmware project, is capable of decoding Vorbis files on certain models. Similar statements apply to other devices capable of running Rockbox, as well. The Xiph. Also see Internet radio device for an overview.
+
+Application software
+
+Software supporting Vorbis exists for many platforms. The multi-platform open-source VLC media player and MPlayer can play Ogg Vorbis files, as can Winamp and foobar2000. Although Apple iTunes does not natively support Vorbis, the Xiph.Org Foundation provides a QuickTime component
+ Some newer Ubisoft games use Vorbis files renamed with the filename extension . It can therefore be played using a compatible player, although sometimes one must force a different sampling rate to hear it correctly. A number of tools are available for extracting sound from archived files such as the .m4b of Myst IV: Revelation.
+As originally recommended by HTML 5, these web browsers natively support Vorbis audio (without a plug-in) using the  element: Mozilla Firefox 3.5 (and later versions),
+
+Other implementations
+
+The Xiph.
+There are no restriction to other developers for writing compliant encoders and decoders.
+
+aoTuV
+
+aoTuV is a modified version of the reference encoder created by a Japanese developer named Aoyumi (aoTuV stands for Aoyumi Tuned Vorbis), which improves its quality, especially at lower bitrates. Initially built upon Vorbis 1.0, the improvements of aoTuV Beta2 were merged back into Vorbis 1.1. Further improvements were released, the current Beta 6.03 version (released on April 25, 2011) is an improvement of libvorbis 1.3.2.aoTuV aoTuV official page
+
+Lancer
+
+Lancer is a modified version of aoTuV which keeps the quality of aoTuV and significantly improves its encoding speed, using architecture-specific SIMD instructions instead of floating-point instructions. The last version is based on aoTuV Beta 5 (released on November 11, 2006).
+
+Tremor
+
+Tremor is an implementation of a Vorbis decoder using fixed-point arithmetic. It is intended for environments when a floating-point arithmetic unit is unavailable. The Xiph.
+
+FFmpeg
+
+The libavcodec library contains an LGPL-licensed Vorbis decoder that is faster than the reference implementation and an experimental Vorbis encoder. It is also able to use libvorbis for both encoding and decoding, using libvorbis instead of the native encoder is recommended.
+
+stb_vorbis
+
+stb_vorbis is a C implementation of an Ogg Vorbis decoder placed in the public domain. It lacks some minor features present in the reference implementation (notably seeking), but it claims to be fully compliant with the format specification.
+
+
+
+
+
+
+
+
+

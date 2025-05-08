@@ -1,0 +1,26 @@
+[[Balking pattern]]
+
+CATEGORIES: Software design patterns
+
+The balking pattern is a software design pattern that only executes an action on an object when the object is in a particular state. For example, if an object reads ZIP files and a calling method invokes a get method on the object when the ZIP file is not open, the object would "balk" at the request.  In the Java programming language, for example, an IllegalStateException might be thrown under these circumstances.
+There are some specialists[tpl]who|date=November 2010[/tpl] in this field who think this is more of an anti-pattern, than a design pattern.  If an object cannot support its API, it should either limit the API so that the offending call is not available or so that the call can be made without limitation, it should:
+
+==Usage==
+
+Objects that use this pattern are generally only in a state that is prone to balking temporarily but for an unknown amount of time.[tpl]Citation needed|date=May 2009[/tpl]  If objects are to remain in a state which is prone to balking for a known, finite period of time, then the guarded suspension pattern may be preferred.
+
+==Implementation==
+
+Below is a general, simple example for an implementation of the balking pattern as originally seen in [tpl]harvtxt|Grand|2002[/tpl]. As demonstrated by the definition above, notice how the "synchronized" line is utilized. If there are multiple calls to the job method, only one will proceed while the other calls will return with nothing. Another thing to note is the jobCompleted() method. The reason it is synchronized is because the only way to guarantee another thread will see a change to a field is to synchronize all access to it or declare it as volatile.
+
+==References==
+
+ | last = Grand | first = Mark
+ | title = Patterns in Java, Volume 1: A Catalog of Reusable Design Patterns Illustrated with UML, Second Edition
+ | year = 2002
+ | publisher = John Wiley & Sons
+ | location = Indianapolis, Ind}}.
+
+==See also==
+
+

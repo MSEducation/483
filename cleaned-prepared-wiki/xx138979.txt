@@ -1,0 +1,91 @@
+[[ZX Spectrum software]]
+
+CATEGORIES: Home computer software, ZX Spectrum
+
+The ZX Spectrum software library currently consists of more than 24,000 titles.), and, of course, many, many games.
+
+Software distribution media and copy protection
+
+Tape
+
+=Basis=
+
+Because most British home computer owners used tape instead of disk storage into the mid-1980s, "one" is twice as long, totaling ~977 μs. This allows for 1023 "ones" or 2047 "zeros" to be recorded per second. Assuming an even proportion of each, the resulting average speed was ~1535 bit/s. Higher speeds were possible using custom machine code loaders instead of the ROM routines.
+Naturally, a standard 48K program would take about 5 minutes to load: 49152 bytes × 8 = 393216 bits; 393216 bits / 1535 baud ≈ 256 seconds = 4:16 minutes. In reality, however, a 48K program usually took between 3–4 minutes to load (because of different number of 0s and 1s encoded using pulse-width modulation, and not all memory needs load), and 128K programs could take up to 11:23 minutes to load. Experienced users could often tell the type of a file, e.g. file header, screen image or main block of code, from the way it sounded on the tape. 
+
+=Standard format and loader=
+
+The standard method of storing files on tape used pilot signals, headers, and data blocks. Pilot signals are used to calibrate the system to the speed of the tape, both in terms of how it was written and of natural slight variations between different tape decks. Headers have a short file size of 19 bytes (17 for header information, 1 for flag and 1 for checksum), and the loader generally presents one of these messages depending on their type: Program:  for programs written in BASIC; Bytes:  for machine code, screen dumps, etc.; or Character array:  for an ASCII-encoded file.
+During standard loading and saving processes, the border flashes with cyan/red stripes for the pilot signal and yellow/blue stripes for the header and data blocks; which colour of the pair is used depends upon the bit that was last read from the tape. Pilot signals are usually represented with a thick stripe size; on header and data blocks, the stripes are thinner (depending the baudrate). Striped border effects, as used in the standard loader or more complex ones (see below) can also be found on games written for other 8-bit computers, such as the Amstrad CPC 464/664/6128 (which, as it used the same CPU, often received ports of loading routines originally for the Spectrum) and the Commodore C64/128.
+
+=Reliability=
+
+The Spectrum was intended to work with almost any cassette tape player, and despite differences in audio reproduction fidelity, the software loading process was designed to be reliable; nevertheless it was still possible for tapes to fail loading with the message R Tape loading error, 0:1. One common cause was the use of a cassette copy from a tape recorder with a different head alignment to the one being used. This could sometimes be fixed by pressing on the top of the player during loading, or wedging the cassette with pieces of folded paper, to physically shift the tape into the required alignment. A more reliable solution was to realign the head, which was easily accessible on a number of tape players, with a small (jeweller's) screwdriver.
+Typical settings for loading were ¾ volume, 100% treble, 0% bass. Audio filters like loudness and Dolby Noise Reduction had to be disabled, and it was not recommended to use a Hi-Fi player to load programs. There were some tape recorders built specially for digital use, such as the Timex Computer 2010 Tape Recorder or Grundig CR 100 Data Recorder. The ZX Spectrum Plus 2 and 2A models are fashioned after an Amstrad CPC 464 and feature a built-in tape "datacorder".
+
+=Custom loaders and copying=
+
+It is possible to alter the colours between which the border alternates during loading, and/or to use more than two colours, in order to obtain more flashy visual effects during the loading process. 
+Complex loaders with unusual speeds or encoding were the basis of the ZX Spectrum copy protection schemes, although other methods were used including asking for a particular word from the documentation included with the game — often a novella — or the notorious Lenslok system. This had a set of plastic prisms in a fold-out plastic holder: the idea was that a scrambled word would appear on the screen, which could only be read by holding the prisms at a fixed distance from the screen courtesy of the plastic holder. This relied rather too much on everyone using the same size television, and Lenslok became a running joke with Spectrum users.
+One very interesting kind of software was copiers.  Most were copyright infringement oriented, and their function was only tape duplication, but when Sinclair Research launched the ZX Microdrive, copiers were developed to copy programs from audio tape to microdrive tapes, and later on diskettes.  Best known were the Lerm suite produced by Lerm Software and Trans Express by Romantic Robot.  As the protections became more complex (e.g. Speedlock) it was almost impossible to use copiers to copy tapes, and the loaders had to be cracked by hand, to produce unprotected versions.  Special hardware, like Romantic Robot's Multiface which was able to dump a copy of the ZX Spectrum RAM to disk/tape at the press of a button, was developed, entirely circumventing the copy protection systems.  "Snapshots" generated by these black boxes would later become the original fileteype recognised by emulators - .
+
+ZX Microdrive
+
+The ZX Microdrive system was released in July 1983 and quickly became quite popular with the Spectrum user base due to the low cost of the drives, however, the actual media was very expensive for software publishers to use for mass market releases (by a factor of 10, compared to tape duplication).  Furthermore, the cartridges themselves acquired a reputation  for unreliability, and publishers were reluctant to QA each and every item shipped.  Hence the main use became to complement tape releases, usually utilities and niche products like the Tasword word processing software and the aforementioned Trans Express.  No games are known to be exclusively released on Microdrive, but some companies allowed, and even aided, their software to be copied over.  One such example was Rally Driver by Five Ways Software Ltd.
+
+Floppy disk
+
+Several floppy disk systems were designed for the ZX Spectrum.  The most popular (excepting Eastern Europe,) were the DISCiPLE and +D systems released by Miles Gordon Technology in 1987 and 1988 respectively.  Despite becoming popular and being reliable (from using standard Shugart disk drives), most releases were utility software.  However, both systems had the ability to store memory images onto disk, snapshots, which later on could be loaded back into the ZX Spectrum and execution would commence from the point where they were "snapped", making them perfect for "backups".  Both systems were also compatible with the Microdrive command syntax, which made porting existing software simpler.
+The ZX Spectrum +3 featured a built-in 3" disk drive and enjoyed more success when it came to commercial software releases - more than 700 titles were released on disk from 1987 to 1997.
+Most Russian releases since 1989 are made for the Beta 128 disc interface, the only system now in use there.
+
+Others
+
+In addition, software was also distributed through print media, fan magazines and books.  The prevalent language for distribution was the Spectrum's BASIC dialect Sinclair BASIC.  The reader would type the software into the computer by hand, run it, and save it to tape for later use.  The software distributed in this way was in general simpler and slower than its assembly language counterparts, and lacked graphics.  But soon, magazines were printing long lists of checksummed hexadecimal digits with machine code games or tools.  There was a vibrant scientific community built around such software, ranging from satellite dish alignment programs to school classroom scheduling programs.
+One unusual software distribution method were radio or television shows in e.g. Croatia (Radio 101), Serbia (Ventilator 202), Slovenia (Radio Študent), Poland, Czechoslovakia, Romania or Brazil, where the host would describe a program, instruct the audience to connect a cassette tape recorder to the radio or TV and then broadcast the program over the airwaves in audio format. In former Soviet Union, mostly in Russia and Ukraine unauthorised radio operators (so-called radio hooligans) often exchanged software from cassette tapes for Spectrum and other popular computers by broadcasting it.
+Another unusual method which was used by some magazines were 7" 33⅓ rpm "flexidisc" records, not the hard vinyl ones, which could be played on a standard record player. These disks were known as "floppy ROMs".
+
+Spectrum software in popular music
+
+A few pop musicians included Sinclair programs on their records. The Buzzcocks front man, Pete Shelly, put a Spectrum program including lyrics and other information as the last track on his XL-1 album. The punk band Inner City Unit put a Spectrum database of band information on their 1984 release, 'New Anatomy'. Also in 1984, the Thompson Twins released a game on vinyl. The Freshies had a brief flirtation with fame and Spectrum games, and the Aphex Twin included various loading noises on his Richard D. James album in 1996—most notably part of the loading screen from Sabre Wulf on Carn Marth. Shakin' Stevens included his Shaky Game at the end of his The Bop Won't Stop album. The aim of the game was to guide your character around a maze, while avoiding bats. Upon completion your score would be given in terms of a rank of disc, e.g. "gold" or "platinum". The game had a minor connection with one of his tracks, It's Late. Scottish band Urusei Yatsura included a Spectrum program that showed a satanic message in the beginning of the song Thank You (from the album Everybody Loves Urusei Yatsura).
+There was also a music program for the Spectrum 48K which allowed to play two notes at a time, by rapidly switching between the waveforms of the two separate notes, a big improvement over the mono Spectrum sound. The program was branded after the popular '80s pop band Wham!, and some of the biggest hits of this group could be played with the Spectrum. The program was called Wham! The Music Box and released by Melbourne House, one of the most prolific publishing houses at the time.
+
+Spectrum software today
+
+As audio tapes have a limited shelf-life, most Spectrum software has been digitized in recent years
+One popular program for digitizing Spectrum software is Taper: it allows connecting a cassette tape player to the line in port of a sound card or, through a simple home-built device, to the parallel port of a PC.worldofspectrum.html Once in digital form, the software can be executed on one of many existing emulators, on virtually any platform available today. Today, the largest on-line archive of ZX Spectrum software is World of Spectrum, with more than 24,000 titles.
+The Spectrum enjoys a vibrant, dedicated fan-base. Since it was cheap and simple to learn to use and program, the Spectrum was the starting point for many programmers and technophiles who remember it with nostalgia. The hardware limitations of the Spectrum imposed a special level of creativity on game designers, and for this reason, many Spectrum games are very creative and playable even by today's standards. Games for the ZX Spectrum continue to be developed and released long after the machine itself was discontinued.
+ZX Spectrum games continue to inspire developers and gamers on modern platforms such as iOS with many games being produced using similar styles of game-play mechanics to those from the ZX Spectrum era.
+
+Notable titles
+
+Your Sinclair top 10
+
+Between October 1991 and February 1992 Your Sinclair published a list of what they considered to be the top 100 games for the ZX Spectrum. Their top 10 were:
+ 
+  3D Deathchase
+  Rebelstar
+  All or Nothing
+  Stop the Express
+  Head Over Heels
+  R-Type
+  The Sentinel
+  Rainbow Islands
+  Boulder Dash
+  Tornado Low Level
+ 
+
+CRASH top 10
+
+Between August and December 1991 CRASH published their list of the top 100 ZX Spectrum games, including in the top 10:
+In CRASH's Top 10 all but the Dizzy games were published by Ocean Software. All but one of the Your Sinclair Top 10 games were released in 1987 or before (the conversion of Rainbow Islands did not appear until 1989, although the original was released in 1987), in comparison to the CRASH Top 10 which exclusively features games released in 1987 or after. 1987 was the year in which use of the newer 128K architecture and of the newer AY-3-8912 sound chip began to take off.  All of CRASH's Top 10, with the exception of Dizzy, made use of these new features with enhanced sound and preloaded levels (eliminating the need for a multi-load), reflecting a difference in the attitudes of the editorship and readership of the two magazines.
+
+Notable Spectrum developers
+
+A number of current leading games developers and development companies began their careers on the ZX Spectrum, including David Perry of Shiny Entertainment, and  Tim and Chris Stamper (as Ultimate Play The Game, now known as Rare, maker of many famous titles for Nintendo game consoles). Other prominent games developers include Matthew Smith (Manic Miner, Jet Set Willy), Jon Ritman (Match Day, Head Over Heels), The Oliver Twins (the Dizzy series) and Alan Cox.
+
+
+
+
+
+

@@ -1,0 +1,208 @@
+[[VCard]]
+
+CATEGORIES: Computer file formats, Business cards, Internet Standards
+
+vCard is a file format standard for electronic business cards. vCards are often attached to e-mail messages, but can be exchanged in other ways, such as on the World Wide Web or instant messaging. They can contain name and address information, phone numbers, e-mail addresses, URLs, logos, photographs, and audio clips.
+
+==History==
+
+Versitcard was originally proposed in 1995 by the Versit Consortium, which consisted of Apple, AT&T Technologies (later Lucent), IBM and Siemens. In December 1996, ownership of the format was handed over to the Internet Mail Consortium, a trade association for companies with an interest in Internet e-mail.
+Version 2.1 of the vCard standard is widely supported by e-mail clients. Version 3.0 of the vCard format is an IETF standards-track proposal contained in RFC 2425 and RFC 2426. Version 4.0 is defined in RFC 6350, with a new XML syntax, xCard, defined in RFC 6351. The commonly-used filename extension for vCards is vcf.
+In RFC 4770, vCard Extensions for Instant Messaging, a new type of entry to hold an IMPP URI is defined, which is "IMPP". This is now part of the base vCard 4.0 specification.
+
+==Media type==
+
+The standard Internet media type for a vCard (often referred to as its mime type) is:RFC 6350, section 10.1 "Media Type Registration"
+As of version 4.0 specification,  other media types known to have been used previously are now deprecated, including:
+
+==Example vCard files==
+
+The following is an example of a VCard file containing information for one person:
+
+===vCard 2.1===
+
+ BEGIN:VCARD
+ VERSION:2.1
+N:Gump;Forrest
+FN:Forrest Gump
+ORG:Bubba Gump Shrimp Co.
+TITLE:Shrimp Man
+PHOTO;GIF:http://www.example.com/dir_photos/my_photo.gif
+TEL;WORK;VOICE:(111) 555-1212
+TEL;HOME;VOICE:(404) 555-1212
+ADR;WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America
+LABEL;WORK;ENCODING=QUOTED-PRINTABLE:100 Waters Edge=0D=0ABaytown, LA 30314=0D=0AUnited States of America
+ADR;HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America
+LABEL;HOME;ENCODING=QUOTED-PRINTABLE:42 Plantation St.=0D=0ABaytown, LA 30314=0D=0AUnited States of America
+EMAIL;PREF;INTERNET:forrestgump@example.com
+REV:20080424T195243Z
+END:VCARD
+
+===vCard 3. 0===
+
+ BEGIN:VCARD
+ VERSION:3.0
+N:Gump;Forrest;Mr.
+FN:Forrest Gump
+ORG:Bubba Gump Shrimp Co.
+TITLE:Shrimp Man
+PHOTO;VALUE=URL;TYPE=GIF:http://www.example.com/dir_photos/my_photo.gif
+TEL;TYPE=WORK,VOICE:(111) 555-1212
+TEL;TYPE=HOME,VOICE:(404) 555-1212
+ADR;TYPE=WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America
+LABEL;TYPE=WORK:100 Waters Edge\nBaytown, LA 30314\nUnited States of America
+ADR;TYPE=HOME:;;42 Plantation St.;Baytown;LA;30314;United States of America
+LABEL;TYPE=HOME:42 Plantation St.\nBaytown, LA 30314\nUnited States of America
+EMAIL;TYPE=PREF,INTERNET:forrestgump@example.com
+REV:2008-04-24T19:52:43Z
+END:VCARD
+
+===vCard 4.0===
+
+ BEGIN:VCARD
+ VERSION:4.0
+N:Αλέξανδρος;Forrest;;;
+FN:Forrest Gump
+ORG:Bubba Gump Shrimp Co.
+TITLE:Shrimp Man
+PHOTO;MEDIATYPE=image/gif:http://www.example.com/dir_photos/my_photo.gif
+TEL;TYPE=work,voice;VALUE=uri:tel:+1-111-555-1212
+TEL;TYPE=home,voice;VALUE=uri:tel:+1-404-555-1212
+ADR;TYPE=work;LABEL="100 Waters Edge\nBaytown, LA 30314\nUnited States of America"
+  :;;100 Waters Edge;Baytown;LA;30314;United States of America
+ADR;TYPE=home;LABEL="42 Plantation St.\nBaytown, LA 30314\nUnited States of America"
+ :;;42 Plantation St.;Baytown;LA;30314;United States of America
+EMAIL:forrestgump@example.com
+REV:20080424T195243Z
+END:VCARD
+
+===xCard===
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <vcard>
+    <tel>
+      <parameters>
+        <type>
+          <text>work</text>
+        </type>
+      </parameters>
+      <uri>tel:+1-111-555-1212</uri>
+    </tel>
+    <adr>
+      <parameters>
+        <type><text>work</text></type>
+        <label><text>100 Waters Edge
+Baytown, LA 30314
+United States of America
+      </parameters>
+    </adr>
+    <email><text>forrestgump@example.com</text></email>
+  </vcard>
+
+===jCard===
+
+["vcard",
+  [
+    ["version", {}, "text", "4.0"],
+    ["n", {}, "text", ["Gump", "Forrest", "", "", ""]],
+    ["fn", {}, "text", "Forrest Gump"],
+    ["org", {}, "text", "Bubba Gump Shrimp Co"],
+    ["title", {} ,"text", "Shrimp Man"],
+    ["photo", {"mediatype":"image/gif"}, "uri", "http://www.example.com/dir_photos/my_photo.gif"],
+    ["tel", {"type":["work", "voice"]}, "uri", "tel:+1-111-555-1212"],
+    ["tel", {"type":["home", "voice"]}, "uri", "tel:+1-404-555-1212"],
+    ["adr",
+      {"label":"100 Waters Edge\nBaytown, LA 30314\nUnited States of America", "type":"work"},
+      "text",
+      ["", "", "100 Waters Edge", "Baytown", "LA", "30314", "United States of America"]
+    ],
+    ["adr",
+      {"label":"42 Plantation St.\nBaytown, LA 30314\nUnited States of America", "type":"home"},
+      "text",
+      ["", "", "42 Plantation St.", "Baytown", "LA", "30314", "United States of America"]
+    ],
+    ["email", {}, "text", "forrestgump@example.com"],
+    ["rev", {}, "timestamp", "2008-04-24T19:52:43Z"]
+  ]
+]
+
+===hCard 1.0===
+
+hCard is a microformat that allows a vCard to be embedded inside an HTML page.  It makes use of CSS class names to identify each vCard property.  Normal HTML markup and CSS styling can be used alongside the hCard class names without affecting the webpage's ability to be parsed by a hCard parser.
+
+  <head>
+    <link rel="profile" href="http://microformats.org/profile/hcard" />
+  </head>
+  <body>
+    <div class="vcard">
+      <img class="photo" src="http://www.example.com/dir_photos/my_photo.gif" align="left" />
+      <h1 class="fn">Forrest Gump</h1>
+      <div class="email">
+        <span class="type">Internet</span> Email (<span class="type">pref</span>erred):
+        <a class="value" href="mailto:forrestgump@example.com">forrestgump@example.com</a>
+      </div>
+      <div class="n">
+        First Name: <span class="given-name">Forrest</span><br>
+        Last Name: <span class="family-name">Gump</span>
+      </div>
+      <div class="label" style="display:none">
+        <span class="type">home</span>
+        42 Plantation St.<br>Baytown, LA 30314<br>United States of America
+      </div>
+      <div class="adr">
+        <span class="type">Home</span> Address:<br>
+        <span class="street-address">42 Plantation St.</span><br>
+        <span class="locality">Baytown</span>, <span class="region">LA</span>
+        <span class="postal-code">30314</span><br>
+        <span class="country-name">United States of America</span>
+      </div>
+      <div class="tel">
+         <abbr class="type" title="voice"></abbr>
+         <span class="type">Home</span> Phone: <span class="value">+1-111-555-1212</span>
+      </div>
+      <div>
+        Organization: <span class="org">Bubba Gump Shrimp Co.</span><br>
+        Title: <span class="title">Shrimp Man</span>
+      </div>
+      <div class="label" style="display:none">
+        <span class="type">work</span>
+        100 Waters Edge<br>Baytown, LA 30314<br>United States of America
+      </div>
+      <div class="adr">
+        <span class="type">Work</span> Address:<br>
+        <span class="street-address">100 Waters Edge</span><br>
+        <span class="locality">Baytown</span>, <span class="region">LA</span>
+        <span class="postal-code">30314</span><br>
+        <span class="country-name">United States of America</span>
+      </div>
+      <div class="tel">
+         <abbr class="type" title="voice"></abbr>
+         <span class="type">Work</span> Phone: <span class="value">+1-404-555-1212</span>
+      </div>
+      <em>vCard last updated:</em>
+      <time class="rev" datetime="2008-04-24T19:52:43Z">April 24, 2008 at 7:52 PM GMT</time>
+    </div>
+  </body>
+
+==Properties==
+
+vCard defines the following property types.
+All vCards begin with BEGIN:VCARD and end with END:VCARD.   All vCards must contain the VERSION property, which specifies the vCard version.  VERSION must come right after BEGIN (except in the vCard 2.1 standard, which allows it to be anywhere in the vCard).  Otherwise, properties can be defined in any order.
+[tpl]Check mark|16|color=blue[/tpl] = required
+[tpl]Check mark|16[/tpl] = supported
+A handful of separate specifications define additional vCard properties.
+
+==vCard extensions==
+
+vCard supports private extensions, with an "X-" prefix, a number of which are in common usage.[tpl]citation needed|date=July 2012[/tpl]
+Some of these include:
+Note: The Internet media type text/vcard was used (incorrectly) in some SyncML Documentation to refer to vCard 3.0, and the example was followed in various implementations.
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,158 @@
+[[MD5]]
+
+CATEGORIES: Articles with example pseudocode, Checksum algorithms, Broken hash functions
+
+The MD5 message-digest algorithm is a widely used cryptographic hash function producing a 128-bit (16-byte) hash value, typically expressed in text format as a 32 digit hexadecimal number. MD5 has been utilized in a wide variety of cryptographic applications, and is also commonly used to verify data integrity.
+MD5 was designed by Ron Rivest in 1991 to replace an earlier hash function, MD4.[tpl]cite book|last=Ciampa|first=Mark|title=CompTIA Security+ 2008 in depth|year=2009|publisher=Course Technology/Cengage Learning|location=Australia ; United States|page=290|url=http://books.google.co.il/books?id=PfkLAAAAQBAJ&lpg=PA290&dq=MD5%20%22Ron%20Rivest%22%201991%20MD4&pg=PA290#v=onepage&q=MD5%20%22Ron%20Rivest%22%201991%20MD4&f=false[/tpl] The source code in RFC 1321 contains a "by attribution" RSA license.
+In 1996 a flaw was found in the design of MD5. While it was not deemed a fatal weakness at the time, cryptographers began recommending the use of other algorithms, such as SHA-1—which has since been found to be vulnerable as well.[tpl]cite web|url=ftp://ftp.rsasecurity.com/pub/cryptobytes/crypto2n2.pdf|title=The Status of MD5 After a Recent Attack|author=Hans Dobbertin|work=CryptoBytes|volume=2|issue=2|date=Summer 1996|accessdate=22 October 2013[/tpl]
+In 2004 it was shown that MD5 is not collision resistant.[tpl]cite web|url=http://merlot.usc.edu/csac-f06/papers/Wang05a.pdf|title=How to Break MD5 and Other Hash Functions|author=Xiaoyun Wang and Hongbo Yu|work=Advances in Cryptology – Lecture Notes in Computer Science|volume=3494|pages=19–35|year=2005|accessdate=21 December 2009[/tpl] As such, MD5 is not suitable for applications like SSL certificates or digital signatures that rely on this property for digital security. Also in 2004 more serious flaws were discovered in MD5, making further use of the algorithm for security purposes questionable; specifically, a group of researchers described how to create a pair of files that share the same MD5 checksum.Xiaoyun Wang, Dengguo ,k.,m.,m, HAVAL-128 and RIPEMD, Cryptology ePrint Archive Report 2004/199, 16 August 2004, revised 17 August 2004. Retrieved 27 July 2008.J. Black, M. Cochran, T. Highland: A Study of the MD5 Attacks: Insights and Improvements, 3 March 2006. Retrieved 27 July 2008. Further advances were made in breaking MD5 in 2005, 2006, and 2007.Marc Stevens, Arjen Lenstra, Benne de Weger: Vulnerability of software integrity and code signing applications to chosen-prefix collisions for MD5, 30 November 2007. Retrieved 27 July 2008. In December 2008, a group of researchers used this technique to fake SSL certificate validity,[tpl]cite web|url=http://www.win.tue.nl/hashclash/rogue-ca/|title=MD5 considered harmful today|last=Sotirov|first=Alexander |coauthors=Marc Stevens, Jacob Appelbaum, Arjen Lenstra, David Molnar, Dag Arne Osvik, Benne de Weger|date=30 December 2008|accessdate=30 December 2008[/tpl] Announced at the 25th Chaos Communication Congress. and CMU Software Engineering Institute now says that MD5 "should be considered cryptographically broken and unsuitable for further use",[tpl]cite web|url=http://www.kb.cert.org/vuls/id/836068 |title=CERT Vulnerability Note VU#836068 |publisher=Kb.cert.org |accessdate=9 August 2010[/tpl] and most U.S. government applications now require the SHA-2 family of hash functions.[tpl]cite web|url=http://csrc.nist.gov/groups/ST/hash/policy.html |title=NIST.gov — Computer Security Division — Computer Security Resource Center |publisher=Csrc.nist.gov |accessdate=9 August 2010[/tpl]  In 2012, the Flame malware exploited the weaknesses in MD5 to fake a Microsoft digital signature.
+
+==History and cryptanalysis==
+
+MD5 is one in a series of message digest algorithms designed by Professor Ronald Rivest of MIT (Rivest, 1992).  When analytic work indicated that MD5's predecessor MD4 was likely to be insecure, MD5 was designed in 1991 to be a secure replacement. (Weaknesses were indeed later found in MD4 by Hans Dobbertin.)
+In 1993, Den Boer and Bosselaers gave an early, although limited, result of finding a "pseudo-collision" of the MD5 compression function; that is, two different initialization vectors which produce an identical digest.
+In 1996, Dobbertin announced a collision of the compression function of MD5 (Dobbertin, 1996). While this was not an attack on the full MD5 hash function, it was close enough for cryptographers to recommend switching to a replacement, such as SHA-1 or RIPEMD-160.
+The size of the hash value (128 bits) is small enough to contemplate a birthday attack. MD5CRK was a distributed project started in March 2004 with the aim of demonstrating that MD5 is practically insecure by finding a collision using a birthday attack.
+MD5CRK ended shortly after 17 August 2004, when collisions for the full MD5 were announced by Xiaoyun Wang, Dengguo Feng, Xuejia Lai, and Hongbo Yu.Philip Hawkes and Michael Paddon and Gregory G. Rose: Musings on the Wang et al. MD5 Collision, 13 October 2004. Retrieved 27 July 2008. Their analytical attack was reported to take only one hour on an IBM p690 cluster.[tpl]cite web|url=http://www.bishopfox.com/resources/tools/other-free-tools/md4md5-collision-code/|title=Fast MD5 and MD4 Collision Generators|quote=Faster implementation of techniques in How to Break MD5 and Other Hash Functions, by Xiaoyun Wang, et al.  Old (2006) average run time on IBM P690 supercomputer: 1 hour.  New average run time on P4 1.6ghz PC: 45 minutes.|date=26 September 2013|author=Bishop Fox|accessdate=10 February 2014[/tpl]
+On 1 March 2005, Arjen Lenstra, Xiaoyun Wang, and Benne de Weger demonstratedArjen Lenstra, Xiaoyun Wang, Benne de Weger: Colliding X.509 Certificates, Cryptology ePrint Archive Report 2005/067, 1 March 2005, revised 6 May 2005. Retrieved 27 July 2008. construction of two X.509 certificates with different public keys and the same MD5 hash value, a demonstrably practical collision. The construction included private keys for both public keys. A few days later, Vlastimil Klima describedVlastimil Klima: Finding MD5 Collisions – a Toy For a Notebook, Cryptology ePrint Archive Report 2005/075, 5 March 2005, revised 8 March 2005. Retrieved 27 July 2008. an improved algorithm, able to construct MD5 collisions in a few hours on a single notebook computer. On 18 March 2006, Klima published an algorithmVlastimil Klima: Tunnels in Hash Functions: MD5 Collisions Within a Minute, Cryptology ePrint Archive Report 2006/105, 18 March 2006, revised 17 April 2006. Retrieved 27 July 2008. that can find a collision within one minute on a single notebook computer, using a method he calls tunneling.
+Various MD5-related RFC errata have been published.[tpl]cite web|url=http://purl.net/xyzzy/src/md5.cmd|title=MD5 test suite|date=17 January 2013|accessdate=10 February 2014[/tpl] 
+In 2009, the United States Cyber Command used an MD5 hash value of their mission statement as a part of their official emblem.
+On 24 December 2010, Tao Xie and Dengguo Feng announced the first published single-block (512 bit) MD5 collision. Previous collision discoveries relied on multi-block attacks. For "security reasons", Xie and Feng did not disclose the new attack method. They have issued a challenge to the cryptographic community, offering a US$10,000 reward to the first finder of a different 64-byte collision before 1 January 2013. Marc Stevens responded to the challenge and published colliding single-block messages as well as the construction algorithm and sources.[tpl]cite web|url=http://marc-stevens.nl/research/md5-1block-collision/ |title=Marc Stevens – Research – Single-block collision attack on MD5 |publisher=Marc-stevens.nl |date=2012 |accessdate=10 April 2014[/tpl]
+In 2011, an informational RFC 6151[tpl]cite web|url=https://tools.ietf.org/html/rfc6151|title=RFC 6151 – Updated Security Considerations for the MD5 Message-Digest and the HMAC-MD5 Algorithms|publisher=Internet Engineering Task Force|date=March 2011|accessdate=11 November 2013[/tpl] was approved to update the security considerations in MD5[tpl]cite web|url=https://tools.ietf.org/html/rfc1321 |title=RFC 1321 – The MD5 Message-Digest Algorithm |publisher=Internet Engineering Task Force |date=April 1992 |accessdate=5 October 2013[/tpl] and HMAC-MD5.[tpl]cite web|url=https://tools.ietf.org/html/rfc2104 |title=RFC 2104 – HMAC: Keyed-Hashing for Message Authentication |publisher=Internet Engineering Task Force |date=February 1997 |accessdate=5 October 2013[/tpl]
+
+==Security==
+
+The security of the MD5 hash function is severely compromised. A collision attack exists that can find collisions within seconds on a computer with a 2.6 GHz Pentium 4 processor (complexity of 224.1).[tpl]Cite journal|author=M.M.J. Stevens |date = June 2007|title=On Collisions for MD5 |url=http://www.win.tue.nl/hashclash/On%20Collisions%20for%20MD5%20-%20M.M.J.%20Stevens.pdf |quote=... we are able to find collisions for MD5 in about 224.1 compressions for recommended IHV's which takes approx. 6 seconds on a 2.6GHz Pentium 4. [/tpl] Further, there is also a chosen-prefix collision attack that can produce a collision for two inputs with specified prefixes within hours, using off-the-shelf computing hardware (complexity 239).[tpl]Cite journal|author=Marc Stevens, Arjen Lenstra, Benne de Weger |date=16 June 2009 |title=Chosen-prefix Collisions for MD5 and Applications |url=https://documents.epfl.ch/users/l/le/lenstra/public/papers/lat.pdf [/tpl]
+The ability to find collisions has been greatly aided by the use of off-the-shelf GPUs. On an NVIDIA GeForce 8400GS graphics processor, 16–18 million hashes per second can be computed. An NVIDIA GeForce 8800 Ultra can calculate more than 200 million hashes per second.
+These hash and collision attacks have been demonstrated in the public in various situations, including colliding document files[tpl]cite web|author=Magnus Daum, Stefan Lucks |title=Hash Collisions (The Poisoned Message Attack) |work=Eurocrypt 2005 rump session |url=http://th.informatik.uni-mannheim.de/People/lucks/HashCollisions/ [/tpl][tpl]Cite journal|author=Max Gebhardt, Georg Illies, Werner Schindler |title=A Note on the Practical Value of Single Hash Collisions for Special File Formats |url=http://csrc.nist.gov/groups/ST/hash/documents/Illies_NIST_05.pdf [/tpl] and digital certificates.
+
+===Collision vulnerabilities===
+
+In 1996, collisions were found in the compression function of MD5, and Hans Dobbertin wrote in the RSA Laboratories technical newsletter, "The presented attack does not yet threaten practical applications of MD5, but it comes rather close ... in the future MD5 should no longer be implemented...where a collision-resistant hash function is required."
+In 2005, researchers were able to create pairs of PostScript documents[tpl]cite web|url=http://www.schneier.com/blog/archives/2005/06/more_md5_collis.html |title=Schneier on Security: More MD5 Collisions |publisher=Schneier.com |accessdate=9 August 2010[/tpl] and X.509 certificates[tpl]cite web|url=http://www.win.tue.nl/~bdeweger/CollidingCertificates/ |title=Colliding X.509 Certificates |publisher=Win.tue.nl |accessdate=9 August 2010[/tpl] with the same hash. Later that year, MD5's designer Ron Rivest wrote, "md5 and sha1 are both clearly broken (in terms of collision-resistance)."[tpl]cite web|url=http://mail.python.org/pipermail/python-dev/2005-December/058850.html |title=Python-Dev hashlib — faster md5/sha, adds sha256/512 support |publisher=Mail.python.org |accessdate=9 August 2010[/tpl]
+On 30 December 2008, a group of researchers announced at the 25th Chaos Communication Congress how they had used MD5 collisions to create an intermediate certificate authority certificate which appeared to be legitimate when checked via its MD5 hash. The researchers used a cluster of Sony PlayStation 3 units at the EPFL in Lausanne, Switzerland[tpl]cite web|url=http://blog.wired.com/27bstroke6/2008/12/berlin.html|title=Researchers Use PlayStation Cluster to Forge a Web Skeleton Key|date=31 December 2008|publisher=Wired|accessdate=31 December 2008[/tpl] to change a normal SSL certificate issued by RapidSSL into a working CA certificate for that issuer, which could then be used to create other certificates that would appear to be legitimate and issued by RapidSSL. VeriSign, the issuers of RapidSSL certificates, said they stopped issuing new certificates using MD5 as their checksum algorithm for RapidSSL once the vulnerability was announced.[tpl]cite web|url=https://blogs.verisign.com/ssl-blog/2008/12/on_md5_vulnerabilities_and_mit.php|title=This morning's MD5 attack — resolved|last=Callan|first=Tim|date=31 December 2008|publisher=Verisign|accessdate=31 December 2008[/tpl] Although Verisign declined to revoke existing certificates signed using MD5, their response was considered adequate by the authors of the exploit (Alexander Sotirov, Marc Stevens, Jacob Appelbaum, Arjen Lenstra, David Molnar, Dag Arne Osvik, and Benne de Weger). Bruce Schneier wrote of the attack that "we already knew that MD5 is a broken hash function" and that "no one should be using MD5 anymore".[tpl]cite web|author=Bruce Schneier |url=http://www.schneier.com/blog/archives/2008/12/forging_ssl_cer.html |title=Forging SSL Certificates |publisher=Schneier on Security |date=31 December 2008 |accessdate=10 April 2014[/tpl] The SSL researchers wrote, "Our desired impact is that Certification Authorities will stop using MD5 in issuing new certificates. We also hope that use of MD5 in other applications will be reconsidered as well."
+In 2012, according to Microsoft, the authors of the Flame malware used an MD5 collision to forge a Windows code-signing certificate.[tpl]cite web|url=http://blogs.technet.com/b/srd/archive/2012/06/06/more-information-about-the-digital-certificates-used-to-sign-the-flame-malware.aspx|title=Flame malware collision attack explained[/tpl]
+MD5 uses the Merkle–Damgård construction, so if two prefixes with the same hash can be constructed, a common suffix can be added to both to make the collision more likely to be accepted as valid data by the application using it. Furthermore, current collision-finding techniques allow to specify an arbitrary prefix: an attacker can create two colliding files that both begin with the same content. All the attacker needs to generate two colliding files is a template file with a 128-byte block of data, aligned on a 64-byte boundary that can be changed freely by the collision-finding algorithm. An example MD5 collision, with the two messages differing in 6 bits, is:
+ d131dd02c5e6eec4 693d9a0698aff95c 2fcab5[tpl]Background color|#87CEEB|8[/tpl]712467eab 4004583eb8fb7f89
+ 55ad340609f4b302 83e4888325[tpl]Background color|#87CEEB|7[/tpl]1415a 085125e8f7cdc99f d91dbd[tpl]Background color|#87CEEB|f[/tpl]280373c5b
+ d8823e3156348f5b ae6dacd436c919c6 dd53e2[tpl]Background color|#87CEEB|b[/tpl]487da03fd 02396306d248cda0
+ e99f33420f577ee8 ce54b67080[tpl]Background color|#87CEEB|a[/tpl]80d1e c69821bcb6a88393 96f965[tpl]Background color|#87CEEB|2[/tpl]b6ff72a70
+ d131dd02c5e6eec4 693d9a0698aff95c 2fcab5[tpl]Background color|#87CEEB|0[/tpl]712467eab 4004583eb8fb7f89
+ 55ad340609f4b302 83e4888325[tpl]Background color|#87CEEB|f[/tpl]1415a 085125e8f7cdc99f d91dbd[tpl]Background color|#87CEEB|7[/tpl]280373c5b
+ d8823e3156348f5b ae6dacd436c919c6 dd53e2[tpl]Background color|#87CEEB|3[/tpl]487da03fd 02396306d248cda0
+ e99f33420f577ee8 ce54b67080[tpl]Background color|#87CEEB|2[/tpl]80d1e c69821bcb6a88393 96f965[tpl]Background color|#87CEEB|a[/tpl]b6ff72a70
+Both produce the MD5 hash 79054025255fb1a26e4bc422aef54eb4.
+The difference between the two samples is the leading bit in each nibble has been flipped. For example, the 20th byte (offset 0x13) in the top sample, 0x87, is 10000111 in binary. The leading bit in the byte (also the leading bit in the first nibble) is flipped to make 00000111, which is 0x07 as shown in the lower sample.
+Later it was also found to be possible to construct collisions between two files with separately chosen prefixes. This technique was used in the creation of the rogue CA certificate in 2008.
+
+===Preimage vulnerability===
+
+In April 2009, a preimage attack against MD5 was published that breaks MD5's preimage resistance. This attack is only theoretical, with a computational complexity of 2123.4 for full preimage.[tpl]Cite journal|author=Yu Sasaki, Kazumaro Aoki |date=16 April 2009 |title=Finding Preimages in Full MD5 Faster Than Exhaustive Search |url=http://www.springerlink.com/content/d7pm142n58853467/ |publisher=Springer Berlin Heidelberg [/tpl]
+
+===Other vulnerabilities===
+
+A number of projects have published MD5 rainbow tables online, which can be used to reverse many MD5 hashes into strings that collide with the original input, usually for the purposes of password cracking.
+The use of MD5 in some websites' URLs means that search engines such as Google can also sometimes function as a limited tool for reverse lookup of MD5 hashes.Steven J. Murdoch: Google as a password cracker, Light Blue Touchpaper Blog Archive, 16 November 2007. Retrieved 27 July 2008.
+Both these techniques are rendered ineffective by the use of a sufficiently long salt.
+
+==Applications==
+
+MD5 digests have been widely used in the software world to provide some assurance that a transferred file has arrived intact. For example, file servers often provide a pre-computed MD5 (known as Md5sum) checksum for the files, so that a user can compare the checksum of the downloaded file to it. Most unix-based operating systems include MD5 sum utilities in their distribution packages; Windows users may install a Microsoft utility,[tpl]cite web|url=https://support.microsoft.com/kb/841290/en-us |title=Availability and description of the File Checksum Integrity Verifier utility |publisher=Microsoft Support |date=17 June 2013 |accessdate=10 April 2014[/tpl][tpl]cite web|url=https://support.microsoft.com/kb/889768/en-us |title=How to compute the MD5 or SHA-1 cryptographic hash values for a file |publisher=Microsoft Support |date=23 January 2007 |accessdate=10 April 2014[/tpl] or use third-party applications. Android ROMs also utilize this type of checksum.
+However, now that it is easy to generate MD5 collisions, it is possible for the person who created the file to create a second file with the same checksum, so this technique cannot protect against some forms of malicious tampering. Also, in some cases, the checksum cannot be trusted (for example, if it was obtained over the same channel as the downloaded file), in which case MD5 can only provide error-checking functionality: it will recognize a corrupt or incomplete download, which becomes more likely when downloading larger files.
+MD5 can be used to store a one-way hash of a password, often with key stretching.FreeBSD Handbook, Security – DES, Blowfish, MD5, and Crypt[tpl]dead link|date=April 2014[/tpl][tpl]cite web|url=http://docs.oracle.com/cd/E26505_01/html/816-5174/policy.conf-4.html |title=Synopsis – man pages section 4: File Formats |publisher=Docs.oracle.com |date=1 January 2013 |accessdate=10 April 2014[/tpl] Along with other hash functions, it is also used in the field of electronic discovery, in order to provide a unique identifier for each document that is exchanged during the legal discovery process. This method can be used to replace the Bates stamp numbering system that has been used for decades during the exchange of paper documents.
+
+==Algorithm==
+
+MD5 processes a variable-length message into a fixed-length output of 128 bits. The input message is broken up into chunks of 512-bit blocks (sixteen 32-bit words); the message is padded so that its length is divisible by 512. The padding works as follows: first a single bit, 1, is appended to the end of the message. This is followed by as many zeros as are required to bring the length of the message up to 64 bits fewer than a multiple of 512. The remaining bits are filled up with 64 bits representing the length of the original message, modulo 264.
+The main MD5 algorithm operates on a 128-bit state, divided into four 32-bit words, denoted A, B, C and D. These are initialized to certain fixed constants. The main algorithm then uses each 512-bit message block in turn to modify the state. The processing of a message block consists of four similar stages, termed rounds; each round is composed of 16 similar operations based on a non-linear function F, modular addition, and left rotation. Figure 1 illustrates one operation within a round. There are four possible functions F; a different one is used in each round:
+
+===Pseudocode===
+
+The MD5 hash is calculated according to this algorithm. All values are in little-endian.
+ <span style="color:green;">//''Note: All variables are unsigned 32 bit and wrap modulo 2^32 when calculating''</span>
+ '''var''' ''int''[64] s, K
+ <span style="color:green;">//''s specifies the per-round shift amounts''</span>
+ s[ 0..15] := { 7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22 }
+ s[16..31] := { 5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20 }
+ s[32..47] := { 4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23 }
+ s[48..63] := { 6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21 }
+ <span style="color:green;">//''Use binary integer part of the sines of integers (Radians) as constants:''</span>
+ '''for''' i '''from''' 0 '''to''' 63
+     K[i] := floor(abs(sin(i + 1)) × (2 '''pow''' 32))
+ '''end for'''
+ <span style="color:green;">//''(Or just use the following table):''</span>
+ K[ 0.. 3] := { 0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee }
+ K[ 4.. 7] := { 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501 }
+ K[ 8..11] := { 0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be }
+ K[12..15] := { 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821 }
+ K[16..19] := { 0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa }
+ K[20..23] := { 0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8 }
+ K[24..27] := { 0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed }
+ K[28..31] := { 0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a }
+ K[32..35] := { 0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c }
+ K[36..39] := { 0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70 }
+ K[40..43] := { 0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05 }
+ K[44..47] := { 0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665 }
+ K[48..51] := { 0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039 }
+ K[52..55] := { 0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1 }
+ K[56..59] := { 0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1 }
+ K[60..63] := { 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391 }
+ <span style="color:green;">//''Initialize variables:''</span>
+ '''var''' ''int'' a0 := 0x67452301   <span style="color:green;">//A</span>
+ '''var''' ''int'' b0 := 0xefcdab89   <span style="color:green;">//B</span>
+ '''var''' ''int'' c0 := 0x98badcfe   <span style="color:green;">//C</span>
+ '''var''' ''int'' d0 := 0x10325476   <span style="color:green;">//D</span>
+ <span style="color:green;">//''Pre-processing: adding a single 1 bit''</span>
+ '''append''' "1" bit '''to''' message</span><span style="color:green;">    
+ /* Notice: the input bytes are considered as bits strings,
+   where the first bit is the most significant bit of the byte.<ref>RFC 1321, section 2, "Terminology and Notation", Page 2.</ref>
+   </span>
+ <span style="color:green;">//''Pre-processing: padding with zeros''</span>
+ '''append''' "0" bit '''until''' message length in bits ≡ 448 (mod 512)
+ '''append''' original length in bits '''mod''' (2 '''pow''' 64) '''to''' message
+ </span>
+ <span style="color:green;">//''Process the message in successive 512-bit chunks:''</span>
+ '''for each''' ''512-bit'' chunk '''of''' message
+     break chunk into sixteen 32-bit words M[j], 0 ≤ j ≤ 15
+ <span style="color:green;">//''Initialize hash value for this chunk:''</span>
+     '''var''' ''int'' A := a0
+     '''var''' ''int'' B := b0
+     '''var''' ''int'' C := c0
+     '''var''' ''int'' D := d0
+ <span style="color:green;">//''Main loop:''</span>
+     '''for''' i '''from''' 0 '''to''' 63
+         '''if''' 0 ≤ i ≤ 15 '''then'''
+             F := (B '''and''' C) '''or''' (('''not''' B) '''and''' D)
+             g := i
+         '''else if''' 16 ≤ i ≤ 31
+             F := (D '''and''' B) '''or''' (('''not''' D) '''and''' C)
+             g := (5×i + 1) '''mod''' 16
+         '''else if''' 32 ≤ i ≤ 47
+             F := B '''xor''' C '''xor''' D
+             g := (3×i + 5) '''mod''' 16
+         '''else if''' 48 ≤ i ≤ 63
+             F := C '''xor''' (B '''or''' ('''not''' D))
+             g := (7×i) '''mod''' 16
+         dTemp := D
+         D := C
+         C := B
+         B := B + '''leftrotate'''((A + F + K[i] + M[g]), s[i])
+         A := dTemp
+     '''end for'''
+ <span style="color:green;">//''Add this chunk's hash to result so far:''</span>
+     a0 := a0 + A
+     b0 := b0 + B
+     c0 := c0 + C
+     d0 := d0 + D
+ '''end for'''
+ '''var''' ''char'' digest[16] := a0 '''append''' b0 '''append''' c0 '''append''' d0 <span style="color:green;">//''(Output is in little-endian)''</span>
+ <span style="color:green;">//''leftrotate function definition''</span>
+ '''leftrotate''' (x, c)
+     '''return''' (x << c) '''binary or''' (x >> (32-c));
+Note: Instead of the formulation from the original RFC 1321 shown, the following may be used for improved efficiency (useful if assembly language is being used – otherwise, the compiler will generally optimize the above code. Since each computation is dependent on another in these formulations, this is often slower than the above method where the nand/and can be parallelised):
+ ( 0 ≤ i ≤ 15): F := D '''xor''' (B '''and''' (C '''xor''' D))
+ (16 ≤ i ≤ 31): F := C '''xor''' (D '''and''' (B '''xor''' C))
+
+==MD5 hashes==
+
+The 128-bit (16-byte) MD5 hashes (also termed message digests) are typically represented as a sequence of 32 hexadecimal digits. The following demonstrates a 43-byte ASCII input and the corresponding MD5 hash:

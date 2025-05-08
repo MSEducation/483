@@ -1,0 +1,42 @@
+[[Golomb coding]]
+
+CATEGORIES: Lossless compression algorithms
+
+Golomb coding is a lossless data compression method using a family of data compression codes invented by Solomon W. Golomb in the 1960s.  Alphabets following a geometric distribution will have a Golomb code as an optimal prefix code, making Golomb coding highly suitable for situations in which the occurrence of small values in the input stream is significantly more likely than large values.
+Rice coding (invented by Robert F. Rice) denotes using a subset of the family of Golomb codes to produce a simpler (but possibly suboptimal) prefix code.  Rice used this set of codes in an adaptive coding scheme; "Rice coding" can refer either to that adaptive scheme or to using that subset of Golomb codes.  Whereas a Golomb code has a tunable parameter that can be any positive integer value, Rice codes are those in which the tunable parameter is a power of two. This makes Rice codes convenient for use on a computer, since multiplication and division by 2 can be implemented more efficiently in binary arithmetic.
+Rice coding is used as the entropy encoding stage in a number of lossless image compression and audio data compression methods.
+
+==Overview==
+
+===Construction of codes===
+
+Golomb–Rice codes can be thought of as codes that indicate a number by the position of the bin (q), and the offset within the bin (r). The above figure shows the position q, and offset r for the encoding of integer N using Golomb–Rice parameter M.
+The Golomb code for this distribution is equivalent to the Huffman code for the same probabilities, if it were possible to compute the Huffman code.
+
+===Use with signed integers===
+
+==Simple algorithm==
+
+Note below that this is the Rice–Golomb encoding, where the remainder code uses simple truncated binary encoding, also named "Rice coding" (other varying-length binary encodings, like arithmetic or Huffman encodings, are possible for the remainder codes, if the statistic distribution of remainder codes is not flat, and notably when not all possible remainders after the division are used). In this algorithm, if the M parameter is a power of 2, it becomes equivalent to the simpler Rice encoding.
+
+==Example==
+
+|
+|}
+For example, with a Rice–Golomb encoding of parameter M = 10, the decimal number 42 would first be split into q = 4,r = 2, and would be encoded as qcode(q),rcode(r) = qcode(4),rcode(2) = 11110,010 (you don't need to encode the separating comma in the output stream, because the 0 at the end of the q code is enough to say when q ends and r begins ; both the qcode and rcode are self-delimited).
+
+==Use for run-length encoding==
+
+==Applications==
+
+Numerous signal codecs use a Rice code for prediction residues.
+In predictive algorithms, such residues tend to fall into a two-sided geometric distribution, with small residues being more frequent than large residues, and the Rice code closely approximates the Huffman code for such a distribution without the overhead of having to transmit the Huffman table.
+One signal that does not match a geometric distribution is a sine wave, because the differential residues create a sinusoidal signal whose values are not creating a geometric distribution (the highest and lowest residue values have similar high frequency of occurrences, only the median positive and negative residues occur less often).
+Several lossless audio codecs, such as Shorten,man shorten FLAC,FLAC documentation: format overview Apple Lossless, and MPEG-4 ALS, use a Rice code after the linear prediction step (called "adaptive FIR filter" in Apple Lossless).
+Rice coding is also used in the FELICS lossless image codec.
+The Golomb–Rice coder is used in the entropy coding stage of Rice Algorithm based lossless image codecs. One such experiment yields a compression ratio graph given below. See other entries in this category at the bottom of this page. in those compression, the progressive space differential data yields an alternating suite of positive and negative values around 0, which are remapped to positive-only integers (by doubling the absolute value and adding one if the input is negative), and then Rice–Golomb coding is applied by varying the divisor which remains small.[tpl]Citation needed|date=December 2008[/tpl]
+In those results, the Rice coding may create very long sequences of one-bits for the quotient; for practical reasons, it is often necessary to limit the total run-length of one-bits, so a modified version of the Rice–Golomb encoding consists of replacing the long string of one-bits by encoding its length with a recursive Rice–Golomb encoding; this requires reserving some values in addition to the initial divisor k to allow the necessary distinction.
+
+==References==
+
+

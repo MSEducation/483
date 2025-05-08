@@ -1,0 +1,60 @@
+[[LALR parser]]
+
+CATEGORIES: Parsing algorithms
+
+In computer science, an LALR parser[tpl]efn|"LALR" is pronounced as the initialism "el-ay-el-arr"[/tpl] or Look-Ahead LR parser is a simplified version of a canonical LR parser, to parse (separate and analyze) a text according to a set of production rules specified by a formal grammar for a computer language. ("LR" means left-to-right, rightmost derivation.) The LALR parser technique was invented by Frank DeRemer for his 1969 PhD dissertation, Practical Translators for LR(k) languages,[tpl]sfn|DeRemer|1969[/tpl] in order to address the practical difficulties of that time of implementing Canonical LR parsers. The simplification that takes place results in a parser with significantly reduced memory requirements but decreased language-recognition power.[tpl]sfn|DeRemer|1969[/tpl] However, this power is enough for many mainstream computer languages,LR Parsing: Theory and Practice, Nigel P. Chapman, p. 86–87 including Java, though the reference grammars for many languages fail to be LALR due to being ambiguous. The addition of some hand-written code, specific to the language being parsed, can improve the power of the LALR parser.
+In practice LALR parsers are not written by hand, instead being automatically generated from the grammar by a LALR parser generator such as Yacc or GNU Bison. The automatically generated code may be augmented by hand-written code to augment the power of the resulting parser.
+
+==History==
+
+In 1965, Donald Knuth invented the LR parser (Left to Right, Rightmost derivation). The LR parser can recognize any deterministic context-free language in linear-bounded time.[tpl]cite doi|10.1016/S0019-9958(65)90426-2[/tpl] However, rightmost derivation has very large memory requirements and implementing an LR parser was impractical due to the limited memory of computers at that time. To address this shortcoming, in 1969, Frank DeRemer proposed two simplified versions of the LR parser, namely the Look-Ahead LR (LALR)[tpl]sfn|DeRemer|1969[/tpl] and the Simple LR parser that had much lower memory requirements at the cost of less language-recognition power, with the LALR parser being the most-powerful alternative.[tpl]sfn|DeRemer|1969[/tpl] Later, in 1977, memory optimizations for the LR parser were invented[tpl]citation|title=A Practical General Method for Constructing LR(k) Parsers|author=Pager, D.|work=Acta Informatica 7|pages=249–268|year=1977[/tpl] but still the LR parser was less memory-efficient than the simplified alternatives.
+In 1979, Frank DeRemer and Tom Pennello announced a series of optimizations for the LALR parser that would further improve its memory efficiency.[tpl]citation|title=Efficient Computation of LALR(1) Look-Ahead Sets|author=Frank DeRemer, Thomas Pennello|work=Sigplan Notices - SIGPLAN, vol. 14, no. 8|pages=176–187|year=1979[/tpl] The formal presentation of these optimizations was made in 1982.[tpl]cite web|title=Efficient Computation of LALR(1) Look-Ahead Sets|url=http://3e8.org/pub/scheme/doc/parsing/Efficient%20Computation%20of%20LALR(1)%20Look-Ahead%20Sets.pdf|author=Frank DeRemer, Thomas Pennello|work=TOPLAS vol. 4, no. 4|pages=615–649|year=1982[/tpl]
+
+==Overview==
+
+Formally the LALR parser generally refers to the LALR(1) parser,[tpl]efn|"LALR(1)" is pronounced as the initialism "el-ay-el-arr-one"[/tpl] just as the LR parser generally refers to the LR(1) parser. The "(1)" denotes one-token lookahead, to resolve differences between rule patterns during parsing. Similarly, there is an LALR(2) parser with two-token lookahead, and LALR(k) parsers with k-token lookup, but these are rare in actual use. The LALR parser is based on the LR(0) parser, so it can also be denoted LALR(1) = LA(1)LR(0) (1 token of lookahead, LR(0)) or more generally LALR(k) = LA(k)LR(0) (k tokens of lookahead, LR(0)). There is in fact a two-parameter family of LA(k)LR(j) parsers for all combinations of j and k, which can be derived from the LR(j + k) parser,Parsing Techniques: A Practical Guide, by Dick Grune and Ceriel J. H. Jacobs, "9.7 LALR(1)", p. 302 but these do not see practical use.
+As with other types of LR parsers, an LALR parser is quite efficient at finding the single correct bottom-up parse in a single left-to-right scan over the input stream, because it does not need to use backtracking. Being a lookahead parser by definition, it always uses a lookahead, with [tpl]j|LALR(1)[/tpl] being the most-common case.
+
+==Relation to other parsers==
+
+===LR parsers===
+
+The LALR(1) parser is strictly less powerful than the LR(1) parser, and strictly more powerful than the SLR(1) parser, though they all use the same production rules. The simplification that the LALR parser introduces consists in merging rules that have identical kernel item sets, because during the LR(0) state-construction process the lookaheads are not known. This reduces the power of the parser because not knowing the lookahead symbols can confuse the parser as to which grammar rule to pick next, resulting in reduce/reduce conflicts. All conflicts that arise in applying a LALR(1) parser to an unambiguous LR(1) grammar are reduce/reduce conflicts. The SLR(1) parser performs further merging, which introduces additional conflicts.
+The standard example of an LR(1) grammar that cannot be parsed with the LALR(1) parser, exhibiting such a reduce/reduce conflict, is:"7.9 LR(1) but not LALR(1)", CSE 756: Compiler Design and Implementation, Eitan Gurari, Spring 2008"Why is this LR(1) grammar not LALR(1)?"
+   S → a E c
+     → a F d
+     → b F c
+     → b E d
+   E → e
+   F → e
+In the LALR table construction, two states will be merged into one state and later the lookaheads will be found to be ambiguous. The one state with lookaheads is:
+   E → e. {c,d}
+   F → e. {c,d}
+An LR(1) parser will create two different states (with non-conflicting lookaheads), neither of which is ambiguous. In an LALR parser this one state has conflicting actions (given lookahead c or d, reduce to E or F), a "reduce/reduce conflict"; the above grammar will be declared ambiguous by a LALR parser generator and conflicts will be reported.
+To recover, this ambiguity is resolved by choosing E, because it occurs before F in the grammar. However, the resultant parser will not be able to recognize the valid input sequence b e c, since the ambiguous sequence e c is reduced to (E → e) c, rather than the correct (F → e) c, but b E c is not in the grammar.
+
+===LL parsers===
+
+It is often incorrectly claimed that every LL(1) grammar is SLR(1) and thus LALR(1), but there are LL(1) grammars that are not LALR(1) (hence also not SLR(1)). However, a LL(1) grammar that satisfies certain additional technical conditions is LALR(1), and with stronger conditions is SLR(1).[tpl]sfn|Beatty|1982[/tpl] These conditions simply forbid certain useless production rules, and thus are satisfied in practice (assuming no errors in the grammar), so LL(1) grammars encountered in practice will generally be in LALR(1).
+
+==Implementation issues==
+
+Because the LALR parser performs a right derivation instead of the more intuitive left derivation, understanding how it works is quite difficult. This makes the process of finding a correct and efficient LALR grammar very demanding and time-consuming.[tpl]Citation needed|date=December 2012[/tpl] For the same reason, error-reporting can be quite hard because LALR parser errors cannot always be interpreted into messages with high-level terms meaningful for the end user.[tpl]Citation needed|date=December 2012[/tpl] However, any LR(k > 0) table makes it trivial to at least enumerate the various tokens that would have been valid options when a syntax error occurred, for low-level error messages. For this reason, the recursive descent parser is sometimes preferred over the LALR parser. This parser requires more hand-written code because of its lower language-recognition power. However, it does not have the special difficulties of the LALR parser because it performs left-derivation. Notable examples of this phenomenon are the C-language and C++ parsers of the Gnu Compiler Collection. These started as LALR parsers but were later changed to recursive-descent parsers."GCC 3.4 Release Series Changes, New Features, and Fixes", GCC.gnu.org."GCC 4.1 Release Series Changes, New Features, and Fixes", GCC.gnu.org.
+
+==See also==
+
+==Notes==
+
+==References==
+
+|type=Ph.D.
+|title=Practical Translators for LR(k) languages
+|url=http://publications.csail.mit.edu/lcs/pubs/pdf/MIT-LCS-TR-065.pdf
+|first=Franklin L. |last=DeRemer
+|publisher=MIT
+|year=1969
+|ref=harv}}
+
+==External links==
+
+

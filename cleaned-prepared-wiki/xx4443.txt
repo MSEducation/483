@@ -1,0 +1,91 @@
+[[Hausdorff dimension]]
+
+CATEGORIES: Fractals, Metric geometry, Dimension theory
+
+In mathematics, the Hausdorff dimension (also known as the Hausdorff–Besicovitch dimension) is an extended non-negative real number associated with any metric space. The Hausdorff dimension generalizes the notion of the dimension of a real vector space. That is, the Hausdorff dimension of an n-dimensional inner product space equals n. This means, for example, the Hausdorff dimension of a point is zero, the Hausdorff dimension of a line is one, and the Hausdorff dimension of the plane is two. There are, however, many irregular sets that have noninteger Hausdorff dimension. The concept was introduced in 1918 by the mathematician Felix Hausdorff. Many of the technical developments used to compute the Hausdorff dimension for highly irregular sets were obtained by Abram Samoilovitch Besicovitch.
+
+Intuition
+
+The intuitive concept of dimension of a geometric object is the number of independent parameters one needs to pick out a unique point inside. However, any point specified by two parameters can be instead specified by one, because the cardinality of the real plane is equal to the cardinality of the real line (this can be seen by an argument involving interweaving the digits of two numbers to yield a single number encoding the same information.) The example of a space-filling curve shows that one can even take one real number into two both surjectively (so all pairs of numbers are covered) and continuously, so that a one-dimensional object completely fills up a higher-dimensional object.
+Every space filling curve hits some points multiple times, and does not have a continuous inverse. It is impossible to map two dimensions onto one in a way that is continuous and continuously invertible. The topological dimension explains why. The Lebesgue covering dimension is defined as the minimum number of overlaps that small open balls need to have in order to completely cover the object. When one tries to cover a line by dropping open intervals on it, one always ends up covering some points twice. Covering a plane with disks, one ends up covering some points three times, etc. The topological dimension indicates how many different little balls connect a given point to other points in the space, generically. It indicates how difficult it is to break a geometric object apart into pieces by removing slices.
+But the topological dimension doesn't determine volumes. A curve that is almost space-filling can still have topological dimension one, even if it fills up most of the area of a region. A fractal has an integer topological dimension, but in terms of the amount of space it takes up, it behaves as a higher-dimensional space. The Hausdorff dimension defines the size notion of dimension, which requires a notion of radius, or metric. 
+Consider the number N(r) of balls of radius at most r required to cover X completely. When r is small, N(r) is large. For a "well-behaved" set X, the Hausdorff dimension is the unique number d such that N(r) grows as 1/rd as r approaches zero. The precise definition requires that the dimension "d" so defined is a critical boundary between growth rates that are insufficient to cover the space, and growth rates that are overabundant.
+For shapes that are smooth, or shapes with a small number of corners, the shapes of traditional geometry and science, the Hausdorff dimension is an integer. But Benoît Mandelbrot observed that fractals, sets with noninteger Hausdorff dimensions, are found everywhere in nature. He observed that the proper idealization of most rough shapes you see around you is not in terms of smooth idealized shapes, but in terms of fractal idealized shapes:
+ clouds are not spheres, mountains are not cones, coastlines are not circles, and bark is not smooth, nor does lightning travel in a straight line.  
+The Hausdorff dimension is a successor to the less sophisticated but in practice very similar box-counting dimension or Minkowski–Bouligand dimension. This counts the squares of graph paper in which a point of X can be found as the size of the squares is made smaller and smaller. For fractals that occur in  nature, the two notions coincide. The packing dimension is yet another similar notion. These notions (packing dimension, Hausdorff dimension, Minkowski–Bouligand dimension) all give the same value for many shapes, but there are well documented exceptions.
+
+Formal definitions
+
+Hausdorff content
+
+Let X be a metric space. If S ⊂ X and d ∈ [0, ∞), the d-dimensional Hausdorff content of S is defined by
+
+Hausdorff dimension
+
+The Hausdorff dimension of X is defined by
+Equivalently, dimH(X) may be defined as the infimum of the set of d ∈ [0, ∞) such that the d-dimensional Hausdorff measure of X is zero. This is the same as the supremum of the set of d ∈ [0, ∞) such that the d-dimensional Hausdorff measure of X is infinite (except that when this latter set of numbers d is empty the Hausdorff dimension is zero).
+
+Examples
+
+Properties of Hausdorff dimension
+
+Hausdorff dimension and inductive dimension
+
+Let X be an arbitrary separable metric space. There is a topological notion of inductive dimension for X which is defined recursively. It is always an integer (or +∞) and is denoted dimind(X).
+Theorem. Suppose X is non-empty. Then 
+Moreover,
+where Y ranges over metric spaces homeomorphic to X. In other words, X and Y have the same underlying set of points and the metric dY of Y is topologically equivalent to dX. 
+These results were originally established by Edward Szpilrajn (1907–1976). The treatment in Chapter VII of the Hurewicz and Wallman reference is particularly recommended.
+
+Hausdorff dimension and Minkowski dimension
+
+The Minkowski dimension is similar to the Hausdorff dimension, except that it is not associated with a measure. The Minkowski dimension of a set is at least as large as the Hausdorff dimension. In many situations, they are equal. However, the set of rational points in 1 has Hausdorff dimension zero and Minkowski dimension one. There are also compact sets for which the Minkowski dimension is strictly larger than the Hausdorff dimension.
+
+Hausdorff dimensions and Frostman measures
+
+If there is a measure μ defined on Borel subsets of a metric space X such that μ(X) > 0 and μ(B(x, r)) ≤ rs holds for some constant s > 0 and for every ball B(x, r) in X, then dimHaus(X) ≥ s. A partial converse is provided by Frostman's lemma. That article also discusses another useful characterization of the Hausdorff dimension.
+
+Behaviour under unions and products
+
+This can be verified directly from the definition.
+If X and Y are metric spaces, then the Hausdorff dimension of their product satisfies
+This inequality can be strict. It is possible to find two sets of dimension 0 whose product has dimension 1. In the opposite direction, it is known that when X and Y are Borel subsets of Rn, the Hausdorff dimension of X × Y is bounded from above by the Hausdorff dimension of X plus the upper packing dimension of Y. These facts are discussed in Mattila (1995).
+
+Self-similar sets
+
+Many sets defined by a self-similarity condition have dimensions which can be determined explicitly. Roughly, a set E is self-similar if it is the fixed point of a set-valued transformation ψ, that is ψ(E) = E, although the exact definition is given below. 
+ Theorem. Suppose 
+ are contractive mappings on Rn with contraction constant rj 
+The theorem follows from Stefan Banach's contractive mapping fixed point theorem applied to the complete metric space of non-empty compact subsets of Rn with the Hausdorff distance.
+
+The open set condition
+
+To determine the dimension of the self-similar set A (in certain cases), we need a technical condition called the open set condition (OSC) on the sequence of contractions ψi.
+There is a relatively compact open set V such that
+where the sets in union on the left are pairwise disjoint. 
+The open set condition is a separation condition that ensures the images ψi(V) do not overlap "too much".
+Theorem. Suppose the open set condition holds and each ψi is a similitude, that is a composition of an isometry and a dilation around some point. Then the unique fixed point of ψ is a set whose Hausdorff dimension is s where s is the unique solution of
+The contraction coefficient of a similitude is the magnitude of the dilation.
+We can use this theorem to compute the Hausdorff dimension of the Sierpinski triangle (or sometimes called Sierpinski gasket). Consider three non-collinear points a1, a2, a3 in the plane R2 and let ψi be the dilation of ratio 1/2 around ai. The unique non-empty fixed point of the corresponding mapping ψ is a Sierpinski gasket and the dimension s is the unique solution of
+Taking natural logarithms of both sides of the above equation, we can solve for s, that is: s = ln(3)/ln(2).  The Sierpinski gasket is self-similar and satisfies the OSC. In general a set E which is a fixed point of a mapping
+is self-similar if and only if the intersections 
+where s is the Hausdorff dimension of E and Hs denotes Hausdorff measure. This is clear in the case of the Sierpinski gasket (the intersections are just points), but is also true more generally:
+Theorem. Under the same conditions as the previous theorem, the unique fixed point of ψ is self-similar.
+
+Existence of sets with prescribed Hausdorff dimension
+
+By generalizing the construction of the Cantor set, it is easy to construct subsets of Euclidean spaces with arbitrary Hausdorff dimension.
+
+
+
+Notes
+
+
+
+ | last1=Marstrand
+ | first1=J. M. | title=The dimension of cartesian product sets | year=1954 | journal=Proc. Cambridge Philos. Soc.
+ | volume=50
+ | issue=3
+ | pages=198–202
+ | doi=10.1017/S0305004100029236|bibcode = 1954PCPS...50..198M }}
+ | last1=Mattila

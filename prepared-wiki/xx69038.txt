@@ -1,0 +1,65 @@
+[[HP-49 series]]
+
+CATEGORIES: Computer algebra systems, Programmable calculators, Graphing calculators, HP calculators
+
+The HP 49G series are Hewlett-Packard (HP) manufactured graphing calculators. They are the successors of the popular HP-48 series.
+There are four calculators in the 49 series of HP graphing calculators. These calculators have both algebraic and RPN entry modes, and can perform numeric and symbolic calculations using the built-in Computer Algebra System (CAS), which is an improved ALG48 and Erable combination from the HP-48 series.
+
+==HP 49G==
+
+Released in August 1999, this calculator was the first HP unit to break from the more traditional subdued coloration. In addition to having a metallic blue color, the keyboard material was rubber and did not have the traditional HP calculator hinged keyboard feel. In addition, it lacked a large ENTER key which was seen by many as the defining characteristic of an HP calculator. These changes were disliked by many traditional HP calculator users.
+The 49G incorporated many of the most powerful interface and mathematics tools available on the HP-48 series into the firmware of the new 49G, including the ability to easily decompile and compile both SysRPL and Saturn assembly code on the unit.
+The 49G was the first HP calculator to use flash memory and have an upgradable ROM. In addition, it had a hard sliding case as opposed to the soft pouches supplied with the HP-48 series. The last officially supported ROM update for this calculator was 1.18, but several unofficial ROMs were released by the developers. The final ROM version was 1.19-6.  Several ROM versions for the successor HP-49g+ and HP-50G calculators have also been released in builds intended for PC emulation software that lacked full emulation of the successors' ARM CPU.  Until at least ROM version 2.09, those emulator builds could be installed on the original HP-49G.
+In 2003, the CAS source code of the 49G ROM was released under the LGPL. In addition, this release included an interactive geometry program and some commands to allow compatibility with certain programs written for the newer 49g+ calculator. Due to licensing restrictions, the recompiled ROM cannot be redistributed.
+
+==HP 49g+==
+
+In August 2003, HP released the 49g+. This unit had metallic gold coloration and was backward compatible with the HP 49G. Instead of the rubber keyboard found on the HP 49G, this calculator's keyboard had plastic hinges intended to return the feel of older HP calculators, and also included a pouch to protect the unit, similar to those included with older HP models. It was designed and manufactured by Kinpo Electronics for HP.
+This calculator featured an entirely new processor architecture, USB and IrDA (infrared) communication, memory expansion via an SD card, and a slightly larger screen, as well as other improvements over the previous model.
+The calculator system did not run directly on the new ARM processor, but rather on an emulation layer for the older Saturn processors found in previous HP calculators. This allowed the 49g+ to maintain binary-level compatibility with most of the programs written for the HP 49G calculator, as well as source code-level compatibility with many written for the HP 48 series.
+Despite the emulation, the 49g+ was still much faster than any older model of HP calculator. The speed increase over the HP 49G is around 3-7 times depending on the task. It is even possible to run programs written for the ARM processor thus bypassing the emulation layer completely. A port of the GNU C compiler is also available (see HPGCC below).
+
+==HP 48gII==
+
+The HP 48gII was not a replacement for the HP 48G series as its name suggested. Rather it was a 49g+, also with an ARM processor (unlike the 48g), but with reduced memory, no expansion via an SD memory card, lower clock speed, and a smaller screen. This calculator seems to target users that desire mathematical capability, but have no desire to install many programs.
+
+==HP 50g==
+
+The HP 50g is the latest calculator in the "49" series. The most apparent change is a revised color scheme, returning the unit to a more traditional HP calculator appearance. Using black plastic for the entire body, white, orange and yellow are used for function shift keys. The back shell is textured more deeply than the 49g+ to provide a more secure grip. A blue color variant is available as well.
+The form and size of the calculator shell is identical to the current 49g+ series, but four AAA batteries are used as opposed to three in previous models. In addition to all the features of the 49g+, the 50g also includes the full equation library found in the 48G series(also available for the 49g+ with ROM 2.06 and above), as well as the periodic table library originally available as a plug-in card for the 48S series, as of ROM 2.15 (the latest, as of December 2012), and has an asynchronous serial port in addition to IrDA and USB ports of the 49g+. Like the 49g+, the range of the infrared port has been limited to about 10 cm (4 inches).
+The new asynchronous serial port is not a true RS-232 port as it uses different voltage levels and a non-standard connector. An external converter/adapter is required to interface with RS-232 equipment.
+The keyboard, the most often criticized feature of the 49g+ calculators, uses the new design introduced on the very last 49g+ calculators (hinged keys) to eliminate previous problems.
+A worldwide announcement regarding the availability of this calculator was made by HP in September 2006, and official details are available on the HP calculators webpage.HP 50g official press release, 2006-09-19
+
+==Programming==
+
+The HP 49 series of calculators support both algebraic and a stack-based programming language named RPL (ROM Procedural Language or Reverse Polish Lisp), a combination of Reverse Polish Notation (RPN) and Lisp. RPL adds the concepts of lists and functions to stack-based programming, allowing the programmer to pass unevaluated code as arguments to functions, or return unevaluated code from a function by leaving it on the stack.
+The highest level language is User RPL, consisting of sequences of built-in postfix operations, optionally including loops and conditionals. Every User RPL command checks the stack for its particular arguments and returns an error if they are incorrect or not present. Below User RPL is System RPL (SysRPL). Most System RPL commands lack argument checking and are defined only for specific argument types (e.g. short integer vs. long integer), making System RPL programs run dramatically faster than  equivalent User RPL ones. In addition, System RPL includes many advanced functions that are not available in User RPL. System RPL programs can be created without the use of PC software (although it is available), thanks to the calculator's built-in compiler, MASD. MASD also can compile Saturn assembly language and, with the latest ROM revision for the 49g+/50g, ARM assembly language on the calculator itself. Many tools exist to assist programmers and make the calculator a powerful programming environment.
+Saturn assembly, and, on the 49g+/50g, ARM assembly and C, are also programmable using desktop based compilers.  See also the programs available for the HP-48 series.
+
+==HPGCC for the 49g+/50g==
+
+HPGCC is an implementation of the GCC compiler, released under the GNU GPL. It is now mainly targeted at the ARM based 49g+/50g calculator. Previous versions of HPGCC supported the other ARM based calculator models (the 48gII, and the 39g+/39gs/40gs), but this was removed due to lack of interest and compatibility issues. Formally, HPGCC is a cross-compiler; it compiles code for the ARM-based HP calculators, but runs on a PC rather than the target system.
+The latest version of HPGCC offers many enhancements from earlier versions. Most notably, the compiled code is now in ARM Thumb mode by default, resulting in great reduction in code size with little performance hit. Besides implementing most of ANSI C, there are device-specific libraries that allow access to things like the calculator's RPN stack, memory and piezoelectric buzzer. The GCC compiler itself is the property of the Free Software Foundation, and they state that its use does not impose any particular licensing restrictions on any of its output.  However, the libraries included with HPGCC, including routines necessary to actually invoke any HPGCC-compiled program on an actual calculator, are released under a modified GPL license, contrary to GCC on many other platforms which use a more permissive license for their libraries.  Thus any programs that link against them can only be distributed if they are also released under the GPL (with an exception for "non-profit" software).
+Linux, Windows, and Mac OS X versions are available for download. The Windows version also includes a version of Programmer's Notepad for a basic IDE.
+
+==Emulators for the 49 series==
+
+There are several emulators available for the HP 49G calculator.  A version of Emu48 is available in the Debug4x IDE that allows emulation of most of the features of the 49g+/50g but will not execute any ARM-based code.
+An ARM-based emulator, x49gp, has been released and allows the true emulation of the 49g+/50g ARM processor and successfully runs HPGCC 2 and 3 compiled programs.  At this time the emulator is only available for Linux and Mac OS X and must be compiled from the source.  (See README.QUICKSTART for details.)
+An emulator for the HP48 is available for iOS and Maemo devices. The free app m48 emulates a HP 48GX, and the paid version also supports HP 49G. So far, there are no 49g+/50g emulators for smartphones with the exception of http://itunes.apple.com/ag/app/hp50g/id553279622?mt=8 HP50g for iPhone and iPad released in October 2012.
+An emulator for Microsoft Windows Mobile (PPC, smartphones) is available.HP 40g emulator for Windows Mobile
+An emulator for the HP48 also is available for Android (Droid48).HP Droid 48 emulator for Android phones
+Other HP48 HP49 and HP49G+/HP50G emulators for Android (without arm support).http://sites.google.com/site/olivier2smet2/home
+
+==ROM Updates==
+
+The 49 series allows the user to update the ROM to gain enhanced features or bug fixes. Official ROM updates are released by HP. Unsupported unofficial ROM updates are also available at sites such as hpcalc.org.
+
+==See also==
+
+==References==
+
+==External links==
+
+

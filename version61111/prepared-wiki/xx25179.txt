@@ -1,0 +1,48 @@
+[[Adapter pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code
+
+In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used from another interface. It is often used to make existing classes work with others without modifying their source code. 
+
+==Definition==
+
+An adapter helps two incompatible interfaces to work together. This is the real world definition for an adapter. The adapter design pattern is used when you want two different classes with incompatible interfaces to work together. Interfaces may be incompatible but the inner functionality should suit the need. The Adapter pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients.
+
+==Structure==
+
+There are two types of adapter patterns:
+
+===Object Adapter  pattern===
+
+In this type of adapter pattern, the adapter contains an instance of the class it wraps. In this situation, the adapter makes calls to the instance of the wrapped object.
+
+===Class Adapter pattern===
+
+This type of adapter uses multiple polymorphic interfaces to achieve its goal. The adapter is created by implementing or inheriting both the interface that is expected and the interface that is pre-existing. It is typical for the expected interface to be created as a pure interface class, especially in languages such as Java that do not support multiple inheritance.
+The adapter pattern is useful in situations where an already existing class provides some or all of the services you need but does not use the interface you need. A good real life example is an adapter that converts the interface of a Document Object Model of an XML document into a tree structure that can be displayed. A link to a tutorial that uses the adapter design pattern is listed in the links below.
+
+===A further form of runtime Adapter pattern===
+
+There is a further form of runtime adapter pattern as follows:
+It is desired for [tpl]Java|classA[/tpl] to supply [tpl]Java|classB[/tpl] with some data, let us suppose some [tpl]Java|String[/tpl] data. A compile time solution is:
+However, suppose that the format of the string data must be varied. A compile time solution is to use inheritance:
+and perhaps create the correctly "formatting" object at runtime by means of the Factory pattern.
+A solution using "adapters" proceeds as follows:
+(i) define an intermediary "Provider" interface, and write an implementation of that Provider interface that wraps the source of the data, [tpl]Java|ClassA[/tpl] in this example, and outputs the data formatted as appropriate:
+(ii) Write an Adapter class that returns the specific implementation of the Provider:
+(iii) Register the [tpl]Java|Adapter[/tpl] with a global registry, so that the [tpl]Java|Adapter[/tpl] can be looked up at runtime:
+(iv) In your code, when you wish to transfer data from [tpl]Java|ClassA[/tpl] to [tpl]Java|ClassB[/tpl], write:
+or more concisely:
+(v) The advantage can be seen in that, if it is desired to transfer the data in a second format, then look up the different adapter/provider:
+(vi) And if it is desired to output the data from [tpl]Java|ClassA[/tpl] as, say, image data in [tpl]Java|Class C[/tpl]:
+(vii) In this way, the use of adapters and providers allows multiple "views" by [tpl]Java|ClassB[/tpl] and [tpl]Java|ClassC[/tpl] into [tpl]Java|ClassA[/tpl] without having to alter the class hierarchy. In general, it permits a mechanism for arbitrary data flows between objects that can be retrofitted to an existing object hierarchy.
+
+===Implementation of Adapter pattern===
+
+When implementing the adapter pattern, for clarity use the class name [tpl]Java|AdapteeClassNameToInterfaceAdapter[/tpl], for example [tpl]Java|DAOToProviderAdapter[/tpl]. It should have a constructor method with adaptee class variable as parameter. This parameter will be passed to the instance member of [tpl]Java|AdapteeClassNameToInterfaceAdapter[/tpl].
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,40 @@
+[[GiFT]]
+
+CATEGORIES: Free file sharing software, File sharing software for Linux, Free software programmed in C, Cross-platform software, File sharing networks
+
+giFT Internet File Transfer (giFT) is a computer software daemon that allows several file sharing protocols to be used with a simple client having a graphical user interface (GUI).  The client dynamically loads plugins implementing the protocols, as they are required.
+
+==General==
+
+Clients implementing frontends for the giFT daemon communicate with its process using a lightweight network protocol. This allows the networking protocol code to be completely abstracted from the user interface. The giFT daemon is written using relatively cross-platform C code, which means that it can be compiled for and executed on a big variety of operating systems. There are several giFT GUI front-ends for Microsoft Windows, Apple Macintosh, and Unix-like operating systems.
+The name giFT (giFT Internet File Transfer) is a so-called recursive acronym, which means that it refers to itself in the expression for which it stands.
+One of the biggest drawbacks of the giFT engine is that it currently lacks Unicode support, which prevents sharing files with Unicode characters in their file names (such as "ø","ä", "å", "é" etc.).[tpl]Citation needed|date=May 2009[/tpl] Also, giFT lacks many features needed to use the gnutella network effectively.
+
+==Available plugins==
+
+Available protocols are:http://gift.sourceforge.net/software/plugins.mhtml
+
+==OpenFT protocol==
+
+giFT's sibling project is OpenFT, a peer-to-peer file sharing network protocol that has a structure in which nodes are divided into 'search' nodes and 'index' supernodes in addition to common nodes. Since both projects are related very closely, when one says 'OpenFT', one can mean either one of two different things: the OpenFT protocol, or the implementation in the form of a plugin for giFT.
+The name "OpenFT" stands for "Open FastTrack".  Despite this, the OpenFT protocol is an entirely new protocol design: only a few ideas in the OpenFT protocol are drawn from what little was known about the FastTrack protocol at the time OpenFT was designed.
+
+===OpenFT File sharing protocol===
+
+Like FastTrack and Napster, OpenFT is a network where nodes submit lists of shared files to other nodes to keep track of which files are available on the network.  This reduces the bandwidth consumed from search requests at the price of additional memory and processing power on the nodes that store that information.  The transmission of shared lists is not fully recursive:  a node will only transmit its list of shared files to a single search node randomly chosen as that node's "parent", and the list of those files will not be further transmitted to other nodes.From the giFT documentation at the giFT homepage
+OpenFT is also similar to the gnutella network in that search requests are recursively forwarded in between the nodes that keep track of the shared files.
+There are three different kinds of nodes on the OpenFT network:
+A node can be both a SEARCH and an INDEX node.
+USER nodes will pick three SEARCH nodes to be their PARENT nodes. They will submit their shares list to them if the PARENT accepts the USER as its CHILD. By default, SEARCH nodes will be PARENTS for a maximum of 500 CHILD nodes.
+
+==giFT front-ends==
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

@@ -1,0 +1,70 @@
+[[Affine transformation]]
+
+CATEGORIES: Affine geometry, Transformation (function)
+
+In geometry, an affine transformation or affine mapBerger, Marcel (1987), p. 38. or an affinity (from the Latin, affinis, "connected with") is a function between affine spaces which preserves points, straight lines and planes. Also, sets of parallel lines remain parallel after an affine transformation. An affine transformation does not necessarily preserve angles between lines or distances between points, though it does preserve ratios of distances between points lying on a straight line. 
+Examples of affine transformations include translation, scaling, homothety, similarity transformation, reflection, rotation, shear mapping, and compositions of them in any combination and sequence. Every linear transformation is affine, but not every affine transformation is linear.
+For many purposes an affine space can be thought of as Euclidean space, though the concept of affine space is far more general (i.e., all Euclidean spaces are affine, but there are affine spaces that are non-Euclidean). In affine coordinates, which include Cartesian coordinates in Euclidean spaces, each output coordinate of an affine map is a linear function (in the sense of calculus) of all input coordinates. Another way to deal with affine transformations systematically is to select a point as the origin; then, any affine transformation is equivalent to a linear transformation (of position vectors) followed by a translation.
+
+==Mathematical Definition==
+
+or
+We can interpret this definition in a few other ways, as follows.
+===Alternative definition=== 
+we have[ref]
+[tpl]cite book|authors=Schneider, Philip K. & Eberly, David H.|title=Geometric Tools for Computer Graphics|publisher=Morgan Kaufmann|year=2003|isbn=978-1-55860-594-7|page=98|url=http://books.google.com/books?id=3Q7HGBx1uLIC&pg=PA98[/tpl][/ref]
+
+==Representation==
+
+===Augmented matrix===
+
+Using an augmented matrix and an augmented vector, it is possible to represent both the translation and the linear map using a single matrix multiplication. The technique requires that all vectors are augmented with a "1" at the end, and all matrices are augmented with an extra row of zeros at the bottom, an extra column—the translation vector—to the right, and a "1" in the lower right corner. If A is a matrix,
+is equivalent to the following
+The above mentioned augmented matrix is called affine transformation matrix, or projective transformation matrix (as it can also be used to perform Projective transformations).
+This representation exhibits the set of all invertible affine transformations as the semidirect product of Kn and GL(n, k).  This is a group under the operation of composition of functions,  called the affine group.
+Ordinary matrix-vector multiplication always maps the origin to the origin, and could therefore never represent a translation, in which the origin must necessarily be mapped to some other point. By appending the additional coordinate "1" to every vector, one essentially considers the space to be mapped as a subset of a space with an additional dimension. In that space, the original space occupies the subset in which the additional coordinate is 1. Thus the origin of the original space can be found at (0,0, ... 0, 1). A translation within the original space by means of a linear transformation of the higher-dimensional space is then possible (specifically, a shear transformation). The coordinates in the higher-dimensional space are an example of homogeneous coordinates. If the original space is Euclidean, the higher dimensional space is a real projective space.
+The advantage of using homogeneous coordinates is that one can combine any number of affine transformations into one by multiplying the respective matrices. This property is used extensively in computer graphics, computer vision and robotics.
+
+==Properties==
+
+An affine transformation preserves:
+An affine transformation is invertible if and only if A is invertible. In the matrix representation, the inverse is:
+The invertible affine transformations (of an affine space onto itself) form the affine group, which has the general linear group of degree n as subgroup and is itself a subgroup of the general linear group of degree n + 1.
+The similarity transformations form the subgroup where A is a scalar times an orthogonal matrix. For example, if the affine transformation acts on the plane and if the determinant of A is 1 or −1 then the transformation is an equi-areal mapping. Such transformations form a subgroup called the equi-affine groupOswald Veblen (1918) Projective Geometry, volume 2, pp. 105–7. A transformation that is both equi-affine and a similarity is an isometry of the plane taken with Euclidean distance.
+Each of these groups has a subgroup of transformations which preserve orientation: those where the determinant of A is positive. In the last case this is in 3D the group of rigid body motions (proper rotations and pure translations).
+If there is a fixed point, we can take that as the origin, and the affine transformation reduces to a linear transformation. This may make it easier to classify and understand the transformation. For example, describing a transformation as a rotation by a certain angle with respect to a certain axis may give a clearer idea of the overall behavior of the transformation than describing it as a combination of a translation and a rotation. However, this depends on application and context.
+
+==Affine transformation of the plane==
+
+Affine transformations in two real dimensions include:
+To visualise the general affine transformation of the Euclidean plane, take labelled parallelograms ABCD and A′B′C′D′. Whatever the choices of points, there is an affine transformation T of the plane taking A to A′, and each vertex similarly. Supposing we exclude the degenerate case where ABCD has zero area, there is a unique such affine transformation T. Drawing out a whole grid of parallelograms based on ABCD, the image T(P) of any point P is determined by noting that T(A) = A′, T applied to the line segment AB is A′B′, T applied to the line segment AC is A′C′, and T respects scalar multiples of vectors based at A. A, E, F are collinear then the ratio length(AF)/length(AE) is equal to length(A′F′)/length(A′E′). Geometrically T transforms the grid based on ABCD to that based in A′B′C′D′.
+Affine transformations don't respect lengths or angles; they multiply area by a constant factor
+A given T may either be direct (respect orientation), or indirect (reverse orientation), and this may be determined by its effect on signed areas (as defined, for example, by the cross product of vectors).
+
+==Examples of affine transformations==
+
+===Affine transformations over the real numbers===
+
+Functions [tpl]nowrap|1=f : R → R[/tpl], [tpl]nowrap|1=f(x) = mx + c[/tpl] with m and c constant, are commonplace affine transformations.
+
+===Affine transformation over a finite field===
+
+The following equation expresses an affine transformation in GF(28):
+For instance, the affine transformation of the element {a} = y7 + y6 + y3 + y = {11001010} in big-endian binary notation = {CA} in big-endian hexadecimal notation, is calculated as follows:
+Thus, {a′} = y7 + y6 + y5 + y3 + y2 + 1 = {11101101} = {ED}.
+
+===Affine transformation in plane geometry===
+
+In ℝ2, the transformation shown at right is accomplished using the map given by:
+Transforming the three corner points of the original triangle (in red) gives three new points which form the new triangle (in blue).  This transformation skews and translates the original triangle.
+In fact, all triangles are related to one another by affine transformations. This is also true for all parallelograms, but not for all quadrilaterals.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

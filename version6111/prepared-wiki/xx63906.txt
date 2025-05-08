@@ -1,0 +1,36 @@
+[[Stored procedure]]
+
+CATEGORIES: Database management systems, Subroutines
+
+A stored procedure is a subroutine available to applications that access a relational database system. A stored procedure (sometimes called a proc, sproc, StoPro, StoredProc, sp or SP) is actually stored in the database data dictionary.
+Typical use for stored procedures include data validation (integrated into the database) or access control mechanisms.  Furthermore, stored procedures can consolidate and centralize logic that was originally implemented in applications.  Extensive or complex processing that requires execution of several SQL statements is moved into stored procedures, and all applications call the procedures. One can use nested stored procedures by executing one stored procedure from within another.
+Stored procedures are similar to user-defined functions (UDFs). The major difference is that UDFs can be used like any other expression within SQL statements, whereas stored procedures must be invoked using the CALL statement.Call Procedure
+ CALL procedure(...)
+or
+ EXECUTE procedure(...)
+Stored procedures may return result sets, i.e. the results of a SELECT statement.  Such result sets can be processed using cursors, by other stored procedures, by associating a result set locator, or by applications. Stored procedures may also contain declared variables for processing data and cursors that allow it to loop through multiple rows in a table. Stored procedure flow control statements typically include IF, WHILE, LOOP, REPEAT, and CASE statements, and more. Stored procedures can receive variables, return results or modify variables and return them, depending on how and where the variable is declared.
+
+==Implementation==
+
+The exact and correct implementation of stored procedures varies from one database system to another. Most major database vendors support them in some form. Depending on the database system, stored procedures can be implemented in a variety of programming languages, for example SQL, Java, C, or C++. Stored procedures written in non-SQL programming languages may or may not execute SQL statements themselves.
+The increasing adoption of stored procedures led to the introduction of procedural elements to the SQL language in the SQL:1999 and SQL:2003 standards in the part SQL/PSM. That made SQL an imperative programming language. Most database systems offer proprietary and vendor-specific extensions, exceeding SQL/PSM. A standard specification for Java stored procedures exists as well as SQL/JRT.
+
+==Comparison with dynamic SQL==
+
+==Other uses==
+
+In some systems, stored procedures can be used to control transaction management; in others, stored procedures run inside a transaction such that transactions are effectively transparent to them. Stored procedures can also be invoked from a database trigger or a condition handler. For example, a stored procedure may be triggered by an insert on a specific table, or update of a specific field in a table, and the code inside the stored procedure would be executed. Writing stored procedures as condition handlers also allows database administrators to track errors in the system with greater detail by using stored procedures to catch the errors and record some audit information in the database or an external resource like a file.
+
+==Comparison with functions==
+
+==Comparison with prepared statements==
+
+Prepared statements take an ordinary statement or query and parameterize it so that different literal values can be used at a later time. Like stored procedures, they are stored on the server for efficiency and provide some protection from SQL injection attacks. Although simpler and more declarative, prepared statements are not ordinarily written to use procedural logic and cannot operate on variables. Because of their simple interface and client-side implementations, prepared statements are more widely reusable between DBMSs.
+
+==Disadvantages==
+
+==References==
+
+==External links==
+
+

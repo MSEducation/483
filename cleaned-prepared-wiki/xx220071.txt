@@ -1,0 +1,49 @@
+[[Capacitive sensing]]
+
+CATEGORIES: Pointing devices, User interface techniques, Computing input devices
+
+In electrical engineering, capacitive sensing is a technology, based on capacitive coupling, that takes human body capacitance as input. Capacitive sensors detect anything that is conductive or has a dielectric different from that of air.
+Many types of sensors use capacitive sensing, including sensors to detect and measure proximity, position or displacement, humidity, fluid level, and acceleration. Human interface devices based on capacitive sensing, such as trackpads, Capacitive sensors can also replace mechanical buttons. There is also a musical instrument, the theremin, that uses capacitive sensing to allow a human player to control volume and pitch without physically touching the instrument.
+
+Design
+
+Capacitive sensors are constructed from many different media, such as copper, Indium tin oxide (ITO) and printed ink. Copper capacitive sensors can be implemented on standard FR4 PCBs as well as on flexible material. ITO allows the capacitive sensor to be up to 90% transparent (for one layer solutions, such as touch phone screens). Size and spacing of the capacitive sensor are both very important to the sensor's performance. In addition to the size of the sensor, and its spacing relative to the ground plane, the type of ground plane used is very important. Since the parasitic capacitance of the sensor is related to the electric field's (e-field) path to ground, it is important to choose a ground plane that limits the concentration of e-field lines with no conductive object present.
+Designing a capacitance sensing system requires first picking the type of sensing material (FR4, Flex, ITO, etc.). One also needs to understand the environment the device will operate in, such as the full operating temperature range, what radio frequencies are present and how the user will interact with the interface.
+There are two types of capacitive sensing system: mutual capacitance,US Pat No 5,305,017 5,861,875 where the object (finger, conductive stylus) alters the mutual coupling between row and column electrodes, which are scanned sequentially;e.g. U.S. Pat. No. 4,736,191 and self- or absolute capacitance where the object (such as a finger) loads the sensor or increases the parasitic capacitance to ground. In both cases, the difference of a preceding absolute position from the present absolute position yields the relative motion of the object or finger during that time. The technologies are elaborated in the following section.
+
+Surface capacitance
+
+In this basic technology, only one side of the insulator is coated with conductive material. A small voltage is applied to this layer, resulting in a uniform electrostatic field.
+
+Projected capacitance
+
+Projected capacitive touch (PCT) technology is a capacitive technology which allows more accurate and flexible operation, by etching the conductive layer. An X-Y grid is formed either by etching one layer to form a grid pattern of electrodes, or by etching two separate, perpendicular layers of conductive material with parallel lines or tracks to form the grid; comparable to the pixel grid found in many liquid crystal displays (LCD).
+The greater resolution of PCT allows operation with no direct contact, such that the conducting layers can be coated with further protective insulating layers, and operate even under screen protectors, or behind weather and vandal-proof glass. Because the top layer of a PCT is glass, PCT is a more robust solution versus resistive touch technology. Depending on the implementation, an active or passive stylus can be used instead of or in addition to a finger. This is common with point of sale devices that require signature capture. Gloved fingers may or may not be sensed, depending on the implementation and gain settings. Conductive smudges and similar interference on the panel surface can interfere with the performance. Such conductive smudges come mostly from sticky or sweaty finger tips, especially in high humidity environments. Collected dust, which adheres to the screen because of moisture from fingertips can also be a problem. 
+There are two types of PCT: self capacitance, and mutual capacitance.
+Mutual capacitive sensors have a capacitor at each intersection of each row and each column. A 12-by-16 array, for example, would have 192 independent capacitors. A voltage is applied to the rows or columns. Bringing a finger or conductive stylus near the surface of the sensor changes the local electric field which reduces the mutual capacitance. The capacitance change at every individual point on the grid can be measured to accurately determine the touch location by measuring the voltage in the other axis. Mutual capacitance allows multi-touch operation where multiple fingers, palms or styli can be accurately tracked at the same time.
+Self-capacitance sensors can have the same X-Y grid as mutual capacitance sensors, but the columns and rows operate independently. With self-capacitance, current senses the capacitive load of a finger on each column or row. This produces a stronger signal than mutual polinian
+s capacitance sensing, but it is unable to resolve accurately more than one finger, which results in "ghosting", or misplaced location sensing.
+
+Circuit design
+
+Capacitance is typically measured indirectly, by using it to control the frequency of an oscillator, or to vary the level of coupling (or attenuation) of an AC signal.
+The design of a simple capacitance meter is often based on a relaxation oscillator. The capacitance to be sensed forms a portion of the oscillator's RC circuit or LC circuit. Basically the technique works by charging the unknown capacitance with a known current. (The equation of state for a capacitor is i = C dv/dt. This means that the capacitance equals the current divided by the rate of change of voltage across the capacitor.) The capacitance can be calculated by measuring the charging time required to reach the threshold voltage (of the relaxation oscillator), or equivalently, by measuring the oscillator's frequency. Both of these are proportional to the RC (or LC) time constant of the oscillator circuit.
+The primary source of error in capacitance measurements is stray capacitance, which if not guarded against, may fluctuate between roughly 10 pF and 10 nF. The stray capacitance can be held relatively constant by shielding the (high impedance) capacitance signal and then connecting the shield to (a low impedance) ground reference. Also, to minimize the unwanted effects of stray capacitance, it is good practice to locate the sensing electronics as near the sensor electrodes as possible.
+Another measurement technique is to apply a fixed-frequency AC-voltage signal across a capacitive divider. This consists of two capacitors in series, one of a known value and the other of an unknown value. An output signal is then taken from across one of the capacitors. The value of the unknown capacitor can be found from the ratio of capacitances, which equals the ratio of the output/input signal amplitudes, as could be measured by an AC voltmeter. More accurate instruments may use a capacitance bridge configuration, similar to a wheatstone bridge. The capacitance bridge helps to compensate for any variability that may exist in the applied signal.
+
+Comparison with other touchscreen technologies
+
+Capacitive touchscreens are more responsive than resistive touchscreens, but less accurate.
+A standard stylus cannot be used for capacitive sensing, but special capacitive styli, which are conductive, exist for the purpose.  One can even make a capacitive stylus by putting some form of conductive material, such as anti-static conductive foam on the tip of a standard stylus. Some cannot be used with gloves, and can fail to sense correctly with even a small amount of water on the screen.
+Power supplies with a high level electronic noise can reduce accuracy.
+
+Styluses
+
+A stylus designed for resistive touchscreens will not register on capacitive sensors. Styluses that work on capacitive touchscreens primarily designed for fingers are required to simulate the difference in dielectric offered by a human digit.
+According to a report by ABI Research, styluses are especially needed in China for handwriting recognition because of the nature of its writing system.
+
+
+
+
+
+

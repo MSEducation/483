@@ -1,0 +1,69 @@
+[[LilyPond]]
+
+CATEGORIES: Scorewriters, GNU Project software, Free music software, Free software programmed in C++, Music notation file formats, Cross-platform software, Scorewriters for Linux
+
+GNU LilyPond is a computer program and file format for music engraving. One of LilyPond's major goals is to produce scores that are engraved with traditional layout rules, reflecting the era when scores were engraved by hand.
+LilyPond is cross-platform, and is available for several common operating systems; released under the terms of the GNU General Public License, LilyPond is free software.
+
+==History==
+
+The LilyPond project was started in 1996 by Han-Wen Nienhuys and Jan Nieuwenhuizen, after they decided to abandon work on MPP (MusiXTeX PreProcessor), a project they began collaborating on in 1995.[tpl]cite web |url=http://lilypond.org/doc/v2.12/Documentation/user/lilypond-learning/Preface |title=GNU LilyPond Learning Manual: Preface |accessdate=2010-02-16 [/tpl][tpl]cite web |url=http://github.com/janneke/mpp |title=MusiXTeX PreProcessor README |accessdate=2010-03-31 [/tpl] Its name was inspired both by the Rosegarden project and an acquaintance of Nienhuys and Nieuwenhuizen named Suzanne, a name that means lily in Hebrew (שׁוֹשָׁן).[tpl]cite web|last=Kroger|first=Pedro|title=Re: The origin of the name lilypond|url=http://lists.gnu.org/archive/html/lilypond-user/2004-09/msg00095.html|work=lilypond-user mailing list|publisher=lists.gnu.org|accessdate=19 March 2014|archiveurl=http://lists.gnu.org/archive/html/lilypond-user/2004-09/msg00095.html|archivedate=8 Sep 2004|year=2004[/tpl]
+
+===Version 1.0===
+
+LilyPond 1.0 was released on July 31, 1998, highlighting the development of a custom music font, Feta, and the complete separation of LilyPond from MusiXTeX.[tpl]cite mailing list |url=http://www.mail-archive.com/gnu-music-discuss@gnu.org/msg00313.html |title=GNU LilyPond 1.0 released |date=1998-07-31 |accessdate=2010-02-16 |mailinglist=gnu-music-discuss |last=Nienhuys |first=Han-Wen [/tpl]
+
+===Version 2.0===
+
+LilyPond 2.0 was released on September 24, 2003, announcing a simplified syntax model and a much more complete set of facilities for notating various styles of music.[tpl]cite mailing list |url=http://lists.gnu.org/archive/html/info-lilypond/2003-09/msg00008.html |title=LilyPond 2.0 – make beautiful music prints |date=2003-09-24 |accessdate=2010-02-16 |mailinglist=info-lilypond |last=Nienhuys |first=Han-Wen [/tpl]
+
+==Design==
+
+LilyPond is mostly written in C++ and uses Scheme (interpreted by GNU Guile) as its extension language, allowing for user customization.[tpl]cite web |url= http://lilypond.org/doc/v2.13/Documentation/contributor/lilypond-programming-languages |title=LilyPond programming languages |accessdate=2010-02-15 [/tpl]  It has a relatively large codebase; as of February 2010, the source comprises over 68,000 lines of C++ and 23,000 lines of Scheme code.[tpl]cite web |url=http://www.ohloh.net/p/lilypond/analyses/latest |title=GNU LilyPond Music Typesetter – Code Analysis |accessdate=2010-02-16 [/tpl]
+It uses a simple text notation for music input, which LilyPond interprets and processes in a series of stages.[tpl]cite web |url=http://lilypond.org/doc/v2.13/Documentation/contributor/overview-of-lilypond-architecture |title=Overview of LilyPond architecture |accessdate=2010-02-15 [/tpl]  In the final stage, music notation is output to PDF (via PostScript) or other graphical formats, such as SVG or PNG.  LilyPond also has the facility to generate MIDI files that correspond to the music notation output.
+LilyPond is a text-based application, so it does not contain its own graphical user interface to assist with score creation.  It does, however, have a flexible input language that strives to be simple, easing the learning curve for new users.  LilyPond adheres to the WYSIWYM paradigm; the workflow for typesetting music notation with LilyPond is similar to that of preparing documents with LaTeX.
+LilyPond supports experimental musical notation. Its guitar facilities support alternative tunings, such as major-thirds tuning.
+
+==Software features==
+
+LilyPond's primary goal is to produce output comparable to professionally engraved scores instead of output that looks mechanical and computer-generated.  An essay from the LilyPond website, written by LilyPond developers, explains some typographical issues addressed by LilyPond:[tpl]cite web |last1=Nienhuys |first1=Han-Wen |last2=Nieuwenhuizen |first2=Jan |url=http://lilypond.org/web/about/automated-engraving/ |title=Obsessed with putting ink on paper |accessdate=2010-02-15 [/tpl]
+
+==Overview of input syntax==
+
+The native input language for LilyPond is comprehensive, consisting of many commands needed for expressing any sort of articulation, dynamic, meter, etc.  The ability to embed Scheme code within a LilyPond source file permits arbitrary extensions to the input language and assists with algorithmic composition.  Some general syntactic features are listed below.
+LilyPond's interface with Pango requires the input character encoding to be UTF-8.[tpl]cite web |url=http://www.lilypond.org/doc/v2.16/Documentation/notation/special-characters#text-encoding |title=LilyPond Notation Reference: 3.3.3 Text encoding |accessdate=2013-08-12 [/tpl]  One benefit of this is that more than one language can be included in the same source file.
+
+==Example of LilyPond input file==
+
+===Corresponding output===
+
+===More complex output===
+
+Lilypond can also create extensively customised output.  An example is the short extract of the Stockhausen piano piece below.
+
+==Collaboration with other projects==
+
+Several graphical scorewriters—such as Rosegarden, MuseScore, NoteEdit, Canorus, Denemo, and TuxGuitar—can export files directly to LilyPond format.  Other graphical applications serve as front ends to LilyPond, including Frescobaldi and the LilyPondTool plugin for jEdit. Denemo integrates the PDF output of LilyPond in its display, allowing some editing operations on the final typeset score.
+The Mutopia Project, which distributes free content sheet music, uses LilyPond to typeset its music, as does Musipedia, a collaborative music encyclopedia.
+Emacs' org-mode contains support for embedding LilyPond scores into documents.github.com
+
+===Integration into MediaWiki===
+
+Lilypond is available in MediaWiki via the [tpl]srlink|:mw:Extension:Score|Score extension[/tpl] code.
+This, for example, transforms the notation
+ <nowiki><score vorbis="1">\relative c' { f d f a d f e d cis a c e a g f e }</score></nowiki>
+into
+\relative c' { f d f a d f e d cis a c e a g f e }
+
+==Comparison to other scorewriters==
+
+Finale and Sibelius are two proprietary scorewriters often compared to LilyPond.  Andrew Hawryluk, a LilyPond user, wrote a series of articles comparing output quality between Finale and LilyPond.[tpl]cite web |last=Hawryluk |first=Andrew |url=http://www.musicbyandrew.ca/finale-lilypond-1.html |title=Finale and LilyPond |accessdate=2010-02-15 [/tpl]
+Another scorewriter with comparable features to LilyPond is SCORE, but SCORE relies on manual positioning more than Lilypond does.
+
+==See also==
+
+==References==
+
+==External links==
+
+

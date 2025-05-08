@@ -1,0 +1,171 @@
+[[Bresenham's line algorithm]]
+
+CATEGORIES: Computer graphics algorithms, Digital geometry, Articles with example pseudocode
+
+The Bresenham line algorithm is an algorithm which determines which points in an n-dimensional raster should be plotted in order to form a close approximation to a straight line between two given points. It is commonly used to draw lines on a computer screen, as it uses only integer addition, subtraction and bit shifting, all of which are very cheap operations in standard computer architectures. It is one of the earliest algorithms developed in the field of computer graphics. A minor extension to the original algorithm also deals with drawing circles.
+While algorithms such as Wu's algorithm are also frequently used in modern computer graphics because they can support antialiasing, the speed and simplicity of Bresenham's line algorithm means that it is still important. The algorithm is used in hardware such as plotters and in the graphics chips of modern graphics cards. It can also be found in many software graphics libraries. Because the algorithm is very simple, it is often implemented in either the firmware or the graphics hardware of modern graphics cards.
+The label "Bresenham" is used today for a whole family of algorithms extending or modifying Bresenham's original algorithm. See further references below.
+
+History
+
+The algorithm was developed by Jack Elton Bresenham in 1962 at IBM. In 2001 Bresenham wrote:Paul E. Black. Dictionary of Algorithms and Data Structures, NIST. 
+ I was working in the computation lab at IBM's San Jose development lab. A Calcomp plotter had been attached to an IBM 1401 via the 1407 typewriter console. algorithm was in production use by summer 1962, possibly a month or so earlier. Programs in those days were freely exchanged among corporations so Calcomp (Jim Newland and Calvin Hefte) had copies. When I returned to Stanford in Fall 1962, I put a copy in the Stanford comp center library.
+ A description of the line drawing routine was accepted for presentation at the 1963 ACM national convention in Denver, Colorado. It was a year in which no proceedings were published, only the agenda of speakers and topics in an issue of Communications of the ACM. A person from the IBM Systems Journal asked me after I made my presentation if they could publish the paper. I happily agreed, and they printed it in 1965.
+Bresenham's algorithm was later modified to produce circles, the resulting algorithm being sometimes known as either "Bresenham's circle algorithm" or midpoint circle algorithm.
+
+The algorithm
+
+The common conventions will be used:
+The endpoints of the line are the pixels at (x0, y0) and (x1, y1), where the first coordinate of the pair is the column and the second is the row.
+Bresenham's algorithm chooses the integer y corresponding to the pixel center that is closest to the ideal (fractional) y for the same x; on successive columns y can remain the same or increase by 1.
+The general equation of the line through the endpoints is given by:
+Since we know the column, x, the pixel's row, y, is given by rounding this quantity to the nearest integer:
+In practice, the algorithm can track, instead of possibly large y values, a small error value between −0.5 and 0.5: the vertical distance between the rounded and the exact y values for the current x. 
+Each time x is increased, the error is increased by the slope; if it exceeds 0.5, the rasterization y is increased by 1 (the line continues on the next lower row of the raster) and the error is decremented by 1.0.
+In the following pseudocode sample plot(x,y) plots a point and abs returns absolute value:
+  '''function''' line(x0, x1, y0, y1)
+      ''int'' deltax := x1 - x0
+      ''int'' deltay := y1 - y0
+      ''real'' error := 0
+      ''real'' deltaerr := abs (deltay / deltax)    // Assume deltax != 0 (line is not vertical),
+            // note that this division needs to be done in a way that preserves the fractional part
+      ''int'' y := y0
+      '''for''' x '''from''' x0 '''to''' x1
+          plot(x,y)
+          error := error + deltaerr
+          '''if''' error ≥ 0.5 '''then'''
+              y := y + 1
+              error := error - 1.0
+
+Optimization
+
+The problem with this approach is that computers operate relatively slowly on fractional numbers like error and deltaerr; moreover, errors can accumulate over many floating-point additions. Working with integers will be both faster and more accurate. The trick we use is to multiply all the fractional numbers (including the constant 0.5) in the code above by deltax, which enables us to express them as integers. This results in a divide inside the main loop, however. To deal with this we modify how error is initialized and used so that rather than starting at zero and counting up towards 0.5, it starts at 0.5 and counts down to zero. The new program looks like this:
+  function line(x0, y0, x1, y1)
+      ''boolean'' steep := abs(y1 - y0) > abs(x1 - x0)
+      '''if''' steep '''then'''
+          swap(x0, y0)
+          swap(x1, y1)
+      '''if''' x0 > x1 '''then'''
+          swap(x0, x1)
+          swap(y0, y1)
+      ''int'' deltax := x1 - x0
+      ''int'' deltay := abs(y1 - y0)
+      ''int'' error := deltax / 2
+      ''int'' ystep
+      ''int'' y := y0
+      '''if''' y0 < y1 '''then''' ystep := 1 '''else''' ystep := -1
+      '''for''' x '''from''' x0 '''to''' x1
+          '''if''' steep '''then''' plot(y,x) '''else''' plot(x,y)
+          error := error - deltay
+          '''if''' error < 0 '''then'''
+              y := y + ystep
+              error := error + deltax
+Remark:
+If you need to control the points in order of appearance (for example to print several consecutive dashed lines) you will have to simplify this code by skipping the 2nd swap:
+ function line(x0, y0, x1, y1)
+      ''boolean'' steep := abs(y1 - y0) > abs(x1 - x0)
+      '''if''' steep '''then'''
+          swap(x0, y0)
+          swap(x1, y1)
+      ''int'' deltax := abs(x1 - x0)
+      ''int'' deltay := abs(y1 - y0)
+      ''int'' error := deltax / 2
+      ''int'' ystep
+      ''int'' y := y0
+      ''int'' inc REM added
+      '''if''' x0 < x1 '''then''' inc := 1 '''else''' inc := -1 REM added
+      '''if''' y0 < y1 '''then''' ystep := 1 '''else''' ystep := -1
+      ''for''' x ''from'' x0 ''to'' x1 '''with increment'' inc REM changed
+          '''if''' steep '''then''' plot(y,x) '''else''' plot(x,y)
+          REM increment here a variable to control the progress of the line drawing
+          error := error - deltay
+          '''if''' error < 0 '''then'''
+              y := y + ystep
+              error := error + deltax
+
+Simplification
+
+It is further possible to eliminate the swaps in the initialisation by considering the error calculation for both directions simultaneously:
+  '''function''' line(x0, y0, x1, y1)
+    dx := abs(x1-x0)
+    dy := abs(y1-y0) 
+    '''if''' x0 < x1 '''then''' sx := 1 '''else''' sx := -1
+    '''if''' y0 < y1 '''then''' sy := 1 '''else''' sy := -1
+    err := dx-dy
+    '''loop'''
+      ''plot''(x0,y0)
+      '''if''' x0 = x1 '''and''' y0 = y1 '''exit loop'''
+      e2 := 2*err
+      '''if''' e2 > -dy '''then''' 
+        err := err - dy
+        x0 := x0 + sx
+      '''end if'''
+      '''if''' e2 < dx '''then''' 
+        err := err + dx
+        y0 := y0 + sy 
+      '''end if'''
+    '''end loop'''
+
+Derivation
+
+To derive Bresenham's algorithm, two steps must be taken.  The first step is transforming the equation of a line from the typical slope-intercept form into something different; and then using this new equation for a line to draw a line based on the idea of accumulation of error.
+
+Line equation
+
+The slope-intercept form of a line is written as
+Letting this last equation be a function of x and y then it can be written as
+where the constants are
+and the point (2,3) is not on the line
+and neither is the point (2,1)
+Notice that the points (2,1) and (2,3) are on opposite sides of the line and f(x,y) evaluates to positive or negative.  A line splits a plane into halves and the half-plane that has a negative f(x,y) can be called the negative half-plane, and the other half can called the positive half-plane.  This observation is very important in the remainder of the derivation.
+
+Algorithm
+
+Clearly, the starting point is on the line
+only because the line is defined to start and end on integer coordinates (though it is entirely reasonable to want to draw a line with non-integer end points).
+The image to the right shows the blue point (2,2) chosen to be on the line with two candidate points in green (3,2) and (3,3).  The black point (3, 2.5) is the midpoint between the two candidate points.
+
+=Algorithm with Integer Arithmetic=
+
+Alternatively, the difference between points can be used instead of evaluating f(x,y) at midpoints. This alternative method allows for integer-only arithmetic, which is generally considered faster than using floating-point arithmetic. To derive the alternative method, define the difference to be as follows: 
+The decision for the second point can be written as
+All of the derivation for the algorithm is done.  One performance issue is the 1/2 factor in the initial value of D.  Since all of this is about the sign of the accumulated difference, then everything can be multiplied by 2 with no consequence.
+This results in an algorithm that uses only integer arithmetic.
+ plotLine(x0,y0, x1,y1)
+   dx=x1-x0
+   dy=y1-y0
+   D = 2*dy - dx
+   plot(x0,y0)
+   y=y0
+   for x from x0+1 to x1
+     if D > 0
+       y = y+1
+       plot(x,y)
+       D = D + (2*dy-2*dx)
+     else
+       plot(x,y)
+       D = D + (2*dy)
+The result of this plot is shown to the right.  The plotting can be viewed by plotting at the intersection of lines (blue circles) or filling in pixel boxes (yellow squares).  Regardless, the plotting is the same.
+
+All cases
+
+However, as mentioned above this is only for the first octant.  This means there are eight possible cases to consider. The simplest way to extend the same algorithm, if implemented in hardware, is to flip the co-ordinate system on the input and output of the single-octant drawer.
+
+Similar algorithms
+
+The Bresenham algorithm can be interpreted as slightly modified DDA (using 0.5 as error threshold instead of 0, which is required for non-overlapping polygon rasterizing).
+The principle of using an incremental error in place of division operations has other applications in graphics. It is possible to use this technique to calculate the U,V co-ordinates during raster scan of texture mapped polygons. The voxel heightmap software-rendering engines seen in some PC games also used this principle.
+Bresenham also published a Run-Slice (as opposed to the Run-Length) computational algorithm.
+An extension to the algorithm that handles thick lines was created by Alan Murphy at IBM.
+
+
+
+Notes
+
+
+
+Further reading
+
+
+
+

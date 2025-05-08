@@ -1,0 +1,227 @@
+[[Inverse function]]
+
+CATEGORIES: Basic concepts in set theory, Inverse functions
+
+In mathematics, an inverse function is a function that reverses another function: if the function [tpl]mvar|f[/tpl] applied to an input [tpl]mvar|x[/tpl] gives a result of [tpl]mvar|y[/tpl], then applying the inverse function [tpl]mvar|g[/tpl] to [tpl]mvar|y[/tpl] gives the result [tpl]mvar|x[/tpl], and vice versa. i.e. [tpl]math|1=f(x) = y[/tpl], and [tpl]math|1=g(y) = x[/tpl]. More directly, [tpl]math|1=g(f(x)) = x[/tpl], meaning [tpl]mvar|g[/tpl] composed with [tpl]mvar|f[/tpl] form an identity.
+A function [tpl]mvar|f[/tpl] that has an inverse is defined as invertible; the inverse function is then uniquely determined by [tpl]mvar|f[/tpl] and is denoted by [tpl]math|f −1[/tpl], read f inverse. Superscripted "[tpl]num|−1[/tpl]" does not refer to numerical exponentiation: see composition monoid for explanation of this notation.
+
+==Definitions==
+
+Instead of considering the inverses for individual inputs and outputs, one can think of the function as sending the whole set of inputs, the domain, to a set of outputs, the range. Let [tpl]mvar|f[/tpl] be a function whose domain is the set [tpl]mvar|X[/tpl], and whose range is the set [tpl]mvar|Y[/tpl]. Then [tpl]mvar|f[/tpl] is invertible if there exists a function [tpl]mvar|g[/tpl] with domain [tpl]mvar|Y[/tpl] and range [tpl]mvar|X[/tpl], with the property:
+If [tpl]mvar|f[/tpl] is invertible, the function [tpl]mvar|g[/tpl] is unique; in other words, there is exactly one function [tpl]mvar|g[/tpl] satisfying this property (no more, no less). That function [tpl]mvar|g[/tpl] is then called the inverse of [tpl]mvar|f[/tpl], and usually denoted as [tpl]math|f −1[/tpl].
+Stated otherwise, a function is invertible if and only if its inverse relation is a function on the range [tpl]mvar|Y[/tpl], in which case the inverse relation is the inverse function.[tpl]citation needed|date=August 2013[/tpl]
+Not all functions have an inverse. For this rule to be applicable, each element [tpl]math|y ∈ Y[/tpl] must correspond to no more than one [tpl]math|x ∈ X[/tpl]; a function [tpl]mvar|f[/tpl] with this property is called one-to-one, or information-preserving, or an injection. If [tpl]mvar|f[/tpl] and [tpl]math|f −1[/tpl] are total functions on [tpl]mvar|X[/tpl] and [tpl]mvar|Y[/tpl] respectively, then both are bijections. The inverse of an injection that is not a bijection is a partial function, that means for some [tpl]math|y ∈ Y[/tpl] it is undefined.
+
+===Example: inverse operations that lead to inverse functions===
+
+In the context of proportionality, direct variation functions represent a relationship between x and y such that the quotient of the two variables equal a constant, k. Thus, the direct variation function is as follows: [tpl]math|1=y = kx[/tpl]. An alternative view of this equation is the slope-intercept form, where k is the slope and always positive.The inverse variation function represents an inverted relationship between x and y when compared to their relationship in direct variation functions. This notion is not to be confused with finding the inverse function of the direct variation function. The inverse variation function simply implies that as the value of one variable increases the other variable decreases. The function for this relationship cannot be found by finding the inverse of the direct variation function because the result will yield another linear function with a slope of , which is a positive value. Instead, the product of the two variables should always produce a constant. Thus, the inverse variation function is as follows: [tpl]math|1=y = k/x[/tpl] . As x increases, a larger number is dividing the constant k, so y is approaching 0.
+[tpl]cite web|last=Khan|first=Salman|title=Direct and Inverse Variation|url=https://www.khanacademy.org/math/algebra/algebra-functions/direct_inverse_variation/v/direct-and-inverse-variation|accessdate=5/1/14[/tpl]
+
+===Example: percentages===
+
+Despite their familiarity, percentage changes do not have a straightforward inverse. That is, an X per cent fall is not the inverse of an X per cent rise.
+
+===Example: squaring and square root functions===
+
+The function [tpl]math|1=f(x) = x2[/tpl] may or may not be invertible, depending on what kinds of numbers are being considered (the "domain").
+If the domain is the real numbers, then each possible result y corresponds to two different starting points in [tpl]mvar|X[/tpl]: one positive and one negative ([tpl]math|±x[/tpl]), and so this function is not invertible: as it is impossible to deduce from its output the sign of its input. Such a function is called non-injective or information-losing. Neither the square root nor the principal square root function is the inverse of [tpl]math|x2[/tpl] because the first is not single-valued,  and the second returns [tpl]math|−x[/tpl] when [tpl]mvar|x[/tpl] is negative.
+If only positive numbers (and zero) are being considered, then the function is injective and invertible.
+
+===Inverses in higher mathematics===
+
+The definition given above is commonly adopted in set theory and calculus. In higher mathematics, the notation
+means "[tpl]mvar|f[/tpl] is a function mapping elements of a set [tpl]mvar|X[/tpl] to elements of a set [tpl]mvar|Y [/tpl]".  The source, [tpl]mvar|X[/tpl], is called the domain of [tpl]mvar|f[/tpl], and the target, [tpl]mvar|Y[/tpl], is called the codomain.  The codomain contains the range of [tpl]mvar|f[/tpl] as a subset, and is considered[tpl]by whom|date=July 2013[/tpl] part of the definition of [tpl]mvar|f[/tpl].
+When using codomains, the inverse of a function [tpl]math| f: X → Y[/tpl] is required to have domain [tpl]mvar|Y[/tpl] and codomain [tpl]mvar|X[/tpl].  For the inverse to be defined on all of [tpl]mvar|Y[/tpl], every element of [tpl]mvar|Y[/tpl] must lie in the range of the function [tpl]mvar|f[/tpl].  A function with this property is called onto or a surjection.  Thus, a function with a codomain is invertible if and only if it is both injective (one-to-one) and surjective (onto).  Such a function is called a one-to-one correspondence or a bijection, and has the property that every element [tpl]math| y ∈ Y[/tpl] corresponds to exactly one element [tpl]math| x ∈ X[/tpl].
+
+===Inverses and composition===
+
+If [tpl]mvar|f[/tpl] is an invertible function with domain [tpl]mvar|X[/tpl] and range [tpl]mvar|Y[/tpl], then
+This statement is equivalent to the first of the above-given definitions of the inverse, and it becomes equivalent to the second definition if [tpl]mvar|Y[/tpl] coincides with the codomain of [tpl]mvar|f[/tpl]. Using the composition of functions we can rewrite this statement as follows:
+where [tpl]math|idX[/tpl] is the identity function on the set [tpl]mvar|X[/tpl]; that is, the function that leaves its argument unchanged. In category theory, this statement is used as the definition of an inverse morphism.
+If we think of composition as a kind of multiplication[tpl]vague|date=July 2013|reason=Why not to say something about rings, monoids, or groups?[/tpl] of functions, this identity says that the inverse of a function is analogous to a multiplicative inverse. This explains the origin of the notation [tpl]math|f −1[/tpl]. A similar notation is used for iterated functions.
+Another way to look at this is to consider composition as an operation on functions. Thinking about real functions with a single independent variable (most functions the normal person runs in to), then the inverse function composed with the original function should give us the identity, and vise versa, the original function composed with the inverse function will give us the identity. The inverse in this case would be the function that when composed with another function will give you that other function, [tpl]math|1=f(x) = x[/tpl]. Thus, we know that if 2 real valued functions with a single independent variable are composed with each other and give you x, we know the functions to be inverses.[tpl]cite web|last=Marcus|first=Nancy|title=On Inverse Functions: Introduction|url=http://www.sosmath.com/algebra/invfunc/fnc1.html|accessdate=5/1/14[/tpl]
+
+===Note on notation===
+
+The superscript notation for inverses can sometimes be confused with other uses of superscripts, especially when dealing with trigonometric and hyperbolic functions. To avoid this confusion, the notations [tpl]math|f −1[/tpl] or with the "[tpl]math|−1[/tpl]" above the [tpl]mvar|f[/tpl] are sometimes used.[tpl]Citation needed|date=January 2009[/tpl]
+Whereas the notation [tpl]math|f −1(x)[/tpl] might be ambiguous, [tpl]math|f(x)−1[/tpl] certainly denotes the multiplicative inverse of [tpl]math|f(x)[/tpl] and has nothing to with inversion of [tpl]mvar|f[/tpl].
+The expression [tpl]math|sin−1 x[/tpl] usually[tpl]fact|date=July 2013[/tpl] does not represent the multiplicative inverse to [tpl]math|sin x[/tpl], but the inverse of the sine function applied to [tpl]mvar|x[/tpl] (actually a partial inverse; see below).  To avoid confusion, an inverse trigonometric function is often indicated by the prefix "arc". For instance, the inverse of the sine function is typically called the arcsine function, written as arcsin, which is, like sin, conventionally denoted in roman type and not in italics (note that software libraries of mathematical functions often use the name asin):
+The function [tpl]math|(sin x) −1[/tpl] is the multiplicative inverse to the sine, and is called the cosecant.  It is usually[tpl]fact|date=July 2013[/tpl] denoted [tpl]math|csc x[/tpl]:
+Hyperbolic functions behave similarly, using the prefix "ar" for their inverse functions, as in arsinh for the inverse function of sinh, and [tpl]math|csch x[/tpl] for the multiplicative inverse of [tpl]math|sinh x[/tpl].
+
+==Properties==
+
+===Uniqueness===
+
+If an inverse function exists for a given function [tpl]mvar|f[/tpl], it is unique: it must be the inverse relation.
+
+===Symmetry===
+
+There is a symmetry between a function and its inverse.  Specifically, if [tpl]mvar|f[/tpl] is an invertible function with domain [tpl]mvar|X[/tpl] and range [tpl]mvar|Y[/tpl], then its inverse [tpl]math|f −1[/tpl] has domain [tpl]mvar|Y[/tpl] and range [tpl]mvar|X[/tpl], and the inverse of [tpl]math|f −1[/tpl] is the original function [tpl]mvar|f[/tpl]. In symbols, for [tpl]mvar|f[/tpl] a function with domain [tpl]mvar|X[/tpl] and range [tpl]mvar|Y[/tpl], and [tpl]mvar|g[/tpl] a function with domain [tpl]mvar|Y[/tpl] and range [tpl]mvar|X[/tpl]:
+This follows from the connection between function inverse and relation inverse, because inversion of relations is an involution.
+This statement is an obvious consequence of the deduction that for [tpl]mvar|f[/tpl] to be invertible it must be injective (first definition of the inverse) or bijective (second definition). The property of involutive symmetry can be concisely expressed by the following formula:
+The inverse of a composition of functions is given by the formula
+Notice that the order of [tpl]mvar|g[/tpl] and [tpl]mvar|f[/tpl] have been reversed; to undo [tpl]mvar|f[/tpl] followed by [tpl]mvar|g[/tpl], we must first undo [tpl]mvar|g[/tpl] and then undo [tpl]mvar|f[/tpl].
+For example, let [tpl]math|1= f(x) = 3x[/tpl] and let [tpl]math|1= g(x) = x + 5[/tpl].  Then the composition [tpl]math| g ∘ f[/tpl] is the function that first multiplies by three and then adds five:
+To reverse this process, we must first subtract five, and then divide by three:
+This is the composition
+[tpl]math| (f −1 ∘ g −1)(y)[/tpl].
+
+===Self-inverses===
+
+If [tpl]mvar|X[/tpl] is a set, then the identity function on [tpl]mvar|X[/tpl] is its own inverse:
+More generally, a function [tpl]math| f : X → X[/tpl] is equal to its own inverse if and only if the composition [tpl]math| f ∘ f[/tpl] is equal to [tpl]math|idX[/tpl].  Such a function is called an involution.
+
+==Inverses in calculus==
+
+Single-variable calculus is primarily concerned with functions that map real numbers to real numbers.  Such functions are often defined through formulas, such as:
+A function [tpl]mvar|f[/tpl] from the real numbers to the real numbers possesses an inverse as long as it is one-to-one, i.e. as long as the graph of [tpl]math|1=y = f(x)[/tpl] has, for each possible [tpl]mvar|y[/tpl] value only one corresponding [tpl]mvar|x[/tpl] value, and thus passes the horizontal line test.
+The following table shows several standard functions and their inverses:
+|-
+!align="center"| Function [tpl]math|f(x)[/tpl]
+!align="center"| Inverse [tpl]math|f −1(y)[/tpl]
+!align="center"| Notes
+|-
+|align="center"| [tpl]math|x + a[/tpl]
+|align="center"| [tpl]math|y − a[/tpl]
+|
+|-
+|align="center"| [tpl]math|a − x[/tpl]
+|align="center"| [tpl]math|a − y[/tpl]
+|
+|-
+|align="center"| [tpl]math|mx[/tpl]
+|align="center"| [tpl]sfrac|[tpl]mvar|y[/tpl]|[tpl]mvar|m[/tpl][/tpl]
+| [tpl]math|m ≠ 0[/tpl]
+|-
+|align="center"| [tpl]sfrac|1|[tpl]mvar|x[/tpl][/tpl]
+|align="center"| [tpl]sfrac|1|[tpl]mvar|y[/tpl][/tpl]
+| [tpl]math|x, y ≠ 0[/tpl]
+|-
+|align="center"| [tpl]math|x2[/tpl]
+|align="center"| [tpl]sqrt|[tpl]mvar|y[/tpl][/tpl]
+| [tpl]math|x, y ≥ 0[/tpl] only
+|-
+|align="center"| [tpl]math|x3[/tpl]
+|align="center"| [tpl]radic|[tpl]mvar|y[/tpl]|3[/tpl]
+| no restriction on [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl]
+|-
+|align="center"| [tpl]math|xp[/tpl]
+|align="center"| [tpl]math|y1/p[/tpl] (i.e. [tpl]radic|[tpl]mvar|y[/tpl]|[tpl]mvar|p[/tpl][/tpl])
+| [tpl]math|x, y ≥ 0[/tpl] in general, [tpl]math|p ≠ 0[/tpl]
+|-
+|align="center"| [tpl]math|ex[/tpl]
+|align="center"| [tpl]math|ln y[/tpl]
+| [tpl]math|y > 0[/tpl]
+|-
+|align="center"| [tpl]math|ax[/tpl]
+|align="center"| [tpl]math|loga y[/tpl]
+| [tpl]math|y > 0[/tpl] and [tpl]math|a > 0[/tpl]
+|-
+|align="center"| trigonometric functions
+|align="center"| inverse trigonometric functions
+| various restrictions (see table below)
+|}
+
+===Formula for the inverse===
+
+One approach to finding a formula for [tpl]math|f −1[/tpl], if it exists, is to solve the equation [tpl]math|1= y = f(x) [/tpl] for [tpl]mvar|x[/tpl].  For example, if [tpl]mvar|f[/tpl] is the function
+then we must solve the equation [tpl]math|1= y = (2x + 8)3[/tpl] for [tpl]mvar|x[/tpl]:
+Thus the inverse function [tpl]math|f −1[/tpl] is given by the formula
+Sometimes the inverse of a function cannot be expressed by a formula with a finite number of terms.  For example, if [tpl]mvar|f[/tpl] is the function
+then [tpl]mvar|f[/tpl] is one-to-one, and therefore possesses an inverse function [tpl]math|f −1[/tpl].  The formula for this inverse has an infinite number of terms: 
+
+===Graph of the inverse===
+
+If  [tpl]mvar|f[/tpl] is invertible, then the graph of the function
+is the same as the graph of the equation
+This is identical to the equation [tpl]math|1= y = f(x) [/tpl] that defines the graph of [tpl]mvar|f[/tpl], except that the roles of [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl] have been reversed.  Thus the graph of [tpl]math|f −1[/tpl] can be obtained from the graph of [tpl]mvar|f[/tpl] by switching the positions of the [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl] axes.  This is equivalent to reflecting the graph across the line
+[tpl]math|1= y = x[/tpl].
+
+===Inverses and derivatives===
+
+A continuous function [tpl]mvar|f[/tpl] is one-to-one (and hence invertible) if and only if it is either strictly increasing or decreasing (with no local maxima or minima).  For example, the function
+is invertible, since the derivative
+[tpl]math|1= f′(x) = 3x2 + 1 [/tpl] is always positive.
+If the function [tpl]mvar|f[/tpl] is differentiable, then the inverse [tpl]math|f −1[/tpl] will be differentiable as long as [tpl]math| f′(x) ≠ 0[/tpl].  The derivative of the inverse is given by the inverse function theorem:
+If we set [tpl]math|1= x = f −1(y)[/tpl], then the formula above can be written
+This result follows from the chain rule (see the article on inverse functions and differentiation).
+The inverse function theorem can be generalized to functions of several variables.  Specifically, a differentiable multivariable function [tpl]math| f : Rn → Rn[/tpl] is invertible in a neighborhood of a point [tpl]mvar|p[/tpl] as long as the Jacobian matrix of [tpl]mvar|f[/tpl] at [tpl]mvar|p[/tpl] is invertible.  In this case, the Jacobian of [tpl]math|f −1[/tpl] at [tpl]math|f(p)[/tpl] is the matrix inverse of the Jacobian of [tpl]mvar|f[/tpl] at [tpl]mvar|p[/tpl].
+
+==Real-world examples==
+
+1. Let [tpl]mvar|f[/tpl] be the function that converts a temperature in degrees Celsius to a temperature in degrees Fahrenheit:
+then its inverse function converts degrees Fahrenheit to degrees Celsius:
+since
+2. Suppose [tpl]mvar|f[/tpl] assigns each child in a family its birth year. An inverse function would output which child was born in a given year. However, if the family has twins (or triplets) then the output cannot be known when the input is the common birth year. As well, if a year is given in which no child was born then a child cannot be named. But if each child was born in a separate year, and if we restrict attention to the three years in which a child was born, then we do have an inverse function. For example,
+3. Let [tpl]mvar|R[/tpl] be the function that leads to an [tpl]mvar|x[/tpl] percentage rise of some quantity, and [tpl]mvar|F[/tpl] be the function producing an [tpl]mvar|x[/tpl] percentage fall. Applied to $100 with [tpl]mvar|x[/tpl] = 10%, we find that applying the first function followed by the second does not restore the original value of $100, demonstrating the fact that, despite appearances, these two functions are not inverses of each other.
+
+==Generalizations==
+
+===Partial inverses===
+
+Even if a function [tpl]mvar|f[/tpl] is not one-to-one, it may be possible to define a partial inverse of [tpl]mvar|f[/tpl] by restricting the domain.  For example, the function
+is not one-to-one, since [tpl]math|1= x2 = (−x)2[/tpl].  However, the function becomes one-to-one if we restrict to the domain [tpl]math| x ≥ 0[/tpl], in which case
+(If we instead restrict to the domain [tpl]math| x ≤ 0[/tpl], then the inverse is the negative of the square root of [tpl]mvar|y[/tpl].)  Alternatively, there is no need to restrict the domain if we are content with the inverse being a multivalued function:
+Sometimes this multivalued inverse is called the full inverse of [tpl]mvar|f[/tpl], and the portions (such as [tpl]sqrt|[tpl]mvar|x[/tpl][/tpl] and −[tpl]sqrt|[tpl]mvar|x[/tpl][/tpl]) are called branches.  The most important branch of a multivalued function (e.g. the positive square root) is called the principal branch, and its value at [tpl]mvar|y[/tpl] is called the principal value of [tpl]math|f −1(y)[/tpl].
+For a continuous function on the real line, one branch is required between each pair of local extrema.  For example, the inverse of a cubic function with a local maximum and a local minimum has three branches (see the picture to the right).
+These considerations are particularly important for defining the inverses of trigonometric functions.  For example, the sine function is not one-to-one, since
+for every real [tpl]mvar|x[/tpl] (and more generally [tpl]math|1= sin(x + 2πn) = sin(x)[/tpl] for every integer [tpl]mvar|n[/tpl]).  However, the sine is one-to-one on the interval
+[tpl]closed-closed|−[tpl]sfrac|π|2[/tpl], [tpl]sfrac|π|2[/tpl][/tpl], and the corresponding partial inverse is called the arcsine.  This is considered the principal branch of the inverse sine, so the principal value of the inverse sine is always between −[tpl]sfrac|π|2[/tpl] and [tpl]sfrac|π|2[/tpl].  The following table describes the principal branch of each inverse trigonometric function:
+|-
+!function
+!Range of usual principal value
+|-
+| sin−1 || [tpl]math|−[tpl]sfrac|π|2[/tpl] ≤ sin−1(x) ≤ [tpl]sfrac|π|2[/tpl][/tpl]
+|-
+| cos−1 || [tpl]math|0 ≤ cos−1(x) ≤ π[/tpl]
+|-
+| tan−1 || [tpl]math|−[tpl]sfrac|π|2[/tpl] < tan−1(x) < [tpl]sfrac|π|2[/tpl][/tpl]
+|-
+| cot−1 || [tpl]math|0 < cot−1(x) < π[/tpl]
+|-
+| sec−1 || [tpl]math|0 ≤ sec−1(x) ≤ π[/tpl]
+|-
+| csc−1 || [tpl]math|−[tpl]sfrac|π|2[/tpl] ≤ csc−1(x) ≤ [tpl]sfrac|π|2[/tpl][/tpl]
+|-
+|}
+
+===Left and right inverses===
+
+If [tpl]math|f: X → Y[/tpl], a left inverse for [tpl]mvar|f[/tpl] (or retraction of [tpl]mvar|f[/tpl]) is a function [tpl]math| g: Y → X[/tpl] such that
+That is, the function [tpl]mvar|g[/tpl] satisfies the rule
+Thus, [tpl]mvar|g[/tpl] must equal the inverse of [tpl]mvar|f[/tpl] on the image of [tpl]mvar|f[/tpl], but may take any values for elements of [tpl]mvar|Y[/tpl] not in the image. A function [tpl]mvar|f[/tpl] with a left inverse is necessarily injective. In classical mathematics, every injective function [tpl]mvar|f[/tpl] necessarily has a left inverse; however, this may fail in constructive mathematics. For instance, a left inverse of the inclusion [tpl]math|{0,1} → R[/tpl] of the two-element set in the reals violates indecomposability by giving a retraction of the real line to the set [tpl]math|{0,1} [/tpl].
+A right inverse for [tpl]mvar|f[/tpl] (or section of [tpl]mvar|f[/tpl]) is a function [tpl]math| h: Y → X[/tpl] such that
+That is, the function [tpl]mvar|h[/tpl] satisfies the rule
+Thus, [tpl]math|h(y)[/tpl] may be any of the elements of [tpl]mvar|X[/tpl] that map to [tpl]mvar|y[/tpl] under [tpl]mvar|f[/tpl].  A function [tpl]mvar|f[/tpl] has a right inverse if and only if it is surjective (though constructing such an inverse in general requires the axiom of choice).
+An inverse which is both a left and right inverse must be unique. Likewise, if [tpl]mvar|g[/tpl] is a left inverse for [tpl]mvar|f[/tpl], then [tpl]mvar|g[/tpl] may or may not be a right inverse for [tpl]mvar|f[/tpl]; and if [tpl]mvar|g[/tpl] is a right inverse for [tpl]mvar|f[/tpl], then [tpl]mvar|g[/tpl] is not necessarily a left inverse for [tpl]mvar|f[/tpl]. For example let [tpl]math|f: R → [tpl]closed-open|0, ∞[/tpl][/tpl] denote the squaring map, such that [tpl]math|1=f(x) = x2[/tpl] for all [tpl]mvar|x[/tpl] in [tpl]math|R[/tpl], and let  [tpl]math|[tpl]mvar|g[/tpl]: [tpl]closed-open|0, ∞[/tpl] → R[/tpl] denote the square root map, such that [tpl]math|g(x) [tpl]=[/tpl] [/tpl][tpl]radic|[tpl]mvar|x[/tpl][/tpl] for all [tpl]math|x ≥ 0[/tpl]. Then [tpl]math|1=f(g(x)) = x[/tpl] for all [tpl]mvar|x[/tpl] in [tpl]closed-open|0, ∞[/tpl]; that is, [tpl]mvar|g[/tpl] is a right inverse to [tpl]mvar|f[/tpl]. However, [tpl]mvar|g[/tpl] is not a left inverse to [tpl]mvar|f[/tpl], since, e.g., [tpl]math|1=g(f(−1)) = 1 ≠ −1[/tpl].
+
+===Preimages===
+
+If [tpl]math|f: X → Y[/tpl] is any function (not necessarily invertible), the preimage (or inverse image) of an element [tpl]math| y ∈ Y[/tpl] is the set of all elements of [tpl]mvar|X[/tpl] that map to [tpl]mvar|y[/tpl]:
+The preimage of [tpl]mvar|y[/tpl] can be thought of as the image of [tpl]mvar|y[/tpl] under the (multivalued) full inverse of the function [tpl]mvar|f[/tpl].
+Similarly, if [tpl]mvar|S[/tpl] is any subset of [tpl]mvar|Y[/tpl], the preimage of [tpl]mvar|S[/tpl] is the set of all elements of [tpl]mvar|X[/tpl] that map to [tpl]mvar|S[/tpl]:
+For example, take a function [tpl]math|f: R → R[/tpl], where [tpl]math|f: x ↦ x2[/tpl]. This function is not invertible for reasons discussed above. Yet preimages may be defined for subsets of the codomain:
+The preimage of a single element [tpl]math| y ∈ Y[/tpl] – a singleton set [tpl]math|{y} [/tpl] – is sometimes called the fiber of [tpl]mvar|y[/tpl].  When [tpl]mvar|Y[/tpl] is the set of real numbers, it is common to refer to [tpl]math|f −1(y)[/tpl] as a level set.
+
+==See also==
+
+==References==
+
+ | last = Spivak
+ | first = Michael
+ | date = 1994
+ | title = Calculus
+ | publisher = Publish or Perish
+ | edition = 3rd
+ | isbn = 0-914098-89-6
+}}
+ | last = Stewart
+ | first = James
+ | date = 2002
+ | title = Calculus
+ | publisher = Brooks Cole
+ | edition = 5th
+ | isbn = 978-0-534-39339-7
+}}
+

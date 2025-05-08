@@ -1,0 +1,38 @@
+[[AC'97]]
+
+CATEGORIES: Digital audio, Sound cards
+
+AC'97 (Audio Codec '97; also MC'97 for Modem Codec '97) is an audio codec standard developed by Intel Architecture Labs in 1997. The standard was used in motherboards, modems, and sound cards.
+Audio components integrated into chipsets consist of two component classes: an AC'97 digital controller (DC97), which is built into the southbridge of the chipset, and AC'97 audio and modem codecs, which are the analog components of the architecture.
+AC'97 defines a high-quality, 16- or 20-bit audio architecture with surround sound support for the PC. AC'97 supports a 96 kHz sampling rate at 20-bit stereo resolution and a 48 kHz sampling rate at 20-bit stereo resolution for multichannel recording and playback. AC97 defines a maximum of 6 channels of analog audio output.
+Integrated audio is implemented with the AC'97 Codec on the motherboard, a Communications and Networking Riser (CNR) card, or an audio/modem riser (AMR) card.
+In 2004, Intel released Intel High Definition Audio (HD Audio) which is a successor that is not backward compatible with AC'97.[tpl]Citation|publisher=Intel Corporation|year=2010|url=http://www.intel.com/content/dam/www/public/us/en/documents/product-specifications/high-definition-audio-specification.pdf|title=High Definition Audio Specification|version=Revision 1.0a|page=17|chapter=1.2.1 AC'97 Compatibility[/tpl]  HD Audio has the capability to define many more than AC'97's six output channels, but in practice most motherboards provide no more than 8 channels.
+
+==Revisions==
+
+AC'97 has had several revisions:AC'97 Component Specification, Revision 2.3, Intel Corporation, April 2002
+AC '97 v2.3 enables Plug and Play audio for the end user. This revision provides means for the audio codec to supply parametric data about its analog interface much like Intel High Definition Audio.
+
+==AC-Link==
+
+The AC-Link is a digital link that connects the DC97 (the controller) with the audio "codecs." It is composed of five wires: the clock (12.288 MHz), a sync signal, a reset signal, and two data wires: sdata_out (contains the DC97 output) and sdata_in (contains the codec output). The AC-Link provides a bidirectional link (one using sdata_out and the other using sdata_in), fixed bitrate (12.288 Mbit/s), serial digital stream between one controller and several audio codecs.
+Each 12.288 Mbit/s stream is divided into 256-bit frames (frame frequency is 48 kHz). This is therefore a time-division multiplexing (TDM) scheme.
+Every frame is subdivided in 13 slots, from which slot 0 (16 bits) is used to specify which audio codec is talking to the controller. The remaining 240 bits are divided in twelve 20-bit slots (slots 1–12), used as data slots.
+Each data slot (48 kHz, 20 bits/sample) is used to transmit a raw pulse-code modulation (PCM) audio signal giving a total across all channels of 960 kbit/s. Several data slots in the same frame can be combined into a single high-quality signal; combining the maximum four slots provides a 192 kHz, 20 bit/sample, stereo signal.
+Since AC-Link is a fixed-frequency link, all sample rate conversion should be performed in the DC97 (controller) or in the software driver.
+
+==Codec chips==
+
+Codec chips have an AC97 interface on one side and analog audio interface on the other. They are usually small square chips with 48 pins (48-pin QFP package). They are D/A and A/D or only D/A.
+
+==Front panel connector==
+
+Computer motherboards often provide a connector to bring microphone and headphone signals to the computer's front panel.  Intel provides a specification for that header; the signal assignments are different for AC'97 and Intel High Definition Audio headers.[tpl]Citation |last=Intel Corporation |url=http://www.formfactors.org/developer/specs/A2928604-005.pdf |title= Front Panel I/O Connectivity Design Guide |date=February 2005 |version= Version 1.3 |pages=19–25[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

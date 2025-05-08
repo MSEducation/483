@@ -1,0 +1,58 @@
+[[Gaussian integer]]
+
+CATEGORIES: Cyclotomic fields, Algebraic numbers, Lattice points
+
+In number theory, a Gaussian integer is a complex number whose real and imaginary part are both integers. The Gaussian integers, with ordinary addition and multiplication of complex numbers, form an integral domain, usually written as [tpl]math|Zi[/tpl]. This integral domain is a particular case of a commutative ring of quadratic integers. It does not have a total ordering that respects arithmetic.
+Formally, Gaussian integers are the set 
+Note that when they are considered within the complex plane the Gaussian integers may be seen to constitute the [tpl]math|2[/tpl]-dimensional integer lattice.
+The (arithmetic or field) norm of a Gaussian integer is the square of its absolute value (Euclidean norm) as a complex number and a natural number defined as 
+where [tpl]math|[tpl]overline| ⋅ [/tpl][/tpl] is complex conjugation.
+The norm is multiplicative, since the absolute value of complex numbers is multiplicative, i.e., one has 
+The latter can also be verified  by a straightforward check. The units of [tpl]math|Zi[/tpl] are precisely those elements with norm [tpl]math|1[/tpl], i.e. the set [tpl]math|{±1, ±i}.[/tpl]
+
+==As a principal ideal domain==
+
+The Gaussian integers form a principal ideal domain with units [tpl]math|{±1, ±i}.[/tpl] For [tpl]math|x ∈ Zi[/tpl], the four numbers [tpl]math|±x, ±ix[/tpl] are called the associates of [tpl]mvar|x[/tpl]. As for every principal ideal domain, [tpl]math|Zi[/tpl] is also a unique factorization domain.
+The prime elements of [tpl]math|Zi[/tpl] are also known as Gaussian primes. An associate of a Gaussian prime is also a Gaussian prime. The Gaussian primes are symmetric about the real and imaginary axes. The positive integer Gaussian primes are the prime numbers congruent to [tpl]math|3[/tpl] modulo [tpl]math|4[/tpl], [tpl]OEIS|A002145[/tpl]. One should not refer to only these numbers as "the Gaussian primes", which refers to all the Gaussian primes, many of which do not lie in [tpl]math|Z[/tpl].http://oeis.org/A002145#COMMENT, OEIS sequence A002145 "COMMENT" section
+A Gaussian integer [tpl]math|a + bi[/tpl] is a Gaussian prime if and only if either:
+The following elaborates on these conditions.
+[tpl]math|2[/tpl] is a special case (in the language of algebraic number theory, [tpl]math|2[/tpl] is the only ramified prime in [tpl]math|Zi[/tpl]), since it factors as [tpl]math|2 [tpl]=[/tpl] (1 + i)(1 − i) [tpl]=[/tpl] i(1 − i)2[/tpl] in [tpl]math|Zi[/tpl]. The second factorisation shows that [tpl]math|2[/tpl] is divisible by the square of a Gaussian prime (recall that [tpl]mvar|i[/tpl] is a unit in [tpl]math|Zi[/tpl]). It is the unique prime number with this property.
+The necessary conditions can be stated as follows: if a Gaussian integer is a Gaussian prime, then either its norm is a prime number, or its norm is a square of a prime number. This is because for any Gaussian integer [tpl]mvar|g[/tpl], notice 
+Here [tpl]math|[tpl]![/tpl][/tpl] means “divides”; that is, [tpl]math|x [tpl]![/tpl] y[/tpl] if [tpl]mvar|x[/tpl] is a divisor of [tpl]mvar|y[/tpl].
+Now [tpl]math|N(g) ∈ Z[/tpl], and so can be factored as a product [tpl]math|p1...pn[/tpl] of prime numbers, by the fundamental theorem of arithmetic. By definition of prime element, if [tpl]mvar|g[/tpl] is a Gaussian prime, then for some index [tpl]mvar|k[/tpl], [tpl]math|g [tpl]![/tpl] pk[/tpl] in [tpl]math|Zi[/tpl]. Also, [tpl]math|[tpl]overline|g[/tpl] [tpl]![/tpl] [tpl]overline|pk[/tpl] [tpl]=[/tpl] pk[/tpl]. Therefore in [tpl]math|Z[/tpl] we have:
+This gives only two options: either the norm of [tpl]mvar|g[/tpl] is a prime number, or the square of a prime number.
+If in fact [tpl]math|N(g) [tpl]=[/tpl] p2[/tpl] for some prime number [tpl]mvar|p[/tpl], then both [tpl]mvar|g[/tpl] and [tpl]math|[tpl]overline|g[/tpl][/tpl] divide [tpl]math|p2[/tpl]. Neither can be a unit, and so 
+where [tpl]mvar|u[/tpl] is a unit. This is to say that either [tpl]math|a [tpl]=[/tpl] 0[/tpl] or [tpl]math|b [tpl]=[/tpl] 0[/tpl], where [tpl]math|g [tpl]=[/tpl] a + bi[/tpl].
+However, not every prime number [tpl]mvar|p[/tpl] is a Gaussian prime. [tpl]math|2[/tpl] is not because [tpl]math|2 [tpl]=[/tpl] (1 + i)(1 − i)[/tpl]. Neither are prime numbers of the form [tpl]math|4n + 1[/tpl] because Fermat's theorem on sums of two squares assures us they can be written [tpl]math|a2 + b2, a, b ∈ Z[/tpl], and [tpl]math|a2 + b2 [tpl]=[/tpl] (a + bi)(a − bi)[/tpl]. The only type of prime numbers remaining are of the form [tpl]math|4n + 3[/tpl].
+Prime numbers of the form [tpl]math|4n + 3[/tpl] are also Gaussian primes. For suppose [tpl]math|g [tpl]=[/tpl] p + 0i[/tpl] for [tpl]math|p [tpl]=[/tpl] 4n + 3[/tpl], and it can be factored [tpl]math|g [tpl]=[/tpl] hk[/tpl]. Then [tpl]math|p2 [tpl]=[/tpl] N(g) [tpl]=[/tpl] N(h)N(k)[/tpl]. If the factorization is non-trivial, then [tpl]math|N(h) [tpl]=[/tpl] N(k) [tpl]=[/tpl] p[/tpl]. But no sum of squares of integers can be written [tpl]math|4n + 3[/tpl]. So the factorization must have been trivial and [tpl]mvar|g[/tpl] is a Gaussian prime.
+If [tpl]mvar|g[/tpl] is a Gaussian integer whose norm is a prime number, then [tpl]mvar|g[/tpl] is a Gaussian prime, because the norm is multiplicative.
+
+===As an integral closure===
+
+The ring of Gaussian integers is the integral closure of [tpl]math|Z[/tpl] in the field of Gaussian rationals [tpl]math|Q(i)[/tpl] consisting of the complex numbers whose real and imaginary part are both rational.
+
+===As a Euclidean domain===
+
+Put another way, every complex number (and hence every Gaussian integer) has a maximal distance of 
+units to some multiple of [tpl]mvar|z[/tpl], where [tpl]mvar|z[/tpl] is any Gaussian integer; this turns [tpl]math|Zi[/tpl] into a Euclidean domain, where 
+
+==Historical background==
+
+The ring of Gaussian integers was introduced by Carl Friedrich Gauss in his second monograph on quartic reciprocity (1832) (see http://www.ems-ph.org/journals/show_pdf.php?issn=0013-6018&vol=53&iss=1&rank=2). The theorem of quadratic reciprocity (which he had first succeeded in proving in 1796) relates the solvability of the congruence [tpl]math|x2 ≡ q (mod p)[/tpl] to that of [tpl]math|x2 ≡ p (mod q)[/tpl]. Similarly, cubic reciprocity relates the solvability of [tpl]math|x3 ≡ q (mod p)[/tpl] to that of [tpl]math|x3 ≡ p (mod q)[/tpl], and biquadratic (or quartic) reciprocity is a relation between [tpl]math|x4 ≡ q (mod p)[/tpl] and [tpl]math|x4 ≡ p (mod q)[/tpl]. Gauss discovered that the law of biquadratic reciprocity and its supplements were more easily stated and proved as statements about "whole complex numbers" (i.e. the Gaussian integers) than they are as statements about ordinary whole numbers (i.e. the integers).
+In a footnote he notes that the  Eisenstein integers are the natural domain for stating and proving results on cubic reciprocity and indicates that similar extensions of the integers are the appropriate domains for studying higher reciprocity laws.
+This paper not only introduced the Gaussian integers and proved they are a unique factorization domain, it also introduced the terms norm, unit, primary, and associate, which are now standard in algebraic number theory.
+
+==Unsolved problems==
+
+Most of the unsolved problems are related to the repartition in the plane of the Gaussian primes.
+There are also conjectures and unsolved problems about the Gaussian primes.  Two of them are:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

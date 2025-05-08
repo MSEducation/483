@@ -1,0 +1,226 @@
+[[Airy wave theory]]
+
+CATEGORIES: Water waves, Wave mechanics, Physical oceanography
+
+In fluid dynamics, Airy wave theory (often referred to as linear wave theory) gives a linearised description of the propagation of gravity waves on the surface of a homogeneous fluid layer. The theory assumes that the fluid layer has a uniform mean depth, and that the fluid flow is inviscid, incompressible and irrotational. This theory was first published, in correct form, by George Biddell Airy in the 19th century.Craik (2004).
+Airy wave theory is often applied in ocean engineering and coastal engineering for the modelling of random sea states – giving a description of the wave kinematics and dynamics of high-enough accuracy for many purposes.
+Dean & Dalrymple (1991). Further, several second-order nonlinear properties of surface gravity waves, and their propagation, can be estimated from its results.Phillips (1977), §3.2, pp. 37–43 and §3.6, pp. 60–69. Airy wave theory is also a good approximation for tsunami waves in the ocean, before they steepen near the coast.
+This linear theory is often used to get a quick and rough estimate of wave characteristics and their effects. This approximation is accurate for small ratios of the wave height to water depth (for waves in shallow water), and wave height to wavelength (for waves in deep water).
+
+==Description==
+
+Airy wave theory uses a potential flow (or velocity potential) approach to describe the motion of gravity waves on a fluid surface. The use of – inviscid and irrotational – potential flow in water waves is remarkably successful, given its failure to describe many other fluid flows where it is often essential to take viscosity, vorticity, turbulence and/or flow separation into account. This is due to the fact that for the oscillatory part of the fluid motion, wave-induced vorticity is restricted to some thin oscillatory Stokes boundary layers at the boundaries of the fluid domain.
+Airy wave theory is often used in ocean engineering and coastal engineering. Especially for random waves, sometimes called wave turbulence, the evolution of the wave statistics – including the wave spectrum – is predicted well over not too long distances (in terms of wavelengths) and in not too shallow water. Diffraction is one of the wave effects which can be described with Airy wave theory. Further, by using the WKBJ approximation, wave shoaling and refraction can be predicted.
+Earlier attempts to describe surface gravity waves using potential flow were made by, among others, Laplace, Poisson, Cauchy and Kelland. But Airy was the first to publish the correct derivation and formulation in 1841. Soon after, in 1847, the linear theory of Airy was extended by Stokes for non-linear wave motion – known as Stokes' wave theory – correct up to third order in the wave steepness.Stokes (1847). Even before Airy's linear theory, Gerstner derived a nonlinear trochoidal wave theory in 1804, which however is not irrotational.
+Airy wave theory is a linear theory for the propagation of waves on the surface of a potential flow and above a horizontal bottom. The free surface elevation η(x,t) of one wave component is sinusoidal, as a function of horizontal position x and time t:
+where
+The waves propagate along the water surface with the phase speed cp:
+The angular wavenumber k and frequency ω are not independent parameters (and thus also wavelength λ and period T are not independent), but are coupled. Surface gravity waves on a fluid are dispersive waves – exhibiting frequency dispersion – meaning that each wavenumber has its own frequency and phase speed.
+Note that in engineering the wave height H – the difference in elevation between crest and trough – is often used:
+valid in the present case of linear periodic waves.
+Underneath the surface, there is a fluid motion associated with the free surface motion. While the surface elevation shows a propagating wave, the fluid particles are in an orbital motion. Within the framework of Airy wave theory, the orbits are closed curves: circles in deep water, and ellipses in finite depth—with the ellipses becoming flatter near the bottom of the fluid layer. So while the wave propagates, the fluid particles just orbit (oscillate) around their average position. With the propagating wave motion, the fluid particles transfer energy in the wave propagation direction, without having a mean velocity. The diameter of the orbits reduces with depth below the free surface. In deep water, the orbit's diameter is reduced to 4% of its free-surface value at a depth of half a wavelength.
+In a similar fashion, there is also a pressure oscillation underneath the free surface, with wave-induced pressure oscillations reducing with depth below the free surface – in the same way as for the orbital motion of fluid parcels.
+
+==Mathematical formulation of the wave motion==
+
+===Flow problem formulation===
+
+The waves propagate in the horizontal direction, with coordinate x, and a fluid domain bound above by a free surface at z = η(x,t), with z the vertical coordinate (positive in the upward direction) and t being time.For the equations, solution and resulting approximations in deep and shallow water, see Dingemans (1997), Part 1, §2.1, pp. 38–45. Or: Phillips (1977), pp. 36–45. The level z = 0 corresponds with the mean surface elevation. The impermeable bed underneath the fluid layer is at z = -h. Further, the flow is assumed to be incompressible and irrotational – a good approximation of the flow in the fluid interior for waves on a liquid surface – and potential theory can be used to describe the flow. The velocity potential Φ(x,z,t) is related to the flow velocity components ux and uz in the horizontal (x) and vertical (z) directions by:
+Then, due to the continuity equation for an incompressible flow, the potential Φ has to satisfy the Laplace equation:
+Boundary conditions are needed at the bed and the free surface in order to close the system of equations. For their formulation within the framework of linear theory, it is necessary to specify what the base state (or zeroth-order solution) of the flow is. Here, we assume the base state is rest, implying the mean flow velocities are zero.
+The bed being impermeable, leads to the kinematic bed boundary-condition:
+In case of deep water – by which is meant infinite water depth, from a mathematical point of view – the flow velocities have to go to zero in the limit as the vertical coordinate goes to minus infinity: z → -∞.
+At the free surface, for infinitesimal waves, the vertical motion of the flow has to be equal to the vertical velocity of the free surface. This leads to the kinematic free-surface boundary-condition:
+If the free surface elevation η(x,t) was a known function, this would be enough to solve the flow problem. However, the surface elevation is an extra unknown, for which an additional boundary condition is needed. This is provided by Bernoulli's equation for an unsteady potential flow. The pressure above the free surface is assumed to be constant. This constant pressure is taken equal to zero, without loss of generality, since the level of such a constant pressure does not alter the flow. After linearisation, this gives the dynamic free-surface boundary condition:
+Because this is a linear theory, in both free-surface boundary conditions – the kinematic and the dynamic one, equations (3) and (4) – the value of Φ and ∂Φ/∂z at the fixed mean level z = 0 is used.
+
+===Solution for a progressive monochromatic wave===
+
+For a propagating wave of a single frequency – a monochromatic wave – the surface elevation is of the form:
+The associated velocity potential, satisfying the Laplace equation (1) in the fluid interior, as well as the kinematic boundary conditions at the free surface (2), and bed (3), is:
+with sinh and cosh the hyperbolic sine and hyperbolic cosine function, respectively.
+But η and Φ also have to satisfy the dynamic boundary condition, which results in non-trivial (non-zero) values for the wave amplitude a only if the linear dispersion relation is satisfied:
+with tanh the hyperbolic tangent. So angular frequency ω and wavenumber k – or equivalently period T and wavelength λ – cannot be chosen independently, but are related. This means that wave propagation at a fluid surface is an eigenproblem. When ω and k satisfy the dispersion relation, the wave amplitude a can be chosen freely (but small enough for Airy wave theory to be a valid approximation).
+
+===Table of wave quantities===
+
+In the table below, several flow quantities and parameters according to Airy wave theory are given. The given quantities are for a bit more general situation as for the solution given above. Firstly, the waves may propagate in an arbitrary horizontal direction in the x = (x,y) plane. The wavenumber vector is k, and is perpendicular to the cams of the wave crests. Secondly, allowance is made for a mean flow velocity U, in the horizontal direction and uniform over (independent of) depth z. This introduces a Doppler shift in the dispersion relations. At an Earth-fixed location, the observed angular frequency (or absolute angular frequency) is ω. On the other hand, in a frame of reference moving with the mean velocity U (so the mean velocity as observed from this reference frame is zero), the angular frequency is different. It is called the intrinsic angular frequency (or relative angular frequency), denoted as σ. So in pure wave motion, with U=0, both frequencies ω and σ are equal. The wave number k (and wavelength λ) are independent of the frame of reference, and have no Doppler shift (for monochromatic waves).
+The table only gives the oscillatory parts of flow quantities – velocities, particle excursions and pressure – and not their mean value or drift.
+The oscillatory particle excursions ξx and ξz are the time integrals of the oscillatory flow velocities ux and uz respectively. 
+Water depth is classified into three regimes:Dean & Dalrymple (1991) pp. 64–65 
+In the limiting cases of deep and shallow water, simplifying approximations to the solution can be made. While for intermediate depth, the full formulations have to be used. 
+
+==Surface tension effects==
+
+Due to surface tension, the dispersion relation changes to:Phillips (1977), p. 37.
+with γ the surface tension, with SI units in N/m. All above equations for linear waves remain the same, if the gravitational acceleration g is replaced byLighthill (1978), p. 223.
+As a result of surface tension, the waves propagate faster. Surface tension only has influence for short waves, with wavelengths less than a few decimeters in case of a water–air interface. For very short wavelengths – two millimeter in case of the interface between air and water – gravity effects are negligible.
+
+==Interfacial waves==
+
+Surface waves are a special case of interfacial waves, on the interface between two fluids of different density. 
+
+===Two layers of infinite depth===
+
+Consider two fluids separated by an interface, and without further boundaries. Then their dispersion relation ω2 = Ω2(k) is given through:Lamb, H. (1994), §267, page 458–460.Dingemans (1997), Section 2.1.1, p. 45.
+where ρ and ρ‘ are the densities of the two fluids, below (ρ) and above (ρ‘) the interface, respectively. Further γ is the surface tension on the interface. 
+For interfacial waves to exist, the lower layer has to be heavier than the upper one, ρ > ρ‘. Otherwise, the interface is unstable and a Rayleigh–Taylor instability develops.
+
+===Two layers between horizontal rigid planes===
+
+For two homogeneous layers of fluids, of mean thickness h below the interface and h′ above – under the action of gravity and bounded above and below by horizontal rigid walls – the dispersion relationship ω2 = Ω2(k) for gravity waves is provided by:[tpl]Citation | publisher = Cambridge University Press | isbn = 0521297265 | last = Turner | first = J. S. | title = Buoyancy effects in fluids | year = 1979 | page = 18 [/tpl]
+where again ρ and ρ′ are the densities below and above the interface, while coth is the hyperbolic cotangent function. For the case ρ′ is zero this reduces to the dispersion relation of surface gravity waves on water of finite depth h.
+
+===Two layers bounded above by a free surface===
+
+In this case the dispersion relation allows for two modes: a barotropic mode where the free surface amplitude is large compared with the amplitude of the interfacial wave, and a baroclinic mode where the opposite is the case – the interfacial wave is higher than and in antiphase with the free surface wave. The dispersion relation for this case is of a more complicated form.[tpl]Citation | publisher = Academic Press | isbn = 9780080570747 | last = Apel | first = J. R. | title = Principles of ocean physics | year = 1987 | pages = 231–239 [/tpl]
+
+==Second-order wave properties==
+
+Several second-order wave properties, i.e. quadratic in the wave amplitude a, can be derived directly from Airy wave theory. They are of importance in many practical applications, e.g. forecasts of wave conditions.See for example: the High seas forecasts of NOAA's National Weather service. Using a WKBJ approximation, second-order wave properties also find their applications in describing waves in case of slowly varying bathymetry, and mean-flow variations of currents and surface elevation. As well as in the description of the wave and mean-flow interactions due to time and space-variations in amplitude, frequency, wavelength and direction of the wave field itself.
+
+===Table of second-order wave properties [tpl]anchor|Table of second-order wave properties[/tpl]===
+
+In the table below, several second-order wave properties – as well as the dynamical equations they satisfy in case of slowly varying conditions in space and time – are given. More details on these can be found below. The table gives results for wave propagation in one horizontal spatial dimension. Further on in this section, more detailed descriptions and results are given for the general case of propagation in two-dimensional horizontal space. 
+
+===Wave energy density===
+
+Wave energy is a quantity of primary interest, since it is a primary quantity that is transported with the wave trains.Phillips (1977), p. 23–25. As can be seen above, many wave quantities like surface elevation and orbital velocity are oscillatory in nature with zero mean (within the framework of linear theory). In water waves, the most used energy measure is the mean wave energy density per unit horizontal area. It is the sum of the kinetic and potential energy density, integrated over the depth of the fluid layer and averaged over the wave phase. Simplest to derive is the mean potential energy density per unit horizontal area Epot of the surface gravity waves, which is the deviation of the potential energy due to the presence of the waves:Phillips (1977), p. 39.
+with an overbar denoting the mean value (which in the present case of periodic waves can be taken either as a time average or an average over one wavelength in space). 
+The mean kinetic energy density per unit horizontal area Ekin of the wave motion is similarly found to be:
+with σ the intrinsic frequency, see the table of wave quantities. Using the dispersion relation, the result for surface gravity waves is:
+As can be seen, the mean kinetic and potential energy densities are equal. This is a general property of energy densities of progressive linear waves in a conservative system.[tpl]cite journal | title=On progressive waves | author=Lord Rayleigh (J. W. Strutt) | authorlink=Lord Rayleigh | year=1877 | journal=Proceedings of the London Mathematical Society | volume=9 | pages=21–26 | doi=10.1112/plms/s1-9.1.21 [/tpl] Reprinted as Appendix in: Theory of Sound 1, MacMillan, 2nd revised edition, 1894. Adding potential and kinetic contributions, Epot and Ekin, the mean energy density per unit horizontal area E of the wave motion is:
+In case of surface tension effects not being negligible, their contribution also adds to the potential and kinetic energy densities, givingPhillips (1977), p. 38.
+with γ the surface tension.
+
+===Wave action, wave energy flux and radiation stress===
+
+with:
+
+===Wave mass flux and wave momentum===
+
+which is an exact result for periodic progressive water waves, also valid for nonlinear waves.Phillips (1977), p. 40. However, its validity strongly depends on the way how wave momentum and mass flux are defined. Stokes already identified two possible definitions of phase velocity for periodic nonlinear waves:
+The above relation between wave momentum M and wave energy density E is valid within the framework of Stokes' first definition.
+However, for waves perpendicular to a coast line or in closed laboratory wave channel, the second definition (S2) is more appropriate. These wave systems have zero mass flux and momentum when using the second definition.Phillips (1977), p. 70. In contrast, according to Stokes' first definition (S1), there is a wave-induced mass flux in the wave propagation direction, which has to be balanced by a mean flow U in the opposite direction – called the undertow.
+So in general, there are quite some subtleties involved. Therefore also the term pseudo-momentum of the waves is used instead of wave momentum.[tpl]Cite journal | title = On the 'wave-momentum' myth | first1= M. E. | last1=McIntyre | year = 1978 | journal = Journal of Fluid Mechanics | volume = 106 | pages = 331–347 | doi = 10.1017/S0022112081001626 |bibcode = 1981JFM...106..331M [/tpl]
+
+====Mass and momentum evolution equations====
+
+The equation for mass conservation is:
+where h(x,t) is the mean water-depth, slowly varying in space and time. 
+Similarly, the mean horizontal momentum evolves as:
+Note that mean horizontal momentum is only conserved if the sea bed is horizontal (i.e. the still-water depth d is a constant), in agreement with Noether's theorem.
+The system of equations is closed through the description of the waves. Wave energy propagation is described through the wave-action conservation equation (without dissipation and nonlinear wave interactions):
+The wave kinematics are described through the wave-crest conservation equation:Phillips (1977), p. 23.
+with the angular frequency ω a function of the (angular) wavenumber k, related through the dispersion relation. For this to be possible, the wave field must be coherent. By taking the curl of the wave-crest conservation, it can be seen that an initially irrotational wavenumber field stays irrotational.
+
+===Stokes drift===
+
+==See also==
+
+==Notes==
+
+==References==
+
+===Historical===
+
+===Further reading===
+
+ | first=A. D. D.
+ | last=Craik
+ | year=2004
+ | title=The origins of water wave theory
+ | journal=Annual Review of Fluid Mechanics
+ | volume=36
+ | pages=1–28
+ | doi=10.1146/annurev.fluid.36.050802.122118
+ |bibcode = 2004AnRFM..36....1C }}
+ | title=Water wave mechanics for engineers and scientists
+ | first1=R. G.
+ | last1=Dean
+ | first2=R. A.
+ | last2=Dalrymple
+ | year=1991
+ | series=Advanced Series on Ocean Engineering
+ | volume=2
+ | publisher=World Scientific
+ | location=Singapore
+ | isbn=978-981-02-0420-4
+ | oclc=22907242
+ }}
+ | title=Water wave propagation over uneven bottoms
+ | first=M. W.
+ | last=Dingemans
+ | year=1997
+ | series=Advanced Series on Ocean Engineering
+ | volume=13
+ | publisher=World Scientific
+ | location=Singapore
+ | isbn=981-02-0427-2
+ | oclc=36126836
+ }} Two parts, 967 pages.
+ | first=H.
+ | last=Lamb
+ | authorlink=Horace Lamb
+ | year=1994
+ | title=Hydrodynamics
+ | publisher=Cambridge University Press
+ | edition=6th
+ | isbn=978-0-521-45868-9
+ | oclc=30070401
+ }} Originally published in 1879, the 6th extended edition appeared first in 1932.
+ | title=Fluid mechanics
+ | first1=L. D.
+ | last1=Landau
+ | author1-link=Lev Landau
+ | first2=E. M.
+ | last2=Lifschitz
+ | author2-link=Evgeny Lifshitz
+ | year=1986
+ | publisher=Pergamon Press
+ | series=Course of Theoretical Physics
+ | volume=6
+ | edition=2nd revised
+ | isbn=0-08-033932-8
+ | oclc=15017127
+ }}
+ | first = M. J.
+ | last = Lighthill
+ | authorlink = M. J. Lighthill
+ | title = Waves in fluids
+ | publisher = Cambridge University Press
+ | year = 1978
+ | isbn = 0-521-29233-6 
+ | oclc = 2966533
+}} 504 pp.
+ | first=O. M.
+ | last=Phillips
+ | title=The dynamics of the upper ocean
+ | publisher=Cambridge University Press
+ | year=1977
+ | edition=2nd
+ | isbn=0-521-29801-6
+ | oclc=7319931
+ }}
+| first1 = J. V.
+| last1 = Wehausen
+| author1-link = John V. Wehausen
+| first2 = E. V.
+| last2 = Laitone
+| lastauthoramp = yes
+| editor1-first = S. | editor1-last = Flügge | editor1-link = Siegfried Flügge
+| editor2-first = C. | editor2-last = Truesdell | editor2-link = Clifford Truesdell
+| volume = 9
+| pages = 653–667, §27
+| title = Surface Waves
+| journal = Encyclopaedia of Physics
+| year = 1960
+| publisher = Springer Verlag
+| url = http://coe.berkeley.edu/SurfaceWaves/
+| oclc = 612422741
+}}
+
+==External links==
+
+
+

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.lucene.analysis.ko"},{"l":"org.apache.lucene.analysis.ko.dict"},{"l":"org.apache.lucene.analysis.ko.tokenattributes"}];updateSearchResults();

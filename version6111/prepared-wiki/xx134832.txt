@@ -1,0 +1,28 @@
+[[Wrapping (graphics)]]
+
+CATEGORIES: Computer graphics algorithms
+
+In computer graphics, wrapping is the process of limiting a position to an area. A good example of wrapping is wallpaper, a single pattern repeated indefinitely over a wall. Wrapping is used in 3D computer graphics to repeat a texture over a polygon, eliminating the need for large textures or multiple polygons.
+
+==Implementation==
+
+For computational purposes the wrapped value x' of x can be expressed as
+Pseudocode for wrapping of a value to a range other than 0-1 is
+  '''function''' wrap(X, Min, Max: Real): Real;
+    X := X - Int((X - Min) / (Max - Min)) * (Max - Min);
+    '''if''' X < 0 '''then''' //This corrects the problem caused by using Int instead of Floor
+      X := X + Max - Min;
+    '''return''' X;
+Pseudocode for wrapping of a value to a range of 0-1 is
+  '''function''' wrap(X: Real): Real;
+    X := X - Int(X);
+    '''if''' X < 0 '''then'''
+      X := X + 1;
+    '''return''' X;
+Pseudocode for wrapping of a value to a range of 0-1 without branching is,
+  '''function''' wrap(X: Real): Real;
+    '''return''' ((X mod 1.0) + 1.0) mod 1.0;
+
+==See also==
+
+

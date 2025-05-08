@@ -1,0 +1,44 @@
+[[IBM 704]]
+
+CATEGORIES: IBM vacuum tube computers, IBM 700/7000 series, 1954 introductions
+
+The IBM 704, the first mass-produced computer with floating point arithmetic hardware, was introduced by IBM in 1954.cs.edu/brochure/images/manuals/IBM_704/IBM_704.html IBM 704 Manual of Operation
+ 
+ The type 704 Electronic Data-Processing Machine is a large-scale, high-speed  electronic calculator controlled by an internally stored program of the single address type.
+
+The 704 was a significant improvement over the earlier IBM 701 in terms of architecture and implementation. Like the 701, the 704 used vacuum tube logic circuitry.  Changes from the 701 included the use of core memory instead of Williams tubes and the addition of three index registers. To support these new features, the instructions were expanded to use the full 36-bit word. The new instruction set, which was not compatible with the 701, became the base for the "scientific architecture" subclass of the IBM 700/7000 series computers.
+The 704 could execute up to 12,000 floating-point additions per second. IBM sold 140 type 704 systems between 1955 and 1960.
+
+Landmarks
+
+The programming languages FORTRAN and LISP
+MUSIC, the first computer music program, was developed on the IBM 704 by Max Mathews.
+In 1962 physicist John Larry Kelly, Jr created one of the most famous moments in the history of Bell Labs by using an IBM 704 computer to synthesize speech. Kelly's voice recorder synthesizer vocoder recreated the song Daisy Bell, with musical accompaniment from Max Mathews. Author Arthur C. Clarke was coincidentally visiting friend and colleague John Pierce at the Bell Labs Murray Hill facility at the time of this speech synthesis demonstration, and Clarke was so impressed that he used it in the climactic scene of his novel and screenplay for 2001: A Space Odyssey,Arthur C. Clarke  online Biography where the HAL 9000 computer sings the same song.Bell Labs: Where "HAL" First Spoke (Bell Labs Speech Synthesis website)
+Edward O. Thorp, a math instructor at MIT, used the IBM 704 as a research tool to investigate the probabilities of winning while developing his blackjack gaming theory.
+The IBM 704 was used as the official tracker for the Smithsonian Astrophysical Observatory Operation Moonwatch in the fall of 1957. See The M.I.T. Computation Center and Operation Moonwatch. IBM provided four staff scientists to aid Smithsonian Astrophysical Observatory scientists and mathematicians in the calculation of satellite orbits: Dr. Giampiero Rossoni, Dr. John Greenstadt, Thomas Apple and Richard Hatch.
+
+Registers
+
+The IBM 704 had a 38-bit accumulator, a 36-bit multiplier quotient register, and three 15-bit index registers.  The contents of the index registers were subtracted from the base address, so the index registers were also called "decrement registers".  All three index registers could participate in an instruction: the 3-bit tag field in the instruction was a bit map specifying which of the registers would participate in the operation. However, when more than one index register was selected, then their contents were or'ed – not added – together before the decrement took place. This behavior persisted in later Scientific Architecture machines (such as the IBM 709 and IBM 7090) until the IBM 7094.  The IBM 7094, introduced in 1962, increased the number of index registers to seven and only selected one at a time; the "or" behavior remained available in a compatibility mode of the IBM 7094.
+
+Instruction and data formats
+
+There were two instruction formats, referred to as "Type A" and "Type B".  Most instructions were of type B.
+Type A instructions had, in sequence, a three bit prefix (instruction code), a 15 bit decrement field, a 3 bit tag field, and a 15 bit address field.  There were conditional jump operations based on the values in the index registers specified in the tag field.  Some instructions also subtracted the decrement field from the contents of the index registers.  The implementation required that the second two bits of the instruction code be non-zero, giving a total of six possible type A instructions.  One (STR, instruction code binary 101) was not implemented until the IBM 709.
+Type B instructions had, in sequence, a 12 bit instruction code (with the second and third bits set to 0 to distinguish them from type A instructions), a two bit flag field, four unused bits, a 3 bit tag field, and a 15 bit address field.
+The instruction set implicitly subdivided the data format into the same fields as type A instructions: prefix, decrement, tag and address.  Instructions existed to modify each of these fields in a data word without changing the remainder of the word though the Store Tag instruction was not implemented on the IBM 704.  The original Lisp used the address and decrement fields to store, respectively, the head and tail of a linked list. The primitive functions car ("contents of the address part of register") and cdr ("contents of the decrement part of register") were named after these fields., Section 3.4, Innovations in the Design of Lisp. The reference identifies the IBM 704 and correctly explains the address and decrement part of a cons cell, but then it omits the "part of" in McCarthy's explanation. does not match the IBM 704 architecture; the IBM 704 did not have a programmer-accessible address register and the three address modification registers were call "index registers" by IBM.
+
+Memory and peripherals
+
+Controls were included in the 704 for: one 711 Punched Card Reader, one 716 Alphabetic Printer, one 721 Punched Card Recorder, five 727 Magnetic Tape Units and one 753 Tape Control Unit, one 733 Magnetic Drum Reader and Recorder, and one 737 Magnetic Core Storage Unit. The 704 itself came with a control console which had 36 assorted control switches or buttons and 36 data input switches, one for each bit in a register. The control console essentially allowed only setting the binary values of the registers with switches and seeing the binary state of the registers displayed in the pattern of many small neon tubes, appearing much like modern LEDs. For human interaction with the computer, programs would be entered on punched cards initially rather than at the console, and human-readable output would be directed to the printer. The IBM 740 Cathode Ray Tube Output Recorder was also available, which was a 21-inch vector display with a very long phosphor persistence time of 20 seconds for human viewing, together with a 7-inch display receiving the same signal as the larger display but with a fast-decaying phosphor brightness designed to be photographed with an attached camera. 
+The 737  Magnetic Core Storage Unit had 4,096 36-bit words, the equivalent of 18,432 bytes and served as RAM. The 727 Magnetic Tape Units stored over five million six-bit characters per reel.
+
+Further reading
+
+
+
+
+
+
+
+

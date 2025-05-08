@@ -1,0 +1,39 @@
+[[GEGL]]
+
+CATEGORIES: Beta software, Free computer libraries, Graphics libraries, C libraries
+
+The Generic Graphics Library (GEGL) is a programming library under development for image processing applications. It is mainly developed for GIMP in order to bring support for higher bit depth images than GIMP currently supports, as well as non-destructive editing.  It has been partially implemented in GIMP 2.6,[tpl]cite web |url=http://gimp.org/release-notes/gimp-2.6.html |title=GIMP 2.6 Release |accessdate=2008-10-01[/tpl] will be used directly in 2.10, [tpl]cite web |url=https://plus.google.com/116634837115748851709/posts/KB35UcfCH94 |title=Gimp 2.10 announcement on Google+ |accessdate=2012-03-15[/tpl] and may be used by other software too.
+Historically, the GEGL mascot, a five-legged goat created by George (Jiří) Lebl,[ref]
+</ref>
+found life as an easter egg in GNOME desktops.[ref]
+</ref>
+
+==GEGL design==
+
+GEGL is modelled after a directed acyclic graph, where each node represents an image operation (called "operators" or "ops"), and each edge represents an image. Operations can in general take several input images and give several output images, which corresponds to having several incoming edges (images) and several outgoing edges (images) at a given node (operation). The system uses an on-demand model, doing work only as required.
+Using an on-demand model allows features such as having very quick previews while editing, and once the user has finished making changes GEGL will repeat the same operations in full resolution for the final image in the background.
+
+===GEGL operators===
+
+An operator (op) is a node within a GEGL graph responsible for one action; ops can be:
+
+===babl===
+
+babl, a support library for GEGL, provides a generic way to deal with color-space conversions;babl website
+babl operates abstracting the fundamental color operations so that GEGL need not be aware of them. Through babl, GEGL provides an optimized and powerful (optionally with SIMD support) treatment of arbitrary color data; this enables dependent applications to efficiently support a wide range of color spaces (from 8-bit RGB to full floating point CMYK) with minimal extra application-code.
+
+==OpenRaster==
+
+OpenRaster is an XML file format used for saving raster graphics.  GEGL's lead developer Øyvind Kolås has helped specifying OpenRaster so that it is capable of saving a GEGL graph.
+
+==History of GEGL==
+
+GEGL was originally conceived as a GIMP core replacement in 2000, finally in 2006 the external API was deemed stable enough and capable of replacing the GIMP core. On 20 December 2007, it was added to the development version of GIMP. Some of GIMP's tools have already been converted to GEGL operations; mostly tools which modify colors, brightness or contrast have been converted.
+
+==See also==
+
+==References==
+
+==External links==
+
+

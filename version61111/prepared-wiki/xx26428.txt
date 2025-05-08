@@ -1,0 +1,22 @@
+[[Interchange File Format]]
+
+CATEGORIES: Computer file formats, AmigaOS, Amiga, MorphOS
+
+Interchange File Format (IFF), is a generic container file format originally introduced by the Electronic Arts company in 1985 (in cooperation with Commodore/Amiga) in order to ease transfer of data between software produced by different companies.  
+IFF files do not have any standard extension.  On many systems that generate IFF files, file extensions are not important (the OS stores file format metadata separately from the file name).  An .iff extension is commonly used for ILBM format files, which use the IFF container format.
+Resource Interchange File Format is a format developed by Microsoft and IBM in 1991 that is based on IFF, except the byte order has been changed to little endian to match the x86 processor architecture. Apple Computer's AIFF is a big endian audio file format developed from IFF. The TIFF image file format is unrelated.
+
+==Structure==
+
+An IFF file is built up from chunks. Each chunk begins with what the specification calls a "Type ID" (what the Macintosh called an OSType and Windows developers might call a FourCC). This is followed by a 32-bit unsigned integer (all integers in IFF files' structure are big-endian) specifying the size of the following data (the chunk content) in bytes. Because the specification includes explicit lengths for each chunk, it is possible for a parser to skip over chunks which it either can't or doesn't care to process. 
+This structure is closely related to the type-length-value (TLV) representation.
+There are predefined group chunks, with type IDs ‘FORM’, ‘LIST’ and ‘CAT ’. A FORM chunk is like a record structure, containing a type ID (indicating the record type) followed by nested chunks specifying the record fields. A LIST is a factoring structure containing a series of ‘PROP’ (property) chunks plus nested group chunks to which those properties apply. A CAT  is just a collection of nested chunks with no special semantics. Group chunks can contain other group chunks, depending on the needs of the application. Group chunks, like their simpler counterparts, contain a length element. Skipping over a group can thus be done with a simple Unix-style relative seek operation.
+Chunks must begin on even file offsets, as befits the origins of IFF on the Motorola 68000 processor, which couldn't address quantities larger than a byte on odd addresses. Thus chunks with odd lengths will be "padded" to an even byte boundary by adding a so-called "pad byte" after their regular end.
+The top-level structure of an IFF file consists of exactly one of the group chunks: FORM, LIST or CAT , where FORM is by far the most common one.
+Each type of chunk typically has a different internal structure, that could be numerical data, text, or raw data. It is also possible to include other IFF files as if they are chunks (note that they have the same structure: four letters followed with length) and some formats use this. There are standard chunks that could be present in any IFF file, such as ‘AUTH’ (containing text with information about author of the file), ‘ANNO’ (containing text with annotation, usually name of the program that created the file), ‘NAME’ (containing text with name of the work in the file), ‘VERS’ (containing file version), ‘(c) ’ (containing text with copyright information). There are also chunks that are common among a number of formats, such as ‘CMAP’ which holds color palette in ILBM, ANIM and DR2D files (pictures, animations and vector pictures). There are chunks that have a common name but hold different data such as ‘BODY’ which could store an image in an ILBM file and sound in an 8SVX file. And finally, there are chunks unique to their file type. Some programs that create IFF files add chunks to them with their internal data; these same files can later be read by other programs without any disruption (because their parsers could skip uninteresting chunks) which is a great advantage of IFF and similar formats.
+
+==See also==
+
+==External links==
+
+

@@ -1,0 +1,26 @@
+[[Chaosnet]]
+
+CATEGORIES: Local area networks
+
+Chaosnet was first developed by Thomas Knight and Jack Holloway at MIT's AI Lab in 1975 and thereafter. It refers to two separate, but closely related, technologies.[tpl]harv|Moon|1981|p=2[/tpl] The more widespread was a set of computer communication packet-based protocols intended to connect the then-recently developed and very popular (within MIT) Lisp machines; the second was one of the earliest local area network (LAN) hardware implementations.
+
+==Origin==
+
+The Chaosnet protocol originally used the latter, an implementation over CATV coaxial cable modeled on the early Xerox PARC [tpl]nowrap|3 megabit/second[/tpl] Ethernet,[tpl]harv|Moon|1981|p=2[/tpl] the early ARPANET, and Transmission Control Protocol (TCP). It was a contention-based system intended to work over a [tpl]nowrap|0–1000 meter[/tpl] range,[tpl]harv|Moon|1981|p=3[/tpl] that included a pseudo-slotted feature intended to reduce collisions, which worked by passing a virtual token of permission from host to host; successful packet transmissions updated each host's knowledge of which host had the token at that time. Collisions caused a host to fall silent for a duration depending on the distance from the host it collided with.[tpl]harv|Moon|1981|p=6--8[/tpl] Collisions were never a real problem, and the pseudo-slotting fell into disuse.
+Chaosnet's network topology was usually series of linear (not circular) cables, each up to a maximum of a kilometer and roughly 12 clients. The individual segments were interconnected by "bridges" (much in the ARPANET mold), generally older computers like PDP-11s with two network interfaces.[tpl]harv|Moon|1981|p=3,14[/tpl]
+The protocols were also later implemented as a payload that could be carried over Ethernet (usually the later [tpl]nowrap|10 megabit/second[/tpl] variety). Chaosnet was specifically for LANs; features to support WANs were left out for the sake of simplicity.[tpl]harv|Moon|1981|p=1[/tpl]
+Chaosnet can be regarded as a contemporary of both the PUP protocols invented by PARC, and the Internet Protocol (IP), and was recognized as one of the other network classes (other than "IN" and "HS") in the Domain Name System.[tpl]cite IETF |rfc=1034 |sectionname=Resource Records |section=3.6 |page=12 |last=Mockapetris |authorlink=Paul Mockapetris|year=1987|month=Dec|publisher=IETF[/tpl] BIND uses a built-in pseudo-top-level-domain in the "CHAOS class" for retrieving information about a running DNS server.http://www.bind9.net/manual/bind/9.3.2/Bv9ARM.ch06.html#builtin
+
+==Chaosnet protocol==
+
+The Chaosnet protocol identifies hosts by 16-bit addresses, 8 bits of which identify the subnet, 8 bits of which identify the host within the subnet.[tpl]harv|Moon|1981|p=10[/tpl] The basic protocol was a full-duplex reliable packet transmission between two user processes. The packet contents could be treated as bytes of 8 or 16 bits, with support for other word sizes provided by higher-level protocols. The connection was identified by a combination of the 16-bit addresses of each host and a 16-bit "connection index" assigned by each host to maintain uniqueness. "Controlled" packets within a connection were identified by a 16-bit packet number, which was used to deliver controlled packets reliably and in order, with re-transmission and flow control.  "Uncontrolled" packets were not retransmitted, and were used at a lower level to support the flow-control and re-transmission. Chaosnet also supported "BRD" broadcast packets to multiple subnets.[tpl]harv|Moon|1981[/tpl]
+Initial establishment of the connection was made using "contact names." These names identified the network service and higher-level protocol. For example "STATUS" was the contact name which requested basic network statistics from a host. "TELNET" was a contact name for the Arpanet TELNET protocol. "FILE" was a contact name for the Lisp Machine network file service. Other contact names included "SUPDUP", "MAIL", "NAME" for the Arpanet Finger protocol, "TIME", "SEND" for interactive messaging, "ARPA" for a gateway service to Arpanet. "DOVER" was the contact name for sending print jobs to Chaosnet hosts with a Xerox Dover printer attached.[tpl]harv|Moon|1981[/tpl] Developers could easily experiment with new protocols by inventing new contact names. In ITS, a new server for that protocol could be installed by creating a link to the program in the location DSK:DEVICE;CHAOS  where  was up to six letters of the contact name.
+Simple transactions could be completed by a single "RFC" packet containing a contact name, answered by a single "ANS" packet with the relevant information. For example, an RFC to contact name "TIME" would result in a single ANS packet containing a 32-bit number indicating the time.[tpl]harv|Moon|1981[/tpl]
+The original GNU Manifesto mentioned that it aimed to, among other things, support the Chaosnet protocol.
+Symbolics, a maker of the Lisp machines, licensed the MIT Chaosnet hardware and software implementation from the CADR computer design.
+
+==References==
+
+==External links==
+
+

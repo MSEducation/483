@@ -1,0 +1,76 @@
+[[De Rham cohomology]]
+
+CATEGORIES: Cohomology theories, Differential forms, Homology theory
+
+In mathematics, de Rham cohomology (after Georges de Rham) is a tool belonging both to  algebraic topology and to differential topology, capable of expressing basic topological information about smooth manifolds in a form particularly adapted to computation and the concrete representation of cohomology classes. It is a cohomology theory based on the existence of differential forms with prescribed properties.
+
+==Definition==
+
+The de Rham complex is the cochain complex of exterior differential forms on some smooth manifold [tpl]mvar|M[/tpl], with the exterior derivative as the differential.
+where [tpl]math|Ω0(M)[/tpl] is the space of smooth functions on [tpl]mvar|M[/tpl], [tpl]math|Ω1(M)[/tpl] is the space of [tpl]math|1[/tpl]-forms, and so forth.  Forms which are the image of other forms under the exterior derivative, plus the constant [tpl]math|0[/tpl] function in [tpl]math|Ω0(M)[/tpl] are called exact and forms whose exterior derivative is [tpl]math|0[/tpl] are called closed (see closed and exact differential forms); the relationship [tpl]math|d 2 [tpl]=[/tpl] 0[/tpl] then says that exact forms are closed. 
+The converse, however, is not in general true; closed forms need not be exact. A simple but significant case is the [tpl]math|1[/tpl]-form of angle measure on the unit circle, written conventionally as [tpl]math|dθ[/tpl] (described at closed and exact differential forms). There is no actual function [tpl]mvar|θ[/tpl] defined on the whole circle of which [tpl]math|dθ[/tpl] is the derivative; the increment of [tpl]math|2π[/tpl] in going once round the circle in the positive direction means that we can't take a single-valued [tpl]mvar|θ[/tpl]. We can, however, change the topology by removing just one point.
+Note that, for any manifold [tpl]mvar|M[/tpl] with [tpl]mvar|n[/tpl] connected components
+This follows from the fact that any smooth function on [tpl]mvar|M[/tpl] with zero derivative (i.e. locally constant) is constant on each of the connected components of [tpl]mvar|M[/tpl].
+
+==De Rham cohomology computed==
+
+One may often find the general de Rham cohomologies of a manifold using the above fact about the zero cohomology and a Mayer–Vietoris sequence. Another useful fact is that the de Rham cohomology is a homotopy invariant. While the computation is not given, the following are the computed de Rham cohomologies for some common topological objects:
+
+===The [tpl]mvar|n[/tpl]-sphere===
+
+For the [tpl]mvar|n[/tpl]-sphere, and also when taken together with a product of open intervals, we have the following. Let [tpl]math|n > 0, m ≥ 0[/tpl], and [tpl]mvar|I[/tpl] an open real interval. Then
+
+===The [tpl]mvar|n[/tpl]-torus===
+
+Similarly, allowing [tpl]math|n > 0[/tpl] here, we obtain
+
+===Punctured Euclidean space===
+
+Punctured Euclidean space is simply Euclidean space with the origin removed.
+
+===The Möbius strip===
+
+This follows from the fact that the Möbius strip, [tpl]mvar|M[/tpl], can be deformation retracted to the [tpl]math|1[/tpl]-sphere:
+
+==De Rham's theorem==
+
+More precisely, consider the map 
+The theorem of de Rham asserts that this is an isomorphism between de Rham cohomology and singular cohomology.
+The wedge product endows the direct sum of these groups with a ring structure.  A further result of the theorem is that the two cohomology rings are isomorphic (as graded rings), where the analogous product on singular cohomology is the cup product.
+
+==Sheaf-theoretic de Rham isomorphism==
+
+The de Rham cohomology is isomorphic to the Čech cohomology [tpl]math|H ∗(U, F)[/tpl], where [tpl]mvar|F[/tpl] is the sheaf of abelian groups determined by [tpl]math|F(U) [tpl]=[/tpl] R[/tpl] for all connected open sets [tpl]math|U ⊂ M[/tpl], and for open sets [tpl]math|U, V[/tpl] such that [tpl]math|U ⊂ V[/tpl], the group morphism [tpl]math|resV,U : F(V) → F(U)[/tpl] is given by the identity map on [tpl]math|R[/tpl], and where [tpl]math|U[/tpl] is a good open cover of [tpl]mvar|M[/tpl] (i.e. all the open sets in the open cover [tpl]math|U[/tpl] are contractible to a point, and all finite intersections of sets in [tpl]math|U[/tpl] are either empty or contractible to a point).
+Stated another way, if [tpl]mvar|M[/tpl] is a compact [tpl]math|C m+1[/tpl] manifold of dimension [tpl]mvar|m[/tpl], then for each [tpl]math|k ≤ m[/tpl], there is an isomorphism
+where the left-hand side is the [tpl]mvar|k[/tpl]-th de Rham cohomology group and the right-hand side is the Čech cohomology for the constant sheaf with fibre [tpl]math|R[/tpl].
+
+===Proof===
+
+Let [tpl]math|Ωk[/tpl] denote the sheaf of germs of [tpl]mvar|k[/tpl]-forms on [tpl]mvar|M[/tpl] (with [tpl]math|Ω0[/tpl] the sheaf of [tpl]math|C m+1[/tpl] functions on [tpl]mvar|M[/tpl]). By the Poincaré lemma, the following sequence of sheaves is exact (in the category of sheaves):
+This sequence now breaks up into short exact sequences
+Each of these induces a long exact sequence in cohomology. Since the sheaf of [tpl]math|C m+1[/tpl] functions on a manifold admits partitions of unity, the sheaf-cohomology [tpl]math|Hi(Ωk)[/tpl] vanishes for [tpl]math|i > 0[/tpl].  So the long exact cohomology sequences themselves ultimately separate into a chain of isomorphisms.  At one end of the chain is the Čech cohomology and at the other lies the de Rham cohomology.
+
+==Related ideas==
+
+The de Rham cohomology has inspired many mathematical ideas, including Dolbeault cohomology, Hodge theory, and the Atiyah-Singer index theorem.  However, even in more classical contexts, the theorem has inspired a number of developments.  Firstly, the Hodge theory proves that there is an isomorphism between the cohomology consisting of harmonic forms and the de Rham cohomology consisting of closed forms modulo exact forms.  This relies on an appropriate definition of harmonic forms and of the Hodge theorem.  For further details see Hodge theory.
+
+===Harmonic forms===
+
+where [tpl]mvar|α[/tpl] is some form, and [tpl]mvar|γ[/tpl] is harmonic: [tpl]math|Δγ [tpl]=[/tpl] 0[/tpl].
+More precisely, for a differential manifold [tpl]mvar|M[/tpl], one may equip it with some auxiliary Riemannian metric. Then the Laplacian [tpl]math|Δ[/tpl] is defined by 
+with [tpl]mvar|d[/tpl] the exterior derivative and [tpl]mvar|δ[/tpl] the codifferential.  The Laplacian is a homogeneous (in grading) linear differential operator acting upon the exterior algebra of differential forms: we can look at its action on each component of degree [tpl]mvar|k[/tpl] separately. 
+If [tpl]mvar|M[/tpl] is compact and oriented, the dimension of the kernel of the Laplacian acting upon the space of [tpl]mvar|k[/tpl]-forms is then equal (by Hodge theory) to that of the de Rham cohomology group in degree [tpl]mvar|k[/tpl]: the Laplacian picks out a unique harmonic form in each cohomology class of closed forms. In particular, the space of all harmonic [tpl]mvar|k[/tpl]-forms on [tpl]mvar|M[/tpl] is isomorphic to [tpl]math|H k(M; R)[/tpl].  The dimension of each such space is finite, and is given by the [tpl]mvar|k[/tpl]-th Betti number.
+
+===Hodge decomposition===
+
+Letting [tpl]mvar|δ[/tpl] be the codifferential, one says that a form [tpl]mvar|ω[/tpl] is co-closed if [tpl]math|δω [tpl]=[/tpl] 0[/tpl] and co-exact if [tpl]math|ω [tpl]=[/tpl] δα[/tpl] for some form [tpl]mvar|α[/tpl].  The Hodge decomposition states that any [tpl]mvar|k[/tpl]-form can be split into three [tpl]math|L2[/tpl] components:
+where [tpl]mvar|γ[/tpl] is harmonic: [tpl]math|Δγ [tpl]=[/tpl] 0[/tpl].  This follows by noting that exact and co-exact forms are orthogonal; the orthogonal complement then consists of forms that are both closed and co-closed: that is, of harmonic forms.  Here, orthogonality is defined with respect to the [tpl]math|L2[/tpl] inner product on [tpl]math|Ωk(M)[/tpl]:
+A precise definition and proof of the decomposition requires the problem to be formulated on Sobolev spaces. The idea here is that a Sobolev space provides the natural setting for both the idea of square-integrability and the idea of differentiation. This language helps overcome some of the limitations of requiring compact support.
+
+==See also==
+
+==References==
+
+==External links==
+
+

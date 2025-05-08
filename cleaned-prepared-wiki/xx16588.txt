@@ -1,0 +1,48 @@
+[[Xerox Network Systems]]
+
+CATEGORIES: Network protocols, Xerox
+
+Xerox Network Services (XNS) is a protocol suite developed by Xerox within the Xerox Network Systems Architecture. It provided general purpose network communications,  internetwork routing and packet delivery, including higher level functions such as a reliable stream, and remote procedure calls. XNS predated and influenced the development of the Open Systems Interconnection (OSI) networking model.
+XNS was developed by the Xerox Systems Development Department (later known as the Xerox Office Systems Division) in the early 1980s, based heavily on Xerox Parc's earlier (and extremely influential) PARC Universal Packet (PUP) protocol suite done there in the late 1970s; some of the protocols in the XNS suite were lightly modified versions of the ones in the PUP suite. XNS was intended to be a commercial descendant of the research/development oriented PUP. The protocol suite specifications were placed in the public domain.
+Being in the public domain, XNS became a canonical local area networking protocol in the 1980s, copied to various degrees by practically all networking systems in use into the 1990s. It had little impact on TCP/IP, however, which was designed earlier. During the 1980s XNS was used by 3Com and, with modifications, by a number of other commercial systems which became more common than XNS itself, including Ungermann-Bass Net/One, Novell NetWare, and Banyan VINES.
+
+Basic internetwork protocol
+
+The main internetwork layer protocol was the Internet Datagram Protocol (IDP). IDP is a close descendant of PUP's internetwork protocol, and roughly corresponds to the Internet Protocol (IP) layer in TCP/IP.
+Designed from the outset to complement the Ethernet local area network, also developed by Xerox. This led to the decision to use Ethernet's 48-bit address as the basis for its own network addressing, generally using the machine's MAC address as the primary unique identifier. The full 12-byte address also included a 32-bit network number for routing purposes, and a 16-bit socket number for service selection. The network number also had a special value which meant 'this network', for use by hosts which did not (yet) know their network number.
+Unlike TCP/IP, socket numbers are part of the full network address in the IDP header, so that upper-layer protocols did not need to implement demultiplexing; IDP also supplied packet types (again, unlike IP). IDP also contained a checksum covering the entire packet, but it was optional, not mandatory.
+IDP packets were up to 576 bytes long, including the 30 byte IDP header. In comparison, IP required all hosts to support at least 576, but supports packets of up to 65K bytes. Individual PUP host pairs on a particular network might use larger packets, but no PUP router was required to handle them, and no mechanism was defined to discover if the intervening routers would support larger packets. Also, packets could not be fragmented, as in IP.
+XNS also included a simple echo protocol at the internetwork layer, similar to IP's ping, but operating at a lower level.
+The Routing Information Protocol (RIP), a descendant of PUP's Gateway Information Protocol, was used as the router information-exchange system, and (slightly modified to match the syntax of addresses of other protocol suites), remains in use today in other protocol suites, such as the Internet Protocols.
+
+Remote Debug Protocols
+
+To this day, XNS/PuP contained protocols that do not exist in today's internet.  Because all 8000+ machines in the Xerox corporate Intranet ran the Wildflower architecture (designed by Butler Lampson), there was a remote-debug protocol for microcode.  Basically, a peek and poke function could halt and manipulate the microcode state of a C-series or D-series machine, anywhere on earth, and then restart the machine.
+Also, there was a remote debug protocol for the world-swap debugger.  This protocol could, via the debugger "nub", freeze a workstation and then peek and poke various parts of memory, change variables, and continue execution.  If debugging symbols were available, a crashed machine could be remote debugged from anywhere on earth.
+
+Transport layer protocols
+
+There were two primary transport layer protocols, both very different from their PUP predecessor:
+XNS, like PUP, also used EP, the Error Protocol, as a reporting system for problems such as dropped packets. This provided a unique set of packets which could be filtered to look for problems.
+
+Applications
+
+In the original Xerox concept, applications protocols such as remote printing, filing, and mailing, etc., employed a remote procedure call protocol named Courier.  Courier contained primitives to implement most of the features of the MESA programming language function calls.  Applications had to manually serialize and de-serialize function calls in Courier; there was no automatic facility translate a function activation frame into an RPC (i.e. no "RPC Compiler" was available).  Because Courier was used by all applications, the XNS application protocol documents specified only courier function-call interfaces, and module+function binding tuples.  There was a special facility in Courier to allow a function call to send or receive bulk data.
+Initially, XNS service location was performed via broadcasting remote procedure-calls using a series of expanding ring broadcasts (in consultation with the local router, to get networks at increasing distances.)  Later, the Clearinghouse 3-level directory service was created to perform service location, and the expanding-ring broadcasts were used only to locate an initial Clearinghouse.
+The XNS Protocols also included an Authentication Service and an Authentication Protocol.  After contacting the authentication service for credentials, this protocol provided a lightweight-way to digitally sign Courier procedure calls, so that receivers could verify the signature and authenticate senders over the XNS internet, without having to contact the Authentication service again for the length of the protocol communication session.
+Most of the Xerox applications protocols never made it into wide use, and most commercial offerings using XNS, such as Novell Netware, defined their own applications protocols.
+
+Printing
+
+Xerox's printing language, Interpress, was a binary-formatted standard for controlling laser printers.  The designers of this language, John Warnock and Chuck Geschke, later left Xerox PARC to start Adobe Systems.  Before leaving, they realized the difficulty of specifying a binary print language, where functions to serialize the print job were cumbersome and which made it difficult to debug errant printing jobs.  To realize the value of specifying both a programmable and easily debug-able print job in ASCII, Warnock and Geschke created the Postscript language as one of their first products at Adobe.
+
+Impact
+
+Last used by Xerox for communication with the DocuTech 135 Publishing System, XNS is no longer in use, due to the ubiquity of IP. However, it played an important role in the development of networking technology in the 1980s, by influencing software and hardware vendors to seriously consider the need for computing platforms to support more than one network protocol stack simultaneously.
+In particular, it helped to validate the design of the 4.2BSD network subsystem by providing a second protocol suite, one which was significantly different from the Internet protocols; by implementing both stacks in the same kernel, Berkeley researchers demonstrated that the design was suitable for more than just IP.  Additional BSD modifications were eventually necessary to support the full range of Open Systems Interconnection (OSI) protocols.
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+[[Hungarian notation]]
+
+CATEGORIES: Source code, Naming conventions
+
+Hungarian notation is an identifier naming convention in computer programming, in which the name of a variable or function indicates its type or intended use.  There are two types of Hungarian notation: Systems Hungarian notation and Apps Hungarian notation.
+Hungarian notation was designed to be language-independent, and found its first major use with the BCPL programming language.  Because BCPL has no data types other than the machine word, nothing in the language itself helps a programmer remember variables' types. Hungarian notation aims to remedy this by providing the programmer with explicit knowledge of each variable's data type.
+In Hungarian notation, a variable name starts with a group of lower-case letters which are mnemonics for the type or purpose of that variable, followed by whatever name the programmer has chosen; this last part is sometimes distinguished as the given name. The first character of the given name can be capitalized to separate it from the type indicators (see also CamelCase). Otherwise the case of this character denotes scope.
+
+==History==
+
+The original Hungarian notation, which would now be called Apps Hungarian, was invented by Charles Simonyi, a programmer who worked at Xerox PARC circa 1972–1981, and who later became Chief Architect at Microsoft.  It may have been derived from the earlier principle of using the first letter of a variable name to set its type — for example, variables whose names started with letters I through N in FORTRAN are integers by default.
+The notation is a reference to Simonyi's nation of origin; Hungarian people's names are "reversed" compared to most other European names; the family name precedes the given name. For example,  the anglicized name "Charles Simonyi" in Hungarian was originally "Simonyi Charles" (Simonyi Károly in Hungarian). In the same way the type name precedes the "given name" in Hungarian notation rather than the more natural, to most Europeans, Smalltalk "type last" naming style e.g. aPoint and lastPoint. This latter naming style was most common at Xerox PARC during Simonyi's tenure there.
+The name Apps Hungarian was coined since the convention was used in the applications division of Microsoft. Systems Hungarian developed later in the Microsoft Windows development team.  Simonyi's paper referred to prefixes used to indicate the "type" of information being stored. His proposal was largely concerned with decorating identifier names based upon the semantic information of what they store (in other words, the variable's purpose), consistent with Apps Hungarian. However, his suggestions were not entirely distinct from what became known as Systems Hungarian, as some of his suggested prefixes contain little or no semantic information (see below for examples).
+The term Hungarian notation is memorable for many people because the strings of unpronounceable consonants vaguely resemble the consonant-rich orthography of some Eastern European languages despite the fact that Hungarian is a Uralic language, and unlike Slavic languages is rather rich in vowels. For example the zero-terminated string prefix "sz" is also a letter in the Hungarian alphabet.
+
+==Systems vs. Apps Hungarian==
+
+Where Systems notation and Apps notation differ is in the purpose of the prefixes.
+In Systems Hungarian notation, the prefix encodes the actual data type of the variable. For example:
+Apps Hungarian notation strives to encode the logical data type rather than the physical data type; in this way, it gives a hint as to what the variable's purpose is, or what it represents.
+Most, but not all, of the prefixes Simonyi suggested are semantic in nature. The following are examples from the original paper:
+
+While the notation always uses initial lower-case letters as mnemonics, it does not prescribe the mnemonics themselves. There are several widely used conventions (see examples below), but any set of letters can be used, as long as they are consistent within a given body of code.
+It is possible for code using Apps Hungarian notation to sometimes contain Systems Hungarian when describing variables that are defined solely in terms of their type.
+
+==Relation to sigils==
+
+In some programming languages, a similar notation now called sigils is built into the language and enforced by the compiler. For example, in some forms of BASIC, name$ names a string and count% names an integer. The major difference between Hungarian notation and sigils is that sigils declare the type of the variable to the compiler, while Hungarian notation is purely a naming scheme.
+
+==Examples==
+
+The mnemonics for pointers and arrays, which are not actual data types, are usually followed by the type of the data element itself:
+While Hungarian notation can be applied to any programming language and environment, it was widely adopted by Microsoft for use with the C language, in particular for Microsoft Windows, and its use remains largely confined to that area. In particular, use of Hungarian notation was widely evangelized by Charles Petzold's "Programming Windows", the original (and for many readers, the definitive) book on Windows API programming.  Thus, many commonly seen constructs of Hungarian notation are specific to Windows:
+The notation is sometimes extended in C++ to include the scope of a variable, separated by an underscore[tpl]Citation needed|date=March 2011[/tpl]. This extension is often also used without the Hungarian type-specification:
+
+==Advantages==
+
+(Some of these apply to Systems Hungarian only.)
+Supporters argue that the benefits of Hungarian Notation include:
+
+==Disadvantages==
+
+Most arguments against Hungarian notation are against Systems Hungarian notation, not Apps Hungarian notation. Some potential issues are:
+| last=Jones
+| first=Derek M.
+| title=The New C Standard: A Cultural and Economic Commentary
+| url=http://www.coding-guidelines.com/cbook/cbook1_2.pdf
+| page=727
+| year=2009
+| publisher=Addison-Wesley
+| isbn=0-201-70917-1}}[/ref]
+
+==Notable opinions==
+
+ |     author = Robert C. Martin
+ |      title = Clean Code: A Handbook of Agile Software Craftsmanship
+ |       year = 2008
+ |   location = Redmond, WA
+ |  publisher = Prentice Hall PTR
+ |       isbn = 0-13-235088-2
+}}[/ref]
+ |      title = Linux kernel coding style

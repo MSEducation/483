@@ -1,0 +1,47 @@
+[[Software bloat]]
+
+CATEGORIES: Anti-patterns, Software engineering
+
+Software bloat is a process whereby successive versions of a computer program become perceptibly slower, use more memory/diskspace or processing power, or have higher hardware requirements than the previous version whilst making only dubious user-perceptible improvements. The term is not applied consistently; it is often used as a pejorative by end users to describe undesired user interface changes even if those changes had little or no effect on the hardware requirements. In long-lived software, perceived bloat can occur from the software servicing a large, diverse marketplace with many differing requirements. Most end users will feel they only need some limited subset of the available functions and will regard the others as unnecessary bloat, even if people with different requirements do use them. 
+Actual (measurable) bloat can occur due to de-emphasising software efficiency in favour of other concerns like developer productivity, or possibly through the introduction of new layers of abstraction like a virtual machine or other scripting engine for the purposes of convenience when developer constraints are reduced. The perception of improved developer productivity, in the case of practising development within virtual machine environments, comes from the developers no longer taking resource constraints and usage into consideration during design and development; this allows the product to be completed faster but it results in increases to the end user's hardware requirements to compensate.
+
+Causes
+
+Software inefficiency
+
+Software developers involved in the industry during the 1970s had severe limitations on disk space and memory. Every byte and clock cycle counted, and much work went into fitting the programs into available resources. Achieving this efficiency was one of the highest values of computer programmers, and the best programs were often called "elegant"—seen as a form of high art.
+By the 21st century, the situation had reversed. Resources were perceived as cheap, and rapidity of coding and headline features for marketing seen as priorities.  Inelegant, even sloppy code is to some degree hidden from the end users by the increasing brute force and speed of modern computers. (There is little payoff to, say, increasing the speed of a sloppy five-millisecond subroutine, even by a factor of 100.)
+Finally, software development tools and approaches often result in changes throughout a program to accommodate each feature, leading to a large-scale inclusion of code which affects the main operation of the software, and is required in order to support functions that themselves may be only rarely used. In particular, the advances in resources available have led to tools which allow easier development of code, again with less priority given to end efficiency.
+Another cause of bloat is independently competing standards and products, which can create a demand for integration. There are now more operating systems, browsers, protocols, and storage formats than there were before, causing bloat in programs due to interoperability issues. For example, a program that once could only save in text format is now demanded to save in HTML, XML, XLS, CSV, PDF, DOC, and other formats.
+Niklaus Wirth has summed up the situation in Wirth's Law, which states that software speed is decreasing more quickly than hardware speed is increasing.
+In his 2001 essay Strategy Letter IV: Bloatware and the 80/20 Myth, Joel Spolsky argues that while 80% of the users only use 20% of the features (a variant on the Pareto principle), each one uses different features. Thus, "lite" software editions turn out to be useless for most, as they miss the one or two special features that are present in the "bloated" version. Spolsky sums the article with a quote by Jamie Zawinski referring to the Mozilla Application Suite (which later became SeaMonkey):
+ "Convenient though it would be if it were true, Mozilla is not big because it's full of useless crap. Mozilla is big because your needs are big. Your needs are big because the Internet is big. There are lots of small, lean web browsers out there that, incidentally, do almost nothing useful. But being a shining jewel of perfection was not a goal when we wrote Mozilla." 
+Software bloat may also be a symptom of the second-system effect, described by Fred Brooks in The Mythical Man-Month.
+
+Bloatware
+
+The term "bloatware" may be applied to software that has become bloated through inefficiency or accretion of features as outlined above. Confusingly, the same term bloatware is also commonly used to refer to preinstalled software on a device, usually included by the hardware manufacturer, that is mostly unwanted by the purchaser. This may account for up to 45% of pre-installed software on a new device.
+The term may also be applied to the accumulation of unwanted and unused software elements that remain after partial and incomplete uninstallation. These elements may include whole programs, libraries, associated configuration information or data. The impact over time may be resultant deterioration of performance as the unwanted software or software components occupy memory, waste processing time, add disk I/O, consume storage and cause delays at system startup and shutdown. In the worst cases, the leftover software may interfere with the correct operation of wanted software.
+
+Examples
+
+Apple's iTunes has been accused of being bloated as part of its efforts to turn it from a program that plays media to an e-commerce and advertising platform,
+Microsoft Windows has also been criticized as being bloated - with reference to Windows Vista, Microsoft engineer Eric Traut commented that  "A lot of people think of Windows as this large, bloated operating system, and that's maybe a fair characterization, I have to admit. ... But at its core, the kernel, and the components that make up the very core of the operating system, is actually pretty streamlined."  The Windows Application Programming Interface can also be considered bloated, as it tries to create backwards compatibility, resulting in extremely inelegant code to today's standards. The .
+CD- and DVD-burning applications such as Nero Burning ROM have become criticized for being bloated.
+Superfluous features not specifically tailored to the end user are sometimes installed by default through express setups.
+A number of technology blogs have also covered the issue of increased bloatware on cell phones. However, they refer to a different issue, specifically that of wireless carriers loading phones with software that, in many cases, cannot be easily deleted, if at all. This has been most frequently cited with respect to Android devices, although this phenomenon exists on phones running many other operating systems.
+
+Alternatives to software bloat
+
+Some applications, such as Firefox and Winamp, and software with additional functionality from plug-ins, use extensions or add-ons which are downloaded separately from the main application. These can be created by either the software developer or by third party developers. Plug-ins, extensions, and add-ons add extra functionality which might have otherwise been packaged in the main program.
+Allowing these plug-ins, extensions, and/or add-ons reduces the space used on any one machine, because even though the application, the "plug-in interface", and all the plug-ins combined are larger than the same functionality compiled into one monolithic application, it allows each user to install only the particular add-on features required by that user, rather than forcing every user to install a much larger monolithic application that includes 100% of the available features. This results in a "stripped-down" or "out-of-the-box" application that is delivered in a compact package yet ready for users to add only the functionality that they will actually use.
+Open source software may use a similar technique using preprocessor directives to include features at compile time selectively. This is easier to implement and more secure than a plugin system, but has the disadvantage that a user who wants a specific set of features must compile the program from source.
+Sometimes software becomes bloated because of "creeping featurism" (Zawinski's Law of Software Envelopment), also called bullet-point engineering. One way to reduce that kind of bloat is described by the Unix philosophy: "Write programs that do one thing and do it well", break a single, complicated software into numerous simpler components which can be chained together using pipes, shell scripts or another form of interapplication communication.
+
+
+
+
+
+
+
+

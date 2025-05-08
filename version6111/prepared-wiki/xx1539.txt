@@ -1,0 +1,148 @@
+[[File:Animation of the Naive Mark and Sweep Garbage Collector Algorithm.gif|thumb|alt=caption|Naive Mark and Sweep in action on a heap containing eight objects. 
+Arrows represent object references. Circles represent the objects themselves. 
+Objects #1, #2, #3, #4, and #6 are strongly referenced from the root set. On the other hand, objects #5, #7, and #8 are not strongly referenced either directly or indirectly from the root set; therefore, they are garbage. ]]
+In the naive mark-and-sweep method, each object in memory has a flag (typically a single bit) reserved for garbage collection use only. This flag is always cleared, except during the collection cycle. The first stage of collection does a tree traversal of the entire 'root set', marking each object that is pointed to as being 'in-use'. All objects that those objects point to, and so on, are marked as well, so that every object that is ultimately pointed to from the root set is marked. Finally, all memory is scanned from start to finish, examining all free or used blocks; those with the in-use flag still cleared are not reachable by any program or data, and their memory is freed. (For objects which are marked in-use, the in-use flag is cleared again, preparing for the next cycle.)
+This method has several disadvantages, the most notable being that the entire system must be suspended during collection; no mutation of the working set can be allowed. This will cause programs to 'freeze' periodically (and generally unpredictably), making real-time and time-critical applications impossible. In addition, the entire working memory must be examined, much of it twice, potentially causing problems in paged memory systems.
+
+====[tpl]Anchor|TRI-COLOR[/tpl]Tri-color marking====
+
+Because of these pitfalls, most modern tracing garbage collectors implement some variant of the tri-color marking abstraction, but simple collectors (such as the mark-and-sweep collector) often do not make this abstraction explicit.  Tri-color marking works as described below.
+Three sets are created[tpl]snd[/tpl] white, black and gray:
+These three sets partition the memory; every object in the system, including the root set, is in precisely one set.  The algorithm then executes the following:
+Since all objects not immediately reachable from the root are typically assigned to the white set, and objects can only move from white to gray and from gray to black, the algorithm preserves an important invariant[tpl]snd[/tpl] no black object points directly to a white object. This ensures that the white objects can be safely destroyed once the gray set is empty. (Some variations on the algorithm do not preserve the tri-color invariant but use a modified form for which all the important properties hold.)
+The tri-color method has an important advantage[tpl]snd[/tpl] it can be performed "on-the-fly", without halting the system for significant periods of time. This is accomplished by marking objects as they are allocated and during mutation, maintaining the various sets. By monitoring the size of the sets, the system can perform garbage collection periodically, rather than as needed. Also, the need to touch the entire working set on each cycle is avoided.
+
+===Implementation strategies===
+
+In order to implement the basic tri-colour algorithm, several important design decisions must be made, which can significantly affect the performance characteristics of the garbage collector.
+
+====Moving vs. non-moving====
+
+Once the unreachable set has been determined, the garbage collector may simply release the unreachable objects and leave everything else as it is, or it may copy some or all of the reachable objects into a new area of memory, updating all references to those objects as needed. These are called "non-moving" and "moving" (or, alternatively, "non-compacting" and "compacting") garbage collectors, respectively.
+At first, a moving GC strategy may seem inefficient and costly compared to the non-moving approach, since much more work would appear to be required on each cycle. In fact, however, the moving GC strategy leads to several performance advantages, both during the garbage collection cycle itself and during actual program execution:
+One disadvantage of a moving garbage collector is that it only allows access through references that are managed by the garbage collected environment, and does not allow pointer arithmetic. This is because any native pointers to objects will be invalidated when the garbage collector moves the object (they become dangling pointers). For interoperability with native code, the garbage collector must copy the object contents to a location outside of the garbage collected region of memory. An alternative approach is to pin the object in memory, preventing the garbage collector from moving it and allowing the memory to be directly shared with native pointers (and possibly allowing pointer arithmetic).[tpl]cite web|url=http://msdn2.microsoft.com/en-us/library/23acw07k.aspx |title=Copying and Pinning |publisher=Msdn2.microsoft.com |date= |accessdate=9 July 2010[/tpl]
+
+====Copying vs. mark-and-sweep vs. mark-and-don't-sweep====
+
+To further refine the distinction, tracing collectors can also be divided by considering how the three sets of objects (white, grey, and black) are maintained during a collection cycle.
+The most straightforward approach is the semi-space collector, which dates to 1969. In this moving GC scheme, memory is partitioned into a "from space" and "to space". Initially, objects are allocated into "to space" until they become full and a collection is triggered. At the start of a collection, the "to space" becomes the "from space", and vice versa. The objects reachable from the root set are copied from the "from space" to the "to space". These objects are scanned in turn, and all objects that they point to are copied into "to space", until all reachable objects have been copied into "to space". Once the program continues execution, new objects are once again allocated in the "to space" until it is once again full and the process is repeated. This approach has the advantage of conceptual simplicity (the three object color sets are implicitly constructed during the copying process), but the disadvantage that a (possibly) very large contiguous region of free memory is necessarily required on every collection cycle. This technique is also known as stop-and-copy. Cheney's algorithm is an improvement on the semi-space collector.
+A mark and sweep garbage collector maintains a bit (or two) with each object to record whether it is white or black; the grey set is either maintained as a separate list (such as the process stack) or using another bit. As the reference tree is traversed during a collection cycle (the "mark" phase), these bits are manipulated by the collector to reflect the current state. A final "sweep" of the memory areas then frees white objects. The mark and sweep strategy has the advantage that, once the unreachable set is determined, either a moving or non-moving collection strategy can be pursued; this choice of strategy can even be made at runtime, as available memory permits. It has the disadvantage of "bloating" objects by a small amount.
+A mark and don't sweep garbage collector, like the mark-and-sweep, maintains a bit with each object to record whether it is white or black; the gray set is either maintained as a separate list (such as the process stack) or using another bit. There are two key differences here. First, black and white mean different things than they do in the mark and sweep collector. In a "mark and don't sweep" system, all reachable objects are always black. An object is marked black at the time it is allocated, and it will stay black even if it becomes unreachable. A white object is unused memory and may be allocated. Second, the interpretation of the black/white bit can change. Initially, the black/white bit may have the sense of (0=white, 1=black). If an allocation operation ever fails to find any available (white) memory, that means all objects are marked used (black). The sense of the black/white bit is then inverted (for example, 0=black, 1=white). Everything becomes white. This momentarily breaks the invariant that reachable objects are black, but a full marking phase follows immediately, to mark them black again. Once this is done, all unreachable memory is white. No "sweep" phase is necessary.
+
+====Generational GC (ephemeral GC)====
+
+It has been empirically observed that in many programs, the most recently created objects are also those most likely to become unreachable quickly (known as infant mortality or the generational hypothesis). 
+ A generational GC (also known as ephemeral GC) divides objects into generations and, on most cycles, will place only the objects of a subset of generations into the initial white (condemned) set. Furthermore, the runtime system maintains knowledge of when references cross generations by observing the creation and overwriting of references. When the garbage collector runs, it may be able to use this knowledge to prove that some objects in the initial white set are unreachable without having to traverse the entire reference tree. If the generational hypothesis holds, this results in much faster collection cycles while still reclaiming most unreachable objects.
+In order to implement this concept, many generational garbage collectors use separate memory regions for different ages of objects. When a region becomes full, those few objects that are referenced from older memory regions are promoted to the next highest region, and the entire region can then be overwritten with fresh objects. This technique permits very fast incremental garbage collection, since the garbage collection of only one region at a time is all that is typically required.
+Generational garbage collection is a heuristic approach, and some unreachable objects may not be reclaimed on each cycle. It may therefore occasionally be necessary to perform a full mark and sweep or copying garbage collection to reclaim all available space. In fact, runtime systems for modern programming languages (such as Java and the .NET Framework) usually use some hybrid of the various strategies that have been described thus far; for example, most collection cycles might look only at a few generations, while occasionally a mark-and-sweep is performed, and even more rarely a full copying is performed to combat fragmentation. The terms "minor cycle" and "major cycle" are sometimes used to describe these different levels of collector aggression.
+
+====Stop-the-world vs. incremental vs. concurrent====
+
+Simple stop-the-world garbage collectors completely halt execution of the program to run a collection cycle, thus guaranteeing that new objects are not allocated and objects do not suddenly become unreachable while the collector is running.
+This has the obvious disadvantage that the program can perform no useful work while a collection cycle is running (sometimes called the "embarrassing pause"). Stop-the-world garbage collection is therefore mainly suitable for non-interactive programs. Its advantage is that it is both simpler to implement and faster than incremental garbage collection.
+Incremental and concurrent garbage collectors are designed to reduce this disruption by interleaving their work with activity from the main program. Incremental garbage collectors perform the garbage collection cycle in discrete phases, with program execution permitted between each phase (and sometimes during some phases). Concurrent garbage collectors do not stop program execution at all, except perhaps briefly when the program's execution stack is scanned. However, the sum of the incremental phases takes longer to complete than one batch garbage collection pass, so these garbage collectors may yield lower total throughput.
+Careful design is necessary with these techniques to ensure that the main program does not interfere with the garbage collector and vice versa; for example, when the program needs to allocate a new object, the runtime system may either need to suspend it until the collection cycle is complete, or somehow notify the garbage collector that there exists a new, reachable object.
+
+====Precise vs. conservative and internal pointers====
+
+Some collectors can correctly identify all pointers (references) in an object; these are called precise (also exact or accurate) collectors, the opposite being a conservative or partly conservative collector. Conservative collectors assume that any bit pattern in memory could be a pointer if, interpreted as a pointer, it would point into an allocated object. Conservative collectors may produce false positives, where unused memory is not released because of improper pointer identification. This is not always a problem in practice unless the program handles a lot of data that could easily be misidentified as a pointer. False positives are generally less problematic on 64-bit systems than on 32-bit systems because the range of valid memory addresses tends to be a tiny fraction of the range of 64-bit values. Thus, an arbitrary 64-bit pattern is unlikely to mimic a valid pointer. A false negative can also happen if pointers are "hidden", for example by the XOR trick. Whether a precise collector is practical usually depends on the type safety properties of the programming language in question. An example for which a conservative garbage collector would be needed is the C language, which allows typed (non-void) pointers to be type cast into untyped (void) pointers, and vice versa.
+A related issue concerns internal pointers, or pointers to fields within an object. If the semantics of a language allow internal pointers, then there may be many different addresses that can refer to parts of the same object, which complicates determining whether an object is garbage or not. An example for this is the C++ language, in which multiple inheritance can cause pointers to base objects to have different addresses. In a tightly optimized program, the corresponding pointer to the object itself may have been overwritten in its register, so such internal pointers need to be scanned.
+
+===Performance implications===
+
+Tracing garbage collectors require some implicit runtime overhead that may be beyond the control of the programmer, and can sometimes lead to performance problems. For example, commonly used stop-the-world garbage collectors, which pause program execution at arbitrary times, may make garbage collection inappropriate for some embedded systems, high-performance server software, and applications with real-time needs.
+It is difficult to compare the two cases directly, as their behavior depends on the situation. For example, in the best case for a garbage collecting system, allocation just increments a pointer, but in the best case for manual heap allocation, the allocator maintains freelists of specific sizes and allocation only requires following a pointer. However, this size segregation usually cause a large degree of external fragmentation, which can have an adverse impact on cache behaviour. Memory allocation in a garbage collected language may be implemented using heap allocation behind the scenes (rather than simply incrementing a pointer), so the performance advantages listed above don't necessarily apply in this case. In some situations, most notably embedded systems, it is possible to avoid both garbage collection and heap management overhead by preallocating pools of memory and using a custom, lightweight scheme for allocation/deallocation.[tpl]cite web|url=http://www.eros-os.org/pipermail/cap-talk/2007-January/006795.html |title=Memory allocation in embedded systems |publisher=Eros-os.org |date= |accessdate=29 March 2009[/tpl]
+The overhead of write barriers is more likely to be noticeable in an imperative-style program which frequently writes pointers into existing data structures than in a functional-style program which constructs data only once and never changes them.
+Some advances in garbage collection can be understood as reactions to performance issues. Early collectors were stop-the-world collectors, but the performance of this approach was distracting in interactive applications. Incremental collection avoided this disruption, but at the cost of decreased efficiency due to the need for barriers. Generational collection techniques are used with both stop-the-world and incremental collectors to increase performance; the trade-off is that some garbage is not detected as such for longer than normal.
+
+===Determinism===
+
+===Real-time garbage collection===
+
+While garbage collection is generally nondeterministic, it is possible to use it in hard real-time systems. A real-time garbage collector should guarantee that even in the worst case it will dedicate a certain number of computational resources to mutator threads. Constraints imposed on a real-time garbage collector are usually either work based or time based. A time based constraint would look like: within each time window of duration T, mutator threads should be allowed to run at least for Tm time. For work based analysis, MMU (minimal mutator utilization)[tpl]cite journal|first1=Perry |last1=Cheng |first2=Guy E. |last2=Blelloch |title=A parallel, real-time garbage collector |journal=ACM SIGPLAN Notices|date=22 June 2001 |volume=36 |issue=5 |pages=125–136 |doi=10.1145/381694.378823[/tpl] is usually used as a real-time constraint for the garbage collection algorithm.
+One of the first implementations of hard real-time garbage collection for the JVM was based on the Metronome algorithm,[tpl]cite web|url=http://www.research.ibm.com/people/d/dfb/papers/Bacon03Metronome.pdf|title=The Metronome: A Simpler Approach to Garbage Collection in Real-Time Systems[/tpl] whose commercial implementation is available as part of the IBM WebSphere Real Time.[tpl]cite web|url=http://www.ibm.com/developerworks/java/library/j-rtj4/index.html|title=Real-time Java, Part 4: Real-time garbage collection[/tpl] Another hard real-time garbage collection algorithm is Staccado, available in the IBM's J9 JVM, which also provides scalability to large multiprocessor architectures, while bringing various advantages over Metronome and other algorithms which, on the contrary, require specialized hardware.[tpl]cite web |url=http://researcher.watson.ibm.com/researcher/files/us-groved/rc24504.pdf |title=Staccato: A Parallel and Concurrent Real-time Compacting Garbage Collector for Multiprocessors |first1=Bill |last1=McCloskey |first2=David F. |last2=Bacon |first3=Perry |last3=Cheng |first4=David |last4=Grove |date=22 February 2008|accessdate=11 March 2014[/tpl]
+
+==Reference counting==
+
+Reference counting is a form of garbage collection whereby each object has a count of the number of references to it. Garbage is identified by having a reference count of zero. An object's reference count is incremented when a reference to it is created, and decremented when a reference is destroyed. The object's memory is reclaimed when the count reaches zero.
+As with manual memory management, and unlike tracing garbage collection, reference counting guarantees that objects are destroyed as soon as they become unreachable[tpl]mdashb[/tpl]assuming that there are no reference cycles[tpl]mdashb[/tpl]and usually only accesses memory which is either in CPU caches, in objects to be freed, or directly pointed by those, and thus tends to not have significant negative side effects on CPU cache and virtual memory operation.
+There are a number of disadvantages to reference counting; this can generally be solved or mitigated by more sophisticated algorithms:
+
+==Escape analysis==
+
+Escape analysis can be used to convert heap allocations to stack allocations, thus reducing the amount of work needed to be done by the garbage collector. This is done using a compile-time analysis to determine whether an object allocated within a function is not accessible outside of it (i.e. escape) to other functions or threads. In such a case the object may be allocated directly on the thread stack and released when the function returns, reducing its potential garbage collection overhead.
+
+==Compile-time==
+
+Compile-time garbage collection is a form of static analysis allowing memory to be reused and reclaimed based on invariants known during compilation.  This form of garbage collection has been studied in the Mercury programming language[tpl]cite web|url=http://www.mercury.csse.unimelb.edu.au/information/papers.html#mazur-thesis|title=Compile-time garbage collection for the declarative language Mercury[/tpl]
+
+==Availability==
+
+Generally speaking, higher-level programming languages are more likely to have garbage collection as a standard feature. In languages that do not have built in garbage collection, it can often be added through a library, as with the Boehm garbage collector for C (for "nearly all programs") and C++. This approach is not without drawbacks, such as changing object creation and destruction mechanisms.
+Most functional programming languages, such as ML, Haskell, and APL, have garbage collection built in. Lisp is especially notable as both the first functional programming language and the first language to introduce garbage collection. 
+Other dynamic languages, such as Ruby (but not Perl 5, or PHP, which use reference counting), also tend to use GC. Object-oriented programming languages such as Smalltalk, Java and ECMAScript usually provide integrated garbage collection. Notable exceptions are C++ and Delphi which have destructors. Objective-C has not traditionally had it, but Objective-C 2.0 as implemented by Apple for  Mac OS X used a runtime collector developed in-house, which was deprecated by LLVM's automatic reference counter, a compile-time garbage collector. The GNUstep project uses a Boehm collector.
+Historically, languages intended for beginners, such as BASIC and Logo, have often used garbage collection for heap-allocated variable-length data types, such as strings and lists, so as not to burden programmers with manual memory management. On early microcomputers, with their limited memory and slow processors, BASIC garbage collection could often cause apparently random, inexplicable pauses in the midst of program operation. 
+Some BASIC interpreters, such as Applesoft BASIC on the Apple II family, repeatedly scanned the string descriptors for the string having the highest address in order to compact it toward high memory, resulting in O(N*N) performance, which could introduce minutes-long pauses in the execution of string-intensive programs. A replacement garbage collector for Applesoft BASIC published in Call-A.P.P.L.E. (January 1981, pages 40–45, Randy Wigginton) identified a group of strings in every pass over the heap, which cut collection time dramatically. BASIC.System, released with ProDOS in 1983, provided a windowing garbage collector for BASIC that reduced most collections to a fraction of a second.
+
+==Limited environments==
+
+Garbage collection is rarely used on embedded or real-time systems because of the perceived need for very tight control over the use of limited resources. However, garbage collectors compatible with such limited environments have been developed.[tpl]cite web|url=http://portal.acm.org/ft_gateway.cfm?id=1140392&type=pdf&coll=GUIDE&dl=GUIDE&CFID=15151515&CFTOKEN=6184618 |title=Wei Fu and Carl Hauser, "A Real-Time Garbage Collection Framework for Embedded Systems". ACM SCOPES '05, 2005 |publisher=Portal.acm.org |date= |accessdate=9 July 2010[/tpl] The Microsoft .NET Micro Framework and Java Platform, Micro Edition are embedded software platforms that, like their larger cousins, include garbage collection.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+| first1 = Richard
+| last1 = Jones
+| first2 = Antony
+| last2 = Hosking
+| first3 = Eliot
+| last3 = Moss
+| title = The Garbage Collection Handbook: The Art of Automatic Memory Management
+| date = 19 August 2011
+| publisher = Chapman and Hall/CRC
+| series = CRC Applied Algorithms and Data Structures Series
+| isbn = 1-4200-8279-5
+| ref = harv
+}}
+| first1 = Richard
+| last1 = Jones
+| first2 = Rafael D.
+| last2 = Lins
+| title = Garbage Collection: Algorithms for Automatic Dynamic Memory Management
+| year = 1996
+| publisher = Wiley
+| isbn = 0-471-94148-4
+| ref = harv
+}}
+| first1 = Paul R.
+| last1 = Wilson
+| first2 = M. S.
+| last2 = Johnstone
+| first3 = M.
+| last3 = Neely
+| first4 = D.
+| last4 = Boles
+| year = 1995
+| title = Dynamic Storage Allocation: A Survey and Critical Review
+| journal = International Workshop on Memory Management
+| url = http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.275
+| ref = harv
+}}
+| first1 = Paul R.
+| last1 = Wilson
+| title = Uniprocessor Garbage Collection Techniques
+| url = http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.47.2438
+| year = 1992
+| journal = IWMM '92 Proceedings of the International Workshop on Memory Management
+| publisher = Springer-Verlag
+| ref = harv
+}}
+
+==External links==
+
+===Implementations===
+
+

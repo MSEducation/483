@@ -1,0 +1,124 @@
+[[Limit superior and limit inferior]]
+
+CATEGORIES: Limits (mathematics)
+
+In mathematics, the limit inferior (also called infimum limit, liminf, inferior limit, lower limit, or inner limit) and limit superior (also called supremum limit, limit supremum, limsup, superior limit, upper limit, or outer limit) of a sequence can be thought of as limiting (i.e., eventual and extreme) bounds on the sequence. The limit inferior and limit superior of a function can be thought of in a similar fashion (see limit of a function). The limit inferior and limit superior of a set are the infimum and supremum of the set's limit points, respectively. In general, when there are multiple objects around which a sequence, function, or set accumulates, the inferior and superior limits extract the smallest and largest of them; the type of object and the measure of size is context-dependent, but the notion of extreme limits is invariant.
+
+==Definition for sequences==
+
+The limit inferior of a sequence (xn) is defined by
+or
+Similarly, the limit superior of (xn) is defined by
+or
+If the terms in the sequence are real numbers, the limit superior and limit inferior always exist, as real numbers or ±∞ (i.e., on the extended real number line). More generally, these definitions make sense in any partially ordered set, provided the suprema and infima exist, such as in a complete lattice.
+Whenever the ordinary limit exists, the limit inferior and limit superior are both equal to it; therefore, each can be considered a generalization of the ordinary limit which is primarily interesting in cases where the limit does not exist. Whenever lim inf xn and lim sup xn both exist, we have
+Limits inferior/superior are related to big-O notation in that they bound a sequence only "in the limit"; the sequence may exceed the bound. However, with big-O notation the sequence can only exceed the bound in a finite prefix of the sequence, whereas the limit superior of a sequence like e−n may actually be less than all elements of the sequence. The only promise made is that some tail of the sequence can be bounded by the limit superior (inferior) plus (minus) an arbitrarily small positive constant.
+The limit superior and limit inferior of a sequence are a special case of those of a function (see below).
+
+==The case of sequences of real numbers==
+
+In mathematical analysis, limit superior and limit inferior are important tools for studying sequences of real numbers. Since the supremum and infimum of an unbounded set of real numbers may not exist (the reals are not a complete lattice), it is convenient to consider sequences in the affinely extended real number system: we add the positive and negative infinities to the real line to give the complete totally ordered set (−∞,∞), which is a complete lattice.
+
+===Interpretation===
+
+===Properties===
+
+The relationship of limit inferior and limit superior for sequences of real numbers is as follows
+and the condition
+To recapitulate:
+In general we have that
+The liminf and limsup of a sequence are respectively the smallest and greatest cluster points.
+Analogously, the limit inferior satisfies superadditivity:
+
+====Examples====
+
+and
+(This is because the sequence {1,2,3,...} is equidistributed mod 2π, a consequence of the Equidistribution theorem.)
+where pn is the n-th prime number.
+
+==Real-valued functions==
+
+Assume that a function is defined from a subset of the real numbers to the real numbers. As in the case for sequences, the limit inferior and limit superior are always well-defined if we allow the values +∞ and −∞; in fact, if both agree then the limit exists and is equal to their common value (again possibly including the infinities). For example, given f(x) = sin(1/x), we have lim supx→0 f(x) = 1 and lim infx→0 f(x) = −1. The difference between the two is a rough measure of how "wildly" the function oscillates, and in observation of this fact, it is called the oscillation of f at a. This idea of oscillation is sufficient to, for example, characterize Riemann-integrable functions as  continuous except on a set of measure zero http://tt.lamf.uwindsor.ca/314folder/analbookfiles/RintexistLebesgue.pdf.  Note that points of nonzero oscillation (i.e., points at which f is "badly behaved") are discontinuities which, unless they make up a set of zero, are confined to a negligible set.
+
+==Functions from metric spaces to metric spaces==
+
+There is a notion of lim sup and lim inf for functions defined on a metric space whose relationship to limits of real-valued functions mirrors that of the relation between the lim sup, lim inf, and the limit of a real sequence. Take metric spaces X and Y, a subspace E contained in X, and a function f : E → Y.  The space Y should also be an ordered set, so that the notions of supremum and infimum make sense.  Define, for any limit point a of E,
+and
+where B(a;ε) denotes the metric ball of radius ε about a.
+Note that as ε shrinks, the supremum of the function over the ball is monotone decreasing, so we have
+and similarly
+This finally motivates the definitions for general topological spaces. Take X, Y, E and a as before, but now let X and Y both be topological spaces. In this case, we replace metric balls with neighborhoods:
+(there is a way to write the formula using a lim using nets and the neighborhood filter). This version is often useful in discussions of semi-continuity which crop up in analysis quite often. An interesting note is that this version subsumes the sequential version by considering sequences as functions from the natural numbers as a topological subspace of the extended real line, into the space (the closure of N in (−∞,∞) is N ∪ {∞}.)
+
+==Sequences of sets==
+
+The power set ℘(X) of a set X is a complete lattice that is ordered by set inclusion, and so the supremum and infimum of any set of subsets (in terms of set inclusion) always exist. In particular, every subset Y of X is bounded above by X and below by the empty set ∅ because ∅ ⊆ Y ⊆ X. Hence, it is possible (and sometimes useful) to consider superior and inferior limits of sequences in ℘(X) (i.e., sequences of subsets of X).
+There are two common ways to define the limit of sequences of sets. In both cases:
+The difference between the two definitions involves the topology (i.e., how to quantify separation) is defined. In fact, the second definition is identical to the first when the discrete metric is used to induce the topology on X.
+
+===General set convergence===
+
+In this case, a sequence of sets approaches a limiting set when the elements of each member of the sequence approach the elements of the limiting set. In particular, if {Xn} is a sequence of subsets of X, then:
+The limit lim Xn exists if and only if lim inf Xn and lim sup Xn agree, in which case lim Xn = lim sup Xn = lim inf Xn.[ref]
+</ref>
+
+===Special case: discrete metric===
+
+In this case, which is frequently used in measure theory, a sequence of sets approaches a limiting set when the limiting set includes elements from each of the members of the sequence. That is, this case specializes the first case when the topology on set X is induced from the discrete metric. For points x ∈ X and y ∈ X, the discrete metric is defined by
+So a sequence of points {xk} converges to point x ∈ X if and only if xk = x for all but finitely many k. The following definition is the result of applying this metric to the general definition above.
+If {Xn} is a sequence of subsets of X, then:
+The limit lim X exists if and only if lim inf X and lim sup X agree, in which case lim X = lim sup X = lim inf X. This definition of the inferior and superior limits is relatively strong because it requires that the elements of the extreme limits also be elements of each of the sets of the sequence.
+Using the standard parlance of set theory, consider the infimum of a sequence of sets. The infimum is a greatest lower bound or meet of a set. In the case of a sequence of sets, the sequence constituents meet at a set that is somehow smaller than each constituent set. Set inclusion provides an ordering that allows set intersection to generate a greatest lower bound ∩Xn of sets in the sequence {Xn}. Similarly, the supremum, which is the least upper bound or join, of a sequence of sets is the union ∪Xn of sets in sequence {Xn}.
+In this context, the inner limit lim inf Xn is the largest meeting of tails of the sequence, and the outer limit lim sup Xn is the smallest joining of tails of the sequence.
+The limit lim Xn exists if and only if lim sup Xn=lim inf Xn, and in that case, lim Xn=lim inf Xn=lim sup Xn. In this sense, the sequence has a limit so long as all but finitely many of its elements are equal to the limit.
+
+===Examples===
+
+The following are several set convergence examples. They have been broken into sections with respect to the metric used to induce the topology on set X.
+
+==Generalized definitions==
+
+The above definitions are inadequate for many technical applications. In fact, the definitions above are specializations of the following definitions.
+
+===Definition for a set===
+
+The limit inferior of a set X ⊆ Y is the infimum of all of the limit points of the set. That is,
+Similarly, the limit superior of a set X is the supremum of all of the limit points of the set. That is,
+Note that the set X needs to be defined as a subset of a partially ordered set Y that is also a topological space in order for these definitions to make sense. Moreover, it has to be a complete lattice so that the suprema and infima always exist. In that case every set has a limit superior and a limit inferior. Also note that the limit inferior and the limit superior of a set do not have to be elements of the set.
+
+===Definition for filter bases===
+
+Take a topological space X and a filter base B in that space. The set of all cluster points for that filter base is given by
+when that supremum exists.  When X has a total order, is a complete lattice and has the order topology,
+Proof:
+Similarly, the limit inferior of the filter base B is defined as
+when that infimum exists; if X is totally ordered, is a complete lattice, and has the order topology, then
+If the limit inferior and limit superior agree, then there must be exactly one cluster point and the limit of the filter base is equal to this unique cluster point.
+
+====Specialization for sequences and nets====
+
+==See also==
+
+==References==
+
+ | last       = Amann
+ | first      = H.
+ | coauthors  = Escher, Joachim
+ | title      = Analysis
+ | publisher  = Basel; Boston: Birkhäuser
+ | year       = 2005
+ | pages      =
+ | isbn       = 0-8176-7153-6
+}}
+ | last       = González
+ | first      = Mario O
+ | title      = Classical complex analysis
+ | publisher  = New York: M. Dekker
+ | year       = 1991
+ | pages      =
+ | isbn       = 0-8247-8415-4
+}}
+
+==External links==
+
+

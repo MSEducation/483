@@ -1,0 +1,67 @@
+[[JFS (file system)]]
+
+CATEGORIES: 1990 software, Disk file systems, IBM software, Linux kernel-supported file systems, OS/2
+
+Journaled File System or JFS is a 64-bit journaling filesystem created by IBM. An implementation for the Linux kernel is available as free software under the terms of the GNU General Public License (GPL). There are versions for AIX, eComStation, OS/2 and Linux operating systems. HP-UX has another, different filesystem named JFS that is actually an OEM version of Veritas Software's VxFS.
+In the AIX operating system, there exist two generations of JFS filesystem that are called JFS (JFS1) and JFS2 respectively. This should not be confused with JFS in AIX that actually refers to JFS1.
+
+History
+
+IBM introduced JFS with the initial release of AIX version 3.1 in February, 1990. This file system, now called JFS1 on AIX, had been the premier file system for AIX over the following decade and had been installed in thousands or millions of customers' AIX systems. Historically, the JFS1 file system is very closely tied to the memory manager of AIX. This design is typical for a closed source operating system, or a file system supporting only one operating system.
+In 1995, work began to enhance the file system to be more scalable and to support machines that had more than one processor. Another goal was to have a more portable file system, capable of running on multiple operating systems. After several years of designing, coding, and testing, the new JFS was first shipped in OS/2 Warp Server for eBusiness in April, 1999, and then in OS/2 Warp Client in October, 2000. In December, 1999, a snapshot of the original OS/2 JFS source was granted to the open source community and work was begun to port JFS to the Linux operating system. The first stable release of JFS for Linux appeared in June, 2001. The JFS for Linux project is maintained by a small group of contributors known as the JFS Core Team.JFS for Linux project website
+In parallel with this effort, some of the JFS development team returned to the AIX Operating System Development Group in 1997 and started to move this new JFS source base to the AIX operating system.  In May, 2001, a second journaled file system, Enhanced Journaled File System (JFS2), was made available for AIX 5L.
+Early in 2008 there was speculation that IBM is no longer interested in maintaining JFS and thus it should not be used in production environments. He went on to add that certain distributions expect a larger resource commitment from them and opt not to support the filesystem.net: jfs-discussion
+In 2012, Trim Support was added to JFS.
+
+Features
+
+JFS supports the following features.
+
+Journal
+
+JFS is a journaling file system. Rather than adding journaling as an add-on feature like in the ext3 file system, it was implemented from the start. The journal can be up to 128MB. JFS journals metadata only, which means that metadata will remain consistent but user files may be corrupted after a crash or power loss. JFS' journaling is similar to XFS where it only journals parts of the inode.
+
+B+ Tree
+
+JFS uses a B+ tree to accelerate lookups in directories. JFS can store 8 entries of a directory in the directory's inode before moving the entries to a B+ tree. JFS also indexes extents in a B+ tree.
+
+Dynamic Inode Allocation
+
+JFS dynamically allocates space for disk inodes as necessary. Each inode is 512 Bytes. 32 Inodes are allocated on a 16KB Extent.
+
+Extents
+
+JFS allocates files as an extent. An extent is a variable-length sequence of Aggregate blocks. An extent may be located in several allocation groups. To solve this the extents are indexed in a B+ tree for better performance when locating the extent locations.
+
+Compression
+
+Compression is supported only in JFS1 on AIX and uses a variation of the LZ algorithm. Because of high CPU usage and increased free space fragmentation, compression is not recommended for use other than on a single user workstation or off-line backup areas.
+
+Concurrent Input / Output (CIO)
+
+JFS normally applies read-shared, write-exclusive locking to files, which avoids data inconsistencies but imposes write serialization at the file level. The CIO option disables this locking. Applications such as relational databases which maintain data consistency themselves can use this option to largely eliminate filesystem overheads.Improving Database Performance With AIX Concurrent I/O - White Paper
+
+Allocation Groups
+
+JFS uses Allocation groups. Allocation groups divide the aggregate space into chunks. This allows JFS to use resource allocation policies to achieve great I/O performance. The first policy is to try to cluster disk blocks and disk inodes for related data in the same AG in order to achieve good locality for the disk. The second policy is to distribute unrelated data throughout the file system in an attempt to minimize free-space fragmentation. When there is an open file JFS will lock the AG the file resides in and only allow the open file to grow. This reduces fragmentation as only the open file can write to the AG.
+
+JFS Superblocks
+
+The superblock maintains information about the entire file system and includes the following fields:
+
+JFS in Linux
+
+In the Linux operating system, JFS is supported with the kernel module (since the kernel version 2.4.18pre9-ac4) and the complementary userspace utilities packaged under the name JFSutils. Most Linux distributions support JFS, unless it is specifically removed due to space restrictions or other concerns.
+Most LiveCD distributions do not provide support of JFS because JFSutils are not installed.
+According to reviews and benchmarks of the available filesystems for Linux, JFS is fast and reliable, with consistently good performance under different kinds of load, contrary to other filesystems that seem to perform better under particular usage patterns, for instance with small or large files. Another characteristic often mentioned, is that it's light and efficient with available system resources and even heavy disk activity is realized with low CPU usage. Especially for databases which need synchronous writes to survive a hardware crash, JFS with external journal seems to be the best option. Filesystems (ext3, reiser, xfs, jfs) comparison on Debian Etch Microbenchmarks, 2012-07.
+Actual usage of JFS in Linux is uncommon, as ext4 typically offers better performance.04 Receives EXT4 Support - Phoronix, 2013-06
+There are also potential problems with JFS, such as its implementation of journal writes. They can be postponed until there is another trigger - potentially indefinitely, which can cause data loss over a theoretically infinite timeframe. Prabhakaran and others 2013-06
+The effect of fragmentation on JFS also affects the speed of the filesystem far more than on more traditional Linux filesystems (such as ext3/4).Software and hardware annotations, 20006, 2013-06
+
+
+
+
+
+
+
+

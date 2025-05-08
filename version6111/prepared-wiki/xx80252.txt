@@ -1,0 +1,86 @@
+</ref> [[Bauer-Fike theorem#Corollary|As a result]], the condition number for finding [tpl]math|λ[/tpl] is [tpl]math|1=''κ''(λ, ''A'') = ''κ''(''V'') = [tpl]!![/tpl]''V'' [tpl]!![/tpl]<sub>op</sub> [tpl]!![/tpl]''V'' <sup>-1</sup>[tpl]!![/tpl]<sub>op</sub>[/tpl]. If [tpl]math|''A''[/tpl] is normal, then [tpl]math|''V''[/tpl] is unitary, and [tpl]math|1=''κ''(λ, ''A'') = 1[/tpl]. Thus the eigenvalue problem for all normal matrices is well-conditioned.
+The condition number for the problem of finding the eigenspace of a normal matrix [tpl]math|A[/tpl] corresponding to an eigenvalue [tpl]math|λ[/tpl] has been shown to be inversely proportional to the minimum distance between [tpl]math|λ[/tpl] and the other distinct eigenvalues of [tpl]math|A[/tpl].[ref]
+</ref> In particular, the eigenspace problem for normal matrices is well-conditioned for isolated eigenvalues. When eigenvalues are not isolated, the best that can be hoped for is to identify the span of all eigenvectors of nearby eigenvalues.
+
+==Algorithms==
+
+Any monic polynomial is the characteristic polynomial of its companion matrix. Therefore a general algorithm for finding eigenvalues could also be used to find the roots of polynomials. The Abel-Ruffini theorem shows that any such algorithm for dimensions greater than 4 must either be infinite, or involve functions of greater complexity than elementary arithmetic operations and fractional powers. For this reason algorithms that exactly calculate eigenvalues in a finite number of steps only exist for a few special classes of matrices. For general matrices, algorithms are iterative, producing better approximate solutions with each iteration.
+Some algorithms produce every eigenvalue, others will produce a few, or only one. However, even the latter algorithms can be used to find all eigenvalues. Once an eigenvalue [tpl]math|λ[/tpl] of a matrix [tpl]math|A[/tpl] has been identified, it can be used to either direct the algorithm towards a different solution next time, or to reduce the problem to one that no longer has [tpl]math|λ[/tpl] as a solution.
+Redirection is usually accomplished by shifting: replacing [tpl]math|A[/tpl] with [tpl]math|A - μI[/tpl] for some constant [tpl]math|μ[/tpl]. The eigenvalue found for [tpl]math|A - μI[/tpl] must have [tpl]math|μ[/tpl] added back in to get an eigenvalue for [tpl]math|A[/tpl]. For example, for power iteration, [tpl]math|1=μ = λ[/tpl]. Power iteration finds the largest eigenvalue in absolute value, so even when [tpl]math|λ[/tpl] is only an approximate eigenvalue, power iteration is unlikely to find it a second time. Conversely, inverse iteration based methods find the lowest eigenvalue, so [tpl]math|μ[/tpl] is chosen well away from [tpl]math|λ[/tpl] and hopefully closer to some other eigenvalue.
+Reduction can be accomplished by restricting [tpl]math|A[/tpl] to the column space of the matrix [tpl]math|A - λI[/tpl], which [tpl]math|A[/tpl] carries to itself. Since [tpl]math|A - λI[/tpl] is singular, the column space is of lesser dimension. The eigenvalue algorithm can then be applied to the restricted matrix. This process can be repeated until all eigenvalues are found.
+If an eigenvalue algorithm does not produce eigenvectors, a common practice is to use an inverse iteration based algorithm with [tpl]math|μ[/tpl] set to a close approximation to the eigenvalue. This will quickly converge to the eigenvector of the closest eigenvalue to [tpl]math|μ[/tpl]. For small matrices, an alternative is to look at the column space of the product of [tpl]math|A - λ[tpl]'[/tpl]I[/tpl] for each of the other eigenvalues [tpl]math|λ[tpl]'[/tpl].[/tpl]
+
+==Hessenberg and Tri-diagonal matrices==
+
+Because the eigenvalues of a triangular matrix are its diagonal elements, for general matrices there is no finite method like gaussian elimination to convert a matrix to triangular form while preserving eigenvalues. But it is possible to reach something close to triangular. An upper Hessenberg matrix is a square matrix for which all entries below the subdiagonal are zero. A lower Hessenberg matrix is one for which all entries above the superdiagonal are zero. Matrices that are both upper and lower Hessenberg are tridiagonal. Hessenberg and tridiagonal matrices are the starting points for many eigenvalue algorithms because the zero entries reduce the complexity of the problem. Several methods are commonly used to convert a general matrix into a Hessenberg matrix with the same eigenvalues. If the original matrix was symmetric or hermitian, then the resulting matrix will be tridiagonal.
+When only eigenvalues are needed, there is no need to calculate the similarity matrix, as the transformed matrix has the same eigenvalues. If eigenvectors are needed as well, the similarity matrix may be needed to transform the eigenvectors of the Hessenberg matrix back into eigenvectors of the original matrix.
+
+==Iterative algorithms==
+
+Iterative algorithms solve the eigenvalue problem by producing sequences that converge to the eigenvalues. Some algorithms also produce sequences of vectors that converge to the eigenvectors. Most commonly, the eigenvalue sequences are expressed as sequences of similar matrices which converge to a triangular or diagonal form, allowing the eigenvalues to be read easily. The eigenvector sequences are expressed as the corresponding similarity matrices.
+
+==Direct calculation==
+
+While there is no simple algorithm to directly calculate eigenvalues for general matrices, there are numerous special classes of matrices where eigenvalues can be directly calculated. These include:
+
+===Triangular matrices===
+
+===Factorable polynomial equations===
+
+If [tpl]math|p[/tpl] is any polynomial and [tpl]math|1=p(A) = 0,[/tpl] then the eigenvalues of [tpl]math|A[/tpl] also satisfy the same equation. If [tpl]math|p[/tpl] happens to have a known factorization, then the eigenvalues of [tpl]math|A[/tpl] lie among its roots.
+For example, a projection is a square matrix [tpl]math|P[/tpl] satisfying [tpl]math|1=P2 = P[/tpl]. The roots of the corresponding scalar polynomial equation, [tpl]math|1=λ2 = λ[/tpl], are 0 and 1. Thus any projection has 0 and 1 for its eigenvalues. The multiplicity of 0 as an eigenvalue is the nullity of [tpl]math|P[/tpl], while the multiplicity of 1 is the rank of [tpl]math|P[/tpl].
+Another example is a matrix [tpl]math|A[/tpl] that satisfies [tpl]math|1=A2 = α2I[/tpl] for some scalar [tpl]math|α[/tpl]. The eigenvalues must be [tpl]math|±α[/tpl]. The projection operators
+satisfy
+and
+The column spaces of [tpl]math|P+[/tpl] and [tpl]math|P-[/tpl] are the eigenspaces of [tpl]math|A[/tpl] corresponding to [tpl]math|+α[/tpl] and [tpl]math|-α[/tpl], respectively.
+
+===2×2 matrices===
+
+For dimensions 2 through 4, formulas involving radicals exist that can be used to find the eigenvalues. While a common practice for 2×2 and 3×3 matrices, for 4×4 matrices the increasing complexity of the root formulas makes this approach less attractive.
+For the 2×2 matrix
+the characteristic polynomial is
+Thus the eigenvalues can be found by using the quadratic formula:
+with similar formulas for [tpl]math|c[/tpl] and [tpl]math|d[/tpl]. From this it follows that the calculation is well-conditioned if the eigenvalues are isolated.
+Eigenvectors can be found by exploiting the Cayley-Hamilton theorem. If [tpl]math|λ1, λ2[/tpl] are the eigenvalues, then [tpl]math|1=(A - λ1I )(A - λ2I ) = (A - λ2I )(A - λ1I ) = 0[/tpl], so the columns of [tpl]math|(A - λ2I )[/tpl] are annihilated by [tpl]math|(A - λ1I )[/tpl] and vice versa. Assuming neither matrix is zero, the columns of each must include eigenvectors for the other eigenvalue. (If either matrix is zero, then [tpl]math|A[/tpl] is a multiple of the identity and any non-zero vector is an eigenvector.)
+For example, suppose
+then [tpl]math|1=tr(A) = 4 - 3 = 1[/tpl] and [tpl]math|1=det(A) = 4(-3) - 3(-2) = -6[/tpl], so the characteristic equation is
+and the eigenvalues are 3 and -2. Now,
+In both matrices, the columns are multiples of each other, so either column can be used. Thus, [tpl]math|(1, -2)[/tpl] can be taken as an eigenvector associated with the eigenvalue -2, and [tpl]math|(3, -1)[/tpl] as an eigenvector associated with the eigenvalue 3, as can be verified by multiplying them by [tpl]math|A[/tpl].
+
+===3×3 matrices===
+
+If [tpl]math|A[/tpl] is a 3×3 matrix, then its characteristic equation can be expressed as:
+The substitution [tpl]math|1=β = 2cos θ[/tpl] and some simplification using the identity [tpl]math|1=cos 3θ = 4cos3 θ - 3cos θ[/tpl] reduces the equation to [tpl]math|1=cos 3θ = det(B) / 2[/tpl]. Thus
+If [tpl]math|det(B)[/tpl] is complex or is greater than 2 in absolute value, the arccosine should be taken along the same branch for all three values of [tpl]math|k[/tpl]. This issue doesn't arise when [tpl]math|A[/tpl] is real and symmetric, resulting in a simple algorithm:[tpl]Citation |last=Smith |first=Oliver K. |title=Eigenvalues of a symmetric 3 × 3 matrix. |journal=Communications of the ACM |volume=4 |issue=4 |date=April 1961 |page=168 [/tpl]
+Once again, the eigenvectors of [tpl]math|A[/tpl] can be obtained by recourse to the Cayley-Hamilton theorem. If [tpl]math|α1, α2, α3[/tpl] are distinct eigenvalues of [tpl]math|A[/tpl], then [tpl]math|1=(A - α1I)(A - α2I)(A - α3I) = 0[/tpl]. Thus the columns of the product of any two of these matrices will contain an eigenvector for the third eigenvalue. However, if [tpl]math|1=a3 = a1[/tpl], then [tpl]math|1=(A - α1I)2(A - α2I) = 0[/tpl] and [tpl]math|1=(A - α2I)(A - α1I)2 = 0[/tpl]. Thus the generalized eigenspace of [tpl]math|α1[/tpl] is spanned by the columns of [tpl]math|A - α2I[/tpl] while the ordinary eigenspace is spanned by the columns of [tpl]math|1=(A - α1I)(A - α2I)[/tpl].  The ordinary eigenspace of [tpl]math|α2[/tpl] is spanned by the columns of [tpl]math|(A - α1I)2[/tpl].
+For example, let
+The characteristic equation is
+with eigenvalues 1 (of multiplicity 2) and -1. Calculating,
+and
+Thus [tpl]math|(-4, -4, 4)[/tpl] is an eigenvector for -1, and [tpl]math|(4, 2, -2)[/tpl] is an eigenvector for 1. [tpl]math|(2, 3, -1)[/tpl] and [tpl]math|(6, 5, -3)[/tpl] are both generalized eigenvectors associated with 1, either one of which could be combined with [tpl]math|(-4, -4, 4)[/tpl] and [tpl]math|(4, 2, -2)[/tpl] to form a basis of generalized eigenvectors of [tpl]math|A[/tpl].
+
+==See also==
+
+==Notes==
+
+==References==
+
+==Further reading==
+
+ | last = Bojanczyk
+ | first = Adam W. 
+ | authorlink =
+ | coauthors =Adam Lutoborski
+ | title = Computation of the Euler angles of a symmetric 3X3 matrix
+ | journal = SIAM Journal on Matrix Analysis and Applications
+ | volume = 12
+ | issue = 1
+ | pages = 41–48
+ | publisher =
+ | location =
+ | date = Jan 1991
+ | url = http://cacm.acm.org/magazines/1961/4/14532-eigenvalues-of-a-symmetric-3-%C3%83-3-matrix/abstract
+ | jstor =
+ | issn =
+ | doi = }}
+

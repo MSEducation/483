@@ -1,0 +1,124 @@
+[[Product rule]]
+
+CATEGORIES: Differentiation rules, Articles containing proofs
+
+In calculus, the product rule is a formula used to find the derivatives of products of two or more functions. It may be stated thus:
+or in the Leibniz notation thus:
+In the notation of differentials this can be written as follows:
+The derivative of the product of three functions is:
+
+Discovery
+
+Discovery of this rule is credited to Gottfried Leibniz, who demonstrated it using differentials.  (However, Child (2008) argues that it is due to Isaac Barrow). Here is Leibniz's argument: Let u(x) and v(x) be two differentiable functions of x. Then the differential of uv is
+Since the term du·dv is "negligible" (compared to du and dv), Leibniz concluded that
+and this is indeed the differential form of the product rule. If we divide through by the differential dx, we obtain
+which can also be written in Lagrange's notation as
+
+Examples
+
+Proofs
+
+A rigorous proof of the product rule can be given using the definition of the derivative as a limit, and the basic properties of limits.
+Let h(x) = f(x) g(x), and suppose that f and g are each differentiable at x0. (Note that x0 will remain fixed throughout the proof). We want to prove that h is differentiable at x0 and that its derivative h'(x0) is given by f'(x0) g(x0) + f(x0) g'(x0).
+Let Δh = h(x0+Δx) - h(x0); note that although x0 is fixed, Δh depends on the value of Δx, which is thought of as being "small."
+The function h is differentiable at x0 if the limit
+exists; when it does, h'(x0) is defined to be the value of the limit.
+As with Δh, let Δf = f(x0+Δx) - f(x0) and Δg = g(x0+Δx) - g(x0) which, like Δh, also depends on Δx. Then f(x0+Δx) = f(x0) + Δf and g(x0+Δx) = g(x0) + Δg.
+It follows that h(x0+Δx) = f(x0+Δx) g(x0+Δx) = (f(x0) + Δf) (g(x0)+Δg); applying the distributive law, we see that
+While it is not necessary for the proof, it can be helpful to understand this product geometrically as the area of the rectangle in this diagram:
+To get the value, of Δh, subtract h(x0)=f(x0) g(x0) from equation . This removes the area of the white rectangle, leaving three rectangles:
+To find h'(x0), we need to find the limit as Δx goes to 0 of
+The first two terms of the right-hand side of this equation correspond to the areas of the blue rectangles; the third corresponds to the area of the gray rectangle. Using the basic properties of limits and the definition of the derivative, we can tackle this term-by term. First,
+Similarly,
+The third term, corresponding to the small gray rectangle, winds up being negligible (i.e. going to 0 in the limit) because Δf Δg "vanishes to second order." Rigorously,
+We have shown that the limit of each of the three terms on the right-hand side of equation  exists, hence
+exists and is equal to the sum of the three limits. Thus, the product h(x) is differentiable at x0 and its derivative is given by
+as was to be shown.
+
+Brief proof
+
+Logarithms and quarter squares
+
+Let f = uv and suppose u and v are positive functions of x. Then
+Differentiating both sides:
+and so, multiplying the left side by f, and the right side by uv (note: f = uv),
+The proof appears in  Note that since u, v need to be continuous, the assumption on positivity does not diminish the generality.
+This proof relies on the chain rule and on the properties of the natural logarithm function, both of which are deeper than the product rule (however, information about the derivative of a logarithm that is sufficient to carry out a variant of the proof can be inferred by considering the derivative at x = 1 of the logarithm to any base of cx, where c is a constant, then generalising c). From one point of view, that is a disadvantage of this proof. On the other hand, the simplicity of the algebra in this proof perhaps makes it easier to understand than a proof using the definition of differentiation directly.
+Differentiating both sides:
+This does not present issues of whether the values are positive or negative, and the function's properties are much simpler to demonstrate (indeed, it can be differentiated without using first principles by considering the derivative at x = 0 of cx, where c is a constant, then generalising c).
+Note also, these proofs are only valid for numbers or similar, whereas proofs from first principles are also valid for matrices and such like.
+
+Chain rule
+
+The product rule can be considered a special case of the chain rule for several variables.
+
+Non-standard analysis
+
+Let u and v be continuous functions in x, and let dx, du and dv be infinitesimals within the framework of non-standard analysis, specifically the hyperreal numbers. Using st to denote the standard part function that associates to a finite hyperreal number the real infinitely close to it, this gives
+|-
+|-
+|
+|-
+|
+|-
+|
+|}
+This was essentially Leibniz's proof exploiting the transcendental law of homogeneity (in place of the standard part above).
+
+Smooth infinitesimal analysis
+
+In the context of Lawvere's approach to infinitesimals, let dx be a nilsquare infinitesimal. Then du = u' dx and dv = v' dx, so that
+since
+
+Generalizations
+
+A product of more than two factors
+
+The product rule can be generalized to products of more than two factors. For example, for three factors we have
+
+Higher derivatives
+
+It can also be generalized to the Leibniz rule for the nth derivative of a product of two factors:
+See also binomial coefficient and the formally quite similar binomial theorem. See also General Leibniz rule.
+
+Higher partial derivatives
+
+For partial derivatives, we have
+where the index S runs through the whole list of 2n subsets of {1, ..., n}. For example, when n = 3, then
+
+Banach space
+
+Suppose X, Y, and Z are Banach spaces (which includes Euclidean space) and B : X × Y → Z is a continuous bilinear operator. Then B is differentiable, and its derivative at the point (x,y) in X × Y is the linear map D(x,y)B : X × Y → Z given by
+
+Derivations in abstract algebra
+
+In abstract algebra, the product rule is used to define what is called a derivation, not vice versa.
+
+Vector functions
+
+The product rule extends to scalar multiplication, dot products, and cross products of vector functions.
+For scalar multiplication:
+For dot products:
+For cross products:
+
+Scalar fields
+
+For scalar fields the concept of gradient is the analog of the derivative:
+
+Applications
+
+Among the applications of the product rule is a proof that
+when n is a positive integer (this rule is true even if n is not positive or is not an integer, but the proof of that must rely on other methods). The proof is by mathematical induction on the exponent n. If n = 0 then xn is constant and nxn − 1 = 0. The rule holds in that case because the derivative of a constant function is 0. If the rule holds for any particular exponent n, then for the next value, n + 1, we have
+Therefore if the proposition is true of n, it is true also of n + 1.
+
+Definition of tangent space
+
+Product rule is also used in definition of abstract tangent space of some abstract geometric figure (smooth manifold). This definition we can use if we cannot or wish to not use surrounding ambient space where our chosen geometric figure lives (since there might be no such surrounding space). It uses the fact that it is possible to define derivatives of real-valued functions on that geometric figure at a point p solely with the product rule and that the set of all such derivations in fact forms a vector space that is the desired tangent space.
+
+
+
+
+
+
+
+

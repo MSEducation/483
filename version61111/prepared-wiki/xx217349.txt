@@ -1,0 +1,84 @@
+[[Zillions of Games]]
+
+CATEGORIES: Chess engines, Video board games, Video game engines, Video game development software
+
+Zillions of Games is a commercial general game playing system developed by Jeff Mallett and Mark Lefler in 1998. The game rules are specified with S-expressions, Zillions rule language. It was designed to handle mostly abstract strategy board games or puzzles."Can Zillions Support This Game?" FAQ by Zillions Development Corp. After parsing the rules of the game, the system's artificial intelligence can automatically play one or more players. It treats puzzles as solitaire games and its AI can  be used to solve them.
+
+==Scripting language==
+
+The scripting language of Zillions-of-Games uses S-expressions. The rules are stored in a text file with extension ".zrf" (zillions rules file). The users can create their own ZRF-files and make the AI of Zillions-of-Games play their newly created game.
+Here is an example of rules for Tic-tac-toe (copyright by Zillions Development Inc.):The example of Tic-Tac-Toe is taken from "TicTacToe.zrf" in Zillions-of-Games installation and slightly simplified. The usage in Wikipedia is for illustration purpose and is believed to be according to fair use U.S. law.
+ 
+ (define add-to-empty  ((verify empty?) add))
+(game
+   (title "Tic-Tac-Toe")
+   (description "...")
+   (history "...")
+   (strategy "...")
+   (players X O)
+   (turn-order X O)
+   (board
+        (image "images\TicTacToe\TTTbrd.bmp")
+        (grid
+            (start-rectangle 16 16 112 112) ; top-left position
+            (dimensions ;3x3
+                ("top-/middle-/bottom-" (0 112)) ; rows
+                ("left/middle/right" (112 0))) ; columns
+            (directions (n -1 0) (e 0 1) (nw -1 -1) (ne -1 1))
+        )
+   )
+   (piece
+        (name man)
+	(help "Man: drops on any empty square")
+	(image X "images\TicTacToe\TTTX.bmp"
+	       O "images\TicTacToe\TTTO.bmp")
+        (drops (add-to-empty))
+   )
+   (board-setup
+        (X (man off 5))
+        (O (man off 5))
+   )
+   (draw-condition (X O) stalemated)
+   (win-condition (X O)
+	  	(or (relative-config man n man n man)
+                    (relative-config man e man e man)
+                    (relative-config man ne man ne man)
+                    (relative-config man nw man nw man)
+		)
+    )
+)
+
+The result of loading of this ZRF into Zillions-of-Games and playing against the computer is shown in screenshot at right.
+The definition of games usually contains the following pattern:Complete specification of the Zillions-of-Games scripting language can be found in Zillions Language Reference, which can be found in Zillions installation.
+
+==Implemented games==
+
+Zillions of Games is so called because of its potential to play a very large number of user-programmed games. The system is shipped with over 300 games and puzzles. These include a lot of popular board games, such as Alquerque, Fox and geese, Go, Gomoku, Jungle, Halma, Nim,  Nine Men's Morris, Reversi, Tafl and Tic-tac-toe. The package includes many checkers variants, for example Russian and Turkish Checkers. Besides standard FIDE chess, Zillions of Games contains many national chess variants such as shogi, xiangqi, janggi, as well as a number of popular chess variants like Ultima, Extinction chess, Losing Chess, shatranj, Berolina chess, Grand chess and others. It also include some puzzles, such as 15-Puzzle, Towers of Hanoi, eight queens, and a variety of Solitaires.
+Not long after it came to market in late 1998, users of Zillions of Games began to program new games and puzzles for it, creating many of them themselves. Two large collections of Zillions Rules Files (ZRFs) soon began to appear. One was at the Zillions-of-Games website, and the other was at the Chess Variant Pages website.Zillions of Games -  The Chess Variant Pages collection of chess variants for Zillions of Games The former collected together every kind of ZRF, whereas the latter focused on ZRFs for chess variants. As of 2013, the ZILLIONS interface had 2,162 ZRF's, created by 423 ZRF authors,Free add-on games for Zillions-of-Games and the Chess Variant Pages collection had 800 ZRF's of chess variants.
+The games programmed by the users include such games as 4D Tic-Tac-Toe, FreeCell, Rubik's Cube, Teeko, Mancala, Alice chess, Chess960, Hexagonal chess, Star Trek Tridimensional Chess and Sokoban. Besides various games and puzzles, there are also educational ZRFs, such as the cellular automata Game of Life, a calculator, and some Turing machine simulations.
+
+==Uses==
+
+Zillions of Games can be used for the following:
+
+==Capabilities==
+
+Zillions represents boards and pieces with bitmap images; these can be remapped by the user. The boards may be arbitrary directed graphs, but standard grid-like boards are easier to produce and have built-in support for detecting collinearity. The available win, loss, and draw conditions include checkmate, stalemate, repetition, piece capture, absolute configuration, relative configuration, and various types of piece count. These allow the creation of a variety of different games and puzzles.
+Besides defining how pieces move, Zillions can define how pieces may be dropped. This is for introducing new pieces into a game. It is not useful for shogi, which "drops" captured pieces stored on the sides of the board. It is for games like Go, Reversi, and Tic-Tac-Toe, which routinely allow users to add new pieces to the board. As with piece movement, this is defined algorithmically, and it can be something as simple as letting a new piece drop only on an empty space or follow more complex rules.
+Since version 2.0, Zillions has had the additional ability to enforce maximal capturing rules (used in some versions of Checkers) and a full-featured Go-playing engine.
+Zillions includes a "random player" which selects from its available moves at random; this can be used to simulate dice in race games and Backgammon relatives.
+The standard AI engine can, if need be, be replaced with user-created engines. These engines can then use opening books or other features unavailable to the standard AI.
+[ref]Capabilities of Zillions,
+Capabilities added in version 2.0[/ref]
+
+==Limitations==
+
+Despite its versatility, Zillions of Games has a number of non-trivial limitations:
+
+==See also==
+
+==References==
+
+==External links==
+
+

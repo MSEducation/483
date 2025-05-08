@@ -1,0 +1,99 @@
+[[Building (mathematics)]]
+
+CATEGORIES: Group theory, Algebraic combinatorics, Geometric group theory, Mathematical structures
+
+In mathematics, a building (also Tits building, Bruhat–Tits building, named after François Bruhat and Jacques Tits) is a combinatorial and geometric structure which simultaneously  generalizes certain aspects of flag manifolds, finite projective planes, and Riemannian symmetric spaces. Initially introduced by Jacques Tits as a means to understand the structure of exceptional groups of Lie type, the theory has also been used to study the geometry and topology of homogeneous spaces of p-adic Lie groups and their discrete subgroups of symmetries, in the same way that trees have been used to study free groups.
+
+
+
+Although the theory of semisimple algebraic groups provided the initial motivation for the notion of a building, not all buildings arise from a group. In particular, projective planes and generalized quadrangles form two classes of graphs studied in incidence geometry which satisfy the axioms of a building, but may not be connected with any group. This phenomenon turns out to be related to the low rank of the corresponding Coxeter system (namely, two). Tits proved a remarkable theorem: all spherical buildings of rank at least three are connected with a group; moreover, if a building of rank at least two is connected with a group then the group is essentially determined by the building.
+Iwahori–Matsumoto, Borel–Tits and Bruhat–Tits demonstrated that in analogy with Tits' construction of spherical buildings, affine buildings can also be constructed from certain groups, namely, reductive algebraic groups over a local non-Archimedean field. Furthermore, if the split rank of the group is at least three, it is essentially determined by its building. Tits later reworked the foundational aspects of the theory of buildings using the notion of a chamber system, encoding the building solely in terms of adjacency properties of simplices of maximal dimension; this leads to simplifications in both spherical and affine cases. He proved that, in analogy with the spherical case, every building of affine type and rank at least four arises from a group.
+
+Definition
+
+An n-dimensional building X is an abstract simplicial complex which is a union of subcomplexes A called apartments such that
+An n-simplex in A is called a chamber (originally chambre, i.e. room in French).
+The rank of the  building is defined to be n + 1.
+
+Elementary properties
+
+Every apartment A in a building is a Coxeter complex. In fact, for every two n-simplices intersecting in an (n – 1)-simplex or panel, there is a unique period two simplicial automorphism of A, called a reflection, carrying one n-simplex onto the other and fixing their common points. These reflections generate a Coxeter group W, called the Weyl group of A, and the simplicial complex A corresponds to the standard geometric realization of W. Standard generators of the Coxeter group are given by the reflections in the walls of a fixed chamber in A. Since
+the apartment A is determined up to isomorphism by the building, the same is true of any two simplices in X lying in some common apartment A. When W is finite, the building is said to be spherical. When it is an affine Weyl group, the building is said to be affine or euclidean.
+The chamber system is given by the adjacency graph formed by the chambers; each pair of adjacent chambers can in addition be labelled by one of the standard
+generators of the Coxeter group (see ).
+Every building has a canonical length metric inherited from the geometric realisation obtained by identifying the vertices with an orthonormal basis of a Hilbert space. For affine buildings, this metric satisfies the CAT(0) comparison inequality of Alexandrov, known in this setting as the Bruhat-Tits non-positive curvature condition for geodesic triangles: the distance from a vertex to the midpoint of the opposite side is no greater than the distance in the corresponding Euclidean triangle with the same side-lengths (see ).
+
+Connection with BN pairs
+
+If a group G acts simplicially on a building X, transitively on pairs (C,A) of chambers C and apartments A containing them, then the stabilisers of such a pair define a BN pair or Tits system. In fact the pair of subgroups
+Conversely the building can be recovered from the BN pair, so that every BN pair canonically defines a building.
+In fact, using the terminology of BN pairs and calling any conjugate of B a Borel subgroup and any group containing a Borel subgroup a parabolic subgroup,
+The same building can often be described by different BN pairs. Moreover not every building comes from a BN pair: this corresponds to the failure of classification results in low rank and dimension (see below).
+
+Spherical and affine buildings for SLn
+
+The simplicial structure of the affine and spherical buildings associated to SLn(Qp), as well as their interconnections, are easy to explain directly using only concepts from elementary algebra and geometry (see ). In this case there are three different buildings, two spherical and one affine. Each is a union of apartments, themselves simplicial complexes. For the affine group, an apartment is just the simplicial complex obtained from the standard tessellation of Euclidean space En-1 by equilateral (n-1)-simplices; while for a spherical building it is the finite simplicial complex 
+formed by all (n-1)! simplices with a given common vertex in the analogous tessellation in En-2.
+Each building is a simplicial complex X which has to satisfy the following axioms:
+
+Spherical building
+
+Let F be a field and let X be the simplicial complex with vertices the non-trivial vector subspaces of V=Fn. Two subspaces U1 and U2 are connected if one of them is a subset of the other. The k-simplices of X are formed by sets of k + 1 
+mutually connected subspaces. Maximal connectivity is obtained by taking n - 1 subspaces and the corresponding (n-2)-simplex corresponds to a complete flag
+Lower dimensional simplices correspond to partial flags with fewer intermediary subspaces Ui.
+To define the apartments in X, it is convenient to define a frame in V as a basis (vi) determined up to scalar multiplication of each of its vectors vi; in other words a frame is a set of one-dimensional subspaces Li = F·vi such that any k of them generate a k-dimensional subspace. Now an ordered frame L1, ..., Ln defines a complete flag via
+Since reorderings of the Li's also give a frame, it is straightforward to see that the subspaces, obtained as sums of the Li's,
+form a simplicial complex of the type required for an apartment of a spherical building. The axioms for a building can easily be verified using the classical Schreier refinement argument used to prove the uniqueness of the Jordan-Hölder decomposition.
+
+Affine building
+
+Let K be a field lying between Q and its p-adic completion Qp with respect to the usual non-Archimedean p-adic norm 
+||x||p on Q for some prime p. Let R be the subring of K defined by
+When K = Q, R is the localization of Z at p and, when K = Qp, R = Zp, the p-adic integers, i.e. the closure of Z in Qp.
+The vertices of the building X are the R-lattices in V = Kn, i.e. R-submodules of the form
+where (vi) is a basis of V over K. Two lattices are said to be equivalent if one is a scalar multiple of the other by an element of 
+the multiplicative group K* of K (in fact only integer powers of p need be used). Two lattice L1 and L2 are said to be adjacent if some lattice equivalent to L2 lies between L1 and its sublattice p·L1: this relation is symmetric. The k-simplices of X are equivalence classes of k + 1 mutually adjacent lattices, The (n - 1)- simplices correspond, after relabelling, to chains
+where each successive quotient has order p. Apartments are defined by fixing a basis (vi) of V and taking all lattices with basis
+(pai vi) where (ai) lies in Zn and is uniquely determined up to addition
+of the same integer to each entry.
+By definition each apartment has the required form and their union is the whole of X. The second axiom follows by a variant of the Schreier refinement argument. The last
+axiom follows by a simple counting argument based on the orders of finite Abelian groups of the form
+A standard compactness argument shows that X is in fact independent of the choice of K. In particular taking K = Q, it follows that X is countable. On the other hand taking K = Qp, the definition shows that GLn(Qp) admits a natural simplicial action on the building.
+The building comes equipped with a labelling of its vertices with values in Z / n Z. Indeed, fixing a reference lattice L, the label of M is given by
+for k sufficiently large. The vertices of any (n – 1)-simplex in X have distinct labels, running through the whole of Z / n Z. Any simplicial automorphism φ of X defines a permutation π of Z / n Z such that label (φ(M)) = π(label (M)). In particular for g in  GLn (Qp),
+Thus g preserves labels if g lies in SLn(Qp).
+
+Automorphisms
+
+Tits proved that any label-preserving automorphism of the affine building arises from an element of  SLn(Qp). Since automorphisms of the building permute the labels, there is a natural homomorphism
+The action of GLn(Qp) gives rise to an n-cycle τ. Other automorphisms of the building arise from outer automorphisms of SLn(Qp) associated with automorphisms of the Dynkin diagram. Taking the standard
+symmetric bilinear form with orthonormal basis vi, the map sending a lattice to its dual lattice gives an automorphism with square the identity, giving the permutation σ that sends each label to its negative modulo n. The image of the above homomorphism is generated by σ and τ and is isomorphic to the dihedral group Dn of order 2n; when n = 3, it gives the whole of S3.
+If E is a finite Galois extension of Qp and the building is constructed from SLn(E) instead of SLn(Qp), the Galois group Gal (E/Qp) will also act by automorphisms on the building.
+
+Geometric relations
+
+Spherical buildings arise in two quite different ways in connection with the affine building X for SLn(Qp):
+
+Classification
+
+Tits proved that all irreducible spherical buildings (i.e. with finite Weyl group) of rank greater than 2 are associated to simple algebraic or classical groups.
+A similar result holds for irreducible affine buildings of dimension greater than two (their buildings "at infinity" are spherical of rank greater than two). In lower rank or dimension, there is no such classification. Indeed each incidence structure gives a spherical building of rank 2 (see ); and Ballmann and Brin proved that every 2-dimensional simplicial complex in which the links of vertices are isomorphic to the flag complex of a finite projective plane has the structure of a building, not necessarily classical. Many 2-dimensional affine buildings have been constructed using hyperbolic reflection groups or other more exotic constructions connected with orbifolds.
+Tits also proved that every time a building is described by a BN pair in a group, then in almost all cases the automorphisms of the building correspond to automorphisms of the group (see ).
+
+Applications
+
+The theory of buildings has important applications in several rather disparate fields. Besides the already mentioned connections with the structure of reductive algebraic groups over general and local fields, buildings are used to study their representations. The results of Tits on determination of a group by its building have deep connections with rigidity theorems of George Mostow and Grigory Margulis, and with Margulis arithmeticity.
+Special types of buildings are studied in discrete mathematics, and the idea of a geometric approach to characterizing simple groups proved very fruitful in the classification of finite simple groups. The theory of buildings of type more general than spherical or affine is still relatively undeveloped, but these generalized buildings have already found applications to construction of Kac–Moody groups in algebra, and to nonpositively curved manifolds and hyperbolic groups in topology and geometric group theory.
+
+
+
+ 
+ 
+
+
+
+journal=Publications Mathématiques de l'IHÉS|volume= 82 |year=1995|pages=169–209|url= 
+
+Weblinks
+
+

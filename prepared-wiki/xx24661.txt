@@ -1,0 +1,114 @@
+[[PowerBASIC]]
+
+CATEGORIES: BASIC compilers
+
+PowerBASIC is the brand of several commercial compilers by PowerBASIC Inc. that compile a dialect of the BASIC programming language. There are both DOS and Windows versions, and two kinds of the latter:  Console and Windows.  The DOS version has a syntax similar to that of QBasic and QuickBASIC.  The Windows versions use a BASIC syntax expanded to include many Windows functions, and the statements can be combined with calls to the Windows API.
+
+==History==
+
+The first version of the DOS compiler was published as BASIC/Z, the very first interactive compiler for CP/M and MDOS.  Later it was extended to MS-DOS/PC DOS and in 1987 Borland distributed it as Turbo Basic.  PowerBASIC, founded by the developer of that compiler, took over development and distribution in 1989, calling it PowerBASIC and later PBDOS.[tpl]cite news|url=http://www.accessmylibrary.com/coms2/summary_0286-28422911_ITM|title=PowerBASIC makes smooth move; Tech company finds region's affordability attractive. |publisher=Sarasota Herald Tribune (October , 2000)|accessdate=2008-03-12|last=|first= | date=2000-10-10[/tpl][tpl]Cite book|title=PC Based Instrumentation and Control|author=Michael H. Tooley|year= 2005|publisher=Elsevier|pages=214|isbn=0-7506-4716-7[/tpl]http://www.powerbasic.com/aboutpb.asp
+PowerBASIC went on to develop Basic compilers for Windows, first PBWIN — their flagship product — then PBCC, described below.
+On November 6, 2012, Robert Zale, the creator of PowerBASIC, died. The company continues under the direction of his wife.[tpl]cite web|title=Future of PowerBASIC|url=http://www.powerbasic.com/support/pbforums/showthread.php?t=51895|accessdate=16 December 2012[/tpl]
+
+==Compilers==
+
+PowerBASIC programs are self-contained and use no runtime file to execute.  In all versions of the compiler the applications compile without external libraries, though you can use such libraries if desired.
+
+===PowerBASIC for DOS (PBDos)===
+
+PBDOS includes an Integrated Development Environment (IDE) and supports DOS 3.30 and all later versions.PowerBASIC 3.5 for DOS
+
+===PowerBASIC Console Compiler (PBCC)===
+
+PBCC is a 32-bit compiler for the Windows 9x series and Windows NT series of operating systems, including Windows XP, Windows Server 2008, Windows Vista, and Windows 7. PBCC applications can use Dynamic Link Libraries (DLL). The compiler comes with an IDE including an editor and stepping debugger.
+No knowledge of Windows programming is required to create character mode or graphical applications with this compiler. Common Gateway Interface executables can also be compiled using PBCC.
+PBCC creates only executables, not DLLs.  (PBWin — see below — can create both.)
+
+===PowerBASIC Compiler for Windows (PBWin)===
+
+PBWin is a 32-bit compiler compatible with the Windows 9x series and the Windows NT series of operating systems, including Windows XP, Windows Server 2008, Windows Vista, and Windows 7.PowerBASIC Compiler for Windows PBWin can create Dynamic Link Libraries. PBWin applications can read Dynamic Link Libraries.
+PBWin comes with a compiler, IDE including an editor and stepping debugger.
+
+====Dynamic Dialog Tools (DDT)====
+
+You can create an application's Graphical user interface using the Windows API, or by using the inbuilt DDT language extensions. The group of BASIC statements which wrap Windows API functions, particularly in the creation and handling of dialog boxes and child controls is collectively known as Dynamic Dialog Tools. Using DDT requires less coding than to create a similar program using the Windows API. Using the DDT and the Windows API (known as SDK style as in Microsoft Windows SDK) are not mutually exclusive.
+
+==Tools==
+
+===PB Forms===
+
+PowerBASIC Forms, available for purchase separately, is a graphical user interface design tool add-on for PBWin. It automatically produces source code using the DDT language extension that creates forms using the Windows graphical user interface.
+
+===COM Browser===
+
+The PowerBASIC COM Browser, which comes with PBWin, is an application that exposes the interfaces, methods, and properties of COM objects, as described by type-library files. The PowerBASIC COM Browser exports an interface structure of a COM object for early-binding purposes in PowerBASIC code, and gives syntax reference and context-help on the interface members exposed by a COM object.[tpl]cite web | url=http://www.powerbasic.com/support/help/pbcc/index.htm#the_powerbasic_com_browser.htm | title=Com Browser on PowerBASIC's website[/tpl]
+
+==Programming language==
+
+===Characteristics===
+
+PowerBASIC is a native-code BASIC compiler whose reported merits are simplicity of use and speed compared to other languages.[ref]New geometries for new materials, Eric A. Lord, Alan
+Lindsay Mackay, Srinivasa Ranganathan, Cambridge University Press, 2006, ISBN 0-521-86104-7 ("a very simple user interface ... speed and power of the underlying C++ ... runs extremely fast") Google Books[/ref]Chaos and Time-series Analysis, Julien C. Sprott, Oxford University Press, 2003, ISBN 0-19-850840-9 ("easy to learn, powerful, and as fast as any C compiler I have encountered") Google Books
+Although the compiled code is fast enough for most purposes, the compilers also support inline assembler for additional code optimizing. The Windows compilers (PBWin & PBCC) support almost all of the x86 instruction set, including FPU, SIMD and MMX. The main exceptions being a few which are only useful to systems programmers. One can still use the unsupported instructions by inserting their opcodes with the "db", "dw" and "dd" statements. Lines of assembler code can be freely interspersed with lines of BASIC code.
+
+===Hello World===
+
+Hello world is used to give a very small example of the syntax used by a programming language and is often the smallest possible program for any given programming language.
+Here is an example of a PBCC hello world program. By default PBCC creates a console window at run time for displaying output.  The only purpose of Waitkey$ in this example is to keep the console up so you can read the output.
+ Function PBMain
+   Print "Hello, World!"
+  Waitkey$
+End Function
+Here is the PBWin version, which displays a Windows "dialog" message box.
+ Function PBMain
+   MsgBox "Hello, World!"
+End Function
+
+===Object-oriented programming===
+
+PBWin and PBCC support Object-Oriented Programming in the form of COM classes, however the compilers do not force you to use OOP, it is merely an option. In-process and out-of-process COM Servers can also be built using these compilers.
+
+====Graphics====
+
+Both the Console Compiler and Windows Compiler can create graphic windows. The GRAPHICs statements are higher-level than Windows' Graphics Device Interface(GDI) library functions.http://www.powerbasic.com/support/help/pbwin/index.htmhttp://www.powerbasic.com/support/help/pbcc/index.htm
+
+=====Elements of the GRAPHIC statements=====
+
+GRAPHIC WINDOWS are dedicated dialogs each containing a single control which fills the dialog's client area. GRAPHIC controls are child windows which support the same GRAPHIC drawing functionality as GRAPHIC windows. GRAPHIC BITMAPS are also defined, again supporting the GRAPHIC drawing functionality, but as purely memory objects, like Windows Bitmaps or DIB Sections. Keyboard and mouse handling statements are included among the GRAPHIC statements. Character output to a GRAPHIC target uses fonts specified via the FONT NEW statement.
+
+=====Creating a GRAPHIC WINDOW application=====
+
+A GRAPHIC WINDOW is the equivalent of a Windows dialog box containing a static control on which drawing operations can be done. A single BASIC statement will create a GRAPHIC WINDOW and specify its size, position and title. It is not essential to specify a WNDPROC for the GRAPHIC WINDOW. A short source code example for a complete GRAPHIC WINDOW application follows:
+ #Compile Exe ' using either PBCC6 or PBWIN10 compiler
+ Function PBMain 
+    Local GW As Dword
+    ' start a GRAPHIC WINDOW
+    Graphic Window New "graphic window", 100, 100, 200, 200 to GW
+    ' show a coloured disc
+    Graphic Ellipse (10, 10)-(190, 190), %rgb_Red, %rgb_SeaGreen, 0
+    ' wait for a keypress
+    Graphic Waitkey$
+End Function   
+
+=====Comparison of PB GRAPHIC statements with the GDI API=====
+
+Using PB GRAPHIC statements, a GRAPHIC (WINDOW, BITMAP or control) is first selected as the current GRAPHIC target, then operations are done on it without requiring it to be identified again.  Contrast this with the GDI API approach, where the Device Context handle is required for every drawing operation.
+It is not necessary when using the PB GRAPHIC statements to define a brush or pen as a separate entity, nor is it  necessary to redraw the GRAPHIC target (when in view) in response to Windows messages such as WM_PAINT and WM_ERASEBKGND. GRAPHIC targets are persistent.
+When GRAPHIC targets are attached, a REDRAW option can be specified which buffers the results of drawing operations until they are specifically requested. Using this technique reduces flicker in a similar way to the technique of drawing on memory DCs Petzold, Charles (1998). Programming Windows Fifth Edition, Microsoft Press, ISBN 978-1-57231-995-0 when using the GDI API.
+Pixel operations are possible using the GRAPHIC GET|SET PIXEL statements, in a manner similar to GetPixel/SetPixel of the GDI API. GRAPHIC GET BITS allows the entire bitmap to be loaded into a dynamic string.  This can be manipulated either as a string or by mapping an array onto it.  It can be placed back into the GRAPHIC target by GRAPHIC SET BITS.
+
+=====Complementarity of GRAPHIC statements and the Windows GDI API=====
+
+The GRAPHIC statements contain all the commonly used GDI API functions, but if you need one that is not included it is possible to obtain the hDC of any GRAPHIC target and thereby use GDI API functions on it.
+
+==User community==
+
+PowerBASIC provides an online forum for users to ask questions and share knowledge.http://www.powerbasic.com/support/pbforums/faq.php?faq=vb3_board_faq#faq_faq_forum_rules On 8 July 2012 the forum had 5,623 members (only a fraction of them still active) and contained 50,093 threads comprising 408,642 posts since August 26, 1998. The Source Code section alone contained 3,768 threads.PowerBASIC's vBulletin forum software statistics
+
+==Third-party support==
+
+==References==
+
+==External links==
+
+

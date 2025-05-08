@@ -1,0 +1,33 @@
+ | publisher = [[Society for Industrial and Applied Mathematics]]
+ | title = Applied Numerical Linear Algebra
+Solution of the system of linear equations for the tridiagonal matrix
+costs O(n) operations, so the complexity grows like O(n3)+k*O(n), where k is an iteration number, which is better than for the direct inversion. However for small number of iterations such transformation may not be practical. 
+Also transformation to the Hessenberg form involves square roots and division operation, which are not hardware supported on some equipment like 
+digital signal processors, FPGA, ASIC.
+On general purpose processors (e.g. produced by Intel) the execution time of addition, multiplication and division is approximately the same. But fast and/or low energy consuming hardware (digital signal processors, FPGA 
+, ASIC) division is not supported by hardware, and so should be avoided. 
+For such hardware it is recommended to use  Ck=2nk, since division by powers of 2 is implemented by bit shift and supported on any hardware. 
+The same hardware usually supports only fixed point arithmetics: essentially works with integers. So the choice of the constant  Ck is especially important - taking too small value will lead to fast growth of the norm of bk and to the overflow; for too big Ck  vector bk will tend to zero.
+The optimal value of  Ck  is the eigenvalue of the corresponding eigenvector. So one should choose Ck approximately the same.
+
+==Usage==
+
+The main application of the method is the situation when an approximation to an eigenvalue is found and one needs to find the corresponding approximate eigenvector. In such situation the inverse iteration is the main and probably the only method to use.
+So typically the method is used in combination with some other methods which allows to find approximate eigenvalues: the standard example is the bisection eigenvalue algorithm, another example is the Rayleigh quotient iteration which is actually the same inverse iteration with the choice of the approximate eigenvalue as the Rayleigh quotient corresponding to the vector obtained on the previous step of the iteration.
+There are some situations where the method can be used by itself, however they are quite marginal.
+Dominant eigenvector.
+The dominant eigenvalue can be easily estimated for any matrix. 
+For any induced norm it is true that
+So taking the norm of the matrix as an approximate eigenvalue one can see that the method will converge to the dominant eigenvector.
+Estimates based on statistics.
+In some real-time applications one needs to find  eigenvectors  for matrices with  a speed may be millions matrices per second. In such applications typically the statistics of matrices is known in advance and one can take as approximate eigenvalue the average eigenvalue for some large matrix sample,
+or better one calculates the mean ratio of the eigenvalue to the trace or the norm of the  matrix and eigenvalue is estimated as trace or norm multiplied on the average value the their ratio.  Clearly such method can be used with much care and only in situations when the mistake in calculations is allowed. 
+Actually such idea  can be combined with other methods to avoid too big errors.
+
+==See also==
+
+==References==
+
+==External links==
+
+

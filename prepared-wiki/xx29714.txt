@@ -1,0 +1,153 @@
+[[Poker probability]]
+
+CATEGORIES: Poker probability
+
+In poker, the probability of each type of 5-card hand can be computed by calculating the proportion of hands of that type among all possible hands.
+
+==Frequency of 5-card poker hands==
+
+The following chart enumerates the (absolute) frequency of each hand, given all combinations of 5 cards randomly drawn from a full deck of 52 without replacement. Wild cards are not considered. In this chart:
+The royal flush is a case of the straight flush. It can be formed 4 ways (one for each suit), giving it a probability of 0.000154% and odds of 649,739 : 1.
+When ace-low straights and ace-low straight flushes are not counted, the probabilities of each are reduced: straights and straight flushes each become 9/10 as common as they otherwise would be.  The 4 missed straight flushes become flushes and the 1,020 missed straights become no pair.
+Note that since suits have no relative value in poker, two hands can be considered identical if one hand can be transformed into the other by swapping suits.  For example, the hand 3♣ 7♣ 8♣ Q♠ A♠ is identical to 3♦ 7♦ 8♦ Q♥ A♥ because replacing all of the clubs in the first hand with diamonds and all of the spades with hearts produces the second hand.  So eliminating identical hands that ignore relative suit values, there are only 134,459 distinct hands.
+The number of distinct poker hands is even smaller.  For example, 3♣ 7♣ 8♣ Q♠ A♠ and 3♦ 7♣ 8♦ Q♥ A♥ are not identical hands when just ignoring suit assignments because one hand has three suits, while the other hand has only two—that difference could affect the relative value of each hand when there are more cards to come.  However, even though the hands are not identical from that perspective, they still form equivalent poker hands because each hand is an A-Q-8-7-3 high card hand.  There are 7,462 distinct poker hands.
+
+===Derivation of frequencies of 5-card poker hands===
+
+The following computations show how the above frequencies for 5-card poker hands were determined. To understand these derivations, the reader should be familiar with the basic properties of the binomial coefficients and their interpretation as the number of ways of choosing elements from a given set.  See also: sample space and event (probability theory).
+
+==Frequency of 7-card poker hands==
+
+The Ace-high straight flush or royal flush is slightly more frequent (4324) than the lower straight flushes (4140 each) because the remaining two cards can have any value; a King-high straight flush, for example, cannot have the Ace of its suit in the hand (as that would make it ace-high instead).
+|-
+!Hand         !! Frequency !! Probability !! Cumulative !! Odds
+|-
+|Royal flush
+|align=right|        4,324 ||   0.0032%   ||   0.0032%  ||align=right|  30,939 : 1
+|-
+|Straight flush (excl. royal flush)
+|align=right|       37,260 ||   0.0279%   ||   0.0311%  ||align=right|   3,589.6 : 1
+|-
+|Four of a kind
+|align=right|      224,848 ||   0.168%    ||   0.199%   ||align=right|     594 : 1
+|-
+|Full house
+|align=right|    3,473,184 ||   2.60%     ||   2.80%    ||align=right|    37.5 : 1
+|-
+|Flush
+|align=right|    4,047,644 ||   3.03%     ||   5.82%    ||align=right|    32.1 : 1
+|-
+|Straight
+|align=right|    6,180,020 ||   4.62%     ||  10.4%     ||align=right|    20.6 : 1
+|-
+|Three of a kind
+|align=right|    6,461,620 ||   4.83%     ||  15.3%     ||align=right|    19.7 : 1
+|-
+|Two pair
+|align=right|   31,433,400 ||  23.5%      ||  38.8%     ||align=right|    3.26 : 1
+|-
+|One pair
+|align=right|   58,627,800 ||  43.8%      ||  82.6%     ||align=right|    1.28 : 1
+|-
+|No pair
+|align=right|   23,294,460 ||  17.4%      || 100%       ||align=right|    4.74 : 1
+|-
+| Total
+|align=right|  133,784,560 || 100%        || 100%       ||align=right|       0 : 1
+|}
+(The frequencies given are exact; the probabilities and odds are approximate.)
+Since suits have no relative value in poker, two hands can be considered identical if one hand can be transformed into the other by swapping suits.  Eliminating identical hands that ignore relative suit values leaves 6,009,159 distinct 7-card hands.
+The number of distinct 5-card poker hands that are possible from 7 cards is 4,824.  Perhaps surprisingly, this is fewer than the number of 5-card poker hands from 5 cards because some 5-card hands are impossible with 7 cards (e.g. 7-high).
+
+===Derivation of frequencies of 7-card poker hands===
+
+See "7-Card Poker Hands" by Brian Alspach for the article on which this explanation is based.
+The following computations show how the above frequencies for 7-card poker hands were determined.  To understand these derivations, the reader should be familiar with the basic properties of the binomial coefficients and their interpretation as the number of ways of choosing elements from a given set.  See also: sample space and event (probability theory).
+
+==Frequency of 5-card lowball poker hands==
+
+|-
+!Hand        !!   Distinct hands !!            Frequency !! Probability !! Cumulative !! Odds
+|-
+|     5-high ||align=right|    1 ||align=right|    1,024 ||     0.0394% ||    0.0394% ||align=right| 2,537.05 : 1
+|-
+|     6-high ||align=right|    5 ||align=right|    5,120 ||     0.197%  ||    0.236%  ||align=right|   506.61 : 1
+|-
+|     7-high ||align=right|   15 ||align=right|   15,360 ||     0.591%  ||    0.827%  ||align=right|   168.20 : 1
+|-
+|     8-high ||align=right|   35 ||align=right|   35,840 ||     1.38%   ||    2.21%   ||align=right|    71.52 : 1
+|-
+|     9-high ||align=right|   70 ||align=right|   71,680 ||     2.76%   ||    4.96%   ||align=right|    35.26 : 1
+|-
+|    10-high ||align=right|  126 ||align=right|  129,024 ||     4.96%   ||    9.93%   ||align=right|    19.14 : 1
+|-
+|  Jack-high ||align=right|  210 ||align=right|  215,040 ||     8.27%   ||   18.2%    ||align=right|    11.09 : 1
+|-
+| Queen-high ||align=right|  330 ||align=right|  337,920 ||    13.0%    ||   31.2%    ||align=right|     6.69 : 1
+|-
+|  King-high ||align=right|  495 ||align=right|  506,880 ||    19.5%    ||   50.7%    ||align=right|     4.13 : 1
+|-
+|Total ||align=right|1,287 ||align=right|1,317,888 ||    50.7%    ||   50.7%    ||align=right|     0.97 : 1
+|}
+As can be seen from the table, just over half the time a player gets a hand that has no pairs, three- or four-of-a-kinds. (50.7%)
+If aces are not low, simply rotate the hand descriptions so that 6-high replaces 5-high for the best hand and ace-high replaces king-high as the worst hand.
+
+===Derivation of frequencies for 5-card lowball hands===
+
+The following computations show how the above frequencies for 5-card lowball poker hands were determined.  To understand these derivations, the reader should be familiar with the basic properties of the binomial coefficients and their interpretation as the number of ways of choosing elements from a given set.  See also: sample space and event (probability theory).
+The probability for any specific low hand with 5 distinct ranks (i.e. no paired cards) is the same.  The frequency of a 5-high hand or any a specific low hand is calculated by making 5 independent choices for the suit for each rank, which is:
+There is one way to choose the ranks for a five-high hand:
+To determine the number of distinct six-high hands, once the six is chosen, the other 4 ranks are chosen from the 5 ranks A to 5, which is:
+Derivation for lowball hands without straights and flushes:
+
+==Frequency of 7-card lowball poker hands==
+
+The table does not extend to include five-card hands with at least one pair. Its "Total" represents 95.4% of the time that a player can select a 5-card low hand without any pair.
+|-
+!Hand        !!               Frequency !! Probability !! Cumulative !! Odds
+|-
+|     5-high ||align=right|     781,824 ||     0.584%  ||    0.584%  ||align=right| 170.12 : 1
+|-
+|     6-high ||align=right|   3,151,360 ||     2.36%   ||    2.94%   ||align=right|  41.45 : 1
+|-
+|     7-high ||align=right|   7,426,560 ||     5.55%   ||    8.49%   ||align=right|  17.01 : 1
+|-
+|     8-high ||align=right|  13,171,200 ||     9.85%   ||   18.3%    ||align=right|   9.16 : 1
+|-
+|     9-high ||align=right|  19,174,400 ||    14.3%    ||   32.7%    ||align=right|   5.98 : 1
+|-
+|    10-high ||align=right|  23,675,904 ||    17.7%    ||   50.4%    ||align=right|   4.65 : 1
+|-
+|  Jack-high ||align=right|  24,837,120 ||    18.6%    ||   68.9%    ||align=right|   4.39 : 1
+|-
+| Queen-high ||align=right|  21,457,920 ||    16.0%    ||   85.0%    ||align=right|   5.23 : 1
+|-
+|  King-high ||align=right|  13,939,200 ||    10.4%    ||   95.4%    ||align=right|   8.60 : 1
+|-
+|Total ||align=right| 127,615,488 ||    95.4%    ||   95.4%    ||align=right|   0.05 : 1
+|}
+(The frequencies given are exact; the probabilities and odds are approximate.)
+If aces are not low, simply rotate the hand descriptions so that 6-high replaces 5-high for the best hand and ace-high replaces king-high as the worst hand.
+
+===Derivation of frequencies for 7-card lowball hands===
+
+The following computations show how the above frequencies for 7-card lowball poker hands were determined.  To understand these derivations, the reader should be familiar with the basic properties of the binomial coefficients and their interpretation as the number of ways of choosing elements from a given set.  See also: sample space and event (probability theory).
+There are then three different ways to choose the remaining two cards that are not used in the low hand.  Each of these cases must be considered separately:
+7 distinct ranks
+6 distinct ranks
+5 distinct ranks
+There are two ways to choose 5 distinct ranks for seven cards.  Either two pair and three unpaired ranks or three of a kind and four unpaired ranks.
+Derivation
+The total number of queen-high low hands is:
+The total number of king-high low hands is:
+
+==See also==
+
+Poker topics:
+Math and probability topics:
+
+==Notes==
+
+==External links==
+
+

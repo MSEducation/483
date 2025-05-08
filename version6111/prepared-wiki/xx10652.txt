@@ -1,0 +1,39 @@
+[[Remote procedure call]]
+
+CATEGORIES: Inter-process communication, Middleware, Application layer protocols, Remote procedure call
+
+In computer science, a remote procedure call (RPC) is an inter-process communication that allows a computer program to cause a subroutine or procedure to execute in another address space (commonly on another computer on a shared network) without the programmer explicitly coding the details for this remote interaction.[tpl]citation|title=Introduction to Distributed Systems|url=http://pages.cs.wisc.edu/~remzi/OSTEP/dist-intro.pdf|publisher= Arpaci-Dusseau Books|year = 2014|first1 = Remzi H.|last1 =Arpaci-Dusseau|first2=Andrea C.|last2 = Arpaci-Dusseau[/tpl] That is, the programmer writes essentially the same code whether the subroutine is local to the executing program, or remote. When the software in question uses object-oriented principles, RPC is called remote invocation or remote method invocation.
+Many different (often incompatible) technologies have been used to implement the concept.
+
+==History and origins==
+
+The idea of treating network operations as remote procedure calls goes back at least to the 1980s in early ARPANET documents.[tpl]cite web |title= A High-Level Framework for Network-Based Resource Sharing |author= Anand M. White |date= December 23, 1975 |publisher= Augmentation Research Center |work= RFC 707 |url= http://tools.ietf.org/html/rfc707 |accessdate= July 11, 2011 [/tpl]
+Bruce Jay Nelson is generally credited with coining the term.[tpl]cite web |title= 1994 – Andrew Birrell, Bruce Nelson: Remote Procedure Call |publisher= Association for Computing Machinery |work= Software System Award citation |url= http://awards.acm.org/citation.cfm?id=5125494&srt=all&aw=149&ao=SOFTWSYS&yr=1994|accessdate= July 11, 2011 [/tpl][tpl]cite web |title= SIGOPS Hall of Fame Award |publisher= Association for Computing Machinery |work= Special Interest Group on Operating Systems |url= http://www.sigops.org/award-hof.html |accessdate= July 11, 2011 [/tpl][tpl]cite book |author= Bruce Jay Nelson |title= Remote Procedure Call |work= PARC CSL-81-9 (Also CMU-CS-81-119) |publisher= Xerox Palo Alto Research Center |date= May 1981 [/tpl] PhD thesis.
+One of the first business uses of RPC was by Xerox under the name "Courier" in 1981. The first popular implementation of RPC on Unix was Sun's RPC (now called ONC RPC), used as the basis for Network File System.
+
+==Message passing==
+
+An RPC is initiated by the client, which sends a request message to a known remote server to execute a specified procedure with supplied parameters. The remote server sends a response to the client, and the application continues its process. While the server is processing the call, the client is blocked (it waits until the server has finished processing before resuming execution), unless the client sends an asynchronous request to the server, such as an XHTTP call. There are many variations and subtleties in various implementations, resulting in a variety of different (incompatible) RPC protocols.
+An important difference between remote procedure calls and local calls is that remote calls can fail because of unpredictable network problems. Also, callers generally must deal with such failures without knowing whether the remote procedure was actually invoked. Idempotent procedures (those that have no additional effects if called more than once) are easily handled, but enough difficulties remain that code to call remote procedures is often confined to carefully written low-level subsystems.
+
+===Sequence of events during an RPC===
+
+===Standard contact mechanisms===
+
+To let different clients access servers, a number of standardized RPC systems have been created. Most of these use an interface description language (IDL) to let various platforms call the RPC. The IDL files can then be used to generate code to interface between the client and server. The most common tool used for this is RPCGEN needed.
+
+==Other RPC analogues==
+
+The RPC paradigm was invented by Sun Microsystems with their implementation, now known as the Open Network Computing Remote Procedure Call. Other RPC analogues and implementations can now be found elsewhere:
+
+==Web==
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

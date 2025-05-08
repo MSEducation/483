@@ -1,0 +1,63 @@
+[[IBM System/360 Model 67]]
+
+CATEGORIES: Computing platforms, IBM System/360 mainframe line
+
+The IBM System/360 Model 67 (S/360-67) was an important IBM mainframe model in the late 1960s.IBM System/360 Model 67 Functional Characteristics, Third Edition (February 1972), IBM publication GA27-2719-2 Unlike the rest of the S/360 series, it included features to facilitate time-sharing applications, notably a DAT box to support virtual memory and 32-bit addressing. The S/360-67 was otherwise compatible with the rest of the S/360 series.
+
+==Origins==
+
+The S/360-67 was intended to satisfy the needs of key time-sharing customers, notably MIT (where Project MAC had become a notorious IBM sales failure), the University of Michigan, General Motors, Bell Labs, Princeton University, and the Carnegie Institute of Technology (later Carnegie Mellon University).The IBM 360/67 and CP/CMS, Tom Van Vleck, 1995, 1997, 2005, 2009
+In the mid-1960s a number of organizations were interested in offering interactive computing services using time-sharing."A History of MTS—30 Years of Computing Service", Susan Topol, Information Technology Digest, Volume 5, No. 5 (May 13, 1996), University of Michigan At that time the work that computers could perform was limited by their lack of real memory storage capacity. When IBM introduced its System/360 family of computers in the mid-1960s, it did not provide a solution for this limitation and within IBM there were conflicting views about the importance of and need to support time-sharing.
+A paper titled Program and Addressing Structure in a Time-Sharing Environment by Bruce Arden, Bernard Galler, Frank Westervelt (all associate directors at UM's academic Computing Center), and Tom O'Brian building upon some basic ideas developed at the Massachusetts Institute of Technology (MIT) was published in January 1966."Program and Addressing Structure in a Time-Sharing Environment", B. W. Arden , B. A. Galler , T. C. O'Brien , F. H. Westervelt, Journal of the ACM (JACM), v.13 n.1, p.1-16, Jan. 1966 The paper outlined a virtual memory architecture using dynamic address translation (DAT) that could be used to implement time-sharing.
+After a year of negotiations and design studies, IBM agreed to make a one-of-a-kind version of its S/360-65 mainframe computer for the University of Michigan. The S/360-65M would include dynamic address translation (DAT) features that would support virtual memory and allow support for time-sharing. Initially IBM decided not to supply a time-sharing operating system for the new machine. 
+As other organizations heard about the project they were intrigued by the time-sharing idea and expressed interest in ordering the modified IBM S/360 series machines. With this demonstrated interest IBM changed the computer's model number to S/360-67 and made it a supported product. When IBM realized there was a market for time-sharing, it agreed to develop a new time-sharing operating system called TSS/360 (TSS stood for Time-sharing System) for delivery at roughly the same time as the first model S/360-67.
+The first S/360-67 was shipped in May 1966. The S/360-67 was withdrawn on March 15, 1977."System/360 Dates and characteristics" at IBM Archives > Exhibits > IBM Mainframes > Mainframes reference room > Mainframes basic information sources 
+Before the announcement of the Model 67, IBM had announced models 64 and 66, DAT versions of its 60 and 62 models, but they were almost immediately replaced by the 67 at the same time that the 60 and 62 were replaced by the 65.DIGITAL COMPUTER NEWSLETTER, Office of Naval Research, Mathematical Sciences Division, July 1965--pages 5-6: IBM System/360 time-sharing computers
+
+==Announcement==
+
+IBM announced the S/360-67 in its August 16, 1965 "blue letters" (a standard mechanism used by IBM to make product announcements). IBM stated that:Varian, op. cit., p. 17 (Note 54) – S/360-67 announcement
+
+==Virtual memory==
+
+The S/360-67 design included a radical new component for implementing virtual memory, the "DAT box" (Dynamic Address Translation box). DAT on the 360/67 was based on the architecture outlined in a 1966 JACM paper by Arden, Galler, Westervelt, and O'Brien and included both segment and page tables. The Model 67's virtual memory support was very similar to the virtual memory support that eventually became standard on the entire System/370 line.
+The S/360-67 provided a 24- or 32-bit address space – unlike the strictly 24-bit address space of other S/360 and early S/370 systems, and the 31-bit address space of S/370-XA available on later S/370s. The S/360-67 virtual address space was divided into pages (of 4096 bytes) grouped into segments (of 1 million bytes); pages were dynamically mapped onto the processor's real memory. These S/360-67 features plus reference and change bits as part of the storage key enabled operating systems to implement demand paging: referencing a page that was not in memory caused a page fault, which in turn could be intercepted and processed by an operating system interrupt handler.
+The S/360-67's virtual memory system was capable of meeting three distinct goals:
+The first goal removed (for decades, at least) a crushing limitation of earlier machines: running out of physical storage. The second enabled substantial improvements in security and reliability. The third enabled the implementation of true virtual machines. Contemporary documents make it clear that full hardware virtualization and virtual machines were not original design goals for the S/360-67.
+
+==Features==
+
+The S/360-67 included the following extensions in addition to the standard and optional features available on all S/360 systems:
+The S/360-67 operated with a basic internal cycle time of 200 nanoseconds and a basic 750 nanosecond magnetic core storage cycle, the same as the S/360-65. The 200 ns cycle time put the S/360-67 in the middle of the S/360 line, between the Model 30 at the low end and the Model 195 at the high end. From 1 to 8 bytes (8 data bits and 1 parity bit per byte) could be read or written to processor storage in a single cycle. A 60-bit parallel adder facilitated handling of long fractions in floating-point operations. An 8-bit serial adder enabled simultaneous execution of floating point exponent arithmetic, and also handled decimal arithmetic and variable field length (VFL) instructions.
+
+==New Components==
+
+Four new components were part of the S/360-67:
+These components, together with the 2365 Processor Storage Model 2, 2860 Selector Channel, 2870 Multiplexer Channel, and other System/360 control units and devices were available for use with the S/360-67.
+Note that while Carnegie Tech had a 360/67 with an IBM 2361 LCS, that option was not listed in the price book and may not have worked in a duplex configuration.
+
+==Basic Configurations==
+
+Three basic configurations were available for the IBM System/360 model 67:
+A half-duplex system could be upgraded in the field to a duplex system by adding one IBM 2067-2 processor and the third IBM 2365-12 Processor Storage, unless the half-duplex system already had three or more.  The half-duplex and duplex configurations were called the IBM System/360 model 67-2.
+
+==Operating systems==
+
+When the S/360-67 was announced in August 1965, IBM also announced TSS/360, a time-sharing operating system project that was canceled in 1971 (having also been canceled in 1968, but reprieved in 1969).
+IBM's failure to deliver TSS/360 as promised opened the door for others to develop operating systems that would use the unique features of the S/360-67:
+
+==Legacy==
+
+The S/360-67 had an important legacy. After the failure of TSS/360, IBM was surprised by the blossoming of a time-sharing community on the S/360-67 platform (CP/CMS, MTS, MUSIC). A large number of commercial, academic, and service bureau sites installed the system. By taking advantage of IBM's lukewarm support for time-sharing, and by sharing information and resources (including source code modifications), they built and supported a generation of time-sharing centers.
+The unique features of the S/360-67 were initially not carried into IBM's next product series, the System/370, although the 370/145 had an associative memory that appeared more useful for paging than for its ostensible purpose.[ref]
+[tpl]rp|CPU 117-129[/tpl][/ref] This was largely fallout from a bitter and highly visible political battle within IBM over the merits of time-sharing versus batch processing. Initially at least, time-sharing lost.
+However, IBM faced increasing customer demand for time-sharing and virtual memory capabilities. IBM also could not ignore the large number of S/360-67 time-sharing installations – including the new industry of time-sharing vendors, such as National CSS"A technical history of National CSS", Harold Feinleib, Computer History Museum (March 2005)"From the very beginning… from my vantage point ― early history of National CSS", Dick Orenstein, Computer History Museum (January 2005) and Interactive Data Corporation (IDC),Varian, op. cit., pp. 24, Note 76 – IDC systems (quoting Dick Bayles) that were quickly achieving commercial success.
+In 1972, IBM added virtual memory features to the entire S/370 series, a move seen by many as a vindication of work done on the S/360-67 project. The survival and success of IBM's VM family, and of virtualization technology in general, also owe much to the S/360-67.
+In 2010, in the technical description of its latest mainframe, the z196, IBM stated that its software virtualization started with the System/360 model 67.[ref]SG24-7832-00: IBM zEnterprise System Technical Introduction, page 55: “Starting in 1967, IBM has continuously provided software virtualization in
+its mainframe servers.”[/ref]
+
+==References==
+
+==External links==
+
+

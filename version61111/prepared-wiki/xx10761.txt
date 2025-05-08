@@ -1,0 +1,68 @@
+[[Reverse Polish notation]]
+
+CATEGORIES: Calculators, Mathematical notation, Polish inventions, Science and technology in Poland, Operators (programming)
+
+Reverse Polish notation (RPN) is a mathematical notation in which every operator follows all of its operands, in contrast to Polish notation, which puts the operator in the prefix position. It is also known as postfix notation and is parenthesis-free as long as operator arities are fixed. The description "Polish" refers to the nationality of logician Jan Łukasiewicz, who invented (prefix) Polish notation in the 1920s.
+The reverse Polish scheme was proposed in 1954 by Burks, Warren, and Wright[tpl]cite doi|10.2307/2001990 [/tpl] and was independently reinvented by F. L. Bauer and E. W. Dijkstra in the early 1960s to reduce computer memory access and utilize the stack to evaluate expressions. The algorithms and notation for this scheme were extended by Australian philosopher and computer scientist Charles Hamblin in the mid-1950s."Charles L. Hamblin and his work" by Peter McBurney"Charles L. Hamblin: Computer Pioneer" by Peter McBurney, July 27, 2008. "Hamblin soon became aware of the problems of (a) computing mathematical formulae containing brackets, and (b) the memory overhead in having dealing with memory stores each of which had its own name. One solution to the first problem was Jan Lukasiewicz's Polish notation, which enables a writer of mathematical notation to instruct a reader the order in which to execute the operations (e.g. addition, multiplication, etc) without using brackets. Polish notation achieves this by having an operator (+, *, etc) precede the operands to which it applies, e.g., +ab, instead of the usual, a+b. Hamblin, with his training in formal logic, knew of Lukasiewicz's work."
+During the 1970s and 1980s, RPN was known to many calculator users, as it was used in some handheld calculators of the time designed for advanced users: for example, the HP-10C series and Sinclair Scientific calculators.
+In computer science, postfix notation is often used in stack-based and concatenative programming languages. It is also common in dataflow and pipeline-based systems, including Unix pipelines.
+Most of what follows is about binary operators. A unary operator for which the reverse Polish notation is the general convention is the factorial.
+
+==Explanation==
+
+In reverse Polish notation the operators follow their operands; for instance, to add 3 and 4, one would write "3 4 +" rather than "3 + 4".  If there are multiple operations, the operator is given immediately after its second operand; so the expression written "3 - 4 + 5" in conventional notation would be written "3 4 - 5 +" in RPN: 4 is first subtracted from 3, then 5 added to it. An advantage of RPN is that it obviates the need for parentheses that are required by infix. While "3 - 4 * 5" can also be written "3 - (4 * 5)", that means something quite different from "(3 - 4) * 5". In postfix, the former could be written "3 4 5 * -", which unambiguously means "3 (4 5 *) -" which reduces to "3 20 -"; the latter could be written "3 4 - 5 *" (or 5 3 4 - *, if keeping similar formatting), which unambiguously means "(3 4 -) 5 *".
+Despite the name, reverse Polish notation is not exactly the reverse of Polish notation, for the operands of non-commutative operations are still written in the conventional order (e.g. "/ 6 3" in Polish notation and "6 3 /" in reverse Polish both evaluate to 2, whereas "3 6 /" in reverse Polish notation would evaluate to ½).
+
+==Practical implications==
+
+In comparison testing of reverse Polish notation with algebraic notation, reverse Polish has been found to lead to faster calculations, for two reasons. Because reverse Polish calculators do not need expressions to be parenthesized, fewer operations need to be entered to perform typical calculations. Additionally, users of reverse Polish calculators made fewer mistakes than for other types of calculator.[tpl]citation|title=Human behaviour and performance in calculator use with Algebraic and Reverse Polish Notation|journal=Ergonomics|volume=22|issue=9|pages=1011|year=1979|doi=10.1080/00140137908924675|first1=D. M.|last1=Kasprzyk|first2=C. G.|last2=Drury|first3=W. F.|last3=Bialas[/tpl].[tpl]citation|title=Electronic calculators: which notation is the better?|journal=Applied Ergonomics|volume=11|issue=1|year=1980|pages=2–6|first1=S. J.|last1=Agate|first2=C. G.|last2=Drury|doi=10.1016/0003-6870(80)90114-3|pmid=15676368[/tpl]. Later research clarified that the increased speed from reverse Polish notation may be attributed to the smaller number of keystrokes needed to enter this notation, rather than to a smaller cognitive load on its users.[tpl]citation|title=Calculator logic: when and why is RPN superior to algebraic?|first1=Errol|last1=Hoffman|first2=Patrick|last2=Ma|first3=Jason|last3=See|first4=Chee Kee|last4=Yong|first5=Jason|last5=Brand|first6=Matthew|last6=Poulton|journal=Applied Ergonomics|volume=25|issue=5|year=1994|pages=327–333|doi=10.1016/0003-6870(94)90048-5[/tpl]. However, anecdotal evidence suggests that reverse Polish notation is more difficult for users to learn than algebraic notation.
+
+==Postfix algorithm==
+
+The algorithm for evaluating any postfix expression is fairly straightforward:
+
+===Example===
+
+The infix expression "5 + ((1 + 2) * 4) − 3" can be written down like this in RPN:
+The expression is evaluated left-to-right, with the inputs interpreted as shown in the following table (the Stack is the list of values the algorithm is "keeping track of" after the Operation given in the middle column has taken place):
+When a computation is finished, its result remains as the top (and only) value in the stack; in this case, 14.
+The above example could be rewritten by following the "chain calculation" method described by HP for their series of RPN calculators:http://h20219.www2.hp.com/Hpsub/downloads/17b2pChain.pdf
+ As was demonstrated in the Algebraic mode, it is usually easier (fewer keystrokes) in working a problem like this to begin with the arithmetic operations inside the parentheses first. 
+
+==Converting from infix notation==
+
+Edsger Dijkstra invented the shunting-yard algorithm to convert infix expressions to postfix (RPN), so named because its operation resembles that of a railroad shunting yard.
+There are other ways of producing postfix expressions from infix notation. Most operator-precedence parsers can be modified to produce postfix expressions; in particular, once an abstract syntax tree has been constructed, the corresponding postfix expression is given by a simple post-order traversal of that tree.
+
+==Implementations==
+
+===History of implementations===
+
+The first computers to implement architectures enabling RPN were the English Electric Company's KDF9 machine, which was announced in 1960 and delivered (i.e. made available commercially) in 1963, and the American Burroughs B5000, announced in 1961 and also delivered in 1963.  One of the designers of the B5000, Robert S. Barton, later wrote that he developed RPN independently of Hamblin sometime in 1958 while reading a textbook by "Kopi" (likely Irving Copi, who was at the University of Michigan at the time) on symbolic logichttp://conservancy.umn.edu/bitstream/107105/1/oh098b5c.pdf A New Approach to the Design of a Digital Computer (1961)http://special.lib.umn.edu/cbi/oh/pdf.phtml?id=21 The Burroughs B5000 Conference (1985) p. 49 and before he was aware of Hamblin's work. Friden introduced RPN to the desktop calculator market with the EC-130 in June 1963.
+
+====Hewlett-Packard====
+
+Hewlett-Packard engineers designed the 9100A Desktop Calculator in 1968 with RPN. This calculator popularized RPN among the scientific and engineering communities, even though early advertisements for the 9100A failed to mention RPN. The HP-35, the world's first handheld scientific calculator, used RPN in 1972. HP used RPN on every handheld calculator it sold, whether scientific, financial, or programmable, until it introduced the HP-10 adding machine calculator in 1977. By this time HP was the leading manufacturer of calculators for professionals, including engineers and accountants.
+HP introduced an LCD-based line of calculators in the early 1980s that used RPN, such as the HP-10C, HP-11C, HP-15C, HP-16C, and the famous financial calculator, the HP-12C. When Hewlett-Packard introduced a later business calculator, the HP-19B, without RPN, feedback from financiers and others used to the 12C compelled them to release the HP-19BII,[tpl]citation needed|date=April 2012[/tpl] which gave users the option of using algebraic notation or RPN.  From 1990 to 2003 HP manufactured the HP-48 series of graphing RPN calculators and in 2006 introduced the HP-50g with a 131x80 LCD and a 75 MHz ARM CPU that emulates the Saturn CPU of the HP-48 series.
+As of 2011, Hewlett-Packard is producing the calculator models 12C, 12C Platinum, 17BII, 20B (financial), 30B (business), 33S, 35S, 48GII and 50G (scientific) which support RPN.HP Calculators
+
+====Prinztronic====
+
+Prinz and Prinztronic were own-brand trade names of the British Dixons photographic and electronic goods stores retail chain, which was later rebranded as Currys Digital stores, and became part of DSG International. A variety of calculator models was sold in the 1970s under the Prinztronic brand, all made for them by other companies.
+Among these was the PROGRAM Programmable Scientific Calculator which featured RPN.
+
+====Soviet Union====
+
+Soviet programmable calculators (MK-52, MK-61, B3-34 and earlier B3-21Elektronika B3-21 page on RSkey.org models) used RPN for both automatic mode and programming.  Modern Russian calculators MK-161Elektronika MK-161 page on RSkey.org and MK-152,MK-152: Old Russian Motive in a New Space Age. designed and manufactured in Novosibirsk since 2007 and offered by Semico, are backward compatible with them.  Their extended architecture is also based on reverse Polish notation.
+
+===Current implementations===
+
+Existing implementations using reverse Polish notation include:
+
+==See also==
+
+==References==
+
+==External links==
+
+

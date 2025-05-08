@@ -1,0 +1,25 @@
+[[Streaming Transformations for XML]]
+
+CATEGORIES: XML-based standards
+
+Streaming Transformations for XML (STX) is an XML transformation language intended as a high-speed, low memory consumption alternative to XSLT version 1.0 and 2.0. Current work on XSLT 3.0 includes Streaming capabilities.
+
+==Overview==
+
+STX is an XML standard for efficient processing of stream-based XML. As we will discover, XSLT is not well suited to stream based processing, and STX fills this niche.
+Conventional XML processing involves loading the entire XML document into memory for use. This is as opposed to SAX which streams XML events such as "open element" "close element" "text node" (and so on) so that other software that can begin interpreting these immediately -- before the end of the file is reached. Unfortunately some software can't effectively use XML fragments this way and must build up the whole document to begin processing. So is the case with XSLT. Because XSLT's XPath can select any node throughout the document it must have the entire document available in memory. Understandably, this could be perceived as a bottleneck.
+STX only allows queries immediately surrounding the current node so it can quickly start transforming and outputting SAX event nodes as they arrive. As it can discard nodes immediately after processing the memory use is significantly lower than that of XSLT. Having a limited query scope is a defining characteristic of STX.
+This architectural decision intentionally marginalises STX as a niche language. Indeed, it would be wrong to say that STX is a general purpose transformation language; however, if your transformation needs can be met by STX then it's an efficient and smart choice.
+
+==Specifications==
+
+STX's query language is called STXPath and is based on XPath 2.0.
+Implementations of STX are available in Java and Perl.
+
+==Similar projects==
+
+Unlike STX which is declared using an XML syntax, these two projects associate SAX events with callback functions:
+
+==External links==
+
+

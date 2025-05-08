@@ -1,0 +1,38 @@
+[[Hazard ratio]]
+
+CATEGORIES: Epidemiology, Medical statistics, Statistical ratios, Survival analysis
+
+In survival analysis, the hazard ratio (HR) is the ratio of the hazard rates corresponding to the conditions described by two levels of an explanatory variable. For example, in a drug study, the treated population may die at twice the rate per unit time as the control population. The hazard ratio would be 2, indicating higher hazard of death from the treatment. Or in another study, men receiving the same treatment may suffer a certain complication ten times more frequently per unit time than women, giving a hazard ratio of 10.
+Hazard ratios differ from relative risks in that the latter are cumulative over an entire study, using a defined endpoint, while the former represent instantaneous risk over the study time period, or some subset thereof. Hazard ratios suffer somewhat less from selection bias with respect to the endpoints chosen, and can indicate risks that happen before the endpoint.
+
+Definition and derivation
+
+Regression models are used to obtain hazard ratios and their confidence intervals.
+The instantaneous hazard rate is the limit of the number of events per unit time divided by the number at risk, as the time interval approaches 0.
+Such models are generally classed proportional hazards regression models; the best known being the Cox semiparametric proportional hazards model, and the exponential, Gompertz and Weibull parametric models.
+For a continuous explanatory variable, the same interpretation applies to a unit difference. Other HR models have different formulations and the interpretation of the parameter estimates differs accordingly.
+
+Interpretation
+
+In its simplest form the hazard ratio can be interpreted as the chance of an event occurring in the treatment arm divided by the chance of the event occurring in the control arm, or vice versa, of a study. The resolution of these endpoints are usually depicted using Kaplan-Meier survival curves. These curves relate the proportion of each group where the endpoint has not been reached. The endpoint could be any dependent variable associated with the covariate (independent variable), e.g. death, remission of disease or contraction of disease. The curve represents the odds of an endpoint having occurred at each point in time (the hazard). The hazard ratio is simply the relationship between the instantaneous hazards in the two groups and represents, in a single number, the magnitude of distance between the Kaplan-Meier plots.
+Hazard Ratios do not reflect a time unit of the study. The difference between hazard-based and time-based measures is akin to the difference between the odds of winning a race and the margin of victory. When a study reports one hazard ratio per time period, it is assumed that difference between groups was proportional; graphically the Kaplan-Meier survival curves displayed a constant distance apart. Hazard ratios become meaningless when this assumption of proportionality is not met.
+
+The proportional hazards assumption
+
+The proportional hazards assumption for hazard ratio estimation is strong and often unreasonable. Complications, adverse effects and late effects are all possible causes of change in the hazard rate over time. For instance, a surgical procedure may have high early risk, but excellent long term outcomes.
+If the hazard ratio between groups remain constant, this is not a problem for interpretation. However, interpretation of hazard ratios become impossible when selection bias exists between group. For instance, a particularly risky surgery might result in the survival of a systematically more robust group who would have fared better under any of the competing treatment conditions, making it look as if the risky procedure was better. Follow-up time is also important. A cancer treatment associated with better remission rates, might on follow-up be associated with higher relapse rates. The researchers' decision about when to follow-up is arbitrary and may lead to very different reported hazard ratios.
+
+The hazard ratio and survival
+
+While hazard ratios allow for hypothesis testing, they should be considered alongside other measures for interpretation of the treatment effect, e.g. the ratio of median times (median ratio) at which treatment and control group participants are at some endpoint. If the analogy of a race is applied, the hazard ratio is equivalent to the odds that an individual in the group with the higher hazard reaches the end of the race first. The probability of being first can be derived from the odds, which is the probability of being first divided by the probability of not being first: HR = P/(1 − P); P = HR/(1 + HR). In the previous example, a hazard ratio of 2 corresponds to a 67% chance of an early death. The hazard ratio does not convey information about how soon the death will occur.
+
+The hazard ratio, treatment effect and time-based endpoints
+
+Treatment effect depends on the underlying disease related to survival function, not just the hazard ratio. Since the hazard ratio does not give us direct time-to-event information, researchers have to report median endpoint times and calculate the median endpoint time ratio by dividing the control group median value by the treatment group median value.
+By contrast, a treatment group in which 50% of infections are resolved after one week (versus 25% in the control) yields a hazard ratio of two. If it takes ten weeks for all cases in the treatment group and half of cases in the control group to resolve, the ten week hazard ratio remains at two, but the median endpoint time ratio is ten, a clinically significant difference.
+
+
+
+
+
+

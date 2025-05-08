@@ -1,0 +1,108 @@
+</ref> [[Bandwidth (signal processing)|bandwidth]] can be optimized by storing more luminance detail than color detail. At normal viewing distances, there is no perceptible loss incurred by [[Sampling (signal processing)|sampling]] the color detail at a lower rate[tpl]Vague|date=April 2012[/tpl]. In video systems, this is achieved through the use of color difference components. The signal is divided into a [[Luma (video)|luma]] (Y') component and two color difference components ([[Chrominance|chroma]]).
+In human vision there are two chromatic channels as well as a luminance channel, and in color science there are two chromatic dimensions as well as a luminance dimension.  In neither the vision nor the science is there complete independence of the chromatic and the luminance.  Luminance information can be gleaned from the chromatic information; e.g. the chromatic value implies a certain minimum for the luminance value. But there can be no question of color influencing luminance in the absence of a post-processing of the separate signals.  In video, the luma and chroma components are formed as a weighted sum of gamma-corrected (tristimulus) R'G'B' components instead of linear (tristimulus) RGB components. As a result, luma must be distinguished from luminance.  That there is some "bleeding" of luminance and color information between the luma and chroma components in video, the error being greatest for highly saturated colors and noticeable in between the magenta and green bars of a color bars test pattern (that has chroma subsampling applied), should not be attributed to this engineering approximation being used.  Indeed similar bleeding can occur also with gamma = 1, whence the reversing of the order of operations between gamma correction and forming the weighted sum can make no difference. The chroma can influence the luma specifically at the pixels where the subsampling put no chroma.  Interpolation may then put chroma values there which are incompatible with the luma value there, and further post-processing of that Y'CbCr into R'G'B' for that pixel is what ultimately produces false luminance upon display.
+File:Color-bars-original.gif
+
+Original without color subsampling. 200% zoom.
+
+File:Color-bars-vegas-dv.gif
+
+Image after color subsampling (compressed with Sony Vegas DV codec, box filtering applied.)
+
+==Sampling systems and ratios==
+
+The subsampling scheme is commonly expressed as a three part ratio J:a:b (e.g. 4:2:2), although sometimes expressed as four parts (e.g. 4:2:2:4), that describe the number of luminance and chrominance samples in a conceptual region that is J pixels wide, and 2 pixels high. The parts are (in their respective order):
+An explanatory image of different chroma subsampling schemes can be seen at the following link: http://lea.hamradio.si/~s51kq/subsample.gif
+(source: "Basics of Video": http://lea.hamradio.si/~s51kq/V-BAS.HTM) or in details in Chrominance Subsampling in Digital Images, by Douglas Kerr.
+The mapping examples given are only theoretical and for illustration. Also note that the diagram does not indicate any chroma filtering, which should be applied to avoid aliasing.
+To calculate required bandwidth factor relative to 4:4:4 (or 4:4:4:4), one needs to sum all the factors and divide the result by 12 (or 16, if alpha is present).
+
+==Types of subsampling==
+
+===4:4:4 Y'CbCr===
+
+Each of the three Y'CbCr components have the same sample rate. This scheme is sometimes used in high-end film scanners and cinematic postproduction. Two SDI links (connections) are normally required to carry this bandwidth: Link A would carry a 4:2:2 signal, Link B a 0:2:2, when combined would make 4:4:4.
+
+===4:4:4 R'G'B' (no subsampling)===
+
+Note that "4:4:4" may instead be referring to R'G'B' color space, which implicitly does not have any chroma subsampling at all. Formats such as HDCAM SR can record 4:4:4 R'G'B' over dual-link HD-SDI.
+
+===4:2:2===
+
+The two chroma components are sampled at half the sample rate of luma: the horizontal chroma resolution is halved. This reduces the bandwidth of an uncompressed video signal by one-third with little to no visual difference.
+Many high-end digital video formats and interfaces use this scheme:
+
+===4:2:1===
+
+This sampling mode is not expressible in J:a:b notation.  '4:2:1' is a hangover from a previous notational scheme, and very few software or hardware codecs use it. Cb horizontal resolution is half that of Cr (and a quarter of the horizontal resolution of Y). This exploits the fact that human eye has less spatial sensitivity to blue/yellow than to red/green. NTSC is similar, in using lower resolution for blue/yellow than red/green, which in turn has less resolution than luma.
+
+===4:1:1===
+
+In 4:1:1 chroma subsampling, the horizontal color resolution is quartered, and the bandwidth is halved compared to no chroma subsampling. Initially, 4:1:1 chroma subsampling of the DV format was not considered to be broadcast quality and was only acceptable for low-end and consumer applications.[tpl]cite web|url=http://www.dvcentral.org/DV-Beta.html|title=DV vs. Betacam SP|last=Jennings|first=Roger|coauthors=Bertel Schmitt|year=1997|work=DV Central|accessdate=2008-08-29[/tpl][tpl]cite web|url=http://www.adamwilt.com/DV-FAQ-tech.html|title=DV, DVCAM & DVCPRO Formats|last=Wilt|first=Adam J.|year=2006|work=adamwilt.com|accessdate=2008-08-29[/tpl] Currently, DV-based formats (some of which use 4:1:1 chroma subsampling) are used professionally in electronic news gathering and in playout servers. DV has also been sporadically used in feature films and in digital cinematography.
+In the NTSC system, if the luma is sampled at 13.5 MHz, then this means that the Cr and Cb signals will each be sampled at 3.375 MHz, which corresponds to a maximum Nyquist bandwidth of 1.6875 MHz, whereas traditional "high-end broadcast analog NTSC encoder" would have a Nyquist bandwidth of 1.5 MHz and 0.5 MHz for the I/Q channels. However in most equipment, especially cheap TV sets and VHS/Betamax VCR's the chroma channels have only the 0.5 MHz bandwidth for both Cr and Cb (or equivalently for I/Q). Thus the DV system actually provides a superior color bandwidth compared to the best composite analog specifications for NTSC, despite having only 1/4 of the chroma bandwidth of a "full" digital signal.
+Formats that use 4:1:1 chroma subsampling include:
+
+===4:2:0===
+
+In 4:2:0, the horizontal sampling is doubled compared to 4:1:1, but as the Cb and Cr channels are only sampled on each alternate line in this scheme, the vertical resolution is halved.  The data rate is thus the same.  This fits reasonably well with the PAL color encoding system since this has only half the vertical chrominance resolution of NTSC.  It would also fit extremely well with the SECAM color encoding system since like that format, 4:2:0 only stores and transmits one color channel per line (the other channel being recovered from the previous line).  However, little equipment has actually been produced that outputs a SECAM analogue video signal.  In general SECAM territories either have to use a PAL capable display or a transcoder to convert the PAL signal to SECAM for display.
+Different variants of 4:2:0 chroma configurations are found in:
+Cb and Cr are each subsampled at a factor of 2 both horizontally and vertically.
+There are three variants of 4:2:0 schemes, having different horizontal and vertical siting.
+[tpl]cite web|url=http://www.poynton.com/PDFs/Chroma_subsampling_notation.pdf|title=Chroma Subsampling Notation|last=Poynton|first=Charles|year=2008|work=Charles Poynton|accessdate=2008-10-01[/tpl]
+Most digital video formats corresponding to PAL use 4:2:0 chroma subsampling, with the exception of DVCPRO25, which uses 4:1:1 chroma subsampling. Both the 4:1:1 and 4:2:0 schemes halve the bandwidth compared to no chroma subsampling.
+With interlaced material, 4:2:0 chroma subsampling can result in motion artifacts if it is implemented the same way as for progressive material. The luma samples are derived from separate time intervals while the chroma samples would be derived from both time intervals. It is this difference that can result in motion artifacts. The MPEG-2 standard allows for an alternate interlaced sampling scheme where 4:2:0 is applied to each field (not both fields at once). This solves the problem of motion artifacts, reduces the vertical chroma resolution by half, and can introduce comb-like artifacts in the image.
+
+Original. *This image shows a single field. The moving text has some motion blur applied to it.
+
+4:2:0 progressive sampling applied to moving interlaced material. Note that the chroma leads and trails the moving text. *This image shows a single field.
+
+4:2:0 interlaced sampling applied to moving interlaced material. *This image shows a single field.
+In the 4:2:0 interlaced scheme however, vertical resolution of the chroma is roughly halved since the chroma samples effectively describe an area 2 samples wide by 4 samples tall instead of 2X2. As well, the spatial displacement between both fields can result in the appearance of comb-like chroma artifacts.
+
+Original still image.
+
+4:2:0 progressive sampling applied to a still image. Both fields are shown.
+
+4:2:0 interlaced sampling applied to a still image. Both fields are shown.
+If the interlaced material is to be de-interlaced, the comb-like chroma artifacts (from 4:2:0 interlaced sampling) can be removed by blurring the chroma vertically.[tpl]cite web|url=http://www.hometheaterhifi.com/volume_8_2/dvd-benchmark-special-report-chroma-bug-4-2001.html|title=DVD Player Benchmark - Chroma Upsampling Error|last=Munsil|first=Don|coauthors=Stacey Spears|year=2003|work=Secrets of Home Theater & High Fidelity|accessdate=2008-08-29[/tpl]
+
+===4:1:0===
+
+This ratio is possible, and some codecs support it, but it is not widely used. This ratio uses half of the vertical and one-fourth the horizontal color resolutions, with only one-eighth of the bandwidth of the maximum color resolutions used. Uncompressed video in this format with 8-bit quantization uses 10 bytes for every macropixel (which is 4 x 2 pixels). It has the equivalent chrominance bandwidth of a PAL I signal decoded with a delay line decoder, and still very much superior to NTSC.
+
+===3:1:1===
+
+Used by Sony in their HDCAM High Definition recorders (not HDCAM SR). In the horizontal dimension, luma is sampled horizontally at three quarters of the full HD sampling rate- 1440 samples per row instead of 1920. Chroma is sampled at 480 samples per row, a third of the luma sampling rate.
+In the vertical dimension, both luma and chroma are sampled at the full HD sampling rate (1080 samples vertically).
+
+==Out-of-gamut colors==
+
+One of the artifacts that can occur with chroma subsampling is that out-of-gamut colors can occur upon chroma reconstruction. Suppose the image consisted of alternating 1-pixel red and black lines and the subsampling omitted the chroma for the black pixels.  Chroma from the red pixels will be reconstructed onto the black pixels, causing the new pixels to have positive red and negative green and blue values. As displays cannot output negative light (negative light does not exist), these negative values will effectively be clipped and the resulting luma value will be too high.[tpl]cite web|url=http://www.glennchan.info/articles/technical/chroma/chroma1.htm|title=Towards Better Chroma Subsampling|last=Chan|first=Glenn|work=SMPTE Journal|accessdate=2008-08-29[/tpl]  Similar artifacts arise in the less artificial example of gradation near a fairly sharp red/black boundary.
+Filtering during subsampling can also cause colors to go out of gamut.
+
+==Terminology==
+
+The term Y'UV refers to an analog encoding scheme while Y'CbCr refers to a digital encoding scheme.[tpl]citation needed|date=June 2012[/tpl] One difference between the two is that the scale factors on the chroma components (U, V, Cb, and Cr) are different. However, the term YUV is often used erroneously to refer to Y'CbCr encoding. Hence, expressions like "4:2:2 YUV" always refer to 4:2:2 Y'CbCr since there simply is no such thing as 4:x:x in analog encoding (such as YUV).
+In a similar vein, the term luminance and the symbol Y are often used erroneously to refer to luma, which is denoted with the symbol Y'. Note that the luma (Y') of video engineering deviates from the luminance (Y) of color science (as defined by CIE). Luma is formed as the weighted sum of gamma-corrected (tristimulus) RGB components. Luminance is formed as a weighed sum of linear (tristimulus) RGB components.
+In practice, the CIE symbol Y is often incorrectly used to denote luma. In 1993, SMPTE adopted Engineering Guideline EG 28, clarifying the two terms. Note that the prime symbol ' is used to indicate gamma correction.
+Similarly, the chroma/chrominance of video engineering differs from the chrominance of color science. The chroma/chrominance of video engineering is formed from weighted tristimulus components, not linear components. In video engineering practice, the terms chroma, chrominance, and saturation are often used interchangeably to refer to chrominance.
+
+==History==
+
+Chroma subsampling was developed in the 1950s by Alda Bedford for the development of color television by RCA, which developed into the NTSC standard; luma-chroma separation was developed earlier, in 1938 by Georges Valensi.
+Through studies, he showed that the human eye has high resolution only for black and white, somewhat less for "mid-range" colors like yellows and greens, and much less for colors on the end of the spectrum, reds and blues. Using this knowledge allowed RCA to develop a system in which they discarded most of the blue signal after it comes from the camera, keeping most of the green and only some of the red; this is chroma subsampling in the YIQ color space, and is roughly analogous to 4:2:1 subsampling, in that it has decreasing resolution for luma, yellow/green, and red/blue.
+
+==Effectiveness==
+
+While  subsampling can easily reduce the size of an uncompressed image by 50% with minimal loss of quality, the final effect on the size of a compressed image is considerably less.[tpl]citation needed|date=February 2012[/tpl] This is because image compression algorithms also remove redundant chroma information. In fact, by applying something as rudimentary as chroma subsampling prior to compression, information is removed from the image that could be used by the compression algorithm to produce a higher quality result with no increase in size. For example, with wavelet compression methods, better results are obtained by dropping the highest frequency chroma layer inside the compression algorithm than by applying chroma subsampling prior to compression.  This is because wavelet compression operates by repeatedly using wavelets as high and low pass filters to separate frequency bands in an image, and the wavelets do a better job than chroma subsampling does.[tpl]citation needed|date=June 2013[/tpl]
+
+==Compatibility issues==
+
+The details of chroma subsampling implementation cause considerable confusion. Is the upper leftmost chroma value stored, or the rightmost, or is it the average of all the chroma values? This must be exactly specified in standards and followed by all implementors. Incorrect implementations cause the chroma of an image to be offset from the luma. Repeated compression/decompression can cause the chroma to "travel" in one direction. Different standards may use different versions for example of "4:2:0" with respect to how the chroma value is determined, making one version of "4:2:0" incompatible with another version of "4:2:0".
+Proper upsampling of chroma can require knowing whether the source is progressive or interlaced, information which is often not available to the upsampler.
+Chroma subsampling causes problems for film makers trying to do keying with blue or green screening. The chroma interpolation along edges produces noticeable haloing artifacts.
+
+==See also==
+
+==References==
+
+

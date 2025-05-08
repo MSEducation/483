@@ -1,0 +1,61 @@
+[[HTML element]]
+
+CATEGORIES: HTML
+
+An HTML element is an individual component of an HTML document or "web page", once this has been parsed into the Document Object Model. HTML is composed of a tree of HTML elements and other nodes, such as text nodes. Each element can have HTML attributes specified. Elements can also have content, including other elements and text. HTML elements represent semantics, or meaning. For example, the title element represents the title of the document.
+In the HTML syntax, most elements are written with a start tag and an end tag, with the content in between. An HTML tag is composed of the name of the element, surrounded by angle brackets. An end tag also has a slash after the opening angle bracket, to distinguish it from the start tag. For example, a paragraph, which is represented by the p element, would be written as
+
+ In the HTML syntax, most elements are written ... 
+
+However, not all of these elements require the end tag, or even the start tag, to be present.  Some elements, the so-called void elements, do not have an end tag. A typical example is the br element, which represents a significant line break, such as in a poem or an address. A void element's behaviour is predefined, and it can not contain any content or other elements. For example, the address of the dentist in the movie Finding Nemo would be written as
+
+ P. Sherman 42 Wallaby Way Sydney 
+
+When using an XHTML DTD, it is required to open and close the element with a single tag. To specify that it is a void element, a "/" is included at the end of the tag (not to be confused with the "/" at the beginning of a closing tag).
+
+ P. Sherman
+42 Wallaby Way
+Sydney 
+
+HTML attributes are specified inside the start tag. For example, the abbr element, which represents an abbreviation, expects a title attribute within its opening tag. This would be written as
+
+abbr.
+
+==Concepts==
+
+===Document vs. DOM===
+
+HTML documents are delivered as "documents"."Document" may refer interchangeably to either a file stored on a computer filesystem, usually on disk, or to a document delivered across the Web by HTTP. Such documents may equally be copies of disk files stored on the web server, or they may be generated on demand. These are then parsed, which turns them into the Document Object Model (DOM) internal representation, within the web browser.
+The term "web browser" here is used for simplicity. It does of course include other sorts of web user agent, such as search engine web crawlers, automatic news-feed retrievers etc.
+Presentation by the web browser, such as screen rendering or access by JavaScript, is then performed on this internal model, not the original document.
+Early HTML documents, and to a lesser extent today, were largely invalid HTML and riddled with syntax errors. The parsing process was also required to "fix-up" these errors, as best it could. The resultant model was often not correct (i.e. it did not represent what a careless coder had originally intended), but it would at least be valid, according to the HTML standard. A valid model was produced, no matter how bad the "tag soup" supplied had been. Only in the rarest cases would the parser abandon parsing altogether.
+
+===Elements vs. tags===
+
+"Elements" and "tags" are terms that are widely confused.  HTML documents contain tags, but do not contain the elements. The elements are only generated after the parsing step, from these tags.
+As is generally understood, the position of an element is indicated as spanning from a start tag, possibly including some child content, and is terminated by an end tag. This is the case for many, but not all, elements within an HTML document.
+As HTML is based on SGML, its parsing also depends on the use of a DTD, specifically an HTML DTD such as that for HTML 4.01.HTML 4.01 is one of a small number of well-known HTML DTDs. It is chosen here as the best illustrative example, although the same behaviour applies to the other W3C-published DTDs for HTML. The DTD specifies which element types are possible (i.e. it defines the set of element types that go to make up HTML) and it also specifies the valid combinations in which they may appear in a document. It is part of general SGML behaviour that where only one valid structure is possible (per the DTD), it is not generally a requirement that the document explicitly states that structure. As a simple example, the <p> start tag indicating the start of a paragraph element should be closed by a </p> end tag, indicating the end of the element. Also the DTD states that paragraph elements cannot be nested. The HTML document fragment:
+can thus be inferred to be equivalent to:
+(If one paragraph element cannot contain another, any currently open paragraph must be closed before starting another.)
+Because of this implied behaviour, based on the combination of the DTD and the individual document, it is not possible to infer elements from the document tags alone, but only by also using an SGML or HTML aware parser, with knowledge of the DTD.
+
+===SGML vs. XML===
+
+SGML is complex, which has limited its widespread adoption and understanding. XML was developed as a simpler alternative. XML is similar to SGML, and can also use the DTD mechanism to specify the elements supported and their permitted combinations as document structure. XML parsing is however simpler. The relation from tags to elements is always simply that of parsing the actual tags included in the document, without the implied closures that are part of SGML.Even this is not the whole story, as a macro-like feature of DTDs may still be used within XML.
+Where HTML can be formed as XML, either through XHTML or through HTML5 as XML, the parsing from document tags to DOM elements is simplified, but still follows the same basic process. Once the DOM of elements is obtained, behaviour beyond that point (i.e. screen rendering) is identical.
+
+===Content vs. presentation===
+
+Since HTML 4, HTML has increasingly focussed on the separation of content from presentation.  This is often referred to as a separation of concerns. HTML is used to represent the structure or content of a document, its presentation remains the sole responsibility of CSS. A default style sheet is suggested as part of the CSS standard, giving a default rendering for HTML.
+
+====%block; vs. box====
+
+Part of this CSS presentation behaviour is the notion of the "box model". This is applied to those elements that CSS considers to be "block" elements, set through the CSS display: block; statement.
+HTML also has a similar concept, although different, and the two are very frequently confused. %block; and %inline; are groups within the HTML DTD that group elements as being either 
+"block-level" or "inline". This is used to define their nesting behaviour: block-level elements cannot be placed into an inline context.Although see <object> for the inevitable exception. This behaviour cannot be changed, it is fixed in the DTD. Block and inline elements have the appropriate and different CSS behaviours attached to them by default, including the relevance of the box model for particular element types.
+Note though that this CSS behaviour can, and frequently is, changed from the default. Lists with <ul><li> ... are %block; elements and are presented as block elements by default. However, it is quite common to set these with CSS to display as an inline list.
+
+==Overview==
+
+===Syntax===
+

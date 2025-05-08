@@ -1,0 +1,17 @@
+[[Cooked mode]]
+
+CATEGORIES: Computer terminals, Unix
+
+Cooked mode is a mode of a terminal or pseudo terminal character device in Unix-like systems in which data is preprocessed before being given to a program. In this mode the system interprets special characters such as backspace, delete and other control characters such as Control-C and Control-D. The precise definition of what constitutes a cooked mode is operating system-specific.Terminal Mode - MIT/GNU Scheme 7.7.90  The other mode is “raw mode”, also called delimiterless input, in which the data is given as-is to the program, and the system does not interpret any of the special characters.
+For example, if “ABCD” is given as an input to a program through a terminal character device in cooked mode, the program gets “ABD”. But, if the terminal is in raw mode, the program gets the characters “ABC” followed by the Backspace character and followed by “D”. In cooked mode, the terminal line discipline processes the characters “ABCD” and presents only the result (“ABD”) to the program.
+Technically, the term “cooked mode” should be associated only with streams that have a terminal line discipline, but generally it is applied to any system that does some amount of preprocessing.[tpl]cite web|title=Cooked mode from FOLDOC|url=http://foldoc.org/index.cgi?query=cooked+mode&action=Search[/tpl]
+
+==cbreak mode==
+
+cbreak mode (sometimes called rare mode) is a mode between raw mode and cooked mode.  Unlike cooked mode it works with single characters at a time, rather than forcing a wait for a whole line and then feeding the line in all at once. Unlike raw mode, keystrokes like abort (usually Control-C) are still processed by the terminal and will interrupt the process.
+
+==See also==
+
+==References==
+
+

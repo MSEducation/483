@@ -1,0 +1,46 @@
+[[IBM 7090]]
+
+CATEGORIES: IBM transistorized computers, IBM 700/7000 series, 1959 introductions
+
+The IBM 7090 was a second-generation transistorized version of the earlier IBM 709 vacuum tube mainframe computers and was designed for "large-scale scientific and technological applications". The 7090 was the third member of the IBM 700/7000 series scientific computers. The first 7090 installation was in November 1959. In 1960, a typical system sold for $2.9 million (equal to $).
+The 7090 used a 36-bit word length, with an address-space of 32K (32,768) words. It operated with a basic memory cycle of 2.18 μs, using the IBM 7302 Core Storage core memory technology from the IBM 7030 (Stretch) project.
+With a processing speed of around 100 Kflop/s,Performance of future high-end computers by David Bailey Lawrence Berkeley National Laboratory report the 7090 was six times faster than the 709, and could be rented for half the price.
+
+Development and naming
+
+Although the 709 was a superior machine to its predecessor, the 704, it was being built and sold at the time that transistor circuitry was supplanting vacuum tube circuits.  Hence, IBM redeployed its 709 engineering group to the design of a transistorized successor.  That project became called the 709-T (for Transistorized), which because of the sound when spoken, quickly shifted to the nomenclature 7090 (i.e., seven - oh - ninety).  Similarly, the related machines such as the 7070 and other 7000 series equipment were called by names of digit - digit - decade (e.g., seven - oh -seventy).
+
+IBM 7094
+
+An upgraded version, the IBM 7094, was first installed in September 1962.  It had seven index registers, instead of three on the earlier machines. The 7094 console had a distinctive box on top that displayed lights for the four new index registers. photos The 7094 introduced double-precision floating point and additional instructions, but was largely backward compatible with the 7090. Minor changes in instruction formats, particularly the way the additional index registers were addressed, sometimes caused problems. On the earlier models, when more than one bit was set in the tag field, the contents of the two or three selected index registers were or'ed, not added together, before the decrement took place. On the 7094, if the three bit tag field was not zero, it selected just one of 7 index registers, however the "or" behavior remained available in a "multiple tag" compatibility mode.trailing-edge.pdf IBM 7094 Principles of Operation, p. 8
+In April 1964, the first 7094 II was installed, which had almost twice as much general speed as the 7090 due to a faster clock cycle, dual memory banks and improved overlap of instruction execution, an early instance of pipelined design.org/pdf/ibm/7094/A22-6760_7094model2.pdf
+
+IBM 7040/7044
+
+In 1963, IBM introduced two new, lower cost machines called the IBM 7040 and 7044. They had a 36-bit architecture based on the 7090, but with some instructions omitted or optional, and simplified input/output that allowed the use of more modern, higher performance peripherals from the IBM 1400 series. A 7094/7044 Direct Coupled System (DCS) was introduced later, with the 7094 performing computation while the 7044 handled I/O.
+
+Instruction and data formats
+
+The basic instruction format was the same as the IBM 709, a three-bit prefix, 15-bit decrement, three-bit tag, and 15-bit address. The prefix field specified the class of instruction. The decrement field often contained an immediate operand to modify the results of the operation, or was used to further define the instruction type. The three bits of the tag specified three index registers (seven in the 7094), the contents of which were subtracted from the address to produce an effective address. The address field contained either an address or an immediate operand.
+Octal notation was used in documentation and programming; console displays lights and switches were grouped into three-bit fields for easy conversion to and from octal.
+
+Input/Output
+
+The 7090 series featured a data channel architecture for input and output, a forerunner of modern direct memory access I/O. Up to 8 data channels could be attached, with up to 10 IBM 729 tape drives attached to each channel. The data channels had their own very limited set of operations called commands.  These were used with tape (and later, disk) storage as well as card units and printers, and offered high performance for the time.  Printing and punched card I/O, however, employed the same modified unit record equipment introduced with the 704 and was slow. It became common to use a less expensive IBM 1401 computer to read cards onto magnetic tape for transfer to the 7090/94. Output would be spooled  onto tape and transferred to the 1401 for printing or card punching using its much faster peripherals, notably the IBM 1403 line printer. Later IBM introduced the 7094/7044 Direct Coupled System, using data channel to data channel communication, with the 7094 primarily performing computations and the 7044 performing I/O operations using its fast 1400-series peripherals.
+
+Software
+
+The 7090 and 7094 machines were quite successful for their time, and had a wide
+variety of software provided for them by IBM.  In addition, there was a very active user community within the user organization, SHARE.
+IBSYS was a "heavy duty" production operating system with numerous subsystem and language support options, among them FORTRAN, COBOL, SORT/MERGE, the MAP assembler, and others.
+FMS, the Fortran Monitor System, was a more lightweight but still very effective system optimized for batch FORTRAN and assembler programming.  The assembler provided, FAP, (FORTRAN Assembly Program), was somewhat less complete than MAP, but provided excellent capabilities for the era.  FMS also incorporated a considerably enhanced derivative of the FORTRAN compiler originally written for the 704 by Backus and his team.
+
+Notable applications
+
+
+
+
+
+
+
+

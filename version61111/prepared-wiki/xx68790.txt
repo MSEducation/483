@@ -1,0 +1,54 @@
+[[Fork (system call)]]
+
+CATEGORIES: Process (computing), C POSIX library, Articles with example C code, Articles with example Perl code, Articles with example Python code
+
+In computing, particularly in the context of the Unix operating system and its workalikes, fork is an operation whereby a process creates a copy of itself. It is usually a system call, implemented in the kernel. Fork is the primary (and historically, only) method of process creation on Unix-like operating systems.
+
+==Overview==
+
+In multitasking operating systems, processes (running programs) need a way to create new processes, e.g. to run other programs. Fork and its variants are typically the only way of doing so in Unix-like systems. For a process to start the execution of a different program, it first forks to create a copy of itself. Then, the copy, called the "child process", calls the exec system call to overlay itself with the other program: it ceases execution of its former program in favor of the other.
+In Unix systems equipped with virtual memory support (practically all modern variants), the fork operation creates a separate address space for the child. The child process has an exact copy of all the memory segments of the parent process, though if copy-on-write semantics are implemented, the physical memory need not be actually copied. Instead, virtual memory pages in both processes may refer to the same pages of physical memory until one of them writes to such a page: then it is copied. This optimization is important in the common case where fork is used in conjunction with exec to execute a new program: typically, the child process performs only a small set of actions before it ceases execution of its program in favour of the program to be started, and it requires very few, if any, of its parent's data structures.
+When a process calls fork, it is deemed the parent process, and the newly created process, its child. After the fork, both processes not only run the same program, but they resume execution as though both had called the system call. They can then inspect the call's return value to determine their status, child or parent, and act accordingly.
+The fork system call was present in the very first version of Unix,[tpl]cite encyclopedia |author=Ken Thompson and Dennis Ritchie |date=3 November 1971 |title=SYS FORK (II) |encyclopedia=UNIX Programmer's Manual |publisher=Bell Laboratories |url=http://cm.bell-labs.com/cm/cs/who/dmr/man21.pdf[/tpl] which borrowed it from the earlier GENIE time-sharing system.[tpl]cite journal |last1=Ritchie |first1=Dennis M. |authorlink1=Dennis Ritchie |last2=Thompson |first2=Ken |title=The UNIX Time-Sharing System |journal=Bell System Tech. J. |volume=57 |issue=6 |pages=1905–1929 |publisher=AT&T |date=July 1978 |url=http://www.alcatel-lucent.com/bstj/vol57-1978/articles/bstj57-6-1905.pdf |accessdate = 22 April 2014 |doi=10.1002/j.1538-7305.1978.tb02136.x[/tpl]
+Fork is standardized by POSIX.[tpl]cite web |title=fork |website=IEEE Std 1003.1 |publisher=The Open Group |url=http://pubs.opengroup.org/onlinepubs/9699919799/functions/fork.html |year=2012 |accessdate=16 October 2013[/tpl]
+
+==Communication==
+
+The child process inherits the standard streams from its parent, along with the rest of the environment. For interprocess communication, the parent process will often create a pipe or several pipes, and then after forking the processes will close the ends of the pipes that they don't need.
+
+==Variants==
+
+===Vfork===
+
+Vfork is a variant of fork with the same calling convention and much the same semantics; it originated in the 3BSD version of Unix,[tpl]citation needed|date=October 2013[/tpl] the first Unix to support virtual memory. It was standardized by POSIX, which permitted vfork to have exactly the same behavior as fork, but marked obsolescent in the 2004 edition,[tpl]cite web |title=vfork |website=IEEE Std 1003.1 |publisher=The Open Group |url=http://pubs.opengroup.org/onlinepubs/009695399/functions/vfork.html |year=2004 |accessdate=16 October 2013[/tpl] and has disappeared from subsequent editions.
+When a vfork system call is issued, the parent process will be suspended until the child process has either completed execution or been replaced with a new executable image via one of the "exec" family of system calls. Memory pages are shared among the parent and child process with a notion of copy-on-write; hence, if the child process makes a modification in any of the shared pages, no new page will be created and the modified pages are visible to the parent process too. Since there is absolutely no page copying involved (consuming additional memory), this technique is an optimization over plain fork when used with exec.
+The use of vfork for any purpose except as a prelude to an immediate call to a function from the exec family (and a select few other operations) gives rise to undefined behavior. In particular the Linux man page for vfork strongly discourages its use:VFORK
+While the 4.4BSD implementation got rid of the vfork implementation, causing vfork to have the same behavior as fork, it was later reinstated in the NetBSD operating system for performance reasons.[tpl]cite web |title=NetBSD Documentation: Why implement traditional vfork() |website=NetBSD Project |accessdate=16 October 2013 |url=http://www.netbsd.org/docs/kernel/vfork.html[/tpl]
+Some embedded operating systems such as uClinux omit fork and only implement vfork, because they need to operate on devices where copy-on-write is impossible to implement due to lack of an MMU.
+
+===Rfork===
+
+The Plan 9 operating system, created by the designers of Unix, includes fork but also a variant called "rfork" that permits fine-grained sharing of resources between parent and child processes, including the address space (except for a stack segment, which is unique to each process).[tpl]cite encyclopedia |title=fork(2) |encyclopedia=Plan 9 Programmer's Manual, Volume 1, Fourth Edition |publisher=Bell Laboratories |url=http://plan9.bell-labs.com/magic/man2html/2/fork[/tpl] The Plan 9 Programmer's Manual suggests that it can be used to create threads, rather than processes.[tpl]cite encyclopedia |title=intro(2) |encyclopedia=Plan 9 Programmer's Manual, Volume 1, Fourth Edition |publisher=Bell Laboratories |url=http://plan9.bell-labs.com/magic/man2html/2/intro[/tpl]
+
+===Clone===
+
+"clone" is a system call in the Linux kernel that creates a child process that may share parts of its execution context with the parent. It is often used to implement threads (usually through an implemention of a higher-level interface such as pthreads). It was inspired by Plan 9's rfork, but without the "separate stacks" feature, which according to Linus Torvalds causes too much overhead.[tpl]cite encyclopedia |title=The Linux edge |first=Linus |last=Torvalds |encyclopedia=Open Sources: Voices from the Open Source Revolution |year=1999 |publisher=O'Reilly |url=http://oreilly.com/catalog/opensources/book/linus.html |isbn=1-56592-582-3[/tpl]
+
+==Forking in other operating systems==
+
+The fork mechanism (1969) in Unix and Linux maintains implicit assumptions on the underlying hardware: linear memory and a paging mechanism that enable an efficient memory copy operation of a contiguous address range. In the original design of the VMS operating system (1977), a copy operation with subsequent mutation of the content of a few specific addresses for the new process as in forking was considered risky.[tpl]citation needed|date=October 2013[/tpl] Errors in the current process state may be copied to a child process. Here, the metaphor of process spawning is used: each component of the memory layout of the new process is newly constructed from scratch. The spawn metaphor was later adopted in Microsoft operating systems (1993).
+The POSIX-compatibility component of VM/CMS (OpenExtensions) provides a very limited implementation of fork, in which the parent is suspended while the child executes, and the child and the parent share the same address space.[tpl]cite web|url=http://publib.boulder.ibm.com/infocenter/zvm/v6r1/index.jsp?topic=/com.ibm.zvm.v610.dmsp0/hcsp0c0022.htm||title=z/VM V6R1 OpenExtensions POSIX Conformance Document|publisher=IBM|section=3.1.1 Process Creation|accessdate=March 4, 2014[/tpl] This is essentially a vfork labelled as a fork. (Note this applies to the CMS guest operating system only; other VM guest operating systems, such as Linux, provide standard fork functionality.)
+
+==Application usage==
+
+===Example in C===
+
+The following variant of the Hello World program "forks off" a child process that prints a message and exits. The parent process does not perform any useful work; it simply waits for the child process to finish.
+
+==See also==
+
+==References==
+
+==External links==
+
+

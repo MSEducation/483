@@ -1,0 +1,36 @@
+[[Data profiling]]
+
+CATEGORIES: Data management, Data quality
+
+Data profiling is the process of examining the data available in an existing data source (e.g. a database or a file) and collecting statistics and information about that data. The purpose of these statistics may be to:
+
+Data Profiling in Relation to Data Warehouse/Business Intelligence Development
+
+Introduction
+
+Data profiling is an analysis of the candidate data sources for a data warehouse to clarify the structure, content, relationships and derivation rules of the data. (2008), "The Data Warehouse Lifecycle Toolkit", Second Edition, Wiley Publishing, Inc., ISBN 9780470149775, (p. 297) (p. 376) Profiling helps not only to understand anomalies and to assess data quality, but also to discover, register, and assess enterprise metadata. 94-96) Thus the purpose of data profiling is both to validate metadata when it is available and to discover metadata when it is not. 110-111)] The result of the analysis is used both strategically, to determine suitability of the candidate source systems and give the basis for an early go/no-go decision, and tactically, to identify problems for later solution design, and to level sponsors' expectations.
+
+How to do Data Profiling
+
+Data profiling utilizes different kinds of descriptive statistics such as minimum, maximum, mean, mode, percentile, standard deviation, frequency, and variation as well as other aggregates such as count and sum.
+Additional metadata information obtained during data profiling could be data type, length, discrete values, uniqueness, occurrence of null values, typical string patterns, and abstract type recognition. 23, No. 4, December 2000Singh, Dr Kawaljeet Singh et al. (2010), "A Descriptive Classification of Causes of Data Quality Problems in Data Warehousing", IJCSI International Journal of Computer Science Issue, Vol. 7, Issue 3, No. 2, May 2010
+The metadata can then be used to discover problems such as illegal values, misspelling, missing values, varying value representation, and duplicates. 
+Different analyses are performed for different structural levels. E.g. single columns could be profiled individually to get an understanding of frequency distribution of different values, type, and use of each column. Embedded value dependencies can be exposed in cross-columns analysis. Finally, overlapping value sets possibly representing foreign key relationships between entities can be explored in an inter-table analysis.
+Normally purpose-built tools are used for data profiling to ease the process."Kimball (2004), "Kimball Design Tip #59: Surprising Value of Data Profiling", Kimball Group, Number 59, September 14, 2004, (www.com/html/designtipsPDF/ KimballDT59 SurprisingValue. Olson (2003), "Data Quality: The Accuracy dimension", Morgan Kaufmann Publishers, (p.140-142) The computation complexity increases when going from single column, to single table, to cross-table structural profiling. Therefore, performance is an evaluation criterion for profiling tools.
+
+When to Conduct Data Profiling
+
+According to Kimball, data profiling is performed several times and with varying intensity throughout the data warehouse developing process. A light profiling assessment should be undertaken as soon as candidate source systems have been identified right after the acquisition of the business requirements for the DW/BI. The purpose is to clarify at an early stage if the right data is available at the right detail level and that anomalies can be handled subsequently. If this is not the case the project might have to be canceled.
+More detailed profiling is done prior to the dimensional modeling process in order to see what it will require to convert data into the dimensional model, and extends into the ETL system design process to establish what data to extract and which filters to apply.
+An additional time to conduct data profiling is during the data warehouse development process after data has been loaded into staging, the data marts, etc. Doing so at these points in time helps assure that data cleaning and transformations have been done correctly according to requirements.
+
+Benefits of Data Profiling
+
+The benefits of data profiling is to improve data quality, shorten the implementation cycle of major projects,  and improve understanding of data for the users. Discovering business knowledge embedded in data itself is one of the significant benefits derived from data profiling. Data profiling is one of the most effective technologies for improving data accuracy in corporate databases.
+Although data profiling is effective, then do remember to find a suitable balance and do not slip into "analysis paralysis".
+
+
+
+
+
+

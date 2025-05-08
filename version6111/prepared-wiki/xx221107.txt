@@ -1,0 +1,110 @@
+[[Computer cluster]]
+
+CATEGORIES: Cluster computing, Parallel computing, Concurrent computing, Supercomputers, Local area networks, Classes of computers, Fault-tolerant computer systems
+
+A computer cluster consists of a set of loosely connected or tightly connected computers that work together so that in many respects they can be viewed as a single system.
+The components of a cluster are usually connected to each other through fast local area networks ("LAN"), with each node (computer used as a server) running its own instance of an operating system. Computer clusters emerged as a result of convergence of a number of computing trends including the availability of low cost microprocessors, high speed networks, and software for high performance distributed computing.
+Clusters are usually deployed to improve performance and availability over that of a single computer, while typically being much more cost-effective than single computers of comparable speed or availability.[tpl]cite web|first=David|last=Bader|authorlink=David A. Bader|coauthors=Robert Pennington|url=http://www.cc.gatech.edu/~bader/papers/ijhpca.html|title=Cluster Computing: Applications|publisher=Georgia Tech College of Computing|date=June 1996|accessdate=2007-07-13[/tpl]
+Computer clusters have a wide range of applicability and deployment, ranging from small business clusters with a handful of nodes to some of the fastest supercomputers in the world such as IBM's Sequoia.[tpl]cite web|url=http://www.telegraph.co.uk/technology/9338651/Nuclear-weapons-supercomputer-reclaims-world-speed-record-for-US.html|title=Nuclear weapons supercomputer reclaims world speed record for US|publisher=The Telegraph|date=18 Jun 2012|accessdate=18 Jun 2012[/tpl]
+
+==Basic concepts==
+
+The desire to get more computing power and better reliability by orchestrating a number of low cost commercial off-the-shelf computers has given rise to a variety of architectures and configurations.
+The computer clustering approach usually (but not always) connects a number of readily available computing nodes (e.g. personal computers used as servers) via a fast local area network.Network-Based Information Systems: First International Conference, NBIS 2007 ISBN 3-540-74572-6 page 375 The activities of the computing nodes are orchestrated by "clustering middleware", a software layer that sits atop the nodes and allows the users to treat the cluster as by and large one cohesive computing unit, e.g. via a single system image concept.
+Computer clustering relies on a centralized management approach which makes the nodes available as orchestrated shared servers. It is distinct from other approaches such as peer to peer or grid computing which also use many nodes, but with a far more distributed nature.
+A computer cluster may be a simple two-node system which just connects two personal computers, or may be a very fast supercomputer. A basic approach to building a cluster is that of a Beowulf cluster which may be built with a few personal computers to produce a cost-effective alternative to traditional high performance computing. An early project that showed the viability of the concept was the 133 nodes Stone Soupercomputer.[tpl]Cite news |title= The Do-It-Yourself Supercomputer |work= Scientific American |author= William W. Hargrove, Forrest M. Hoffman and Thomas Sterling |volume= 265 |number= 2 |pages= 72–79 |date= August 16, 2001 |url= http://www.sciam.com/article.cfm?id=the-do-it-yourself-superc |accessdate= October 18, 2011 [/tpl] The developers used Linux, the Parallel Virtual Machine toolkit and the Message Passing Interface library to achieve high performance at a relatively low cost.[tpl]Cite news |title= Cluster Computing: Linux Taken to the Extreme |author= William W. Hargrove and Forrest M. Hoffman |work= Linux magazine |year= 1999 |url= http://climate.ornl.gov/~forrest/linux-magazine-1999/ |accessdate= October 18, 2011[/tpl]
+Although a cluster may consist of just a few personal computers connected by a simple network, the cluster architecture may also be used to achieve very high levels of performance. The TOP500 organization's semiannual list of the 500 fastest supercomputers often includes many clusters, e.g. the world's fastest machine in 2011 was the K computer which has a distributed memory, cluster architecture.TOP500 list To view all clusters on the TOP500 select "cluster" as architecture from the sublist menu.M. Yokokawa et al The K Computer, in "International Symposium on Low Power Electronics and Design" (ISLPED) 1-3 Aug. 2011, pages 371-372
+
+==History==
+
+Greg Pfister has stated that clusters were not invented by any specific vendor but by customers who could not fit all their work on one computer, or needed a backup.[tpl]cite book | last = Pfister | first = Gregory |title = In Search of Clusters | edition = 2nd | publisher = Prentice Hall PTR | location = Upper Saddle River, NJ | year = 1998 | page = 36 | isbn = 0-13-899709-8 [/tpl] Pfister estimates the date as some time in the 1960s.  The formal engineering basis of cluster computing as a means of doing parallel work of any sort was arguably invented by Gene Amdahl of IBM, who in 1967 published what has come to be regarded as the seminal paper on parallel processing: Amdahl's Law.
+The history of early computer clusters is more or less directly tied into the history of early networks, as one of the primary motivations for the development of a network was to link computing resources, creating a de facto computer cluster.
+The first commercial clustering product was ARCnet, developed by Datapoint in 1977. Clustering per se did not really take off until Digital Equipment Corporation released their VAXcluster product in 1984 for the VAX/VMS operating system. The ARCnet and VAXcluster products not only supported parallel computing, but also shared file systems and peripheral devices. The idea was to provide the advantages of parallel processing, while maintaining data reliability and uniqueness. Two other noteworthy early commercial clusters were the Tandem Himalayan (a circa 1994 high-availability product) and the IBM S/390 Parallel Sysplex (also circa 1994, primarily for business use).
+Within the same time frame, while computer clusters used parallelism outside the computer on a commodity network, supercomputers began to use them within the same computer. Following the success of the CDC 6600 in 1964, the Cray 1 was delivered in 1976, and introduced internal parallelism via vector processing.Readings in computer architecture by Mark Donald Hill, Norman Paul Jouppi, Gurindar Sohi 1999 ISBN 978-1-55860-539-8 page 41-48 While early supercomputers excluded clusters and relied on shared memory, in time some of the fastest supercomputers (e.g. the K computer) relied on cluster architectures.
+
+==Attributes of clusters==
+
+Computer clusters may be configured for different purposes ranging from general purpose business needs such as web-service support, to computation-intensive scientific calculations. In either case, the cluster may use a high-availability approach. Note that the attributes described below are not exclusive and a "compute cluster" may also use a high-availability approach, etc.
+"Load-balancing" clusters are configurations in which cluster-nodes share computational workload to provide better overall performance. For example, a web server cluster may assign different queries to different nodes, so the overall response time will be optimized.High Performance Linux Clusters by Joseph D. Sloan 2004 ISBN 0-596-00570-9 page However, approaches to load-balancing may significantly differ among applications, e.g. a high-performance cluster used for scientific computations would balance load with different algorithms from a web-server cluster which may just use a simple round-robin method by assigning each new request to a different node.
+"Computer clusters" are used for computation-intensive purposes, rather than handling IO-oriented operations such as web service or databases.High Performance Computing for Computational Science - VECPAR 2004 by Michel Daydé, Jack Dongarra 2005 ISBN 3-540-25424-2 pages 120-121 For instance, a computer cluster might support computational simulations of vehicle crashes or weather.  Very tightly coupled computer clusters are designed for work that may approach "supercomputing".
+"High-availability clusters" (also known as failover clusters, or HA clusters) improve the availability of the cluster approach. They operate by having redundant nodes, which are then used to provide service when system components fail. HA cluster implementations attempt to use redundancy of cluster components to eliminate single points of failure. There are commercial implementations of High-Availability clusters for many operating systems.  The Linux-HA project is one commonly used free software HA package for the Linux operating system.
+
+==Benefits==
+
+Low Cost: Customers can eliminate the cost and complexity of procuring, configuring and operating HPC clusters with low, pay-as-you-go pricing. Further, you can optimize costs by leveraging one of several pricing models: On Demand, Reserved or Spot Instances.
+Elasticity: You can add and remove computer resources to meet the size and time requirements for your workloads.
+Run Jobs Anytime, Anywhere: You can launch compute jobs using simple APIs or management tools and automate workflows for maximum efficiency and scalability. You can increase your speed of innovation by accessing computer resources in minutes instead of spending time in queues.
+
+==Design and configuration==
+
+One of the issues in designing a cluster is how tightly coupled the individual nodes may be.  For instance, a single computer job may require frequent communication among nodes: this implies that the cluster shares a dedicated network, is densely located, and probably has homogeneous nodes. The other extreme is where a computer job uses one or few nodes, and needs little or no inter-node communication, approaching grid computing.
+In a Beowulf system, the application programs never see the computational nodes (also called slave computers) but only interact with the "Master" which is a specific computer handling the scheduling and management of the slaves. In a typical implementation the Master has two network interfaces, one that communicates with the private Beowulf network for the slaves, the other for the general purpose network of the organization. The slave computers typically have their own version of the same operating system, and local memory and disk space. However, the private slave network may also have a large and shared file server that stores global persistent data, accessed by the slaves as needed.
+By contrast, the special purpose 144 node DEGIMA cluster is tuned to running astrophysical N-body simulations using the Multiple-Walk parallel treecode, rather than general purpose scientific computations.Hamada T. et al. (2009) A novel multiple-walk parallel algorithm for the Barnes–Hut treecode on GPUs – towards cost effective, high performance N-body simulation. Comput. Sci. Res. Development 24:21-31. [tpl]doi|10.1007/s00450-009-0089-1[/tpl]
+Due to the increasing computing power of each generation of game consoles, a novel use has emerged where they are repurposed into High-performance computing (HPC) clusters. Some examples of game console clusters are Sony PlayStation clusters and Microsoft Xbox clusters. Another example of consumer game product is the Nvidia Tesla Personal Supercomputer workstation, which uses multiple graphics accelerator processor chips.
+Computer clusters have historically run on separate physical computers with the same operating system. With the advent of virtualization, the cluster nodes may run on separate physical computers with different operating systems which are painted above with a virtual layer to look similar.[tpl]cn|date=November 2013[/tpl][tpl]clarify|date=November 2013[/tpl] The cluster may also be virtualized on various configurations as maintenance takes place. An example implementation is Xen as the virtualization manager with Linux-HA.Maurer, Ryan: Xen Virtualization and Linux Clustering
+
+==Data sharing and communication==
+
+===Data sharing===
+
+As the computer clusters were appearing during the 1980s, so were supercomputers. One of the elements that distinguished the three classes at that time was that the early supercomputers relied on shared memory. To date clusters do not typically use physically shared memory, while many supercomputer architectures have also abandoned it.
+However, the use of a clustered file system is essential in modern computer clusters.[tpl]Citation needed|date=August 2013[/tpl] Examples include the IBM General Parallel File System, Microsoft's Cluster Shared Volumes or the Oracle Cluster File System.
+
+===Message passing and communication===
+
+Two widely used approaches for communication between cluster nodes are MPI, the Message Passing Interface and PVM, the Parallel Virtual Machine.Distributed services with OpenAFS: for enterprise and education by Franco Milicchio, Wolfgang Alexander Gehrke 2007, ISBN pages 339-341 http://books.google.it/books?id=bKf4NBaIJI8C&pg=PA339&dq=%22message+passing%22+computer+cluster+MPI+PVM&hl=en&sa=X&ei=-dD7ToZCj_bhBOOxvI0I&redir_esc=y#v=onepage&q=%22message%20passing%22%20computer%20cluster%20MPI%20PVM&f=false
+PVM was developed at the Oak Ridge National Laboratory around 1989 before MPI was available. PVM must be directly installed on every cluster node and provides a set of software libraries that paint the node as a "parallel virtual machine". PVM provides a run-time environment for message-passing, task and resource management, and fault notification. PVM can be used by user programs written in C, C++, or Fortran, etc.
+MPI emerged in the early 1990s out of discussions among 40 organizations. The initial effort was supported by ARPA and National Science Foundation. Rather than starting anew, the design of MPI drew on various features available in commercial systems of the time. The MPI specifications then gave rise to specific implementations. MPI implementations typically use TCP/IP and socket connections. MPI is now a widely available communications model that enables parallel programs to be written in languages such as C, Fortran, Python, etc.Grid and Cluster Computing by Prabhu 2008 8120334280 pages 109-112 Thus, unlike PVM which provides a concrete implementation, MPI is a specification which has been implemented in systems such as MPICH and Open MPI.
+
+==Cluster management==
+
+One of the challenges in the use of a computer cluster is the cost of administrating it which can at times be as high as the cost of administrating N independent machines, if the cluster has N nodes.Computer Organization and Design by David A. Patterson and John L. Hennessy 2011 ISBN 0-12-374750-3 pages 641-642 In some cases this provides an advantage to shared memory architectures with lower administration costs. This has also made virtual machines popular, due to the ease of administration.
+
+===Task scheduling===
+
+When a large multi-user cluster needs to access very large amounts of data, task scheduling becomes a challenge. In a heterogeneous CPU-GPU cluster, which has a complex application environment the performance of each job depends on the characteristics of the underlying cluster, mapping tasks onto CPU cores and GPU devices provides significant challenges. This is an area of ongoing research and algorithms that combine and extend MapReduce and Hadoop have been proposed and studied.K. Shirahata, et al Hybrid Map Task Scheduling for GPU-Based Heterogeneous Clusters in: Cloud Computing Technology and Science (CloudCom), 2010 Nov. 30 2010-Dec. 3 2010 pages 733 - 740 ISBN 978-1-4244-9405-7 http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=5708524
+
+===Node failure management===
+
+When a node in a cluster fails, strategies such as "fencing" may be employed to keep the rest of the system operational.Alan Robertson Resource fencing using STONITH. IBM Linux Research Center, 2010 ftp://ftp.telecom.uff.br/pub/linux/HA/ResourceFencing_Stonith.pdfSun Cluster environment: Sun Cluster 2.2 by Enrique Vargas, Joseph Bianco, David Deeths 2001 ISBN page 58 Fencing is the process of isolating a node or protecting shared resources when a node appears to be malfunctioning. There are two classes of fencing methods; one disables a node itself, and the other disallows access to resources such as shared disks.
+The STONITH method stands for "Shoot The Other Node In The Head", meaning that the suspected node is disabled or powered off. For instance, power fencing uses a power controller to turn off an inoperable node.
+The resources fencing approach disallows access to resources without powering off the node. This may include persistent reservation fencing via the SCSI3, fibre Channel fencing to disable the fibre channel port, or global network block device (GNBD) fencing to disable access to the GNBD server.
+
+==Software development and administration==
+
+===Parallel programming===
+
+Load balancing clusters such as web servers use cluster architectures to support a large number of users and typically each user request is routed to a specific node, achieving task parallelism without multi-node cooperation, given that the main goal of the system is providing rapid user access to shared data. However, "computer clusters" which perform complex computations for a small number of users need to take advantage of the parallel processing capabilities of the cluster and partition "the same computation"  among several nodes.
+Automatic parallelization of programs continues to remain a technical challenge, but parallel programming models can be used to effectuate a higher degree of parallelism via the simultaneous execution of separate portions of a program on different processors.Computer Science: The Hardware, Software and Heart of It by Alfred V. Aho, Edward K. Blum 2011 ISBN 1-4614-1167-X pages 156-166 http://books.google.it/books?id=S7QU9RRLYIYC&pg=PA156&dq=%22parallel+programming%22+computer+cluster&hl=en&sa=X&ei=C_H8TqSRCobS4QSTmY2pCA&sqi=2&redir_esc=y#v=onepage&q=%22parallel%20programming%22%20computer%20cluster&f=falseParallel Programming: For Multicore and Cluster Systems by Thomas Rauber, Gudula Rünger 2010 ISBN 3-642-04817-X pages 94–95 http://books.google.it/books?id=wWogxOmA3wMC&pg=PA94&dq=%22parallel+programming+language%22+computer+cluster&hl=en&sa=X&ei=zfD8TpX_F5CQ4gSMvfXhBA&redir_esc=y#v=onepage&q=%22parallel%20programming%20language%22%20computer%20cluster&f=false
+
+===Debugging and monitoring===
+
+The development and debugging of parallel programs on a cluster requires parallel language primitives as well as suitable tools such as those discussed by the High Performance Debugging Forum (HPDF) which resulted in the HPD specifications.A debugging standard for high-performance computing by Joan M. Francioni and Cherri Pancake, in the "Journal of Scientific Programming" Volume 8 Issue 2, April 2000 http://dl.acm.org/citation.cfm?id=1239906
+Tools such as TotalView were then developed to debug parallel implementations on computer clusters which use MPI or PVM for message passing.
+The Berkeley NOW (Network of Workstations) system gathers cluster data and stores them in a database, while a system such as PARMON, developed in India, allows for the visual observation and management of large clusters.
+Application checkpointing can be used to restore a given state of the system when a node fails during a long multi-node computation.Computational Science-- ICCS 2003: International Conference edited by Peter Sloot 2003 ISBN 3-540-40195-4 pages 291-292 This is essential in large clusters, given that as the number of nodes increases, so does the likelihood of node failure under heavy computational loads. Checkpointing can restore the system to a stable state so that processing can resume without having to recompute results.
+
+==Price performance==
+
+Clustering can provide significant performance benefits versus price. The System X supercomputer at Virginia Tech, the 28th most powerful supercomputer on Earth as of June 2006,TOP500 List - June 2006 (1-100) | TOP500 Supercomputing Sites is a 12.25 TFlops computer cluster of 1100 Apple XServe G5 2.3 GHz dual-processor machines (4 GB RAM, 80 GB SATA HD) running Mac OS X and using InfiniBand interconnect. The cluster initially consisted of Power Mac G5s; the rack-mountable XServes are denser than desktop Macs, reducing the aggregate size of the cluster.
+
+==Some implementations==
+
+The GNU/Linux world supports various cluster software; for application clustering, there is distcc, and MPICH.  Linux Virtual Server, Linux-HA - director-based clusters that allow incoming requests for services to be distributed across multiple cluster nodes. MOSIX, openMosix, Kerrighed, OpenSSI are full-blown clusters integrated into the kernel that provide for automatic process migration among homogeneous nodes. OpenSSI, openMosix and Kerrighed are single-system image implementations.
+Microsoft Windows Compute Cluster Server 2003 based on the Windows Server platform provides pieces for High Performance Computing like the Job Scheduler, MSMPI library and management tools.
+gLite is a set of middleware technologies created by the Enabling Grids for E-sciencE (EGEE) project.
+slurm is also used to schedule and manage some of the largest supercomputer clusters (see top500 list.)
+
+==Other approaches==
+
+Although most computer clusters are permanent fixtures, attempts at flash mob computing have been made to build short-lived clusters for specific computations. However, larger scale volunteer computing systems such as BOINC-based systems have had more followers.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

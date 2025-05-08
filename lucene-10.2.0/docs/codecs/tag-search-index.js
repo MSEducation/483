@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"Constant Field Values","h":"","u":"constant-values.html"},{"l":"Term Dictionary","h":"class org.apache.lucene.codecs.memory.FSTTermsWriter","d":"Section","u":"org/apache/lucene/codecs/memory/FSTTermsWriter.html#term-dictionary-heading"}];updateSearchResults();

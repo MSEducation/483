@@ -1,0 +1,41 @@
+[[Skype protocol]]
+
+CATEGORIES: VoIP protocols, Instant messaging protocols, Skype
+
+The Skype protocol is a proprietary Internet telephony network based on peer-to-peer architecture, used by Skype. The protocol's specifications have not been made publicly available by Skype and official applications using the protocol are closed-source.
+The Skype network is not interoperable with most other VoIP networks without proper licensing from Skype. Digium, the main sponsor of Asterisk PBX released a driver licensed by Skype dubbed 'Skype for Asterisk' to interface as a client to the Skype network, however this still remains closed source.
+
+Peer-to-peer architecture
+
+Skype was the first peer-to-peer IP telephony network. Each client maintains a host cache with the IP address and port numbers of reachable supernodes. The Skype user directory is decentralized and distributed among the supernodes in the network.
+Previously any client with good bandwidth, no restrictions due to firewall or NAT, and adequate processing power could become a supernode. This placed an extra burden on those who connected to the Internet without NAT, as Skype used their computers and Internet connections as third parties for UDP hole punching (to directly connect two clients both behind NAT) or to completely relay other users' calls. In 2012, Microsoft altered the design of the network, and brought all supernodes under their control as hosted servers in data centres.
+Skype does not support the use of the IPv6 protocol, which would greatly reduce the complexity associated with the aforementioned IPv4 communication structure.
+Supernodes relay communications on behalf of two other  clients, both of which are behind firewalls or "one-to-many" Network address translation.
+Without relaying by the Supernodes, two clients with firewall or NAT difficulties would be unable to make or receive calls from one another. Skype tries to get the two ends to negotiate the connection details directly, but sometimes the sum of problems at both ends can prevent direct conversation being established.
+The problems with firewalls and NAT can be:
+Supernodes are grouped into slots (9–10 supernodes), and slots are grouped into blocks (8 slots).
+
+Protocol
+
+Signaling is encrypted using RC4; however, the method only obfuscates the traffic as the key can be recovered from the packet. Voice data is encrypted with AES.Introduction Skype analysis Enforcing anti-Skype policies, Skype uncovered Security study of Skype, Desclaux Fabrice, 7/11/2005, EADS CCR/STI/C
+The Skype client's application programming interface (API) opens the network to software developers. The Skype API allows other programs to use the Skype network to get "white pages" information and manage calls.
+The Skype code is closed source, and the protocol is not standardized.skype.com/en_US/faq/FA153/Which-protocols-does-Skype-use 
+On July 8, 2012, a researcher from Benin, Ouanilo Medegan, released articles and proof of concept code, results of his reverse engineering the Skype client.oklabs.oklabs.net/skype-reverse-engineering-the-long-journey/
+
+Protocol detection
+
+Many networking and security companies claim to detect and control Skype's protocol for enterprise and carrier applications. While the specific detection methods used by these companies are often proprietary, Pearson's chi-squared test and stochastic characterization with Naive Bayes classifiers are two approaches that were published in 2007. "Revealing Skype Traffic: When Randomness Plays with You," ACM SIGCOMM Computer Communication Review, Volume 37:4 (SIGCOMM 2007), p. 37–48
+
+=Preliminaries=
+
+Abbreviations that are used:
+
+=Skype client=
+
+The main functions of a Skype client are:
+
+Login
+
+A Skype client authenticates the user with the login server, advertises its presence to other peers, determines the type of NAT and firewall it is behind and discovers nodes that have public IP addresses.
+To connect to the Skype network, the host cache must contain a valid entry. A TCP connection must be established (i.e. to a supernode) otherwise the login will fail.
+  1.  start

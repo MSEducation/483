@@ -1,0 +1,34 @@
+[[Polynomial-time reduction]]
+
+CATEGORIES: Computational complexity theory
+
+In computational complexity theory, a polynomial-time reduction is a method of solving one problem by means of a hypothetical subroutine for solving a different problem (that is, a reduction), that uses polynomial time excluding the time within the subroutine. There are several different types of polynomial-time reduction, depending on the details of how the subroutine is used. Intuitively, a polynomial-time reduction proves that the first problem is no more difficult than the second one, because whenever an efficient algorithm exists for the second problem, one exists for the first problem as well. Polynomial-time reductions are frequently used in complexity theory for defining both complexity classes and complete problems for those classes.
+
+==Types of reduction==
+
+The three most common types of polynomial-time reduction, from the most to the least restrictive, are polynomial-time many-one reductions, truth-table reductions, and Turing reductions.
+ | last1 = Buss | first1 = S.R. | author1-link = Samuel Buss
+ | last2 = Hay | first2 = L.
+ | contribution = On truth-table reducibility to SAT and the difference hierarchy over NP
+ | doi = 10.1109/SCT.1988.5282
+ | pages = 224–233
+ | title = Proceedings of Third Annual Structure in Complexity Theory Conference
+ | year = 1988}}.</ref>
+The most frequently used of these are the many-one reductions, and in some cases the phrase "polynomial-time reduction" may be used to mean a polynomial-time many-one reduction.[tpl]citation|title=Complexity Theory: Exploring the Limits of Efficient Algorithms|first=Ingo|last=Wegener|authorlink=Ingo Wegener|page=60|publisher=Springer|year=2005|isbn=9783540274773[/tpl].
+
+==Completeness==
+
+A complete problem for a given complexity class C and reduction ≤ is a problem P that belongs to C, such that every problem A in C has a reduction A ≤ P.
+For instance, a problem is NP-complete if it belongs to NP and all problems in NP have polynomial-time many-one reductions to it. A problem that belongs to NP can be proven to be NP-complete by finding a single polynomial-time many-one reduction to it from a known NP-complete problem.[tpl]citation|title=Computers and Intractability: A Guide to the Theory of NP-Completeness|first1=Michael R.|last1=Garey|author1-link=Michael Garey|first2=D. S.|last2=Johnson|author2-link=David S. Johnson|publisher=W. H. Freeman|year=1979[/tpl]. Polynomial-time many-one reductions have been used to define complete problems for other complexity classes, including the PSPACE-complete languages and EXPTIME-complete languages.[tpl]citation|contribution=Complexity theory|pages=241–267|first=A. V.|last=Aho|authorlink=Alfred Aho|title=Computer Science: The Hardware, Software and Heart of It|doi=10.1007/978-1-4614-1168-0_12|year=2011|editor1-first=E. K.|editor1-last=Blum|editor2-first=A. V.|editor2-last=Aho[/tpl]. See in particular p. 255.
+Every nontrivial decision problem in P (the class of polynomial-time decision problems, where nontrivial means that not every input has the same output) may be reduced to every other nontrivial decision problem, by a polynomial-time many-one reduction. To transform an instance of problem A to B, solve A in polynomial time, and then use the solution to choose one of two instances of problem B with different answers.
+Therefore, for complexity classes within P such as L, NL, NC, and P itself, 
+polynomial-time reductions cannot be used to define complete languages: if they were used in this way, every nontrivial problem in P would be complete. Instead, weaker reductions such as log-space reductions or NC reductions are used for defining classes of complete problems for these classes, such as the P-complete problems.[tpl]citation|last1=Greenlaw|first1=Raymond|first2=James|last2=Hoover|first3=Walter|last3=Ruzzo|year=1995|title=Limits To Parallel computation; P-Completeness Theory|isbn=0-19-508591-4[/tpl]. In particular, for the argument that every nontrivial problem in P has a polynomial-time many-one reduction to every other nontrivial problem, see p. 48.
+
+==Defining complexity classes==
+
+Similarly, the complexity class GI consists of the problems that can be reduced to the graph isomorphism problem. Since graph isomorphism is known to belong both to NP and co-AM, the same is true for every problem in this class. A problem is GI-complete if it is complete for this class; the graph isomorphism problem itself is GI-complete, as are several other related problems.[ref]
+.</ref>
+
+==References==
+
+

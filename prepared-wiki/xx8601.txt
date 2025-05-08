@@ -1,0 +1,321 @@
+[[Normal distribution]]
+
+CATEGORIES: Continuous distributions, Conjugate prior distributions, Distributions with conjugate priors, Normal distribution, Exponential family distributions, Stable distributions, Probability distributions
+
+In probability theory, the normal (or Gaussian) distribution is a very commonly occurring continuous probability distribution—a function that tells the probability that any real observation will fall between any two real limits or real numbers, as the curve approaches zero on either side. Normal distributions are extremely important in statistics and are often used in the natural and social sciences for real-valued random variables whose distributions are not known.Normal Distribution, Gale Encyclopedia of Psychology[tpl]harvtxt |Casella |Berger |2001 |p=102 [/tpl]
+The normal distribution is immensely useful because of the central limit theorem, which states that, under mild conditions, the mean of many random variables independently drawn from the same distribution is distributed approximately normally, irrespective of the form of the original distribution: physical quantities that are expected to be the sum of many independent processes (such as measurement errors) often have a distribution very close to the normal. Moreover, many results and methods (such as propagation of uncertainty and least squares parameter fitting) can be derived analytically in explicit form when the relevant variables are normally distributed.
+The Gaussian distribution is sometimes informally called the bell curve. However, many other distributions are bell-shaped (such as Cauchy's, Student's, and logistic). The terms Gaussian function and Gaussian bell curve are also ambiguous because they sometimes refer to multiples of the normal distribution that cannot be directly interpreted in terms of probabilities.
+A normal distribution is
+The parameter μ in this definition is the mean or expectation of the distribution (and also its median and mode). The parameter σ is its standard deviation; its variance is therefore [tpl]nowrap|σ 2[/tpl]. A random variable with a Gaussian distribution is said to be normally distributed and is called a normal deviate.
+If [tpl]nowrap|μ [tpl]=[/tpl] 0[/tpl] and [tpl]nowrap|σ [tpl]=[/tpl] 1[/tpl], the distribution is called the standard normal distribution or the unit normal distribution, and a random variable with that distribution is a standard normal deviate.
+The normal distribution is the only absolutely continuous distribution all of whose cumulants beyond the first two (i.e., other than the mean and variance) are zero. It is also the continuous distribution with the maximum entropy for a given mean and variance.[tpl]cite book |last=Cover |first=Thomas M. |coauthors=Thomas, Joy A. |year=2006 |title=Elements of Information Theory |publisher=John Wiley and Sons |page=254 [/tpl][tpl]cite journal |last1=Park |first1=Sung Y. |last2=Bera |first2=Anil K. |year=2009 |title=Maximum Entropy Autoregressive Conditional Heteroskedasticity Model |journal=Journal of Econometrics |pages=219–230 |publisher=Elsevier |url=http://www.wise.xmu.edu.cn/Master/Download/..%5C..%5CUploadFiles%5Cpaper-masterdownload%5C2009519932327055475115776.pdf |accessdate=2011-06-02 |doi=10.1016/j.jeconom.2008.12.014 |volume=150 |issue=2 [/tpl]
+The normal distribution is a subclass of the elliptical distributions. The normal distribution is symmetric about its mean, and is non-zero over the entire real line. As such it may not be a suitable model for variables that are inherently positive or strongly skewed, such as the weight of a person or the price of a share. Such variables may be better described by other distributions, such as the log-normal distribution or the Pareto distribution.
+The value of the normal distribution is practically zero when the value x lies more than a few standard deviations away from the mean. Therefore, it may not be an appropriate model when one expects a significant fraction of outliers—values that lie many standard deviations away from the mean — and least squares and other statistical inference methods that are optimal for normally distributed variables often become highly unreliable when applied to such data. In those cases, a more heavy-tailed distribution should be assumed and the appropriate robust statistical inference methods applied.
+The Gaussian distribution belongs to the family of stable distributions which are the attractors of sums of independent, identically distributed distributions whether or not the mean or variance is finite. Except for the Gaussian which is a limiting case, all stable distributions have heavy tails and infinite variance. 
+
+==Definition==
+
+===Standard normal distribution===
+
+The simplest case of a normal distribution is known as the standard normal distribution. This is a special case where μ=0 and σ=1, and it is described by this probability density function:
+Authors may differ also on which normal distribution should be called the "standard" one. Gauss himself defined the standard normal as having variance [tpl]nowrap|σ2 [tpl]=[/tpl] [tpl]frac2|1|2[/tpl][/tpl], that is
+Stigler[tpl]harvtxt |Stigler |1982 [/tpl] goes even further, defining the standard normal with variance [tpl]nowrap|σ2 [tpl]=[/tpl] [tpl]frac2|1|2π[/tpl][/tpl] :
+
+===General normal distribution===
+
+Any normal distribution is a version of the standard normal distribution whose domain has been stretched by a factor σ (the standard deviation) and then translated by μ (the mean value):
+If Z is a standard normal deviate, then X = Zσ + μ will have a normal distribution with expected value μ and standard deviation σ. Conversely, if X is a general normal deviate, then Z = (X − μ)/σ will have a standard normal distribution.
+Every normal distribution is the exponential of a quadratic function:
+
+===Notation===
+
+The standard Gaussian distribution (with zero mean and unit variance) is often denoted with the Greek letter ϕ (phi).[tpl]harvtxt |Halperin |Hartley |Hoel |1965 |loc=item 7 [/tpl] The alternative form of the Greek phi letter, φ, is also used quite often.
+The normal distribution is also often denoted by N(μ, σ2).[tpl]harvtxt |McPherson |1990 |p=110 [/tpl] Thus when a random variable X is distributed normally with mean μ and variance σ2, we write
+
+===Alternative parametrizations===
+
+Some authors advocate using the precision τ as the parameter defining the width of the distribution, instead of the deviation σ or the variance σ2.  The precision is normally defined as the reciprocal of the variance, 1/σ2.[tpl]harvtxt |Bernardo |Smith |2000 |page=121 [/tpl] The formula for the distribution then becomes
+This choice is claimed to have advantages in numerical computations when σ is very close to zero and simplify formulas in some contexts, such as in the Bayesian inference of variables with multivariate normal distribution.
+Occasionally, the precision τ is 1/σ, the reciprocal of the standard deviation; so that
+According to Stigler, this formulation is advantageous because of a much simpler and easier-to-remember formula, the fact that the pdf has unit height at zero, and simple approximate formulas for the quantiles of the distribution.
+
+==Properties==
+
+===Symmetries and derivatives===
+
+The normal distribution f(x), with any mean μ and any positive deviation σ, has the following properties:
+Furthermore, the standard normal distribution ϕ (with [tpl]nowrap|μ [tpl]=[/tpl] 0[/tpl] and [tpl]nowrap|σ [tpl]=[/tpl] 1[/tpl]) also has the following properties:
+ 
+
+===Moments===
+
+The plain and absolute moments of a variable X are the expected values of Xp and |X|p,respectively.  If the expected value μ of X is zero, these parameters are called central moments.  Usually we are interested only in moments with integer order p.
+If X has a normal distribution, these moments exist and are finite for any p whose real part is greater than −1. For any non-negative integer p, the plain central moments are
+Here n!! denotes the double factorial, that is, the product of every odd number from n to 1.
+The central absolute moments coincide with plain moments for all even orders, but are nonzero for odd orders.  For any non-negative integer p,
+The last formula is valid also for any non-integer [tpl]nowrap|p > −1[/tpl].
+When the mean μ is not zero, the plain and absolute moments can be expressed in terms of confluent hypergeometric functions 1F1 and U.[tpl]Citation needed|date=June 2010[/tpl]
+These expressions remain valid even if p is not integer. See also generalized Hermite polynomials.
+
+===Fourier transform and characteristic function===
+
+The Fourier transform of a normal distribution  f with mean μ and deviation σ is[tpl]harvtxt |Bryc |1995 |p=23 [/tpl]
+where i is the imaginary unit.  If the mean μ is zero, the first factor is 1, and the Fourier transform is also a normal distribution on the frequency domain, with mean 0 and standard deviation 1/σ.  In particular, the standard normal distribution ϕ (with μ=0 and σ=1) is an eigenfunction of the Fourier transform.
+In probability theory, the Fourier transform of the probability distribution of a real-valued random variable X is called the characteristic function of that variable, and can be defined as the expected value of eitX, as a function of the real variable t (the frequency parameter of the Fourier transform).  This definition can be analytically extended to a complex-value parameter t.[tpl]harvtxt |Bryc |1995 |p=24 [/tpl]
+
+===Moment and cumulant generating functions===
+
+The moment generating function of a real random variable X is the expected value of etX, as a function of the real parameter t. For a normal distribution with mean μ and deviation σ, the moment generating function exists and is equal to
+The cumulant generating function is the logarithm of the moment generating function, namely
+Since this is a quadratic polynomial in t, only the first two cumulants are nonzero, namely the mean μ and the variance σ2.
+
+==Cumulative distribution==
+
+Therefore here are some trivial results from area under bell curve -
+These integrals cannot be expressed in terms of elementary functions, and are often said to be special functions *.  They are closely related, namely
+For a generic normal distribution f with mean μ and deviation σ, the cumulative distribution function is
+Example of Pascal function to calculate CDF (sum of first 100 elements)
+
+ function CDF(x:extended):extended;
+ var value,sum:extended;
+    i:integer;
+begin
+  sum:=x;
+  value:=x;
+  for i:=1 to 100 do
+    begin
+      value:=(value*x*x/(2*i+1));
+      sum:=sum+value;
+    end;
+  result:=0.5+(sum/sqrt(2*pi))*exp(-(x*x)/2);
+end;
+
+===Standard deviation and tolerance intervals===
+
+About 68% of values drawn from a normal distribution are within one standard deviation σ away from the mean; about 95% of the values lie within two standard deviations; and about 99.7% are within three standard deviations. This fact is known as the 68-95-99.7 (empirical) rule, or the 3-sigma rule.
+More precisely, the probability that a normal deviate lies in the range [tpl]nowrap|μ − nσ[/tpl] and [tpl]nowrap|μ + nσ[/tpl] is given by
+To 12 decimal places, the values for n = 1, 2, ..., 6 are:WolframAlpha.com
+
+===Quantile function===
+
+The quantile function of a distribution is the inverse of the cumulative distribution function.  The quantile function of the standard normal distribution is called the probit function, and can be expressed in terms of the inverse error function:
+For a normal random variable with mean μ and variance σ2, the quantile function is
+The following table gives the multiple n of σ such that X will lie in the range [tpl]nowrap|μ ± nσ[/tpl] with a specified probability p. These values are useful to determine tolerance interval for sample averages and other statistical estimators with normal (or asymptotically normal) distributions:part 1, part 2
+
+==Zero-variance limit==
+
+In the limit when σ tends to zero, the probability density f(x) eventually tends to zero at any [tpl]nowrap|x ≠ μ[/tpl], but grows without limit if [tpl]nowrap|x [tpl]=[/tpl] μ[/tpl], while its integral remains equal to 1.  Therefore, the normal distribution cannot be defined as an ordinary function when [tpl]nowrap|σ [tpl]=[/tpl] 0[/tpl].
+However, one can define the normal distribution with zero variance as a generalized function; specifically, as Dirac's "delta function" δ translated by the mean μ, that is f(x) = δ(x−μ).
+Its CDF is then the Heaviside step function translated by the mean μ, namely
+
+==The central limit theorem==
+
+The central limit theorem states that under certain (fairly common) conditions, the sum of many random variables will have an approximately normal distribution. More specifically, where X1, …, Xn are independent and identically distributed random variables with the same arbitrary distribution, zero mean, and variance σ2; and Z is their
+Then, as n increases, the probability distribution of Z will
+tend to the normal distribution with zero mean and variance σ2.
+The theorem can be extended to variables Xi that are not independent and/or not identically distributed if certain constraints are placed on the degree of dependence and the moments
+of the distributions.
+Many test statistics, scores, and estimators encountered in practice contain sums of certain random variables in them, and even more estimators can be represented as sums of random variables through the use of influence functions.  The central limit theorem implies that those statistical parameters will have asymptotically normal distributions.
+The central limit theorem also implies that certain distributions can be approximated by the normal distribution, for example:
+Whether these approximations are sufficiently accurate depends on the purpose for which they are needed, and the rate of convergence to the normal distribution. It is typically the case that such approximations are less accurate in the tails of the distribution.
+A general upper bound for the approximation error in the central limit theorem is given by the Berry–Esseen theorem, improvements of the approximation are given by the Edgeworth expansions.
+
+==Operations on normal deviates==
+
+The family of normal distributions is closed under linear transformations: if X is normally distributed with mean μ and deviation σ, then the variable [tpl]nowrap|Y [tpl]=[/tpl]  aX + b[/tpl], for any real numbers a and b, is also normally distributed, with
+mean aμ + b and deviation aσ.
+In particular, if X and Y are independent normal deviates with zero mean and variance σ2, then [tpl]nowrap|X + Y[/tpl] and [tpl]nowrap|X − Y[/tpl] are also independent and normally distributed, with zero mean and variance 2σ2.  This is a special case of the polarization identity.[tpl]harvtxt |Bryc |1995 |p=27 [/tpl]
+Also, if X1, X2 are two independent normal deviates with mean μ and deviation σ, and a, b are arbitrary real numbers, then the variable
+is also normally distributed with mean μ and deviation σ.  It follows that the normal distribution is stable (with exponent α = 2).
+More generally, any linear combination of independent normal deviates is a normal deviate.
+
+===Infinite divisibility and Cramér's theorem===
+
+For any positive integer n, any normal distribution with mean μ and variance σ2 is the distribution of the sum of n independent normal deviates, each with mean μ/n and variance σ2/n.  This property is called infinite divisibility.[tpl]harvtxt |Patel |Read |1996 |loc=2.3.6 [/tpl]
+Conversely, if X1 and X2 are independent random variables and their sum [tpl]nowrap|X1 + X2[/tpl] has a normal distribution, then both X1 and X2 must be normal deviates.[tpl]harvtxt |Galambos |Simonelli |2004 |loc=Theorem 3.5 [/tpl]
+This result is known as Cramér's decomposition theorem, and is equivalent to saying that the convolution of two distributions is normal if and only if both are normal. Cramér's theorem implies that a linear combination of independent non-Gaussian variables will never have an exactly normal distribution, although it may approach it arbitrarily close.[tpl]harvtxt |Bryc |1995 |p=35 [/tpl]
+
+===Bernstein's theorem===
+
+Bernstein's theorem states that if X and Y are independent and [tpl]nowrap|X + Y[/tpl] and [tpl]nowrap|X − Y[/tpl] are also independent, then both X and Y must necessarily have normal distributions.[tpl]harvtxt |Lukacs |King |1954 [/tpl]Quine, M.P. (1993) "On three characterisations of the normal distribution", Probability and Mathematical Statistics, 14 (2), 257-263
+More generally, if X1, ..., Xn are independent random variables, then two distinct linear combinations ∑akXk and ∑bkXk will be independent if and only if all Xk's are normal and [tpl]nowrap|∑akbk[tpl]SubSup|σ|k|2[/tpl] [tpl]=[/tpl] 0[/tpl], where [tpl]SubSup|σ|k|2[/tpl] denotes the variance of Xk.
+
+==Other properties==
+
+==Related distributions==
+
+===Operations on a single random variable===
+
+If X is distributed normally with mean μ and variance σ2, then
+
+===Combination of two independent random variables===
+
+If X1 and X2 are two independent standard normal random variables with mean 0 and variance 1, then
+
+===Combination of two or more independent random variables===
+
+===Operations on the density function===
+
+The split normal distribution is most directly defined in terms of joining scaled sections of the density functions of different normal distributions and rescaling the density to integrate to one.  The truncated normal distribution results from rescaling a section of a single density function.
+
+===Extensions===
+
+The notion of normal distribution, being one of the most important distributions in probability theory, has been extended far beyond the standard framework of the univariate (that is one-dimensional) case (Case 1). All these extensions are also called normal or Gaussian laws, so a certain ambiguity in names exists.
+One of the main practical uses of the Gaussian law is to model the empirical distributions of many different random variables encountered in practice. In such case a possible extension would be a richer family of distributions, having more than two parameters and therefore being able to fit the empirical distribution more accurately. The examples of such extensions are:
+
+==Normality tests==
+
+Normality tests assess the likelihood that the given data set {x1, …, xn} comes from a normal distribution. Typically the null hypothesis H0 is that the observations are distributed normally with unspecified mean μ and variance σ2, versus the alternative Ha that the distribution is arbitrary. Many tests (over 40) have been devised for this problem, the more prominent of them are outlined below:
+
+==Estimation of parameters==
+
+It is often the case that we don't know the parameters of the normal distribution, but instead want to estimate them. That is, having a sample (x1, …, xn) from a normal [tpl]nowrap|N(μ, σ2)[/tpl] population we would like to learn the approximate values of parameters μ and σ2. The standard approach to this problem is the maximum likelihood method, which requires maximization of the log-likelihood function:
+Taking derivatives with respect to μ and σ2 and solving the resulting system of first order conditions yields the maximum likelihood estimates:
+In particular, both estimators are asymptotically efficient for σ2.
+This quantity t has the Student's t-distribution with [tpl]nowrap|(n − 1)[/tpl] degrees of freedom, and it is an ancillary statistic (independent of the value of the parameters). Inverting the distribution of this t-statistics will allow us to construct the confidence interval for μ;[tpl]harvtxt |Krishnamoorthy |2006 |p=130 [/tpl] similarly, inverting the χ2 distribution of the statistic s2 will give us the confidence interval for σ2:[tpl]harvtxt |Krishnamoorthy |2006 |p=133 [/tpl]
+
+==Bayesian analysis of the normal distribution==
+
+Bayesian analysis of normally distributed data is complicated by the many different possibilities that may be considered:
+The formulas for the non-linear-regression cases are summarized in the conjugate prior article.
+
+===The sum of two quadratics===
+
+====Scalar form====
+
+The following auxiliary formula is useful for simplifying the posterior update equations, which otherwise become fairly tedious.
+This equation rewrites the sum of two quadratics in x by expanding the squares, grouping the terms in x, and completing the square.  Note the following about the complex constant factors attached to some of the terms:
+
+====Vector form====
+
+where
+Note that the form x′ A x is called a quadratic form and is a scalar:
+
+===The sum of differences from the mean===
+
+Another useful formula is as follows:
+
+===With known variance===
+
+First, the likelihood function is (using the formula above for the sum of differences from the mean):
+Then, we proceed as follows:
+This can be written as a set of Bayesian update equations for the posterior parameters in terms of the prior parameters:
+The above formula reveals why it is more convenient to do Bayesian analysis of conjugate priors for the normal distribution in terms of the precision.  The posterior precision is simply the sum of the prior and likelihood precisions, and the posterior mean is computed through a precision-weighted average, as described above.  The same formulas can be written in terms of variance by reciprocating all the precisions, yielding the more ugly formulas
+
+===With known mean===
+
+The likelihood function from above, written in terms of the variance, is:
+where
+Then:
+The above is also a scaled inverse chi-squared distribution where
+or equivalently
+Reparameterizing in terms of an inverse gamma distribution, the result is:
+
+===With unknown mean and unknown variance===
+
+Logically, this originates as follows:
+The priors are normally defined as follows:
+The update equations can be derived, and look as follows:
+The prior distributions are
+Therefore, the joint prior is
+The likelihood function from the section above with known variance is:
+Writing it in terms of variance rather than precision, we get:
+Therefore, the posterior is (dropping the hyperparameters as conditioning factors):
+In other words, the posterior distribution has the form of a product of a normal distribution over p(μ|σ2) times an inverse gamma distribution over p(σ2), with parameters that are the same as the update equations above.
+
+==Occurrence==
+
+The occurrence of normal distribution in practical problems can be loosely classified into three categories:
+
+===Exact normality===
+
+Certain quantities in physics are distributed normally, as was first demonstrated by James Clerk Maxwell. Examples of such quantities are:
+
+===Approximate normality===
+
+Approximately normal distributions occur in many situations, as explained by the central limit theorem. When the outcome is produced by many small effects acting additively and independently, its distribution will be close to normal. The normal approximation will not be valid if the effects act multiplicatively (instead of additively), or if there is a single external influence that has a considerably larger magnitude than the rest of the effects.
+
+===Assumed normality===
+
+[tpl]quote|I can only recognize the occurrence of the normal curve – the Laplacian curve of errors – as a very abnormal phenomenon. It is roughly approximated to in certain distributions; for this reason, and on account for its beautiful simplicity, we may, perhaps, use it as a first approximation, particularly in theoretical investigations.|[tpl]harvtxt |Pearson |1901 [/tpl][/tpl]
+There are statistical methods to empirically test that assumption, see the above Normality tests section.
+
+==Generating values from normal distribution==
+
+In computer simulations, especially in applications of the Monte-Carlo method, it is often desirable to generate values that are normally distributed. The algorithms listed below all generate the standard normal deviates, since a [tpl]nowrap|N(μ, σ[tpl]su|p=2[/tpl])[/tpl] can be generated as [tpl]nowrap|X [tpl]=[/tpl] μ + σZ[/tpl], where Z is standard normal. All these algorithms rely on the availability of a random number generator U capable of producing uniform random variates.
+
+==Numerical approximations for the normal CDF==
+
+The standard normal CDF is widely used in scientific and statistical computing. The values Φ(x) may be approximated very accurately by a variety of methods, such as numerical integration, Taylor series, asymptotic series and continued fractions. Different approximations are used depending on the desired level of accuracy.
+
+==History==
+
+===Development===
+
+In 1809 Gauss published his monograph "Theoria motus corporum coelestium in sectionibus conicis solem ambientium" where among other things he introduces several important statistical concepts, such as the method of least squares, the method of maximum likelihood, and the normal distribution. Gauss used M, [tpl]nobr|M′[/tpl], [tpl]nobr|M′′, …[/tpl] to denote the measurements of some unknown quantity V, and sought the "most probable" estimator: the one that maximizes the probability [tpl]nobr|φ(M−V) · φ(M′−V) · φ(M′′−V) · …[/tpl] of obtaining the observed experimental results. In his notation φΔ is the probability law of the measurement errors of magnitude Δ. Not knowing what the function φ is, Gauss requires that his method should reduce to the well-known answer: the arithmetic mean of the measured values."It has been customary certainly to regard as an axiom the hypothesis that if any quantity has been determined by several direct observations, made under the same circumstances and with equal care, the arithmetical mean of the observed values affords the most probable value, if not rigorously, yet very nearly at least, so that it is always most safe to adhere to it." — [tpl]harvtxt |Gauss |1809 |loc=section 177 [/tpl] Starting from these principles, Gauss demonstrates that the only law that rationalizes the choice of arithmetic mean as an estimator of the location parameter, is the normal law of errors:[tpl]harvtxt |Gauss |1809 |loc=section 177 [/tpl]
+where h is "the measure of the precision of the observations". Using this normal law as a generic model for errors in the experiments, Gauss formulates what is now known as the non-linear weighted least squares (NWLS) method.[tpl]harvtxt |Gauss |1809 |loc=section 179 [/tpl]
+Although Gauss was the first to suggest the normal distribution law, Laplace made significant contributions."My custom of terming the curve the Gauss–Laplacian or normal curve saves us from proportioning the merit of discovery between the two great astronomer mathematicians." quote from [tpl]harvtxt |Pearson |1905 |p=189 [/tpl] It was Laplace who first posed the problem of aggregating several observations in 1774,[tpl]harvtxt |Laplace |1774 |loc=Problem III [/tpl] although his own solution led to the Laplacian distribution. It was Laplace who first calculated the value of the integral [tpl]nowrap|∫ e−t ²dt [tpl]=[/tpl] [tpl]sqrt|π[/tpl][/tpl] in 1782, providing the normalization constant for the normal distribution.[tpl]harvtxt |Pearson |1905 |p=189 [/tpl] Finally, it was Laplace who in 1810 proved and presented to the Academy the fundamental central limit theorem, which emphasized the theoretical importance of the normal distribution.[tpl]harvtxt |Stigler |1986 |p=144 [/tpl]
+It is of interest to note that in 1809 an American mathematician Adrain published two derivations of the normal probability law, simultaneously and independently from Gauss.[tpl]harvtxt |Stigler |1978 |p=243 [/tpl] His works remained largely unnoticed by the scientific community, until in 1871 they were "rediscovered" by Abbe.[tpl]harvtxt |Stigler |1978 |p=244 [/tpl]
+In the middle of the 19th century Maxwell demonstrated that the normal distribution is not just a convenient mathematical tool, but may also occur in natural phenomena:[tpl]harvtxt |Maxwell |1860 |p=23 [/tpl] "The number of particles whose velocity, resolved in a certain direction, lies between x and x + dx is
+
+===Naming===
+
+Since its introduction, the normal distribution has been known by many different names: the law of error, the law of facility of errors, Laplace's second law, Gaussian law, etc. Gauss himself apparently coined the term with reference to the "normal equations" involved in its applications, with normal having its technical meaning of orthogonal rather than "usual".Jaynes, Edwin J.; Probability Theory: The Logic of Science, Ch 7 However, by the end of the 19th century some authorsBesides those specifically referenced here, such use is encountered in the works of Peirce, Galton ([tpl]harvtxt |Galton |1889 |loc=chapter V [/tpl]) and Lexis ([tpl]harvtxt | Lexis |1878 [/tpl], [tpl]harvtxt |Rohrbasser |Véron |2003 [/tpl]) c. 1875.[tpl]Citation needed |date=June 2011 [/tpl] had started using the name normal distribution, where the word "normal" was used as an adjective – the term now being seen as a reflection of the fact that this distribution was seen as typical, common – and thus "normal". Peirce (one of those authors) once defined "normal" thus: "...the 'normal' is not the average (or any other kind of mean) of what actually occurs, but of what would, in the long run, occur under certain circumstances."Peirce, Charles S. (c. 1909 MS), Collected Papers v. 6, paragraph 327 Around the turn of the 20th century Pearson popularized the term normal as a designation for this distribution.[tpl]harvtxt |Kruskal |Stigler |1997 [/tpl]
+[tpl]quote|Many years ago I called the Laplace–Gaussian curve the normal curve, which name, while it avoids an international question of priority, has the disadvantage of leading people to believe that all other distributions of frequency are in one sense or another 'abnormal'. |[tpl]harvtxt |Pearson |1920 [/tpl][/tpl]
+Also, it was Pearson who first wrote the distribution in terms of the standard deviation σ as in modern notation. Soon after this, in year 1915, Fisher added the location parameter to the formula for normal distribution, expressing it in the way it is written nowadays:
+The term "standard normal", which denotes the normal distribution with zero mean and unit variance came into general use around 1950s, appearing in the popular textbooks by P.G. Hoel (1947) "Introduction to mathematical statistics" and A.M. Mood (1950) "Introduction to the theory of statistics".[tpl]cite web |title=Earliest uses… (entry STANDARD NORMAL CURVE) |url=http://jeff560.tripod.com/s.html [/tpl]
+When the name is used, the "Gaussian distribution" was named after Carl Friedrich Gauss, who introduced the distribution in 1809 as a way of rationalizing the method of least squares as outlined above. Among English speakers, both "normal distribution" and "Gaussian distribution" are in common use, with different terms preferred by different communities.
+
+==See also==
+
+==Notes==
+
+==Citations==
+
+==References==
+
+  | last1 = Aldrich | first1 = John
+  | last2 = Miller  | first2 = Jeff
+  | url = http://jeff560.tripod.com/stat.html
+  | title = Earliest Uses of Symbols in Probability and Statistics
+  | ref = harv
+  }}
+  | last1 = Aldrich | first1 = John
+  | last2 = Miller  | first2 = Jeff
+  | url = http://jeff560.tripod.com/mathword.html
+  | title = Earliest Known Uses of Some of the Words of Mathematics
+  | ref = harv
+  }} In particular, the entries for [http://jeff560.tripod.com/b.html "bell-shaped and bell curve"], [http://jeff560.tripod.com/n.html "normal (distribution)"], [http://jeff560.tripod.com/g.html "Gaussian"], and [http://jeff560.tripod.com/e.html "Error, law of error, theory of errors, etc."].
+  | last1 = Amari   | first1 = Shun-ichi
+  | last2 = Nagaoka | first2 = Hiroshi
+  | title = Methods of Information Geometry
+  | year = 2000
+  | publisher = Oxford University Press
+  | isbn = 0-8218-0531-2
+  | ref = harv
+  }}
+  | last1 = Bernardo | first1 = José M.
+  | last2 = Smith    | first2 = Adrian F. M.
+  | year = 2000
+  | title = Bayesian Theory
+  | publisher = Wiley
+  | isbn = 0-471-49464-X
+  | ref = harv
+  }}
+  | last = Bryc | first = Wlodzimierz
+  | year = 1995
+  | title = The Normal Distribution: Characterizations with Applications
+  | publisher = Springer-Verlag
+  | isbn = 0-387-97990-5
+  | ref = harv
+  }}
+  | last1 = Casella | first1 = George
+  | last2 = Berger  | first2 = Roger L.
+  | year = 2001
+  | title = Statistical Inference | edition = 2nd
+  | publisher = Duxbury
+  | isbn = 0-534-24312-6
+  | ref = harv
+  }}
+  | last = Cody |first=William J.
+  | year = 1969

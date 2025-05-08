@@ -1,0 +1,93 @@
+[[Universal Plug and Play]]
+
+CATEGORIES: Network protocols, Windows administration, Windows communication and services, Digital media, Mobile content, Servers (computing), Media servers
+
+Universal Plug and Play (UPnP) is a set of networking protocols that permits networked devices, such as personal computers, printers, Internet gateways, Wi-Fi access points and mobile devices to seamlessly discover each other's presence on the network and establish functional network services for data sharing, communications, and entertainment. UPnP is intended primarily for residential networks without enterprise-class devices.
+The UPnP technology is promoted by the UPnP Forum. The UPnP Forum is a computer industry initiative to enable simple and robust connectivity to stand-alone devices and personal computers from many different vendors. The Forum consists of over eight hundred vendors involved in everything from consumer electronics to network computing.
+The concept of UPnP is an extension of plug-and-play, a technology for dynamically attaching devices directly to a computer, although UPnP is not directly related to the earlier plug-and-play technology. UPnP devices are "plug-and-play" in that when connected to a network they automatically establish working configurations with other devices.
+
+
+
+The UPnP architecture allows device-to-device networking of consumer electronics, mobile devices, personal computers, and networked home appliances. It is a distributed, open architecture protocol based on established standards such as the Internet Protocol Suite (TCP/IP), HTTP, XML, and SOAP. UPnP control points (CPs) are devices which use UPnP protocols to control UPnP controlled devices (CDs).
+The UPnP architecture supports zero configuration networking.  A UPnP compatible device from any vendor can dynamically join a network, obtain an IP address, announce its name, advertise or convey its capabilities upon request, and learn about the presence and capabilities of other devices. Dynamic Host Configuration Protocol (DHCP) and Domain Name System (DNS) servers are optional and are only used if they are available on the network. Devices can disconnect from the network automatically without leaving state information.
+UPnP was published as a 73-part international standard, ISO/IEC 29341, in December, 2008. Retrieved on 2009-05-07. Retrieved on 2009-05-07. Retrieved on 2009-05-07.
+Other UPnP features include:
+
+Protocol
+
+UPnP uses common Internet technologies. It assumes the network must run Internet Protocol (IP) and then leverages HTTP, SOAP and XML on top of IP, in order to provide device/service description, actions, data transfer and eventing. Device search requests and advertisements are supported by running HTTP on top of UDP using multicast (known as HTTPMU). Responses to search requests are also sent over UDP, but are instead sent using unicast (known as HTTPU). UPnP uses UDP due to its lower overhead in not requiring confirmation of received data and retransmission of corrupt packets. HTTPU and HTTPMU were initially submitted as an Internet Draft but it expired in 2001; these specifications have since been integrated into the actual UPnP specifications.
+UPnP uses UDP port 1900 and all used TCP ports are derived from the SSDP alive and response messages.
+
+Addressing
+
+The foundation for UPnP networking is IP addressing. Each device must implement a DHCP client and search for a DHCP server when the device is first connected to the network. If no DHCP server is available, the device must assign itself an address. The process by which a UPnP device assigns itself an address is known within the UPnP Device Architecture as AutoIP. In UPnP Device Architecture Version 1.0,UPnP Forum, UPnP Device Architecture version 1.0, 2008-04-24 AutoIP is defined within the specification itself; in UPnP Device Architecture Version 1.1,UPnP Forum, UPnP Device Architecture version 1.1, 2008-10-15 AutoIP references IETF RFC 3927., et al, IETF RFC 3927, "Dynamic Configuration of IPv4 Link-Local Addresses", May 2005 If during the DHCP transaction, the device obtains a domain name, for example, through a DNS server or via DNS forwarding, the device should use that name in subsequent network operations; otherwise, the device should use its IP address.
+
+Discovery
+
+Once a device has established an IP address, the next step in UPnP networking is discovery. The UPnP discovery protocol is known as the Simple Service Discovery Protocol (SSDP). When a device is added to the network, SSDP allows that device to advertise its services to control points on the network. This is achieved by sending SSDP alive messages. When a control point is added to the network, SSDP allows that control point can activily search for devices of interest on the network or listen passivily to the SSDP alive messages of device. The fundamental exchange is a discovery message containing a few essential specifics about the device or one of its services, for example, its type, identifier, and a pointer (network location) to more detailed information.
+
+Description
+
+After a control point has discovered a device, the control point still knows very little about the device. For the control point to learn more about the device and its capabilities, or to interact with the device, the control point must retrieve the device's description from the location (URL) provided by the device in the discovery message. The UPnP Device Description is expressed in XML and includes vendor-specific manufacturer information like the model name and number, serial number, manufacturer name, (presentation) URLs to vendor-specific web sites, etc. The description also includes a list of any embedded devices. For each services the Device Description document lists the URLs for control, eventing and service description. For each service description includes a list of the commands, or actions, to which the service responds, and parameters, or arguments, for each action; the description for a service also includes a list of variables; these variables model the state of the service at run time, and are described in terms of their data type, range, and event characteristics.
+
+Control
+
+Having retrieved a description of the device, the control point can send actions to a device's service. To do this, a control point sends a suitable control message to the control URL for the service (provided in the device description). Control messages are also expressed in XML using the Simple Object Access Protocol (SOAP). Much like function calls, the service returns any action-specific values in response to the control message. The effects of the action, if any, are modeled by changes in the variables that describe the run-time state of the service.
+
+Event notification
+
+Another capability of UPnP networking is event notification, or eventing. The event notification protocol defined in the UPnP Device Architecture is known as General Event Notification Architecture (GENA). A UPnP description for a service includes a list of actions the service responds to and a list of variables that model the state of the service at run time. The service publishes updates when these variables change, and a control point may subscribe to receive this information. The service publishes updates by sending event messages. Event messages contain the names of one or more state variables and the current value of those variables. These messages are also expressed in XML. A special initial event message is sent when a control point first subscribes; this event message contains the names and values for all evented variables and allows the subscriber to initialize its model of the state of the service. To support scenarios with multiple control points, eventing is designed to keep all control points equally informed about the effects of any action. Therefore, all subscribers are sent all event messages, subscribers receive event messages for all "evented" variables that have changed, and event messages are sent no matter why the state variable changed (either in response to a requested action or because the state the service is modeling changed).
+
+Presentation
+
+The final step in UPnP networking is presentation. If a device has a URL for presentation, then the control point can retrieve a page from this URL, load the page into a web browser, and depending on the capabilities of the page, allow a user to control the device and/or view device status. The degree to which each of these can be accomplished depends on the specific capabilities of the presentation page and device.
+
+UPnP AV standards
+
+UPnP AV architecture is an audio and video extension of the UPnP, supporting a variety of devices such as TVs, VCRs, CD/DVD players/jukeboxes, settop boxes, stereos systems, MP3 players, still image cameras, camcorders, electronic picture frames (EPFs), and personal computers.  The UPnP AV architecture allows devices to support different types of formats for the entertainment content, including MPEG2, MPEG4, JPEG, MP3, Windows Media Architecture (WMA), bitmaps (BMP), and NTSC, PAL or ATSC formats.  Multiple types of transfer protocols are supported, including IEEE 1394, HTTP, RTP and TCP/IP.
+On 12 July 2006, the UPnP Forum announced the release of version 2 of the UPnP Audio and Video specifications, with new MediaServer (MS) version 2.0 and MediaRenderer (MR) version 2.0 classes.  These enhancements are created by adding capabilities to the MediaServer and MediaRenderer device classes, allowing a higher level of interoperability between products made by different manufacturers.  Some of the early devices complying with these standards were marketed by Philips under the Streamium brand name.
+Since 2006, versions 3 and 4 of the UPnP audio and video device control protocols have been published.  In March 2013, an updated uPnP AV architecture specification was published, incorporating the updated device control protocols.
+The UPnP AV standards have been referenced in specifications published by other organizations including Digital Living Network Alliance Networked Device Interoperability Guidelines,Digital Living Network Alliance, DLNA Networked Device Interoperability Guidelines, 2006-10 International Electrotechnical Commission IEC 62481-1,International Electrotechnical Commission, IEC 62481-1,"Digital living network alliance (DLNA) home networked device interoperability guidelines - Part 1: Architecture and protocols", 2007-08-30 and Cable Television Laboratories OpenCable Home Networking Protocol.Cable Television Laboratories, OpenCable Home Networking Protocol, 2006-06-30
+
+UPnP AV components
+
+Media server
+
+A  is the UPnP-server ("master" device) that provides media library information and streams media-data (like audio/video/picture/files) to UPnP clients on the network. It is a computer system or a similar digital appliance that stores digital media, such as photographs, movies, or music and shares these with other devices.
+UPnP AV media servers provide a service to UPnP AV client devices, so called control points, for browsing the media content of the server and request the media server to deliver a file to the control point for playback.
+UPnP media servers are available for most operating systems and many hardware platforms. UPnP AV media servers can either be categorized as software-based or hardware-based. Software-based UPnP AV media servers can be run on a PC. Hardware-based UPnP AV media servers may run on any NAS devices or any specific hardware for delivering media, such as a DVR. As of May 2008, there were more software-based UPnP AV media servers than there were hardware-based servers.
+
+Other components
+
+NAT traversal
+
+One solution for NAT traversal, called the Internet Gateway Device Protocol (IGD Protocol), is implemented via UPnP. Many routers and firewalls expose themselves as Internet Gateway Devices, allowing any local UPnP control point to perform a variety of actions, including retrieving the external IP address of the device, enumerate existing port mappings, and add or remove port mappings. By adding a port mapping, a UPnP controller behind the IGD can enable traversal of the IGD from an external address to an internal client.
+
+Problems with UPnP
+
+Authentication
+
+The UPnP protocol, as default, does not implement any authentication, so UPnP device implementations must implement the additional Device Protection service,
+When the authentication mechanisms are not implemented, routers and firewalls running the UPnP IGD protocol are vulnerable to attack. For example, Adobe Flash programs running outside the sandbox of the browser (e.g. this requires specific version of Adobe Flash with acknowledged security issues) are capable of generating a specific type of HTTP request which allows a router implementing the UPnP IGD protocol to be controlled by a malicious web site when someone with a UPnP-enabled router simply visits that web site.  As a result, some UPnP devices ship with UPnP turned off by default as a security measure. 
+Simple measure can be taken to avoid attacks of this kind: randomize the port of the http (soap) server.
+
+Access from the Internet
+
+In 2011, researcher Daniel Garcia developed a tool designed to exploit a flaw in some UPnP IGD device stacks that allow UPnP requests from the Internet.
+In January 2013 the security company Rapid7 in Boston reported on a six-month research programme. A team scanned for signals from UPnP-enabled devices announcing their availability for internet connection. Some 6900 network-aware products from 1500 companies at 81 million IP-addresses responded to their requests. 80% of the devices are home routers, others include printers, webcams and surveillance cameras. Using the UPnP-protocol, many of those devices can be accessed and/or manipulated.
+In February 2013, the UPnP forum responded in a press release by recommending to use more recent versions of the used UPnP stacks, and by improving the certification program to include checks to avoid further such issues.
+
+Future developments
+
+UPnP continues to be actively developed.  In the fall of 2008, the UPnP Forum ratified the successor to UPnP 1.0 Device Architecture UPnP 1.1.  The Devices Profile for Web Services (DPWS) standard was a candidate successor to UPnP, but UPnP 1.1 was selected by the UPnP Forum.
+The UPnP Internet Gateway Device (IGD)
+
+
+
+
+
+Books
+
+
+
+

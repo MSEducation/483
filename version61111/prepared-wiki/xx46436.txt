@@ -1,0 +1,208 @@
+    [[tpl]keypress|TAB[/tpl]command n]
+Usually each rule has a single unique target, rather than multiple targets.
+For example, a C .o object file is created from .c files, so .c files come first (i.e. specific object file target depends on a C source file and header files). Because Make itself does not understand, recognize or distinguish different kinds of files, this opens up a possibility for human error. A forgotten or an extra dependency may not be immediately obvious and may result in subtle bugs in the generated software. It is possible to write makefiles which generate these dependencies by calling third-party tools, and some makefile generators, such as the Automake toolchain provided by the GNU Project, can do so automatically.
+After each dependency line, a series of command lines may follow which define how to transform the components (usually source files) into the target (usually the "output"). If any of the
+components have been modified, the command lines are run.
+With the GNU Make the first command may appear on the same line after the prerequisites, separated by a semicolon,
+
+targets : prerequisites ; command
+
+for example,
+
+hello: ; @echo "hello"
+
+Make can decide where to start through topological sorting.
+Each command line must begin with a tab character to be recognized as a command. The tab is a whitespace character, but the space character does not have the same special meaning. This is problematic, since there may be no visual difference between a tab and a series of space characters. This aspect of the syntax of makefiles is often subject to criticism.
+However, the GNU Make since version 3.82 allows to choose any symbol (one character) as the recipe prefix using the .RECIPEPREFIX special variable, for example:
+
+.RECIPEPREFIX := :
+all:
+
+Each command is executed by a separate shell or command-line interpreter instance. Since operating systems use different command-line interpreters this can lead to unportable makefiles. For instance, GNU Make by default executes commands with /bin/sh, where Unix commands like cp are normally used. In contrast to that, Microsoft's nmake executes commands with cmd.exe where batch commands like copy are available but not necessarily cp.
+A rule may have no command lines defined. The dependency line can consist solely of components that refer to targets, for example:
+
+    realclean: clean distclean
+
+The command lines of a rule are usually arranged so that they generate the target. An example: if "file.html" is newer, it is converted to text. The contents of the makefile:
+
+    file.txt: file.html
+	    lynx -dump file.html > file.txt
+
+The above rule would be triggered when Make updates "file.txt". In the following invocation, Make would typically use this rule to update the "file.txt" target if "file.html" were newer.
+
+    make file.txt
+
+Command lines can have one or more of the following three prefixes:
+Ignoring errors and silencing echo can alternatively be obtained via the special targets ".IGNORE" and ".SILENT".make, The Open Group Base Specifications Issue 6
+Microsoft's NMAKE has predefined rules that can be omitted from these makefiles, e.g. "c.obj   $(CC)$(CFLAGS)".
+
+===Macros===
+
+A makefile can contain definitions of macros. Macros are usually referred to as variables when they hold simple string definitions, like "CC=clang". Macros in makefiles may be overridden in the command-line arguments passed to the Make utility. Environment variables are also available as macros.
+Macros allow users to specify the programs invoked and other custom behavior during the build process. For example, the macro "CC" is frequently used in makefiles to refer to the location of a C compiler, and the user may wish to specify a particular compiler to use.
+New macros (or simple "variables") are traditionally defined using capital letters:
+
+    MACRO = definition
+
+A macro is used by expanding it. Traditionally this is done by enclosing its name inside $().  An equivalent form uses curly braces rather than parenthesis, i.e. ${}, which is the style used in the BSDs.
+
+    NEW_MACRO = $(MACRO)-$(MACRO2)
+
+Macros can be composed of shell commands by using the command substitution operator, denoted by backticks (`).
+
+    YYYYMMDD  = ` date `
+
+The content of the definition is stored "as is". Lazy evaluation is used, meaning that macros are normally expanded only when their expansions are actually required, such as when used in the command lines of a rule. An extended example:
+
+    PACKAGE   = package
+    VERSION   = ` date +"%Y.%m%d" `
+    ARCHIVE   = $(PACKAGE)-$(VERSION)
+    dist:
+            #  Notice that only now macros are expanded for shell to interpret:
+            #      tar -cf package-`date +"%Y%m%d"`.tar
+            tar -cf $(ARCHIVE).tar .
+
+The generic syntax for overriding macros on the command line is:
+
+    make MACRO="value" [MACRO="value" ...] TARGET [TARGET ...]
+
+Makefiles can access any of a number of predefined internal macros, with '?' and '@' being the most common.
+
+    target: component1 component2
+            echo $? contains those components, which need attention (i.e. they ARE YOUNGER than current TARGET).
+            echo $@ evaluates to current TARGET name from among those left of the colon.
+
+===Suffix rules===
+
+Suffix rules have "targets" with names in the form .FROM.TO and are used to launch actions based on file extension. In the command lines of suffix rules, POSIX specifies that the internal macro $< refers to the first prerequisite and $@ refers to the target. In this example, which converts any HTML file into text, the shell redirection token > is part of the command line whereas $< is a macro referring to the HTML file:
+
+    .SUFFIXES: .txt .html
+    # From .html to .txt
+    .html.txt:
+            lynx -dump $<   >   $@
+
+When called from the command line, the above example expands.
+
+    $ make -n file.txt
+    lynx -dump file.html > file.txt
+
+===Other elements===
+
+Single-line comments are started with the hash symbol (#).
+Some directives in makefiles can include other makefiles.
+Line continuation is indicated with a backslash \ character at the end of a line.
+    target: component \
+            component
+    [tpl]keypress|TAB[/tpl]command ;          \
+    [tpl]keypress|TAB[/tpl]command |          \
+    [tpl]keypress|TAB[/tpl]piped-command
+
+==Example makefiles==
+
+Makefiles are traditionally used for compiling code (*.c, *.cc, *.C, etc.), but they can also be used for providing commands to automate common tasks. One such makefile is called from the command line:
+
+    make                        # Without argument runs first TARGET
+    make help                   # Show available TARGETS
+    make dist                   # Make a release archive from current dir
+
+The makefile:
+
+    PACKAGE	 = package
+    VERSION	 = ` date "+%Y.%m%d%" `
+    RELEASE_DIR  = ..
+    RELEASE_FILE = $(PACKAGE)-$(VERSION)
+    # Notice that the variable LOGNAME comes from the environment in
+    # POSIX shells.
+    #
+    # target: all - Default target. Does nothing.
+    all:
+	    echo "Hello $(LOGNAME), nothing to do by default"
+            # sometimes: echo "Hello ${LOGNAME}, nothing to do by default"
+	    echo "Try 'make help'"
+    # target: help - Display callable targets.
+    help:
+	    egrep "^# target:" Mmakefile
+    # target: list - List source files
+    list:
+	    # Won't work. Each command is in separate shell
+	    cd src
+	    ls
+	    # Correct, continuation of the same shell
+	    cd src; \
+	    ls
+    # target: dist - Make a release.
+    dist:
+	    tar -cf  $(RELEASE_DIR)/$(RELEASE_FILE) && \
+	    gzip -9  $(RELEASE_DIR)/$(RELEASE_FILE).tar
+
+Below is a very simple makefile that by default (the "all" rule is listed first) compiles a source file called "helloworld.c" using the system's C compiler and also provides a "clean" target to remove the generated files if the user desires to start over. The $@ and $< are two of the so-called internal macros (also known as automatic variables) and stand for the target name and "implicit" source, respectively. In the example below, $^ expands to a space delimited list of the prerequisites. There are a number of other internal macros.Automatic Variables GNU `make'
+
+    CFLAGS ?= -g
+    all: helloworld
+    helloworld: helloworld.o
+	    # Commands start with TAB not spaces
+	    $(CC) $(LDFLAGS) -o $@ $^
+    helloworld.o: helloworld.c
+	    $(CC) $(CFLAGS) -c -o $@ $    clean: FRC
+	    rm -f helloworld helloworld.o
+    # This pseudo target causes all targets that depend on FRC
+    # to be remade even in case a file with the name of the target exists.
+    # This works with any make implementation under the assumption that
+    # there is no file FRC in the current directory.
+    FRC:
+
+Many systems
+ come with predefined Make rules and macros to specify common tasks such as compilation based on file suffix.  This allows user to omit the actual (often unportable) instructions of how to generate the target from the source(s). On such a system the above makefile could be modified as follows:
+
+    all: helloworld
+    helloworld: helloworld.o
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+    clean: FRC
+	rm -f helloworld helloworld.o
+    # This is an explicit suffix rule. It may be omitted on systems
+    # that handle simple rules like this automatically.
+    .c.o:
+	$(CC) $(CFLAGS) -c $    FRC:
+    .SUFFIXES: .c
+
+That "helloworld.o" depends on "helloworld.c" is now automatically handled by Make. In such a simple example as the one illustrated here this hardly matters, but the real power of suffix rules becomes evident when the number of source files in a software project starts to grow. One only has to write a rule for the linking step and declare the object files as prerequisites. Make will then implicitly determine how to make all the object files and look for changes in all the source files.
+Simple suffix rules work well as long as the source files do not depend on each other and on other files such as header files. Another route to simplify the build process is to use so-called pattern matching rules that can be combined with compiler-assisted dependency generation. As a final example requiring the gcc compiler and GNU Make, here is a generic makefile that compiles all C files in a folder to the corresponding object files and then links them to the final executable. Before compilation takes place, dependencies are gathered in makefile-friendly format into a hidden file ".depend" that is then included to the makefile.  Portable programs ought to avoid constructs used below.
+
+    # Generic GNUMakefile
+    # Just a snippet to stop executing under other make(1) commands
+    # that won't understand these lines
+    ifneq (,)
+    This makefile requires GNU Make.
+    endif
+    PROGRAM = foo
+    C_FILES := $(wildcard *.c)
+    OBJS := $(patsubst %.c, %.o, $(C_FILES))
+    CC = cc
+    CFLAGS = -Wall -pedantic
+    LDFLAGS =
+    all: $(PROGRAM)
+    $(PROGRAM): .depend $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(PROGRAM)
+    depend: .depend
+    .depend: cmd = gcc -MM -MF depend $(var); cat depend >> .depend;
+    .depend:
+	@echo "Generating dependencies..."
+	@$(foreach var, $(C_FILES), $(cmd))
+	@rm -f depend
+    -include .depend
+    # These are the pattern matching rules. In addition to the automatic
+    # variables used here, the variable $* that matches whatever % stands for
+    # can be useful in special cases.
+    %.o: %.c
+	$(CC) $(CFLAGS) -c $    %: %.c
+	$(CC) $(CFLAGS) -o $@ $    clean:
+	rm -f .depend *.o
+    .PHONY: clean depend
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,64 @@
+[[Chmod]]
+
+CATEGORIES: Operating system security, Standard Unix programs, Unix file system-related software, Unix SUS2008 utilities
+
+In Unix-like operating systems, chmod is the name of a Unix shell command and a system call, which both change the access permissions to file system objects (including files and directories), as well as specifying special flags.Tutorial for chmod The name is an abbreviation of change mode.
+
+==History==
+
+A chmod command first appeared in AT&T Unix version 1.
+
+==Command syntax==
+
+chmod
+Usual implemented options include:
+If a symbolic link is specified, the target object is affected. File modes directly associated with symbolic links themselves are typically never used.
+To view the file mode, the ls or stat commands may be used:
+The r, w, and x specify the read, write, and execute access, respectively. This script can be read, written to, and executed by the user, read and executed by other members of the staff group and can also be read by others.
+
+===Octal modes===
+
+The chmod numeric format accepts up to four octal digits. The rightmost three refer to permissions for the file owner, the group, and other users. The next digit (fourth from the right) specifies special setuid, setgid, and sticky flags.
+Numerical permissions
+
+====Numeric example====
+
+In order to permit all users who are members of the programmers group to update a file
+Since the setuid, setgid and sticky bits are not specified, this is equivalent to:
+
+===Symbolic modes===
+
+The chmod command also accepts a finer-grained symbolic notation, which allows modifying specific modes while leaving other modes untouched. The symbolic mode is composed of three components, which are combined to form a single string of text:
+The references (or classes) are used to distinguish the users to whom the permissions apply. If no references are specified it defaults to “all” but modifies only the permissions allowed by the umask. The references are represented by one or more of the following letters:
+The chmod program uses an operator to specify how the modes of a file should be adjusted.  The following operators are accepted: 
+The modes indicate which permissions are to be granted or removed from the specified classes. There are three basic modes which correspond to the basic permissions:
+Multiple changes can be specified by separating multiple symbolic modes with commas (without spaces).
+
+====Symbolic examples====
+
+Add write permission (w) to the group's(g) access modes of a directory, />allowing users in the same group to add files:
+Remove write permissions (w) for all classes (a), />preventing anyone from writing to the file:
+Set the permissions for the user and the group (ug) to read and execute (rx) only (no write permission) on referenceLib, />preventing anyone other than the owner to add files.
+
+===Special modes===
+
+The chmod command is also capable of changing the additional permissions or special modes of a file or directory. The symbolic modes use s to represent the setuid and setgid modes, and t to represent the sticky mode. The modes are only applied to the appropriate classes, regardless of whether or not other classes are specified.
+Most operating systems support the specification of special modes using octal modes, but some do not. On these systems, only the symbolic modes can be used.
+
+===Command line examples===
+
+==System call==
+
+The POSIX standard defines the following function prototype:
+ int chmod(const char *path, mode_t mode);
+The mode parameter is a bitfield composed of various flags:
+Where alternate flag names are given, one of the pair of names might not be supported on some OSs. The octal values of the flags are summed or combined in a bitwise OR operation to give the desired permission mode.
+The function returns an error code.
+
+==See also==
+
+==References==
+
+==External links==
+
+

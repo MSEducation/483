@@ -1,0 +1,65 @@
+[[Y.156sam]]
+
+CATEGORIES: ITU-T recommendations
+
+ITU-T Y.156sam Ethernet Service Activation Test Methodology is a draft recommendation under study by the ITU-T describing a new testing methodology adapted to the multiservice reality of packet-based networks.
+
+==Key objectives==
+
+ITU-T Y.156sam is designed around three key objectives: 
+
+==Test methodology==
+
+ITU-T Y.156sam defines an out-of-service test methodology to assess the proper configuration and performance of an Ethernet service prior to customer notification and delivery. The test methodology applies to point-to-point and point-to-multipoint connectivity in the Ethernet layer and to the network portions that provide, or contribute to, the provisioning of such services. This recommendation does not define Ethernet network architectures or services, but rather defines a methodology to test Ethernet-based services at the service activation stage. In particular, it is aimed at solving the deficiencies of RFC 2544 listed below.
+
+===Existing test methodologies: RFC 2544===
+
+The Internet Engineering Task Force RFC 2544 is a benchmarking methodology for network interconnect devices. This request for comment (RFC) was created in 1999 as a methodology to benchmark network devices such as hubs, switches and routers as well as to provide accurate and comparable values for comparison and benchmarking.
+RFC 2544 provides engineers and network technicians with a common language and results format. The RFC 2544 describes six subtests:
+
+===Drawbacks of RFC 2544===
+
+From a laboratory and benchmarking perspective, the RFC 2544 methodology is an ideal tool for automated measurement and reporting. 
+From a service turn-up and  troubleshooting perspective, RFC 2544, although acceptable and valid, does have some drawbacks:
+
+==Service definitions==
+
+The ITU-T Y.156sam defines test streams with service attributes linked to the Metro Ethernet Forum (MEF) 10.2 definitions.
+Services are traffic streams with specific attributes identified by different classifiers such as 802.1q VLAN, 802.1ad and class of service (CoS) profiles. These services are defined at the UNI level with different frame and bandwidth profile such as the service’s maximum transmission unit (MTU) or frame size, committed information rate (CIR), and excess information rate (EIR).
+
+==Test rates==
+
+The ITU Y.156sam defines three key test rates based on the MEF service attributes for Ethernet virtual circuit (EVC) and user-to-network interface (UNI) bandwidth profiles.
+
+===Color markings===
+
+These rates can be associated to color markings:
+
+==Subtests==
+
+The ITU-T Y.156sam is built around two key subtests, the service configuration test and the service performance test, which are performed in order:
+
+===Service configuration test===
+
+Forwarding devices such as switches, routers, bridges and network interface units are the basis of any network as they interconnect segments. If a service is not correctly configured on any one of these devices within the end-to-end path, network performance can be greatly affected, leading to potential service outages and network-wide issues such as congestion and link failures. 
+The Service configuration test measures the ability of DUT or network under test to properly forward in three different states:
+
+===Service performance test===
+
+As network devices come under load, they must prioritize one traffic flow over another to meet the KPIs set for each traffic class. With only one traffic class, there is no prioritization performed by the network devices since there is only one set of KPIs. As the number of traffic flows increase, prioritization is necessary and performance failures may occur.
+The service performance test measures the ability of the DUT or network under test to forward multiple services while maintaining SLA conformance for each service. Services are generated at the CIR, where performance is guaranteed, and pass/fail assessment is performed on the KPI values for each service according to its SLA.
+Service performance assessment must also be maintained for a medium- to long-term period as performance degradation will likely occur as the network is under stress for longer period of times. The service performance test is designed to soak the network under full committed load for all services and measure performance over medium and long test time.
+
+==Metrics==
+
+The Y.156sam focuses on the following KPIs for service quality:
+
+==Vendor implementation==
+
+The ITU-T Y.1564 (previously Y.156sam) has gained momentum in the test and measurement industry. Sunrise Telecom and EXFO are the first test vendors to implement the ITU-T Y.1564, respectively offering Ethernet and multiservice test equipment via the IntelliSAM and EtherSAM test methodologies.
+
+==References==
+
+==External links==
+
+

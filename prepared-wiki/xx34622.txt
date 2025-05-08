@@ -1,0 +1,38 @@
+[[System on a chip]]
+
+CATEGORIES: Electronic design, Microtechnology, System on a chip
+
+A system on a chip or system on chip (SoC or SOC) is an integrated circuit (IC) that integrates all components of a computer or other electronic system into a single chip. It may contain digital, analog, mixed-signal, and often radio-frequency functions—all on a single chip substrate. A typical application is in the area of embedded systems.
+The contrast with a microcontroller is one of degree. Microcontrollers typically have under 100 kB of RAM (often just a few kilobytes) and often really are single-chip-systems, whereas the term SoC is typically used for more powerful processors, capable of running software such as the desktop versions of Windows and Linux, which need external memory chips (flash, RAM) to be useful, and which are used with various external peripherals. In short, for larger systems, the term system on a chip is a hyperbole, indicating technical direction more than reality: increasing chip integration to reduce manufacturing costs and to enable smaller systems. Many interesting systems are too complex to fit on just one chip built with a process optimized for just one of the system's tasks.
+When it is not feasible to construct a SoC for a particular application, an alternative is a system in package (SiP) comprising a number of chips in a single package. In large volumes, SoC is believed to be more cost-effective than SiP since it increases the yield of the fabrication and because its packaging is simpler.[tpl]cite web|url=http://www.eetimes.com/electronics-news/4052047/The-Great-Debate-SOC-vs-SIP |title=The Great Debate: SOC vs. SIP |publisher=EE Times |date= |accessdate=2009-08-12[/tpl]
+Another option, as seen for example in higher end cell phones and on the BeagleBoard, is package on package stacking during board assembly. The SoC chip includes processors and numerous digital peripherals, and comes in a ball grid package with lower and upper connections. The lower balls connect to the board and various peripherals, with the upper balls in a ring holding the memory buses used to access NAND flash and DDR2 RAM. Memory packages could come from multiple vendors.
+
+==Structure==
+
+A typical SoC consists of:
+These blocks are connected by either a proprietary or industry-standard bus such as the AMBA bus from ARM Holdings. DMA controllers route data directly between external interfaces and memory, bypassing the processor core and thereby increasing the data throughput of the SoC.
+
+==Design flow==
+
+A SoC consists of both the hardware described above, and the software controlling the microcontroller, microprocessor or DSP cores, peripherals and interfaces. The design flow for a SoC aims to develop this hardware and software in parallel.
+Most SoCs are developed from pre-qualified hardware blocks for the hardware elements described above, together with the software drivers that control their operation. Of particular importance are the protocol stacks that drive industry-standard interfaces like USB. The hardware blocks are put together using CAD tools; the software modules are integrated using a software-development environment.
+Chips are verified for logical correctness before being sent to foundry. This process is called functional verification and it accounts for a significant portion of the time and energy expended in the chip design life cycle (although the often quoted figure of 70% is probably an exaggeration).[tpl]cite web |url=http://www.eetimes.com/showArticle.jhtml?articleID=21700028 |title=Is verification really 70 percent? |publisher=Eetimes.com |date= |accessdate=2009-08-12[/tpl] With the growing complexity of chips, hardware verification languages like SystemVerilog, SystemC, e, and OpenVera are being used. Bugs found in the verification stage are reported to the designer.
+Traditionally, engineers have employed simulation acceleration, emulation and/or an FPGA prototype to verify and debug both hardware and software for SoC designs prior to tapeout. With high capacity and fast compilation time, acceleration and emulation are powerful technologies that provide wide visibility into systems. Both technologies, however, operate slowly, on the order of MHz, which may be significantly slower – up to 100× slower – than the SoC’s operating frequency. Acceleration and emulation boxes are also very large and expensive at $1M+.
+FPGA prototypes, in contrast, use FPGAs directly to enable engineers to validate and test at, or close to, a system’s full operating frequency with real-world stimulus. Tools such as Certus[tpl]cite web |url=http://www.eetimes.com/electronics-products/electronic-product-reviews/ip-eda-products/4399727/Tektronix-hopes-to-shake-up-ASIC-prototyping?Ecosystem=eda-design| title=Tektronix hopes to shake up ASIC prototyping | publisher=EE Times | date= 2012-10-30|accessdate=2012-10-30[/tpl] are used to insert probes in the FPGA RTL that make signals available for observation. This is used to debug hardware, firmware and software interactions across multiple FPGA with capabilities similar to a logic analyzer.
+After debug the hardware of the SoC follows the place-and-route phase of the design of an integrated circuit or ASIC before it is fabricated.
+
+==Fabrication==
+
+SoCs can be fabricated by several technologies, including:
+SoC designs usually consume less power and have a lower cost and higher reliability than the multi-chip systems that they replace. And with fewer packages in the system, assembly costs are reduced as well.
+However, like most VLSI designs, the total cost is higher for one large chip than for the same functionality distributed over several smaller chips, because of lower yields and higher Non-recurring engineering (NRE) costs.
+
+==See also==
+
+==Notes==
+
+==Further reading==
+
+==External links==
+
+

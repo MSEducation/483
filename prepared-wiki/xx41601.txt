@@ -1,0 +1,31 @@
+[[Strategy pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code
+
+In computer programming, the strategy pattern (also known as the policy pattern) is a software design pattern that enables an algorithm's behavior to be selected at runtime. The strategy pattern 
+Strategy lets the algorithm vary independently from clients that use it.Eric Freeman, Elisabeth Freeman, Kathy Sierra and Bert Bates, Head First Design Patterns, First Edition, Chapter 1, Page 24, O'Reilly Media, Inc, 2004. ISBN 978-0-596-00712-6 Strategy is one of the patterns included in the influential book Design Patterns by Gamma et al. that popularized the concept of using patterns in software design.
+For instance, a class that performs validation on incoming data may use a strategy pattern to select a validation algorithm based on the type of data, the source of the data, user choice, or other discriminating factors. These factors are not known for each case until run-time, and may require radically different validation to be performed. The validation strategies, encapsulated separately from the validating object, may be used by other validating objects in different areas of the system (or even different systems) without code duplication.
+The essential requirement in the programming language is the ability to store a reference to some code in a data structure and retrieve it. This can be achieved by mechanisms such as the native function pointer, the first-class function, classes or class instances in object-oriented programming languages, or accessing the language implementation's internal storage of code via reflection.
+
+==Structure==
+
+(legend)]]
+
+==Example==
+
+The following example is in Java.
+
+==Strategy and open/closed principle==
+
+According to the strategy pattern, the behaviors of a class should not be inherited. Instead they should be encapsulated using interfaces. As an example, consider a car class. Two possible functionalities for car are brake and accelerate. 
+Since accelerate and brake behaviors change frequently between models, a common approach is to implement these behaviors in subclasses. This approach has significant drawbacks: accelerate and brake behaviors must be declared in each new Car model. The work of managing these behaviors increases greatly as the number of models increases, and requires code to be duplicated across models. Additionally, it is not easy to determine the exact nature of the behavior for each model without investigating the code in each.
+The strategy pattern uses aggregation instead of inheritance. In the strategy pattern, behaviors are defined as separate interfaces and specific classes that implement these interfaces. This allows better decoupling between the behavior and the class that uses the behavior. The behavior can be changed without breaking the classes that use it, and the classes can switch between behaviors by changing the specific implementation used without requiring any significant code changes. Behaviors can also be changed at run-time as well as at design-time. For instance, a car object’s brake behavior can be changed from BrakeWithABS() to Brake() by changing the brakeBehavior member to:
+This gives greater flexibility in design and is in harmony with the Open/closed principle (OCP) that states that classes should be open for extension but closed for modification.
+
+==See also==
+
+==References==
+
+==External links==
+
+

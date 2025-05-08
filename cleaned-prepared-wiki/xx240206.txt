@@ -1,0 +1,66 @@
+[[Address constant]]
+
+CATEGORIES: Data types, Primitive types, IBM software, Assembly languages
+
+In IBM System/360 through present day z/Architecture, an address constant or "adcon" is an assembly language data type which contains the address of a location in computer memory. An address constant can be one, two, three or four bytes long, although an adcon of less than four bytes is conventionally used to hold expression for a small integer such as a length, a relative address, or an index value, and does not represent an address at all. Address constants are defined using an assembler language "DC" statement.
+Other computer systems have similar facilities, although different names may be used.
+
+Types of address constants
+
+A adcons normally store a four byte relocatable address.
+V type adcons store an external reference to be resolved by the link-editor.
+Y is used for two byte (halfword) addresses.  'Y' adcons can directly address up to 32K bytes of storage, and are not widely used since early System/360.  Early DOS/360 and BOS/360 systems made more use of Y adcons, since the machines these systems ran on had limited storage.  The notation 'AL2(value)' is now usually used in preference to 'Y(value)' to define a 16 bit value.
+Q address constants contain not actual addresses but a displacement in the External Dummy Section – similar to the Linux Global Offset Table (see Position-independent code).  A J adcon is set by the linkage editor to hold the cumulative length of the External Dummy Section, and does not actually contain an address.
+Other types of address constants are R which had special significance for TSS/360 to address the PSECT, and S, which stores an address in base-displacement format – a 16 bit value containing a four bit general register number and a twelve bit displacement, the same format as addresses are encoded in instructions.
+System z supports types AD, JD, QD, and VD, which represent 8 byte (doubleword) versions of types 'A', 'J', 'Q', and 'V' to hold 64 bit addresses.
+
+Relocatability
+
+the nominal value of the 'DC' is a list of expressions enclosed in parentheses.  Expressions can be absolute, relocatable, or complex relocatable.
+An absolute expression can be completely evaluated at assembly time and does not require further processing by the linkage editor.  For example, 'DC A(4900796)' has an absolute nominal value.
+A relocatable expression is one that contains one or more terms that require relocation by the linkage editor when the program ls linked, for example, in the following code 'ACON' has a relocatable nominal value.
+ 
+ LAB  DC H'0'
+     ...
+ACON DC A(LAB-4)
+
+A complex relocatable expression contains terms that relate to addresses in different source modules.  For example 'DC A(X-Y)'  where 'X' and 'Y' are in different modules.
+
+Examples
+
+All these are valid adcon's:-
+ ADCONS   DS    0A                     an aligned label of implicit length 4 (for the next 4 byte address that follows it)
+          DC    A(FIELDA)              a 4 byte word, aligned, absolute address of a variable 'FIELDA'
+          DC    AL4(FIELDA)            as above but not (necessarily) aligned on a word boundary
+          DC    AL3(FIELDA)            a three byte equivalent of the above (maximum 16 megabytes)
+          DC    AL2(FIELDA-TABLES)     two byte offset from 'TABLES' label to start of 'FIELDA'
+          DC    AL2(L'FIELDA)          a two byte length of the field called 'FIELDA' (=26 in decimal)
+          DC    AL1(C'A')              hexadecimal value of the EBCDIC character 'A' (=C1 in hex)
+          DC    A(FIELDA-C'A')         a 4 byte, aligned, absolute address --> 192 bytes before the start of FIELDA
+          DC    A(*)                   a 4 byte, aligned, address of this adcon  (* means 'here')
+          DC    S(SUBRTNA)             a 2 byte, aligned   base+displacement address of the program label "SUBRTNA"
+          DC    X'47F0',S(SUBRTNA)     an unconditional branch instruction (built using an S-type address constant)
+          DC    SL2(SUBRTNA)           a 2 byte, UNALIGNED base+displacement address of the program label "SUBRTNA"
+ STAB     DC    SL2(SUBRTNA,SUBRTNB,SUBRTNC,.) AN ARRAY OF unaligned S-TYPE ADCONS to several program labels
+ *
+ INDIRECT DC    A(*+4)                 address of next byte after this adcon (the V-type adcon)
+          DC    V(SUBRTNX)             address of an external subroutine entry point
+          DC    AL1(−1)                a one byte negative value (= x'FF'), often used as a table de-limiter
+ .
+ SUBRTNA   DS    0H                    start of (internal) sub-routine A
+ .         instructions go here
+ .
+ TABLES   DS    0H                     base address for tables section (halfword aligned)
+ LENGTHS  DC    Al2(5,27,56,83,127,32563)   an arbitrary array of 6 x 2 byte hex lengths (defined by their decimal values)
+ PARMLIST  DC   A(HERE,THERE,EVWHERE,-1)  an array of 3 x 4 byte aligned pointers to various field labels/entrypoints with additional negative value end-pointer (=X'FFFFFFFF').
+ .
+ ZERO_255 DC    256AL1(ZERO_255-*)               an array of 256 single byte hex values 00-FF
+ * ---------end of adcon examples ---------------- *
+ FIELDA   DC    C'ABCDEFGHIJKLMNOPQRSTUVWXYZ'    a field containing a character string (not an adcon) = A-Z
+ .
+
+
+
+External references
+
+

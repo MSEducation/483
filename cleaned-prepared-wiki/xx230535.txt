@@ -1,0 +1,243 @@
+[[Fuzzy locating system]]
+
+CATEGORIES: Geolocation, Radio-frequency identification, Radio navigation, Tracking, Ubiquitous computing, Wireless locating
+
+Fuzzy locating is a rough but reliable method based on appropriate measuring technology for estimating a location of an object. The concept of precise or crisp locating is replaced with respect to the operational requirements and the economic viability. In most cases the knowledge of exact coordinates does not contribute to operations, but the spatial or planar relation between entities is relevant. Hence fuzzy locating determines the radial distances between entities involved in an operational process and reduces the required accuracy of measurement to basic qualities of close, near or far and to relations simple as in or out. However such segregation shall be achieved with high reliability and sound repetition.
+
+Basics
+
+The term fuzzy relates to rough spatial coincidence or contiguity assessment compared to the alternative crisp locating, which derives precise coordinates of a location of an object. The fuzzy part of the locating process balances the physical and the mathematical portions of processing measurement data of the objects involved and a priori knowledge with the operational ambience. 
+The result of fuzzy locating shall suffice for operational support and not for metric confirmation of measures taken at earlier occasions. However, available information is exploited as a priori knowledge. Fuzzy locating compares with the distinction respectively segregation of mathematical logic with the terms crisp sets and crisp relations or fuzzy sets and fuzzy relations.
+Systematic and stochastic errors occurring under operational requirements and conditions turn virtually precise measures in a friendly ambience to fuzzy metrics. In even worse ambient conditions, which mostly applies to wireless propagation in ISM bands, this leads to erratic results and various misinterpretation. In consequence, the trade-off between technical effort and achieved operational support adjusts inevitably to physical limitations as well as to weaknesses in mathematical modeling. Better resolved balancing deliberately neglects classical terms of precision in favour of a strong commitment for operational unambiguity.
+
+The techno-economic challenge
+
+Generally, precision is obtained at expense. The balancing of capital expenditure and of operational cost shall take into account not what is possible, but what is necessary. A better designed balancing leads to the less precise fuzzy locating at much lesser expense: As a more general approach, fuzzy locating is a method for best estimating a roughly determined location of an object as a distinction of operational contiguity. Contiguity means more or less a handy distance between an individual and an object. Three basic situations generally apply:
+In all three cases the absolute coordinates are not of interest, as long as the discrimination of rooms or work positions is reliably achieved.
+
+Wireless, optical and acoustical approaches
+
+For the locating task, an object to be located must be at least equipped with a wireless tag in a wireless communication environment. Each operating wireless target in a wireless communication environment may contribute. Prerequisite for radio frequency based wireless cooperation is some cohesion of the wireless nodes in a networking concept. Each wireless target has at least one physical propagation parameter that varies with location. Better qualified approaches make use of more than one physical parameter. 
+Alternatively, optical and acoustical solutions are known. Variation of parameters is partly deterministic with varying distances between wireless nodes. A location estimate approximating the real location of the transmitter, preferably under real time constraints, is determined on the basis of a stochastical model of propagation and a model for the process of observation in a noisy ambience and on a chosen set of observed deterministic parameters of transmission and propagation.
+
+=Implemented examples=
+
+Several suppliers offer the so-called electronic leash solution. This serves for wirelessly tethering mobile appliances with each other. The RSSI estimate serves for a radial metrics but without any certified calibration. Setting an alarm on unintentional loss is the key service offered with this concept.
+An advanced aspect has been launched with Bluetooth low energy for better economized battery life cycle. Special trimming serves for two years operation from a button cell.Watch with Bluetooth low energy profile
+
+Comparison to metric locating
+
+Metric or crisp locating determines a spatial or planar relationship between independently moving or residing entities (usually addressed as targets) by means of qualified methods for measuring distances. This is the topic for example of 
+These technologies generally make use of a travel time measurement as the approach with best resolution and precision. Further enhancement is achieved with time differences discriminated for several paths. Such basic or enhanced travel time measurement requires a multiplicity of measures for unambiguous locating. 
+All of these sophisticated physical methods of measuring are hampered with a challenge caused by motion and caused by transmitter population. This makes restrictions effective in time both for observation and capture and for communication of measurement data. In consequence, the pecuniary and the technical effort adjusts to physical limitations and the limited metric precision with a special aspect to operational clarity. Such balancing neglects classical terms of metric precision, prevents from over-interpreting erratic measures and provides sufficient escape.
+Additionally the model of propagation contributes to the achieved results. In satellite based systems, direct line of sight is generally required, without escape. That determines the restriction with applying such approach between buildings or, even worse, inside buildings: The highest precision does not compensate for bad visibility. Whenever the path of propagation gets cranked, the result of time measurement gets biased.
+In comparison to locating on the move, exactly determining a location with highest possible precision is the topic of geodesy and surveying. These disciplines traditionally do not deal with motion and may integrate over long time. The terms of 'locating', 'positioning' and 'navigating' or 'surveying' are commonly used in almost equivalence, hence neglecting that the sense of these terms is different concerning sensor and actor functions and motion conditions.
+
+Radio signal strength indication (RSSI) as a coarse metric
+
+For many purposes, a distinct and reliable determination of a location relative to somewhat rastered position on a floor or just a room in a building will be sufficient for sound fuzzy locating by single measurements.
+Typically fuzzy locating coincides with simple power level measurement, usually configured as unilateration. A combination of multiple distance measurement, as a multilateration, based on power level measurement, appears unbalanced. The effort for multiple measures aiming at an unambiguous multilateration process will not be justified with the achievable precision of the results of power level measures.
+Though leaving some ambiguity with sparse measurements, the contiguity may be assessed applying a priori knowledge. Such includes primarily tracking motion over time. As a generalized approach the fuzzy locating based on power levels measured with wireless nodes will roughly suffice for coarse guessing a location, where an object or a person with a wireless node resides in contiguity to other wireless nodes in a wireless environment.
+Therefore each wireless node recognises the received power level with the distance to the transmitting wireless node and this parameter can be measured. Some additional calibration parameters serve as a basis for the statistical model of the parameters of propagation in a known neighborhood of distributed wireless nodes and of other passive objects, which influence propagation. A location estimate, which approximates the approach of the transmitting node, will be described with the stochastic model of propagation and the statistics of the monitored parameters.
+
+Offered discrimination of positions
+
+For applications where no need for absolute coordinates determination is assessed, the implementing of a more simple solution is advantageous. Compared to multilateration as the concept of crisp locating, the other option is fuzzy locating, where just one distance delivers the relation between detector and detected object. This most simple approach is unilateration. However, such unilateration approach never delivers the angular position with reference to the detector. Many solutions are available today.
+
+Offered qualities with auxiliary mapping
+
+Increasing accuracy means increasing cost. The most indirect approach is the increase of distributed anchor nodes. The first direct approach simply is a fixed excitation through wall-mounted wireless nodes or optical excitors. That will provide a sound room discrimination in any case. The second direct approach is the position discrimination using apparently available infrastructure objects, as with networked work stations yet equipped with Bluetooth transponders.
+The easy escape beyond increase of accuracy in measuring is the accuracy gain with mapping. Such mapping seldom suffices when performed statically. The more advantageous approach is a combination of initial mapping based on floor plans or area maps with an intelligent update based on updates obtained from actual measuring. That is offered with the concept of simultaneous Locating and Mapping.OpenSLAM, Simultaneous Localization and Mapping
+
+Physical restrictions
+
+Measurement of propagation parameters is generally heavily loaded with various noise components. Such noise may be stochastic (noise) or deterministic or a mixture of noises with limited bandwidth (noise).
+As with all wireless systems, qualities of measurement in any one aspect contradict to qualities in some other aspects:
+Such contracdictions result in challenges for systems performance and in hard restrictions concerning timely parallel availability of certain quality levels. 
+Facing limitations as inevitable, the implementer of a locating systems has to determine the operational requirements first and then has to make a choice under a set of alternatives and must scale the adjoint limitations. The outcome is always a compromise with trade offs usually in budgetary effort and in technical precision. Any chosen alternative generally will exclude certain other technical options from operational availability.
+
+Noisy ambience as a general condition
+
+In technical terms, operational environments are generally noisy. For measuring, that is not a friendly ambience. Systematic and stochastic errors under operational requirements and conditions turn virtually precise measures to fuzzy metrics. The measuring results get in worse in a densely populated ambience, especially in the vicinity of other electrically active objects. Even physically passive surfaces contribute to the measurement problem. All physical effects tend to contribute unsteady and non linear behavior. Hence the physical measurement errors lead to biased or erratic results under such noisy conditions.
+
+Frequency spread as an option
+
+One escape from collision problems with wireless networks is the separation of the measuring and the communications processes with allocation to different frequencies, however requiring respective dual transponder capabilities. 
+Another escape from collision problems with wireless networks is the spread of signals with stochastic coding.
+
+Time as a restriction for measuring
+
+Even if targets do not move, time is a restriction with the performing of a locating function. The first impact is that of allowed minimal distinct time differences that define the theoretically best resolution. This varies conceptually between phase discrimination in fractions of a cycle to be measured and full cycles to be counted. In competition for non-colliding transmission, time may appear as the main aspect with systems that use the very same frequency band. Other stochastic frequency allocation may ease the thrive for results, but normally coincide with lower allowance for power according to the set conditions of  unlicensed usage.
+Allowable time differences mostly vary with motion of the observed target. As for locating with absolute coordinates in a noisy environment several measurements are required and for disambiguation in space generally four measurements from independent reference points determine a target location, time appears as the sparse parameter.
+
+Sequencing as a restriction
+
+In general, the strict sequencing of tasks appears with single tasking in one processor. Similarly the factual sequencing on only one frequency results from anti collision procedures. Both types of sequencing produce some dilation of time (with anti collision) or some dilution of location (with moving targets), while the respective wireless processes are performed by each target.
+
+Bandwidth as a restriction
+
+The measuring of signals with steady modulation is bound to the bandwidth of the modulated carrier. The measuring of chirped signals is equivalently bound to the bandwidth of the transmitted pulses. In both methods, the available bandwidth will limit the precision of measurements.
+
+Resolution as a restriction
+
+Technical means for measuring offer limited resolution and respective digitizing errors. This limits again the quality of results. Any way to overcome such limits raises system cost. Hence the escape again is not in improving the technical effort, but directs to the mathematical yield.
+
+Battery life cycle as a limiting factor
+
+The use of primary or secondary cells in wireless nodes limits both the time of operation as well as the life cycle without change for fresh batteries or just recharging. The mode of operation will be designed accordingly to widen the span of battery supply. That may be achieved by sleep up mode with respective wake up circuitry, operating without receiver in connectionless beacon mode, low repetition cycles and optimally low transmission power. An integrated loading circuit raises cost but saves the cost for external contacts. An unchangeable primary battery improves by lower self discharge compared to secondary cells, but causes the need for complete replacement or at least of the casing facultatively.
+
+Motion as a dynamic challenge
+
+When a target moves at a certain speed, the sequential measuring of distances from such transmitter target to a set of responder targets may deliver distance data for the subsequent locations at each measuring directly back to the transmitter target. This effect is independent from architecture of the network. 
+However, a measuring triggered from the transmitter target but performed almost in parallel by a set of receiver targets delivers a much better result under motion conditions, but requires either a server function for collecting the resulting data or requires additional response back to the triggering transceiver target. 
+The other escape is to apply a procedure to bundle the required measurements for each target in direct sequence thus reducing one effect of motion challenge by saving the preparation times for a reporting communications link. If not, then the competition for non-colliding transmission will lengthen the time span for each set of transmissions.
+
+Population as restriction
+
+When several targets move independently in the same area or space and same wireless reach and also request locating independently and potentially in timely conflict using on the very same frequency for communications and for measurement, then the required measurements in one single ambience may collide. One escape again is the separation of the measuring and the communications processes with allocation to different frequencies, however requiring respective dual transponder capabilities.
+
+Line of sight as a problem
+
+In any case, line of sight is required for correct distance measurements. This may be eased by using auxiliary targets, but then increases the count of measurements. And the usage of auxiliary targets burdens the results with an increase of numeric inaccuracy.
+
+Multipath propagation as a problem
+
+Multipath propagation is inevitable with wireless systems. The reception from any transmitter and the response to any transmission are both challenged by the option of multiple propagation paths. If there is none but a single cranked path, there is no desired result at all, and the option to discriminate false measures from proper measures fails completely.
+Typical issues with multipath propagation are fading, dither, diffraction, combining as non-linearity effects for the distance model. Additionally with power level measure the transmission through walls delivers rough errors, even with travel time measurement such error occurs.
+
+Mathematical requirements and options
+
+Mathematics serves for everything that cannot be covered by physics approaches. The assumption that a most qualified electro technical approach solves all problems arising from measurement is naïve and does not lead to sufficient results. At least thriving for best performance only at the expense of electronics is not an economized approach.
+An operationally sufficient locating system will balance benefit and effort. Measurement and estimate shall take motion into account. This must not include the measuring of motion itself, but proper assessment of current and past motion to estimates. All estimate approximating the real location of the target is determined on the basis of a statistical model for the observed stochastic processes. Such model and estimation will use the set of observed propagation parameters. Some calibration data may serve as a basis for a statistical model of the propagation parameters. Such calibration is performed versus a spatial distribution of radio energy and with aspect to a known spatial distribution of corresponding targets. Other passive objects affecting propagation interfere with wireless operation and measurement.
+
+Filtering as a basic requirement
+
+Any measurement is always biased with disturbances from ambient radiation out of electrical units with switches, from other wireless units and from stationary equipment as computers. To eliminate erratic results, some estimation based on past behavior, current dynamic properties and with reference to coupling mechanisms is recommended. State of the art for such tracking is e.g. extended Kalman filtering. Approaches that do not apply filtering produce no  reasonable results.
+However, scalar filtering uses the model of residence in a fixed location or stationary motion. If abrupt turning the direction of motion, the filter algorithm may totally fail until filtering has recovered from tracking  a sufficient walk in the new direction has been performed.
+
+Statistics as a means for estimation
+
+In case of biased signals the prerequisite for filtering is some statistic estimation, which serves for eliminating the large errors and smoothes a sequence of measurement results. This may be integrated with filtering, as far as the eliminating of large errors does not bias the filtering process under any conditions.
+
+Quadratic equations as a problem
+
+The determining equations are quadratic ones, thus requiring at least one more equation (n+1) than defined by dimension (n). This leads to a minimum requirement of three equations for planar problems and four equations for spatial problems.
+
+Over determination as a support
+
+The common approach to locating calculations may be the inversion of the Euclidic distance equations. However, such deterministic approach does not serve for the balancing in over determined equation systems. The easy approach is the exploitation of Gauss' least squares principle with the multi dimensional scaling according to Torgerson.
+
+Wireless coexistence
+
+Many offered systems architectures and product offerings use license free ISM frequency bands and reside in similar channel patterns. The operating of fuzzy locating shall not compromise the communications options. Some restrictions apply not to infringe this requirement.
+
+Technology approaches and options
+
+The second step after scalar calculation is the involvement of model data according to the dimensionality of the motion. If reference is made to targets in other planes but the plane on which the moving targets may operate, such model must be a three-dimensional model. For model based operations, there are several options.
+
+Coincident locating as the initial option
+
+Imagine a worker operating with a handheld reader of any type. The person is skilled to capture the identity of an object and used reader will report the capturing with time stamp. Such report discloses the location of capture as far as this information is reported in contents. The mandatory condition could be some automatic means to capture the location at the moment of identifying. In all other cases the quality and reliability of the location report limits the validity of the e.g. vocally reported data.
+In all implementations of automatic data acquisition and locating systems the option of locating a handheld reader in the moment of manual triggering shall be foreseen as the fall back option. Otherwise the robustness of automatic data acquisition systems operation is bound to availability of automatic operation only.
+
+Choke point locating as the poorest option
+
+A choke point is a static bottleneck in process flow designs. There the passage of individuals and/or objects may indicate the identity of such entity to a steadily installed identifier unit. This approach under all conditions is restricted to just one location. 
+Politics and Sales force may describe that as locating, but it is definitively still just identifying.
+
+Power mapping as a first poor option
+
+Propagation of radio signals happens according to Maxwell's equations and includes attenuation in atmosphere proportional to distance, Such concept is the basis for power mapping. The irregularities from local ambient conditions may be taken into account by power measurement in the operational area to correct the theoretically linear attenuation with distance. However, this approach does not work with an accuracy of better than 10% of the calculated distances in the range of propagation, thus leading to accuracies in the range of some meters.
+
+Time distance equivalence for radiation
+
+Propagation of radio signals happens according to Maxwell's equations and includes travel time in atmosphere proportional to distance, Such concept is the basis for precise distance measurement. The irregularities from local ambient conditions are not dominant, thus the approach is more precise than power measurement. So this approach works with an accuracy of better than 1% of the calculated distances in the range of propagation, thus leading to accuracies in the range of some centimeters. However, this approach serves as well for line of sight propagation as for indirect reflected propagation.
+
+Space model as a strong option
+
+To escape the biasing with secondary paths, there must be some reasoning that excludes the physically impossible locations from sets of results from locating. Simply, all calculated locations in material will be assessed as erratic, all calculated locations at distances not possible with inherent speed limits will be assessed as erratic and all locations above ground will be assessed impossible for floor operation.
+The requirement for space modeling leads to depicting the operational planes different from the limits to such planes, as walls, racks, and other installations.
+
+Statistical model to exploit the measurements
+
+There is no chance to base stable results for location on single measurements. Statistics allow for 
+The methods for computing a set of results are described in context of various applications not just with locating technologies.
+
+Fuzzy reasoning with discrete spatial compartments
+
+As far as locating just has to support discrimination of rooms where a target may reside, the continuous model approaches may be combined with reasoning procedures to eliminate improbable results and to exclude operationally invalid locations from potential depicting a scenery. The known methods of inference apply to such processing.
+
+Geometric mapping contributions to reasoning
+
+As far as the ambient operational conditions are stable, a geometric mapping of the neighborhood may support the reasoning. Then all massive obstacles describe the residual space of operation. As well such mapping will support the systematic and well determined consideration of multipath propagation effects. Hence geometric mapping derives the major gain compared to Bayes' estimators.
+
+Adaptive approaches
+
+A common approach as preparatory mapping requires steady conditions and a constant ambience. This crucial condition is not fulfilled in dynamic operational theatres. However, a robust solution will always detect and investigate the actual conditions and reconnoiter the present ambience. For robot navigation, the methods of adaptive systems design, hence application of learning functions, is state of the art. However, adaptation requires time. A fully adaptive solution not applying a priori knowledge will be rather slow and will show limited dynamics. A balanced combination of adaptive functions will allow for best performance in a generally known ambience and cope for all changes that occurred after last encounter.
+
+Operational requirements
+
+Locating arises from operational challenges. Traditional understanding of well kept enterprises with well educated staff is undermined with a thriving for reduced skills to achieve lesser cost. In result and in addition with continuing socio-economical disparities the processes and objects under control are threatened by negligence, fraud and theft.
+
+Evidence
+
+A simple indication of presence is given with the signal used for locating an object or a person. However, as presence may be temporary, a time stamp is required to adduce evidence in retrospective.
+
+Cooperation requirement
+
+Persons carrying transponders or tagged objects with transponders might not be willing to be observed though having agreed earlier to this process. Then cooperation may be technically required, but individually denied. The robustness of the detection hence shall not be dependent to such cooperation. Especially covering the transponder or tearing off the transponder or otherwise tampering must be sensed automatically.
+
+Proof of presence
+
+The presence of an object or a person in an operational vicinity is a strong demand. Absence of required resources generally affects planned processes. Therefore the proof of presence may be performed as far as possible before binding of additional resources happens.
+
+Co-locating of staff
+
+Specially team work is bound to availability of required staff. The persons involved in a scheduled operation are well skilled to determine who is missing, but locating the missing parties is not that easy and may be strongly improved by system support.
+
+Discrimination of rooms
+
+To allow for operation the respective room shall coincide with the scheduled action. Any request to operate under restrictions outside the planned confined area is suspect and may challenge security of processes and of secured knowledge. Locating the acting entities in the named confinement contributes to fulfilling security requirements.
+
+Coincidence of presence and challenge
+
+A person may try to access secured data, material or other resources outside the well secured rooms or areas. However, control may not always secure the subordination of the user to given orders. Locating simply in close distance or just in contiguity to allowed work positions may confirm the request for access as a basic feature.
+Other application is coincidence of service provider, e.g.g. patient, in a hospital. After identifying both persons as estimating their radial distance then access to the patient's file may be granted without any error. Such function would not be viable with precise or crisp systems as precision and allowable cost are in contradiction with absolute coordinate estimates.
+
+Quality requirements
+
+The above listed terms will show that the definition of desired precision and accuracy, of repeatability and delays alone does not comply with a proper definition of requirements under aspects of cost. However, other terms of quality apply without restrictions.
+
+Tamper proof identity
+
+Basic requirement for any means to support locating is a tamper proof inherent identity of the carrying target with secured access. The secrecy of the identity prevents from plump copying threat and the tamper protection prevents from manipulating the target.
+
+Self identifying authenticity
+
+Persons who pursue to access data and applications normally authenticate themselves. Such authentication is generally bound to known locations, where the persons are authorized to perform work. Locating persons when they challenge authorization procedures is and advantage to prevent from fraud and theft.
+
+Object identifying security
+
+Numerous means are known to identify objects. Normally the location where hand held units are operated are just roughly determined by the access point where connection to network is made. However such locating is still an improvement in many operations to secure knowledge about whereabouts of objects upon identifying.
+
+Tracking capability
+
+In larger context of spatially distributed services and especially in logistics, numerous objects are in use in parallel, in different locations or on the move. Especially with transportation whereabouts of objects are understood as an essential to achieve high quality of service. As far as trust is with the forwarder, no problem exists on the journey and locating may happen just on leave and upon arrival. But third party infringements may collide with this assumption and generate a demand for permanent tracking on the journey as well. Then fuzzy locating is an economized and sufficient approach, which shall not provide location data with high metric accuracies, but status information with checkable and justifiable evidence.
+
+Tracing capability
+
+In case single objects are lost, the capability to trace the whereabouts is another option to get access to the missing target again. However, this tracing is performed on yet available data and no means will deliver the data from the past without respective precautions. Especially in transportation whereabouts of lost objects are understood as an essential to retrieve the missing belongings.
+
+Alert on deviation
+
+Easily any deviation from planned course, set route and scheduled arrival may lead to an alert. This requires timely locating and comparison of captured data with planning.
+
+
+
+Other references on locating with Wikipedia
+
+Literature
+
+References to vendors
+
+

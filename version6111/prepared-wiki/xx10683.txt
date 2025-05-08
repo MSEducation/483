@@ -1,0 +1,96 @@
+</ref> The color "red" was chosen because it was the best-looking color produced by the color laser printer available to the authors while working at [[Xerox PARC]].<ref name="Sedgewick12">
+
+[/ref]
+
+==Terminology==
+
+A red–black tree is a special type of binary tree, used in computer science to organize pieces of comparable data, such as text fragments or numbers.
+The leaf nodes of red–black trees do not contain data.  These leaves need not be explicit in computer memory—a null child pointer can encode the fact that this child is a leaf—but it simplifies some algorithms for operating on red–black trees if the leaves really are explicit nodes.  To save memory, sometimes a single sentinel node performs the role of all leaf nodes; all references from internal nodes to leaf nodes then point to the sentinel node.
+Red–black trees, like all binary search trees, allow efficient in-order traversal (that is: in the order Left–Root–Right) of their elements.  The search-time results from the traversal from root to leaf, and therefore a balanced tree of n nodes, having the least possible tree height, results in O(log n) search time.
+
+==Properties==
+
+In addition to the requirements imposed on a binary search tree the following must be satisfied by a red–black tree:[tpl]cite book |last1= Cormen |first1=Thomas |authorlink1=Thomas H. Cormen |last2=Leiserson |first2=Charles |authorlink2=Charles E. Leiserson |first3=Ronald |last3=Rivest |first4=Clifford |last4=Stein |authorlink4=Clifford Stein |authorlink3=Ron Rivest |title=Introduction to Algorithms|edition=3rd|year=2009|publisher=MIT Press|isbn=978-0-262-03384-8|pages=308–309 |chapter=13[/tpl]
+These constraints enforce a critical property of red–black trees: that the path from the root to the furthest leaf is no more than twice as long as the path from the root to the nearest leaf. The result is that the tree is roughly height-balanced. Since operations such as inserting, deleting, and finding values require worst-case time proportional to the height of the tree, this theoretical upper bound on the height allows red–black trees to be efficient in the worst case, unlike ordinary binary search trees. 
+To see why this is guaranteed, it suffices to consider the effect of properties 4 and 5 together. For a red–black tree T, let B be the number of black nodes in property 5. Let the shortest possible path from the root of T to any leaf consist of B black nodes. Longer possible paths may be constructed by inserting red nodes. However, property 4 makes it impossible to insert more than one consecutive red node. Therefore the longest possible path consists of 2B nodes, alternating black and red.
+The shortest possible path has all black nodes, and the longest possible path alternates between red and black nodes. Since all maximal paths have the same number of black nodes, by property 5, this shows that no path is more than twice as long as any other path.
+
+==Analogy to B-trees of order 4==
+
+A red–black tree is similar in structure to a B-tree of orderUsing Knuth's definition of order: the maximum number of children 4, where each node can contain between 1 and 3 values and (accordingly) between 2 and 4 child pointers. In such a B-tree, each node will contain only one value matching the value in a black node of the red–black tree, with an optional value before and/or after it in the same node, both matching an equivalent red node of the red–black tree.
+One way to see this equivalence is to "move up" the red nodes in a graphical representation of the red–black tree, so that they align horizontally with their parent black node, by creating together a horizontal cluster. In the B-tree, or in the modified graphical representation of the red–black tree, all leaf nodes are at the same depth.
+The red–black tree is then structurally equivalent to a B-tree of order 4, with a minimum fill factor of 33% of values per cluster with a maximum capacity of 3 values.
+This B-tree type is still more general than a red–black tree though, as it allows ambiguity in a red–black tree conversion—multiple red–black trees can be produced from an equivalent B-tree of order 4. If a B-tree cluster contains only 1 value, it is the minimum, black, and has two child pointers. If a cluster contains 3 values, then the central value will be black and each value stored on its sides will be red. If the cluster contains two values, however, either one can become the black node in the red–black tree (and the other one will be red).
+So the order-4 B-tree does not maintain which of the values contained in each cluster is the root black tree for the whole cluster and the parent of the other values in the same cluster. Despite this, the operations on red–black trees are more economical in time because you don't have to maintain the vector of values. It may be costly if values are stored directly in each node rather than being stored by reference. B-tree nodes, however, are more economical in space because you don't need to store the color attribute for each node. Instead, you have to know which slot in the cluster vector is used. If values are stored by reference, e.g. objects, null references can be used and so the cluster can be represented by a vector containing 3 slots for value pointers plus 4 slots for child references in the tree. In that case, the B-tree can be more compact in memory, improving data locality.
+The same analogy can be made with B-trees with larger orders that can be structurally equivalent to a colored binary tree: you just need more colors. Suppose that you add blue, then the blue–red–black tree defined like red–black trees but with the additional constraint that no two successive nodes in the hierarchy will be blue and all blue nodes will be children of a red node, then it becomes equivalent to a B-tree whose clusters will have at most 7 values in the following colors: blue, red, blue, black, blue, red, blue (For each cluster, there will be at most 1 black node, 2 red nodes, and 4 blue nodes).
+For moderate volumes of values, insertions and deletions in a colored binary tree are faster compared to B-trees because colored trees don't attempt to maximize the fill factor of each horizontal cluster of nodes (only the minimum fill factor is guaranteed in colored binary trees, limiting the number of splits or junctions of clusters). B-trees will be faster for performing rotations (because rotations will frequently occur within the same cluster rather than with multiple separate nodes in a colored binary tree). However for storing large volumes, B-trees will be much faster as they will be more compact by grouping several children in the same cluster where they can be accessed locally.
+All optimizations possible in B-trees to increase the average fill factors of clusters are possible in the equivalent multicolored binary tree. Notably, maximizing the average fill factor in a structurally equivalent B-tree is the same as reducing the total height of the multicolored tree, by increasing the number of non-black nodes. The worst case occurs when all nodes in a colored binary tree are black, the best case occurs when only a third of them are black (and the other two thirds are red nodes).
+
+==Applications and related data structures==
+
+Red–black trees offer worst-case guarantees for insertion time, deletion time, and search time. Not only does this make them valuable in time-sensitive applications such as real-time applications, but it makes them valuable building blocks in other data structures which provide worst-case guarantees; for example, many data structures used in computational geometry can be based on red–black trees, and the Completely Fair Scheduler used in current Linux kernels uses red–black trees.
+The AVL tree is another structure supporting O(log n) search, insertion, and removal. It is more rigidly balanced than red–black trees, leading to slower insertion and removal but faster retrieval. This makes it attractive for data structures that may be built once and loaded without reconstruction, such as language dictionaries (or program dictionaries, such as the opcodes of an assembler or interpreter).
+Red–black trees are also particularly valuable in functional programming, where they are one of the most common persistent data structures, used to construct associative arrays and sets which can retain previous versions after mutations. The persistent version of red–black trees requires O(log n) space for each insertion or deletion, in addition to time.
+For every 2-4 tree, there are corresponding red–black trees with data elements in the same order. The insertion and deletion operations on 2-4 trees are also equivalent to color-flipping and rotations in red–black trees. This makes 2-4 trees an important tool for understanding the logic behind red–black trees, and this is why many introductory algorithm texts introduce 2-4 trees just before red–black trees, even though 2-4 trees are not often used in practice.
+In 2008, Sedgewick introduced a simpler version of the red–black tree called the left-leaning red–black treehttp://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf by eliminating a previously unspecified degree of freedom in the implementation. The LLRB maintains an additional invariant that all red links must lean left except during inserts and deletes. Red–black trees can be made isometric to either 2-3 trees,http://www.cs.princeton.edu/courses/archive/fall08/cos226/lectures/10BalancedTrees-2x2.pdf or 2-4 trees, for any sequence of operations. The 2-4 tree isometry was described in 1978 by Sedgewick.[tpl]citequote|date=January 2013[/tpl] With 2-4 trees, the isometry is resolved by a "color flip," corresponding to a split, in which the red color of two children nodes leaves the children and moves to the parent node. The tango tree, a type of tree optimized for fast searches, usually[tpl]when|date=January 2013[/tpl] uses red–black trees as part of its data structure.
+
+==Operations==
+
+Read-only operations on a red–black tree require no modification from those used for binary search trees, because every red–black tree is a special case of a simple binary search tree. However, the immediate result of an insertion or removal may violate the properties of a red–black tree. Restoring the red–black properties requires a small number (O(log n) or amortized O(1)) of color changes (which are very quick in practice) and no more than three tree rotations (two for insertion). Although insert and delete operations are complicated, their times remain O(log n).
+
+===Insertion===
+
+Insertion begins by adding the node as any binary search tree insertion does and by coloring it red. Whereas in the binary search tree, we always add a leaf, in the red–black tree leaves contain no information, so instead we add a red interior node, with two black leaves, in place of an existing black leaf.
+What happens next depends on the color of other nearby nodes. The term uncle node will be used to refer to the sibling of a node's parent, as in human family trees. Note that:
+Each case will be demonstrated with example C code. The uncle and grandparent nodes can be found by these functions:
+Case 1: The current node N is at the root of the tree. In this case, it is repainted black to satisfy property 2 (the root is black). Since this adds one black node to every path at once, property 5 (all paths from any given node to its leaf nodes contain the same number of black nodes) is not violated.
+Case 2: The current node's parent P is black, so property 4 (both children of every red node are black) is not invalidated. In this case, the tree is still valid. Property 5 (all paths from any given node to its leaf nodes contain the same number of black nodes) is not threatened, because the current node N has two black leaf children, but because N is red, the paths through each of its children have the same number of black nodes as the path through the leaf it replaced, which was black, and so this property remains satisfied.
+Note that inserting is actually in-place, since all the calls above use tail recursion.
+
+===Removal===
+
+In a regular binary search tree when deleting a node with two non-leaf children, we find either the maximum element in its left subtree (which is the in-order predecessor) or the minimum element in its right subtree (which is the in-order successor) and move its value into the node being deleted (as shown here). We then delete the node we copied the value from, which must have fewer than two non-leaf children. (Non-leaf children, rather than all children, are specified here because unlike normal binary search trees, red–black trees can have leaf nodes anywhere, so that all nodes are either internal nodes with two children or leaf nodes with, by definition, zero children.  In effect, internal nodes having two leaf children in a red–black tree are like the leaf nodes in a regular binary search tree.)  Because merely copying a value does not violate any red–black properties, this reduces to the problem of deleting a node with at most one non-leaf child.  Once we have solved that problem, the solution applies equally to the case where the node we originally want to delete has at most one non-leaf child as to the case just considered where it has two non-leaf children.
+Therefore, for the remainder of this discussion we address the deletion of a node with at most one non-leaf child.  We use the label M to denote the node to be deleted; C will denote a selected child of M, which we will also call "its child".  If M does have a non-leaf child, call that its child, C; otherwise, choose either leaf as its child, C.
+If M is a red node, we simply replace it with its child C, which must be black by property 4. (This can only occur when  M has two leaf children, because if the red node M had a black non-leaf child on one side but just a leaf child on the other side, then the count of black nodes on both sides would be different, thus the tree would violate property 5.) All paths through the deleted node will simply pass through one fewer red node, and both the deleted node's parent and child must be black, so property 3 (all leaves are black) and property 4 (both children of every red node are black) still hold.
+Another simple case is when M is black and C is red. Simply removing a black node could break Properties 4 (“Both children of every red node are black”) and 5 (“All paths from any given node to its leaf nodes contain the same number of black nodes”), but if we repaint C black, both of these properties are preserved.
+The complex case is when both M and C are black.  (This can only occur when deleting a black node which has two leaf children, because if the black node M had a black non-leaf child on one side but just a leaf child on the other side, then the count of black nodes on both sides would be different, thus the tree would have been an invalid red–black tree by violation of property 5.)  We begin by replacing M with its child C. We will call (or label—that is, relabel) this child (in its new position) N, and its sibling (its new parent's other child) S.  (S was previously the sibling of M.)
+In the diagrams below, we will also use P for N's new parent (M's old parent), SL for S's left child, and SR for S's right child (S cannot be a leaf because if M and C were black, then P's one subtree which included M counted two black-height and thus P's other subtree which includes S must also count two black-height, which cannot be the case if S is a leaf node).
+We will find the sibling using this function:
+We can perform the steps outlined above with the following code, where the function replace_node substitutes child into n's place in the tree. For convenience, code in this section will assume that null leaves are represented by actual node objects rather than NULL (the code in the Insertion section works with either representation).
+If both N and its original parent are black, then deleting this original parent causes paths which proceed through N to have one fewer black node than paths that do not.  As this violates property 5 (all paths from any given node to its leaf nodes contain the same number of black nodes), the tree must be rebalanced.  There are several cases to consider:
+Case 1: N is the new root. In this case, we are done. We removed one black node from every path, and the new root is black, so the properties are preserved.
+Again, the function calls all use tail recursion, so the algorithm is in-place.
+In the algorithm above, all cases are chained in order, except in delete case 3 where it can recurse to case 1 back to the parent node: this is the only case where an in-place implementation will effectively loop (after only one rotation in case 3).
+Additionally, no tail recursion ever occurs on a child node, so the tail recursion loop can only move from a child back to its successive ancestors. No more than O(log n) loops back to case 1 will occur (where n is the total number of nodes in the tree before deletion). If a rotation occurs in case 2 (which is the only possibility of rotation within the loop of cases 1–3), then the parent of the node N becomes red after the rotation and we will exit the loop. Therefore at most one rotation will occur within this loop. Since no more than two additional rotations will occur after exiting the loop, at most three rotations occur in total.
+
+==Proof of asymptotic bounds==
+
+A red black tree which contains n internal nodes has a height of O(log(n)).
+Definitions:
+Proof of Lemma (by induction height):
+Basis: h(v) = 0
+If v has a height of zero then it must be null, therefore bh(v) = 0.  So:
+internal nodes.
+Using this lemma we can now show that the height of the tree is logarithmic.  Since at least half of the nodes on any path from the root to a leaf are black (property 4 of a red–black tree), the black-height of the root is at least h(root)/2.  By the lemma we get:
+Therefore the height of the root is O(log(n)).
+
+===Insertion complexity===
+
+In the tree code there is only one loop where the node of the root of the red–black property that we wish to restore, x, can be moved up the tree by one level at each iteration.
+Since the original height of the tree is O(log n), there are O(log n) iterations. So overall the insert routine has O(log n) complexity.
+
+==Parallel algorithms==
+
+Parallel algorithms for constructing red–black trees from sorted lists of items can run in constant time or O(loglog n) time, depending on the computer model, if the number of processors available is proportional to the number of items.  Fast search, insertion, and deletion parallel algorithms are also known.[ref]
+
+</ref>
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

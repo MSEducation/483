@@ -1,0 +1,44 @@
+[[CURL]]
+
+CATEGORIES: Command-line software, Free web crawlers, Download managers, Free FTP clients, Hypertext Transfer Protocol clients, Cross-platform free software, Free software programmed in C, C libraries, 1997 software, Software using the MIT license, Web scraping
+
+cURL is a computer software project providing a library and command-line tool for transferring data using various protocols. The cURL project produces two products, libcurl and cURL. It was first released in 1997.
+
+==libcurl==
+
+libcurl is a free client-side URL transfer library, supporting FTP, FTPS, Gopher, HTTP, HTTPS, SCP, SFTP, TFTP, Telnet, DICT, the file URI scheme, LDAP, LDAPS, IMAP, POP3, SMTP and RTSP. The library supports HTTPS certificates, HTTP POST, HTTP PUT, FTP uploading, Kerberos, HTTP form-based upload, proxies, cookies, user-plus-password authentication, file transfer resume, and HTTP proxy tunneling.
+The libcurl library is portable. It builds and works identically on several platforms, including Solaris, NetBSD, FreeBSD, OpenBSD, Darwin, HPUX, IRIX, AIX, Tru64, Linux, UnixWare, HURD, Windows, Symbian, AmigaOS, OS/2, BeOS, Mac OS X, Apple iOS, Android, Ultrix, QNX Neutrino, BlackBerry Tablet OS and BlackBerry 10,Open Source Components for the Native SDK for BlackBerry Tablet OS OpenVMS, RISC OS, Novell NetWare, DOS and more.
+The libcurl library is free, thread-safe, IPv6 compatible, and fast. Bindings are available for more than 40 languages, including C/C++, Java, PHP and Python.
+The libcurl library can support SSL/TLS through OpenSSL, GnuTLS, NSS, CyaSSL, PolarSSL, axTLS, QSOSSL on IBM i, Secure Transport on OS X and iOS, and SChannel on Windows.
+
+==cURL==
+
+A command line tool for getting or sending files using URL syntax.
+Since cURL uses libcurl, it supports a range of common Internet protocols, currently including HTTP, HTTPS, FTP, FTPS, SCP, SFTP, TFTP, LDAP, LDAPS, DICT, TELNET, FILE, IMAP, POP3, SMTP and RTSP (the last four only in versions newer than 7.20.0 or 9 February 2010).
+
+==Examples of cURL use from command line==
+
+Basic use of cURL involves simply typing curl at the command line, followed by the URL of the output to retrieve.
+To retrieve the example.com homepage, type:
+ <code>curl www.example.com</code>
+cURL defaults to displaying the output it retrieves to the standard output specified on the system (usually the terminal window).  So running the command above would, on most systems, display the www.example.com source-code in the terminal window.
+cURL can write the output it retrieves to a file with the -o flag, thus:
+ <code>curl -o example.html www.example.com</code>
+This will store the source code for www.example.com into a file named example.html.  While retrieving output, cURL will display a progress-bar showing how much of the output has downloaded.  Note however that cURL does not show a progress bar when preparing to display the output in the terminal window, since a progress-bar is likely to interfere with the display of the output.
+To download output to a file that has the same name as on the system it originates from, use the -O flag, for example:
+ <code>curl -O www.example.com/example.html</code>
+If the server responds that the file (example.html) is moved to a different location (indicated with a Location: header and a 3XX response code), use the -L flag, for example:
+ <code>curl -OL www.example.com/example.html</code>
+Curl offers many other features such as proxy support, user authentication, FTP upload, HTTP post, SSL connections, cookies, file transfer resume, Metalink, as well as various other features.
+
+==Pronunciation==
+
+The project FAQ says: "We pronounce curl with an initial k sound: kurl..."cURL - Frequently Asked Qustions
+
+==See also==
+
+==References==
+
+==External links==
+
+

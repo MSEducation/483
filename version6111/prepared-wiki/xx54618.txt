@@ -1,0 +1,121 @@
+[[SAM Coupé]]
+
+CATEGORIES: Z80-based home computers, Home computers, SAM Coupé games, ZX Spectrum clones
+
+The SAM Coupé (Pronounced: "Sam Koo-Pay" from its original British English branding) is an 8-bit British home computer that was first released in late 1989. It is commonly considered a clone of the Sinclair ZX Spectrum computer, since it features a compatible screen mode and emulated compatibility, and it was marketed as a logical upgrade from the Spectrum. It was originally manufactured by Miles Gordon Technology (MGT), based in Swansea in the United Kingdom.
+
+==Hardware overview==
+
+The machine is based around a Z80B CPU[tpl]cite book|page=41|quote=... el Sam Coupé tenía el z80 de Zilog ...|isbn=978-84-689-9280-8[/tpl] clocked at 6 MHz, and contains an Application-specific integrated circuit that is comparable to the Spectrum's Uncommitted Logic Array. Memory is accessible within the 64 KB range of the Z80B CPU by slicing it into 16 KB blocks and accessing IO ports to switch which blocks appeared in the 4 slots available to the CPU. The basic model has 256 KB of RAM, upgradable internally to 512 KB and externally with an additional 4 MB (added in 1 MB packs). The computer's primary storage medium is a cassette tape, though one or two 3.5 inch floppy disk drives can be installed internally as well. Six channel, 8 octave stereo sound is provided by a Philips SAA1099 chip. The ASIC also includes a line triggered interrupt counter, allowing video effects to be synchronised to specific display positions with little effort.
+The SAM Coupé provides four graphics modes:
+All modes are paletted, with a 16-entry CLUT selecting from a palette of 128 colours. Palette entries consist of 2 bits for each of the red, green and blue components as well as an extra bit which slightly increases the intensity of all three components. The machine's non-standard SCART connector includes signals to drive a TTL-style monitor, in which case the total palette of colours is reduced to 16.
+In order to match the display speed of the ZX Spectrum, the Coupé introduces extra wait states to reduce the CPU speed while in Display Mode 1.
+The Motorola MC1377P RGB to PAL/NTSC encoder creates a composite video signal from the machine's RGB- and Sync-signals (output by the ASIC) for the RF modulator.
+The machine shipped with 32 KB of ROM containing code to boot the machine and a BASIC interpreter (SAM BASIC) written by Andrew Wright and heavily influenced by his earlier Beta BASIC for the ZX Spectrum. No DOS was included in the ROMs, this was instead loaded from disk using the BOOT or BOOT 1 command, or the F9 key. The majority of disks shipped with SAMDOS, the system's first DOS, on them so that they could be directly booted. An improved replacement, MasterDOS, was also developed offering faster disk access, more files and support for the Real Time Clock for filestamps amongst many other improvements.
+The BASIC was very advanced and included code for sprite drawing and basic vector shapes such as lines and circles. The screen co-ordinate system for these was variable and could be arbitrarily scaled and centred. A provision for "recording" sequences of graphics commands so that they could later be repeated without the speed penalty of a BASIC interpreter in between, very similar to the display lists of OpenGL, was provided.
+
+===Video memory===
+
+Internal RAM was shared between the video circuitry and the CPU, with CPU accesses incurring a speed penalty (the memory contention delay) as it waited for ASIC accesses to finish. As a result, the SAM Coupé's CPU ran only around 14% faster than the ZX Spectrum CPU, yet was required to do much more work in SAM's appealing high-resolution modes to produce a similar movement on the display. A Mode 3 or Mode 4 screen uses four times as much RAM as a ZX Spectrum, so four times the work had to be done in the same time.
+A small compensation was the straightforward arrangement of colour pixels in this memory, instead of the ZX Spectrum's oddly-laid-out display and attributes memory. Low-level graphics software operations could be much simpler than their Spectrum equivalents and therefore somewhat faster to execute.
+The penalty of memory contention delay applied to all memory accesses to RAM, and not just to memory associated with the video circuitry (as in the case of the ZX Spectrum). Hardware sprites and scrolling would have greatly improved the performance of games, unfortunately there was insufficient wafer space on the VLSI ASIC to include such circuitry.
+While the main 256×192 area of the screen was being drawn, the processor could only access memory in 1 out of every 8 t-states. During the border area this was 1 out of every 4 t-states, which had no effect on the many instructions whose timings were a multiple of 4. In modes 3 and 4 the display could be disabled completely, eliminating these memory contention delays for a full 6 MHz running speed. Code running in ROM was unaffected by the contention, though any RAM accesses they performed would still be affected.
+
+===Disk drives===
+
+The SAM used Citizen 3.5 inch slimline drives which slotted in below the keyboard to provide front-facing slots. Like IDE hard disks, these enclosures contained not just the drives but also the drive controllers, a WD1772-02, with the effect that the SAM could use both drives simultaneously.
+Due to a flaw in the Coupé's design, resetting the machine while a disk was left in a drive would be liable to cause data corruption on that disk. With the appropriate technical expertise, this fault was easily corrected.
+The double density disks used a format of 2 sides, 80 tracks per side and 10 sectors per track, with 512 bytes per sector. This gave a total capacity of 800 KB, though the standard directory occupied 20 KB leaving 780 KB free for user files. Files were stored in the same structure as MGT's original +D interface, but with additional codes used for SAM Coupé file types. The firmware of the disk controllers was compatible with that for IBM PC, and programs were available to read FAT formatted disks.
+
+===Expansion ports===
+
+A large array of expansion ports were provided, including:
+Uniquely the SAM's RF modulator was built into the power supply unit and connected via a joint power/TV socket. This made signal interference from the ACDC converter common and it was a popular but entirely unofficial modification to remove the modulator and keep it as a separate unit.
+Due to a flaw in the design, when two joysticks were used at the same time (through the approved splitter) they would interfere with each other.
+Up to four devices could be connected to the Coupé's Euroconnector port, through the use of the SAMBUS, which also provided a built-in clock. When using more power-hungry peripherals, the SAMBUS required an additional power supply.
+
+===Kaleidoscope===
+
+The Kaleidoscope, announced by SAMCo shortly before bankruptcy, extended the machine's total colour palette to 32,768 colours in such a way as to allow forwards and backwards compatibility by applications. Although complete, very few were produced and the design ceased with SAMCo.
+
+==ZX Spectrum compatibility==
+
+Emulation of the ZX Spectrum was limited to the 48K and was achieved by loading a copy of the ZX Spectrum ROM and switching to display mode 1, which mimicked the ZX Spectrum display mode and approximated that machine's processor speed. The ROM was not supplied with the machine and had to be obtained from a ZX Spectrum.
+The 128K model's memory map was incompatible with the Coupé's memory model and the machine featured an entirely different sound generator. It was possible to convert games by hacking the 128K code.
+Because the Coupé did not run at exactly the same speed as the Spectrum even in emulation mode, many anti-piracy tape loaders would not work on the Coupé hardware. This led to the development by MGT of a special hardware interface called the Messenger which could capture the state of a connected ZX Spectrum to SAM Coupé disk for playback later without the Spectrum connected. The Messenger plugged into the Coupé's network port, and the Spectrum's expansion slot. Due to unsuitable onboard break (NMI) buttons (needed to activate the Messenger software), a break-button card was also provided, which plugged into the Coupé's expansion slot.
+
+==Commercial fortunes==
+
+Three different companies have owned the rights to the SAM Coupé. It is believed that about 12,000 SAM Coupé and SAM Élite machines were sold in total.[tpl]cite web | url = http://www.worldofsam.org/node/193 | work = World of SAM | last = Collier | first = Andrew | accessdate = 2008-07-06 | title = SAM Coupé[/tpl]
+
+===Miles Gordon Technology, plc.===
+
+MGT, Miles Gordon Technology, plc., which originally produced add-ons for the ZX Spectrum, launched the SAM Coupé late in 1989, missing the Christmas sales. They ended up with a vast number of machines in stock. The 16-bit and PC markets were on the rise and it helped little that MGT in the beginning of 1990 had to ship a new ROM to about 8,000 existing customers to fix bugs, notably a DOS booting bug. MGT went into receivership in June 1990.
+
+===SAM Computers Ltd.===
+
+Immediately after the collapse of MGT, the founders of the company, Alan Miles and Bruce Gordon, bought back the company's assets and formed SAM Computers Ltd. The price of the SAM with floppy disk drive was brought down to under £200 and new games and hardware were released. SAMCo survived until 15 July 1992.
+
+===West Coast Computers===
+
+Stock from SAM Computers Ltd. were bought by West Coast Computers in November 1992. They revamped the SAM Coupés and marketed them under the new name SAM Élite. The only changes made were that 512 KB became standard and an external printer connector was added.Image of a SAM Élite showing parallel printer connector (above top left of keyboard) and "SAM Élite" logo badge attached over original MGT logo The slim-line floppy drives from Citizen, which had withdrawn them from the European market in 1990, were replaced with standard 3.5 inch drives. Little is known about the company, other than that it was based in Gloucester and closed in August 1994,West Coast Computers ltd., company number 02721984.  Registered at Unit 2, Charles Street Trading Estate, Gloucester, GL1 4AG.  Source: Companies House presumably after the last of the SAMCo stock had sold.  No new computers made by West Coast are known and this was likely the full extent of their business.  For a long period the only point of contact was Format Publications, run by Bob Brenchley, which faded out of existence sometime around 1998.
+
+==SAM the robot==
+
+Devised by Mel Croucher and put in pen by Robin Evans as a mascot for the machine, SAM the robot appeared in the user manual and on most of the advertising literature for the machine, and later made an appearance as the main character in the game SAM Strikes Out!.
+
+==Notable software==
+
+The SAM Coupé was particularly notable for the wide array of disk based magazines that originated for it, including FRED and the official SAMCo Newsdisk. It also became notorious for the overwhelming number of puzzle games for the system, something that Spectrum magazine Your Sinclair jokingly referred to on numerous occasions.
+Several famous video games were ported to the SAM, notably Manic Miner, Prince of Persia, and Lemmings. An unofficial but arcade perfect port of Defender surfaced late in the machine's lifespan.
+
+===Flash!===
+
+Flash!, an art package, was the only full application bundled with every SAM Coupé and as a result is probably the program best known to SAM owners. Written by Bo Jangeborg, author of the earlier ZX Spectrum program The Artist and The Artist II, it offered pixel editing in all four graphics modes, conversion of graphics from one mode to another and some basic animation functions.
+Only full screen images were supported and the program's main flaw was an inability to view the entirety of an image while working on it. A copy adapted for use with a mouse was bundled with the official mouse addon.
+
+==Software houses==
+
+The SAM Coupé entered the market at a very difficult time, due to the large number of competing games platforms. Games software publishers were concentrating their resources on the large, but shrinking market for software for 8-bit machines such as the ZX Spectrum, Commodore 64 and Amstrad CPC, whilst sales of the 16 bit Atari ST and Commodore Amiga were beginning to boom. A further complication was the trend to licensed tie-ins to film and television content, for which licensing agreements had been agreed including  rights to publish on only the longer established hardware platforms. Software houses publicly stated that they would wait to see how the Coupé sold, before committing to developing games for it.[tpl]cite news|title=Soft on Sam?|url=http://archive.org/details/your-sinclair-51|accessdate=23 August 2012|newspaper=Your Sinclair magazine|date=March 1991, page 50[/tpl] The lack of big-name games and high budget marketing proved a deterrent to many potential buyers. Only a small number of software houses developed for the SAM Coupé, most of these being small start-ups exclusively concentrating on this machine.
+
+===Enigma Variations===
+
+An early supporter of the SAM, Enigma published SAM versions of Defenders of the Earth, Escape From the Planet of the Robot Monsters, Five on a Treasure Island (based on Enid Blyton's Famous Five), Klax, Pipe Mania and SAM originals SAM Strikes Out (a Jet Set Willy influenced platformer), Futureball (a Speedball influenced futuristic sporting title) and Sphera.
+
+===Revelation===
+
+The software arm of SAMCo, founded in 1992 due to the lack of support from mainstream publishing houses, was notable for publishing most of the SAM's best titles. SAM original titles included Astroball, Batz 'n' Balls, Legend of Eshan, Sophistry and Wop Gamma. Revelation also published Hexagonia, which is similar to Atomix.
+SAM ports included Elite (nothing more than the ZX Spectrum 48K version repackaged onto floppy disk), Prince of Persia, Manic Miner, Lemmings and Splat!.
+A later incarnation of Revelation was set up in conjunction with West Coast Computers, with titles distributed by Format Publications.
+
+===FRED Publishing===
+
+Spun off from the disk based magazine, FRED Publishing was relatively late to the scene, but supported the machine long after any of the other publishing houses. The jewel in its crown was the SAM conversion of Lemmings (and Oh No! More Lemmings), but they also published a number of SAM original titles such as Boing, The Bulgulators, Dyzonium, Football League Manager, Impatience/Triltex, Momentum, Parallax, Waterworks and Witching Hour.
+
+===Phoenix Software===
+
+This label released titles such as Manic Miner and Dyadic. They also distributed titles for other authors, such as MasterBasic and MasterDos. The same team was also involved with the SAM Prime magazine.
+
+===Quazar===
+
+A relatively late comer to the SAM scene, founded in 1995. Launching with a new soundcard for the SAM and continued producing a disk magazine to support it but later spanned over into games including Stratosphere and the Money Bags trilogy.  Still actively producing software, hardware and a regular magazine for the SAM Coupe.
+
+==The Community==
+
+===People===
+
+As a result of the low sales volume and high proliferation of disk based magazines, a number of individuals became well known amongst the SAM community. These include:
+
+===Publications===
+
+The SAM Coupe had a number of publications created for it, mostly "fanzines" by Community members. Some of the more noted are listed below:
+
+==Emulation==
+
+As the SAM Coupe has been out of production for some time and is now relatively difficult to obtain, emulation has become more important. Sim Coupe is an emulator which is currently written and maintained by Simon Owen, and is based on the project XCoupe by Allan Skillman. The emulator has been ported to a number of platforms, including Microsoft Windows, Mac OS X, Linux and other Unixes, AmigaOS 4, Pocket PC, QNX, GP2X and PlayStation Portable. Assistance in the development of the emulator was provided by Simon Cooke, David Zambonini, Andrew Collier, Ian Collier and others. The Coupé is also emulated by the MESS.
+
+==References==
+
+==External links==
+
+

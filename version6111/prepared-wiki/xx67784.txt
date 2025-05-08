@@ -1,0 +1,113 @@
+[[RC circuit]]
+
+CATEGORIES: Analog circuits, Electronic filter topology
+
+A resistor–capacitor circuit (RC circuit), or RC filter or RC network, is an electric circuit composed of resistors and capacitors driven by a voltage or current source. A first order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit. 
+RC circuits can be used to filter a signal by blocking certain frequencies and passing others. The two most common RC filters are  the high-pass filters and low-pass filters; band-pass filters and band-stop filters usually require RLC filters, though crude ones can be made with RC filters.
+
+==Introduction==
+
+There are three basic, linear passive lumped analog circuit components: the resistor (R), the capacitor (C), and the inductor (L). These may be combined in the RC circuit, the RL circuit, the LC circuit, and the RLC circuit, with the abbreviations indicating which components are used. These circuits, among them, exhibit a large number of important types of behaviour that are fundamental to much of analog electronics. In particular, they are able to act as passive filters. This article considers the RC circuit, in both series and parallel forms, as shown in the diagrams below.
+
+==Natural response==
+
+The simplest RC circuit is a capacitor and a resistor in series. When a circuit consists of only a charged capacitor and a resistor, the capacitor will discharge its stored energy through the resistor. The voltage across the capacitor, which is time dependent, can be found by using Kirchhoff's current law, where the current charging the capacitor must equal the current through the resistor.  This results in the linear differential equation
+Solving this equation for V yields the formula for exponential decay: 
+where V0 is the capacitor voltage at time t = 0.
+
+==Complex impedance==
+
+The complex impedance, ZC (in ohms) of a capacitor with capacitance C (in farads) is 
+The complex frequency s is, in general, a complex number,
+where
+
+===Sinusoidal steady state===
+
+Sinusoidal steady state is a special case in which the input voltage consists of a pure sinusoid (with no exponential decay).  As a result, 
+and the evaluation of s becomes
+
+==Series circuit==
+
+By viewing the circuit as a voltage divider, the voltage across the capacitor is:
+and the voltage across the resistor is:
+
+===Transfer functions===
+
+The transfer function from the input voltage to the voltage across the capacitor is
+Similarly, the transfer function from the input to the voltage across the resistor is
+
+====Poles and zeros====
+
+Both transfer functions have a single pole located at
+In addition, the transfer function for the resistor has a zero located at the origin.
+
+===Gain and phase===
+
+The magnitude of the gains across the two components are:
+and
+and the phase angles are:
+and
+These expressions together may be substituted into the usual expression for the phasor representing the output:
+
+===Current===
+
+The current in the circuit is the same everywhere since the circuit is in series:
+
+===Impulse response===
+
+The impulse response for each voltage is the inverse Laplace transform of the corresponding transfer function.  It represents the response of the circuit to an input voltage consisting of an impulse or Dirac delta function. 
+The impulse response for the capacitor voltage is
+where u(t) is the Heaviside step function and
+is the time constant.
+Similarly, the impulse response for the resistor voltage is
+where δ(t) is the Dirac delta function
+
+===Frequency-domain considerations===
+
+These are frequency domain expressions. Analysis of them will show which frequencies the circuits (or filters) pass and reject. This analysis rests on a consideration of what happens to these gains as the frequency becomes very large and very small.
+This shows that, if the output is taken across the capacitor, high frequencies are attenuated (shorted to ground) and low frequencies are passed. Thus, the circuit behaves as a low-pass filter. If, though, the output is taken across the resistor, high frequencies are passed and low frequencies are attenuated (since the capacitor blocks the signal as its frequency approaches 0). In this configuration, the circuit behaves as a high-pass filter.
+The range of frequencies that the filter passes is called its bandwidth. The point at which the filter attenuates the signal to half its unfiltered power is termed its cutoff frequency. This requires that the gain of the circuit be reduced to 
+Solving the above equation yields
+or
+which is the frequency that the filter will attenuate to half its original power.
+Clearly, the phases also depend on frequency, although this effect is less interesting generally than the gain variations.
+So at DC (0 Hz), the capacitor voltage is in phase with the signal voltage while the resistor voltage leads it by 90°. As frequency increases, the capacitor voltage comes to have a 90° lag relative to the signal and the resistor voltage comes to be in-phase with the signal.
+
+===Time-domain considerations===
+
+and
+Partial fractions expansions and the inverse Laplace transform yield:
+These equations are for calculating the voltage across the capacitor and resistor respectively while the capacitor is charging; for discharging, the equations are vice-versa.  These equations can be rewritten in terms of charge and current using the relationships C=Q/V and V=IR (see Ohm's law).
+Thus, the voltage across the capacitor tends towards V as time passes, while the voltage across the resistor tends towards 0, as shown in the figures. This is in keeping with the intuitive point that the capacitor will be charging from the supply voltage as time passes, and will eventually be fully charged.
+These results may also be derived by solving the differential equations describing the circuit:
+and
+The first equation is solved by using an integrating factor and the second follows easily; the solutions are exactly the same as those obtained via Laplace transforms.
+
+====Integrator====
+
+Consider the output across the capacitor at high frequency i.e.
+but note that the frequency condition described means that
+so
+Now,
+so
+which is an integrator across the capacitor.
+
+====Differentiator====
+
+Consider the output across the resistor at low frequency i.e.,
+so
+Now,
+which is a differentiator across the resistor.
+More accurate integration and differentiation can be achieved by placing resistors and capacitors as appropriate on the input and feedback loop of operational amplifiers (see operational amplifier integrator and operational amplifier differentiator).
+
+==Parallel circuit==
+
+With complex impedances:
+and
+This shows that the capacitor current is 90° out of phase with the resistor (and source) current. Alternatively, the governing differential equations may be used:
+and
+When fed by a current source, the transfer function of a parallel RC circuit is:
+
+==See also==
+
+

@@ -1,0 +1,48 @@
+[[Pngcrush]]
+
+CATEGORIES: Free graphics software, Free data compression software, Free software programmed in C
+
+pngcrush is a free, open source command-line utility for optimizing PNG image files. It reduces the size of the file losslessly — that is, the resulting "crushed" image will have the same quality as the source image.
+The main purpose of pngcrush is to reduce the size of the PNG IDAT datastream by trying various combinations of compression methods and delta filters. However, pngcrush can also be used for various manipulations of PNG images, such as changing the bit depth, removing unwanted ancillary chunks, or adding certain chunks including gAMA, tRNS, iCCP, and textual chunks.
+
+==Main operation==
+
+The main use of pngcrush is for reducing the size of the image data contained in the IDAT section.
+The pixel data in a PNG file is compressed using LZ77 algorithm (which tries to find repeated byte sequences in the source data), and then further compressed with Huffman algorithm. This combination is referred to as DEFLATE compression. Before compressing, non-destructive delta filters are applied on the pixel data.
+There are 5 possible filter types that can be specified separately on each scan line and several possible strategies for searching LZ77 matches. Thus, there are a very large number of different combinations for how the image can be compressed. Which combination gives the best compression will depend on the individual image's properties.[tpl]cite web|title=A guide to PNG optimization|url=http://optipng.sourceforge.net/pngtech/optipng.html|accessdate=31 July 2010|author=Cosmin Truta|date=10 May 2008[/tpl]
+pngcrush compresses the image with multiple different combinations and then stores the smallest of the resulting files.[tpl]cite web|last=Whedon|first=David|title=man pngcrush|url=http://pwet.fr/man/linux/commandes/pngcrush|accessdate=31 July 2010[/tpl] Since it is not possible to go through all the combinations, pngcrush uses heuristics to choose the methods to try.
+In the simplest form, pngcrush can be told to generate a "crushed" file from an unoptimized one by using the following format on the command line:
+ pngcrush imageIn.png imageOut.png
+By default, pngcrush uses just a few common methods to crush the file. The optional "-brute" argument can be used for brute force crushing, which will try more than 100 different crushing methods.
+
+==Reducing filesize by removing color-correction data==
+
+One of pngcrush's features is the ability to remove all the color-correction data (gamma, white balance, ICC color profile, standard RGB color profile) from PNG files, using the following command line options:
+ pngcrush -rem gAMA -rem cHRM -rem iCCP -rem sRGB ''InputFile.png'' ''OutputFile.png''
+Since most graphics software embed the extra color-correction data, which is normally not needed, removing it can produce file sizes that are up to 40% smaller than the original. pngcrush, when told, will also losslessly reduce the bit-depth of images or apply a color palette when possible if doing so results in a smaller file size.
+All ancillary chunks and text chunks can be removed using the following options:
+ pngcrush -rem alla -rem text ''InputFile.png'' ''OutputFile.png''
+
+==Image manipulation==
+
+pngcrush can be used to change the color encoding of an image. For example, if an image contains 10 colors but has a color palette of 256 entries (8-bit), pngcrush can be used to reduce the color palette to a 4-bit one and truncate the palette to 10 entries:
+ pngcrush -bit_depth 4 -plte_len 10 ''image1.png'' ''image2.png''
+pngcrush can also change the color type of the image. For a true-color image, changing the color type from 2 to 0 (-c 0) converts it to greyscale. Greyscale images are generally smaller than truecolor images because, in addition to the optional alpha channel, only one 8-bit channel is used per pixel rather than three. Greyscale images are also generally smaller than paletted images because they do not need to define a color palette. For a truecolor-alpha image, changing the color type from 6 to 2 removes the alpha channel.
+
+==Chunk and metadata manipulation==
+
+PNG images contain chunks with information about the image, such as its resolution (the phys chunk), the time it was last modified (the tIME chunk), and textual metadata (the text chunk and its variants). With pngcrush, a user can edit or remove those ancillary chunks:
+ pngcrush -res 96 -rem time -text b "Software" "pngcrush" image1.png image2.png
+The above command sets the image resolution to 96 dpi, removes the timestamp, and writes a textual metadata chunk describing pngcrush as the creation software of the image.
+
+==See also==
+
+Similar PNG compression programs include:
+
+==References==
+
+===Further reading===
+
+==External links==
+
+

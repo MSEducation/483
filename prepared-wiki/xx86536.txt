@@ -1,0 +1,70 @@
+[[WS-Security]]
+
+CATEGORIES: Web service specifications, Computer security software, XML-based standards
+
+Web Services Security (WS-Security, WSS) is an extension to SOAP to apply security to Web services. It is a member of the Web service specifications and was published by OASIS.
+The protocol specifies how integrity and confidentiality can be enforced on messages and allows the communication of various security token formats, such as Security Assertion Markup Language (SAML),  Kerberos, and X.509. Its main focus is the use of XML Signature and XML Encryption to provide end-to-end security.
+
+==Features==
+
+WS-Security describes three main mechanisms:
+The specification allows a variety of signature formats, encryption algorithms and multiple trust domains, and is open to various security token models, such as:
+The token formats and semantics are defined in the associated profile documents.
+WS-Security incorporates security features in the header of a SOAP message, working in the application layer.
+These mechanisms by themselves do not provide a complete security solution for Web services. Instead, this specification is a building block that can be used in conjunction with other Web service extensions and higher-level application-specific protocols to accommodate a wide variety of security models and security technologies. In general, WSS by itself does not provide any guarantee of security. When implementing and using the framework and syntax, it is up to the implementor to ensure that the result is not vulnerable.
+Key management, trust bootstrapping, federation and agreement on the technical details (ciphers, formats, algorithms) is outside the scope of WS-Security.
+
+==Use cases==
+
+===End-to-end security===
+
+If a SOAP intermediary is required, and the intermediary is not or is less trusted, messages need to be signed and optionally encrypted. This might be the case of an application-level proxy at a network perimeter that will terminate TCP connections.
+
+===Non-repudiation===
+
+The standard method for non-repudiation is to write transactions to an audit trail that is subject to specific security safeguards. However, if the audit trail is not sufficient, digital signatures may provide a better method to enforce non-repudiation. WS-Security can provide this.
+
+===Alternative transport bindings===
+
+Although almost all SOAP services implement HTTP bindings, in theory other bindings such as JMS or SMTP could be used; in this case end-to-end security would be required.
+
+===Reverse proxy/common security token===
+
+Even if the web service relies upon transport layer security, it might be required for the service to know about the end user, if the service is relayed by a (HTTP-) reverse proxy. A WSS header could be used to convey the end user's token, vouched for by the reverse proxy.
+
+==Issues==
+
+==Performance==
+
+WS-Security adds significant overhead to SOAP processing due to the increased size of the message on the wire, XML and cryptographic processing, requiring faster CPUs and more memory and bandwidth.
+An evaluation in 2005Hongbin Liu, Shrideep Pallickara, Geoffrey Fox: Performance of Web Services Security measured 25 types of SOAP messages of different size and complexity processed by WSS4J with both WS-Security and WS-SecureConversation on a Pentium 4/2.8 GHz CPU.
+Some findings were:
+Another benchmark in 2006Francois Lascelles, Aaron Flint: WS Security Performance. Secure Conversation versus the X509 Profile resulted in this comparison:
+
+==History==
+
+Web services initially relied on the underlying transport security. In fact, most implementations still do[tpl]Citation needed|date=January 2010[/tpl]. As SOAP allows for multiple transport bindings, such as HTTP and SMTP, a SOAP-level security mechanism was needed. The lack of end-to-end security because of the dependence on transport security was another factor.
+The protocol was originally developed by IBM, Microsoft, and VeriSign. Their original specificationBob Atkinson, et. al.: Web Services Security (WS-Security)Bob Atkinson, et. al.: Web Services Security (WS-Security) was published on 5 April 2002, and was followed up by an addendumGiovanni Della-Libera, Phillip Hallam-Baker Maryann Hondo: Web Services Security Addendum on 18 August 2002.
+In 2002, two proposals were submitted to the OASIS WSS Technical Committee:OASIS Web Services Security TC Web Service Security (WS-Security) and Web Services Security Addendum. As a result, WS-Security was published:
+The version 1.0 standard published by OASIS contained a number of significant differences to the standard proposed by the IBM, Microsoft and VeriSign consortium. Many systems were developed using the proposed standard and the differences made them incompatible with systems developed to the OASIS standard.
+Some refer to the pre-OASIS specification as the "WS-Security Draft 13",Web Services Security: SOAP Message Security – Working Draft 13 or as the Web Services Security Core Specification. However these names are not widely known and indeed today it is hard to clearly identify whether an application or server is using a pre- or post-OASIS specification. Most forum posts use the keyword "WSSE" to refer to the pre-OASIS version because it mandated the use of a "wsse" XML namespace prefix to theschemas.xmlsoap.org url (and similar urls of different versions).
+The protocol is officially called WSS and developed via committee in Oasis-Open.
+
+==Associated specifications==
+
+The following draft specifications are associated with WS-Security: WS-Federation, WS-Privacy, WS-Test.
+The following approved specifications are associated with WS-Security: WS-Policy, WS-SecureConversation, WS-Trust, ID-WSF.
+The following architectures make use of WS-Security: TAS3.
+
+==Alternative==
+
+In point-to-point situations confidentiality and data integrity can also be enforced on Web services through the use of Transport Layer Security (TLS), for example, by sending messages over HTTPS. WS-Security, however, addresses the wider problem of maintaining integrity and confidentiality of messages until after a message is sent from the originating node, providing so-called end to end security.
+Applying TLS can significantly reduce the overhead involved by removing the need to encode keys and message signatures into XML before sending. A challenge in using TLS would be if messages needed to go through an application-level proxy server, as it would need to be able to see the request for routing. In such an example, the server would see the request coming from the proxy, not the client; this could be worked around by having the proxy have a copy of the client's key and certificate, or by having a signing certificate trusted by the server, with which it could generate a key/certificate pair matching those of the client. However, as the proxy is operating on the message, it does not ensure end-to-end security, but only ensures point-to-point security.
+
+==See also==
+
+==References==
+
+==External links==
+
+

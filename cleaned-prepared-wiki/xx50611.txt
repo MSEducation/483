@@ -1,0 +1,116 @@
+[[Differential form]]
+
+CATEGORIES: Differential forms
+
+In the mathematical fields of differential geometry and tensor calculus, differential forms are an approach to multivariable calculus that is independent of coordinates. Differential forms provide a unified approach to defining integrands over curves, surfaces, volumes, and higher-dimensional manifolds.  The modern notion of differential forms was pioneered by Élie Cartan.  It has many applications, especially in geometry, topology and physics.
+For instance, the expression f(x) dx from one-variable calculus is called a 1-form, and can be integrated over an interval a,b in the domain of f:
+and similarly  the expression: f(x,y,z) dx∧dy + g(x,y,z) dx∧dz + h(x,y,z) dy∧dz is a 2-form 
+that has a surface integral over an oriented surface S:
+Likewise, a 3-form f(x, y, z) dx∧dy∧dz represents a volume element that can be integrated over a region of space.
+The algebra of differential forms is organized in a way that naturally reflects the orientation of the domain of integration.  There is an operation d on differential forms known as the exterior derivative that, when acting on a k-form produces a (k+1)-form.  This operation extends the differential of a function, and the divergence and the curl of a vector field in an appropriate sense that makes the fundamental theorem of calculus, the divergence theorem, Green's theorem, and Stokes' theorem special cases of the same general result, known in this context also as the general Stokes' theorem.  In a deeper way, this theorem relates the topology of the domain of integration to the structure of the differential forms themselves; the precise connection is known as De Rham's theorem.
+The general setting for the study of differential forms is on a differentiable manifold.  Differential 1-forms are naturally dual to vector fields on a manifold, and the pairing between vector fields and 1-forms is extended to arbitrary differential forms by the interior product.  The algebra of differential forms along with the exterior derivative defined on it is preserved by the pullback under smooth functions between two manifolds.  This feature allows geometrically invariant information to be moved from one space to another via the pullback, provided the information is expressed in terms of differential forms.  As an example, the change of variables formula for integration becomes a simple statement that an integral is preserved under pullback.
+
+History
+
+Differential forms are part of the field of differential geometry, influenced by linear algebra.  Although the notion of a differential is quite old, the initial attempt at an algebraic organization of differential forms is usually credited to Élie Cartan in his 1899 paper.
+
+Concept
+
+Differential forms provide an approach to multivariable calculus that is independent of coordinates.
+Let U be an open set in Rn. A differential 0-form ("zero form") is defined to be a smooth function f on U. If v is any vector in Rn, then f has a directional derivative ∂v f, which is another function on U whose value at a point p ∈ U is the rate of change (at p) of f in the v direction:
+(This notion can be extended to the case that v is a vector field on U by evaluating v at the point p in the definition.)
+In particular, if v = ej is the jth coordinate vector then ∂vf is the partial derivative of f with respect to the jth coordinate function, i.e., ∂f / ∂xj, where x1, x2, ... xn are the coordinate functions on U. By their very definition, partial derivatives depend upon the choice of coordinates: if new coordinates y1, y2, ... yn are introduced, then
+The first idea leading to differential forms is the observation that ∂v f (p) is a linear function of v:
+for any vectors v, w and any real number c. This linear map from Rn to R is denoted dfp and called the derivative of f at p. Thus dfp(v) = ∂v f (p). The object df can be viewed as a function on U, whose value at p is not a real number, but the linear map dfp. This is just the usual Fréchet derivative — an example of a differential 1-form.
+Since any vector v is a linear combination ∑ vjej of its components, df is uniquely determined by dfp(ej) for each j and each p ∈ U, which are just the partial derivatives of f on U. Thus df provides a way of encoding the partial derivatives of f. It can be decoded by noticing that the coordinates x1, x2,... xn are themselves functions on U, and so define differential 1-forms dx1, dx2, ..., dxn. Since ∂xi / ∂xj = δij, the Kronecker delta function, it follows that
+The meaning of this expression is given by evaluating both sides at an arbitrary point p: on the right hand side, the sum is defined "pointwise", so that
+Applying both sides to ej, the result on each side is the jth partial derivative of f at p. Since p and j were arbitrary, this proves the formula .
+More generally, for any smooth functions gi and hi on U, we define the differential 1-form α = ∑i gi dhi pointwise by
+for each p ∈ U. Any differential 1-form arises this way, and by using  it follows that any differential 1-form α on U may be expressed in coordinates as
+for some smooth functions fi on U.
+The second idea leading to differential forms arises from the following question: given a differential 1-form α on U, when does there exist a function f on U such that α = df? The above expansion reduces this question to the search for a function f whose partial derivatives ∂f / ∂xi are equal to n given functions fi. For n>1, such a function does not always exist: any smooth function f satisfies
+so it will be impossible to find such an f unless
+for all i and j.
+This is an example of a differential 2-form.  This 2-form is called the exterior derivative dα of α= ∑j=1n fj dxj.  It is given by
+To summarize: dα = 0 is a necessary condition for the existence of a function f with α = df.
+Differential 0-forms, 1-forms, and 2-forms are special cases of differential forms. For each k, there is a space of differential k-forms, which can be expressed in terms of the coordinates as
+Differential forms can be multiplied together using the wedge product, and for any differential k-form α, there is a differential (k + 1)-form dα called the exterior derivative of α.
+Differential forms, the wedge product and the exterior derivative are independent of a choice of coordinates. Consequently they may be defined on any smooth manifold M. One way to do this is cover M with coordinate charts and define a differential k-form on M to be a family of differential k-forms on each chart which agree on the overlaps. However, there are more intrinsic definitions which make the independence of coordinates manifest.
+
+Intrinsic definitions
+
+Let M be a smooth manifold. A differential form of degree k is a smooth section of the kth exterior power of the cotangent bundle of M. At any point p∈M, a k-form β defines an alternating multilinear map
+(with k factors of TpM in the product), where TpM is the tangent space to M at p.  Equivalently, β is a totally antisymmetric covariant tensor field of rank k.
+The set of all differential k-forms on a manifold M is a vector space, often denoted Ωk(M).
+For example, a differential 1-form α assigns to each point p∈M a linear functional αp on TpM. In the presence of an inner product on TpM (induced by a Riemannian metric on M), αp may be represented as the inner product with a tangent vector Xp. Differential 1-forms are sometimes called covariant vector fields, covector fields, or "dual vector fields", particularly within physics.
+
+Operations
+
+As well as the addition and multiplication by scalar operations which arise from the vector space structure, there are several other standard operations defined on differential forms. The most important operations are the wedge product of two differential forms, the exterior derivative of a single differential form, the interior product of a differential form and a vector field, the Lie derivative of a differential form with respect to a vector field and the covariant derivative of a differential form with respect to a vector field on a manifold with a defined connection.
+
+Wedge product
+
+The wedge product of a k-form α and an l-form β is a (k + l)-form denoted αΛβ. For example, if k = l = 1, then αΛβ is the 2-form whose value at a point p is the alternating bilinear form defined by
+for v, w ∈ TpM. (In an alternative convention, the right hand side is divided by two in this formula.)
+The wedge product is bilinear: for instance, if α, β, and γ are any differential forms, then
+It is skew commutative (also known as graded commutative), meaning that it satisfies a variant of anticommutativity that depends on the degrees of the forms: if α is a k-form and β is an l-form, then
+
+Riemannian manifold
+
+=Vector field structures=
+
+On a pseudo-Riemannian manifold, 1-forms can be identified with vector fields; vector fields have additional distinct algebraic structures, which are listed here for context and to avoid confusion.
+Firstly, each (co)tangent space generates a Clifford algebra, where the product of a (co)vector with itself is given by the value of a quadratic form - in this case, the natural one induced by the metric. This algebra is distinct from the exterior algebra of differential forms, which can be viewed as a Clifford algebra where the quadratic form vanishes (since the exterior product of any vector with itself is zero). Clifford algebras are thus non-anti-commutative ("quantum") deformations of the exterior algebra. They are studied in geometric algebra.
+Another alternative is to consider vector fields as derivations, and consider the (noncommutative) algebra of differential operators they generate, which is the Weyl algebra, and is a noncommutative ("quantum") deformation of the symmetric algebra in the vector fields.
+
+Exterior differential complex
+
+One important property of the exterior derivative is that d2 = 0. This means that the exterior derivative defines a cochain complex:
+By the Poincaré lemma, this complex is locally exact except at Ω0(M). Its cohomology is the de Rham cohomology of M.
+
+Pullback
+
+One of the main reasons the cotangent bundle rather than the tangent bundle is used in the construction of the exterior complex is that differential forms are capable of being pulled back by smooth maps, while vector fields cannot be pushed forward by smooth maps unless the map is, say, a diffeomorphism.  The existence of pullback homomorphisms in de Rham cohomology depends on the pullback of differential forms.
+Differential forms can be moved from one manifold to another using a smooth map. If f : M → N is smooth and ω is a smooth k-form on N, then there is a differential form f*ω on M, called the pullback of ω, which captures the behavior of ω as seen relative to f.
+To define the pullback, recall that the differential of f is a map f* : TM → TN. Fix a differential k-form ω on N. For a point p of M and tangent vectors v1, ..., vk to M at p, the pullback of ω is defined by the formula
+More abstractly, if ω is viewed as a section of the cotangent bundle T*N of N, then f*ω is the section of T*M defined as the composite map
+Pullback respects all of the basic operations on forms:
+The pullback of a form can also be written in coordinates. Assume that x1, ..., xm are coordinates on M, that y1, ..., yn are coordinates on N, and that these coordinate systems are related by the formulas yi = fi(x1, ..., xm) for all i. Then, locally on N, ω can be written as
+Each exterior derivative dfi can be expanded in terms of dx1, ..., dxm. The resulting k-form can be written using Jacobian matrices:
+
+Integration
+
+Let
+be a differential form and S a differentiable k-manifold over which we wish to integrate, where S has the parameterization
+for u in the parameter domain D.  Then  defines the integral of the differential form over S as
+where
+is the determinant of the Jacobian. The Jacobian exists because S is differentiable.
+
+Stokes' theorem
+
+This theorem also underlies the duality between de Rham cohomology and the homology of chains.
+
+Relation with measures
+
+On an orientable but not oriented manifold, there are two choices of orientation; either choice allows one to integrate n-forms over compact subsets, with the two choices differing by a sign. On non-orientable manifold, n-forms and densities cannot be identified —notably, any top-dimensional form must vanish somewhere (there are no volume forms on non-orientable manifolds), but there are nowhere-vanishing densities— thus while one can integrate densities over compact subsets, one cannot integrate n-forms. One can instead identify densities with top-dimensional pseudoforms.
+On a Riemannian manifold, one may define a k-dimensional Hausdorff measure for any k (integer or real), which may be integrated over k-dimensional subsets of the manifold. A function times this Hausdorff measure can then be integrated over k-dimensional subsets, providing a measure-theoretic analog to integration of k-forms. The n-dimensional Hausdorff measure yields a density, as above.
+
+Applications in physics
+
+Differential forms arise in some important physical contexts. For example, in Maxwell's theory of electromagnetism, the Faraday 2-form, or electromagnetic field strength, is
+This form is a special case of the curvature form on the U(1) principal fiber bundle on which both electromagnetism and general gauge theories may be described.  The connection form for the principal bundle is the vector potential, typically denoted by A, when represented in some gauge.  One then has
+The current 3-form is
+Using the above-mentioned definitions, Maxwell's equations can be written very compactly in geometrized units as
+Electromagnetism is an example of a U(1) gauge theory.  Here  the  Lie group is U(1), the one-dimensional unitary group, which is in particular abelian.  There are gauge theories, such as Yang–Mills theory, in which the Lie group is not abelian.  In that case, one gets relations which are similar to those described here. The analog of the field F in such theories is the curvature form of the connection, which is represented in a gauge by a Lie algebra-valued one-form A.  The Yang–Mills field F is then defined by
+
+Applications in geometric measure theory
+
+Numerous minimality results for complex analytic manifolds are based on the Wirtinger inequality for 2-forms.  A succinct proof may be found in Herbert Federer's classic text Geometric Measure Theory.  The Wirtinger inequality is also a key ingredient in Gromov's inequality for complex projective space in systolic geometry.
+
+
+
+
+
+
+
+

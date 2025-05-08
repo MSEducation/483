@@ -1,0 +1,30 @@
+[[CSV application support]]
+
+CATEGORIES: Spreadsheet software, Spreadsheet file formats
+
+The comma-separated values file format is a very simple data file format that is supported by almost all spreadsheet software such as Excel (although Excel uses the list separator of the current locale settings, which is a semicolon instead of a comma for many locales), Apple Numbers, OpenOffice.org Calc and Gnumeric as well as many online spreadsheet services such as EditGrid and Google Docs & Spreadsheets. Many database management systems support the reading and writing of CSV files.
+
+==Programming language tools==
+
+Any programming language that has input/output and string processing functionality is able to read and write CSV files. Here is a list of individual programming language support for the comma-separated values format.
+
+==Data interpretation==
+
+Many applications that import CSV will try to interpret numbers and dates in order to allow sorting or other formatting features. For example, if a CSV field contains a large integer such as 1234567890123456 then it will appear in Gnumeric as 1.2346789012346E+15 and the resulting value is less accurate. Some applications also accept a single quote-character at the beginning of numbers as a way to indicate that it should be displayed as text (typically left aligned while numbers are right aligned). Also, although the csv specification does not specifically define any support for spreadsheet formulas, most spreadsheet programs will support cell formulas entered with csv by preceding the formula with an equal sign. For example if your csv document contained "1,2,3,=max(A1:C1)" most spreadsheet programs would correctly display 3 in the cell D1.
+
+==Utilities==
+
+The csvprint utility will reformat CSV input based on a format string. This can be useful for reordering fields or generating source code or tables as illustrated in the following example:
+  $ csvprint data.csv "\t{ %0, %1, %2, \"%3\" },\n"
+          { 0xC0000008, 0x00060001, NT_STATUS_INVALID_HANDLE, "The handle is invalid." },
+csvdiff is a Perl script to compare/diff two comma separated files with each other. The difference from standard diff is that the number of the record where the difference occurs is displayed, as well as the specific column which is different. The separator can be set to the other values besides comma. A third file which contains the columns' names separated by the separator can also be included. The column names will be shown if a difference is found. For example:
+ $ perl csvdiff.pl -a act.csv -e exp.csv -s ";" -c col_names.csv -k "2" -t -i
+ Record with key "200100500" is different:
+  Actual   line 006 > 200100500;200100500;6;;;;;;000;0;2005-12-20;55 <
+  Expected line 008 > 200100500;200100500;6;;;;;;000;0;2005-12-19;55 <
+   Difference in field no.: 11 - field name: Dat_Rueckgabe
+    Actual   > 2005-12-20 <
+    Expected > 2005-12-19 <
+Ron's Editor and TablePro are a shareware applications for Windows that open any format of CSV file, in any text encoding for viewing, editing and cleaning.
+CSVed is a freeware utility for Windows that loads a CSV file with its tabular structure and allows editing it in an efficient way.
+

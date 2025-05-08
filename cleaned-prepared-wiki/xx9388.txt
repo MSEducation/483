@@ -1,0 +1,94 @@
+[[Ogg]]
+
+CATEGORIES: Container formats, Free container formats, Xiph.Org projects, Open formats, Filename extensions
+
+Ogg is a free, open container format maintained by the Xiph. The creators of the Ogg format state that it is unrestricted by software patents and is designed to provide for efficient streaming and manipulation of high quality digital multimedia.
+"Ogg" is derived from "ogging", jargon 3.3 Ogging: This is the art of killing a carrier, or potential carrier, by a suicide run. 
+The Ogg container format can multiplex a number of independent streams for audio, video, text (such as subtitles), and metadata.
+In the Ogg multimedia framework, Theora provides a lossy video layer.  The audio layer is most commonly provided by the music-oriented Vorbis format but other codec options include the compression codec Opus, the lossless audio compression codec FLAC, and OggPCM.
+Before 2007, the .  Since 2007, the Xiph.ogg only be used for Ogg Vorbis audio files.  The Xiph.oga for audio only files, .ogx for multiplexed Ogg.
+As of August 4, 2011, the current version of the Xiph.3.0. Both software libraries are free software, released under the New BSD License. Ogg reference implementation was separated from Vorbis on September 2, 2000.Org (2002-07-19) Ogg releases - libogg-1.0.gz - CHANGES. Retrieved 2009-09-01.
+Because the format is free, and its reference implementation is not subject to restrictions associated with copyright, Ogg's various codecs have been incorporated into a number of different free and proprietary media players, both commercial and non-commercial, as well as portable media players and GPS receivers from different manufacturers.
+
+Naming
+
+It is sometimes assumed that the name "Ogg" comes from the character of Nanny Ogg in Terry Pratchett's Discworld novels, but the Ogg developers say that is not true. Ogg is derived from ogging, jargon from the computer game Netrek, which came to mean doing something forcefully, possibly without consideration of the drain on future resources. At its inception, the Ogg project was thought to be somewhat ambitious given the power of the PC hardware of the time. Still, to quote the same reference: "Vorbis, on the other hand is named after the Terry Pratchett character from the book Small Gods".
+The Ogg Vorbis project started in 1993. It was originally named "Squish" but that name was already trademarked, so the project underwent a name change. The new name, "OggSquish", was used until 2001 when it was changed again to "Ogg". Ogg has since come to refer to the container format, which is now part of the larger Xiph. Today, "Squish" (now known as "Vorbis") refers to a particular codec typically stored in the Ogg container.
+
+File format
+
+The "Ogg" bitstream format, spearheaded by the Xiph.
+The format consists of chunks of data each called an "Ogg page". Each page begins with the characters, "OggS", to identify the file as Ogg format.
+A "serial number" and "page number" in the page header identifies each page as part of a series of pages making up a bitstream. Multiple bitstreams may be multiplexed in the file where pages from each bitstream are ordered by the seek time of the contained data. Bitstreams may also be appended to existing files, a process known as "chaining", to cause the bitstreams to be decoded in sequence.
+A BSD-licensed library, called "libvorbis", is available to encode and decode data from "Vorbis" streams. Independent Ogg implementations are used in several projects such as RealPlayer and a set of DirectShow filters.
+
+Page structure
+
+The following is the field layout of an Ogg page header:
+! style="width:5%;"|Bit
+! style="width:10%;"|Value
+! style="width:10%;"|Flag
+! style="width:75%;"|Page type
+|-
+|0
+|0x01
+|Continuation
+|The first packet on this page is a continuation of the previous packet in the logical bitstream.
+|-
+|1
+|0x02
+|BOS
+|Beginning Of Stream. This page is the first page in the logical bitstream. The BOS flag must be set on the first page of every logical bitstream, and must not be set on any other page.
+|-
+|2
+|0x04
+|EOS
+|End Of Stream. This page is the last page in the logical bitstream. The EOS flag must be set on the final page of every logical bitstream, and must not be set on any other page.
+|}
+The segments provide a way to group segments into packets, which are meaningful units of data for the decoder. When the segment's length is indicated to be 255, this indicates that the following segment is to be concatenated to this one and is part of the same packet. When the segment's length is 0–254, this indicates that this segment is the final segment in this packet. Where a packet's length is a multiple of 255, the final segment is length 0.
+Where the final packet continues on the next page, the final segment value is 255, and the continuation flag is set on the following page to indicate that the start of the new page is a continuation of last page.
+
+Metadata
+
+Currently, there is no official standard for including metadata in Ogg containers. Implementation is still a long way off as of Quarter 3, 2007. The Xiph. Suggested metadata implementation methods include the following:
+Metadata must currently be included in the codec. There is fairly good software support for Vorbis metadata—often referred to as comments. But software support for Theora and FLAC comments in Ogg containers is very limited.
+
+History
+
+The Ogg project began with a simple audio compression package as part of a larger project in 1993.
+Ogg reference implementation was separated from Vorbis on September 2, 2000.
+In May 2003, two Internet RFCs were published relating to the format. The Ogg bitstream was defined in RFC 3533 (which is classified as 'informative') and its Internet content type (application/ogg) in RFC 3534 (which is, , a proposed standard protocol). In September 2008, RFC 3534 was obsoleted by RFC 5334, which added content types video/ogg, audio/ogg and filename extensions .ogv, .spx.
+
+OGM
+
+In 2002, the lack of formal video support in Ogg resulted in the creation of the OGM file format, a hack on Ogg that allowed embedding of video from the Microsoft DirectShow framework into an Ogg-based wrapper. OGM was initially supported only by closed source Windows-only tools, but the code base was subsequently opened. Later, video (and subtitle) support were formally specified for Ogg but in a manner incompatible with OGM. Independently, the Matroska container format reached maturity and provided another alternative for people interested in combining Vorbis audio and arbitrary video codecs. As a result OGM is no longer supported or developed and is formally discouraged by Xiph. Today, video in Ogg is found with the .
+
+2006
+
+Although Ogg hadn't reached anywhere near the ubiquity of the MPEG standards, it was commonly used to encode free content (such as free music, multimedia on Wikimedia projects and Creative Commons files) and had started to be supported by a significant minority of digital audio players. Also supporting the Ogg format were many popular video game engines, including Doom 3, Unreal Tournament 2004, Halo: Combat Evolved, Jets n Guns, Mafia: The City of Lost Heaven, Myst IV: Revelation, Stepmania, Serious Sam: The Second Encounter, Lineage 2, Vendetta Online, Battlefield 2, and the Grand Theft Auto engines. The more popular Vorbis codec had built-in support on many software players, and extensions were available for nearly all the rest.
+
+2007
+
+On May 16, 2007, the Free Software Foundation started a campaign to increase the use of Vorbis "as an ethically, legally and technically superior audio alternative to the proprietary MP3 format."
+
+2009
+
+By June 30, 2009, the Ogg container, through the use of the Theora and Vorbis, was the only container format included in Firefox 3.5 web browser's implementation of the HTML 5 <video> and <audio> elements. This was in accordance with the original recommendation outlined in, but later removed from, the HTML 5 draft specification (see Ogg controversy).
+
+2010
+
+On March 3, 2010, a technical analysis by an FFmpeg developer was critical about the general purpose abilities of Ogg as a multimedia container format.
+By December 2010, browsers supporting Ogg had surpassed browsers supporting both MP4 and WebM.
+
+Ogg codecs
+
+Ogg is only a container format. The actual audio or video encoded by a codec is stored inside an Ogg container. Ogg containers may contain streams encoded with multiple codecs, for example, a video file with sound contains data encoded by both an audio codec and a video codec.
+Being a container format, Ogg can embed audio and video in various formats (such as Dirac, MNG, CELT, MPEG-4, MP3 and others) but Ogg was intended to be, and usually is, used with the following Xiph.org free codecs:
+
+
+
+
+
+
+
+

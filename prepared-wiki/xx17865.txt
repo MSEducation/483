@@ -1,0 +1,74 @@
+ 24                  decrease-key ''v'' in ''Q'';                           ''// Reorder v in the Queue (that is, [[heapify|heapify-down]]) ''
+ 25              '''end if'''
+ 26          '''end for'''
+ 27      '''end while'''
+ 28      '''return''' dist[], previous[];
+ 29  '''end function'''
+If we are only interested in a shortest path between vertices source and target, we can terminate the search at line 13 if u = target.
+Now we can read the shortest path from source to target by reverse iteration:
+ 1  ''S'' := empty sequence
+ 2  ''u'' := ''target''
+ 3  '''while''' previous[''u''] is defined:                              ''// Construct the shortest path with a stack S
+ 4      insert ''u'' at the beginning of ''S''                         ''// Push the vertex into the stack
+ 5      ''u'' := previous[''u'']                                       ''// Traverse from target to source
+ 6  '''end while''' ;
+Now sequence S is the list of vertices constituting one of the shortest paths from source to target, or the empty sequence if no path exists.
+A more general problem would be to find all the shortest paths between source and target (there might be several different ones of the same length). Then instead of storing only a single node in each entry of previous we would store all nodes satisfying the relaxation condition. For example, if both r and source connect to target and both of them lie on different shortest paths through target (because the edge cost is the same in both cases), then we would add both r and source to previoustarget. When the algorithm completes, previous data structure will actually describe a graph that is a subset of the original graph with some edges removed. Its key property will be that if the algorithm was run with some starting node, then every path from that node to any other node in the new graph will be the shortest path between those nodes in the original graph, and all paths of that length from the original graph will be present in the new graph. Then to actually find all these shortest paths between two given nodes we would use a path finding algorithm on the new graph, such as depth-first search.
+
+===Using a priority queue===
+
+A min-priority queue is an abstract data structure that provides 3 basic operations : add_with_priority(), decrease_priority() and extract_min(). As mentioned earlier, using such a data structure can lead to faster computing times than using a basic queue. Notably, Fibonacci heap [tpl]harv|Fredman|Tarjan|1984[/tpl] or Brodal queue offer optimal implementations for those 3 operations. As the algorithm is slightly different, we mention it here, in pseudo-code as well :
+ 1  '''function''' Dijkstra(''Graph'', ''source''):
+ 2      dist[''source''] := 0                     ''// Initializations
+ 3      '''for each''' vertex ''v'' in ''Graph'':           
+ 4          '''if''' ''v'' ≠ ''source''
+ 5              dist[''v''] := infinity           ''// Unknown distance from source to v
+ 6              previous[''v''] := undefined      ''// Predecessor of v
+ 7          '''end if'''
+ 8          ''PQ''.add_with_priority(''v'',dist[''v''])
+ 9      '''end for''' 
+ 10
+ 11
+ 12     '''while''' ''PQ'' is not empty:                ''// The main loop
+ 13         ''u'' := ''PQ''.extract_min()             ''// Remove and return best vertex
+ 14         '''for each''' neighbor v of u:         ''// where v has not yet been removed from PQ.
+ 15             ''alt'' = dist[''u''] + length(''u'', ''v'') 
+ 16             '''if''' ''alt'' < dist[''v'']              ''// Relax the edge (u,v) 
+ 17                 dist[''v''] := ''alt'' 
+ 18                 previous[''v''] := ''u''
+ 19                 ''PQ''.decrease_priority(''v'',''alt'')
+ 20             '''end if'''
+ 21         '''end for'''
+ 22     '''end while'''
+ 23     '''return''' previous[]
+It should be noted that other data structures can be used to achieve even faster computing times in practice.[tpl]cite book|first1=M.|last1=Chen|first2=R. A.|last2=Chowdhury|first3=V.|last3=Ramachandran|first4=D. L.|last4=Roche|first5=L.|last5=Tong|title=Priority Queues and Dijkstra’s Algorithm — UTCS Technical Report TR-07-54 — 12 October 2007|publisher=The University of Texas at Austin, Department of Computer Sciences|location=Austin, Texas|year=2007|url=http://www.cs.sunysb.edu/~rezaul/papers/TR-07-54.pdf|ref=chen[/tpl]
+
+==Running time==
+
+Note that for directed acyclic graphs, it is possible to find shortest paths from a given starting vertex in linear time, by processing the vertices in a topological order, and calculating the path length for each vertex to be the minimum length obtained via any of its incoming edges.http://www.boost.org/doc/libs/1_44_0/libs/graph/doc/dag_shortest_paths.html
+
+==Related problems and algorithms==
+
+The functionality of Dijkstra's original algorithm can be extended with a variety of modifications. For example, sometimes it is desirable to present solutions which are less than mathematically optimal. To obtain a ranked list of less-than-optimal solutions, the optimal solution is first calculated. A single edge appearing in the optimal solution is removed from the graph, and the optimum solution to this new graph is calculated. Each edge of the original solution is suppressed in turn and a new shortest-path calculated. The secondary solutions are then ranked and presented after the first optimal solution.
+Dijkstra's algorithm is usually the working principle behind link-state routing protocols, OSPF and IS-IS being the most common ones.
+Unlike Dijkstra's algorithm, the Bellman–Ford algorithm can be used on graphs with negative edge weights, as long as the graph contains no negative cycle reachable from the source vertex s. The presence of such cycles means there is no shortest path, since the total weight becomes lower each time the cycle is traversed. It is possible to adapt Dijkstra's algorithm to handle negative weight edges by combining it with the Bellman-Ford algorithm (to remove negative edges and detect negative cycles), such an algorithm is called Johnson's algorithm.
+The A* algorithm is a generalization of Dijkstra's algorithm that cuts down on the size of the subgraph that must be explored, if additional information is available that provides a lower bound on the "distance" to the target. This approach can be viewed from the perspective of linear programming: there is a natural linear program for computing shortest paths, and solutions to its dual linear program are feasible if and only if they form a consistent heuristic (speaking roughly, since the sign conventions differ from place to place in the literature). This feasible dual / consistent heuristic defines a non-negative reduced cost and A* is essentially running Dijkstra's algorithm with these reduced costs. If the dual satisfies the weaker condition of admissibility, then A* is instead more akin to the Bellman–Ford algorithm.
+The process that underlies Dijkstra's algorithm is similar to the greedy process used in Prim's algorithm.  Prim's purpose is to find a minimum spanning tree that connects all nodes in the graph; Dijkstra is concerned with only two nodes. Prim's does not evaluate the total weight of the path from the starting node, only the individual path.
+Breadth-first search can be viewed as a special-case of Dijkstra's algorithm on unweighted graphs, where the priority queue degenerates into a FIFO queue.
+
+==Dynamic programming perspective==
+
+From a dynamic programming point of view, Dijkstra's algorithm is a successive approximation scheme that solves the dynamic programming functional equation for the shortest path problem by the Reaching method.[tpl]cite journal | last = Sniedovich | first = M. | title = Dijkstra’s algorithm revisited: the dynamic programming connexion | journal = Journal of Control and Cybernetics | volume = 35 | issue = 3 | pages = 599–620 | year = 2006 | url = http://matwbn.icm.edu.pl/ksiazki/cc/cc35/cc3536.pdf | format = PDF[/tpl] Online version of the paper with interactive computational modules.[tpl]cite book | last = Denardo | first = E.V. | title = Dynamic Programming: Models and Applications | publisher = Dover Publications | location = Mineola, NY | year = 2003 | isbn = 978-0-486-42810-9[/tpl][tpl]cite book | last = Sniedovich | first = M. | title = Dynamic Programming: Foundations and Principles | publisher = Francis & Taylor | year = 2010 | isbn = 978-0-8247-4099-3  [/tpl]
+In fact, Dijkstra's explanation of the logic behind the algorithm,[tpl]harvnb|Dijkstra|1959|p=270[/tpl] namely
+
+is a paraphrasing of Bellman's famous Principle of Optimality in the context of the shortest path problem.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

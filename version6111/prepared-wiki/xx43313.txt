@@ -1,0 +1,84 @@
+[[Collision detection]]
+
+CATEGORIES: Computational physics, Computer physics engines, Video game development
+
+Collision detection typically refers to the computational problem of detecting the intersection of two or more objects. While the topic is most often associated with its use in video games and other physical simulations, it also has applications in robotics. In addition to determining whether two objects have collided, collision detection systems may also calculate time of impact (TOI), and report a contact manifold (the set of intersecting points).Ericson, Christer. Real-time Collision Detection. Elsevier, 2005, p. 13. Collision response deals with simulating what happens when a collision is detected (see physics engine, ragdoll physics). Solving collision detection problems requires extensive use of concepts from linear algebra and computational geometry.
+
+==Overview==
+
+In physical simulation, we wish to conduct experiments, such as playing billiards. The physics of bouncing billiard balls are well understood, under the umbrella of rigid body motion and elastic collisions. An initial description of the situation would be given, with a very precise physical description of the billiard table and balls, as well as initial positions of all the balls. Given a force applied to the cue ball (probably resulting from a player hitting the ball with his or her cue stick), we want to calculate the trajectories, precise motion, and eventual resting places of all the balls with a computer program. A program to simulate this game would consist of several portions, one of which would be responsible for calculating the precise impacts between the billiard balls. This particular example also turns out to be ill conditioned: a small error in any calculation will cause drastic changes in the final position of the billiard balls.
+Video games have similar requirements, with some crucial differences. While physical simulation needs to simulate real-world physics as precisely as possible, video games need to simulate real-world physics in an acceptable way, in real time and robustly. Compromises are allowed, so long as the resulting simulation is satisfying to the game players.
+
+==Collision detection in physical simulation==
+
+Physical simulators differ in the way they react on a collision. Some use the softness of the material to calculate a force, which will resolve the collision in the following time steps like it is in reality. Due to the low softness of some materials this is very CPU intensive. Some simulators estimate the time of collision by linear interpolation, roll back the simulation, and calculate the collision by the more abstract methods of conservation laws.
+Some iterate the linear interpolation (Newton's method) to calculate the time of collision with a much higher precision than the rest of the simulation. Collision detection utilizes time coherence to allow even finer time steps without much increasing CPU demand, such as in air traffic control.
+After an inelastic collision, special states of sliding and resting can occur and, for example, the Open Dynamics Engine uses constraints to simulate them. Constraints avoid inertia and thus instability. Implementation of rest by means of a scene graph avoids drift.
+In other words, physical simulators usually function one of two ways, where the collision is detected a posteriori (after the collision occurs) or a priori (before the collision occurs). In addition to the a posteriori and a priori distinction, almost all modern collision detection algorithms are broken into a hierarchy of algorithms. Often the terms "discrete" and "continuous" are used rather than a posteriori and a priori.
+
+===A posteriori (discrete) versus a priori (continuous)===
+
+In the a posteriori case, we advance the physical simulation by a small time step, then check if any objects are intersecting, or are somehow so close to each other that we deem them to be intersecting. At each simulation step, a list of all intersecting bodies is created, and the positions and trajectories of these objects are somehow "fixed" to account for the collision. We say that this method is a posteriori because we typically miss the actual instant of collision, and only catch the collision after it has actually happened.
+In the a priori methods, we write a collision detection algorithm which will be able to predict very precisely the trajectories of the physical bodies. The instants of collision are calculated with high precision, and the physical bodies never actually interpenetrate. We call this a priori because we calculate the instants of collision before we update the configuration of the physical bodies.
+The main benefits of the a posteriori methods are as follows. In this case, the collision detection algorithm need not be aware of the myriad of physical variables; a simple list of physical bodies is fed to the algorithm, and the program returns a list of intersecting bodies. The collision detection algorithm doesn't need to understand friction, elastic collisions, or worse, nonelastic collisions and deformable bodies. In addition, the a posteriori algorithms are in effect one dimension simpler than the a priori algorithms. Indeed, an a priori algorithm must deal with the time variable, which is absent from the a posteriori problem.
+On the other hand, a posteriori algorithms cause problems in the "fixing" step, where intersections (which aren't physically correct) need to be corrected. Moreover, if the discrete step is not related to object's relative speed, the collision could go undetected, resulting in an object which passes through another, if fast enough.
+The benefits of the a priori algorithms are increased fidelity and stability.  It is difficult (but not completely impossible) to separate the physical simulation from the collision detection algorithm. However, in all but the simplest cases, the problem of determining ahead of time when two bodies will collide (given some initial data) has no closed form solution—a numerical root finder is usually involved.
+Some objects are in resting contact, that is, in collision, but neither bouncing off, nor interpenetrating, such as a vase resting on a table. In all cases, resting contact requires special treatment: If two objects collide (a posteriori) or slide (a priori) and  their relative motion is below a threshold, friction becomes stiction and both objects are arranged in the same branch of the scene graph.
+
+==Optimization==
+
+The obvious approaches to collision detection for multiple objects are very slow.
+Checking every object against every other object will, of course, work, but is
+too inefficient to be used when the number of objects is at all large.  Checking objects with complex geometry against each other in the obvious way, by checking each face against each other face, is itself quite slow.  Thus, considerable research has been applied to speeding up the problem.
+
+===Exploiting temporal coherence===
+
+In many applications, the configuration of physical bodies from one time step to the next changes very little.  Many of the objects may not move at all.  
+Algorithms have been designed so that the calculations done in a preceding time step can be reused in the current time step, resulting in faster completion of the calculation.
+At the coarse level of collision detection, the objective is to find pairs of objects which might potentially intersect.  Those pairs will require further analysis.  An early high performance algorithm for this was developed by Ming C. Lin at the University of California, Berkeley http://www.cs.berkeley.edu/~jfc/mirtich/collDet.html, who suggested using axis-aligned bounding boxes for all n bodies in the scene.
+In the case of deformable bodies such as cloth simulation, it may not be possible to use a more specific pairwise pruning algorithm as discussed below, and an n-body pruning algorithm is the best that can be done.
+If an upper bound can be placed on the velocity of the physical bodies in a scene, then pairs of objects can be pruned based on their initial distance and the size of the time step.
+
+===Pairwise pruning===
+
+When the time comes for testing a pair of objects for collision, their bounding sphere tree can be used to eliminate many pairs of triangles.
+
+===Exact pairwise collision detection===
+
+Once we're done pruning, we are left with a number of candidate pairs to check for exact collision detection.
+A basic observation is that for any two convex objects which are disjoint, one can find a plane in space so that one object lies completely on one side of that plane, and the other object lies on the opposite side of that plane.  This allows the development of very fast collision detection algorithms for convex objects.
+If the triangles are coplanar, this test is not entirely successful. One can add some extra planes, for instance, planes that are normal to triangle edges, to fix the problem entirely. In other cases, objects that meet at a flat face must necessarily also meet at an angle elsewhere, hence the overall collision detection will be able to find the collision.
+Better methods have since been developed.  Very fast algorithms are available for finding the closest points on the surface of two convex polyhedral objects.  Early work by Ming C. Lin[ref][tpl]cite paper |author=Lin, Ming C|title=Efficient Collision Detection for Animation and Robotics (thesis)|year=1993|publisher=University of California, Berkeley|url=ftp://ftp.cs.unc.edu/pub/users/manocha/PAPERS/COLLISION/thesis.pdf[/tpl]
+[/ref] used a variation on the simplex algorithm from linear programming.  The Gilbert-Johnson-Keerthi distance algorithm has superseded that approach.  These algorithms approach constant time when applied repeatedly to pairs of stationary or slow-moving objects, when used with starting points from the previous collision check.
+The end result of all this algorithmic work is that collision detection can be done efficiently for thousands of moving objects in real time on typical personal computers and game consoles.
+
+===A priori pruning===
+
+Where most of the objects involved are fixed, as is typical of video games, a priori methods using precomputation can be used to speed up execution.
+Pruning is also desirable here, both n-body pruning and pairwise pruning, but the algorithms must take time and the types of motions used in the underlying physical system into consideration.
+When it comes to the exact pairwise collision detection, this is highly trajectory dependent, and one almost has to use a numerical root-finding algorithm to compute the instant of impact.
+
+===Spatial partitioning===
+
+Alternative algorithms are grouped under the spatial partitioning umbrella, which includes octrees, binary space partitioning (or BSP trees) and other, similar approaches. If one splits space into a number of simple cells, and if two objects can be shown not to be in the same cell, then they need not be checked for intersection. Since BSP trees can be precomputed, that approach is well suited to handling walls and fixed obstacles in games.   These algorithms are generally older than the algorithms described above.
+
+===Bounding boxes http://geomalgorithms.com/a08-_containers.html===
+
+Bounding boxes (or Bounding volumes) are like a frame mostly a 2D square or 3D cube but other shapes are possible, e.g. bounding diamondhttp://geomalgorithms.com/a08-_containers.html#Bounding-Diamond or bounding octagonhttp://geomalgorithms.com/a08-_containers.html#Bounding-Diamond Can be found just under the Bonding Diamond that fits as tightly as possible around an object but still contain the whole object inside, this frame can be used to optimize the detection of collisions by checking if the boxes of 2 objects overlap and therefore a collision is possible but not necessary, the optimization lies in that no graphics or even the object itself doesn't have to be rendered to the screen, and by simply checking the coordinates of 2 opposing corners of each object (total 4 corners) it can be determined if the 2 boxes overlap or is separated.
+If 2 boxes overlap it can either directly counts as a collision or a more refined collision detection can be started (e.g. pixel collision detection), this refined collision detection is only required to analyze inside the intersection between the 2 bonding boxes (outside the intersection the both objects are still separated and can't collide).
+
+==Video games==
+
+Video games have to split their very limited computing time between several tasks. Despite this resource limit, and the use of relatively primitive collision detection algorithms, programmers have been able to create believable, if inexact, systems for use in games.
+For a long time, video games had a very limited number of objects to treat, and so checking all pairs was not a problem. In two-dimensional games, in some cases, the hardware was able to efficiently detect and report overlapping pixels between sprites on the screen. In other cases, simply tiling the screen and binding each sprite into the tiles it overlaps provides sufficient pruning, and for pairwise checks, bounding rectangles or circles called hitboxes are used and deemed sufficiently accurate.
+Because games do not need to mimic actual physics, stability is not as much of an issue. Almost all games use a posteriori collision detection, and collisions are often resolved using very simple rules. For instance, if a character becomes embedded in a wall, he might be simply moved back to his last known good location. Some games will calculate the distance the character can move before getting embedded into a wall, and only allow him to move that far.
+In many cases for video games, approximating the characters by a point is sufficient for the purpose of collision detection with the environment. In this case, Binary space partitioning trees provide a viable, efficient and simple algorithm for checking if a point is embedded in the scenery or not. Such a data structure can also be used to handle "resting position" situation gracefully when a character is running along the ground. Collisions between characters, and collisions with projectiles and hazards, are treated separately.
+A robust simulator is one that will react to any input in a reasonable way. For instance, if we imagine a high speed racecar video game, from one simulation step to the next, it is conceivable that the cars would advance a substantial distance along the race track. If there is a shallow obstacle on the track (such as a brick wall), it is not entirely unlikely that the car will completely leap over it, and this is very undesirable. In other instances, the "fixing" that posteriori algorithms require isn't implemented correctly, and characters find themselves embedded in walls, or falling off into a deep void, sometimes referred to as "black hell," "blue hell," or "green hell," depending on the predominant color [tpl]citation needed|date=May 2012[/tpl]. These are the hallmarks of a failing collision detection and physical simulation system. Big Rigs: Over the Road Racing is an infamous example of a game which either has a failing collision detection system or does not even have one.
+
+==See also==
+
+==References==
+
+==External links==
+
+

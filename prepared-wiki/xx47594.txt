@@ -1,0 +1,53 @@
+</ref> This station has the callsign [[GBZ]][tpl]Citation needed|date=December 2011[/tpl] and is operated by [[VT Communications]].<ref>[tpl]cite web|url=http://www.npl.co.uk/science-technology/time-frequency/products-and-services/time/msf-radio-time-signal|title=MSF Radio Time Signal|publisher=National Physical Laboratory[/tpl]</ref>
+The formal inauguration of the relocated facility took place on 1 April 2007, when the name of the service became "The Time from NPL" and the signal from Rugby was permanently switched off. The change in location and consequent change in signal strength can make some equipment designed to use the MSF signal fail to continue doing so. This is found more in domestic equipment not designed for optimum sensitivity and positioned haphazardly; only the few people aware of the Rugby switchoff will have made the connection between failure of MSF devices and the switchoff.[tpl]Citation needed|date=November 2011[/tpl]
+
+==The 'MSF signal' and the 'Rugby clock'==
+
+From the time signal's inauguration in 1950 until 1 April 2007 it was transmitted from Rugby Radio Station near Rugby, Warwickshire.[tpl]cite web|title=NPL T&F: FAQs|publisher=National Physical Laboratory, UK | accessdate = 23 January 2008 | url=http://www.npl.co.uk/science-technology/time-frequency/time/faqs/[/tpl] The transmitter's original location meant that the clock was referred to as "the Rugby clock".[tpl]cite web | title=ARM+FPGA based Rugby clock | publisher = Computer Laboratory, University of Cambridge | accessdate = 6 April 2007 | url = http://www.cl.cam.ac.uk/teaching/2005/ECADArch/lab6.html[/tpl] Following its relocation, the NPL now formally calls the signal "The Time from NPL".
+The Rugby transmitter's callsign was MSF, where 'M' is one of the ITU prefixes allocated to the United Kingdom, and the letters 'SF' were allocated for no documented reason. This resulted in the common terminology "the MSF signal", which is still used by the NPL. The official history of the service says that "Rugby was given an additional commitment for the transmission of reference Modulated Standard Frequencies", but no actual explanation is given for the call sign "MSF".The Official History of Rugby Radio Station
+
+==Transmission and reception==
+
+The transmitted signal has an effective radiated power of 17 kW, on a frequency of 60 kHz to within 2 parts in 1012. The signal strength is greater than 10 mV/m at 100 km; it is greater than 100 μV/m at 1000 km from the transmitter, and thus can be received at not less than this strength throughout the UK.[tpl]cite web|title=Time Has Moved|publisher=National Physical Laboratory, UK|accessdate=6 April 2007|url=http://web.archive.org/web/20070927004145/http://www.npl.co.uk/time/msf/change.html[/tpl] The signal can also be received, and is widely used, in northern and western Europe.
+While at Rugby the transmitter generated 60 kW of radio frequency power (using 70 kW of mains power). The 180m-high T-aerial antenna was 500m across at its top. The vertical part of the antenna radiated the signal, so that the received strength was similar in all directions (it was approximately omnidirectional).
+
+==Uses==
+
+In addition to professional uses where accurate time is required, radio-controlled clocks with both digital and analog displays using the NPL signal are widely used (similar clocks are available in other regions with standard time transmissions). As far as users are concerned they are simply clocks with the same features and settings as others, but always display the right time, and correct themselves for summer time.
+
+==Protocol==
+
+The MSF transmitter is switched off for brief intervals (on-off keying) near the beginning of each second to encode the current time and date.  The rise and fall times of the 60 kHz carrier are determined by the combination of antenna and transmitter.[ref]
+</ref>
+Each UTC second begins with 100 ms of 'off', preceded by at least 500 ms of carrier.  The second marker is transmitted with an accuracy better than ±1 ms relative to Coordinated Universal Time (UTC), which is itself always within ±1 second of Greenwich Mean (solar) Time (GMT).
+The first second of the minute, denoted second 00, begins with a period of 500 ms with the carrier off, to serve as a minute marker.
+The other 59 (or, exceptionally, 60 or 58) seconds of the minute always begin with at least 100 ms 'off', followed by two data bits of 100 ms each, and end with at least 700 ms of carrier.
+Negative Polarity Bit Signalling
+If each second is considered as ten 100 ms pieces, the minute marker is transmitted as 1111100000, while all other seconds are transmitted as 1AB0000000.
+Although two data bits are transmitted per second, the time code has the property that only one of them is variable; non-zero B bits are only transmitted when the corresponding A bit has a fixed value.
+Seconds 01–16 carry information for the current minute about the difference (DUT1) between atomic and astronomical time, and the remaining seconds convey the time and date code.
+The time and date code information begins 43 seconds before the corresponding minute marker (second 17 of the previous minute, in the absence of leap seconds), and is always given in terms of UK civil time, which is UTC in winter and UTC+1h when Summer Time is in effect.
+Consecutive bits from 01B–08B are set to 1 to indicate positive DUT1 values from +0.1s to +0.8s.  For example, bit 05B is set if DUT1 ≥ 0.5 s.  Consecutive bits from 09B–16B are set to 1 to indicate negative DUT1 values from −0.1s to −0.8s.  For example, bit 11B is set if DUT1 ≤ −0.3 s.
+In case of a leap second, a zero bit is inserted between seconds 16 and 17.  In case of a negative leap second, second 16 will be deleted.  Since negative leap seconds can only occur when DUT1 is positive, bits 9B through 16B will be zero.
+Bits 17A–51A encode the time of the following minute in binary-coded decimal, most significant bit first.  Beginning with bit 17A comes 4 bits of tens of years, 4 bits of years, 1 bit of tens of months, 4 bits of months, 2 bits of tens of days, 4 bits of days, 3 bits of day of week (0=Sunday), 2 bits of tens of hours, 4 bits of hours, 3 bits of tens of minutes, and 4 bits of minutes.
+Bits 52A–59A provide another way to identify minute boundaries.  Due to BCD encoding, at most 5 consecutive 1 bits can appear elsewhere in the A bits (bits 33A–37A, if a day ending in 7 falls on a Saturday).  These 6 consecutive 1 bits thus uniquely identify the end of the minute.
+Bits 54B–57B provide odd parity over the time code.  The 4 parity bits cover years (8 bits), months and days (11 bits), day of week (3 bits), and time of day (13 bits) respectively.
+Bit 58B indicates the broadcast time is summer time.  Bit 53B gives warning that the summer time bit is about to change.  It is set for 61 consecutive minutes, starting 1 hour 7 seconds before the change, and ending 7 seconds before the change, 5 seconds before the first changed bit 58B, which is itself transmitted 2 seconds (1.7–1.8 seconds, to be more precise) before moment of the time change.
+In addition to the 500 ms carrier-off minute marker, bits 53A–58A are all set permanently at '1', and are bracketed by bits 52A and 59A at '0'. This sequence 01111110 never appears elsewhere in bit A, so it uniquely identifies the following second 00 minute marker.
+
+===Shortcomings of the current signal format===
+
+MSF does not broadcast any explicit advance warning of upcoming leap seconds which occur less than once a year on average.  The only indication is a change in the number of padding bits before the time code during the minute before the leap second.  Therefore, unless a leap-second announcement is manually entered into a receiver in advance, it may take some time until an autonomous MSF receiver regains synchronization with UTC after a leap second (especially if the reception is not robust at the time of the leap second).
+The time signal only provides 1 hour warning of summer-time changes.
+
+==Outages==
+
+MSF normally broadcasts continuously, but is occasionally taken out of service for scheduled or unscheduled maintenance.  The NPL maintains a web page which lists upcoming scheduled outages and information on unscheduled maintenance.MSF Outages
+
+==See also==
+
+==References==
+
+==External links==
+
+

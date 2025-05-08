@@ -1,0 +1,56 @@
+[[7z]]
+
+CATEGORIES: Lossless compression algorithms, Free data compression software, 1999 introductions, Archive formats
+
+7z is a compressed archive file format that supports several different data compression, encryption and pre-processing algorithms.  The 7z format initially appeared as implemented by the 7-Zip archiver.  The 7-Zip program is publicly available under the terms of the GNU Lesser General Public License.  The LZMA SDK 4.62 was placed in the public domain in December 2008.  The latest stable version of 7-Zip and LZMA SDK is version 9.20.
+The MIME type of 7z is application/x-7z-compressed.
+The official 7z file format specification is distributed with 7-Zip's source code. The specification can be found in plain text format in the 'doc' sub-directory of the source code distribution.
+
+==Features and enhancements==
+
+The 7z format provides the following main features:
+The format's open architecture allows additional future compression methods to be added to the standard.
+
+===Compression methods===
+
+The following compression methods are currently defined:
+| url         = http://www.google.com/codesearch/p?hl=en#iR1SCQLM-vQ/src/base-prerelease/R-latest.tar.gz%7Cec1_gA5QXsk/R-rc/src/extra/xz/api/lzma/lzma.h
+| title       = lzma.h
+| work        = LZMA source code header file
+| location    = lines 36–38
+| first       = Lasse
+| last        = Collin
+| accessdate  = 2010-01-03
+| quote       = Compared to LZMA1, LZMA2 adds support for LZMA_SYNC_FLUSH, uncompressed chunks (smaller expansion when trying to compress uncompressible data), possibility to change lc/lp/pb in the middle of encoding, and some other internal improvements.
+| archiveurl= http://web.archive.org/web/20100208075245/http://www.google.com/codesearch/p?hl=en| archivedate= 8 February 2010 | deadurl= no}}[/ref]
+A suite of recompression tools called AdvanceCOMP contains a copy of the DEFLATE encoder from the 7-Zip implementation; these utilities can often be used to further compress the size of existing gzip, ZIP, PNG, or MNG files.
+
+===Pre-processing filters===
+
+The LZMA SDK comes with the BCJ / BCJ2 preprocessor included, so that later stages are able to achieve greater compression:   For x86, ARM, PowerPC (PPC), IA-64 Itanium, and ARM Thumb processors, jump targets are normalized before compression by changing relative position into absolute values. For x86, this means that near jumps, calls and conditional jumps (but not short jumps and conditional jumps) are converted from the machine language "jump 1655 bytes backwards" style notation to normalized "jump to address 5554" style notation; all jumps to 5554, perhaps a common subroutine, are thus encoded identically, making them more compressible.
+Similar executable pre-processing technology is included in other software; the RAR compressor features displacement compression for 32-bit x86 executables and IA-64 executables, and the UPX runtime executable file compressor includes support for working with 16-bit values within DOS binary files.
+
+===Encryption===
+
+The 7z format supports encryption with the AES algorithm with a 256-bit key.  The key is generated from a user-supplied passphrase using an algorithm based on the SHA-256 hash function. The SHA-256 is executed 218 (262144) times7-zip source code which causes a significant delay on slow PCs before compression or extraction starts. This technique is called key stretching and is used to make a brute-force search for the passphrase more difficult.  Current GPU-based, and custom hardware attacks limit the effectiveness of this particular method of key stretching,[ref]
+Colin Percival.
+scrypt.
+As presented in
+"Stronger Key Derivation via Sequential Memory-Hard Functions".
+presented at BSDCan'09, May 2009.
+[/ref] so it is still important to choose a strong password.
+The 7z format provides the option to encrypt the filenames of a 7z archive.
+
+===Limitations===
+
+The 7z format does not store filesystem permissions (such as UNIX owner/group permissions or NTFS ACLs), and hence can be inappropriate for backup/archival purposes. A workaround on UNIX-like systems for this is to convert data to a tar bitstream before compressing with 7z. But it is worth noting that GNU tar (common in many UNIX environments) can also compress with the LZMA algorithm natively, without the use of 7z, and that in this case the suggestedhttp://www.gnu.org/software/tar/manual/html_section/Compression.html file extension for the archive is ".tar.lzma" (or just ".tlz"), and not ".tar.7z". On the other hand, it is important to note, that tar does not save the filesystem encoding, which means that tar compressed filenames can become unreadable if decompressed on a different computer. 
+It is also possible to use LZMA2 by running it through the xz tool. Recent versions of GNU tar support the -J switch which runs TAR through XZ. The file extension is ".tar.xz" or ".txz". This method of compression has been adopted with many distributions for packaging, such as Arch, Debian (deb), Fedora (rpm) and Slackware.
+The 7z format does not allow extraction of some "broken files"—that is (for example) if one has the first segment of a series of 7z files, 7z cannot give the start of the files within the archive—it must wait until all segments are downloaded. The 7z format also lacks recovery records, which might be a problem when limited file corruption has occurred. By way of comparison, zip files also lack a recovery feature.  In contrast the proprietary rar format permits recoveries as well as the extraction of broken files and file spanning.
+
+==See also==
+
+==References==
+
+==External links==
+
+

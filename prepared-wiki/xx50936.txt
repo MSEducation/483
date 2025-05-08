@@ -1,0 +1,22 @@
+[[Instruction-level parallelism]]
+
+CATEGORIES: Instruction processing, Parallel computing
+
+Instruction-level parallelism (ILP) is a measure of how many of the operations in a computer program can be performed simultaneously. The potential overlap among instructions is called instruction level parallelism.
+There are two approaches to instruction level parallelism:
+Hardware level works upon dynamic parallelism whereas, the software level works on static parallelism.[tpl]cite book |title=Computer Architecture: A Quantitative Approach|first=John L.|last=Hennessy|first2=David A.|last2=Patterson|[/tpl] The Pentium processor works on the dynamic sequence of parallel execution but the Itanium processor works on the static level parallelism.
+Consider the following program:
+Operation 3 depends on the results of operations 1 and 2, so it cannot be calculated until both of them are completed.  However, operations 1 and 2 do not depend on any other operation, so they can be calculated simultaneously.  If we assume that each operation can be completed in one unit of time then these three instructions can be completed in a total of two units of time, giving an ILP of 3/2.
+A goal of compiler and processor designers is to identify and take advantage of as much ILP as possible. Ordinary programs are typically written under a sequential execution model where instructions execute one after the other and in the order specified by the programmer. ILP allows the compiler and the processor to overlap the execution of multiple instructions or even to change the order in which instructions are executed.
+How much ILP exists in programs is very application specific. In certain fields, such as graphics and scientific computing the amount can be very large. However, workloads such as cryptography may exhibit much less parallelism.
+Micro-architectural techniques that are used to exploit ILP include:
+Dataflow architectures are another class of architectures where ILP is explicitly specified, for a recent example see the TRIPS architecture.
+In recent years, ILP techniques have been used to provide performance improvements in spite of the growing disparity between processor operating frequencies and memory access times (early ILP designs such as the IBM System/360 Model 91 used ILP techniques to overcome the limitations imposed by a relatively small register file). Presently, a cache miss penalty to main memory costs several hundreds of CPU cycles. While in principle it is possible to use ILP to tolerate even such memory latencies the associated resource and power dissipation costs are disproportionate. Moreover, the complexity and often the latency of the underlying hardware structures results in reduced operating frequency further reducing any benefits. Hence, the aforementioned techniques prove inadequate to keep the CPU from stalling for the off-chip data. Instead, the industry is heading towards exploiting higher levels of parallelism that can be exploited through techniques such as multiprocessing and multithreading.  Reflections of the Memory Wall
+
+==See also==
+
+==References==
+
+==External links==
+
+

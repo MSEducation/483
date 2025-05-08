@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.lucene.analysis.pl"},{"l":"org.apache.lucene.analysis.stempel"},{"l":"org.egothor.stemmer"}];updateSearchResults();

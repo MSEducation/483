@@ -1,0 +1,37 @@
+[[Geometric integrator]]
+
+CATEGORIES: Numerical differential equations
+
+In the mathematical field of numerical ordinary differential equations, a geometric integrator is a numerical method that preserves geometric properties of the exact flow of a differential equation.
+
+==Pendulum example==
+
+We can motivate the study of geometric integrators by considering the motion of a pendulum.
+the system, the sum of its kinetic and potential energies, is
+which gives Hamilton's equations
+using some simple numerical methods to integrate this system. As usual,
+We use the following methods.
+curves of the Hamilton's equations allows us to describe the exact
+trajectories and the numerical solutions of the system. For the explicit
+The explicit (resp. implicit) Euler method spirals out from (resp. in to) the origin. The other two methods show the correct qualitative behaviour, with the implicit midpoint rule agreeing with the exact solution to a greater degree than the symplectic Euler method.
+area-preserving, in the sense that
+This formula is easily verified by hand. For our pendulum
+A similar calculation can be carried out for the implicit Euler method,
+where the determinant is
+However, the symplectic Euler method is area-preserving:
+To summarize: the pendulum example shows that, besides the explicit and
+implicit Euler methods not being good choices of method to solve the
+problem, the symplectic Euler method and implicit midpoint rule agree
+well with the exact flow of the system, with the midpoint rule agreeing
+more closely. Furthermore, these latter two methods are area-preserving,
+just as the exact flow is; they are two examples of geometric (in fact, symplectic) integrators.
+
+==Moving frame method==
+
+The moving frame method can be used to construct numerical methods which preserve Lie symmetries of the ODE. Existing methods such as Runge-Kutta can be modified using moving frame method to produce invariant versions.Invariantization of Numerical Schemes Using Moving Frames, Pilwon Kim, 2006, BIT Numerical Mathematics, 2007 – Springer
+
+==See also==
+
+==References==
+
+

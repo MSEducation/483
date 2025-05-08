@@ -1,0 +1,43 @@
+[[Open Inventor]]
+
+CATEGORIES: 3D scenegraph APIs, OpenGL, C++ libraries, C Sharp libraries, Cross-platform software, Java development tools, Java libraries, Application programming interfaces, Graphics libraries, Software development kits, Software that uses Qt, Virtual reality
+
+Open Inventor, originally IRIS Inventor, is a C++ object oriented retained mode 3D graphics toolkit designed by SGI to provide a higher layer of programming for OpenGL. Its main goals are better programmer convenience and efficiency. Open Inventor is free and open-source software, subject to the requirements of the GNU Lesser General Public License (LGPL), version 2.1.
+
+==Early history==
+
+Around 1988–1989, Wei Yen asked Rikk Carey to lead the IRIS Inventor project. Their goal was to create a toolkit that made developing 3D graphics applications easier to do. The strategy was based on the premise that people were not developing enough 3D applications with IRIS GL because it was too time-consuming to do so with the low-level interface provided by IRIS GL. If 3D programming were made easier, through the use of an object oriented API, then more people would create 3D applications and SGI would benefit. Therefore, the credo was always “ease of use” before “performance”, and soon the tagline “3D programming for humans” was being used widely.
+
+==Use==
+
+OpenGL (OGL) is a low level Application programming interface that takes lists of simple polygons and renders them as quickly as possible. To do something more practical like “draw a house”, the programmer must break down the object into a series of simple OGL instructions and send them into the engine for rendering. One problem is that OGL performance is highly sensitive to the way these instructions are sent into the system, requiring the user to know which instructions to send and in which order, and forcing them to carefully cull the data to avoid sending in objects that aren't even visible in the resulting image. For simple programs a tremendous amount of programming has to be done just to get started.
+Open Inventor (OI) was written to address this issue, and provide a common base layer to start working with. Objects could be subclassed from a number of pre-rolled shapes like cubes and polygons, and then easily modified into new shapes. The “world” to be drawn was placed in a scene graph run by OI, with the system applying occlusion culling on objects in the graph automatically. OI also included a number of controller objects and systems for applying them to the scene, making common interaction tasks easier. Finally, OI also supplied a common file format for storing “worlds”, and the code to automatically save or load a world from these files. Basic 3D applications could then be written in a few hundred lines under OI, by tying together portions of the toolkit with “glue” code.
+On the downside OI tended to be slower than hand-written code, as 3D tasks are notoriously difficult to make perform well without shuffling the data in the scene graph by hand. Another practical problem was that OI could only be used with its own file format, forcing developers to write converters to and from the internal system.
+
+==Open Inventor by VSG==
+
+Open Inventor was later opened for 3rd-party licensing, which is when it switched from “IRIS” to “Open“. It was licensed to two third party developers, Template Graphics Software (TGS) and Portable Graphics. TGS later bought Portable Graphics, making them the sole licensee. In 2004, TGS was acquired by Mercury Computer Systems, and in June 2009, the entity became an independent company again called Visualization Sciences Group (VSG), which continues to develop and support http://www.open-inventor.comPermedia Research Group's MPath visualization and post-processing software for petroleum exploration, using VSG Open Inventor Volume LDM technology http://www.permedia.ca/pdf/mpath_spotlight_21_viewerpro.pdf
+Tire maker Michelin’s FEA post-processing tools developed using MeshViz XLM and Open Inventor by VSG, by Randall Hand (visualization scientist)http://www.vizworld.com/2010/03/michelin-meshviz-xlm-vsg-openinventor/ISATIS 3D Viewer (for exploring deposits, reservoir geometry, volume of the pollution, visualising lines, surfaces, block models, etc.) using VSG Open Inventor http://www.geovariances.com/en/software-releases-whats-new-in-isatis-6-0-ar203?lang=fr?tab=277Image-Pro Plus software (with 3-D Constructor Plug-in Module), built using the underlying VSG Open Inventor libraries http://www.scientificcomputing.com/three-dimensional-image-analysis.aspx?terms=visualizationDesign of a Control Strategy for Teleoperation of a Platform with Significant Dynamics, by Mattias Bratt, Christian Smith, and Henrik I. Christensen - Centre for Autonomous Systems KTH Stockholm, Sweden http://www.cc.gatech.edu/~hic/hic-papers/iros06-bratt.pdf
+
+==Performer==
+
+About a year into the Inventor project, a different philosophy began to emerge. Instead of simply making it easy to write applications on SGI systems, the goal was changed to make it difficult to write slow applications. Members of the Inventor team left to form their own group, which founded the basis of the OpenGL Performer project. Performer was also based on an internal scene graph, but was allowed to modify it for better speed as it saw fit, even dropping “less important” objects and polygons in order to maintain guaranteed performance levels. Performer also used a number of processes to run tasks in parallel for added performance, allowing it to be run (in one version) on multiple processors. Unlike Inventor, Performer remained proprietary so that SGI would have the agility to modify the API as needed to keep in step with the latest hardware enhancements.
+
+==Mid 1990s==
+
+At some point in the mid-1990s it was realized that there was no good reason that the two systems could not be combined, resulting in a single high-level API with both performance and programmability. SGI started work on yet another project aimed at merging the two, eventually culminating in Cosmo 3D. However Cosmo had a number of practical problems that could have been avoided with better design.
+Eventually all of these ideas would come together to create the OpenGL++ effort, along with Intel, IBM and DEC. Essentially a cleaned up and more “open” version of Cosmo 3D, work on Cosmo ended and SGI turned to OpenGL++ full-time. The OpenGL++ effort would drag on and eventually be killed, and SGI then tried again with Microsoft with the similar Fahrenheit project, which also died. During this time SGI ignored OI, and eventually spun it off completely to TGS.
+
+==Recent history==
+
+After many years of Inventor being solely available under proprietary licensing from TGS (today, VSG - Visualization Sciences Group), it was released under the LGPL open source license in August 2000, which is available from SGI.
+At approximately the same time, an API clone library called Coin3D was released by the company SIM (Systems in Motion). SIM was later acquired by the Kongsberg group and re-branded as Kongsberg SIM. The Coin library had been written in a clean room fashion from scratch, sharing no code with the original SGI Inventor library, but implementing the same API for compatibility reasons. Konigsberg ended development of Coin3D in 2011 and released the code under the BSD 3-clause license.
+The open source version from SGI is not currently maintained and SGI has not shown any commitment to do further development of the library. However, the open source release is the basis for several actively developed projects: the open-source eXtensible Imaging Platform (Siemens Corporate Research), and the freemium MeVisLab (Fraunhofer MeVis)
+Kongsberg SIM's Coin library and TGS's Inventor are still thriving under active development, and both have added numerous improvements to the original Inventor API like extensive support for the VRML standard.
+Despite its age, the Open Inventor API is still widely used for a wide range of scientific and engineering visualization systems around the world, having proven itself well designed for effective development of complex 3D application software.
+
+==References==
+
+==External links==
+
+

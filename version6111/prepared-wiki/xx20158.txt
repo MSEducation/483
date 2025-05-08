@@ -1,0 +1,51 @@
+</ref>  The operating systems that ran on these machines were [[OS/360]] M65MP<ref>[http://doi.acm.org/10.1145/800186.810634 M65MP: An Experiment in OS/360 multiprocessing]</ref> and [[TSS/360]]. Other software, developed at universities, used both CPUs—notably [[Michigan Terminal System|MTS]]. Both processors could access data channels and initiate I/O.
+In OS/360 M65MP, since the operating system kernel ran on both processors (though with a "big lock" around the I/O handler) and peripherals could generally be attached to either processor.IBM, "OS I/O Supervisor PLM" - GY28-6616-9, Program Logic Manual, R21.7, April 1973
+The MTS supervisor (UMMPS) ran on either or both CPUs of the IBM System/360 model 67-2. Supervisor locks were small and were used to protect individual common data structures that might be accessed simultaneously from either CPU.Time Sharing Supervisor Programs by Mike Alexander (May 1971) has information on MTS, TSS, CP/67, and Multics
+Digital Equipment Corporation's first multi-processor VAX system, the VAX-11/782, was asymmetric,VAX Product Sales Guide, pages 1-23 and 1-24: the VAX-11/782 is described as an asymmetric multiprocessing system in 1982 but later VAX multiprocessor systems were SMP.VAX 8820/8830/8840 System Hardware User's Guide: by 1988 the VAX operating system was SMP
+The first commercial Unix SMP implementation was the NUMA based Honeywell Information Systems Italy XPS-100 designed by Dan Gielan of VAST Corporation in 1985. Its design supported up to 14 processors although due to electrical limitations the largest marketed version was a dual processor system.  The operating system was derived and ported by VAST Corporation from AT&T 3B20 Unix SysVr3 code used internally within AT&T.
+
+==Uses==
+
+Time-sharing and server systems can often use SMP without changes to applications, as they may have multiple processes running in parallel, and a system with more than one process running can run different processes on different processors.
+On personal computers, SMP is less useful for applications that have not been modified.  If the system rarely runs more than one process at a time, SMP is useful only for applications that have been modified for multithreaded (multitasked) processing.  Custom-programmed software can be written or modified to use multiple threads, so that it can make use of multiple processors.  However, most consumer products such as word processors and computer games are written in such a manner that they cannot gain large benefits from concurrent systems. For games this is usually because writing a program to increase performance on SMP systems can produce a performance loss on uniprocessor systems. [tpl]As of|2008|alt=Recently[/tpl], however, multi-core chips are becoming more common in new computers, and the balance between installed uni- and multi-core computers may change in the coming years.
+Multithreaded programs can also be used in time-sharing and server systems that support multithreading, allowing them to make more use of multiple processors.
+
+==Programming==
+
+Uniprocessor and SMP systems require different programming methods to achieve maximum performance. Programs running on SMP systems may experience a performance increase even when they have been written for uniprocessor systems. This is because hardware interrupts that usually suspend program execution while the kernel handles them can execute on an idle processor instead. The effect in most applications (e.g. games) is not so much a performance increase as the appearance that the program is running much more smoothly. Some applications, particularly compilers and some distributed computing projects, run faster by a factor of (nearly) the number of additional processors[tpl]Citation needed|date=January 2014[/tpl].
+Systems programmers must build support for SMP into the operating system: otherwise, the additional processors remain idle and the system functions as a uniprocessor system.
+SMP systems can also lead to more complexity regarding instruction sets. A homogeneous processor system typically requires extra registers for "special instructions" such as SIMD (MMX, SSE, etc.), while a heterogeneous system can implement different types of hardware for different instructions/uses.
+
+==Performance==
+
+When more than one program executes at the same time, an SMP system has considerably better performance than a uni-processor, because different programs can run on different CPUs simultaneously.
+In cases where an SMP environment processes many jobs, administrators often experience a loss of hardware efficiency. Software programs have been developed to schedule jobs so that the processor utilization reaches its maximum potential. Good software packages can achieve this maximum potential by scheduling each CPU separately, as well as being able to integrate multiple SMP machines and clusters.
+Access to RAM is serialized; this and cache coherency issues causes performance to lag slightly behind the number of additional processors in the system.
+
+==Systems==
+
+===Entry-level systems===
+
+Before about 2006, entry-level servers and workstations with two processors dominated the SMP market. With the introduction of dual-core devices, SMP is found in most new desktop machines and in many laptop machines. The most popular entry-level SMP systems use the x86 instruction set architecture and are based on Intel’s Xeon, Pentium D, Core Duo, and Core 2 Duo based  processors or AMD’s Athlon64 X2, Quad FX or Opteron 200 and 2000 series processors. Servers use those processors and other readily available non-x86 processor choices, including the Sun Microsystems UltraSPARC, Fujitsu SPARC64 III and later, SGI MIPS, Intel Itanium, Hewlett Packard PA-RISC, Hewlett-Packard (merged with Compaq, which acquired first Digital Equipment Corporation) DEC Alpha, IBM POWER and PowerPC (specifically G4 and G5 series, as well as  earlier PowerPC 604 and 604e series) processors. In all cases, these systems are available in uniprocessor versions as well.
+Earlier SMP systems used motherboards that have two or more CPU sockets. [tpl]As of|2008|alt=More recently[/tpl], microprocessor manufacturers introduced CPU devices with two or more processors in one device, for example, the Itanium, POWER, UltraSPARC, Opteron, Athlon, Core 2, and Xeon all have multi-core variants. Athlon and Core 2 Duo multiprocessors are socket-compatible with uniprocessor variants, so an expensive dual socket motherboard  is no longer needed to implement an entry-level SMP machine. It should also be noted that dual socket Opteron designs are technically ccNUMA designs, though they can be programmed as SMP for a slight loss in performance. Software based SMP systems can be created by linking smaller systems together. An example of this is the software developed by ScaleMP.
+With the introduction of ARM Cortex-A9 multi-core SoCs, low-cost symmetric multiprocessing embedded systems began to flourish in the form of smartphones and tablet computers with a multi-core processor.
+
+===Mid-level systems===
+
+The Burroughs D825 first implemented SMP in 1962.
+It was implemented later on other mainframes. Mid-level servers, using between four and eight processors, can be found using the Intel Xeon MP, AMD Opteron 800 and 8000 series and the above-mentioned UltraSPARC, SPARC64, MIPS, Itanium, PA-RISC, Alpha and POWER processors. High-end systems, with sixteen or more processors, are also available with all of the above processors.
+Sequent Computer Systems built large SMP machines using Intel 80386 (and later 80486) processors. Some smaller 80486 systems existed, but the major x86 SMP market began with the Intel Pentium technology supporting up to two processors. The Intel Pentium Pro expanded SMP support with up to four processors natively.  Later, the Intel Pentium II, and Intel Pentium III processors allowed dual CPU systems, except for the respective Celerons. This was followed by the Intel Pentium II Xeon and Intel Pentium III Xeon processors, which could be used with up to four processors in a system natively.  In 2001 AMD released their Athlon MP, or MultiProcessor CPU, together with the 760MP motherboard chipset as their first offering in the dual processor marketplace. Although several much larger systems were built, they were all limited by the physical memory addressing limitation of 64 GiB. With the introduction of 64-bit memory addressing on the AMD64 Opteron in 2003 and Intel 64 (EM64T) Xeon in 2005, systems are able to address much larger amounts of memory; their addressable limitation of 16 EiB is not expected to be reached in the foreseeable future.
+
+==Alternatives==
+
+SMP using a single shared system bus represents one of the earliest styles of multiprocessor machine architectures, typically used for building smaller computers with up to 8 processors.
+Larger computer systems might use newer architectures such as NUMA (Non-Uniform Memory Access), which dedicates different memory banks to different processors.  In a NUMA architecture, processors may access local memory quickly and remote memory more slowly.  This can dramatically improve memory throughput as long as the data are localized to specific processes (and thus processors). On the downside, NUMA makes the cost of moving data from one processor to another, as in workload balancing, more expensive. The benefits of NUMA are limited to particular workloads, notably on servers where the data are often associated strongly with certain tasks or users.
+Finally, there is computer clustered multiprocessing (such as Beowulf), in which not all memory is available to all processors. Clustering techniques are used fairly extensively to build very large supercomputers.
+
+==See also==
+
+==References==
+
+==External links==
+
+

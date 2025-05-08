@@ -1,0 +1,29 @@
+[[Java Architecture for XML Binding]]
+
+CATEGORIES: Java API for XML, Java specification requests
+
+Java Architecture for XML Binding (JAXB) allows Java developers to map Java classes to XML representations. JAXB provides two main features: the ability to marshal Java objects into XML and the inverse, i.e. to unmarshal XML back into Java objects. In other words, JAXB allows storing and retrieving data in memory in any XML format, without the need to implement a specific set of XML loading and saving routines for the program's class structure. It is similar to xsd.exe and XmlSerializer in the .NET Framework.
+JAXB is particularly useful when the specification is complex and changing. In such a case, regularly changing the XML Schema definitions to keep them synchronised with the Java definitions can be time consuming and error-prone.
+JAXB is a part of the Java SE platform and one of the APIs in the Java EE platform, and is part of the Java Web Services Development Pack (JWSDP). It is also one of the foundations for WSIT. JAXB is part of SE version 1.6.
+JAXB 1.0 was developed under the Java Community Process as JSR 31.[tpl]cite web |url=http://jcp.org/en/jsr/detail?id=031 |title=JSRs: Java Specification Requests. JSR 31: XML Data Binding Specification |accessdate=2011-02-15[/tpl] [tpl]As of|2006[/tpl], JAXB 2.0 is being developed under JSR 222.[tpl]cite web |url=http://jcp.org/en/jsr/detail?id=222 |title=JSRs: Java Specification Requests. JSR 222: Java Architecture for XML Binding (JAXB) 2.0 |accessdate=2011-02-15[/tpl] Reference implementations for these specifications are available under the CDDL open source license at java.net.
+
+==Usage==
+
+The tool "xjc" can be used to convert XML Schema and other schema file types (as of Java 1.6, RELAX NG, XML DTD, and WSDL are supported experimentally) to class representations.[tpl]cite web |url=http://download.oracle.com/javase/6/docs/technotes/tools/share/xjc.html |title=xjc - Java Architecture for XML Binding |accessdate=2011-02-15[/tpl] Classes are marked up using annotations from javax.xml.bind.annotation.* namespace, for example, @XmlRootElement and @XmlElement. XML list sequences are represented by attributes of type java.util.List. Marshallers and Unmarshallers are created through an instance of JAXBContext.
+In addition, JAXB includes a "schemagen" tool that can essentially perform the inverse of "xjc", creating an XML Schema from a set of annotated classes.
+
+==Default data type bindings==
+
+The table below lists the mappings of XML Schema (XSD) data types to Java data types in JAXB.
+
+==Versions==
+
+==See also==
+
+==References==
+
+==External links==
+
+===Articles===
+
+

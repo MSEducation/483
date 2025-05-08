@@ -1,0 +1,89 @@
+ | journal = [[AI Magazine]]
+ | volume = 25
+ | issue = 2
+ | pages = 99–112
+ | year = 2004
+ | url=http://portal.acm.org/citation.cfm?id=1017140
+ }}
+[/ref]
+
+===Bounded relaxation===
+
+While the admissibility criterion guarantees an optimal solution path, it also means that A* must examine all equally meritorious paths to find the optimal path. It is possible to speed up the search at the expense of optimality by relaxing the admissibility criterion. Oftentimes we want to bound this relaxation, so that we can guarantee that the solution path is no worse than (1 + ε) times the optimal solution path. This new guarantee is referred to as ε-admissible.
+There are a number of ε-admissible algorithms:
+ | first = Ira
+ | last = Pohl
+ | title = First results on the effect of error in heuristic search
+ | journal = Machine Intelligence
+ | volume = 5
+ | pages = 219–236
+ | year = 1970
+}}[/ref] uses the cost function f(n) = g(n) + (1 + ε)h(n).
+ | first = Ira
+ | last = Pohl
+ | title = The avoidance of (relative) catastrophe, heuristic competence, genuine dynamic weighting and computational issues in heuristic problem solving
+ | booktitle = Proceedings of the Third International Joint Conference on Artificial Intelligence (IJCAI-73)
+ | volume = 3
+ | pages = 11–17
+ | place = California, USA
+ | date = August 1973
+ | first = Andreas
+ | last = Köll
+ |author2= Hermann Kaindl
+ | title = A new approach to dynamic weighting
+ | booktitle = Proceedings of the Tenth European Conference on Artificial Intelligence (ECAI-92)
+ | pages = 16–17
+ | place = Vienna, Austria
+ | date = August 1992
+}}[/ref] uses sampling of nodes to better estimate and debias the heuristic error.
+ | first = Judea
+ | last = Pearl
+ |author2= Jin H. Kim
+ | title = Studies in semi-admissible heuristics
+ | journal = IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI)
+ | volume = 4
+ | issue = 4
+ | pages = 392–399
+ | year = 1982
+}}[/ref] uses two heuristic functions. The first is the FOCAL list, which is used to select candidate nodes, and the second hF is used to select the most promising node from the FOCAL list.
+ | first = Malik
+ | last = Ghallab
+ |author2= Dennis Allard
+ | title = ''A<sub>ε</sub>'' – an efficient near admissible heuristic search algorithm
+ | booktitle = Proceedings of the Eighth International Joint Conference on Artificial Intelligence (IJCAI-83)
+ | volume = 2
+ | pages = 789–791
+ | place = Karlsruhe, Germany
+ | date = August 1983
+}}[/ref] selects nodes with the function A f(n) + B hF(n), where A and B are constants. If no nodes can be selected, the algorithm will backtrack with the function C f(n) + D hF(n), where C and D are constants.
+ | first = Bjørn
+ | last = Reese
+ | title = AlphA*: An ''ε''-admissible heuristic search algorithm
+ | year = 1999
+
+==Complexity==
+
+The time complexity of A* depends on the heuristic. In the worst case, the number of nodes expanded is exponential in the length of the solution (the shortest path), but it is polynomial when the search space is a tree, there is a single goal state, and the heuristic function h meets the following condition:
+where h* is the optimal heuristic, the exact cost to get from x to the goal. In other words, the error of h will not grow faster than the logarithm of the "perfect heuristic" h* that returns the true distance from x to the goal.[ref]
+</ref><ref name="aima">
+</ref>
+
+==Applications==
+
+A* is commonly used for the common pathfinding problem in applications such as games, but was originally designed as a general graph traversal algorithm.
+It finds applications to diverse problems, including the problem of parsing using stochastic grammars in NLP.
+
+==Variants of A*==
+
+ | title = Efficient Point-to-Point Shortest Path Algorithms
+ | url = http://www.cs.princeton.edu/courses/archive/spr06/cos423/Handouts/EPP%20shortest%20path%20algorithms.pdf
+}} from Princeton University[/ref]
+
+==References==
+
+==Further reading==
+
+ | first = P. E.
+ | last = Hart
+ |author2= Nilsson, N. J.|author3= Raphael, B.
+ | title = Correction to "A Formal Basis for the Heuristic Determination of Minimum Cost Paths"

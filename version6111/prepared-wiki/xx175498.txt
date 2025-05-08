@@ -1,0 +1,32 @@
+[[Boussinesq approximation (water waves)]]
+
+CATEGORIES: Fluid dynamics, Water waves, Equations of fluid dynamics
+
+[tpl]About|the Boussinesq approximation for waves on a free-moving fluid surface||Boussinesq approximation (disambiguation)[tpl]![/tpl]Boussinesq approximation[/tpl]
+In fluid dynamics, the Boussinesq approximation for water waves is an approximation valid for weakly non-linear and fairly long waves. The approximation is named after Joseph Boussinesq, who first derived them in response to the observation by John Scott Russell of the wave of translation (also known as solitary wave  or soliton). The 1872 paper of Boussinesq introduces the equations now known as the Boussinesq equations.This paper (Boussinesq, 1872) starts with: "Tous les ingénieurs connaissent les belles expériences de J. Scott Russell et M. Basin sur la production et la propagation des ondes solitaires" ("All engineers know the beautiful experiments of J. Scott Russell and M. Basin on the generation and propagation of solitary waves").
+The Boussinesq approximation for water waves takes into account the vertical structure of the horizontal and vertical flow velocity. This results in non-linear partial differential equations, called Boussinesq-type equations, which incorporate frequency dispersion (as opposite to the shallow water equations, which are not frequency-dispersive). In coastal engineering, Boussinesq-type equations are frequently used in computer models for the simulation of water waves in shallow seas and harbours.
+While the Boussinesq approximation is applicable to fairly long waves – that is, when the wavelength is large compared to the water depth – the Stokes expansion is more appropriate for short waves (when the wavelength is of the same order as the water depth, or shorter).
+
+==Boussinesq approximation==
+
+The essential idea in the Boussinesq approximation is the elimination of the vertical coordinate from the flow equations, while retaining some of the influences of the vertical structure of the flow under water waves. This is useful because the waves propagate in the horizontal plane and have a different (not wave-like) behaviour in the vertical direction. Often, as in Boussinesq's case, the interest is primarily in the wave propagation.
+This elimination of the vertical coordinate was first done by Joseph Boussinesq in 1871, to construct an approximate solution for the solitary wave (or wave of translation). Subsequently, in 1872, Boussinesq derived the equations known nowadays as the Boussinesq equations. 
+The steps in the Boussinesq approximation are:
+Thereafter, the Boussinesq approximation is applied to the remaining flow equations, in order to eliminate the dependence on the vertical coordinate.
+As a result, the resulting partial differential equations are in terms of functions of the horizontal coordinates (and time). 
+As an example, consider potential flow over a horizontal bed in the (x,z) plane, with x the horizontal and z the vertical coordinate. The bed is located at [tpl]nowrap|z [tpl]=[/tpl] −h[/tpl], where h is the mean water depth. A Taylor expansion is made of the velocity potential φ(x,z,t) around the bed level [tpl]nowrap|z [tpl]=[/tpl] −h[/tpl]:Dingemans (1997), p. 477.
+where φb(x,t) is the velocity potential at the bed. Invoking Laplace's equation for φ, as valid for incompressible flow, gives:
+since the vertical velocity [tpl]nowrap|∂φ / ∂z[/tpl] is zero at the – impermeable – horizontal bed [tpl]nowrap|z [tpl]=[/tpl] −h[/tpl]. This series may subsequently be truncated to a finite number of terms.
+
+==Original Boussinesq equations==
+
+===Derivation===
+
+For water waves on an incompressible fluid and irrotational flow in the (x,z) plane, the boundary conditions at the free surface elevation [tpl]nowrap|z [tpl]=[/tpl] η(x,t)[/tpl] are:Dingemans (1997), p. 475.
+where:
+Now the Boussinesq approximation for the velocity potential φ, as given above, is applied in these boundary conditions. Further, in the resulting equations only the linear and quadratic terms with respect to η and ub are retained (with [tpl]nowrap|ub [tpl]=[/tpl] ∂φb / ∂x[/tpl] the horizontal velocity at the bed [tpl]nowrap|z [tpl]=[/tpl] −h[/tpl]). The cubic and higher order terms are assumed to be negligible. Then, the following partial differential equations are obtained:
+This set of equations has been derived for a flat horizontal bed, i.e. the mean depth h is a constant independent of position x. When the right-hand sides of the above equations are set to zero, they reduce to the shallow water equations. 
+Under some additional approximations, but at the same order of accuracy, the above set A can be reduced to a single partial differential equation for the free surface elevation η:
+From the terms between brackets, the importance of nonlinearity of the equation can be expressed in terms of the Ursell number.
+In dimensionless quantities, using the water depth h and gravitational acceleration g for non-dimensionalization, this equation reads, after normalization: 
+with:

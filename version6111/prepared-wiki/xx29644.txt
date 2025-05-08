@@ -1,0 +1,46 @@
+[[Abstract Syntax Notation One]]
+
+CATEGORIES: ITU-T recommendations, Data modeling languages, Data serialization formats
+
+Abstract Syntax Notation One (ASN.1) is a standard and notation that describes rules and structures for representing, encoding, transmitting, and decoding data in telecommunications and computer networking.  The formal rules enable representation of objects that are independent of machine-specific encoding techniques. Formal notation makes it possible to automate the task of validating whether a specific instance of data representation abides by the specifications. In other words, software tools can be used for the validation.Using ASN.1 (Abstract Syntax Notation 1): A Data Description Language
+ASN.1 is a joint standard of the International Organization for Standardization (ISO), International Electrotechnical Commission (IEC), and International Telecommunication Union Telecommunication Standardization Sector ITU-T, originally defined in 1984 as part of CCITT X.409:1984. ASN.1 moved to its own standard, X.208, in 1988 due to wide applicability. The substantially revised 1995 version is covered by the X.680 series. The latest available version is dated 2008, and is backward compatible with the 1995 version.
+
+==ASN.1 in transfer==
+
+Data generated at various sources of observation need to be transmitted to one or more locations that process it to generate useful results. For example, voluminous signal data collected by a radio telescope from outer space. The system recording the data and the system processing it later may be diverse in nature and may also be from different vendors. As such, a consistent mechanism is needed to record, transmit and be able to read data across such diverse systems.
+ASN.1 defines the abstract syntax of information but does not restrict the way the information is encoded. Various ASN.1 encoding rules provide the transfer syntax (a concrete representation) of the data values whose abstract syntax is described in ASN.1.
+The standard ASN.1 encoding rules include:
+ASN.1 together with specific ASN.1 encoding rules facilitates the exchange of structured data especially between application programs over networks by describing data structures in a way that is independent of machine architecture and implementation language.
+Application layer protocols such as X.400 electronic mail, X.500 and Lightweight Directory Access Protocol (LDAP) directory services, H.323 (VoIP), Kerberos, BACnet and simple network management protocol (SNMP) use ASN.1 to describe the protocol data units (PDU) they exchange. It is also extensively used in the access and non-access strata of the Universal Mobile Telecommunications System (UMTS). There are many other application domains of ASN.1.ITU-T website - Uses of ASN.1
+A particularly useful new application of ASN.1 is Fast Infoset. Fast Infoset is an international standard that specifies a binary encoding format for the XML Information Set (XML Infoset) as an alternative to the XML document format. It aims to provide more efficient serialization than the text-based XML format.
+
+==Example==
+
+Data structures of FooProtocol defined using the ASN.1 notation:
+ FooProtocol DEFINITIONS ::= BEGIN
+     FooQuestion ::= SEQUENCE {
+        trackingNumber INTEGER,
+        question       IA5String
+    }
+    FooAnswer ::= SEQUENCE {
+        questionNumber INTEGER,
+        answer         BOOLEAN
+    }
+END
+This could be a specification published by creators of Foo protocol. ASN.1 does not define conversation flows. This is up to the textual description of the protocol.
+Assuming a message, which complies with Foo protocol and which will be sent to the receiving party. This particular message (protocol data unit (PDU)) is:
+ myQuestion FooQuestion ::= {
+     trackingNumber     5,
+    question           "Anybody there?"
+}
+To send the above message through the network one needs to encode it to a string of bits. ASN.1 defines various algorithms to accomplish that task, called Encoding rules. There are plenty of them; one of the simplest is Distinguished Encoding Rules (DER).
+The Foo protocol specification should explicitly name one set of encoding rules to use, so that users of the Foo protocol know which one they should use.
+
+===Example encoded in DER===
+
+Below is the data structure shown above encoded in DER format (all numbers are in hexadecimal):
+ 30 — type tag indicating SEQUENCE
+ 13 — length in octets of value that follows
+ 02 — type tag indicating INTEGER
+ 01 — length in octets of value that follows
+ 05 — value (5)

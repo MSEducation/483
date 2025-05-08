@@ -1,0 +1,40 @@
+[[Document-oriented database]]
+
+CATEGORIES: Document-oriented databases, Data management, Database management systems, Types of databases
+
+A document-oriented database is a computer program designed for storing, retrieving, and managing document-oriented information, also known as semi-structured data.   Document-oriented databases are one of the main categories of so-called NoSQL databases and the popularity of the term "document-oriented database" (or "document store") has grownDB-Engines Ranking per database model category with the use of the term NoSQL itself.  In contrast to relational databases and their notions of "Relations" (or "Tables"), these systems are designed around an abstract notion of a "Document".
+
+==Documents==
+
+The central concept of a document-oriented database is the notion of a Document. While each document-oriented database implementation differs on the details of this definition, in general, they all assume documents encapsulate and encode data (or information) in some standard formats or encodings. Encodings in use include XML, YAML, JSON, and BSON, as well as binary forms like PDF and Microsoft Office documents (MS Word, Excel, and so on).  
+Documents inside a document-oriented database are similar, in some ways, to records or rows in relational databases, but they are less rigid. They are not required to adhere to a standard schema, nor will they have all the same sections, slots, parts, or keys. For example, the following is a document:
+
+A second document might be:
+
+These two documents share some structural elements with one another, but each also has unique elements. Unlike a relational database where every record contains the same fields, leaving unused fields empty; there are no empty 'fields' in either document (record) in the above example. This approach allows new information to be added to some records without requiring that every other record in the database share the same structure.
+
+===Keys===
+
+Documents are addressed in the database via a unique key that represents that document.  This key is often a simple string, a URI, or a path.  The key can be used to retrieve the document from the database.  Typically, the database retains an index on the key to speed up document retrieval.
+
+===Retrieval===
+
+Another defining characteristic of a document-oriented database is that, beyond the simple key-document (or key-value) lookup that can be used to retrieve a document, the database offers an API or query language that allows the user to retrieve documents based on their content.  For example, you may want a query that retrieves all the documents with a certain field set to a certain value.  The set of query APIs or query language features available, as well as the expected performance of the queries, varies significantly from one implementation to the next.
+
+===Organization===
+
+Implementations offer a variety of ways of organizing documents, including notions of 
+
+==Implementations==
+
+===XML database implementations===
+
+Most XML databases are document-oriented databases.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+

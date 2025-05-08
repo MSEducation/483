@@ -1,0 +1,64 @@
+ &mdash; Describes a solution for the bounded [[Post correspondence problem]], a hard-on-average NP-complete problem. Also available here: [http://www.csd.uwo.ca/~lila/pdfs/Using%20DNA%20to%20solve%20the%20Bounded%20Post%20Correspondence%20Problem.pdf]
+[/ref]
+While the initial interest was in using this novel approach to tackle NP-hard problems, it was soon realized that they may not be best suited for this type of computation, and several proposals have been made to find a "killer application" for this approach. In 1997, computer scientist Mitsunori Ogihara working with biologist Animesh Ray suggested one to be the evaluation of Boolean circuits and described an implementation.[ref]M. Ogihara and A. Ray, "Simulating Boolean circuits on a DNA computer".
+Algorithmica 25:239–250, 1999.[/ref]"In Just a Few Drops, A Breakthrough in Computing", New York Times, May 21, 1997
+In 2002, researchers from the Weizmann Institute of Science in Rehovot, Israel, unveiled a programmable molecular computing machine composed of enzymes and DNA molecules instead of silicon microchips.[tpl]cite web|url=http://news.nationalgeographic.com/news/2003/02/0224_030224_DNAcomputer.html |title=Computer Made from DNA and Enzymes |accessdate=2009-11-26 |last=Lovgren |first=Stefan |date=2003-02-24 |work=National Geographic [/tpl]  On April 28, 2004, Ehud Shapiro, Yaakov Benenson, Binyamin Gil, Uri Ben-Dor, and Rivka Adar at the Weizmann Institute announced in the journal Nature that they had constructed a DNA computer coupled with an input and output module which would theoretically be capable of diagnosing cancerous activity within a cell, and releasing an anti-cancer drug upon diagnosis.[tpl]cite doi|10.1038/nature02551[/tpl]. Also available here: http://www.wisdom.weizmann.ac.il/~udi/papers/automoleculcomp_nat04.pdf
+In January 2013, researchers were able to store a JPEG photograph, a set of Shakespearean sonnets, and an audio file of Martin Luther King, Jr.'s speech I Have a Dream on DNA digital data storage.http://www.sciencenews.org/view/generic/id/347702/description/DNA_stores_poems_a_photo_and_a_speech
+In March 2013, researchers created a transcriptor (a biological transistor).
+
+==Capabilities==
+
+DNA computing is fundamentally similar to parallel computing in that it takes advantage of the many different molecules of DNA to try many different possibilities at once.  For certain specialized problems, DNA computers are faster and smaller than any other computer built so far. Furthermore, particular mathematical computations have been demonstrated to work on a DNA computer. As an example, DNA molecules have been utilized to tackle the assignment problem.[tpl]cite journal | title = DNA-based computing of strategic assignment problems | journal = Physical Review Letters | date = 2011 | first = Jian-Jun | last = Shu | coauthors = Wang, Q.-W.; Yong, K.-Y. | volume = 106 | issue = 18 | pages = 188702 | doi = 10.1103/PhysRevLett.106.188702 [/tpl]  Aran Nayebi has provided a general implementation of Strassen's matrix multiplication algorithm on a DNA computer, although there are problems with scaling.  In addition, Caltech researchers have created a circuit made from 130 unique DNA strands, which is able to calculate the square root of numbers up to 15.Science NewsFlexbile DNA computer finds square roots
+DNA computing does not provide any new capabilities from the standpoint of computability theory, the study of which problems are computationally solvable using different models of computation.
+For example,
+if the space required for the solution of a problem grows exponentially with the size of the problem (EXPSPACE problems) on von Neumann machines, it still grows exponentially with the size of the problem on DNA machines.
+For very large EXPSPACE problems, the amount of DNA required is too large to be practical.
+
+==Methods==
+
+There are multiple methods for building a computing device based on DNA, each with its own advantages and disadvantages. Most of these build the basic logic gates (AND, OR, NOT) associated with digital logic from a DNA basis. Some of the different bases include DNAzymes, deoxyoligonucleotides, enzymes, DNA tiling, and polymerase chain reaction.
+
+===DNAzymes===
+
+Catalytic DNA (deoxyribozyme or DNAzyme) catalyze a reaction when interacting with the appropriate input, such as a matching oligonucleotide. These DNAzymes are used to build logic gates analogous to digital logic in silicon; however, DNAzymes are limited to 1-, 2-, and 3-input gates with no current implementation for evaluating statements in series.
+The DNAzyme logic gate changes its structure when it binds to a matching oligonucleotide and the fluorogenic substrate it is bonded to is cleaved free. While other materials can be used, most models use a fluorescence-based substrate because it is very easy to detect, even at the single molecule limit.[ref]
+[tpl]cite doi | 10.1126/science.283.5408.1676[/tpl]. Also available here: http://www.lps.ens.fr/~vincent/smb/PDF/weiss-1.pdf
+[/ref] The amount of fluorescence can then be measured to tell whether or not a reaction took place. The DNAzyme that changes is then “used,” and cannot initiate any more reactions. Because of this, these reactions take place in a device such as a continuous stirred-tank reactor, where old product is removed and new molecules added.
+Two commonly used DNAzymes are named E6 and 8-17. These are popular because they allow cleaving of a substrate in any arbitrary location.[ref]
+[tpl]cite doi | 10.1073/pnas.94.9.4262[/tpl]. Also available here: http://www.pnas.org/content/94/9/4262.full.pdf
+[/ref] Stojanovic and MacDonald have used the E6 DNAzymes to build the MAYA I[ref]
+[tpl]cite doi | 10.1038/nbt862[/tpl]. Also available here: http://www.cs.duke.edu/courses/cps296.6/current/papers/SS03.pdf
+[/ref] and MAYA II[ref]
+[tpl]cite doi |10.1021/nl0620684[/tpl]. Also available here: http://www.ece.gatech.edu/research/labs/bwn/nanos/papers/Medium_Scale_Integration_of_Molecular.pdf
+[/ref] machines, respectively; Stojanovic has also demonstrated logic gates using the 8-17 DNAzyme.[ref]
+[tpl]cite doi | 10.1021/ja016756v[/tpl]. Also available at http://www.dna.caltech.edu/courses/cs191/paperscs191/stojanovic_mitchell_stefanovic2002.pdf
+[/ref] While these DNAzymes have been demonstrated to be useful for constructing logic gates, they are limited by the need for a metal cofactor to function, such as Zn2+ or Mn2+, and thus are not useful in vivo.
+A design called a stem loop, consisting of a single strand of DNA which has a loop at an end, are a dynamic structure that opens and closes when a piece of DNA bonds to the loop part. This effect has been exploited to create several logic gates.  These logic gates have been used to create the computers MAYA I and MAYA II which can play tic-tac-toe to some extent.
+Darko Stefanovic's Group, Molecular Logic Gates and MAYA II, a second-generation tic-tac-toe playing automaton.
+
+===Enzymes===
+
+Enzyme based DNA computers are usually of the form of a simple Turing machine; there is analogous hardware, in the form of an enzyme, and software, in the form of DNA.
+Benenson, Shapiro and colleagues have demonstrated a DNA computer using the FokI enzyme[ref]
+[tpl]cite  doi | 10.1038/35106533[/tpl]. Also available here: http://www.technion.ac.il/~keinanj/pub/110.pdf
+[/ref] and expanded on their work by going on to show automata that diagnose and react to prostate cancer: under expression of the genes PPAP2B and GSTP1 and an over expression of PIM1 and HPN. Their automata evaluated the expression of each gene, one gene at a time, and on positive diagnosis then released a single strand DNA molecule (ssDNA) that is an antisense for MDM2. MDM2 is a repressor of protein 53, which itself is a tumor suppressor. On negative diagnosis it was decided to release a suppressor of the positive diagnosis drug instead of doing nothing. A limitation of this implementation is that two separate automata are required, one to administer each drug. The entire process of evaluation until drug release took around an hour to complete. This method also requires transition molecules as well as the FokI enzyme to be present. The requirement for the FokI enzyme limits application in vivo, at least for use in “cells of higher organisms”.[ref]
+[tpl]cite doi |10.1016/j.physd.2008.01.027[/tpl]. Also available here: http://www.ece.gatech.edu/research/labs/bwn/nanos/papers/Towards_molecular_computers_that_operate_in_a_biological_environment.pdf
+[/ref]  It should also be pointed out that the 'software' molecules can be reused in this case.
+
+===Toehold exchange===
+
+DNA computers have also been constructed using the concept of toehold exchange.  In this system, an input DNA strand binds to a sticky end, or toehold, on another DNA molecule, which allows it to displace another strand segment from the molecule.  This allows the creation of modular logic components such as AND, OR, and NOT gates and signal amplifiers, which can be linked into arbitrarily large computers.  This class of DNA computers does not require enzymes or any chemical capability of the DNA.
+[tpl]cite doi|10.1126/science.1132493[/tpl]
+
+===Algorithmic self-assembly===
+
+DNA nanotechnology has been applied to the related field of DNA computing.  DNA tiles can be designed to contain multiple sticky ends with sequences chosen so that they act as Wang tiles.  A DX array has been demonstrated whose assembly encodes an XOR operation; this allows the DNA array to implement a cellular automaton which generates a fractal called the Sierpinski gasket.  This shows that computation can be incorporated into the assembly of DNA arrays, increasing its scope beyond simple periodic arrays.
+[tpl]cite doi|10.1371/journal.pbio.0020424[/tpl]
+
+==See also==
+
+==References==
+
+==Further reading==
+
+Martyn Amos, Genesis Machines, popular science introduction to the field.

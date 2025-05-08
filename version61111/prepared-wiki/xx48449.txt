@@ -1,0 +1,39 @@
+[[König's theorem (set theory)]]
+
+CATEGORIES: Axiom of choice, Theorems in the foundations of mathematics, Cardinal numbers, Articles containing proofs
+
+The sum here is the cardinality of the disjoint union of the sets mi and the product is the cardinality of the cartesian product. 
+However, without the use of the Axiom of Choice, the sum and the product cannot be defined as cardinal numbers, and the meaning of the inequality sign would need to be clarified.
+
+==Details==
+
+where  i to Bi, but not one going the other way. The union involved need not be disjoint (a non-disjoint union can't be any bigger than the disjoint version, also assuming the axiom of choice).  In this formulation, König's theorem is equivalent to the Axiom of Choice.[tpl]cite book|last=Rubin|first=H.|coauthors=Rubin, J.E.|title=Equivalents of the Axiom of Choice, II|publisher=North Holland|place=New York, NY|year=1985|pages=185|isbn=0-444-87708-8[/tpl]
+(Of course, König's theorem is trivial if the cardinal numbers mi and ni are finite and the index set I is finite. If I is empty, then the left sum is the empty sum and therefore 0, while the right hand product is the empty product and therefore 1).
+
+==Corollaries of König's theorem==
+
+If we take mi = 1, and ni = 2 for each i in κ, then the left hand side of the above inequality is just κ, while the right hand side is 2κ, the cardinality of functions from κ to {0,1}, that is, the cardinality of the power set of κ. Thus, König's theorem gives us an alternate proof of Cantor's theorem.   (Historically of course Cantor's theorem was proved much earlier.)
+
+===Axiom of choice===
+
+One way of stating the axiom of choice is "An arbitrary Cartesian product of non-empty sets is non-empty.". Let Bi be a non-empty set for each i in I. Let Ai = {} for each i in I. Thus by König's theorem, we have:
+That is, the Cartesian product of the given non-empty sets, Bi, has a larger cardinality than the sum of empty sets. Thus it is non-empty which is just what the axiom of choice states. Since the axiom of choice follows from König's theorem, we will use the axiom of choice freely and implicitly when discussing consequences of the theorem.
+
+===König's theorem and cofinality===
+
+König's theorem has also important consequences for cofinality of cardinal numbers.  
+Choose a strictly increasing cf(κ)-sequence of cardinals approaching κ. Each of them is less than κ, so their sum which is κ is less than the product of cf(κ) copies of κ.
+According to Easton's theorem, the next consequence of König's theorem is the only nontrivial constraint on the continuum function for regular cardinals.
+
+==A proof of König's theorem==
+
+First, we show that there is an injection from the sum to the product. Using the axiom of choice, for each i we choose an injection fi from Ai to Bi. Notice that fi cannot be a surjection because then its inverse would be an injection from Bi to Ai. So, for each i, there must be an element of Bi not in the range of fi.  Using the axiom of choice again, we choose such an xi for each i. Define g on the sum by g(i,a) (j) = fi(a) when j = i and a is an element of Ai and g(i,a) (j) = xj when j ≠ i and a is an element of Ai. Since fi(a) ≠ xi for each i, g is an injection from the sum to the product.
+Second, we show that there is no injection h from the product to the sum. Suppose, to the contrary, that such an h existed. In a similar manner to Cantor's diagonal argument, we will construct an element e of the product, which cannot have a value under h.   For each i in I, construct a partial function fi from Ai to Bi by fi(a) =  d(i) if there is a d in the product such that h(d) = (i,a).  (This is a partial function because h is an injection, so the d is unique.)  If fi were a surjection, then, using the axiom of choice, we could construct an injection g from Bi into Ai (g would be a right inverse of fi), contradicting the hypothesis.  Hence, for each i in I, there are elements of Bi not in the image of fi.  So using the axiom of choice again, we choose e(i) in Bi but not in the image of fi.   Consider, now, the value of h(e) = (i,c) with c in Ai.  But then fi(c) = e(i), contradicting the construction of e.  Hence no such injection can exist, and the product is strictly larger in cardinality than the sum.
+
+==Notes==
+
+==References==
+
+==External links==
+
+

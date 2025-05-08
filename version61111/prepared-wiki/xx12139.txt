@@ -1,0 +1,183 @@
+[[Wave equation]]
+
+CATEGORIES: Concepts in physics, Hyperbolic partial differential equations, Wave mechanics
+
+ 
+
+The wave equation is an important second-order linear partial differential equation for the description of waves – as they occur in physics – such as sound waves, light waves and water waves. It arises in fields like acoustics, electromagnetics, and fluid dynamics. 
+Historically, the problem of a vibrating string such as that of a musical instrument was studied by Jean le Rond d'Alembert, Leonhard Euler, Daniel Bernoulli, and  Joseph-Louis Lagrange.[tpl]cite journal|last1= Cannon |first1=John T.|last2=Dostrovsky|first2=Sigalia|title=The evolution of dynamics, vibration theory from 1687 to 1742|year=1981|volume=  6|series=Studies in the History of Mathematics and Physical Sciences|ISBN= 0-3879-0626-6|publisher=Springer-Verlag|location=New York|pages=ix + 184 pp.[/tpl] [tpl]cite journal|last= GRAY|first=JW|title=BOOK REVIEWS |journal=BULLETIN (New Series) OF THE AMERICAN MATHEMATICAL SOCIETY |date=July 1983 |volume= 9| issue = 1[/tpl] (retrieved 13 Nov 2012).Gerard F Wheeler. The Vibrating String Controversy, (retrieved 13 Nov 2012).  Am. J. Phys., 1987, v55, n1, p33-37.For a special collection of the 9 groundbreaking papers by the three authors, see First Appearance of the wave equation: D'Alembert, Leonhard Euler, Daniel Bernoulli. - the controversy about vibrating strings (retrieved 13 Nov 2012). Herman HJ Lynge and Son.For de Lagrange's contributions to the acoustic wave equation, can consult Acoustics: An Introduction to Its Physical Principles and Applications Allan D. Pierce, Acoustical Soc of America, 1989; page 18.(retrieved 9 Dec 2012)  In 1746, d’Alambert discovered the one-dimensional wave equation, and within ten years Euler discovered the three-dimensional wave equation.Speiser, David.  Discovering the Principles of Mechanics 1600-1800, p. 191 (Basel: Birkhäuser, 2008).
+
+==Introduction==
+
+The wave equation is a hyperbolic partial differential equation.  It typically concerns a time variable [tpl]math|t[/tpl], one or more spatial variables [tpl]math|x1, x2, …, xn[/tpl], and a scalar function [tpl]math|u [tpl]=[/tpl] u (x1, x2, …, xn; t)[/tpl], whose values could model the displacement of a wave.  The wave equation for [tpl]math|u[/tpl] is
+where ∇2 is the (spatial) Laplacian and where c is a fixed constant.
+Solutions of this equation that are initially zero outside some restricted region propagate out from the region at a fixed speed in all spatial directions, as do physical waves from a localized disturbance; the constant c is identified with the propagation speed of the wave.  This equation is linear, as the sum of any two solutions is again a solution: in physics this property is called the superposition principle.
+The equation alone does not specify a solution; a unique solution is usually obtained by setting a problem with further conditions, such as initial conditions, which prescribe the value and velocity of the wave.  Another important class of problems specifies boundary conditions, for which the solutions represent standing waves, or harmonics, analogous to the harmonics of musical instruments.
+The wave equation, and also modifications of it, are found in  elastic physics, quantum mechanics, plasma physics and general relativity, for example.
+
+==Scalar wave equation in one space dimension==
+
+The wave equation in one space dimension can be written like this:
+This equation is typically described as having only one space dimension "x", because the only other independent variable is the time "t".  Nevertheless, the dependent variable "y" may represent a second space dimension, as in the case of a string that is located in the x-y plane.
+
+===Derivation of the wave equation===
+
+The wave equation in one space dimension can be derived in a variety of different physical settings.  Most famously, it can be derived for the case of a string that is vibrating in a two-dimensional plane, with each of its elements being pulled in opposite directions by the force of tension.Tipler, Paul and Mosca, Gene.  Physics for Scientists and Engineers, Volume 1: Mechanics, Oscillations and Waves; Thermodynamics, pp. 470-471 (Macmillan, 2004).  
+Another physical setting for derivation of the wave equation in one space dimension utilizes Hooke's Law.  In the theory of elasticity, Hooke's Law is an approximation for certain materials, stating that the amount by which a material body is deformed (the strain) is linearly related to the force causing the deformation (the stress).
+
+====From Hooke's law====
+
+The wave equation in the one-dimensional case can be derived from Hooke's Law in the following way: Imagine an array of little weights of mass m interconnected with massless springs of length h . The springs have a spring constant of  k:
+Here the dependent variable u(x) measures the distance from the equilibrium of the mass situated at  x, so that u(x) essentially measures the magnitude of a disturbance (i.e. stress) that is traveling in an elastic material.  The forces exerted on the mass m at the location x+h are:
+The equation of motion for the weight at the location x+h  is given by equating these two forces:
+where the time-dependence of  u(x) has been made explicit.
+If the array of weights consists of N weights spaced evenly over the length L = Nh of total mass M = Nm, and the total spring constant of the array K = k/N we can write the above equation as:
+Taking the limit N → ∞, h → 0 and assuming smoothness one gets:
+(KL2)/M is the square of the propagation speed in this particular case.
+
+===General solution===
+
+====Algebraic approach====
+
+The one-dimensional wave equation is unusual for a partial differential equation in that a relatively simple general solution may be found. Defining new variables:[tpl]cite web | url = http://mathworld.wolfram.com/dAlembertsSolution.html | title = d'Alembert's Solution | author = Eric W. Weisstein| publisher = MathWorld | accessdate = 2009-01-21 [/tpl]
+changes the wave equation into
+which leads to the general solution
+or equivalently:
+In other words, solutions of the 1D wave equation are sums of a right traveling function F and a left traveling function G. "Traveling" means that the shape of these individual arbitrary functions with respect to x stays constant, however the functions are translated left and right with time at the speed c. This was derived by Jean le Rond d'Alembert.[ref]D'Alembert (1747) "Recherches sur la courbe que forme une corde tenduë mise en vibration" (Researches on the curve that a tense cord forms when set into vibration), Histoire de l'académie royale des sciences et belles lettres de Berlin, vol. 3, pages 214-219.
+Another way to arrive at this result is to note that the wave equation may be "factored":
+and therefore:
+These last two equations are advection equations, one left traveling and one right, both with constant speed c.
+For an initial value problem, the arbitrary functions F and G can be determined to satisfy initial conditions:
+The result is d'Alembert's formula:
+In the classical sense if f(x) ∈ Ck and g(x) ∈ Ck−1 then u(t, x) ∈ Ck. However, the waveforms F and G may also be generalized functions, such as the delta-function. In that case, the solution may be interpreted as an impulse that travels to the right or the left.
+The basic wave equation is a linear differential equation and so it will adhere to the superposition principle. This means that the net displacement caused by two or more waves is the sum of the displacements which would have been caused by each wave individually. In addition, the behavior of a wave can be analyzed by breaking up the wave into components, e.g. the Fourier transform breaks up a wave into sinusoidal components.
+
+====Plane wave eigenmodes====
+
+with wave number
+The total wave function for this eigenmode is then the linear combination
+or in terms of the plane waves,
+
+==Scalar wave equation in three space dimensions==
+
+ thumb|right|Swiss Mathematician and Physicist Leonhard Euler (b. 1707) discovered the wave equation in three space dimensions.The solution of the initial-value problem for the wave equation in three space dimensions can be obtained from the solution for a spherical wave. This result can then be used to obtain the solution in two space dimensions.
+
+===Spherical waves===
+
+The wave equation is not invariant under rotations of the spatial coordinates, because the Laplacian operator is not invariant under rotation. However, similar to Schrodinger's equation in three dimensions, one can solve for the solution with zero orbital angular momentum,John David Jackson, Classical Electrodynamics, 3rd Edition, Wiley, page 425. ISBN 978-0-471-30932-1 in which case the Laplacian operator reduces to a rotationally invariant form
+This equation may be rewritten as
+where the quantity r u(r,t) satisfies the one-dimensional wave equation. Therefore there are solutions in the form
+where F and G are general solutions to the one-dimensional wave equation, and can be interpreted as respectively an outgoing or incoming spherical wave. Such waves are generated by a point source, and they make possible sharp signals whose form is altered only by a decrease in amplitude as r increases (see an illustration of a spherical wave on the top right). Such waves exist only in cases of space with odd dimensions.[tpl]citation needed|date=February 2014[/tpl]
+For physical examples of non-spherical wave solutions to the 3D wave equation that do possess angular dependence, see dipole radiation.
+
+====Monochromatic spherical wave====
+
+or
+From this we can observe that the peak intensity of the spherical wave oscillation, characterized as the squared wave amplitude
+
+===Solution of a general initial-value problem===
+
+The wave equation is linear in u and it is left unaltered by translations in space and time. Therefore we can generate a great variety of solutions by translating and summing spherical waves. Let φ(ξ,η,ζ) be an arbitrary function of three independent variables, and let the spherical wave form F be a delta-function: that is, let F be a weak limit of continuous functions whose integral is unity, but whose support (the region where the function is non-zero) shrinks to the origin. Let a family of spherical waves have center at (ξ,η,ζ), and let r be the radial distance from that point. Thus
+If u is a superposition of such waves with weighting function φ, then
+the denominator 4πc is a convenience.
+From the definition of the delta-function, u may also be written as
+where α, β, and γ are coordinates on the unit sphere S, and ω is the area element on S. This result has the interpretation that u(t,x) is t times the mean value of φ on a sphere of radius ct centered at x:
+It follows that
+The mean value is an even function of t, and hence if
+then
+These formulas provide the solution for the initial-value problem for the wave equation. They show that the solution at a given point P, given (t,x,y,z) depends only on the data on the sphere of radius ct that is intersected by the light cone drawn backwards from P. It does not depend upon data on the interior of this sphere. Thus the interior of the sphere is a lacuna for the solution. This phenomenon is called Huygens' principle. It is true for odd numbers of space dimension, where for one dimension the integration is performed over the boundary of an interval with respect to the Dirac measure. It is not satisfied in even space dimensions. The phenomenon of lacunas has been extensively investigated in Atiyah, Bott and Gårding (1970, 1973).
+
+==Scalar wave equation in two space dimensions==
+
+In two space dimensions, the wave equation is
+We can use the three-dimensional theory to solve this problem if we regard u as a function in three dimensions that is independent of the third dimension. If
+then the three-dimensional solution formula  becomes
+where α and β are the first two coordinates on the unit sphere, and dω is the area element on the sphere. This integral may be rewritten as an integral over the disc D with center (x,y) and radius ct:
+It is apparent that the solution at (t,x,y) depends not only on the data on the light cone where
+but also on data that are interior to that cone.
+
+==Scalar wave equation in general dimension and Kirchhoff's formulae==
+
+We want to find solutions to utt−Δu = 0 for u : Rn × (0, ∞) → R with u(x, 0) = g(x) and ut(x, 0) = h(x). See Evans for more details.
+
+===Odd dimensions===
+
+then
+
+===Even dimensions===
+
+then
+
+==Problems with boundaries==
+
+===One space dimension===
+
+====The Sturm-Liouville formulation====
+
+A flexible string that is stretched between two points x = 0 and x = L satisfies the wave equation for t > 0 and 0 where a and b are non-negative. The case where u is required to vanish at an endpoint is the limit of this condition when the respective a or b approaches infinity. The method of separation of variables consists in looking for solutions of this problem in the special form
+A consequence is that
+The eigenvalue λ must be determined so that there is a non-trivial solution of the boundary-value problem
+This is a special case of the general problem of Sturm–Liouville theory. If a and b are positive, the eigenvalues are all positive, and the solutions are trigonometric functions. A solution that satisfies square-integrable initial conditions for u and ut can be obtained from expansion of these functions in the appropriate trigonometric series.
+
+====Investigation by numerical methods====
+
+Approximating the continuous string with a finite number of equidistant mass points one gets the following physical model:
+If each mass point has the mass m, the tension of the string is f, the separation between the mass points is Δx and ui, i = 1, ..., n are the offset of these n points from their equilibrium points (i.e. their position on a straight line between the two attachment points of the string) the vertical component of the force towards point i+1 is
+and the vertical component of the force towards point i−1 is
+Taking the sum of these two forces and dividing with the mass m one gets for the vertical motion:
+As the mass density is 
+this can be written
+But the discrete formulation ([tpl]EquationNote|3[/tpl]) of the equation of state with a finite number of mass point is just the suitable one for a numerical propagation of the string motion. The boundary condition
+where L is the length of the string takes in the discrete formulation the form that for the outermost points u1 and un the equation of motion are
+and
+while for 1 If the string is approximated with 100 discrete mass points one gets the 100 coupled second order differential equations ([tpl]EquationNote|5[/tpl]), ([tpl]EquationNote|6[/tpl]) and ([tpl]EquationNote|7[/tpl]) or equivalently 200 coupled first order differential equations.
+Propagating these up to the times
+using an 8-th order multistep method the 6 states displayed in figure 2 are found:
+The red curve is the initial state at time zero at which the string is "let free" in a predefined shape [ref]The initial state for "Investigation by numerical methods" is set with quadratic splines as follows:
+
+===Several space dimensions===
+
+The one-dimensional initial-boundary value theory may be extended to an arbitrary number of space dimensions. Consider a domain D in m-dimensional x space, with boundary B. Then the wave equation is to be satisfied if x is in D and t > 0. On the boundary of D, the solution u shall satisfy
+where n is the unit outward normal to B, and a is a non-negative function defined on B. The case where u vanishes on B is a limiting case for a approaching infinity. The initial conditions are
+where f and g are defined in D. This problem may be solved by expanding f and g in the eigenfunctions of the Laplacian in D, which satisfy the boundary conditions. Thus the eigenfunction v satisfies
+in D, and
+on B.
+In the case of two space dimensions, the eigenfunctions may be interpreted as the modes of vibration of a drumhead stretched over the boundary B. If B is a circle, then these eigenfunctions have an angular component that is a trigonometric function of the polar angle θ, multiplied by a Bessel function (of integer order) of the radial component. Further details are in Helmholtz equation.
+If the boundary is a sphere in three space dimensions, the angular components of the eigenfunctions are spherical harmonics, and the radial components are Bessel functions of half-integer order.
+
+==Inhomogeneous wave equation in one dimension==
+
+The inhomogeneous wave equation in one dimension is the following:
+with initial conditions given by
+The function s(x, t) is often called the source function because in practice it describes the effects of the sources of waves on the medium carrying them.  Physical examples of source functions include the force driving a wave on a string, or the charge or current density in the Lorenz gauge of electromagnetism.
+One method to solve the initial value problem (with the initial values as posed above) is to take advantage of a special property of the wave equation in an odd number of space dimensions, namely that its solutions respect causality.  That is, for any point (xi, ti), the value of u(xi, ti) depends only on the values of f(xi+cti) and f(xi−cti) and the values of the function g(x) between (xi−cti) and (xi+cti).  This can be seen in d'Alembert's formula, stated above, where these quantities are the only ones that show up in it.  Physically, if the maximum propagation speed is c, then no part of the wave that can't propagate to a given point by a given time can affect the amplitude at the same point and time.
+In terms of finding a solution, this causality property means that for any given point on the line being considered, the only area that needs to be considered is the area encompassing all the points that could causally affect the point being considered.  Denote the area that casually affects point (xi, ti) as RC.  Suppose we integrate the inhomogeneous wave equation over this region.
+To simplify this greatly, we can use Green's theorem to simplify the left side to get the following:
+The left side is now the sum of three line integrals along the bounds of the causality region.  These turn out to be fairly easy to compute
+In the above, the term to be integrated with respect to time disappears because the time interval involved is zero, thus dt = 0.
+For the other two sides of the region, it is worth noting that x±ct is a constant, namingly xi±cti, where the sign is chosen appropriately.  Using this, we can get the relation dx±cdt = 0, again choosing the right sign:
+And similarly for the final boundary segment:
+Adding the three results together and putting them back in the original integral:
+Solving for u(xi, ti) we arrive at
+In the last equation of the sequence, the bounds of the integral over the source function have been made explicit.  Looking at this solution, which is valid for all choices (xi, ti) compatible with the wave equation, it is clear that the first two terms are simply d'Alembert's formula, as stated above as the solution of the homogeneous wave equation in one dimension.  The difference is in the third term, the integral over the source.
+
+==Other coordinate systems==
+
+In three dimensions, the wave equation, when written in elliptic cylindrical coordinates, may be solved by separation of variables, leading to the Mathieu differential equation.
+
+==Further generalizations==
+
+To model dispersive wave phenomena, those in which the speed of wave propagation varies with the frequency of the wave, the constant c is replaced by the phase velocity:
+The elastic wave equation in three dimensions describes the propagation of waves in an isotropic homogeneous elastic medium.  Most solid materials are elastic, so this equation describes such phenomena as seismic waves in the Earth and ultrasonic waves used to detect flaws in materials. While linear, this equation has a more complex form than the equations given above, as it must account for both longitudinal and transverse motion:
+where:
+Note that in this equation, both force and displacement are vector quantities.  Thus, this equation is sometimes known as the vector wave equation.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

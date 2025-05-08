@@ -1,0 +1,33 @@
+</ref> The number of ''[[Glossary of graph theory#Direction|undirected]]'' closed tours is half this number, since every tour can be traced in reverse. There are 9,862 undirected closed tours on a [tpl]nowrap|6 × 6[/tpl] board.<ref>[tpl]MathWorld|urlname=KnightsTour|title=Knight's Tour[/tpl]</ref>
+
+==Finding tours with computers==
+
+There are quite a number of ways to find a knight's tour on a given board with a computer. Some of these methods are algorithms while others are heuristics.
+
+===Brute force algorithms===
+
+A brute-force search for a knight's tour is impractical on all but the smallest boards; for example, on an 8x8 board there are approximately 4×1051 possible move sequences,[tpl]cite web |url=http://www.josiahland.com/?p=781 |title = Enumerating the Knight's Tour[/tpl] and it is well beyond the capacity of modern computers (or networks of computers) to perform operations on such a large set.
+
+===Divide and conquer algorithms===
+
+By dividing the board into smaller pieces, constructing tours on each piece, and patching the pieces together, one can construct tours on most rectangular boards in polynomial time.[tpl]cite journal|last = Cull|first = P.|coauthors=De Curtins, J.|title = Knight's Tour Revisited|journal = Fibonacci Quarterly|volume = 16|year = 1978|pages = 276–285 |url=http://www.fq.math.ca/Scanned/16-3/cull.pdf[/tpl][tpl]cite journal|last = Parberry|first = Ian|title = An Efficient Algorithm for the Knight's Tour Problem|journal = Discrete Applied Mathematics|volume = 73|year = 1997|pages = 251–260|doi=10.1016/S0166-218X(96)00010-8 | url=http://larc.unt.edu/ian/pubs/algoknight.pdf [/tpl]
+
+===Neural network solutions===
+
+The Knight's Tour problem also lends itself to being solved by a neural network implementation.Y. Takefuji, K. C. Lee. "Neural network computing for knight's tour problems." Neurocomputing, 4(5):249–254, 1992. The network is set up such that every legal knight's move is represented by a neuron, and each neuron is initialized randomly to be either "active" or "inactive" (output of 1 or 0), with 1 implying that the neuron is part of the final solution. Each neuron also has a state function (described below) which is initialized to 0.
+When the network is allowed to run, each neuron can change its state and output based on the states and outputs of its neighbors (those exactly one knight's move away) according to the following transition rules:
+
+===Warnsdorff's rule===
+
+Warnsdorff's rule is a heuristic for finding a knight's tour. We move the knight so that we always proceed to the square from which the knight will have the fewest onward moves. When calculating the number of onward moves for each candidate square, we do not count moves that revisit any square already visited. It is, of course, possible to have two or more choices for which the number of onward moves is equal; there are various methods for breaking such ties, including one devised by Pohl  and another by Squirrel and Cull.[tpl]cite web|url=https://github.com/douglassquirrel/warnsdorff/blob/master/5_Squirrel96.pdf?raw=true |title=A Warnsdorff-Rule Algorithm for Knight's Tours on Square Boards |accessdate=2011-08-21 |last=Squirrel |first=Douglas |coauthors=Cull, P. |year=1996 [/tpl]
+This rule may also more generally be applied to any graph. In graph-theoretic terms, each move is made to the adjacent vertex with the least degree. Although the Hamiltonian path problem is NP-hard in general, on many graphs that occur in practice this heuristic is able to successfully locate a solution in linear time.[tpl]cite journal|last = Pohl|first = Ira|title = A method for finding Hamilton paths and Knight's tours|journal = Communications of the ACM|volume = 10|issue = 7|date = July 1967|pages = 446–449|url =http://portal.acm.org/citation.cfm?id=363463|doi = 10.1145/363427.363463[/tpl] The knight's tour is a special case.[tpl]cite conference| first=Karla |last=Alwan| coauthors=Waters, K.| title=Finding Re-entrant Knight's Tours on N-by-M Boards|conference=ACM Southeast Regional Conference| publisher=ACM| location=New York, New York| pages=377–382| year=1992| url=http://portal.acm.org/citation.cfm?id=503806| format=PDF| accessdate=2008-10-28| doi = 10.1145/503720.503806[/tpl]
+The heuristic was first described in "Des Rösselsprungs einfachste und allgemeinste Lösung" by H. C. von Warnsdorff in 1823.
+A computer program which solves the Knight's Tour for any starting position using Warnsdorff's rule can be found in the book 'Century/Acorn User Book of Computer Puzzles' edited by Simon Dally (ISBN 071260541X).
+
+==See also==
+
+==Notes==
+
+==External links==
+
+

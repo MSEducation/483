@@ -1,0 +1,33 @@
+[[Message transfer agent]]
+
+CATEGORIES: Email, Internet mail protocols, Email agents, Message transfer agents
+
+Within Internet message handling services (MHS), a message transfer agentMTA=Message Transfer Agent (similar to X.400 name) is found, e.g., in RFC 1506, RFC 2476, RFC 3461, RFC 3464, RFC 3865, RFC 3888, RFC 6409, RFC 5598. or mail transfer agentMTA=Mail Transfer Agent (similar to Mail Transfer Protocol) is found, e.g., in RFC 2298, RFC 2305, RFC 3804, RFC 3798, RFC 4496, RFC 5442, RFC 5429. (MTA) or mail relay is software that transfers electronic mail messages from one computer. An MTA implements both the client (sending) and server (receiving) portions of the Simple Mail Transfer Protocol. Crocker (July 2009)
+The terms mail server, mail exchanger, and MX host  may also refer to a computer performing the MTA function. The Domain Name System (DNS) associates a mail server to a domain with mail exchanger (MX) resource records containing the domain name of a host providing MTA services.
+A mail server is a computer that serves as an electronic post office for email. Mail exchanged across networks is passed between mail servers that run specially designed software. This software is built around agreed-upon, standardized protocols for handling mail messages and any data files (such as images, multimedia or documents) that might be attached to them.
+
+Operation
+
+A message transfer agent receives mail from either another MTA, a mail submission agent (MSA), or a mail user agent (MUA). The transmission details are specified by the Simple Mail Transfer Protocol (SMTP). When a recipient mailbox of a message is not hosted locally, the message is relayed, that is, forwarded to another MTA. Every time an MTA receives an email message, it adds a Received trace header field to the top of the header of the message,See Email#Message header for the format of an email message. Many MUAs allow users to see the raw message source directly, thereby allowing header inspection. thereby building a sequential record of MTAs handling the message. The process of choosing a target MTA for the next hop is also described in SMTP, but can usually be overridden by configuring the MTA software with a specific target.
+An MTA works in the background, while the user usually interacts directly with a mail user agent. One may distinguish initial submission as first passing through an MSA – port 587 is used for communication between an MUA and an MSA while port 25 is used for communication between MTAs, or from an MSA to an MTA;See table at Email client#Port numbers this distinction is first made in RFC 2476.
+For recipients hosted locally, the final delivery of email to a recipient mailbox is the task of a message delivery agent (MDA). For this purpose the MTA transfers the message to the message handling service component of the message delivery agent. Upon final delivery, the Return-Path field is added to the envelope to record the return path.
+
+Transfer versus access
+
+The function of an MTA is usually complemented with some means for email clients to access stored messages. This function typically employs a different protocol. The most widely implemented open protocols for the MUA are the Post Office Protocol (POP3) and the Internet Message Access Protocol (IMAP), but many proprietary systems exist (Exchange, Lotus Domino/Notes) for retrieving messages.  Many systems also offer a web interface for reading and sending email that is independent of any particular MUA.
+At its most basic, an MUA using POP3 downloads messages from the server mailbox onto the local computer for display in the MUA.  Messages are generally removed from the server at the same time but most systems also allow a copy to be left behind as a backup. In contrast, an MUA using IMAP displays messages directly from the server, although a download option for archive purposes is usually also available.  One advantage this gives IMAP is that the same messages are visible from any computer accessing the email account, since messages aren't routinely downloaded and deleted from the server.  If set up properly, sent mail can be saved to the server also, in contrast with POP mail, where sent messages exist only in the local MUA and are not visible by other MUAs accessing the same account.
+The IMAP protocol has features that allow uploading of mail messages and there are implementations that can be configured to also send messages like an MTA,E.g. Courier mail server IMAP's Outbox feature, not fully supported by clients. which combine sending a copy and storing a copy in the Sent folder in one upload operation. 
+The reason for using SMTP as a standalone transfer protocol is twofold:
+
+Issues affecting small email-servers
+
+In recent years many ISPs pre-emptively block outgoing connections to TCP port 25 on domestic connections,Is there a war against small email servers and larger email providers have increasingly stringent requirements for other servers that wish to transfer emails to them. For example: reverse PTR records of the sending mail server are often checked before accepting mail. Emailtalk. Retrieved on 2013-07-17. The PTR record must be set up by the ISP, which may refuse this request to a small-business or domestic user. 
+Other problems encountered by small mail-servers include zealous use of blacklisting and a presumption of guilt by blacklisting services and large email providers, which classify "new" servers as spammers by default.
+
+List of MTA software for Unix-like operating systems
+
+
+
+
+
+

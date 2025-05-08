@@ -1,0 +1,36 @@
+[[Monomorphism]]
+
+CATEGORIES: Morphisms
+
+In the more general setting of category theory, a monomorphism (also called a monic morphism or a mono) is a left-cancellative morphism, that is, an arrow [tpl]nobreak|f : X → Y[/tpl] such that, for all morphisms [tpl]nobreak|g1, g2 : Z → X[/tpl],
+Monomorphisms are a categorical generalization of injective functions (also called "one-to-one functions"); in some categories the notions coincide, but monomorphisms are more general, as in the examples below.
+The categorical dual of a monomorphism is an epimorphism, i.e. a monomorphism in a category C is an epimorphism in the dual category Cop. Every section is a monomorphism, and every retraction is an epimorphism.
+
+==Relation to invertibility==
+
+A left invertible morphism is called a split mono. 
+However, a monomorphism need not be left-invertible. For example, in the category Group of all groups and group morphisms among them, if H is a subgroup of G then the inclusion [tpl]nowrap|f : H → G[/tpl] is always a monomorphism; but f has a left inverse in the category if and only if H has a normal complement in G. 
+A morphism [tpl]nowrap|f : X → Y[/tpl] is monic if and only if the induced map [tpl]nowrap|f∗ : Hom(Z, X) → Hom(Z, Y)[/tpl], defined by [tpl]nowrap|1=f∗(h) = f ∘ h[/tpl] for all morphisms [tpl]nowrap|h : Z → X[/tpl], is injective for all Z.
+
+==Examples==
+
+Every morphism in a concrete category whose underlying function is injective is a monomorphism; in other words, if morphisms are actually functions between sets, then any morphism which is a one-to-one function will necessarily be a monomorphism in the categorical sense.  In the category of sets the converse also holds, so the monomorphisms are exactly the injective morphisms.  The converse also holds in most naturally occurring categories of algebras because of the existence of a free object on one generator.  In particular, it is true in the categories of all groups, of all rings, and in any abelian category.
+It is not true in general, however, that all monomorphisms must be injective in other categories; that is, there are settings in which the morphisms are functions between sets, but one can have a function that is not injective and yet is a monomorphism in the categorical sense. For example, in the category Div of divisible (abelian) groups and group homomorphisms between them there are monomorphisms that are not injective: consider, for example, the quotient map [tpl]nowrap|q : Q → Q/Z[/tpl], where Q is the rationals under addition, Z the integers (also considered a group under addition), and Q/Z is the corresponding quotient group.  This is not an injective map, as for example every integer is mapped to 0. Nevertheless, it is a monomorphism in this category.  This follows from the implication [tpl]nowrap|1=q ∘ h = 0 ⇒ h = 0[/tpl], which we will now prove.  If [tpl]nowrap|h : G → Q[/tpl], where G is some divisible group, and [tpl]nowrap|1=q ∘ h = 0[/tpl], then [tpl]nowrap|h(x) ∈ Z, ∀ x ∈ G[/tpl].  Now fix some [tpl]nowrap|x ∈ G[/tpl].  Without loss of generality, we may assume that [tpl]nowrap|h(x) ≥ 0[/tpl] (otherwise, choose −x instead).  Then, letting [tpl]nowrap|1=n = h(x) + 1[/tpl], since G is a divisible group, there exists some [tpl]nowrap|y ∈ G[/tpl] such that [tpl]nowrap|1=x = ny[/tpl], so [tpl]nowrap|1=h(x) = n h(y)[/tpl].  From this, and {{nowrap|1=0 ≤ h(x) Since [tpl]nowrap|h(y) ∈ Z[/tpl], it follows that [tpl]nowrap|1=h(y) = 0[/tpl], and thus [tpl]nowrap|1=h(x) = 0 = h(−x), ∀ x ∈ G[/tpl].  This says that [tpl]nowrap|1=h = 0[/tpl], as desired.  
+To go from that implication to the fact that q is an monomorphism, assume that [tpl]nowrap|1=q  ∘ f = q g[/tpl] for some morphisms [tpl]nowrap|f, g : G → Q[/tpl], where G is some divisible group. Then [tpl]nowrap|1=q ∘ (f − g) = 0[/tpl], where [tpl]nowrap|(f − g) : x ↦ f(x) − g(x)[/tpl].  (Since [tpl]nowrap|1=(f − g)(0) = 0[/tpl], and [tpl]nowrap|1=(f - g)(x + y) = (f - g)(x) + (f - g)(y)[/tpl], it follows that [tpl]nowrap|(f − g) ∈ Hom(G, Q)[/tpl]).  From the implication just proved, [tpl]nowrap|1=q  ∘ (f − g) = 0  ⇒ f − g = 0  ⇔ ∀ x ∈ G, f(x) = g(x) ⇔ f = g[/tpl].  Hence q is a monomorphism, as claimed.
+
+==Properties==
+
+==Related concepts==
+
+There are also useful concepts of regular monomorphism, strong monomorphism, and extremal monomorphism. A regular monomorphism equalizes some parallel pair of morphisms. An extremal monomorphism is a monomorphism that cannot be nontrivially factored through an epimorphism: Precisely, if [tpl]nowrap|1=m = g ∘ e[/tpl] with e an epimorphism, then e is an isomorphism.  A strong monomorphism satisfies a certain lifting property with respect to commutative squares involving an epimorphism.
+
+==Terminology==
+
+The companion terms monomorphism and epimorphism were originally introduced by Nicolas Bourbaki; Bourbaki uses monomorphism as shorthand for an injective function. Early category theorists believed that the correct generalization of injectivity to the context of categories was the cancellation property given above.  While this is not exactly true for monic maps, it is very close, so this has caused little trouble, unlike the case of epimorphisms.  Saunders Mac Lane attempted to make a distinction between what he called monomorphisms, which were maps in a concrete category whose underlying maps of sets were injective, and monic maps, which are monomorphisms in the categorical sense of the word.  This distinction never came into general use.
+Another name for monomorphism is extension, although this has other uses too.
+
+==See also==
+
+==References==
+
+

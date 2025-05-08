@@ -1,0 +1,147 @@
+[[Fourier series]]
+
+CATEGORIES: Fourier series, Joseph Fourier
+
+In mathematics, a Fourier series ([tpl]IPAc-en|lang|pron|ˈ|f|ɔər|i|eɪ[/tpl]) decomposes periodic functions or periodic signals into the sum of a (possibly infinite) set of simple oscillating functions, namely sines and cosines  (or complex exponentials).  The Discrete-time Fourier transform is a periodic function, often defined in terms of a Fourier series.  And the Z-transform reduces to a Fourier series for the important case |z|=1.  Fourier series is also central to the original proof of the Nyquist–Shannon sampling theorem.  The study of Fourier series is a branch of Fourier analysis.
+  
+
+==History==
+
+The Fourier series is named in honour of Jean-Baptiste Joseph Fourier (1768–1830), who made important contributions to the study of trigonometric series, after preliminary investigations by Leonhard Euler, Jean le Rond d'Alembert, and Daniel Bernoulli.These three did some important early work on the wave equation, especially D'Alembert. Euler's work in this area was mostly comtemporaneous/ in collaboration with Bernoulli, although the latter made some independent contributions to the theory of waves and vibrations (see here, pg.s 209 & 210, ). Fourier introduced the series for the purpose of solving the heat equation in a metal plate, publishing his initial results in his 1807 Mémoire sur la propagation de la chaleur dans les corps solides (Treatise on the propagation of heat in solid bodies), and publishing his Théorie analytique de la chaleur in 1822. Early ideas of decomposing a periodic function into the sum of simple oscillating functions date back to the 3rd century BC, when ancient astronomers proposed an empiric model of planetary motions, based on deferents and epicycles.
+The heat equation is a partial differential equation. Prior to Fourier's work, no solution to the heat equation was known in the general case, although particular solutions were known if the heat source behaved in a simple way, in particular, if the heat source was a sine or cosine wave. These simple solutions are now sometimes called eigensolutions. Fourier's idea was to model a complicated heat source as a superposition (or linear combination) of simple sine and cosine waves, and to write the  solution as a superposition of the corresponding eigensolutions. This superposition or linear combination is called the Fourier series.
+From a modern point of view, Fourier's results are somewhat informal, due to the lack of a precise notion of function and integral in the early nineteenth century. Later, Peter Gustav Lejeune DirichletLejeune-Dirichlet, P. "Sur la convergence des séries trigonométriques qui servent à représenter une fonction arbitraire entre des limites données". (In French), transl. "On the convergence of trigonometric series which serve to represent an arbitrary function between two given limits". Journal f¨ur die reine und angewandte Mathematik, Vol. 4 (1829) pp. 157–169. and Bernhard Riemann[tpl]cite web|url = http://www.maths.tcd.ie/pub/HistMath/People/Riemann/Trig/| title=Ueber die Darstellbarkeit einer Function durch eine trigonometrische Reihe |language=German|work=Habilitationschrift, Göttingen; 1854. Abhandlungen der Königlichen Gesellschaft der Wissenschaften zu Göttingen, vol. 13, 1867''. Published posthumously for Riemann by Richard Dedekind|trans_title=About the representability of a function by a trigonometric series|accessdate= 19 May 2008 | archiveurl= http://web.archive.org/web/20080520085248/http://www.maths.tcd.ie/pub/HistMath/People/Riemann/Trig/ | archivedate= 20 May 2008| deadurl= no[/tpl]D. Mascre, Bernhard Riemann: Posthumous Thesis on the Representation of Functions by Triginometric Series (1867). Landmark Writings in Western Mathematics 1640–1940, Ivor Grattan-Guinness (ed.); pg. 492. Elsevier, 20 May 2005.Accessed 7 Dec 2012.Although the original motivation was to solve the heat equation, it later became obvious that the same techniques could be applied to a wide array of mathematical and physical problems, and especially those involving linear differential equations with constant coefficients, for which the eigensolutions are sinusoids.  The Fourier series has many such applications in electrical engineering, vibration analysis, acoustics, optics, signal processing, image processing, quantum mechanics, econometrics,[tpl]cite book |first=Marc |last=Nerlove |first2=David M. |last2=Grether |first3=Jose L. |last3=Carvalho |year=1995 |title=Analysis of Economic Time Series. Economic Theory, Econometrics, and Mathematical Economics |location= |publisher=Elsevier |isbn=0-12-515751-7 [/tpl] thin-walled shell theory,[tpl]cite book |first=Wilhelm |last=Flugge |year=1957 |title=Statik und Dynamik der Schalen |publisher=Springer-Verlag |location=Berlin [/tpl] etc.
+
+==Definition==
+
+In this section, s(x) denotes a function of the real variable x, and s is integrable on an interval x0, x0 + P, for real numbers x0 and P.  We will attempt to represent  s  in that interval as an infinite sum, or series, of harmonically related sinusoidal functions.  Outside the interval, the series is periodic with period P (frequency 1/P).  It follows that if s also has that property, the approximation is valid on the entire real line.  We can begin with a finite summation (or partial sum):
+we can also write the function in these equivalent forms:
+where:
+When the coefficients (known as Fourier coefficients) are computed as follows:[ref]
+
+</ref>
+|}
+
+===Example 1: a simple Fourier series===
+
+We now use the formula above to give a Fourier series expansion of a very simple function. Consider a sawtooth wave
+In this case, the Fourier coefficients are given by
+It can be proven that the Fourier series converges to s(x) at every point x where s is differentiable, and therefore:
+
+When x = π, the Fourier series converges to 0, which is the half-sum of the left- and right-limit of s at  x = π.  This is a particular instance of the Dirichlet theorem for Fourier series.
+This example leads us to a solution to the Basel problem
+
+===Example 2: Fourier's motivation===
+
+The Fourier series expansion of our function in example 1 looks much less simple than the formula s(x) = x/π, and so it is not immediately apparent why one would need this Fourier series. While there are many applications, we cite Fourier's motivation of solving the heat equation. For example, consider a metal plate in the shape of a square whose side measures π meters, with coordinates (x, y) ∈ 0, π × 0, π. If there is no heat source within the plate, and if three of the four sides are held at 0 degrees Celsius, while the fourth side, given by y = π, is maintained at the temperature gradient T(x, π) = x degrees Celsius, for x in (0, π), then one can show that the stationary heat distribution (or the heat distribution after a long period of time has elapsed) is given by
+Here, sinh is the hyperbolic sine function. This solution of the heat equation is obtained by multiplying each term of  [tpl]EquationNote|Eq.1[/tpl] by sinh(ny)/sinh(nπ). While our example function s(x) seems to have a needlessly complicated Fourier series, the heat distribution T(x, y) is nontrivial. The function T cannot be written as a closed-form expression. This method of solving the heat problem was made possible by Fourier's work.
+
+===Other applications===
+
+Another application of this Fourier series is to solve the Basel problem by using Parseval's theorem. The example generalizes and one may compute ζ(2n), for any positive integer n.
+
+===Other common notations===
+
+In engineering, particularly when the variable x represents time, the coefficient sequence is called a frequency domain representation. Square brackets are often used to emphasize that the domain of this function is a discrete set of frequencies.
+Another commonly used frequency domain representation uses the Fourier series coefficients to modulate a Dirac comb:
+
+==Beginnings==
+
+|30px|30px|Joseph Fourier|Mémoire sur la propagation de la chaleur dans les corps solides. (1807)Gallica – Fourier, Jean-Baptiste-Joseph (1768–1830). Oeuvres de Fourier. 1888, pp. 218–219,These words are not strictly Fourier's.  Whilst the cited article does list the author as Fourier, a footnote indicates that the article was actually written by Poisson (that it was not written by Fourier is also clear from the consistent use of the third person to refer to him) and that it is, "for reasons of historical interest", presented as though it were Fourier's original memoire.}}
+This immediately gives any coefficient ak of the trigonometrical series for φ(y) for any function which has such an expansion. It works because if φ has such an expansion, then (under suitable convergence assumptions) the integral
+In these few lines, which are close to the modern formalism used in Fourier series, Fourier revolutionized both mathematics and physics. Although similar trigonometric series were previously used by Euler, d'Alembert, Daniel Bernoulli and Gauss, Fourier believed that such trigonometric series could represent any arbitrary function.  In what sense that is actually true is a somewhat subtle issue and the attempts over many years to clarify this idea have led to important discoveries in the theories of convergence, function spaces, and harmonic analysis.
+When Fourier submitted a later competition essay in 1811, the committee (which included Lagrange, Laplace, Malus and Legendre, among others) concluded: ...the manner in which the author arrives at these equations is not exempt of difficulties and...his analysis to integrate them still leaves something to be desired on the score of generality and even rigour.[tpl]citation needed|date=November 2012[/tpl]
+
+===Birth of harmonic analysis===
+
+Since Fourier's time, many different approaches to defining and understanding the concept of Fourier series have been discovered, all of which are consistent with one another, but each of which emphasizes different aspects of the topic.  Some of the more powerful and elegant approaches are based on mathematical ideas and tools that were not available at the time Fourier completed his original work. Fourier originally defined the Fourier series for real-valued functions of real arguments, and using the sine and cosine functions as the basis set for the decomposition.
+Many other Fourier-related transforms have since been defined, extending the initial idea to other applications. This general area of inquiry is now sometimes called harmonic analysis. A Fourier series, however, can be used only for periodic functions, or for functions on a bounded (compact) interval.
+
+==Extensions==
+
+===Fourier series on a square===
+
+We can also define the Fourier series for functions of two variables x and y in the square −π, π×−π, π:
+Aside from being useful for solving partial differential equations such as the heat equation, one notable application of Fourier series on the square is in image compression. In particular, the jpeg image compression standard uses the two-dimensional discrete cosine transform, which is a Fourier transform using the cosine basis functions.
+
+===Fourier series of Bravais-lattice-periodic-function===
+
+The Bravais lattice is defined as the set of vectors of the form:
+where ni are integers and ai are three linearly independent vectors. Assuming we have some function, f(r), such that it obeys the following condition for any Bravais lattice vector R: f(r) = f(r + R), we could make a Fourier series of it. This kind of function can be, for example, the effective potential that one electron "feels" inside a periodic crystal. It is useful to make a Fourier series of the potential then when applying Bloch's theorem. First, we may write any arbitrary vector r in the coordinate-system of the lattice:
+where ai = |ai|.
+Thus we can define a new function,
+If we write a series for g on the interval a1 for x1, we can define the following:
+And then we can write:
+Further defining:
+We can write g once again as:
+Finally applying the same for the third coordinate, we define:
+We write g as:
+Re-arranging:
+And so it is clear that in our expansion, the sum is actually over reciprocal lattice vectors:
+where
+Assuming
+we can solve this system of three linear equations for x, y, and z in terms of x1, x2 and x3 in order to calculate the volume element in the original cartesian coordinate system. Once we have x, y, and z in terms of x1, x2 and x3, we can calculate Jacobian determinant:
+which after some calculation and applying some non-trivial cross-product identities can be shown to be equal to:
+(it may be advantageous for the sake of simplifying calculations, to work in such a cartesian coordinate system, in which it just so happens that a1 is parallel to the x axis, a2 lies in the x-y plane, and a3 has components of all three axes). The denominator is exactly the volume of the primitive unit cell which is enclosed by the three primitive-vectors a1, a2 and a3. In particular, we now know that
+We can write now h(K) as an integral with the traditional coordinate system over the volume of the primitive cell, instead of with the x1, x2 and x3 variables:
+
+===Hilbert space interpretation===
+
+In the language of Hilbert spaces, the set of functions {en = einx; n ∈ Z} is an orthonormal basis for the space L2(−π, π) of square-integrable functions of −π, π. This space is actually a Hilbert space with an inner product given for any two elements f and g by
+The basic Fourier series result for Hilbert spaces can be written as
+This corresponds exactly to the complex exponential formulation given above. The version with sines and cosines is also justified with the Hilbert space interpretation.  Indeed, the sines and cosines form an orthogonal set:
+(where δmn is the Kronecker delta), and
+furthermore, the sines and cosines are orthogonal to the constant function 1.  An orthonormal basis for L2(π) consisting of real functions is formed by the functions 1/[tpl]sqrt|2π[/tpl] 1 and 1/[tpl]sqrt|π[/tpl] cos(nx),  1/[tpl]sqrt|π[/tpl] sin(nx) with n = 1, 2,...  The density of their span is a consequence of the Stone–Weierstrass theorem, but follows also from the properties of classical kernels like the Fejér kernel.
+
+==Properties==
+
+===Compact groups===
+
+One of the interesting properties of the Fourier transform which we have mentioned, is that it carries convolutions to pointwise products. If that is the property which we seek to preserve, one can produce Fourier series on any compact group. Typical examples include those classical groups that are compact. This generalizes the Fourier transform to all spaces of the form L2(G), where G is a compact group, in such a way that the Fourier transform carries convolutions to pointwise products. The Fourier series exists and converges in similar ways to the π case.
+An alternative extension to compact groups is the Peter–Weyl theorem, which proves results about representations of compact groups analogous to those about finite groups.
+
+===Riemannian manifolds===
+
+If the domain is not a group, then there is no intrinsically defined convolution. However, if X is a compact Riemannian manifold, it has a Laplace–Beltrami operator. The Laplace–Beltrami operator is the differential operator that corresponds to Laplace operator for the Riemannian manifold X. Then, by analogy, one can consider heat equations on X.   Since Fourier arrived at his basis by attempting to solve the heat equation, the natural generalization is to use the eigensolutions of the Laplace–Beltrami operator as a basis. This generalizes Fourier series to spaces of the type L2(X), where X is a Riemannian manifold. The Fourier series converges in ways similar to the −π, π case. A typical example is to take X to be the sphere with the usual metric, in which case the Fourier basis consists of spherical harmonics.
+
+===Locally compact Abelian groups===
+
+The generalization to compact groups discussed above does not generalize to noncompact, nonabelian groups. However, there is a straightfoward generalization to Locally Compact Abelian (LCA) groups.
+This generalizes the Fourier transform to L1(G) or L2(G), where G is an LCA group. If G is compact, one also obtains a Fourier series, which converges similarly to the −π, π case, but if G is noncompact, one obtains instead a Fourier integral. This generalization yields the usual Fourier transform when the underlying locally compact Abelian group is R.
+
+==Approximation and convergence of Fourier series==
+
+This is called a partial sum. We would like to know, in which sense does fN(x) converge to f(x) as N → ∞.
+
+===Least squares property===
+
+We say that p is a trigonometric polynomial of degree N when it is of the form
+Note that fN is a trigonometric polynomial of degree N''. Parseval's theorem implies that
+ Theorem. The trigonometric polynomial fN is the unique best trigonometric polynomial of degree N approximating f(x), in the sense that, for any trigonometric polynomial p ≠ fN of degree N, we have
+ where the Hilbert space norm is defined as:
+
+===Convergence===
+
+Because of the least squares property, and because of the completeness of the Fourier basis, we obtain an elementary convergence result.
+Many other results concerning the convergence of Fourier series are known, ranging from the moderately simple result that the series converges at x if f is differentiable at x, to Lennart Carleson's much more sophisticated result that the Fourier series of an L2 function actually converges almost everywhere.
+These theorems, and informal variations of them that don't specify the convergence conditions, are sometimes referred to generically as "Fourier's theorem" or "the Fourier theorem".[ref]
+</ref><ref>
+</ref><ref>
+</ref><ref>
+</ref>
+
+===Divergence===
+
+Since Fourier series have such good convergence properties, many are often surprised by some of the negative results. For example, the Fourier series of a continuous T-periodic function need not converge pointwise. The uniform boundedness principle yields a simple non-constructive proof of this fact.
+In 1922, Andrey Kolmogorov published an article entitled "Une série de Fourier-Lebesgue divergente presque partout" in which he gave an example of a Lebesgue-integrable function whose Fourier series diverges almost everywhere. He later constructed an example of an integrable function whose Fourier series diverges everywhere [tpl]harv|Katznelson|1976[/tpl].
+
+==See also==
+
+==Notes==
+
+==References==
+
+===Further reading===
+
+==External links==
+
+

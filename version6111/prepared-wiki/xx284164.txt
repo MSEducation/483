@@ -1,0 +1,59 @@
+[[JSONiq]]
+
+CATEGORIES: JSON, Functional languages
+
+JSONiq is a query and functional programming language that is designed to declaratively query and transform collections of hierarchical and heterogeneous data in format of JSON, XML, as well as unstructured, textual data.
+JSONiq is an open specification published under the Creative Commons Attribution-ShareAlike 3.0 license. It is based on the XQuery language, with which it shares the same core expressions and operations on atomic types. JSONiq comes in two syntactical flavors, which both support JSON and XML natively.
+
+==Features==
+
+JSONiq primarily provides means to extract and transform data from JSON documents or any data source that can be viewed as JSON (e.g. relational databases or web services).
+The major expression for performing such operations is the SQL-like “FLWOR expression” that comes from XQuery. A FLWOR expression is constructed from the five clauses after which it is named: FOR, LET, WHERE, ORDER BY, RETURN. However, it also supports clauses for doing grouping and windowing.
+The language also provides syntax for constructing new JSON documents where either the field names and values are known in advance or can be computed dynamically. The JSONiq language (not the extension to XQuery) is a superset of JSON. That is, each JSON document is a valid JSONiq program.
+Additionally, the language also supports a navigational syntax for extracting field names and values out of JSON objects as well as values out of JSON arrays. Navigation is resilient in the absence of values, or if values are heterogeneous, in that it silently ignores unforeseen values without raising errors.
+All constructs are defined as expressions within the language and can be arbitrarily nested.
+JSONiq does not include features for updating JSON or XML documents, it does not have full text search capabilities, and has no statements. All of these features are under active development for a subsequent version of the language.
+JSONiq is a programming language that can express arbitrary JSON to JSON or XML to XML transformations. It also allows for transformations between JSON and XML. All such transformations have the following features:
+
+===Data Model===
+
+The language is based on the JSONiq Data Model (JDM) which is an extension of the XQuery and XPath Data Model (XDM). The JDM uses a tree-structured model of the information content of a JSON or XML document. It contains JSON objects, JSON arrays, all kinds of XML nodes, as well as atomic values such as integers, strings, or boolean all being defined in XML Schema.
+JDM forms the basis for a set-oriented language, in that instances of the data model are sequences (a singleton value is considered to be a sequence of length one). The items in a sequence can be JSON objects, JSON arrays, XML nodes, or atomic values.
+
+==Examples==
+
+The sample JSONiq code below computes the area code and the number of all people older than 20 from a collection of JSON person objects (see the JSON article for an example object).
+All JSONiq constructs are expressions and can also be contained in the body of a function.
+The next query transforms parts of each person object into an XML element using the XQuery syntax (JSONiq extension to XQuery).
+
+==Applications==
+
+Below are a few examples of how and where JSONiq can be used:
+
+==Comparison of the two syntactic flavors==
+
+There are two syntaxes of JSONiq, which users can use on whether they are focusing on JSON or XML.
+Both syntaxes use the same data model and are very similar up to a few exceptions.
+
+===JSONiq syntax===
+
+The pure JSONiq syntax is a superset of JSON. It is not strictly speaking a superset of XQuery even though all its expressions and semantics are available.
+The following aspects of the JSONiq syntax are not XQuery conformant:
+
+===XQuery syntax with JSONiq extension===
+
+The JSONiq extension to XQuery is a superset of XQuery but not a superset of JSON. It is fully conformant and backwards compatible with XQuery 3.0 candidate recommendation.
+The following aspects of JSONiq are not supported in the XQuery syntax.
+
+==Future work==
+
+Currently, there are three major extensions to JSONiq under development:
+Additionally, a JSONiq schema language is being development. It can be used in JSONiq to validate JSON documents.
+
+==Further reading==
+
+==Implementations==
+
+==References==
+
+

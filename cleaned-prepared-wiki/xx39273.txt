@@ -1,0 +1,60 @@
+[[Plug and play]]
+
+CATEGORIES: Computer peripherals, Motherboard
+
+In computing, a plug and play device or computer bus, is one with a specification that facilitates the discovery of a hardware component in a system without the need for physical device configuration or user intervention in resolving resource conflicts.The PC Guide - Plug and Playplug and play Definition
+Plug and play devices can be due to boot-time assignment of device resources and to hotplug systems such as USB and IEEE 1394 (FireWire).Plug and Play Definition
+
+History of device configuration
+
+In the beginnings of data processing technology, the hardware was just a collection of modules, and the functions of those modules had to be linked to accommodate different calculating operations. This linking was usually done by connecting some wires between modules and disconnecting others.  For many mechanical data processing machines,  such as the IBM punched card accounting machines, their calculating operations were directed by the use of a quick-swap control panel wired to route signals between module sockets. 
+As general purpose computing devices developed, these connections and disconnections were instead used to specify locations in the system address space where an expansion device should appear, in order for the device to be accessible by the central processing unit. If two or more of the same type of device were installed in one computer, it would be necessary to assign the second device to a separate, non-overlapping region of the system address space so that both could be accessible at the same time.
+Some early microcomputing devices such as the Apple II sometimes required the end-user to physically cut some wires and solder others together to make configuration changes. The changes were intended to be largely permanent for the life of the hardware.
+As computers became more accessible to the general public, the need developed for more frequent changes to be made by computer users unskilled with using soldering irons. Rather than cutting and soldering connections, configuration was accomplished by jumpers or DIP switches.
+However, the process of configuring devices manually using jumpers or DIP switches could be quite difficult, and there was usually no forgiveness for technical inexperience. Incorrect settings could render either the whole system or just the expansion device completely or partially inoperable. Some settings such as for interrupts (IRQ) or direct memory access (DMA) required knowledge of what configuration had been previously manually assigned to other devices, as well as what settings the main system itself may be using. The system might still seem to work properly with an incorrect setting, until the IRQ or DMA is actually needed and the entire system suddenly freezes and must be reset.
+
+First attempts at self-configuration
+
+As computing devices spread further out into the general population, there was ever greater pressure developing to automate this configuration process, and relieve the end-user from the hassle and complexity of having to manually assign these many complex settings.
+
+NuBus
+
+In 1984, the NuBus architecture was developed by the Massachusetts Institute of Technology (MIT) as a platform agnostic peripheral interface that fully automated device configuration. The specification was sufficiently intelligent that it could work with both big endian and little endian computer platforms that had previously been mutually incompatible. However, this agnostic approach increased interfacing complexity and required support chips on every device which in the 1980s was expensive to do, so the technology did not gain widespread support.
+
+Zorro bus
+
+In 1984, Commodore developed the AutoConfig protocol and the Zorro expansion bus for its Amiga line of expandable computers. The first public appearance was in the CES computer show at Las Vegas in 1985, with the so-called "Lorraine" prototype. Like NuBus, Zorro devices had absolutely no jumpers or DIP switches. The Zorro architecture did not spread to general computing use outside of the Amiga product line, but was eventually upgraded for the later iteration of Amiga computers.
+
+Micro-Channel Architecture
+
+In 1987, IBM released an update to the IBM PC known as the Personal System/2 line of computers using the Micro Channel Architecture. The PS/2 was capable of totally automatic self-configuration. Every piece of expansion hardware was issued with a floppy disk containing a special file used to auto-configure the hardware to work with the computer. The user would install the device, turn on the computer, load the configuration information from the disk, and the hardware automatically assigned interrupts, DMA, and so forth.
+However, the disks posed a problem if they were damaged or lost, as the only options at the time to obtain replacements was via postal mail or IBM's dialup BBS service. Without the disks, any new hardware would be completely useless and the computer would not boot at all until the unconfigured device was removed.
+Microchannel did not gain widespread support, because IBM wanted to exclude clone manufacturers from this next generation computing platform. Anyone developing for MCA had to sign non-disclosure agreements and pay royalties to IBM for each device sold, putting a price premium on MCA devices. End-users and the clone manufacturers revolted against IBM and developed their own open standards bus, known as EISA. Consequently, MCA receded in use except in IBM's mainframes.
+
+ISA and PCI self-configuration
+
+In time, many Industry Standard Architecture (ISA) cards incorporated, through proprietary and varied techniques, hardware to self-configure or to provide for software configuration; often, the card came with a configuration program on disk that could automatically set the software-configurable (but not itself self-configuring) hardware. Some cards had both jumpers and software-configuration, with some settings controlled by each; this compromise reduced the number of jumpers that had to be set, while avoiding great expense for certain settings, e.g. nonvolatile registers for a base address setting. The problems of required jumpers continued on, but slowly diminished as more and more devices, both ISA and other types, included extra self-configuration hardware. However, these efforts still did not solve the problem of making sure the end-user has the appropriate software driver for the hardware.
+ISA PnP or (legacy) Plug & Play ISA was a plug-n-play system that used a combination of modifications to hardware, the system BIOS, and operating system software to automatically manage resource allocations. It was superseded by the PCI bus during the mid-1990s.
+
+Plug and Play
+
+In 1995, Microsoft released Windows 95, which tried to fully automate device detection and configuration as much as possible, but could still fall back to manual settings if necessary. During the initial install process of Windows 95, it would attempt to automatically detect all devices installed in the system. Since full auto-detection of everything was a new process without full industry support, the detection process constantly wrote to a progress tracking log file during the detection process. In the event that device probing would fail and the system would freeze, the end-user could reboot the computer, restart the detection process, and the installer would use the tracking log to skip past the point that caused the previous freeze.
+At the time, there could be a mix of devices in a system, some capable of automatic configuration, and some still using fully manual settings using jumpers and DIP switches. The old world of DOS still lurked underneath Windows 95, and systems could be configured to load devices three different ways:
+Microsoft could not assert full control over all device settings, so configuration files could include a mix of driver entries inserted by the Windows 95 automatic configuration process, and could also include driver entries inserted or modified manually by the computer users themselves. The Windows 95 device manager also could offer users a choice of several semi-automatic configurations to try to free up resources for devices that still needed manual configuration.
+Also, although some later ISA devices were capable of automatic configuration, it was common for PC ISA expansion cards to limit themselves to a very small number of choices for interrupt request lines. For example, a network interface might limit itself to only interrupts 3, 7, and 10, while a sound card might limit itself to interrupts 5, 7, and 12. This results in few configuration choices if some of those interrupts are already used by some other device.
+The hardware of PC computers additionally limited device expansion options because interrupts could not be shared, and some multifunction expansion cards would use multiple interrupts for different card functions, such as a dual serial port card requiring a separate interrupt for each serial port.
+Because of this complex operating environment, the autodetection process sometimes produced incorrect results, especially in systems with large numbers of expansion devices.  This led to device conflicts within Windows 95, resulting in devices which were supposed to be fully self-configuring failing to work. The unreliability of the device installation process led to that Plug and Play was sometimes referred to as Plug and Pray.
+Up until about 2000, PC computers could still be purchased with a mix of ISA and PCI slots, so it was still possible that manual ISA device configuration might be necessary. But with successive releases of new operating systems like Windows 2000 and Windows XP, Microsoft had sufficient clout to say that drivers would not be provided for older devices that did not support auto-detection. In some cases, the user was forced to purchase new expansion devices or a whole new system to support the next operating system release.
+
+Current plug and play interfaces
+
+Several completely automated computer interfaces are currently used, each of which requires no device configuration by the computer user, and the only task of the user is to install software for the self-configuring devices.
+For most of these interfaces, very little technical information is available to the end-user about the performance of the interface. Although both FireWire and USB have bandwidth that must be shared by all devices, most modern operating systems are unable to monitor and report the amount of bandwidth being used or available, or report activity on what devices are currently using the interface.
+
+
+
+
+
+
+
+

@@ -1,0 +1,167 @@
+[[Sequent calculus]]
+
+CATEGORIES: Proof theory, Logical calculi, Automated theorem proving
+
+In proof theory and mathematical logic, sequent calculus is a family of formal systems sharing a certain style of inference and certain formal properties.  The first sequent calculi, systems LK and LJ, were introduced by Gerhard Gentzen in 1934 as a tool for studying natural deduction in first-order logic (in classical and intuitionistic versions, respectively).  Gentzen's so-called "Main Theorem" (Hauptsatz) about LK and LJ was the cut-elimination theorem, a result with far-reaching meta-theoretic consequences, including consistency.  Gentzen further demonstrated the power and flexibility of this technique a few years later, applying a cut-elimination argument to give a (transfinite) proof of the consistency of Peano arithmetic, in surprising response to Gödel's incompleteness theorems.  Since this early work, sequent calculi (also called Gentzen systems) and the general concepts relating to them have been widely applied in the fields of proof theory, mathematical logic, and automated deduction.
+
+==Introduction==
+
+One way to classify different styles of deduction systems is to look at the form of judgments in the system, i.e., which things may appear as the conclusion of a (sub)proof. The simplest judgment form is used in Hilbert-style deduction systems, where a judgment has the form
+The price paid for the simple syntax of a Hilbert-style system is that complete formal proofs tend to get extremely long. Concrete arguments about proofs in such a system almost always appeal to the deduction theorem. This leads to the idea of including the deduction theorem as a formal rule in the system, which happens in natural deduction. In natural deduction, judgments have the shape
+and
+are equivalent in the strong sense that a proof of either one may be extended to a proof of the other.
+Finally, sequent calculus generalizes the form of a natural deduction judgment to
+and
+are equivalent in the strong sense that a proof of either one may be extended to a proof of the other.
+At first sight, this extension of the judgment form may appear to be a strange complication — it is not motivated by an obvious shortcoming of natural deduction, and it is initially confusing that the comma seems to mean entirely different things on the two sides of the turnstile. However, in a classical context the semantics of the sequent can also (by propositional tautology) be expressed either as
+(at least one of the As is false, or one of the Bs is true) or as
+(it cannot be the case that all of the As are true and all of the Bs are false).  In these formulations, the only difference between formulae on either side of the turnstile is that one side is negated. Thus, swapping left for right in a sequent corresponds to negating all of the constituent formulae. This means that a symmetry such as De Morgan's laws, which manifests itself as logical negation on the semantic level, translates directly into a left-right symmetry of sequents — and indeed, the inference rules in sequent calculus for dealing with conjunction (∧) are mirror images of those dealing with disjunction (∨).
+Many logicians feel that this symmetric presentation offers a deeper insight in the structure of the logic than other styles of proof system, where the classical duality of negation is not as apparent in the rules.
+
+==The system LK==
+
+This section introduces the rules of the sequent calculus LK (which is short for “logistischer klassischer Kalkül”), as introduced by Gentzen in 1934.
+[tpl]cite journal | first=Gerhard | last=Gentzen | authorlink=Gerhard Gentzen | title=Untersuchungen über das logische Schließen. I | journal=Mathematische Zeitschrift | volume=39 |  pages=176–210 191 | year=1934/1935 | doi=10.1007/BF01201353 | issue=2[/tpl]
+A (formal) proof in this calculus is a sequence of sequents, where each of the sequents is derivable from sequents appearing earlier in the sequence by using one of the rules below.
+
+===Inference rules===
+
+The following notation will be used:
+
+===An intuitive explanation===
+
+When looking for some proof, most of the rules offer more or less direct recipes of how to do this. The rule of cut is different: It states that, when a formula A can be concluded and this formula may also serve as a premise for concluding other statements, then the formula A can be "cut out" and the respective derivations are joined. When constructing a proof bottom-up, this creates the problem of guessing A (since it does not appear at all below). The cut-elimination theorem is thus crucial to the applications of sequent calculus in automated deduction: it states that all uses of the cut rule can be eliminated from a proof, implying that any provable sequent can be given a cut-free proof.
+The second rule that is somewhat special is the axiom of identity (I). The intuitive reading of this is obvious: every formula proves itself.  Like the cut rule, the axiom of identity is somewhat redundant: the completeness of atomic initial sequents states that the rule can be restricted to atomic formulas without any loss of provability.
+
+===Example derivations===
+
+the Law of excluded middle (tertium non datur in Latin).
+
+          </td>
+          <td>&nbsp;&nbsp;</td>
+          <td valign=bottom>
+          <td>&nbsp;&nbsp;</td>
+          <td valign=bottom>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>    <td>&nbsp;</td>
+  </tr>
+
+          </td>
+          <td>&nbsp;&nbsp;</td>
+          <td valign=bottom>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>    <td>&nbsp;</td>
+  </tr>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+
+These derivations also emphasize the strictly formal structure of the sequent calculus. For example, the logical rules as defined above always act on a formula immediately adjacent to the turnstile, such that the permutation rules are necessary. Note, however, that this is in part an artifact of the presentation, in the original style of Gentzen. A common simplification involves the use of multisets of formulas in the interpretation of the sequent, rather than sequences, eliminating the need for an explicit permutation rule. This corresponds to shifting commutativity of assumptions and derivations outside the sequent calculus, whereas LK embeds it within the system itself.
+
+===Structural rules===
+
+The structural rules deserve some additional discussion.
+Weakening (W) allows the addition of arbitrary elements to a sequence.  Intuitively, this is allowed in the antecedent because we can always restrict the scope of our proof (if all cars have wheels, then it's safe to say that all black cars have wheels); and in the succedent because we can always allow for alternative conclusions (if all cars have wheels, then it's safe to say that all cars have either wheels or wings).
+Contraction (C) and Permutation (P) assure that neither the order (P) nor the multiplicity of occurrences (C) of elements of the sequences matters. Thus, one could instead of sequences also consider sets.
+The extra effort of using sequences, however, is justified since part or all of the structural rules may be omitted. Doing so, one obtains the so-called substructural logics.
+
+===Properties of the system LK===
+
+In the sequent calculus, the rule of cut is admissible. This result is also referred to as Gentzen's Hauptsatz ("Main Theorem").
+
+==Variants==
+
+The above rules can be modified in various ways:
+
+===Minor structural alternatives===
+
+There is some freedom of choice regarding the technical details of how sequents and structural rules are formalized. As long as every derivation in LK can be effectively transformed to a derivation using the new rules and vice versa, the modified rules may still be called LK.
+First of all, as mentioned above, the sequents can be viewed to consist of sets or multisets. In this case, the rules for permuting and (when using sets) contracting formulae are obsolete.
+
+===Substructural logics===
+
+Alternatively, one may restrict or forbid the use of some of the structural rules. This yields a variety of substructural logic systems. They are generally weaker than LK (i.e., they have fewer theorems), and thus not complete with respect to the standard semantics of first-order logic. However, they have other interesting properties that have led to applications in theoretical computer science and artificial intelligence.
+
+===Intuitionistic sequent calculus: System LJ===
+
+The resulting system is called LJ. It is sound and complete with respect to intuitionistic logic and admits a similar cut-elimination proof.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,61 @@
+[[Cryptographically secure pseudorandom number generator]]
+
+CATEGORIES: Cryptographic algorithms, Cryptographically secure pseudorandom number generators, Cryptographic primitives
+
+A cryptographically secure pseudo-random number generator (CSPRNG) is a pseudo-random number generator (PRNG) with properties that make it suitable for use in cryptography.
+Many aspects of cryptography require random numbers, for example:
+The "quality" of the randomness required for these applications varies.
+For example creating a nonce in some protocols needs only uniqueness.
+On the other hand, generation of a master key requires a higher quality, such as more entropy. And in the case of one-time pads, the information-theoretic guarantee of perfect secrecy only holds if the key material comes from a true random source with high entropy.
+Ideally, the generation of random numbers in CSPRNGs uses entropy obtained from a high-quality source, which might be a hardware random number generator or perhaps unpredictable system processes — though unexpected correlations have been found in several such ostensibly independent processes. From an information-theoretic point-of-view, the amount of randomness, the entropy that can be generated, is equal to the entropy provided by the system. But sometimes, in practical situations, more random numbers are needed than there is entropy available. Also the processes to extract randomness from a running system are slow in actual practice.  In such instances, a CSPRNG can sometimes be used. A CSPRNG can "stretch" the available entropy over more bits.
+Note also the usage CPRNG (cryptographic pseudo-random number generator).
+
+==Requirements==
+
+The requirements of an ordinary PRNG are also satisfied by a cryptographically secure PRNG, but the reverse is not true. CSPRNG requirements fall into two groups: first, that they pass statistical randomness tests; and secondly, that they hold up well under serious attack, even when part of their initial or running state becomes available to an attacker.[tpl]Citation needed|date=January 2012[/tpl]
+Most PRNGs are not suitable for use as CSPRNGs and will fail on both counts. First, while most PRNGs outputs appear random to assorted statistical tests, they do not resist determined reverse engineering. Specialized statistical tests may be found specially tuned to such a PRNG that shows the random numbers not to be truly random. Second, for most PRNGs, when their state has been revealed, all past random numbers can be retrodicted, allowing an attacker to read all past messages, as well as future ones.
+CSPRNGs are designed explicitly to resist this type of cryptanalysis.
+
+==Some background==
+
+Santha and Vazirani proved that several bit streams with weak randomness can be combined to produce a higher-quality quasi-random bit stream.
+Even earlier, John von Neumann proved that a simple algorithm can remove a considerable amount of the bias in any bit stream which should be applied to each bit stream before using any variation of the Santha-Vazirani design. The field is termed entropy extraction and is the subject of active research (e.g., N Nisan, S Safra, R Shaltiel, A Ta-Shma, C Umans, D Zuckerman).
+
+==Designs==
+
+In the discussion below, CSPRNG designs are divided into three classes: 1) those based on cryptographic primitives such as ciphers and cryptographic hashes, 2) those based upon mathematical problems thought to be hard, and 3) special-purpose designs. The last often introduce additional entropy when available and, strictly speaking, are not  "pure" pseudorandom number generators, as their output is not completely determined by their initial state. This addition can prevent attacks even if the initial state is compromised.
+
+===Designs based on cryptographic primitives===
+
+[/ref]
+
+===Number theoretic designs===
+
+===Special designs===
+
+There are a number of practical PRNGs that have been designed to be cryptographically secure, including
+David Kleidermacher, Mike Kleidermacher.
+"Embedded Systems Security: Practical Methods for Safe and Secure Software and Systems Development".
+Elsevier, 2012.
+p. 256.
+[/ref][ref]
+George Cox, Charles Dike, and DJ Johnston.
+"Intel’s Digital Random Number Generator (DRNG)".
+2011.
+[/ref]
+
+==Standards==
+
+Several CSPRNGs have been standardized. For example,
+A good reference is maintained by NIST.
+There are also standards for statistical testing of new CSPRNG designs:
+
+==NSA backdoor in the Dual_EC_DRBG PRNG==
+
+The Guardian and The New York Times have reported that the National Security Agency (NSA) inserted a CSPRNG into NIST SP 800-90A that had a backdoor which allows the NSA to readily decrypt material that was encrypted with the aid of Dual_EC_DRBG.  Both papers report[tpl]cite web|title=Revealed: how US and UK spy agencies defeat internet privacy and security|url=http://www.theguardian.com/world/2013/sep/05/nsa-gchq-encryption-codes-security|work=The Guardian|publisher=The Guardian|accessdate=7 September 2013|author=James Borger|coauthors=Glenn Greenwald|date=6 September 2013[/tpl][tpl]cite news|title=N.S.A. Able to Foil Basic Safeguards of Privacy on Web|url=http://www.nytimes.com/2013/09/06/us/nsa-foils-much-internet-encryption.html?pagewanted=all&_r=0|publisher=The New York Times|accessdate=7 September 2013|author=Nicole Perlroth|date=5 September 2013[/tpl] that, as independent security experts long suspected,[tpl]cite news|title=Did NSA Put a Secret Backdoor in New Encryption Standard?|url=http://www.wired.com/politics/security/commentary/securitymatters/2007/11/securitymatters_1115|work=Wired|accessdate=7 September 2013|author=Bruce Schneier|date=15 November 2007[/tpl]  the NSA has been introducing weaknesses into CSPRNG standard 800-90; this being confirmed for the first time by one of the top secret documents leaked to the Guardian by Edward Snowden. The NSA worked covertly to get its own version of the NIST draft security standard approved for worldwide use in 2006. The leaked document states that "eventually, NSA became the sole editor." In spite of the known potential for a backdoor and other known significant deficiencies with Dual_EC_DRBG, several companies such as RSA Security continued using Dual_EC_DRBG until the backdoor was confirmed in 2013.[tpl]cite web|url=http://blog.cryptographyengineering.com/2013/09/rsa-warns-developers-against-its-own.html|title=RSA warns developers not to use RSA products|author=Matthew Green[/tpl]  RSA Security received a $10 million payment from the NSA to do so.[tpl]cite news|url=http://www.reuters.com/article/2013/12/20/us-usa-security-rsa-idUSBRE9BJ1C220131220|title=Exclusive: Secret contract tied NSA and security industry pioneer|author=Joseph Menn | work=Reuters|date=20 December 2013[/tpl]
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,29 @@
+[[RGBA color space]]
+
+CATEGORIES: Color space
+
+RGBA stands for red green blue alpha. While it is sometimes described as a color space, it is actually simply a use of the RGB color model, with extra information. The color is RGB, and may belong to any RGB color space, but an integral alpha value as invented by Catmull and Smith between 1971 and 1972 enables alpha compositing. The inventors named alpha after the Greek letter in the classic linear interpolation formula αA + (1-α)B.
+The alpha channel is normally used as an opacity channel. If a pixel has a value of 0% in its alpha channel, it is fully transparent (and, thus, invisible), whereas a value of 100% in the alpha channel gives a fully opaque pixel (traditional digital images). Values between 0% and 100% make it possible for pixels to show through a background like a glass (translucency), an effect not possible with simple binary (transparent or opaque) transparency. It allows easy image compositing.
+PNG is an image format that uses RGBA.
+
+==ARGB==
+
+In computer graphics, pixels encoding the RGBA Color Space information must be stored in computer memory (or in files on disk), in well defined formats. In the most common format the intensity of each channel sample is defined by 8 bits, and are arranged in memory in such manner that a single 32-bit unsigned integer has the Alpha sample in the highest 8 bits, followed by the Red sample, Green sample and the Blue sample in the lowest 8 bits. This is often called "ARGB":
+ARGB values are typically expressed using 8 hexadecimal digits, with each pair of the hexadecimal digits representing the values of the Alpha, Red, Green and Blue channel, respectively. For example 80FFFF00 represents 50.2% opaque (non-premultiplied) yellow. 80 represents a 50.2% alpha value, because it is 50.2% of FF hex (in decimal, 128 is 50.2% of 255), the first FF represents the maximum value red can have; the second FF is like the previous but for green; the final 00 represents the minimum value blue can have (effectively – no blue). Consequently red + green yields yellow. In cases where the alpha is not used this can be shortened to 6 digits RRGGBB, this is why it was chosen to put the alpha in the top bits. Depending on the context a 0x or a number sign (#)Microsoft MSDN XAML Color Structure reference (XAML/WPF/Silverlight), including #aarrggbb and sc# scA,scR,scG,scB is put before the hex digits.
+A confusing aspect is that on a little-endian CPU (such as Intel or AMD processors) the byte for B is stored at the lowest address, with the bytes representing the colors are in the order B,G,R,A. On a big-endian machine the bytes are in the order A,R,G,B.
+
+==RGBA byte order==
+
+In some contexts, primarily OpenGL, the term "RGBA" actually means the colors are stored in memory such that R is at the lowest address, G after it, B after that, and A last. This is not the format described above. OpenGL describes the above format as "BGRA" on a little-endian machine and "ARGB" on a big-endian machine.
+When there are more than 8 bits per channel (such as 16 bit or floating-point), it is very common that the channels are stored in R,G,B,A order, even if 8-bit data is stored as ARGB words. This can often lead to confusion when software is converted from 8 bits to higher resolution color.
+
+==RGBA hexadecimal==
+
+In some software originating on big-endian machines such as Silicon Graphics, the term "RGBA" means color is specified similar to ARGB but with the alpha in the bottom 8 bits rather than the top. For example 808000FF would be Red and Green:50.2%, Blue:0% and Alpha:100%, a brown. It should be noted that RGBA is relatively obscure compared to ARGB; e.g. Portable Arbitrary Map (PAM). Confusing the two can lead to serious color rendering errors.
+The bytes are stored in memory on a little-endian machine in the order A,B,G,R.
+
+==References==
+
+==External links==
+
+

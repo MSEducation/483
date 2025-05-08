@@ -1,0 +1,151 @@
+[[Incomplete gamma function]]
+
+CATEGORIES: Gamma and related functions, Continued fractions
+
+In mathematics, the  upper incomplete gamma function and lower incomplete gamma function are types of special functions, which arise as solutions to various mathematical problems such as certain integrals. 
+Their respective names stem from their integral definitions, which are defined similarly to the gamma function, another type of special function, but with different or "incomplete" integral limits. The gamma function is defined as an integral from zero to infinity. This contrasts with the lower incomplete gamma function, which is defined as an integral from zero to a variable upper limit. Similarly, the upper incomplete gamma function is defined as an integral from a variable lower limit to infinity.
+
+Definition
+
+The upper incomplete function is defined as:
+whereas the lower incomplete function is defined as:
+
+Properties
+
+In both cases s is a complex parameter, such that the real part of s is positive.
+By integration by parts  we find the recurrence relations
+and conversely
+Since the ordinary gamma function is defined as
+we have
+and
+
+Continuation to complex values
+
+The lower incomplete gamma and the upper incomplete gamma function, as defined above for real positive s and x, can be developed into holomorphic functions, with respect both to x and s, defined for almost all combinations of complex x and s.
+
+=Lower incomplete Gamma function=
+
+==Holomorphic extension==
+
+Repeated application of the recurrence relation for the lower incomplete gamma function leads to the power series expansion: 
+is entire with respect to both z (for fixed s) and s (for fixed z)  Hence, the following decomposition
+extends the real lower incomplete gamma function as a holomorphic function, both jointly and separately in z and s. It follows from the properties of zs and the Γ-function, that the first two factors capture the singularities of γ (at z = 0 or s a non-positive integer), whereas the last factor contributes to its zeros.
+
+==Multi-valuedness==
+
+The complex logarithm log z = log |z| + i arg z is determined up to a multiple of 2πi only, which renders it multi-valued. Functions involving the complex logarithm typically inherit this property. Among these are the complex power, and, since zs appears in its decomposition, the γ-function, too.
+The indeterminacy of multi-valued functions introduces complications, since it must be stated how to select a value. Strategies to handle this are:
+The following set of rules can be used to interpret formulas in this section correctly. If not mentioned otherwise, the following is assumed:
+
+===Sectors===
+
+Sectors in ℂ having their vertex at z = 0 often prove to be appropriate domains for complex expressions. A sector D consists of all complex z fulfilling z ≠ 0 and α − δ 
+===Branches===
+
+In particular, a single-valued and holomorphic logarithm exists on any such sector D having its imaginary part bound to the range (α − δ, α + δ). Based on such a restricted logarithm, zs and the incomplete gamma functions in turn collapse to single-valued, holomorphic functions on D (or ℂ×D), called branches of their multi-valued counterparts on D. Adding a multiple of 2π to α yields a different set of correlated branches on the same set D. However, in any given context here, α is assumed fixed and all branches involved are associated to it. If |α| 
+===The exponential function es===
+
+The expression es shall always denote the exponential function, which is the restriction of a principal branch of zs to z = e.
+
+===Relation between branches===
+
+==Behavior near branch point==
+
+The decomposition above further shows, that γ behaves near z = 0 asymptotically like:
+For positive real x, y and s, xy/y → 0, when (x, y) → (0, s. This seems to justify setting γ(s, 0) = 0 for real s > 0. However, matters are somewhat different in the complex realm. Only if (a) the real part of s is positive, and (b) values uv are taken from just a finite set of branches, they are guaranteed to converge to zero as (u, v) → (0, s), and so does γ(u, v). On a single branch of γ(b) is naturally fulfilled, so there γ(s, 0) = 0 for s with positive real part is a continuous limit. Also note that such a continuation is by no means an analytic one.
+
+==Algebraic relations==
+
+All algebraic relations and differential equations observed by the real γ(s, z) hold for its holomorphic counterpart as well. This is a consequence of the identity theorem  stating that equations between holomorphic functions valid on a real interval, hold everywhere. In particular, the recurrence relation  and ∂γ(s,z)/∂z = zs−1 e−z  are preserved on corresponding branches.
+
+==Integral representation==
+
+The last relation tells us, that, for fixed s, γ is a primitive or antiderivative of the holomorphic function zs−1 e−z. Consequently  for any complex u, v ≠ 0,
+holds, as long as the path of integration is entirely contained in the domain of a branch of the integrand. If, additionally, the real part of s is positive, then the limit γ(s, u) → 0 for u → 0 applies, finally arriving at the complex integral definition of γ
+Any path of integration containing 0 only at its beginning, otherwise restricted to the domain of a branch of the integrand, is valid here, for example, the straight line connecting 0 and z.
+
+==Limit for z → +∞==
+
+===Real values===
+
+Given the integral representation of a principal branch of γ, the following equation holds for all positive real s, x:
+
+===s complex===
+
+This result extends to complex s. Assume first  and 
+
+|title=Asymptotic and exact series representations for the incomplete Gamma function
+|journal=Europhys. Lett.
+|year=2005
+|mr=2170316
+|volume=71 | issue=1
+|pages=1–7
+}}
+|title=Evaluation of the Incomplete Gamma Function of Imaginary Argument by Chebyshev Polynomials
+|journal=Math. Comp.
+|year=1961
+|mr=0128058
+|volume=15 | issue=73 |pages=7–11
+}}
+|title=Incomplete Gamma  functions for real and complex arguments
+|year=1998 |doi =10.1006/jcph.1998.5975 |volume=143
+|issue=1 |pages=259–265 |journal=J. Comput. Phys. | mr=1624704
+}}
+|title=On the decomposition of generalized incomplete Gamma functions with applications to Fourier transforms
+|journal=J. Comput. Appl. Math.
+|year=1995 |volume=59 |issue=101 | pages=253–284 | mr=1346414
+}}
+|title= A new algorithm for the evaluation of the incomplete Gamma Function on vector computers
+|journal= ACM Trans. Math. Softw.
+|year=1994 |volume=20 |issue=4|pages=436–446
+}}
+|title=The incomplete gamma function since Tricomi
+|year=1998 | journal=Atti Convegni Lincei | mr=1737497
+|volume=147 | pages=203–237
+}}
+|title = A Note on the recursive calculation of Incomplete Gamma Functions
+|journal=ACM Trans. Math. Softw.
+|year=1999
+|mr=1697463 |volume=25 |issue=1 | pages=101–107
+}}
+|title=On the computation of incomplete gamma functions in the complex domain
+|year=1985
+|journal=J. Comp. Appl. Math | doi=10.1016/0377-0427(85)90034-2
+|mr=0793971 | volume=12-13 | pages=401–417
+}}
+|title=On certain Generalized incomplete Gamma functions
+|year=1998 | journal=J. Comput. Appl. Math
+|volume=91 | issue=2|pages=179–190
+}}
+title=A uniform asymptotic expansion for the incomplete gamma function
+|journal= J. Comput. Appl. Math.
+|year=2002 | doi=10.1016/S0377-0427(02)00553-8
+|volume=148 | issue=2 | pages=323–339 | mr=1936142
+}}
+|year=1966 | journal=Math. Comp. | volume=20 | issue=96
+|pages=606–610|mr=0203911 |doi=10.1090/S0025-5718-1966-0203911-3 
+}}
+|title=Uniform Asymptotic Expansions of the Incomplete Gamma Functions and the Incomplete Beta Function
+|journal=Math. Comp.
+|doi=10.1090/S0025-5718-1975-0387674-2 
+|volume=29 | issue=132 | year=1975 | pages=1109–1114 |mr=0387674
+}}
+|title=The determination of incomplete Gamma Functions through analytic integration
+|year=1979 | journal = J. Comp. Phys. | volume=31 | pages=146–151|mr=0531128
+}}
+|title=Sulla funzione gamma incompleta
+|year=1950|doi=10.1007/BF02428264 | journal=Ann. Mat. Pura Applic.
+|volume=31|pages=263–279|mr=0047834
+}}
+|title=Asymptotische Eigenschaften der unvollst. Gammafunktion|
+year=1950|mr=0045253|journal=Math. Zeitsch. | pages=136–148
+|volume=53|number=2
+}}
+|title=A stable recurrence for the incomplete gamma function with imaginary second argument
+|journal=Numer. Math. |year=2006 | doi=10.1007/s00211-006-0026-1 | pages=445–456 | volume=104|mr=2249673
+}}
+|year=2003 | journal=Lect. Not. Comp. Sci. | volume=2667 | pages=790–798 |mr=2110953}}
+
+Miscellaneous utilities
+
+

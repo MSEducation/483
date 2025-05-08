@@ -1,0 +1,60 @@
+[[Max-flow min-cut theorem]]
+
+CATEGORIES: Combinatorial optimization, Theorems in graph theory
+
+In optimization theory, the max-flow min-cut theorem states that in a flow network, the maximum amount of flow passing from the source to the sink is equal to the minimum capacity that, when removed in a specific way from the network, causes the situation that no flow can pass from the source to the sink.
+The max-flow min-cut theorem is a special case of the duality theorem for linear programs and can be used to derive Menger's theorem and the König-Egerváry Theorem.
+
+==Definition==
+
+The maximum flow problem is to maximize | f |, that is, to route as much flow as possible from s to t.
+
+==Statement==
+
+The max-flow min-cut theorem states
+
+==Linear program formulation==
+
+The max-flow problem and min-cut problem can be formulated as two primal-dual linear programs.
+The equality in the max-flow min-cut theorem follows from the strong duality theorem in linear programming, which states that if the primal program has an optimal solution, x*, then the dual program also has an optimal solution, y*, such that the optimal values formed by the two solutions are equal.
+
+==Example==
+
+The figure on the right is a network having a value of flow of 7. The vertex in white and the vertices in grey form the subsets S and T of an s-t cut, whose cut-set contains the dashed edges. Since the capacity of the s-t cut is 7, which equals to the value of flow, the max-flow min-cut theorem tells us that the value of flow and the capacity of the s-t cut are both optimal in this network.
+
+==Application==
+
+===Generalized max-flow min-cut theorem===
+
+In addition to edge capacity, consider there is capacity at each vertex, that is, a mapping c: V→R+, denoted by c(v), such that the flow f has to satisfy not only the capacity constraint and the conservation of flows, but also the vertex capacity constraint
+In other words, the amount of flow passing through a vertex cannot exceed its capacity. Define an s-t cut to be the set of vertices and edges such that for any path from s to t, the path contains a member of the cut. In this case, the capacity of the cut is the sum the capacity of each edge and vertex in it.
+In this new definition, the generalized max-flow min-cut theorem states that the maximum value of an s-t flow is equal to the minimum capacity of an s-t cut in the new sense.
+
+===Menger's theorem===
+
+In the undirected edge-disjoint paths problem, we are given an undirected graph G = (V, E) and two vertices s and t, and we have to find the maximum number of edge-disjoint s-t paths in G.
+The Menger's theorem states that the maximum number of edge-disjoint s-t paths in an undirected graph is equal to the minimum number of edges in an s-t cut-set.
+
+===Project selection problem===
+
+The figure on the right gives a network formulation of the following project selection problem:
+The idea here is to 'flow' the project profits through the 'pipes' of the equipment.  If we cannot fill the pipe, the equipment's return is less than its cost, and the min cut algorithm will find it cheaper to cut the project's profit edge instead of the equipment's cost edge.
+
+===Image Segmentation problem===
+
+This maximization problem can be formulated as a minimization problem instead, that is,
+
+==History==
+
+The max-flow min-cut theorem was proven by P. Elias, A. Feinstein, and C.E. Shannon in 1956[tpl]ref|P. Elias, A. Feinstein, and C. E. Shannon, A note on the maximum flow through a network, IRE. Transactions on Information Theory, 2, 4 (1956), 117–119[/tpl], and independently also by L.R. Ford, Jr. and D.R. Fulkerson in the same year[tpl]ref|P. Elias, A. Feinstein, and C. E. Shannon, A note on the maximum flow through a network, IRE. Transactions on Information Theory, 2, 4 (1956), 117–119[/tpl].
+0
+
+==Proof==
+
+Both of the above statements prove that the capacity of cut obtained in the above described manner is equal to the flow obtained in the network. Also, the flow was obtained by Ford-Fulkerson algorithm, so it is the max-flow of the network as well.
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,158 @@
+ from: 1997 till: 2014 color:quakenet text:"[[QuakeNet]]"
+
+==URI scheme==
+
+There are three recognized URI schemes for Internet Relay Chat, irc, irc6, and ircs, that (when supported) allows hyperlinks of various forms, including
+ <nowiki>irc://<host>[:<port>]/[<channel>[?<channel_keyword>]]</nowiki>
+(where items enclosed within brackets (,) are optional) to be used to (if necessary) connect to the specified host (or network, if known to the IRC client) and join the specified channel. (This can be used within the client itself, or from another application such as a Web browser).  irc is the default URI, irc6 specifies a connection to be made using IPv6, and ircs specifies a secure connection.
+Per the specification, the usual hash symbol (#) will be prepended to channel names that do not begin with an alphanumeric character—allowing it to be omitted. Some implementations (for example, mIRC) will do so unconditionally resulting in a (usually unintended) extra (for example, ##channel), if included in the URL.
+Some implementations allow multiple channels to be specified, separated by commas.[tpl]Citation needed|date=April 2011[/tpl]
+
+==Clients==
+
+===Client software===
+
+Client software exists for various operating systems or software packages, as well as web-based or inside games. Many different clients are available for the various operating systems, including Windows, Unix & Linux, Mac OS X and mobile operating systems (such as iOS and Android). On Windows, mIRC is one of the most popular clients.[tpl]cite book|last=Smith|first=Roderick W.|title=The Multi-Boot Configuration Handbook| url= http://books.google.com/books?id=OuPtI5fHhBoC|accessdate=2010-07-25|series= Handbook Series| date= 2000-04-08| publisher= Que Publishing| location= Upper Saddle River, New Jersey|isbn= 0-7897-2283-6|page=289|chapter=The Internet: Using IRC to Get Help|quote= mIRC is one of the most popular Windows IRC clients.[/tpl]
+The higher-level programs[tpl]clarify|date=October 2012[/tpl] also serve as platforms for the IRC clients. For instance, a client called ERC, written entirely in Emacs Lisp is included in v.22.3 of Emacs. Therefore, any platform that can run Emacs can run ERC.
+A number of web browsers have built in IRC clients, such as Opera[tpl]cite web| url=http://operawiki.info/OperaIRC| title       = Opera Browser Wiki: IRC Client| accessdate  = 2011-04-10[/tpl] or the ChatZilla add-on for Mozilla Firefox (included as a built-in component of SeaMonkey). Web-based clients, such as Mibbit, can run in most browsers.
+Games such as "Pokemon Omega"War§ow, Unreal Tournament (up to Unreal Tournament 2004), Uplink, Spring Engine-based games, 0 A.D. and ZDaemon have included IRC.
+Ustream's chat interface is IRC with custom authentication as well as Justin.tv's.
+
+===Bots===
+
+"Bot" is derived from the word "robot" and is an automated process that interacts with other network services. Bots often automate tasks and provide information or services that would otherwise be conducted by a human being. A typical use of bots is to gather information (such as web crawlers), or interact automatically with instant messaging (IM), Internet Relay Chat (IRC), or other web interfaces. They may also be used to interact dynamically with websites.
+Bots can be used for either good or malicious intent. A malicious bot is self-propagating malware designed to infect a host and connect back to a central server or servers that act as a command and control (C&C) center for an entire network of compromised devices, or "botnet." With a botnet, attackers can launch broad-based, "remote-control," flood-type attacks against their target(s). In addition to the worm-like ability to self-propagate, bots can include the ability to log keystrokes, gather passwords, capture and analyze packets, gather financial information, launch DoS attacks, relay spam, and open back doors on the infected host. Bots have all the advantages of worms, but are generally much more versatile in their infection vector, and are often modified within hours of publication of a new exploit. They have been known to exploit backdoors opened by worms and viruses, which allows them to access networks that have good perimeter control. Bots rarely announce their presence with high scan rates, which damage network infrastructure; instead they infect networks in a way that escapes immediate notice.
+
+===Exploit===
+
+An exploit is a piece of software, a command, or a methodology that attacks a particular security vulnerability. Exploits are not always malicious in intent—they are sometimes used only as a way of demonstrating that a vulnerability exists. However, they are a common component of malware.
+
+===Backdoor===
+
+A backdoor is an undocumented way of accessing a system, bypassing the normal authentication mechanisms. Some backdoors are placed in the software by the original programmer and others are placed on systems through a system compromise, such as a virus or worm. Usually, attackers use backdoors for easier and continued access to a system after it has been compromised.
+
+===Bouncer===
+
+A program that runs as a daemon on a server and functions as a persistent proxy is known as a BNC or bouncer. The purpose is to maintain a connection to an IRC server, acting as a relay between the server and client, or simply to act as a proxy.[tpl]Citation needed|date=April 2011[/tpl] Should the client lose network connectivity, the BNC may stay connected and archive all traffic for later delivery, allowing the user to resume his IRC session without disrupting their connection to the server.
+Furthermore, as a way of obtaining a bouncer-like effect, an IRC client (typically text-based, for example Irssi) may be run on an always-on server to which the user connects via ssh. This also allows devices that only have ssh functionality, but no actual IRC client installed themselves, to connect to the IRC, and it allows sharing of IRC sessions.
+To keep the IRC client from quitting when the ssh connection closes, the client can be run inside a piece of screen-detaching software (e.g. GNU Screen or tmux), thus staying connected to the IRC network(s) constantly and able to log conversation in channels that the user is interested in, etc. Modelled after this setup, in 2004 an IRC client following the client-server model, called Smuxi, has been launched.
+
+==Search engines==
+
+There are numerous search engines available to aid the user in finding what they are looking for on IRC. Generally the search engine consists of two parts, a "back-end" (or "spider/crawler") and a front-end "search engine".
+The back-end (spider/crawler) is the work horse of the search engine. It is responsible for crawling IRC servers to index the information being sent across them. The information that is indexed usually consists solely of channel text (text that is publicly displayed in public channels). The storage method is usually some sort of relational database, like MySQL or Oracle.[tpl]Citation needed|date=January 2010[/tpl]
+The front-end "search engine" is the user interface to the database. It supplies users with a way to search the database of indexed information to retrieve the data they are looking for. These front-end search engines can also be coded in numerous programming languages. The more popular languages for such search engines and indexing spiders are Perl, PHP and C.[tpl]Citation needed|date=August 2009[/tpl]
+Most search engines have their own spider that is a single application responsible for crawling IRC and indexing data itself; however, others are "user based" indexers. The latter rely on users to install their "add-on" to their IRC client; the add-on is what sends the database the channel information of whatever channels the user happens to be on.[tpl]Citation needed|date=August 2009[/tpl]
+
+==Modern IRC==
+
+IRC has changed much over its life on the Internet. New server software has added a multitude of new features.
+There is an effort of standardization and adding new features to the IRC protocol by IRCv3 working group.
+
+==Character encoding==
+
+IRC still lacks a single globally accepted standard convention for how to transmit characters outside the 7-bit ASCII repertoire.
+IRC servers normally[tpl]Clarify|date=July 2009[/tpl] transfer messages from a client to another client just as byte sequences, without any interpretation or recoding of characters. The IRC protocol (unlike e.g. MIME or HTTP) lacks mechanisms for announcing and negotiation character encoding options. This has put the responsibility for choosing the appropriate character codec on the client. In practice, IRC channels have largely used the same character encodings that were also used by operating systems (in particular Unix derivatives) in the respective language communities:
+Today, the UTF-8 encoding of Unicode/ISO 10646 would be the most likely contender for a single future standard character encoding for all IRC communication, if such standard ever relaxed the 510 bytes message size restriction. UTF-8 is ASCII compatible and covers the superset of all other commonly used coded character set standards.
+
+==File sharing==
+
+Much like conventional P2P file sharing, users can create file servers that allow them to share files with each other by using customised IRC bots or scripts for their IRC client. Often users will group together to distribute warez via a network of IRC bots.
+Technically, IRC provides no file transfer mechanisms itself; file sharing is implemented by IRC clients, typically using the Direct Client-to-Client (DCC) protocol, in which file transfers are negotiated through the exchange of private messages between clients. The vast majority of IRC clients feature support for DCC file transfers, hence the view that file sharing is an integral feature of IRC. The commonplace usage of this protocol, however, sometimes also causes DCC spam. DCC commands have also been used to exploit vulnerable clients into performing an action such as disconnecting from the server or exiting the client.
+
+==See also==
+
+==References==
+
+==Bibliography==
+
+| title       = A Discussion on Computer Network Conferencing
+| rfc         = 1324
+| last        = Reed
+| first       = Darren
+| year        = 1992
+| month       = May
+| publisher   = IETF
+| accessdate  = 2009-10-30
+| ref         = ietf
+}}
+| title       = Internet Relay Chat Protocol
+| rfc         = 1459
+| last1       = Oikarinen
+| first1      = Jarkko
+| authorlink1 = Jarkko Oikarinen
+| last2       = Reed
+| first2      = Darren
+| year        = 1993
+| month       = May
+| publisher   = IETF
+| accessdate  = 2009-10-30
+| ref         = ietf
+}}
+| title       = Internet Relay Chat: Architecture
+| rfc         = 2810
+| last        = Kalt
+| first       = Christophe
+| year        = 2000
+| month       = April
+| publisher   = IETF
+| accessdate  = 2009-10-30
+| ref         = ietf
+}}
+| title       = Internet Relay Chat: Channel Management
+| rfc         = 2811
+| last        = Kalt
+| first       = Christophe
+| year        = 2000
+| month       = April
+| publisher   = IETF
+| accessdate  = 2009-10-30
+| ref         = ietf
+}}
+| last        = Loesch
+| first       = Carl
+| date        = 2003-07-17
+| title       = Functionality Provided by Systems for Synchronous Conferencing
+| publisher   = psyc.eu
+| url         = http://www.psyc.eu/synconf
+| accessdate  = 2011-04-10
+| ref         = harv
+}}
+
+==Further reading==
+
+| title       = Internet Relay Chat: Client Protocol
+| rfc         = 2812
+| last        = Kalt
+| first       = Christophe
+| year        = 2000
+| month       = April
+| publisher   = IETF
+| accessdate  = 2009-10-30
+}}
+| title       = Internet Relay Chat: Server Protocol
+| rfc         = 2813
+| last        = Kalt
+| first       = Christophe
+| year        = 2000
+| month       = April
+| publisher   = IETF
+| accessdate  = 2009-10-30
+}}
+| url         = http://www.ibiblio.org/pub/academic/communications/logs/
+| title       = Logs of major events in the online community
+| accessdate  = 2011-04-08
+| publisher   = ibiblio
+| location    = Chapel Hill, North Carolina
+}}
+| url         = http://www.alien.net.au/irc/
+| title       = IRC technical information
+| accessdate  = 2011-04-10
+| last        = Butcher
+| first       = Simon
+| publisher   = alien.net.au
+}}
+
+==External links==
+
+

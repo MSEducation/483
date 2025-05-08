@@ -1,0 +1,70 @@
+[[Consistency model]]
+
+CATEGORIES: Consistency models, Transaction processing
+
+In computer science, consistency models are used in distributed systems like distributed shared memory systems or distributed data stores (such as a filesystems, databases, optimistic replication systems or Web caching). The system supports a given model if operations on memory follow specific rules. The data consistency model specifies a contract between programmer and system, wherein the system guarantees that if the programmer follows the rules, memory will be consistent and the results of memory operations will be predictable.
+High level languages, such as C, C++, and Java, partially maintain the contract by translating memory operations into low-level operations in a way that preserves memory semantics. To hold to the contract, compilers may reorder some memory instructions, and library calls such as pthread_mutex_lock() encapsulate required synchronization.
+Verifying sequential consistency is undecidable in general, even for finite-state cache-coherence protocols.
+Consistency models define rules for the apparent order and visibility of updates, and it is a continuum with tradeoffs.
+
+==Example==
+
+Assume that the following case occurs:
+The consistency model has to determine whether client B sees the write from client A or not.
+
+==Types==
+
+A non-exhaustive list of consistency models are
+
+==See also==
+
+==References==
+
+==Further reading==
+
+| author = Ali Sezgin
+| title = Formalization and verification of shared memory
+| year = 2004
+| url = http://www.cs.utah.edu/~ganesh/unpublished/sezgin_phd_04.pdf
+| format = PDF }} (contains many valuable references)
+| author = Kathy Yelick
+| coauthors = Dan Bonachea, Chuck Wallace
+| year = 2004
+| title = A Proposal for a UPC Memory Consistency Model (v1.0)
+| url = http://www.gwu.edu/~upc/downloads/upcmem.pdf
+| format = PDF}}
+| last = Mosberger
+| first = David
+| title = Memory Consistency Models
+| journal = Operating Systems Review
+| year = 1993
+| volume = 27
+| issue = 1
+| pages =  18–26
+| url = http://citeseer.ist.psu.edu/mosberger93memory.html
+| doi = 10.1145/160551.160553}}
+ |  author = Sarita V. Adve, Kourosh Gharachorloo
+ |   title = Shared Memory Consistency Models: A Tutorial
+ |date=December 1996
+ | journal = IEEE Computer
+ |  volume = 29
+ |   issue = 12
+ |   pages = 66–76
+ |     url = http://www.hpl.hp.com/techreports/Compaq-DEC/WRL-95-7.pdf
+ | accessdate = 2008-05-28
+ | doi=10.1109/2.546611}}
+| last = Steinke
+| first = Robert C.
+| coauthors  =  Gary J. Nutt
+| title = A unified theory of shared memory consistency
+| journal = Journal of the ACM
+| year = 2004
+| volume = 51
+| issue = 5
+| pages =  800–849
+| arxiv = cs.DC/0208027
+| doi = 10.1145/1017460.1017464}}
+
+==External links==
+
+

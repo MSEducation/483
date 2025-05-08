@@ -1,0 +1,96 @@
+[[State pattern]]
+
+CATEGORIES: Software design patterns, Articles with example pseudocode, Articles with example Java code, Articles with example C Sharp code
+
+The state pattern, which closely resembles Strategy Pattern, is a behavioral software design pattern, also known as the objects for states pattern. This pattern is used in computer programming to encapsulate varying behavior for the same routine based on an object's state  object. This can be a cleaner way for an object to change its behavior at runtime without resorting to large monolithic conditional statements[ref]
+</ref>[tpl]Rp|395[/tpl].
+
+==Structure==
+
+==Example==
+
+===Pseudocode===
+
+Take, for example, a drawing program. The program has a mouse cursor, which at any point in time can act as one of several tools. Instead of switching between multiple cursor objects, the cursor maintains an internal state representing the tool currently in use. When a tool-dependent method is called (say, as a result of a mouse click), the method call is passed on to the cursor's state.
+Each tool corresponds to a state. The shared abstract state class is AbstractTool:
+  '''class''' AbstractTool '''is'''
+      '''function''' moveTo(point) '''is'''
+          '''input: ''' the location ''point'' the mouse moved to
+          ''(this function must be implemented by subclasses)''
+      '''function''' mouseDown(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          ''(this function must be implemented by subclasses)''
+      '''function''' mouseUp(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          ''(this function must be implemented by subclasses)''
+According to this definition, each tool must handle movement of the mouse cursor and also the start and end of any click or drag.
+Using that base class, simple pen and selection tools could look like this:
+  '''subclass''' PenTool '''of''' AbstractTool '''is'''
+      last_mouse_position := invalid
+      mouse_button := up
+      '''function''' moveTo(point) '''is'''
+          '''input: ''' the location ''point'' the mouse moved to
+          '''if''' mouse_button = down
+              ''(draw a line from the ''last_mouse_position'' to ''point'')''
+              last_mouse_position := point
+      '''function''' mouseDown(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          mouse_button := down
+          last_mouse_position := point
+      '''function''' mouseUp(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          mouse_button := up  
+  '''subclass''' SelectionTool '''of''' AbstractTool '''is'''
+      selection_start := invalid
+      mouse_button := up
+      '''function''' moveTo(point) '''is'''
+          '''input: ''' the location ''point'' the mouse moved to
+          '''if''' mouse_button = down
+              ''(select the rectangle between ''selection_start'' and ''point'')''
+      '''function''' mouseDown(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          mouse_button := down
+          selection_start := point
+      '''function''' mouseUp(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          mouse_button := up
+For this example, the class for the context is called Cursor. The methods named in the abstract state class
+(AbstractTool in this case) are also implemented in the context. In the context class, these methods invoke the corresponding method of the current state, represented by current_tool.
+  '''class''' Cursor '''is'''
+      current_tool := '''new''' PenTool
+      '''function''' moveTo(point) '''is'''
+          '''input: ''' the location ''point'' the mouse moved to
+          current_tool.moveTo(point)
+      '''function''' mouseDown(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          current_tool.mouseDown(point)
+      '''function''' mouseUp(point) '''is'''
+          '''input: ''' the location ''point'' the mouse is at
+          current_tool.mouseUp(point)
+      '''function''' usePenTool() '''is'''
+          current_tool := '''new''' PenTool
+      '''function''' useSelectionTool() '''is'''
+          current_tool := '''new''' SelectionTool
+Notice how one Cursor object can act both as a PenTool and a SelectionTool at different points, by passing the appropriate method calls on to whichever tool is active. That is the essence of the state pattern. In this case, we could have combined state and object by creating PenCursor and SelectCursor classes, thus reducing the solution to simple inheritance, but in practice, Cursor may carry data that is expensive or inelegant to copy to a new object whenever a new tool is selected.
+
+===Java===
+
+The state interface and two implementations. The state’s method has a reference to the context object and is able to change its state.
+The context class has a state variable that it instantiates in an initial state, in this case StateLowerCase. In its method, it uses the corresponding methods of the state object.
+The demonstration below shows the usage:
+With the above code, the output of main() from DemoOfClientState should be:
+ monday
+ TUESDAY
+ WEDNESDAY
+ thursday
+ FRIDAY
+ SATURDAY
+ sunday
+
+==See also==
+
+==References==
+
+==External links==
+
+

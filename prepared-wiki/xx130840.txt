@@ -1,0 +1,28 @@
+[[Doors (computing)]]
+
+CATEGORIES: Sun Microsystems software, Remote procedure call
+
+Doors are an inter-process communication facility for Unix computer systems. They provide a form of procedure call.
+
+==History==
+
+Doors were developed by Sun Microsystems as a core part of the Spring operating system, then added to Solaris in version 2.5 as an undocumented internal interface.https://blogs.oracle.com/meem/entry/head_title_dsvclockd_1m_using They became a documented feature in Solaris 2.6. Recent versions of Solaris use doors in many places, including nscd (the name service cache daemon) and syslog.
+The doors facility has been ported to Linux, but is only available for version 2.4.18.http://www.rampant.org/doors/ 
+
+==Overview==
+
+The doors subsystem is implemented as a user-space library with some kernel support, and relies heavily on threads. It is designed for low overhead, and the Solaris implementation uses some assembly code for maximum efficiency.
+Doors are created by server processes (which must use threads) and called by client processes. (It is possible for one process to both create and call a door.) When creating a door, the server must specify a server procedure, which will be called by the doors library on behalf of clients. Unlike most Remote procedure call systems, each door has only one server procedure. A server can "attach" a door to a file, enabling clients to connect to that door simply by opening that file. The ls -l command will then show the file with a 'type' of "D" (not to be confused with "d" for a directory) — for example:
+     Drw--r--r-- 1 jmorrison dev 876 Dec  8 19:43 myfile
+Clients use door_call() to invoke the door's server procedure, passing a contiguous region of memory and a list of file descriptors as arguments, and getting back another contiguous region and list of file descriptors. Either region may be empty, as may either list. Usually, two C structs will be defined, one for the input data and one for the output data. (Alternatively, tagged unions may be used, allowing a door procedure to provide multiple actions in much the same way as the ioctl system call.) Every file descriptor is accompanied by a flags word. The DOOR_RELEASE flag requests that a file descriptor be closed in the sending process after being duplicated in the receiving process. If a file descriptor that refers to a door is sent, the system records the properties of that door in the flags word.
+As well as representing a procedure, or a group of procedures, a door can represent a stateful data object, making it possible to pass references to such objects between processes. Such a door would typically take a tagged union as input data with each tag value denoting a different method.
+The doors system also provides a way for clients and servers to get information about each other. For example, a server can check the client's user credentials or process ID to decide whether the client is allowed to do something.
+The doors library normally creates and manages a pool of threads in the server process to handle calls, but it is possible to override this behaviour. The doors system does not provide any form of synchronization, but servers can use the normal thread-level synchronization primitives. Doors can be used to synchronize access to shared memory segments, allowing single-copy data transfer.http://developers.sun.com/solaris/articles/fastSockets.html
+
+==See also==
+
+==References==
+
+==External links==
+
+

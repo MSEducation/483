@@ -1,0 +1,86 @@
+[[Simulated annealing]]
+
+CATEGORIES: Heuristic algorithms, Optimization algorithms and methods, Monte Carlo methods
+
+Simulated annealing (SA) is a generic probabilistic metaheuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space.  It is often used when the search space is discrete (e.g., all tours that visit a given set of cities).  For certain problems, simulated annealing may be more efficient than exhaustive enumeration — provided that the goal is merely to find an acceptably good solution in a fixed amount of time, rather than the best possible solution.
+The name and inspiration come from annealing in metallurgy, a technique involving heating and controlled cooling of a material to increase the size of its crystals and reduce their defects. Both are attributes of the material that depend on its thermodynamic free energy. Heating and cooling the material affects both the temperature and the thermodynamic free energy.  While the same amount of cooling brings the same amount of decrease in temperature it will bring a bigger or smaller decrease in the thermodynamic free energy depending on the rate that it occurs, with a slower rate producing a bigger decrease.
+This notion of slow cooling is implemented in the Simulated Annealing algorithm as a slow decrease in the probability of accepting worse solutions as it explores the solution space. Accepting worse solutions is a fundamental property of metaheuristics because it allows for a more extensive search for the optimal solution.
+The method was independently described by Scott Kirkpatrick, C. Daniel Gelatt and Mario P. Vecchi in 1983,
+
+
+
+The state of some physical systems, and the function E(s) to be minimized is analogous to the internal energy of the system in that state. The goal is to bring the system, from an arbitrary initial state, to a state with the minimum possible energy.
+
+The basic iteration
+
+At each step, the SA heuristic considers some neighbouring state s' of the current state s, and probabilistically decides between moving the system to state s' or staying in state s.  These probabilities ultimately lead the system to move to states of lower energy.  Typically this step is repeated until the system reaches a state that is good enough for the application, or until a given computation budget has been exhausted.
+
+The neighbours of a state
+
+The neighbours of a state are new states of the problem that are produced after altering a given state in some well-defined way. For example, in the traveling salesman problem each state is typically defined as a permutation of the cities to be visited. The neighbours of a state are the set of permutations that are produced, for example, by reversing the order of any two successive cities. The well-defined way in which the states are altered in order to find neighbouring states is called a "move" and different moves give different sets of neighbouring states. These moves usually result in minimal alterations of the last state, as the previous example depicts, in order to help the algorithm keep the better parts of the solution and change only the worse parts. In the traveling salesman problem, the parts of the solution are the city connections.
+Searching for neighbours of a state is fundamental to optimization because the final solution will come after a tour of successive neighbours. Simple heuristics move by finding best neighbour after best neighbour and stop when they have reached a solution which has no neighbours that are better solutions. The problem with this approach is that the neighbours of a state are not guaranteed to contain any of the existing better solutions which means that failure to find a better solution among them does not guarantee that no better solution exists. This is why the best solution found by such algorithms is called a local optimum in contrast with the actual best solution which is called a global optimum. Metaheuristics use the neighbours of a solution as a way to explore the solutions space and although they prefer better neighbours they also accept worse neighbours in order to avoid getting stuck in local optima. As a result, if the algorithm is run for an infinite amount of time, the global optimum will be found.
+
+Acceptance probabilities
+
+States with a smaller energy are better than those with a greater energy. 
+
+The annealing schedule
+
+For any given finite problem, the probability that the simulated annealing algorithm terminates with a global optimal solution approaches 1 as the annealing schedule is extended.
+
+Pseudocode
+
+ s ← s0; e ← E(s)                                  // ''Initial state, energy.''
+ sbest ← s; ebest ← e                              // ''Initial "best" solution''
+ k ← 0                                             // ''Energy evaluation count.''
+ '''while''' k < kmax '''and''' e > emax                       // ''While time left & not good enough:''
+   T ← temperature(k/kmax)                         // ''Temperature calculation.''
+   snew ← neighbour(s)                             // ''Pick some neighbour.''
+   enew ← E(snew)                                  // ''Compute its energy.''
+   '''if''' P(e, enew, T) > random() '''then'''                // ''Should we move to it?''
+     s ← snew; e ← enew                            // ''Yes, change state.''
+   '''if''' enew < ebest '''then'''                            // ''Is this a new best?''
+     sbest ← snew; ebest ← enew                    // ''Save 'new neighbour' to 'best found'.''
+   k ← k + 1                                       // ''One more evaluation done''
+ '''return''' sbest                                      // ''Return the best solution found.''
+
+Pedantically speaking, the "pure" SA algorithm does not keep track of the best solution found so far: it does not use the variables sbest and ebest, it lacks the second if inside the loop, and, at the end,  it returns the current state s instead of sbest.  While remembering the best state is a standard technique in optimization  that can be used in any metaheuristic, it does not have an analogy with physical annealing — since a physical system can "store" a single state only.
+Even more pedantically speaking, saving the best state is not necessarily an improvement, since one may have to specify a smaller kmax in order to compensate for the higher cost per iteration and since there is a good probability that sbest equals s in the final iteration anyway.  However, the step sbest ← snew happens only on a small fraction of the moves. Therefore, the optimization is usually worthwhile, even when state-copying is an expensive operation.
+
+Selecting the parameters
+
+In order to apply the SA method to a specific problem, one must specify the following parameters: the state space, the energy (goal) function E(), the candidate generator procedure neighbour(), the acceptance probability function P(), and the annealing schedule temperature() AND initial temperature . These choices can have a significant impact on the method's effectiveness.  Unfortunately, there are no choices of these parameters that will be good for all problems, and there is no general way to find the best choices for a given problem.  The following sections give some general guidelines.
+
+Diameter of the search graph
+
+Transition probabilities
+
+Acceptance probabilities
+
+The specification of neighbour(), P(), and temperature() is partially redundant.  In practice, it's common to use the same acceptance function P() for many problems, and adjust the other two functions according to the specific problem.
+
+Efficient candidate generation
+
+Barrier avoidance
+
+When choosing the candidate generator neighbour() one must also try to reduce the number of "deep" local minima — states (or sets of connected states) that have much lower energy than all its neighbouring states.  Such "closed catchment basins" of the energy function may trap the SA algorithm with high probability (roughly proportional to the number of states in the basin) and for a very long time (roughly exponential on the energy difference between the surrounding states and the bottom of the basin).
+
+Cooling schedule
+
+The physical analogy that is used to justify SA assumes that the cooling rate is low enough for the probability distribution of the current state to be near thermodynamic equilibrium at all times.  Unfortunately, the relaxation time—the time one must wait for the equilibrium to be restored after a change in temperature—strongly depends on the "topography" of the energy function and on the current temperature.  In the SA algorithm, the relaxation time also depends on the candidate generator, in a very complicated way.  Note that all these parameters are usually provided as black box functions to the SA algorithm. Therefore, the ideal cooling rate cannot be determined beforehand, and should be empirically adjusted for each problem. Adaptive simulated annealing algorithms address this problem by connecting the cooling schedule to the search progress.
+
+Restarts
+
+Sometimes it is better to move back to a solution that was significantly better rather than always moving from the current state.  This process is called restarting of simulated annealing.  To do this we set s and e to sbest and ebest and perhaps restart the annealing schedule.  The decision to restart could be based on several criteria. Notable among these include restarting based on a fixed number of steps, based on whether the current energy is too high compared to the best energy obtained so far, restarting randomly, etc.
+
+Related methods
+
+
+
+
+
+Further reading
+
+
+
+

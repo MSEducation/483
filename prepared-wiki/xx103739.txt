@@ -1,0 +1,23 @@
+[[Password synchronization]]
+
+CATEGORIES: Identity management systems, Password authentication, Directory services
+
+Password synchronization is a process, usually supported by software, through which a user maintains a single password across multiple IT systems.
+Provided that all the systems enforce mutually-compatible password standards (e.g. concerning minimum and maximum password length, supported characters, etc.), the user can choose a new password at any time and deploy the same password on his own login accounts across multiple, linked systems.
+Where different systems have mutually incompatible standards regarding what can be stored in a password field, the user may be forced to choose more than one (but still fewer than the number of systems) passwords.  This may happen, for example, where the maximum password length on one system is shorter than the minimum length in another, or where one system requires use of a punctuation mark but another forbids it.
+Password synchronization is a function of certain identity management systems and it's considered easier to implement than  enterprise single sign-on (SSO), as there is normally no client software deployment or need for active user enrollment.
+
+==Uses==
+
+Password synchronization makes it easier for IT users to recall passwords and so manage their access to multiple systems, for example on an enterprise network.  Since they only have to remember one or at most a few passwords, users are less likely to forget them or write them down, resulting in fewer calls to the IT Help Desk and less opportunity for coworkers, intruders or thieves to gain improper access.  Through suitable security awareness, automated policy enforcement and training activities, users can be encouraged or forced to choose stronger passwords as they have fewer to remember.
+
+==Security==
+
+If the single, synchronized password is compromised (for example, if it is guessed, disclosed, determined by cryptanalysis from one of the systems, intercepted on an insecure communications path, or if the user is socially engineered into resetting it to a known value), all the systems that share that password are vulnerable to improper access.  In most single signon and password vault solutions, compromise of the primary or master password (in other words, the password used to unlock access to the individual unique passwords used on other systems) also compromises all the associated systems, so the two approaches are similar.
+Depending on the software used, password synchronization may be triggered by a password change on any one of the synchronized systems (whether initiated by the user or an administrator) and/or by the user initiating the change centrally through the software, perhaps through a web interface.  
+Some password synchronization systems may copy password hashes from one system to another, where the hashing algorithm is the same.  In general, this is not the case and access to a plaintext password is required.
+
+==Videos==
+
+Two processes which yields synchronized passwords are shown in the following animations, hosted by software vendor Hitachi ID Systems:
+

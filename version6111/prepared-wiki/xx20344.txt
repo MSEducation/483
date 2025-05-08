@@ -1,0 +1,239 @@
+[[Gray code]]
+
+CATEGORIES: Data transmission, Numeral systems
+
+The reflected binary code, also known as Gray code after Frank Gray, is a binary numeral system where two successive values differ in only one bit (binary digit).
+The reflected binary code was originally designed to prevent spurious output from electromechanical switches. Today, Gray codes are widely used to facilitate error correction in digital communications such as digital terrestrial television and some cable TV systems.
+
+==Name==
+
+Bell Labs researcher Frank Gray introduced the term reflected binary code in his 1947 patent application, remarking that the code had "as yet no recognized name".F. Gray. Pulse code communication, March 17, 1953 (filed Nov. 1947). [tpl]US patent|2632058[/tpl]  He derived the name from the fact that it "may be built up from the conventional binary code by a sort of reflection process".
+The code was later named after Gray by others who used it.  Two different 1953 patent applications give "Gray code" as an alternative name for the "reflected binary code";J. Breckman. Encoding Circuit, Jan 31, 1956 (filed Dec. 1953). [tpl]US patent|2733432[/tpl]E. A. Ragland et al. Direction-Sensitive Binary Code Position Control System, Feb. 11, 1958 (filed Oct. 1953). [tpl]US patent|2823345[/tpl] one of those also lists "minimum error code" and "cyclic permutation code" among the names.  A 1954 patent application refers to "the Bell Telephone Gray code".S. Reiner et al. Automatic Rectification System, Jun 24, 1958 (filed Jan. 1954). [tpl]US patent|2839974[/tpl]
+
+==Motivation==
+
+Many devices indicate position by closing and opening switches. If that device uses natural binary codes, these two positions would be right next to each other:
+ ...
+ 011
+ 100
+ ...
+The problem with natural binary codes is that, with real (mechanical) switches, it is very unlikely that switches will change states exactly in synchrony. In the transition between the two states shown above, all three switches change state. In the brief period while all are changing, the switches will read some spurious position. Even without keybounce, the transition might look like 011 — 001 — 101 — 100. When the switches appear to be in position 001, the observer cannot tell if that is the "real" position 001, or a transitional state between two other positions. If the output feeds into a sequential system (possibly via combinational logic) then the sequential system may store a false value.
+The reflected binary code solves this problem by changing only one switch at a time, so there is never any ambiguity of position,
+ Dec  Gray   Binary
+  0   000    000
+  1   001    001
+  2   011    010
+  3   010    011
+  4   110    100
+  5   111    101
+  6   101    110
+  7   100    111
+Notice that state 7 can roll over to state 0 with only one switch change. This is called the "cyclic" property of a Gray code. In the standard Gray coding the least significant bit follows a repetitive pattern of 2 on, 2 off [tpl]nowrap|( … 11001100 … );[/tpl] the next digit a pattern of 4 on, 4 off; and so forth.
+More formally, a Gray code is a code assigning to each of a contiguous set of integers, or to each member of a circular list, a word of symbols such that each two adjacent code words differ by one symbol. These codes are also known as single-distance codes, reflecting the Hamming distance of 1 between adjacent codes. There can be more than one Gray code for a given word length, but the term was first applied to a particular binary code for the non-negative integers, the binary-reflected Gray code, or BRGC, the three-bit version of which is shown above.
+
+==History and practical application==
+
+Reflected binary codes were applied to mathematical puzzles before they became known to engineers.  The French engineer Émile Baudot used Gray codes in telegraphy in 1878.  He received the French Legion of Honor medal for his work.  The Gray code is sometimes attributed, incorrectly,Knuth, Donald E. "Generating all n-tuples." The Art of Computer Programming, Volume 4A: Enumeration and Backtracking, pre-fascicle 2a, October 15, 2004. http://www-cs-faculty.stanford.edu/~knuth/fasc2a.ps.gz to Elisha Gray (in Principles of Pulse Code Modulation, K. W. Cattermole,[tpl]cite book |first=K. W. |last=Cattermole |title=Principles of Pulse Code Modulation |publisher=American Elsevier |year=1969 |location=New York |isbn=0-444-19747-8 [/tpl] for example).
+Frank Gray, who became famous for inventing the signaling method that came to be used for compatible color television, invented a method to convert analog signals to reflected binary code groups using vacuum tube-based apparatus. The method and apparatus were patented in 1953 and the name of Gray stuck to the codes. The "PCM tube" apparatus that Gray patented was made by Raymond W. Sears of Bell Labs, working with Gray and William M. Goodall, who credited Gray for the idea of the reflected binary code.[tpl]cite journal |first=W. M. |last=Goodall |title=Television by Pulse Code Modulation |journal=Bell Sys. Tech. J. |volume=30 |issue= |pages=33–49 |year=1951 |doi= [/tpl]
+The use of his eponymous codes that Gray was most interested in was to minimize the effect of error in the conversion of analog signals to digital; his codes are still used today for this purpose, and others.
+
+===Position encoders===
+
+Gray codes are used in position encoders (linear encoders and rotary encoders), in preference to straightforward binary encoding. This avoids the possibility that, when several bits change in the binary representation of an angle, a misread will result from some of the bits changing before others. Originally, the code pattern was electrically conductive, supported (in a rotary encoder) by an insulating disk. Each track had its own stationary metal spring contact; one more contact made the connection to the pattern. That common contact was connected by the pattern to whichever of the track contacts were resting on the conductive pattern. However, sliding contacts wear out and need maintenance, which favors optical encoders.
+Regardless of the care in aligning the contacts, and accuracy of the pattern, a natural-binary code would have errors at specific disk positions, because it is impossible to make all bits change at exactly the same time as the disk rotates. The same is true of an optical encoder; transitions between opaque and transparent cannot be made to happen simultaneously for certain exact positions.  Rotary encoders benefit from the cyclic nature of Gray codes, because consecutive positions of the sequence differ by only one bit. This means that, for a transition from state A to state B, timing mismatches can only affect when the A→B transition occurs, rather than inserting one or more (up to N-1 for an N-bit codeword) false intermediate states, as would occur if a standard binary code were used.
+
+===Towers of Hanoi===
+
+The binary-reflected Gray code can also be used to serve as a solution guide for the Towers of Hanoi problem, as well as the classical Chinese rings puzzle, a sequential mechanical puzzle mechanism. It also forms a Hamiltonian cycle on a hypercube, where each bit is seen as one dimension.
+
+===Genetic algorithms===
+
+Due to the Hamming distance properties of Gray codes, they are sometimes used in genetic algorithms. They are very useful in this field, since mutations in the code allow for mostly incremental changes, but occasionally a single bit-change can cause a big leap and lead to new properties.
+
+===Karnaugh maps===
+
+Gray codes are also used in labelling the axes of Karnaugh maps.[tpl]cite book |title=Digital Design: Principles & Practices |last=Wakerly |first=John F |year=1994 |publisher=Prentice Hall |location=New Jersey |isbn=0-13-211459-3 |pages=222, 48–49[/tpl] Note that the two page sections taken together say that K-maps are labeled with Gray code.  The first section says that they are labeled with a code that changes only one bit between entries and the second section says that such a code is called Gray code.
+
+===Error correction===
+
+In modern digital communications, Gray codes play an important role in error correction. For example, in a digital modulation scheme such as QAM where data is typically transmitted in symbols of 4 bits or more, the signal's constellation diagram is arranged so that the bit patterns conveyed by adjacent constellation points differ by only one bit. By combining this with forward error correction capable of correcting single-bit errors, it is possible for a receiver to correct any transmission errors that cause a constellation point to deviate into the area of an adjacent point. This makes the transmission system less susceptible to noise.
+
+===Communication between clock domains===
+
+Digital logic designers use Gray codes extensively for passing multi-bit count information between synchronous logic that operates at different clock frequencies. The logic is considered operating in different "clock domains". It is fundamental to the design of large chips that operate with many different clocking frequencies.
+
+====Gray code counters and arithmetic====
+
+A typical use of Gray code counters is building a FIFO (first-in, first-out) data buffer that has read and write ports that exist in different clock domains. The input and output counters inside such a dual-port FIFO are often stored using Gray code to prevent invalid transient states from being captured when the count crosses clock domains.[ref]"Synchronization in Digital Logic Circuits by Ryan Donohue
+[/ref]
+The updated read and write pointers need to be passed between clock domains when they change, to be able to track FIFO empty and full status in each domain. Each bit of the pointers is sampled non-deterministically for this clock domain transfer. So for each bit, either the old value or the new value is propagated. Therefore, if more than one bit in the multi-bit pointer is changing at the sampling point, a "wrong" binary value (neither new nor old) can be propagated. By guaranteeing only one bit can be changing, Gray codes guarantee that the only possible sampled values are the new or old multi-bit value. Typically Gray codes of power-of-two length are used.
+Sometimes digital buses in electronic systems are used to convey quantities that can only increase or decrease by one at a time, for example the output of an event counter which is being passed between clock domains or to a digital-to-analog converter.  The advantage of Gray codes in these applications is that differences in the propagation delays of the many wires that represent the bits of the code cannot cause the received value to go through states that are out of the Gray code sequence.  This is similar to the advantage of Gray codes in the construction of mechanical encoders, however the source of the Gray code is an electronic counter in this case.  The counter itself must count in Gray code, or if the counter runs in binary then the output value from the counter must be reclocked after it has been converted to Gray code, because when a value is converted from binary to Gray code, it is possible that differences in the arrival times of the binary data bits into the binary-to-Gray conversion circuit will mean that the code could go briefly through states that are wildly out of sequence.  Adding a clocked register after the circuit that converts the count value to Gray code may introduce a clock cycle of latency, so counting directly in Gray code may be advantageous.  A Gray code counter was patented in 1962 [tpl]US patent|3020481|US3020481[/tpl], and there have been many others since.  In recent times a Gray code counter can be implemented as a state machine in Verilog.  In order to produce the next count value, it is necessary to have some combinational logic that will increment the current count value that is stored in Gray code.  Probably the most obvious way to increment a Gray code number is to convert it into ordinary binary code, add one to it with a standard binary adder, and then convert the result back to Gray code.  This approach was discussed in a paper in 1996 Mehta, H.; Owens, R.M. & Irwin, M.J. (1996), Some issues in gray code addressing, in the Proceedings of the 6th Great Lakes Symposium on VLSI (GLSVLSI 96), IEEE Computer Society,pp. 178 and then subsequently patented by someone else in 1998 [tpl]US patent|5754614|US5754614[/tpl].  Other methods of counting in Gray code are discussed in a report by R. W. Doran, including taking the output from the first latches of the master-slave flip flops in a binary ripple counter.The Gray Code by R. W. Doran
+Perhaps the most common electronic counter with the "only one bit changes at a time" property is the Johnson counter.
+
+==Constructing an n-bit Gray code==
+
+The binary-reflected Gray code list for n bits can be generated recursively from the list for n−1 bits by reflecting the list (i.e. listing the entries in reverse order), concatenating the original list with the reversed list, prefixing the entries in the original list with a binary 0, and then prefixing the entries in the reflected list with a binary 1.  For example, generating the n = 3 list from the n = 2 list:
+The one-bit Gray code is G1 = (0, 1).  This can be thought of as built recursively as above from a zero-bit Gray code G0 = { Λ } consisting of a single entry of zero length.  This iterative process of generating Gn+1 from Gn makes the following properties of the standard reflecting code clear:
+
+==Converting to and from Gray code==
+
+The following functions in C convert between binary numbers and their associated Gray codes.
+While it may seem that gray-to-binary conversion requires each bit to be handled one at a time, faster algorithms exist.[ref]
+Henry Gordon Dietz.
+[/ref]
+
+==Special types of Gray codes==
+
+In practice, a "Gray code" almost always refers to a binary-reflected Gray code (BRGC).
+However, mathematicians have discovered other kinds of Gray codes.
+Like BRGCs, each consists of a lists of words, where each word differs from the next in only one digit (each word has a Hamming distance of 1 from the next word).
+
+===n-ary Gray code===
+
+|}
+There are many specialized types of Gray codes other than the binary-reflected Gray code.  One such type of Gray code is the ''n''-ary Gray code, also known as a non-Boolean Gray code.
+As the name implies, this type of Gray code uses non-Boolean values in its encodings.
+For example, a 3-ary (ternary) Gray code would use the values {0, 1, 2}.
+The (n, k)-Gray code is the n-ary Gray code with k digits.[tpl]cite journal | title=Generalized Gray Codes with Applications | last=Guan | first=Dah-Jyh | journal=Proc. Natl. Sci. Counc. Repub. Of China (A) | volume=22 | year=1998 | pages=841–848 | url=http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.119.1344&rep=rep1&type=pdf|format=PDF[/tpl]
+The sequence of elements in the (3, 2)-Gray code is: {00, 01, 02, 12, 10, 11, 21, 22, 20}.
+The (n, k)-Gray code may be constructed recursively, as the BRGC, or may be constructed iteratively.
+An algorithm to iteratively generate the (N, k)-Gray code is presented (in C):
+
+// inputs: base, digits, value
+// output: gray
+// Convert a value to a graycode with the given base and digits.
+// Iterating through a sequence of values would result in a sequence
+// of Gray codes in which only one digit changes at a time.
+void to_gray(unsigned base, unsigned digits, unsigned value, unsigned graydigits)
+{ 
+	unsigned baseNdigits;	// Stores the ordinary base-N number, one digit per entry
+	unsigned i;		// The loop variable
+	// Put the normal baseN number into the baseN array. For base 10, 109 
+	// would be stored as 9,0,1
+	for (i = 0; i 		baseNi = value % base;
+		value    = value / base;
+	}
+	// Convert the normal baseN number into the graycode equivalent. Note that
+	// the loop starts at the most significant digit and goes down.
+	unsigned shift = 0;
+	while (i--) {
+		// The gray digit gets shifted down by the sum of the higher
+		// digits.
+		grayi = (baseNi + shift) % base;
+		shift = shift + base - grayi;	// Subtract from base so shift is positive
+	}
+}
+// EXAMPLES
+// input: value = 1899, base = 10, digits = 4
+// output: baseN = 9,9,8,1, gray = 0,1,7,1
+// input: value = 1900, base = 10, digits = 4
+// output: baseN = 0,0,9,1, gray = 0,1,8,1
+
+There are other graycode algorithms for (n,k)-Gray codes. It is important to note that the (n,k)-Gray codes produced by the above algorithm is always cyclical; some algorithms, such as that by Guan, lack this property when k is odd. On the other hand, while only one digit at a time changes with this method, it can change by wrapping (looping from n-1 to 0). In Guan's algorithm, the count alternately rises and falls, so that the numeric difference between two graycode digits is always one.
+Gray codes are not uniquely defined, because a permutation of the columns of such a code is a Gray code too. The above procedure produces a code in which the lower the significance of a digit, the more often it changes, making it similar to normal counting methods.
+
+===Balanced Gray code===
+
+For example, a balanced 4-bit Gray code has 16 transitions, which can be evenly distributed among all four positions (four transitions per position), making it uniformly balanced:
+ 0[tpl]fontcolor|red|1[/tpl]11111[tpl]fontcolor|red|0[/tpl]00000[tpl]fontcolor|red|1[/tpl]1[tpl]fontcolor|red|0[/tpl]
+ 00[tpl]fontcolor|red|1[/tpl]111[tpl]fontcolor|red|0[/tpl]0[tpl]fontcolor|red|1[/tpl]111[tpl]fontcolor|red|0[/tpl]000
+ 0000[tpl]fontcolor|red|1[/tpl]1111[tpl]fontcolor|red|0[/tpl]0[tpl]fontcolor|red|1[/tpl]11[tpl]fontcolor|red|0[/tpl]0
+ [tpl]fontcolor|red|0[/tpl]00[tpl]fontcolor|red|1[/tpl]1[tpl]fontcolor|red|0[/tpl]0000[tpl]fontcolor|red|1[/tpl]11111
+whereas a balanced 5-bit Gray code has a total of 32 transitions, which cannot be evenly distributed among the positions. In this example, four positions have six transitions each, and one has eight:
+ [tpl]fontcolor|red|1[/tpl]1111[tpl]fontcolor|red|0[/tpl]000[tpl]fontcolor|red|1[/tpl]11111[tpl]fontcolor|red|0[/tpl]0[tpl]fontcolor|red|1[/tpl]1111[tpl]fontcolor|red|0[/tpl]000000000
+ 000[tpl]fontcolor|red|1[/tpl]1111111[tpl]fontcolor|red|0[/tpl]000000[tpl]fontcolor|red|1[/tpl]11111[tpl]fontcolor|red|0[/tpl]00[tpl]fontcolor|red|1[/tpl]1[tpl]fontcolor|red|0[/tpl]00
+ 11[tpl]fontcolor|red|0[/tpl]0[tpl]fontcolor|red|1[/tpl]11[tpl]fontcolor|red|0[/tpl]00000[tpl]fontcolor|red|1[/tpl]11[tpl]fontcolor|red|0[/tpl]00[tpl]fontcolor|red|1[/tpl]11111[tpl]fontcolor|red|0[/tpl]0000[tpl]fontcolor|red|1[/tpl]1
+ 1[tpl]fontcolor|red|0[/tpl]000000[tpl]fontcolor|red|1[/tpl]11111[tpl]fontcolor|red|0[/tpl]00000[tpl]fontcolor|red|1[/tpl]1111111[tpl]fontcolor|red|0[/tpl]00[tpl]fontcolor|red|1[/tpl]
+ 111111[tpl]fontcolor|red|0[/tpl]000[tpl]fontcolor|red|1[/tpl]1[tpl]fontcolor|red|0[/tpl]00000000[tpl]fontcolor|red|1[/tpl]1[tpl]fontcolor|red|0[/tpl]00[tpl]fontcolor|red|1[/tpl]11111
+
+===Monotonic Gray codes===
+
+Monotonic codes are useful in the theory of interconnection networks, especially for
+minimizing dilation for linear arrays of processors.[tpl]cite journal| author=C. D Savage and P. Winkler| title=Monotone Gray codes and the middle levels problem |journal=Journal of Combinatorial Theory, Series A |year=1995 |volume=70|issn=0097-3165|pages=230–248|issue=2| doi=10.1016/0097-3165(95)90091-8[/tpl]
+If we define the weight of a binary string to be the number of 1's in
+the string, then although we clearly cannot have a Gray code with strictly
+increasing weight, we may want to approximate this by having the code run
+through two adjacent weights before reaching the next one.
+We can formalize the concept of monotone Gray codes as follows: consider the
+that have equal weight, i.e.
+An elegant construction of monotonic n-digit Gray codes for any n is based on the idea of recursively building subpaths
+shown in the table below.
+These monotonic Gray codes can be efficiently implemented in such a way that
+each subsequent element can be generated in O(n) time. The algorithm is
+most easily described using coroutines.
+Monotonic codes have an interesting connection to the Lovász conjecture,
+which states that every connected vertex-transitive graph contains a Hamiltonian
+its automorphism group is transitive, so that each vertex has the same "local
+environment"" and cannot be differentiated from the others, since we can relabel
+the coordinates as well as the binary digits to obtain an automorphism) and the
+problem of finding a Hamiltonian path in this subgraph is called the
+"middle-levels problem", which can provide insights into the more general
+the preceding construction for monotonic codes ensures a Hamiltonian path of length
+at least 0.839N where N is the number of vertices in the middle-level
+subgraph.[tpl]cite journal| author=C. D Savage| title=Long cycles in the middle two levels of the Boolean lattice |year=1997[/tpl]
+
+===Beckett–Gray code===
+
+Another type of Gray code, the Beckett–Gray code, is named for Irish playwright Samuel Beckett, who was interested in symmetry. His play "Quad" features four actors and is divided into sixteen time periods. Each period ends with one of the four actors entering or leaving the stage.  The play begins with an empty stage, and Beckett wanted each subset of actors to appear on stage exactly once.[tpl]cite web | title=MATH 343 Applied Discrete Math Supplementary Materials | last=Goddyn | first=Luis | year=1999 | publisher=Dept. of Math, Simon Fraser U | url=http://www.math.sfu.ca/~goddyn/Courses/343/supMaterials.pdf |format=PDF[/tpl] Clearly the set of actors currently on stage can be represented by a 4-bit binary Gray code. Beckett, however, placed an additional restriction on the script: he wished the actors to enter and exit so that the actor who had been on stage the longest would always be the one to exit. The actors could then be represented by a first in, first out queue, so that (of the actors onstage) the actor being dequeued is always the one who was enqueued first. Beckett was unable to find a Beckett–Gray code for his play, and indeed, an exhaustive listing of all possible sequences reveals that no such code exists for n = 4. It is known today that such codes do exist for n = 2, 5, 6, 7, and 8, and do not exist for n = 3 or 4. An example of an 8-bit Beckett–Gray code can be found in Knuth's Art of Computer Programming.  According to Sawada and Wong, the search space for n = 6 can be explored in 15 hours, and more than 9,500 solutions for the case n = 7 have been found.[tpl]cite journal |first=J. |last=Sawada |first2=D. |last=Wong |title=A Fast Algorithm to generate Beckett-Gray codes |journal=Electronic Notes in Discrete Mathematics |volume=29 |issue= |pages=571–577 |year=2007 |doi=10.1016/j.endm.2007.07.091 [/tpl]
+
+===Snake-in-the-box codes===
+
+Snake-in-the-box codes, or snakes, are the sequences of nodes of induced paths in an n-dimensional hypercube graph, and coil-in-the-box codes, or coils, are the sequences of nodes of induced cycles in a hypercube. Viewed as Gray codes, these sequences have the property of being able to detect any single-bit coding error. Codes of this type were first described by W. H. Kautz in the late 1950s;[ref]
+</ref> since then, there has been much research on finding the code with the largest possible number of codewords for a given hypercube dimension.
+
+===Single-track Gray code===
+
+Yet another kind of Gray code is the single-track Gray code (STGC) developed by N. B. Spedding (NZ Patent 264738 - October 28, 1994)
+and refined by Hiltgen, Paterson and Brandestini in "Single-track Gray codes" (1996).[tpl]cite journal | url=http://ieeexplore.ieee.org/iel1/18/11236/00532900.pdf |format=PDF| title=Single-Track Gray Codes | last=Hiltgen | first=Alain P. | author2=Kenneth G. Paterson |author3=Marco Brandestini | journal=IEEE Transactions on Information Theory | volume=42 | year=1996 | pages=1555–1561 | doi=10.1109/18.532900 | issue=5[/tpl] The STGC is a cyclical list of P unique binary encodings of length n such that two consecutive words differ in exactly one position, and when the list is examined as a P x n matrix, each column is a cyclic shift of the first column.[tpl]cite journal | url=http://www.cs.technion.ac.il/~etzion/PUB/Gray2.pdf |format=PDF| title=The Structure of Single-Track Gray Codes | last=Etzion | first=Tuvi | author2=Moshe Schwartz | journal=IEEE Transactions on Information Theory | volume=45 | year=1999 | pages=2383–2396 | doi=10.1109/18.796379 | issue=7[/tpl]
+The name comes from their use with rotary encoders, where a number of tracks are being sensed by contacts, resulting for each in an output of 0 or 1. To reduce noise due to different contacts not switching at exactly the same moment in time, one preferably sets up the tracks so that the data output by the contacts are in Gray code. To get high angular accuracy, one needs lots of contacts; in order to achieve at least 1 degree accuracy, one needs at least 360 distinct positions per revolution, which requires a minimum of 9 bits of data, and thus the same number of contacts.
+If all contacts are placed at the same angular position, then 9 tracks are needed to get a standard BRGC with at least 1 degree accuracy. However, if the manufacturer moves a contact to a different angular position (but at the same distance from the center shaft), then the corresponding "ring pattern" needs to be rotated the same angle to give the same output. If the most significant bit (the inner ring in Figure 1) is rotated enough, it exactly matches the next ring out. Since both rings are then identical, the inner ring can be cut out, and the sensor for that ring moved to the remaining, identical ring (but offset at that angle from the other sensor on that ring).
+Those 2 sensors on a single ring make a quadrature encoder.
+That reduces the number of tracks for a "1 degree resolution" angular encoder to 8 tracks.
+Reducing the number of tracks still further can't be done with BRGC.
+For many years, Torsten Sillke and other mathematicians believed that it was impossible to encode position on a single track such that consecutive positions differed at only a single sensor, except for the 2-sensor, 1-track quadrature encoder.
+So for applications where 8 tracks were too bulky, people used single-track incremental encoders (quadrature encoders) or 2-track "quadrature encoder + reference notch" encoders.
+N. B. Spedding, however, registered a patent in 1994 with several examples showing that it was possible.  Although it is not possible to distinguish 2n positions with n sensors on a single track, it is possible to distinguish close to that many.  For example, when n is itself a power of 2, n sensors can distinguish 2n−2n positions.  Hiltgen and Paterson published a paper in 2001 exhibiting a single-track gray code with exactly 360 angular positions, constructed using 9 sensors.[tpl]cite journal | url=http://www.hpl.hp.com/techreports/2000/HPL-2000-81.pdf |format=PDF| title=Single-Track Circuit Codes | last=Hiltgen | first=Alain P. | author2=Kenneth G. Paterson | journal=IEEE Transactions on Information Theory | volume=47 | year=2001 | pages=2587–2595 | doi=10.1109/18.945274 | issue=6[/tpl]  Since this number is larger than 28 = 256, more than 8 sensors are required by any code, although a BRGC could distinguish 512 positions with 9 sensors.
+An STGC for P = 30 and n = 5 is reproduced here:
+ 10000
+ 10100
+ 11100
+ 11110
+ 11010
+ 11000
+ 01000
+ 01010
+ 01110
+ 01111
+ 01101
+ 01100
+ 00100
+ 00101
+ 00111
+ 10111
+ 10110
+ 00110
+ 00010
+ 10010
+ 10011
+ 11011
+ 01011
+ 00011
+ 00001
+ 01001
+ 11001
+ 11101
+ 10101
+ 10001
+Note that each column is a cyclic shift of the first column, and from any row to the next row only one bit changes.[tpl]cite journal | title=Venn Diagram Survey — Symmetric Diagrams | journal= Electronic Journal of Combinatorics | year=2001 | url=http://www.combinatorics.org/Surveys/ds5/VennSymmEJC.html [/tpl]
+The single-track nature (like a code chain) is useful in the fabrication of these wheels (compared to BRGC), as only one track is needed, thus reducing their cost and size.
+The Gray code nature is useful (compared to chain codes, also called De Bruijn sequences), as only one sensor will change at any one time, so the uncertainty during a transition between two discrete states will only be plus or minus one unit of angular measurement the device is capable of resolving.[tpl]cite book | last = Alciatore | first = David G. | author2 = Michael B. Histand |title=Mechatronics | year = 1999 | publisher = McGraw-Hill Education - Europe | isbn = 978-0-07-131444-2 | url = http://mechatronics.colostate.edu/ [/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

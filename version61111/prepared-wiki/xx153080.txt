@@ -1,0 +1,24 @@
+[[Hierarchical modulation]]
+
+CATEGORIES: Quantized radio modulation modes, Radio resource management
+
+Hierarchical modulation, also called layered modulation, is one of the signal processing techniques for multiplexing and modulating multiple data streams into one single symbol stream, where base-layer symbols and enhancement-layer symbols are synchronously overplayed before transmission. 
+Hierarchical modulation is particularly used to mitigate the cliff effect in digital television broadcast, particularly mobile TV, by providing a (lower quality) fallback signal in case of weak signals, allowing graceful degradation instead of complete signal loss. It has been widely proven and included in various standards, such as DVB-T, MediaFLO, UMB (Ultra Mobile Broadband, a new 3.5th generation mobile network standard developed by 3GPP2), and is under study for DVB-H.
+Hierarchical modulation is also taken as one of the practical implementations of superposition precoding, which can help achieve the maximum sum rate of broadcast channels. When hierarchical-modulated signals are transmitted, users with good reception and advanced receivers can demodulate multiple layers. For a user with a conventional receiver or poor reception, it may only demodulate the data stream embedded in the base layer. With hierarchical modulation, a network operator can target users of different types with different services or QoS. 
+However, traditional hierarchical modulation suffers from serious inter-layer interference (ILI) with impact on the achievable symbol rate.
+
+==Example==
+
+For example, the figure depicts a layering scheme with QPSK base layer, and a 16QAM enhancement layer.  The first layer is 2 bits (represented by the green circles).  The signal detector only needs to establish which quadrant the signal is in, to recover the value (which is '10', the green circle in the lower right corner).  In better signal conditions, the detector can establish the phase and amplitude more precisely, to recover four more bits of data ('1101').  Thus, the base layer carries '10', and the enhancement layer carries '1101'.
+
+==Inter-layer interference==
+
+For a hierarchically-modulated symbol with QPSK base layer and 16QAM enhancement layer, the base-layer throughput loss is up to about 1.5bits/symbol with the total receive signal-to-noise ratio (SNR) at about 23 dB, about the minimum needed for the comparable non-hierarchical modulation, 64QAM. But unlayered 16QAM with the same SNR would approach full throughput. This means, due to ILI, about 1.5/4 = 37.5% loss of the base-layer achievable throughput. Furthermore, due to ILI and the imperfect demodulation of base-layer symbols, the demodulation error rate of higher-layer symbols increases too.
+
+==See also==
+
+==References==
+
+==External links==
+
+

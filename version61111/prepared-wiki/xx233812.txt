@@ -1,0 +1,82 @@
+[[Spring Roo]]
+
+CATEGORIES: Free computer libraries, Free software programmed in Java, Java development tools, Java enterprise platform, Web application frameworks
+
+{{Blacklisted-links|1=
+
+Spring Roo is an open source software tool that uses convention-over-configuration principles to provide rapid application development of Java-based enterprise software."InfoWorld: SpringSource CEO to tout Roo, a new Java enhancement" by Paul Krill; Dated 2009-06-01. The resulting applications use common Java technologies such as Spring Framework, Java Persistence API, Java Server Pages, Apache Maven and AspectJ."SD Times: Roo released to handle repetitive Spring tasks" by Alex Handy; Dated 2009-10-19. Spring Roo is a member of the Spring portfolio of projects.
+
+==Motivation and History==
+
+Spring Roo's mission statement is to "fundamentally improve Java developer productivity without compromising engineering integrity or flexibility"."Spring Roo reference documentation", Mission Statement section; Retrieved 2010-2-21.
+The technology was first demonstrated during the opening keynote at the SpringOne Europe developer conference on 27 April 2009, with an initial alpha release concurrently being published. During the keynote an application was built live on-stage that would be used by conference attendees to vote on the preferred name for the project (which at that time was codenamed "Roo" within SpringSource)."Tech Videos: The Future of Java Innovation" by Rod Johnson (CEO of SpringSource); Retrieved 2009-10-17. Ultimately the name "Spring Roo" was preferred over alternatives including Spring Boost, Spring Spark, Spring HyperDrive and Spring Dart."Spring Roo reference documentation", History section; Retrieved 2010-2-21.
+Several releases followed,"InfoQ: Spring Roo 1.0 M1 Released" by Srini Penchikala; Dated 2009-5-31."Jira issue tracking for Spring Roo Project releases"; Retrieved 2010-2-21. with the Roo 1.0.0.RELEASE (general availability) released in December 2009."Spring Roo 1.0 - a RAD tool for Java" by Mitchell Pronschinske; Dated 2010-1-4. In October 2010, Spring Roo 1.1.0.RELEASE was released. The 1.1.0 release moved to an OSGi foundation with associated add-on discovery model, plus added support for incremental database reverse engineering, Spring MVC page complexity reduction, Google Web Toolkit, Google App Engine, Apache Solr, JSON and smaller features like serializable automation."A Big Hop Forward: Spring Roo 1.1.0 Is Released!", by Ben Alex (lead of Spring Roo at SpringSource); Retrieved 2010-10-27. The current Roo project engineers are employed by SpringSource and as such Roo releases typically support the latest available releases of other Spring portfolio projects.
+
+==Standards and Technology Compatibility==
+
+Roo's default installation facilitates the creation of applications that comply with the following standards and major technologies:"TechCast: Spring Roo podcast" by Ken Rimple; Retrieved 2010-2-21.
+The above list can be augmented through additional Roo add-ons, which provide Roo's method of extensibility.
+
+==Implementation==
+
+===User Interface===
+
+Spring Roo's main user interface is a command-line shell. The shell provides both a command-line interface and also a mechanism to host plug-ins (which are called "add-ons" in Roo). One key design goal of Roo is to ensure a user can continue to work in a "natural way", which typically means using their preferred integrated development environment (IDE) or text editor for most tasks. As such Roo is often loaded in a separate window to the IDE or text editor, and will monitor the file system for changes made by the user outside of Roo. A startup-time scan of a user's project is also performed to determine any changes that may have been made while Roo was not running.
+The user interface shell supports extensive usability features including command line completion (i.e. press TAB), online help, hinting (a form of context-sensitive help) and contextual awareness (which provides automatic inference of likely intentions based on recent activity). This allows a user to create a new software project via the Roo shell, or use Roo on an existing project. The following is an example of the commands used by Roo to create a new project and turn it into a WAR file:  
+
+Welcome to Spring Roo. For assistance press TAB or type "hint" then hit ENTER.
+
+roo> project --topLevelPackage com.helloworld
+
+Created /home/guest/hello/pom.xml
+
+Created SRC_MAIN_JAVA
+
+Created SRC_MAIN_RESOURCES
+
+Created SRC_TEST_JAVA
+
+Created SRC_TEST_RESOURCES
+
+Created SRC_MAIN_WEBAPP
+
+Created SRC_MAIN_RESOURCES/META-INF/spring
+
+Created SRC_MAIN_RESOURCES/META-INF/spring/applicationContext.xml
+
+roo> persistence setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+
+Created SRC_MAIN_RESOURCES/META-INF/persistence.xml
+
+Created SRC_MAIN_RESOURCES/META-INF/spring/database.properties
+
+Managed SRC_MAIN_RESOURCES/META-INF/spring/applicationContext.xml
+
+Managed ROOT/pom.xml
+
+roo> perform package
+
+Created ROOT/target/helloworld-1.0.0.war
+
+The above commands did not need to be typed in full, but rather were completed using TAB. Additionally, the "hint" command could have been used to acquire help at any time.
+
+===Base Add-Ons===
+
+There are numerous commands available in Roo, depending on which "base add-ons" (those which ship with Roo) and "third-party add-ons" (those that do not ship with Roo) have been installed. The base add-ons shipping with Roo 1.1.0 include:
+
+===Roo Core Modules===
+
+Roo also includes a core set of modules that provide a hosted execution environment for different add-ons. These major modules include:
+While there are many ways that software can automatically generate code,"InfoQ: Role of Code Generation in Java Development" by Srini Penchikala; Dated 2009-9-3. Roo operates by generating AspectJ inter-type declarations (otherwise known as mixins or introductions). This achieves separation of concerns, as the code maintained by Roo is in a different compilation unit from the code a user writes. This means Roo can incrementally modify the AspectJ inter-type declarations that it needs to and leave all other files intact."InfoQ: Introduction to Spring Roo 1.0.0 Video Presentation", by Ben Alex (lead of Spring Roo at SpringSource); Retrieved 2010-2-21."JAX Italia 2009 Conference: Spring Roo" by Massimiliano Dessì; Retrieved 2010-2-21."Philadelphia Java User Group: Spring Roo" by Ken Rimple; Retrieved 2010-2-21.
+
+==Differentiation==
+
+Spring Roo differentiates from other convention-over-configuration rapid application development tools in the following major ways:"Spring Roo Home Page"; Retrieved 2010-2-21.
+
+==See also==
+
+==References==
+
+==External links==
+
+

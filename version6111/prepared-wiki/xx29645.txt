@@ -1,0 +1,62 @@
+ 16 — type tag indicating [[IA5String]] 
+      (IA5 means the full 7-bit ISO 646 set, including variants, 
+       but is generally US-ASCII)
+ 0e — length in octets of value that follows
+ 41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f — value ("Anybody there?")
+(Note: DER uses a pattern of type-length-value triplets, and uses well known byte constants for encoding type tags)
+So what one actually gets is the string of 21 octets:
+ 30 13 02 01 05 16 0e 41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f 
+The scope of ASN.1 and DER ends here. It is possible to transmit the encoded message to the party by any means (utilizing Transmission Control Protocol (TCP) or any other protocol). The party should be able to decode the octets back using DER.
+
+===Example encoded in XER===
+
+Alternatively, it is possible to encode the same ASN.1 data structure with XML Encoding Rules (XER) to achieve greater human readability "over the wire". It would then appear like the following 108 octets, which includes the spaces used for indentation:
+ 
+ 
+    <trackingNumber>5</trackingNumber>
+    <question>Anybody there?</question>
+
+===Example encoded in PER (unaligned)===
+
+Alternatively, if Packed Encoding Rules are employed, the following 122 bits[tpl]Clarify| reason=It looks like 128 bits not 122| date=January 2013[/tpl] (less than 16 octets) will be produced:
+ 01 05 0e 83 bb ce 2d f9 3c a0 e9 a3 2f 2c af c0 
+In this format, type tags for required elements are not encoded, so it cannot be parsed without knowing the expected schemas used to encode. Additionally, the bytes for the value of the IA5String are packed using 7-bit units instead of 8-bit units, because the encoder knows that IA5String byte values only require 7 bits to encode each of them. However the length bytes are still encoded here, even for the first integer tag 01 (but a PER packer could also drop it if it knows that the allowed value range fits on 8 bits, and it could even compact the single value byte 05 with less than 8 bits, if it knows that allowed values can only fit in a smaller range).
+Note also that the last 6 bits in the encoded PER are padded with null bits in the 6 least significant bits of the last byte c0 : these extra bits may not be transmitted or used for encoding something else if this sequence is inserted as a part of a longer unaligned PER sequence.
+This means that unaligned PER data is essentially an ordered stream of bits, and not an ordered stream of bytes like with aligned PER, and that it will be a bit more complex to decode by software on usual processors because it will require additional contextual bit-shifting and masking and not direct byte addressing (but the same remark would be true with modern processors and memory/storage units whose minimum addressable unit is larger than 1 octet). However modern processors and signal processors include hardware support for fast internal decoding of bit streams with automatic handling of computing units that are crossing the boundaries of addressable storage units (this is needed for efficient processing in data codecs for compression/decompression or with some encryption/decryption algorithms).
+If alignment on octet boundaries was required, an aligned PER encoder would produce:
+ 01 05 0e 41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f 
+(in this case, each octet is padded individually with null bits on their unused most significant bits).
+
+==ASN.1 versus other data structure definition schemes==
+
+Since it is commonly used for defining messages for communication protocols, ASN.1, with its associated encoding rules, results in a binary encoding.
+Other communication protocols, such as Internet protocols HTTP and SMTP, define messages using text tags and values, sometimes based on the Augmented Backus-Naur form (ABNF) notation. The definition also defines the encoding, which is in text.
+There has been much debate over the two approaches, and both have their merits; the ASN.1 approach is believed to be more efficient,[tpl]Citation needed|date=September 2011[/tpl] and with Packed Encoding Rules, certainly provides a more compact encoding. The textual approach is claimed to be easier to implement (through creation and parsing of text strings) and easier to debug with only a text editor. In the case of the Megaco protocol, consensus between the two points of view was not reached and so two encodings, one based on ASN.1 and one on ABNF, were defined.
+The ASN.1 XML Encoding Rules (XER) attempts to bridge the gap by providing a textual encoding of data structures defined using ASN.1 notation. Generic String Encoding Rules were also defined for the sole purpose of presenting and inputting data to/from a user.
+
+==Encoding Control Notation (ECN)==
+
+The Encoding Control Notation (ECN) is a notation to specify specific encodings of ASN.1 types. ECN is useful to describe legacy protocols in ASN.1. It is possible to specify only the encoding of some types and then complete with a standard encoding rules (usually unaligned PER).
+
+==ASN.1 Information Object Class==
+
+Information Object Classes is a concept used in ASN.1 to address specification needs similar to the ones addressed by CORBA/IDL specifications.
+
+==Using ASN.1 in practice==
+
+One may use an ASN compiler which takes as input an ASN.1 specification and generates computer code (for example in the language C) for an equivalent representation of the data structures. This computer code, together with supplied run-time libraries, can then convert encoded data structures to and from the computer language representation.  Alternatively, one can manually write encoding and decoding routines.
+
+==Standards==
+
+Standards describing the ASN.1 notation:
+Standards describing the ASN.1 encoding rules:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

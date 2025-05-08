@@ -1,0 +1,49 @@
+[[Linux Standard Base]]
+
+CATEGORIES: Linux, ISO standards, Linux Foundation, Interfaces of the Linux kernel, Linux APIs
+
+The Linux Standard Base (LSB) is a joint project by several Linux distributions under the organizational structure of the Linux Foundation to standardize the software system structure, including the filesystem hierarchy used in the GNU/Linux  operating system. The LSB is based on the POSIX specification, the Single UNIX Specification, and several other open standards, but extends them in certain areas.
+According to the LSB:
+The LSB compliance may be certified for a product by a certification procedure.
+The LSB specifies for example: standard libraries, a number of commands and utilities that extend the POSIX standard, the layout of the file system hierarchy, run levels, the printing system, including spoolers such as CUPS and tools like Foomatic and several extensions to the X Window System.
+The command lsb_release -a is available in many systems to get the LSB version details, or can be made available by installing lsb-release.
+
+Version history
+
+Backwards compatibility
+
+The LSB is designed to be binary-compatible and produce a stable application binary interface (ABI) for independent software vendors.  To achieve backward compatibility, each subsequent version is purely additive.  In other words, interfaces are only added, not removed.  The LSB adopted an interface deprecation policy to give application developers enough time in case an interface is removed from the LSB. This allows the developer to rely on every interface in the LSB for a known time and also to plan for changes, without being surprised.  Interfaces are only removed after having been marked "deprecated" for at least three major versions, or roughly six years.
+
+ISO standard
+
+The LSB is registered as an official ISO standard. The main parts of it are:
+There is also ISO/IEC TR 24715:2006 which identifies areas of conflict between ISO/IEC 23360 (the Linux Standard Base 3.1 specification) and the ISO/IEC 9945:2003 (POSIX) International Standard.
+ISO/IEC 23360 and ISO/IEC TR 24715 can be freely downloaded from ISO website.
+
+Criticism
+
+The LSB has been criticized for not taking input from projects, most notably the Debian project, outside the sphere of its member companies.
+
+Choice of RPM package format
+
+The LSB specifies that software packages should either be delivered as an LSB-compliant installer,
+This choice of package format precludes the use of the many other, existing package formats not compatible with RPM. To address this, the standard does not dictate what package format the system must use for its own packages, merely that RPM must be supported to allow packages from third-party distributors to be installed on a conforming system.
+
+Limitations on Debian
+
+Debian has included optional support for the LSB early on, at version 1.1 in "woody" (3.0; 2002-07-19), 2.0 in "sarge" (3.1; 2005-06-06), 3.1 in "etch" (4.0; 2007-04-08) and 3.2 in "lenny" (5.0; 2009-02-14). To use foreign LSB-compliant RPM packages, the end-user needs to use Debian's Alien program to transform them into the native package format and then install them.
+The LSB-specified RPM format has a restricted subset of RPM features—to block usage of RPM features that would be untranslatable to . In practice, not all Linux binary packages are necessarily LSB-compliant, so while most can be converted between .deb, this operation is restricted to a subset of packages.
+By using Alien, Debian is LSB-compatible for all intents and purposes, but according to the description of their lsb package, the presence of the package "does not imply that we believe that Debian fully complies with the Linux Standard Base, and should not be construed as a statement that Debian is LSB-compliant."
+In general, Debian does strive to comply with the LSB, but there may be other limitations.
+
+Quality of compliance test suites
+
+Additionally, the compliance test suites have been criticized for being buggy and incomplete—most notably, in 2005 Ulrich Drepper criticized the LSB for poorly written tests which can cause incompatibility between LSB-certified distributions when some implement incorrect behavior to make buggy tests work, while others apply for and receive waivers from complying with the tests.
+
+
+
+
+
+Media
+
+

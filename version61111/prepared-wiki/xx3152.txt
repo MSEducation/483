@@ -1,0 +1,62 @@
+[[Ed (text editor)]]
+
+CATEGORIES: Unix text editors, OS X text editors, Standard Unix programs, Unix SUS2008 utilities, Line editor, 1971 software
+
+ed is a line editor for the Unix operating system. It was one of the first end-user programs hosted on the system and has been standard in Unix-based systems ever since.http://roguelife.org/~fujita/COOKIES/HISTORY/V6/ed.1.htmlIt is included in Linux, NetBSD, FreeBSD and its derivatives like Apple OS X and PC-BSD.
+The original version was written in PDP-11/20 assembler in 1971 by Ken Thompson.
+
+==History and influence==
+
+The editor was originally written in PDP-11/20 assembler in 1971 by Ken Thompson. Many features of ed came from the qed from his  alma mater University of California at BerkeleyD. M. Ritchie and K. L. Thompson, "QED Text Editor", MM-70-1373-3 (June 1970), reprinted as "QED Text Editor Reference Manual", MHCC-004, Murray Hill Computing, Bell Laboratories (October 1972). Thompson was very familiar with qed, and had reimplemented it on the CTSS and Multics systems. His versions of qed were the first to implement regular expressions. Although regular expressions are part of ed, their implementation is considerably less general than that in qed.
+Aspects of ed went on to influence ex, which in turn spawned vi.  The non-interactive Unix command grep was inspired by a common special uses of qed and later ed, where the command g/re/p means globally search for the regular expression re and print the lines containing it.  The Unix stream editor, sed implemented many of the scripting features of qed that were not supported by ed on Unix. In turn sed influenced the design of the programming language AWK – which inspired aspects of Perl.
+
+==Features==
+
+Features of ed include:
+(In)famous for its terseness, ed gives almost no visual feedback. For example, the message that ed will produce in case of error, or when it wants to make sure the user wishes to quit without saving, is "?".  It does not report the current filename or line number, or even display the results of a change to the text, unless requested. Older versions (ca. 1981) did not even ask for confirmation when a quit command was issued without the user saving changes.[tpl]cite journal |title=The truth about UNIX |author=Donald A. Norman |year=1981 |journal=Datamation |url=http://www.ceri.memphis.edu/people/smalley/ESCI7205_misc_files/The_truth_about_Unix_cleaned.pdf[/tpl] This terseness was appropriate in the early versions of Unix, when consoles were teletypes, modems were slow, and memory was precious. As computer technology improved and these constraints were loosened, editors with more visual feedback became the norm.
+In current practice, ed is rarely used interactively, but does find use in some shell scripts.  For interactive use, ed was subsumed by the sam, vi and Emacs editors in the 1980s. ed can be found on virtually every version of Unix and GNU/Linux available, and as such is useful for people who have to work with multiple versions of Unix. If something goes wrong, ed is sometimes the only editor available. This is often the only time when it is used interactively.
+The ed commands are often imitated in other line-based editors. For example, EDLIN in early MS-DOS versions and 32-bit versions of Windows NT has a somewhat similar syntax, and text editors in many MUDs (LPMud and descendants, for example) use ed-like syntax. These editors, however, are typically more limited in function.
+
+==Example==
+
+Here is an example transcript of an ed session. For clarity, commands and text typed by the user are in normal face, and output from ed is emphasized.
+ a
+ ed is the standard Unix text editor.
+ This is line number two.
+ .
+ 2i
+  &nbsp;
+ .
+ %l
+ '''ed is the standard Unix text editor.$'''
+ '''$'''
+ '''This is line number two.$'''
+ 3s/two/three/
+ ,l
+ '''ed is the standard Unix text editor.$'''
+ '''$'''
+ '''This is line number three.$'''
+ w text
+ '''65'''
+ q
+The end result is a simple text file containing the following text:
+ ed is the standard Unix text editor.
+  &nbsp;
+ This is line number three.
+Started with an empty file, the a command appends text (all ed commands are single letters). The command put ed in insert mode, inserting the characters that follow and is terminated by a single dot on a line. The two lines that are entered before the dot end up in the file buffer. The 2i command also goes into insert mode, and will insert the entered text (a single empty line in our case) before line two. All commands may be prefixed by a line number to operate on that line.
+In the line %l, the lowercase L stands for the list command. The command is prefixed by a range, in this case % which is a shortcut for 1,$. A range is two line numbers separated by a comma ($ means the last line). In return, ed lists all lines, from first to last. These lines are ended with dollar signs, so that white space at the end of lines is clearly visible.
+Once the empty line is inserted in line 2, the line which reads "This is line number two." is now actually the third line. This error is corrected with 3s/two/three/, a substitution command. The 3 will apply it to the correct line, following the command is the text to be replaced, and then the replacement. Listing all lines with ,l (a lone comma is also a synonym for %) the line is shown now to be correct.
+w text writes the buffer to the file "text" making ed respond with 65, the number of characters written to the file. q will end an ed session.
+
+==ed as a design archetype==
+
+The influence of ed on later Unix utilities has been noted.  More generally, ed continues to serve as an interface model for programs that must modify record sequences and for which scriptability is extremely important, even when the records bear little resemblance to the text lines manipulated by ed itself.
+Since 2010 one well-known example has been reposurgeon, a scriptable editor/converter for version-control repositories.
+
+==See also==
+
+==Footnotes==
+
+==External links==
+
+

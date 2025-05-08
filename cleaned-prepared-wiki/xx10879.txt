@@ -1,0 +1,69 @@
+[[File:SHA-1.svg|thumbnail|right|300px|One iteration within the SHA-1 compression function: 
+A, B, C, D and E are 32-bit words of the state; 
+F is a nonlinear function that varies; 
+left shiftn denotes a left bit rotation by n places; 
+n varies for each operation; 
+Wt is the expanded message word of round t; 
+Kt is the round constant of round t; 
+SHA-1 produces a message digest based on principles similar to those used by Ronald L. Rivest of MIT in the design of the MD4 and MD5 message digest algorithms, but has a more conservative design.
+The original specification of the algorithm was published in 1993 under the title Secure Hash Standard, FIPS PUB 180, by U.S. government standards agency NIST (National Institute of Standards and Technology). This version is now often named SHA-0. It was withdrawn by the NSA shortly after publication and was superseded by the revised version, published in 1995 in FIPS PUB 180-1 and commonly designated SHA-1. SHA-1 differs from SHA-0 only by a single bitwise rotation in the message schedule of its compression function; this was done, according to the NSA, to correct a flaw in the original algorithm which reduced its cryptographic security. However, the NSA did not provide any further explanation or identify the flaw that was corrected. Weaknesses have subsequently been reported in both SHA-0 and SHA-1. SHA-1 appears to provide greater resistance to attacks , supporting the NSA's assertion that the change increased the security.
+
+Comparison of SHA functions
+
+In the table below, internal state means the "internal hash sum" after each compression of a data block.
+
+Applications
+
+Cryptography
+
+SHA-1 forms part of several widely used security applications and protocols, including TLS and SSL, PGP, SSH, S/MIME, and IPsec. Those applications can also use MD5; both MD5 and SHA-1 are descended from MD4. SHA-1 hashing is also used in distributed revision control systems like Git, Mercurial, and Monotone to identify revisions, and to detect data corruption or tampering. The algorithm has also been used on Nintendo's Wii gaming console for signature verification when booting, but a significant implementation flaw allows for an attacker to bypass the system's security scheme.de/?p=61 Debugmo. Out of the 160 bits of the SHA1-hash, up to 152 bits are thrown away."
+SHA-1 and SHA-2 are the secure hash algorithms required by law for use in certain U.S. Government applications, including use within other cryptographic algorithms and protocols, for the protection of sensitive unclassified information. FIPS PUB 180-1 also encouraged adoption and use of SHA-1 by private and commercial organizations. SHA-1 is being retired from most government uses; the U.S. National Institute of Standards and Technology said, "Federal agencies should stop using SHA-1 for... though that was later relaxed.
+A prime motivation for the publication of the Secure Hash Algorithm was the Digital Signature Standard, in which it is incorporated.
+The SHA hash functions have been used for the basis of the SHACAL block ciphers.
+
+Data integrity
+
+The source control management system Git uses SHA-1 not for security but for ensuring that the data has not changed due to accidental corruption.  Linus Torvalds has said, "If you have disk corruption, if you have DRAM corruption, if you have any kind of problems at all, Git will notice them. It's not a question of if, it's a guarantee. You can have people who try to be malicious. They won't succeed. ... Nobody has been able to break SHA-1, but the point is the SHA-1, as far as Git is concerned, isn't even a security feature. It's purely a consistency check. The security parts are elsewhere, so a lot of people assume that since Git uses SHA-1 and SHA-1 is used for cryptographically secure stuff, they think that, OK, it's a huge security feature. It has nothing at all to do with security, it's just the best hash you can get. ... I guarantee you, if you put your data in Git, you can trust the fact that five years later, after it was converted from your hard disk to DVD to whatever new technology and you copied it along, five years later you can verify that the data you get back out is the exact same data you put in. ... One of the reasons I care is for the kernel, we had a break in on one of the BitKeeper sites where people tried to corrupt the kernel source code repositories." Nonetheless, without second preimage resistance of SHA-1 signed commits and tags would no longer secure the state of the repository as they only sign the root of a Merkle tree.
+
+Cryptanalysis and validation
+
+For a hash function for which L is the number of bits in the message digest, finding a message that corresponds to a given message digest can always be done using a brute force search in approximately 2L evaluations. This is called a preimage attack and may or may not be practical depending on L and the particular computing environment. The second criterion, finding two different messages that produce the same message digest, namely a collision, requires on average only about 1.2 * 2L / 2 evaluations using a birthday attack. For the latter reason the strength of a hash function is usually compared to a symmetric cipher of half the message digest length. Thus SHA-1 was originally thought to have 80-bit strength.
+Cryptographers have produced collision pairs for SHA-0 and have found algorithms that should produce SHA-1 collisions in far fewer than the originally expected 280 evaluations.
+In terms of practical security, a major concern about these new attacks is that they might pave the way to more efficient ones. Whether this is the case is yet to be seen, but a migration to stronger hashes is believed to be prudent. Some of the applications that use cryptographic hashes, like password storage, are only minimally affected by a collision attack. Constructing a password that works for a given account requires a preimage attack, as well as access to the hash of the original password, which may or may not be trivial. Reversing password encryption (e.g. to obtain a password to try against a user's account elsewhere) is not made possible by the attacks. (However, even a secure password hash can't prevent brute-force attacks on weak passwords.)
+In the case of document signing, an attacker could not simply fake a signature from an existing document—the attacker would have to produce a pair of documents, one innocuous and one damaging, and get the private key holder to sign the innocuous document. There are practical circumstances in which this is possible; until the end of 2008, it was possible to create forged SSL certificates using an MD5 collision.[ref]Alexander Sotirov, Marc Stevens,
+Jacob Appelbaum, Arjen Lenstra, David Molnar, Dag Arne Osvik, Benne de Weger, MD5 considered harmful today: Creating a rogue CA certificate, accessed March 29, 2009[/ref]
+
+Attacks
+
+In early 2005, Rijmen and Oswald published an attack on a reduced version of SHA-1—53 out of 80 rounds—which finds collisions with a computational effort of fewer than 280 operations.Cryptology ePrint Archive
+In February 2005, an attack by Xiaoyun Wang, Yiqun Lisa Yin, and Hongbo Yu was announced. The attacks can find collisions in the full version of SHA-1, requiring fewer than 269 operations. (A brute-force search would require 280 operations.)
+The authors write:
+"In particular, our analysis is built upon the original differential attack on SHA-0 , the near collision attack on SHA-0, the multiblock collision techniques, as well as the message modification techniques used in the collision search attack on MD5. Breaking SHA-1 would not be possible without these powerful analytical techniques."MIT.
+The paper with the full attack description was published in August 2005 at the CRYPTO conference.
+In an interview, Yin states that, "Roughly, we exploit the following two weaknesses: One is that the file preprocessing step is not complicated enough; another is that certain math operations in the first 20 rounds have unexpected security problems."Fixing a hole in security | Tech News on ZDNet
+On 17 August 2005, an improvement on the SHA-1 attack was announced on behalf of Xiaoyun Wang, Andrew Yao and Frances Yao at the CRYPTO 2005 rump session, lowering the complexity required for finding a collision in SHA-1 to 263.Notes on the Wang et al. $2^{63}$ SHA-1 Differential Path
+Christophe De Cannière and Christian Rechberger further improved the attack on SHA-1 in "Finding SHA-1 Characteristics: General Results and Applications," receiving the Best Paper Award at ASIACRYPT 2006. A two-block collision for 64-round SHA-1 was presented, found using unoptimized methods with 235 compression function evaluations. Since this attack requires the equivalent of about 235 evaluations, it is considered to be a significant theoretical break. Their attack was extended further to 73 rounds (of 80) in 2010 by Grechnikov. In order to find an actual collision in the full 80 rounds of the hash function, however, massive amounts of computer time are required. To that end, a collision search for SHA-1 using the distributed computing platform BOINC began August 8, 2007, organized by the Graz University of Technology. The effort was abandoned May 12, 2009 due to lack of progress.
+At the Rump Session of CRYPTO 2006, Christian Rechberger and Christophe De Cannière claimed to have discovered a collision attack on SHA-1 that would allow an attacker to select at least parts of the message.SHA-1 hash function under pressure – heise SecurityCrypto 2006 Rump Schedule
+In 2008, an attack methodology by Stéphane Manuel reported hash collisions with an estimated theoretical complexity of 251 to 257 operations. the most efficient disturbance vector is Codeword2 first reported by Jutla and Patthak
+Cameron McDonald, Philip Hawkes and Josef Pieprzyk presented a hash collision attack with claimed complexity 252 at the Rump session of Eurocrypt 2009.International Association for Cryptologic Research
+As of 2012, the most efficient attack against SHA-1 is considered to be the one by Marc StevensCryptanalysis of MD5 & SHA-1 with an estimated cost of $2.77M to break a single hash value by renting CPU power from cloud servers. On 8 November 2010, he claimed he had a fully working near-collision attack against full SHA-1 working with an estimated complexity equivalent to 257.5 SHA-1 compressions. He estimates this attack can be extended to a full collision with a complexity around 261.
+
+SHA-0
+
+At CRYPTO 98, two French researchers, Florent Chabaud and Antoine Joux, presented an attack on SHA-0 (Chabaud and Joux, 1998): collisions can be found with complexity 261, fewer than the 280 for an ideal hash function of the same size.
+In 2004, Biham and Chen found near-collisions for SHA-0—two messages that hash to nearly the same value; in this case, 142 out of the 160 bits are equal. They also found full collisions of SHA-0 reduced to 62 out of its 80 rounds.
+Subsequently, on 12 August 2004, a collision for the full SHA-0 algorithm was announced by Joux, Carribault, Lemuet, and Jalby. This was done by using a generalization of the Chabaud and Joux attack. Finding the collision had complexity 251 and took about 80,000 CPU hours on a supercomputer with 256 Itanium 2 processors. (Equivalent to 13 days of full-time use of the computer.)
+On 17 August 2004, at the Rump Session of CRYPTO 2004, preliminary results were announced by Wang, Feng, Lai, and Yu, about an attack on MD5, SHA-0 and other hash functions. The complexity of their attack on SHA-0 is 240, significantly better than the attack by Joux et al.Freedom to Tinker » Blog Archive » Report from Crypto 2004
+In February 2005, an attack by Xiaoyun Wang, Yiqun Lisa Yin, and Hongbo Yu was announced which could find collisions in SHA-0 in 239 operations.edu.cn, Shandong University
+In light of the results for SHA-0, some experts suggested that plans for the use of SHA-1 in new cryptosystems should be reconsidered. After the CRYPTO 2004 results were published, NIST announced that they planned to phase out the use of SHA-1 by 2010 in favor of the SHA-2 variants.National Institute of Standards and Technology
+
+Official validation
+
+Implementations of all FIPS-approved security functions can be officially validated through the CMVP program, jointly run by the National Institute of Standards and Technology (NIST) and the Communications Security Establishment (CSE). For informal verification, a package to generate a high number of test vectors is made available for download on the NIST site; the resulting verification however does not replace, in any way, the formal CMVP validation, which is required by law for certain applications.
+, there are over 2000 validated implementations of SHA-1, with 14 of them capable of handling messages with a length in bits not a multiple of eight (see SHS Validation List).
+
+Examples and pseudocode
+
+Example hashes
+
+These are examples of SHA-1 message digests in hexadecimal and in Base64 binary to ASCII text encoding.

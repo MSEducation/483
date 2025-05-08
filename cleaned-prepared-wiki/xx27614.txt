@@ -1,0 +1,81 @@
+[[Gamma correction]]
+
+CATEGORIES: Display technology, Science of photography, Power laws
+
+Gamma correction, gamma nonlinearity, gamma encoding, or often simply gamma, is the name of a nonlinear operation used to code and decode luminance or tristimulus values in video or still image systems. Gamma correction is, in the simplest cases, defined by the following power-law expression:
+where  is called a decoding gamma and the application of the expansive power-law nonlinearity is called gamma expansion.
+
+Explanation
+
+Gamma encoding of images is required to compensate for properties of human vision, hence to maximize the use of the bits or bandwidth relative to how humans perceive light and color.  Human vision, under common illumination conditions (not pitch black nor blindingly bright), follows an approximate gamma or power function.  If images are not gamma-encoded, they allocate too many bits or too much bandwidth to highlights that humans cannot differentiate, and too few bits/bandwidth to shadow values that humans are sensitive to and would require more bits/bandwidth to maintain the same visual quality. Frequently Questioned Answers about Gamma.   Gamma encoding of floating-point images is not required (and may be counterproductive), because the floating-point format already provides a piecewise linear approximation of a logarithmic curve. 
+Although gamma encoding was developed originally to compensate for the input–output characteristic of cathode ray tube (CRT) displays, that is not its main purpose or advantage in modern systems. In CRT displays, the light intensity varies nonlinearly with the electron-gun voltage. Altering the input signal by gamma compression can cancel this nonlinearity, such that the output picture has the intended luminance.  However, the gamma characteristics of the display device do not play a factor in the gamma encoding of images and video
+
+Generalized gamma
+
+The concept of gamma can be applied to any nonlinear relationship. For the power-law relationship Vout = Vinγ, the curve on a log–log plot is a straight line, with slope everywhere equal to gamma (slope is represented here by the derivative operator):
+That is, gamma can be visualised as the slope of the input–output curve when plotted on logarithmic axes. For a power-law curve, this slope is constant, but the idea can be extended to any type of curve, in which case gamma (strictly speaking, "point gamma"R.W.G. Hunt, The Reproduction of Colour, 6th Ed, p48) is defined as the slope of the curve in any particular region.
+
+In photography
+
+When a photographic film is exposed to light, the result of the exposure can be represented on a graph showing log of exposure on the horizontal axis, and density, or log of transmittance, on the vertical axis. Such curves are known as  Hurter–Driffield curves.  Since both axes use logarithmic units, the slope of the linear section of the curve is called the gamma of the film. Negative film typically has a gamma less than 1; positive film (slide film, reversal film) typically has a gamma greater than 1.
+Photographic film has a much greater ability to record fine differences in shade than can be reproduced on photographic paper. Similarly, most video screens are not capable of displaying the range of brightnesses (dynamic range) that can be captured by typical electronic cameras.[ref]
+
+</ref>
+For this reason, considerable artistic effort is invested in choosing the reduced form in which the original image should be presented.  The gamma correction, or contrast selection, is part of the photographic repertoire used to adjust the reproduced image.
+Analogously, digital cameras record light using electronic sensors that usually respond linearly. In the process of rendering linear raw data to conventional RGB data (e.g. for storage into JPEG image format), color space transformations and rendering transformations will be performed. In particular, almost all standard RGB color spaces and file formats use a non-linear encoding (a gamma compression) of the intended intensities of the primary colors of the photographic reproduction; in addition, the intended reproduction is almost always nonlinearly related to the measured scene intensities, via a tone reproduction nonlinearity.
+
+Windows, Mac, sRGB and TV/video standard gammas
+
+In most computer systems, images are encoded with a gamma of about 0.45 and decoded with a gamma of 2.2; a notable exception, until the release of Mac OS X 10.6 (Snow Leopard) in September 2009, were Macintosh computers: they used 0.55 and 1.8 respectively. In any case, binary data in still image files (as JPEG) are explicitly encoded (that is, they carry gamma-encoded values, not linear intensities), as are motion picture files (such as MPEG). The system can optionally further manage  both cases, through color management, if a better match to the output device gamma is required.
+The sRGB color space standard used with most cameras, PCs, and printers does not use a simple power-law nonlinearity as above, but has a decoding gamma value near 2.2 over much of its range, as shown in the plot to the right. Below a compressed value of 0.04045 or a linear intensity of 0.00313, the curve is linear (encoded value proportional to intensity), so  power-law curve, for comparison.
+Output to CRT-based television receivers and monitors does not usually require further gamma correction, since the standard video signals that are transmitted or stored in image files incorporate gamma compression that provides a pleasant image after the gamma expansion of the CRT (it is not the exact inverse). For television signals, the actual gamma values are defined by the video standards (NTSC, PAL or SECAM), and are always fixed and well known values.
+
+Power law for video display
+
+A gamma characteristic is a power-law relationship that approximates the relationship between the encoded luma in a television system and the actual desired image luminance.
+With this nonlinear relationship, equal steps in encoded luminance correspond roughly to subjectively equal steps in brightness. Ebner and FairchildFritz Ebner and Mark D Fairchild, "Development and testing of a color space (IPT) with improved hue uniformity," Proceedings of IS&T/SID's Sixth Color Imaging Conference, p 8-13 (1998). used an exponent of 0.43 to convert linear intensity into lightness for neutrals; the reciprocal, approximately 2.33 (quite close to the 2.2 figure cited for a typical display subsystem), would provide optimal perceptual encoding of grays. The following illustration shows the difference between a scale with linearly-increasing encoded luminance signal (linear input) and a scale with linearly-increasing intensity (i.e., gamma-corrected) scale (linear output).
+On most displays (those with gamma of about 2.2), one can observe that the linear-intensity scale has a large jump in perceived brightness between the intensity values 0.0 and 0.1, while the steps at the higher end of the scale are hardly perceptible. The linearly-encoded scale, which has a nonlinearly-increasing intensity, will show much more even steps in perceived brightness.
+A cathode ray tube (CRT), for example, converts a video signal to light in a nonlinear way, because the electron gun's intensity (brightness) as a function of applied video voltage is nonlinear.  The light intensity I is related to the source voltage VS according to
+where γ is the Greek letter gamma.  For a CRT, the gamma that relates brightness to voltage is usually in the range 2.35 to 2.55; video look-up tables in computers usually adjust the system gamma to the range 1.8 to 2.2, which is in the region that makes a uniform encoding difference give approximately uniform perceptual brightness difference, as illustrated in the diagram at the top of this section.
+For simplicity, consider the example of a monochrome CRT.  In this case, when a video signal of 0.5 (representing mid-gray) is fed to the display, the intensity or brightness is about 0.22 (resulting in a dark gray).  Pure black (0.0) and pure white (1.0) are the only shades that are unaffected by gamma.
+To compensate for this effect, the inverse transfer function (gamma correction) is sometimes applied to the video signal so that the end-to-end response is linear.  In other words, the transmitted signal is deliberately distorted so that, after it has been distorted again by the display device, the viewer sees the correct brightness.  The inverse of the function above is:
+where VC is the corrected voltage and VS is the source voltage, for example from an image sensor that converts photocharge linearly to a voltage.  In our CRT example 1/γ is 1/2.2 or 0.45.
+A color CRT receives three video signals (red, green and blue) and in general each color has its own value of gamma, denoted γR, γG or γB.  However, in simple display systems, a single value of γ is used for all three colors.
+Other display devices have different values of gamma: for example, a Game Boy Advance display has a gamma between 3 and 4 depending on lighting conditions. In LCDs such as those on laptop computers, the relation between the signal voltage VS and the intensity I is very nonlinear and cannot be described with gamma value. However, such displays apply a correction onto the signal voltage in order to approximately get a standard .
+The power-law function, or its inverse, has a slope of infinity at zero. This leads to problems in converting from and to a gamma colorspace. For this reason most formally defined colorspaces such as sRGB will define a straight-line segment near zero and add raising  (where K is a constant) to a power so the curve has continuous slope. This straight line does not represent what the CRT does, but does make the rest of the curve more closely match the effect of ambient light on the CRT. In such expressions the exponent is not the gamma; for instance, the sRGB function uses a power of 2.4 in it, but more closely resembles a power-law function with an exponent of 2.2, without a linear portion.
+
+Methods to perform display gamma correction in computing
+
+Up to four elements can be manipulated in order to achieve gamma encoding to correct the image to be shown on a typical 2.2- or 1.8-gamma computer display:
+In a correctly calibrated system, each component will have a specified gamma for its input and/or output encodings. Stages may change the gamma to correct for different requirements, and finally the output device will do gamma decoding or correction as needed, to get to a linear intensity domain. All the encoding and correction methods can be arbitrarily superimposed, without mutual knowledge of this fact among the different elements; if done incorrectly, these conversions can lead to highly distorted results, but if done correctly as dictated by standards and conventions will lead to a properly functioning system.
+In a typical system, for example from camera through JPEG file to display, the role of gamma correction will involve several cooperating parts.  The camera encodes its rendered image into the JPEG file using one of the standard gamma values such as 2.2, for storage and transmission.  The display computer may use a color management engine to convert to a different color space (such as older Macintosh's  color space) before putting pixel values into its video memory.  The monitor may do its own gamma correction to match the CRT gamma to that used by the video system.  Coordinating the components via standard interfaces with default standard gamma values makes it possible to get such system properly configured.
+
+Simple monitor tests
+
+To see whether one's computer monitor is properly hardware adjusted and can display shadow detail in sRGB images properly, they should see the left half of the circle in the large black square very faintly but the right half should be clearly visible.
+If not, one can adjust their monitor's contrast and/or brightness setting. This alters the monitor's perceived gamma. The image is best viewed against a black background. A test page and suggested settings can be found at  Using this will produce the best image on the device but will not guarantee that different devices so adjusted will produce the same result.
+This procedure is not suitable for calibrating or print-proofing a monitor.  It can be useful for making a monitor display sRGB images approximately correctly, on systems in which profiles are not used (for example, the Firefox browser prior to version 3.0 and many others) or in systems that assume untagged source images are in the sRGB colorspace.
+On some operating systems running the X Window System, one can set the gamma correction factor (applied to the existing gamma value) by issuing the command xgamma -gamma 0.9 for setting gamma correction factor to 0.9, and xgamma for querying current value of that factor (the default is 1.0). In Macintosh systems, the gamma and other related screen calibrations are made through the OS control panel. Microsoft Windows versions before Windows Vista lack a first-party developed calibration tool.
+In the test pattern to the right, the linear intensity of each solid bar is the average of the linear intensities in the surrounding striped dither; therefore, ideally, the solid squares and the dithers should appear equally bright in a properly adjusted sRGB system.
+
+Terminology
+
+The term intensity refers strictly to the amount of light that is emitted per unit of time and per unit of surface, in units of lux. Note, however, that in many fields of science this quantity is called luminous emittance, as opposed to luminous intensity, which is a different quantity.  These distinctions, however, are largely irrelevant to gamma compression, which is applicable to any sort of normalized linear intensity-like scale.
+Luminance can mean several things even within the context of video and imaging:
+One contrasts "luminance" in the sense of color (no gamma compression) with "luma" in the sense of video (with gamma compression), and denote luminance by Y and luma by Y′, the prime symbol (′) denoting gamma compression.
+Note that luma is not directly calculated from luminance, it is the (somewhat arbitrary) weighted sum of gamma compressed RGB components.
+Likewise, brightness is sometimes applied to various measures, including light levels, though it more properly applies to a subjective visual attribute.
+Gamma correction is a type of power law function whose exponent is the Greek letter gamma (γ). It should not be confused with the mathematical Gamma function. The lower case gamma, γ, is a parameter of the former; the upper case letter, Γ, is the name of (and symbol used for) the latter (as in Γ(x)). To use the word "function" in conjunction with gamma correction, one may avoid confusion by saying "generalized power law function."
+Without context, a value labeled gamma might be either the encoding or the decoding value. Caution must be taken to correctly interpret the value as that to be applied-to-compensate or to be compensated-by-applying its inverse. In common parlance, in many occasions the decoding value (as 2.2) is employed as if it were the encoding value, instead of its inverse (1/2.2 in this case), which is the real value that must be applied to encode gamma.
+
+
+
+
+
+
+
+General information
+
+Monitor gamma tools
+
+

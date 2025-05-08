@@ -1,0 +1,27 @@
+[[Eigenvalue algorithm]]
+
+CATEGORIES: Numerical linear algebra
+
+In numerical analysis, one of the most important problems is designing efficient and stable algorithms for finding the eigenvalues of a matrix.  These eigenvalue algorithms may also find eigenvectors.
+
+Eigenvalues and eigenvectors
+
+Given an  are a pair obeying the relation[ref]
+</ref>
+where 
+For each eigenvalue  is the dimension of its generalized eigenspace. The latter terminology is justified by the equation
+Any collection of generalized eigenvectors of distinct eigenvalues is linearly independent, so a basis for all of  can be chosen and organized so that
+If these basis vectors are placed as the column vectors of a matrix  to its Jordan normal form:
+where the  otherwise.
+More generally, if . That is, similar matrices have the same eigenvalues.
+
+Normal, hermitian, and real-symmetric matrices
+
+The adjoint . Normal, hermitian, and real-symmetric matrices have several useful properties:
+It is possible for a real or complex matrix to have all real eigenvalues without being hermitian. For example, a real triangular matrix has its eigenvalues along its diagonal, but in general is not symmetric.
+
+Condition number
+
+Any problem of numeric calculation can be viewed as the evaluation of some function ƒ for some input  of the problem is the ratio of the relative error in the function's output to the relative error in the input, and varies with both the function and the input. The condition number describes how error grows during the calculation. Its base-10 logarithm tells how many fewer digits of accuracy exist in the result than existed in the input. The condition number is a best-case scenario. It reflects the instability built into the problem, regardless of how it is solved. No algorithm can ever produce more accurate results than indicated by the condition number, except by chance. However, a poorly designed algorithm may produce significantly worse results. For example, as mentioned below, the problem of finding eigenvalues for normal matrices is always well-conditioned. However, the problem of finding the roots of a polynomial can be very ill-conditioned. Thus eigenvalue algorithms that work by finding the roots of the characteristic polynomial can be ill-conditioned even when the problem is not.
+For the problem of solving the linear equation . For general matrices, the operator norm is often difficult to calculate. For this reason, other matrix norms are commonly used to estimate the condition number.
+For the eigenvalue problem, Bauer and Fike proved that if .[ref]

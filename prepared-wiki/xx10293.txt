@@ -1,0 +1,65 @@
+[[Regular grammar]]
+
+CATEGORIES: Formal languages
+
+In theoretical computer science and formal language theory, a regular grammar is a formal grammar that describes a regular language.
+
+==Strictly regular grammars==
+
+A right regular grammar (also called right linear grammar) is a formal grammar (N, Σ, P, S) such that all the production rules in P are of one of the following forms:
+In a  left regular grammar (also called left linear grammar), all rules obey the forms
+An example of a right regular grammar G with N = {S, A}, Σ = {a, b, c}, P consists of the following rules
+and S is the start symbol. This grammar describes the same language as the regular expression a*bc*, viz. the set of all strings consisting of arbitrary many "a"s, followed by a single "b", followed by arbitrary many "c"s.
+A somewhat longer but more explicit right regular grammar G for the same regular expression is given by N = {S, A, B, C}, Σ = {a, b, c}, where P consists of the following rules:
+…where each uppercase letter corresponds to phrases starting at the next position in the regular expression.
+As an example from the area of programming languages, the set of all strings denoting a floating point number can be described by a right regular grammar G with N = {S, A,B,C,D,E,F}, Σ = {0,1,2,3,4,5,6,7,8,9,+,-,.,e}, where S is the start symbol, and P consists of the following rules:
+|-
+|| S → +A       || A → 0A       || B → 0C       || C → 0C       || D → +E       || E → 0F       || F → 0F
+|-
+|| S → -A || A → 1A || B → 1C || C → 1C || D → -E || E → 1F || F → 1F
+|-
+|| S →  A || A → 2A || B → 2C || C → 2C || D →  E || E → 2F || F → 2F
+|-
+||             || A → 3A || B → 3C || C → 3C ||             || E → 3F || F → 3F
+|-
+||             || A → 4A || B → 4C || C → 4C ||             || E → 4F || F → 4F
+|-
+||             || A → 5A || B → 5C || C → 5C ||             || E → 5F || F → 5F
+|-
+||             || A → 6A || B → 6C || C → 6C ||             || E → 6F || F → 6F
+|-
+||             || A → 7A || B → 7C || C → 7C ||             || E → 7F || F → 7F
+|-
+||             || A → 8A || B → 8C || C → 8C ||             || E → 8F || F → 8F
+|-
+||             || A → 9A || B → 9C || C → 9C ||             || E → 9F || F → 9F
+|-
+||             || A → .B ||             || C → eD ||             ||             || F → ε
+|-
+||             || A →  B ||             || C → ε ||      ||             ||
+|}
+A regular grammar is a left or right regular grammar.
+Some textbooks and articles disallow empty production rules, and assume that the empty string is not present in languages.
+
+==Extended regular grammars==
+
+An extended right regular grammar is one in which all rules obey one of
+Some authors call this type of grammar a right regular grammar (or right linear grammar) and the type above a strictly right regular grammar (or strictly right linear grammar).
+An extended left regular grammar is one in which all rules obey one of
+
+==Expressive power==
+
+There is a direct one-to-one correspondence between the rules of a (strictly) left regular grammar and those of a nondeterministic finite automaton, such that the grammar generates exactly the language the automaton accepts.  Hence, the left regular grammars generate exactly all regular languages.  The right regular grammars describe the reverses of all such languages, that is, exactly the regular languages as well.
+Every strict right regular grammar is extended right regular, while every extended right regular grammar can be made strict by inserting new nonterminals, such that the result generates the same language; hence, extended right regular grammars generate the regular languages as well.  Analogously, so do the extended left regular grammars.
+If empty productions are disallowed, only all regular languages that do not include the empty string can be generated.
+The pumping lemma for regular languages describes an essential property of all regular languages. Informally, it says that all sufficiently long words in a regular language may be pumped — that is, have a middle section of the word repeated an arbitrary number of times — to produce a new word which also lies within the same language. Referring to the above floating-point syntax example, in the derivation of a floating-point number longer than 7 characters,e.g. S → +A → +.B → +.1C → +.14C → +.14eD → +.14e+E → +.14e0F → +.14e+0 one non-terminal symbol must occur twice; hence one of the rules "A → 0A", "C → 0C", ..., "F → 9F" must have been applied; repeating that rule over and over again instead of just once always results in a valid floating-point number.e.g. S → +A → +.B → +.1C → +.14C → +.144C → +.1444C → +.14444C → +.14444eD → +.14444e+E → +.14444e0F → +.14444e+0
+
+==Mixing left and right regular rules==
+
+If mixing of left-regular and right-regular rules is allowed, we still have a linear grammar, but not necessarily a regular one.
+What is more, such a grammar need not generate a regular language: all linear grammars can be easily brought into this form, and hence, such grammars can generate exactly all linear languages, including nonregular ones.
+For instance, the grammar G with N = {S, A}, Σ = {a, b}, P with start symbol S and rules
+
+==See also==
+
+

@@ -1,0 +1,53 @@
+[[Spline (mathematics)]]
+
+CATEGORIES: Splines, Interpolation
+
+In mathematics, a spline is a sufficiently smooth polynomial function that is piecewise-defined, and possesses a high degree of smoothness at the places where the polynomial pieces connect (which are known as knots).[tpl]cite book|author=Judd, Kenneth L.|title=Numerical Methods in Economics|publisher=MIT Press|year=1998|isbn=978-0-262-10071-7|page=225|url=http://books.google.com/books?id=9Wxk_z9HskAC&pg=PA225[/tpl][tpl]cite book|author=Chen, Wai-Kai|title=Feedback, Nonlinear, and Distributed Circuits|publisher=CRC Press|year=2009|isbn=978-1-4200-5881-9|pages=9–20|url=http://books.google.com/books?id=W0dPWAaRx6kC&pg=SA9-PA20[/tpl]
+In interpolating problems, spline interpolation is often preferred to polynomial interpolation because it yields similar results to interpolating with higher degree polynomials while avoiding instability due to Runge's phenomenon. In computer graphics splines are popular curves because of the simplicity of their construction, their ease and accuracy of evaluation, and their capacity to approximate complex shapes through curve fitting and interactive curve design.
+The most commonly used splines are cubic spline, i.e., of order 3—in particular, cubic B-spline and cubic Bézier spline.  They are common, in particular, in spline interpolation simulating the function of flat splines.
+The term spline is adopted from the name of a flexible strip of metal commonly used by draftsmen to assist in drawing curved lines.[tpl]cite book|author=Katz, Mitchell H.|title=Multivariable Analysis: A Practical Guide for Clinicians and Public Health Researchers|publisher=Cambridge University Press|year=2011|isbn=978-0-521-14107-9|page=82|url=http://books.google.com/books?id=-X4G4dHsARQC&pg=PA82[/tpl]
+Splines are curves, which are usually required to be continuous and smooth. Splines are usually defined as piecewise polynomials of degree n with function values and first n-1 derivatives that agree at the points where they join. The abscissa values of the join points are called knots. The term "spline" is also used for polynomials (splines with no knots) and piecewise polynomials with more than one discontinuous derivative. As such, splines with no knots are generally smoother than splines with knots, which are generally smoother than splines with multiple discontinuous derivatives. Splines with few knots are generally smoother than splines with many knots; however, increasing the number of knots usually increases the fit of the spline function to the data. Knots give the curve freedom to bend to more closely follow the data.
+
+==Examples==
+
+A simple example of a quadratic spline (a spline of degree 2) is
+A simple example of a cubic spline is
+as
+and
+An example of using a cubic spline to create a bell shaped curve is the Irwin-Hall distribution polynomials:
+
+==History==
+
+Before computers were used, numerical calculations were done by hand. Functions such as the step function were used but polynomials were generally preferred. With the advent of computers, splines first replaced polynomials in interpolation, and then served in construction of smooth and flexible shapes in computer graphics.Epperson, History of Splines, NA Digest, vol. 98, no. 26, 1998.
+It is commonly accepted that the first mathematical reference to splines is the 1946 paper by Schoenberg,Schoenberg, Contributions to the problem of approximation of equidistant data by analytic functions, Quart. Appl. Math., vol. 4, pp. 45–99 and 112–141, 1946. which is probably the first place that the word "spline" is used in connection with smooth, piecewise polynomial approximation. However, the ideas have their roots in the aircraft and shipbuilding industries. In the foreword to (Bartels et al., 1987),Bartels, Beatty, and Barsky, An Introduction to Splines for Use in Computer Graphics and Geometric Modeling, 1987. Robin Forrest describes "lofting", a technique used in the British aircraft industry during World War II to construct templates for airplanes by passing thin wooden strips (called "splines") through points laid out on the floor of a large design loft, a technique borrowed from ship-hull design. For years the practice of ship design had employed models to design in the small. The successful design was then plotted on graph paper and the key points of the plot were re-plotted on larger graph paper to full size. The thin wooden strips provided an interpolation of the key points into smooth curves. The strips would be held in place at discrete points (using lead weights, called "ducks" by Forrest (see Spline Ducks for illustration); Schoenberg used "dogs" or "rats") and between these points would assume shapes of minimum strain energy. According to Forrest, one possible impetus for a mathematical model for this process was the potential loss of the critical design components for an entire aircraft should the loft be hit by an enemy bomb. This gave rise to "conic lofting", which used conic sections to model the position of the curve between the ducks. Conic lofting was replaced by what we would call splines in the early 1960s based on work by J. C. FergusonFerguson, James C, Multi-variable curve interpolation, J. ACM, vol. 11, no. 2, pp. 221-228, Apr. 1964. at Boeing and (somewhat later) by M.A. Sabin at British Aircraft Corporation.
+The word "spline" was originally in an East Anglian dialect.[tpl]OED|spline[/tpl]
+The use of splines for modeling automobile bodies seems to have several independent beginnings. Credit is claimed on behalf of de Casteljau at Citroën, Pierre Bézier at Renault, and Birkhoff,Birkhoff, Fluid dynamics, reactor computations, and surface representation, in: Steve Nash (ed.), A History of Scientific Computation, 1990. Garabedian, and de Boor at General Motors (see Birkhoff and de Boor, 1965),Birkhoff and de Boor, Piecewise polynomial interpolation and approximation, in: H. L. Garabedian (ed.), Proc. General Motors Symposium of 1964, pp. 164–190. Elsevier, New York and Amsterdam, 1965. all for work occurring in the very early 1960s or late 1950s. At least one of de Casteljau's papers was published, but not widely, in 1959. De Boor's work at General Motors resulted in a number of papers being published in the early 1960s, including some of the fundamental work on B-splines.Davis, B-splines and Geometric design, SIAM News, vol. 29, no. 5, 1997.
+Work was also being done at Pratt & Whitney Aircraft, where two of the authors of the first book-length treatment of splines (Ahlberg et al., 1967)Ahlberg, Nilson, and Walsh, The Theory of Splines and Their Applications (1967) were employed; and the David Taylor Model Basin, by Feodor Theilheimer. The work at General Motors is detailed nicely in Birkhoff (1990) and Young (1997).Young, Garrett Birkhoff and applied mathematics, Notices of the AMS, vol. 44, no. 11, pp. 1446–1449, 1997. Davis (1997) summarizes some of this material.
+
+==Definition==
+
+A spline is a piecewise-polynomial real function
+The restriction of S to an interval i is a polynomial  
+so that  
+
+==Derivation of a cubic spline interpolating between points==
+
+Spline interpolation is one of the most common uses of splines.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+===Theory===
+
+===Excel functions===
+
+===Online utilities===
+
+===Computer code===
+
+

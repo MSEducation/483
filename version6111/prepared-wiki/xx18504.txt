@@ -1,0 +1,16 @@
+[[ROT13]]
+
+CATEGORIES: Classical ciphers
+
+ROT13 ("rotate by 13 places", sometimes hyphenated ROT-13) is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher, developed in ancient Rome.
+In the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption.
+ROT13 is used in online forums as a means of hiding spoilers, punchlines, puzzle solutions, and offensive materials from the casual glance. ROT13 has been described as the "Usenet equivalent of a magazine printing the answer to a quiz upside down".[tpl]Cite web|first=Bruce|last=Horrocks|url=http://groups.google.com/groups?selm=UZ36hgCSoh%24%2BEwqG%40nodomain.nodomain.us |title=UCSM Cabal Circular #207-a |accessdate=17 September 2007 |date=28 June 2003 |work=Usenet group uk.comp.sys.mac (Message ID UZ36hgCSoh$+EwqG@nodomain.nodomain.us) [/tpl] ROT13 has inspired a variety of letter and word games on-line, and is frequently mentioned in newsgroup conversations.
+
+==Description==
+
+Applying ROT13 to a piece of text merely requires examining its alphabetic characters and replacing each one by the letter 13 places further along in the alphabet, wrapping back to the beginning if necessary.[tpl]Cite book|last=Schneier |first=Bruce |authorlink= Bruce Schneier |editor= |others= |title=Applied Cryptography |edition=Second|year=1996|publisher=John Wiley & Sons |isbn= 0-471-11709-9|pages=11 [/tpl]
+A becomes N, B becomes O, and so on up to M, which becomes Z, then the sequence continues at the beginning of the alphabet: N becomes A, O becomes B, and so on to Z, which becomes M. Only those letters which occur in the English alphabet are affected; numbers, symbols, whitespace, and all other characters are left unchanged. Because there are 26 letters in the English alphabet and 26 = 2 × 13, the ROT13 function is its own inverse:
+In other words, two successive applications of ROT13 restore the original text (in mathematics, this is sometimes called an involution; in cryptography, a reciprocal cipher).
+The transformation can be done using a lookup table, such as the following:
+For example, in the following joke, the punchline has been obscured by ROT13:
+ How can you tell an extrovert from an

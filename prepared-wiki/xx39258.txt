@@ -1,0 +1,40 @@
+ C:\> '''[[dir (command)|dir]]'''
+ workreports        <DIR>       Wed Oct 9th   9:01
+ games              <DIR>       Tue Oct 8th  14:32
+ encyclopedia       <DIR>       Mon Oct 1st  10:05
+ text        txt           1903 Thu Oct10th  12:43
+ C:\> '''cd games'''
+ C:\games>
+DOS maintains separate working directories for each lettered drive, and also has the concept of a current working drive. The cd command can be used to change the working directory of the working drive or another lettered drive. Typing the drive letter as a command on its own changes the working drive, e.g. C:; alternatively, cd with the /d switch may be used to change the working drive and that drive's working directory in one step.
+Modern versions of Windows simulate this behaviour for backwards compatibility under cmd.exe.Why does each drive have its own current directory?
+Note that executing cd from the command line with no arguments has different effects in different operating systems. For example, if  cd is executed without arguments in DOS, OS/2, or Windows, the current working directory is displayed. If cd is executed without arguments in Unix, the user is returned to the home directory.
+Executing the cd command within a script or batch file also has different effects in different operating systems. In DOS, the caller's current directory can be directly altered by the batch file's use of this command.  In Unix, the caller's current directory is not altered by the script's invocation of the cd command. This is because in Unix, the script is usually executed within a subshell.
+
+==Options (version specific)==
+
+Application of some options (UNIX)Unix Change Directory Commands
+"cd" by itself or cd ~ will always put you in your home directory.
+"cd ." will leave you in the same directory you are currently in (i.e. your current directory won't change)
+"cd ~username" will put you in username's home directory.
+"cd dir" (without a /) will put you in a subdirectory. for example, if you are in /usr, typing cd bin will put you in /usr/bin, while cd /bin puts you in /bin.
+"cd .." will move you up one directory. So, if you are /usr/bin/tmp, cd .. moves you to /usr/bin, while cd ../.. moves you to /usr (i.e. up two levels). You can use this indirection to access subdirectories too. So, from /usr/bin/tmp, you can use cd ../../local to go to /usr/local.
+"cd -" will switch you to the previous directory (UNIX only). For example, if you are in /usr/bin/tmp, and go to /etc., you can type cd - to go back to /usr/bin/tmp. You can use this to toggle back and forth between two directories.
+
+==How it works==
+
+cd is frequently included built directly into a command-line interpreter. This is the case in most of the Unix shells (Bourne shell, tcsh, bash, etc.), cmd.exe and Windows PowerShell on Windows and COMMAND.COM  on DOS.
+Command line shells on Windows usually use the Windows API to change the current working directory, whereas on Unix systems cd calls the chdir() POSIX C function. This means that when the command is executed, no new process is created to migrate to the other directory as is the case with other commands such as ls. Instead, the shell itself executes this command. This is because, when a new process is created, child process inherits the directory in which the parent process was created. If the cd command inherits the parent process' directory, then the objective of the command cd will never be achieved.
+Windows PowerShell, Microsoft's object-oriented command line shell and scripting language, executes the cd command (cmdlet) within the shell's process. However, since PowerShell is based on the .NET Framework and has a different architecture than previous shells, all of PowerShell's cmdlets like ls, rm etc. run in the shell's process. Of course, this is not true for legacy commands which still run in a separate process.
+
+==Interpreters other than an operating systems shell==
+
+In the File Transfer Protocol, the respective command is spelled CWD in the control stream, but is available as cd in most client command-line programs. Some clients also have the lcd for changing the working directory locally.
+The command also pertains to command-line interpreters of various application software.
+
+==See also==
+
+==References==
+
+==External links==
+
+

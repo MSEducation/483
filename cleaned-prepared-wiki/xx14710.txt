@@ -1,0 +1,38 @@
+[[Metaphone]]
+
+CATEGORIES: Phonetic algorithms
+
+Metaphone is a phonetic algorithm, published by Lawrence Philips in 1990, for indexing words by their English pronunciation. Computer Language, Vol. 7, No. 12 (December), 1990. It fundamentally improves on the Soundex algorithm by using information about variations and inconsistencies in English spelling and pronunciation to produce a more accurate encoding, which does a better job of matching words and names which sound similar. As with Soundex, similar sounding words should share the same keys. Metaphone is available as a built-in operator in a number of systems, including later versions of PHP.  
+The original author later produced a new version of the algorithm, which he named Double Metaphone. Contrary to the original algorithm whose application is limited to English only, this version takes into account spelling peculiarities of a number of other languages. In 2009 Lawrence Philips released a third version, called Metaphone 3, which achieves an accuracy of approximately 99% for English words, non-English words familiar to Americans, and first names and family names commonly found in the United States, having been developed according to modern engineering standards against a test harness of prepared correct encodings.
+
+Procedure
+
+Original Metaphone codes use the 16 consonant symbols 0BFHJKLMNPRSTWXY.sound-ex.  The vowels AEIOU are also used, but only at the beginning of the code.morfoedro.php?n=222&lang=en This table summarizes most of the rules in the original implementation:
+It should be noted, however, that this table does not constitute a complete description of the original Metaphone algorithm, and the algorithm cannot be coded correctly from it. Original Metaphone contained many errors and was superseded by Double Metaphone, and in turn Double Metaphone and original Metaphone were superseded by Metaphone 3, which corrects thousands of miscodings that will be produced by the first two versions.
+To implement Metaphone without purchasing a (source code) copy of Metaphone 3, the best guide would be the reference implementation of Double Metaphone, which may be found here.
+
+Double Metaphone  
+
+The Double Metaphone phonetic encoding algorithm is the second generation of this algorithm. Its implementation was described in the June 2000 issue of C/C++ Users Journal. It makes a number of fundamental design improvements over the original Metaphone algorithm.
+It is called "Double" because it can return both a primary and a secondary code for a string; this accounts for some ambiguous cases as well as for multiple variants of surnames with common ancestry. For example, encoding the name "Smith" yields a primary code of SM0 and a secondary code of XMT, while the name "Schmidt" yields a primary code of XMT and a secondary code of SMT—both have XMT in common.
+Double Metaphone tries to account for myriad irregularities in English of Slavic, Germanic, Celtic, Greek, French, Italian, Spanish, Chinese, and other origin. Thus it uses a much more complex ruleset for coding than its predecessor; for example, it tests for approximately 100 different contexts of the use of the letter C alone.
+
+Metaphone 3
+
+A professional version was released in October 2009, developed by the same author, Lawrence Philips. It is a commercial product but is sold as source code. Metaphone 3 further improves phonetic encoding of words in the English language, non-English words familiar to Americans, and first names and family names commonly found in the United States.B P Pande and Prof. H S Dhami. Article: Application of Natural Language Processing Tools in Stemming. International Journal of Computer Applications 27(6):14-19, August 2011. Published by Foundation of Computer Science, New York, USA. It improves encoding for proper names in particular to a considerable extent.[ref]Best Faces Forward: A Large-scale Study of People Search in the Enterprise
+I Guy, S Ur, I Ronen, S Weber… - 2012 -  The author claims that in general it improves accuracy for all words from the approximately 89% of Double Metaphone to over 99%. Developers can also now set switches in to code to cause the algorithm to encode Metaphone keys 1) taking non-initial vowels into account, as well as 2) encoding voiced and unvoiced consonants differently. This allows the result set to be more closely focused if the developer finds that the search results include too many words that don't resemble the search term closely enough.net/metaphone/ Metaphone 3 is sold as C++, Java, C#, PHP, Perl, and PL/SQL source, as well as Metaphone 3 for Spanish and German available as Java source.amorphics.com/
+
+Common misconceptions
+
+There are a couple of misconceptions about the Metaphone algorithms that should be addressed: 
+This approximate encoding is necessary to account for the way English speakers vary their pronunciations and misspell or otherwise vary words and names they are trying to spell. Vowels, of course, are notoriously highly variable. British speakers often complain that Americans seem to pronounce 'T's the same as 'D'. Consider, also, that all English speakers often pronounce 'Z' where 'S' is spelled, almost always when a noun ending in a voiced consonant or a liquid is pluralized, for example "seasons", "beams", "examples", etc. Not encoding vowels after an initial vowel sound will help to group words where a vowel and a consonant may be transposed in the misspelling or alternative pronunciation.
+
+
+
+
+
+Metaphone Algorithms For Other Languages
+
+
+
+

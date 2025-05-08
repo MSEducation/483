@@ -1,0 +1,69 @@
+[[Obfuscation (software)]]
+
+CATEGORIES: Anti-patterns, Articles with example C code, Obfuscation, Source code
+
+In software development, obfuscation is the deliberate act of creating obfuscated code, i.e. source or machine code that is difficult for humans to understand.
+Programmers may deliberately obfuscate code to conceal its purpose (security through obscurity) or its logic, in order to prevent tampering, deter reverse engineering, or as a puzzle or recreational challenge for someone reading the source code.
+Programs known as obfuscators transform readable code into obfuscated code using various techniques.
+
+==Overview==
+
+The architecture and characteristics of some languages may make them easier to obfuscate than others.[tpl]cite web|last=Binstock |first=Andrew |url=http://web.archive.org/web/20080420165109/http://www.devx.com/microsoftISV/Article/11351 |title=Obfuscation: Cloaking your Code from Prying Eyes |publisher=Web.archive.org |date=2003-03-06 |accessdate=2013-11-25[/tpl][tpl]cite web|last=Atwood |first=Jeff |url=http://www.codinghorror.com/blog/archives/000291.html |title=Jeff Atwood, May 15 2005 |publisher=Codinghorror.com |date=2005-05-15 |accessdate=2013-11-25[/tpl] C,[tpl]cite web|url=http://www.kenter.demon.nl/obfuscate.html |title=Obfuscation |publisher=Kenter.demon.nl |accessdate=2013-11-25[/tpl] C++,[tpl]cite web|url=http://www.dreamincode.net/forums/index.php?showtopic=38102 |title=C++ Tutorials - Obfuscated Code - A Simple Introduction |publisher=DreamInCode.net |accessdate=2013-11-25[/tpl][tpl]cite web|url=http://sites.google.com/site/rcorcs/posts/obfuscatedcode |title=C Tutorials - Obfuscated Code in C |publisher=Sites.google.com |date=2011-07-07 |accessdate=2013-11-25[/tpl] and the Perl programming language[tpl]cite web|author=As of 2013-11-25 18:22 GMT |url=http://www.perlmonks.org/index.pl?node_id=291267 |title=Pe(a)rls in line noise |publisher=Perlmonks.org |accessdate=2013-11-25[/tpl] are some examples of languages easy to obfuscate.
+
+==Recreational obfuscation==
+
+Writing and reading obfuscated source code can be a brain teaser for programmers. A number of programming contests reward the most creatively obfuscated code: the International Obfuscated C Code Contest, Obfuscated Perl Contest, and International Obfuscated Ruby Code Contest.
+Types of obfuscations include simple keyword substitution, use or non-use of whitespace to create artistic effects, and self-generating or heavily compressed programs.
+Short obfuscated Perl programs may be used in signatures of Perl programmers.  These are JAPHs ("Just another Perl hacker").http://rochester.pm.org/talks/japh_discussion.txt
+
+===Examples===
+
+This is a winning entry from the International Obfuscated C Code ContestInternational Obfuscated C Code Contest written by Ian Phillipps in 1988[tpl]cite web|url=http://www.ioccc.org/years.html#1988_phillipps |title="International Obfuscated C Code Winners 1988 - Least likely to compile successfully" |publisher=Ioccc.org |accessdate=2013-11-25[/tpl] and subsequently reverse engineered by Thomas Ball.[tpl]cite web|url=http://research.microsoft.com/~tball/papers/XmasGift/ |title="Reverse Engineering the Twelve Days of Christmas" by Thomas Ball |publisher=Research.microsoft.com |accessdate=2013-11-25[/tpl]
+It is a C program that when compiled and run will generate the 12 verses of The 12 Days of Christmas. It contains all the strings required for the poem in an encoded form within the code.
+A non-winning entry from the same year, the next example illustrates creative use of whitespace; it generates mazes of arbitrary length:Don Libes, Obfuscated C and Other Mysteries, John Wiley & Sons, 1993, pp 425. ISBN 0-471-57805-3
+Modern C compilers don't allow constant strings to be overwritten, which can be avoided by changing "*M" to "M3" and omitting "M=".
+The following example by Óscar Toledo Gutiérrez, Best of Show entry in the 19th IOCCC, implements a 8080 emulator complete with terminal and disk controller, capable of booting CP/M-80 and running CP/M applications,Óscar Toledo Gutiérrez: Intel 8080 emulator. 19th IOCCC. Best of Show.
+An example of a JAPH:
+This slowly displays the text "Just another Perl / Unix hacker", multiple characters at a time, with delays. An explanation can be found here.[tpl]cite web|url=http://perl.plover.com/obfuscated/ |title=Obfuscated Perl Program |publisher=Perl.plover.com |accessdate=2013-11-25[/tpl] 
+Some Python examples can be found in the official Python programming FAQ.
+
+==Disadvantages of obfuscation==
+
+Obfuscation can make reading, writing and reverse-engineering a program difficult and time-consuming, but not necessarily impossible.[tpl]cite web|url=http://www.math.ias.edu/~boaz/Papers/obf_informal.html |title="Can We Obfuscate Programs?" by Boaz Barak |publisher=Math.ias.edu |accessdate=2013-11-25[/tpl] In Java it also limits the use of the Reflection application programming interface on the obfuscated code.[tpl]cite web|url=http://stackoverflow.com/questions/5692191/can-i-always-use-the-reflection-api-if-the-code-is-going-to-be-obfuscated |title=Can I always use the Reflection API if the code is going to be obfuscated? |publisher=Stackoverflow.com |date=2011-04-17 |accessdate=2013-11-25[/tpl] Some anti-virus software, such as AVG, will also alert their users when they land on a site with code obfuscated, as one of the purposes of obfuscation can be to hide malicious code. However, some developers may employ code obfuscation for the purpose of reducing file size or increasing security. The average user may not expect their antivirus software to provide alerts about an otherwise harmless piece of code, especially from trusted corporations, so such a feature may actually serve as a deterrent.
+
+==Obfuscating software==
+
+A variety of tools exists to perform or assist with code obfuscation.
+These include experimental research tools created by academics, hobbyist tools,
+commercial products written by professionals, and open-source software. ABCME is an obfuscation tool that assimilates assembly code to benign software codes.Seyyedhamzeh, Javad, ABCME: A Novel Metamorphic Engine, 17th National Computer Conference, Sharif University, tehran, Iran, 2012
+There also exist deobfuscation tools that attempt to perform the reverse
+transformation.
+Although the majority of commercial obfuscation solutions work by transforming
+either program source
+code,[tpl]cite web|url=http://www.dmoz.org/Computers/Programming/Languages/JavaScript/Tools/Obfuscators/ |title=Open Directory - Computers: Programming: Languages: JavaScript: Tools: Obfuscators |publisher=Dmoz.org |date=2013-08-03 |accessdate=2013-11-25[/tpl][tpl]cite web|url=http://www.dmoz.org/Computers/Programming/Languages/PHP/Development_Tools/Obfuscation_and_Encryption/ |title=Open Directory - Computers: Programming: Languages: PHP: Development Tools: Obfuscation and Encryption |publisher=Dmoz.org |date=2013-09-19 |accessdate=2013-11-25[/tpl] or platform-independent bytecode as used by
+Java[tpl]cite web|url=http://www.dmoz.org/Computers/Programming/Languages/Java/Development_Tools/Obfuscators/ |title=Open Directory - Computers: Programming: Languages: Java: Development Tools: Obfuscators |publisher=Dmoz.org |date=2013-04-09 |accessdate=2013-11-25[/tpl] and
+.NET,[tpl]cite web|url=http://www.dmoz.org/Computers/Programming/Component_Frameworks/NET/Tools/Obfuscators/ |title=Open Directory - Computers: Programming: Component Frameworks: .NET: Tools: Obfuscators |publisher=Dmoz.org |date=2007-01-02 |accessdate=2013-11-25[/tpl] there are also some that work with C and
+C++ - languages that are typically compiled to native code, or work directly on compiled binaries.
+
+==Obfuscation and copyleft licenses==
+
+There has been debate on whether it is illegal to skirt copyleft software licenses by releasing source code in obfuscated form, such as in cases in which the author is less willing to make the source code available. The general consensus was that while unethical, it was not considered a violation. The issue is addressed in the GNU General Public License by defining source code as the "preferred" version of the source code be made available.[tpl]cite web|url=http://lwn.net/Articles/431651/ |title=Reasoning behind the "preferred form of the work for making modifications to it" language in the GPL |publisher=Lwn.net |accessdate=2013-11-25[/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+|last=Mateas
+|first=Michael
+|coauthors=Nick Montfort
+|title=A Box, Darkly: Obfuscation, Weird Languages, and Code Aesthetics
+|booktitle=Proceedings of the 6th Digital Arts and Culture Conference, IT University of Copenhagen, 1–3 December 2005
+|pages=144–153
+|url=http://nickm.com/cis/a_box_darkly.pdf
+}}
+
+==External links==
+
+

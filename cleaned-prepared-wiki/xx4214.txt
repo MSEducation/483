@@ -1,0 +1,52 @@
+[[Heap (data structure)]]
+
+CATEGORIES: Heaps (data structures)
+
+In computer science, a heap is a specialized tree-based data structure that satisfies the heap property: If A is a parent node of B then the key of node A is ordered with respect to the key of node B with the same ordering applying across the heap. Either the keys of parent nodes are always greater than or equal to those of the children and the highest key is in the root node (this kind of heap is called max heap) or the keys of parent nodes are less than or equal to those of the children and the lowest key is in the root node (min heap). Heaps are crucial in several efficient graph algorithms such as Dijkstra's algorithm, and in the sorting algorithm heapsort.  In other words, a binary heap is a complete binary tree which satisfies the heap ordering property. The ordering can be one of two types:
+1. the min-heap property: the value of each node is greater than or equal to the value of its parent, with the minimum-value element at the root.
+2. the max-heap property: the value of each node is less than or equal to the value of its parent, with the maximum-value element at the root.
+Throughout this article the word heap will always refer to a min-heap. In a heap the highest (or lowest) priority element is always stored at the root, hence the name heap. A heap is not a sorted structure and can be regarded as partially ordered. As you see from the Heap-diagram, there is no particular relationship among nodes on any given level, even among the siblings. Since a heap is a complete binary tree, it has a smallest possible height - a heap with N nodes always has O(log N) height. A heap is a useful data structure when you need to remove the object with the highest (or lowest) priority.
+Note that, as shown in the graphic, there is no implied ordering between siblings or cousins and no implied sequence for an in-order traversal (as there would be in, e.g., a binary search tree). The heap relation mentioned above applies only between nodes and their immediate parents. The maximum number of children each node can have depends on the type of heap, but in many types it is at most two, which is known as a "binary heap".
+The heap is one maximally efficient implementation of an abstract data type called a priority queue, and in fact priority queues are often referred to as "heaps", regardless of how they may be implemented. Note that despite the similarity of the name "heap" to "stack" and "queue", the latter two are abstract data types, while a heap is a specific data structure, and "priority queue" is the proper term for the abstract data type.
+A heap data structure should not be confused with the heap which is a common name for the pool of memory from which dynamically allocated memory is allocated. The term was originally used only for the data structure.
+
+Implementation and operations
+
+Heaps are usually implemented in an array, and do not require pointers between elements.
+The operations commonly performed with a heap are:
+Different types of heaps implement the operations in different ways, but notably, insertion is often done by adding the new element at the end of the heap in the first available free space. This will tend to violate the heap property, and so the elements are then reordered until the heap property has been reestablished. Construction of a binary (or d-ary) heap out of a given array of elements may be performed faster than a sequence of consecutive insertions into an originally empty heap using the classic Floyd's algorithm, with the worst-case number of comparisons equal to 2N − 2s2(N) − e2(N) (for a binary heap), where s2(N) is the sum of all digits of the binary representation of N and e2(N) is the exponent of 2 in the prime factorization of N.[ref]
+.</ref>
+
+Variants
+
+Comparison of theoretic bounds for variants
+
+The following time complexities[ref]
+Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest (1990): Introduction to algorithms.
+MIT Press / McGraw-Hill.
+[/ref] are amortized (worst-time) time complexity for entries marked by an asterisk, and regular worst case time complexities for all other entries. O(f) gives asymptotic upper bound and Θ(f) is asymptotically tight bound (see Big O notation). Function names assume a min-heap.
+
+Applications
+
+The heap data structure has many applications.
+ | last = Frederickson | first = Greg N.
+ | contribution = An Optimal Algorithm for Selection in a Min-Heap
+ | doi = 10.1006/inco.1993.1030
+ | pages = 197–214
+ | publisher = Academic Press
+ | title = Information and Computation
+ | volume = 104
+ | issue = 2
+ | year = 1993
+ | url = 
+Full and almost full binary heaps may be represented in a very space-efficient way using an array alone. The first (or last) element will contain the root. The next two elements of the array contain its children. The next four contain the four children of the two child nodes, etc. Thus the children of the node at position n would be at positions 2n and 2n+1 in a one-based array, or 2n+1 and 2n+2 in a zero-based array. This allows moving up or down the tree by doing simple index computations. Balancing a heap is done by swapping elements which are out of order. As we can build a heap from an array without requiring extra memory (for the nodes, for example), heapsort can be used to sort an array in-place.
+
+Implementations
+
+
+
+
+
+
+
+

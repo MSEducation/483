@@ -1,0 +1,88 @@
+[[Robots exclusion standard]]
+
+CATEGORIES: World Wide Web
+
+The Robot Exclusion Standard, also known as the Robots Exclusion Protocol or robots.txt protocol, is a convention to advising cooperating web crawlers and other web robots about accessing all or part of a website which is otherwise publicly viewable. Robots are often used by search engines to categorize and archive web sites, or by webmasters to proofread source code. The standard is different from, but can be used in conjunction with, Sitemaps, a robot inclusion standard for websites.
+
+==History==
+
+The standard was proposed by Martijn Koster,
+when working for Nexor[tpl]cite web|url=http://www.robotstxt.org/orig.html#status |title=The Web Robots Pages |publisher=Robotstxt.org |date=1994-06-30 |accessdate=2013-12-29[/tpl]
+in February, 1994
+on the www-talk mailing list, the main communication channel for WWW-related activities at the time. Charles Stross claims to have provoked Koster to suggest robots.txt, after he wrote a badly-behaved web spider that caused an inadvertent denial of service attack on Koster's server.[tpl]cite web|url=http://www.antipope.org/charlie/blog-static/2009/06/how_i_got_here_in_the_end_part_3.html|title=How I got here in the end, part five: "things can only get better!"|work=Charlie's Diary|date=19 June 2006|accessdate=19 April 2014[/tpl]
+It quickly became a de facto standard that present and future web crawlers were expected to follow; most complied, including those operated by search engines such as WebCrawler, Lycos and AltaVista.[tpl]Citation needed|date=July 2011[/tpl]
+
+==About the standard==
+
+When a site owner wishes to give instructions to web robots they place a text file called robots.txt in the root of the web site hierarchy (e.g. ). This text file contains the instructions in a specific format (see examples below). Robots that choose to follow the instructions try to fetch this file and read the instructions before fetching any other file from the web site. If this file doesn't exist, web robots assume that the web owner wishes to provide no specific instructions, and crawl the entire site.
+A robots.txt file on a website will function as a request that specified robots ignore specified files or directories when crawling a site. This might be, for example, out of a preference for privacy from search engine results, or the belief that the content of the selected directories might be misleading or irrelevant to the categorization of the site as a whole, or out of a desire that an application only operate on certain data. Links to pages listed in robots.txt can still appear in search results if they are linked to from a page that is crawled.[tpl]cite web|url=http://www.youtube.com/watch?v=KBdEwpRQRD0#t=196s |title=Uncrawled URLs in search results |publisher=YouTube |date=Oct 5, 2009 |accessdate=2013-12-29[/tpl]
+A robots.txt file covers one origin.
+For websites with multiple subdomains, each subdomain must have its own robots.txt file. If example.com had a robots.txt file but a.example.com did not, the rules that would apply for example.com would not apply to a.example.com.
+In addition, each protocol and port needs its own robots.txt file;  does not apply to pages under  or .
+Some major search engines following this standard include Ask,[tpl]cite web|title=About Ask.com: Webmasters|url=http://about.ask.com/docs/about/webmasters.shtml|accessdate=16 February 2013[/tpl] AOL,[tpl]cite web|title=About AOL Search|url=http://search.aol.com/aol/about|accessdate=16 February 2013[/tpl] Baidu,[tpl]cite web|title=Baiduspider|url=http://www.baidu.com/search/spider_english.html|accessdate=16 February 2013[/tpl] Bing,[tpl]cite web|url=http://www.bing.com/community/site_blogs/b/webmaster/archive/2008/06/03/robots-exclusion-protocol-joining-together-to-provide-better-documentation.aspx|title=Robots Exclusion Protocol - joining together to provide better documentation|accessdate=16 February 2013[/tpl] Google,[tpl]cite web|url=https://developers.google.com/webmasters/control-crawl-index/docs/robots_txt|title=Google Developers - Robots.txt Specifications|accessdate=16 February 2013[/tpl] Yahoo!,[tpl]cite web|url=http://help.yahoo.com/kb/index?page=content&y=PROD_SRCH&locale=en_US&id=SLN2217&impressions=true|title=Submitting your website to Yahoo! Search|accessdate=16 February 2013[/tpl] and Yandex.[tpl]cite web|url=http://help.yandex.com/webmaster/?id=1113851|title=Using robots.txt|accessdate=16 February 2013[/tpl]
+
+==Disadvantages==
+
+Despite the use of the terms "allow" and "disallow", the protocol is purely advisory.  It relies on the cooperation of the web robot, so that marking an area of a site out of bounds with robots.txt does not guarantee exclusion of all web robots. In particular, malicious web robots are unlikely to honor robots.txt; some may even use the robots.txt as a guide and go straight to the disallowed urls.
+While it is possible to prevent directory searches by anybody including web robots by setting up the security of the server properly, when the disallow directives are provided in the robots.txt file, the existence of these directories is disclosed to everyone.
+There is no official standards body or RFC for the robots.txt protocol. It was created by consensus in June 1994 by members of the robots mailing list (robots-request@nexor.co.uk).http://www.robotstxt.org/wc/norobots.html The information specifying the parts that should not be accessed is specified in a file called robots.txt in the top-level directory of the website.  The robots.txt patterns are matched by simple substring comparisons, so care should be taken to make sure that patterns matching directories have the final '/' character appended, otherwise all files with names starting with that substring will match, rather than just those in the directory intended.
+
+==Alternatives==
+
+Many robots also pass a special user-agent to the web server when fetching content.[tpl]cite web|url=http://www.user-agents.org/ |title=List of User-Agents (Spiders, Robots, Browser) |publisher=User-agents.org |date= |accessdate=2013-12-29[/tpl] A web administrator could also configure the server to automatically return failure (or pass alternative content) when it detects a connection using one of the robots.[tpl]cite web|url=https://httpd.apache.org/docs/2.2/howto/access.html |title=Access Control - Apache HTTP Server |publisher=Httpd.apache.org |date= |accessdate=2013-12-29[/tpl][tpl]cite web|url=http://www.iis.net/configreference/system.webserver/security/requestfiltering/filteringrules/filteringrule/denystrings |title=Deny Strings for Filtering Rules : The Official Microsoft IIS Site |publisher=Iis.net |date=2013-11-06 |accessdate=2013-12-29[/tpl]
+
+==Examples==
+
+This example tells all robots that they can visit all files because the wildcard * specifies all robots:
+The same result can be accomplished with an empty or missing robots.txt file.
+This example tells all robots to stay out of a website:
+This example tells all robots not to enter three directories:
+This example tells all robots to stay away from one specific file:
+Note that all other files in the specified directory will be processed.
+This example tells a specific robot to stay out of a website:
+This example tells a specific robot not to enter one specific directory:
+Example demonstrating how comments can be used:
+It is also possible to list multiple robots with their own rules. The actual robot string is defined by the crawler.  A few sites, such as Google, support several user-agent strings that allow the operator to deny access to a subset of their services by using specific user-agent strings.
+Example demonstrating multiple user-agents:
+
+==Nonstandard extensions==
+
+===Crawl-delay directive===
+
+Several major crawlers support a Crawl-delay parameter, set to the number of seconds to wait between successive requests to the same server:[tpl]cite web|url=http://www.bing.com/community/site_blogs/b/webmaster/archive/2009/08/10/crawl-delay-and-the-bing-crawler-msnbot.aspx|title=Crawl delay and the Bing crawler, MSNBot|author=Rick DeJarnette|date=10 August 2009|accessdate=16 February 2013[/tpl]
+
+===Allow directive===
+
+Some major crawlers support an Allow directive which can counteract a following Disallow directive.
+ This is useful when one tells robots to avoid an entire directory but still wants some HTML documents in that directory crawled and indexed. While by standard implementation the first matching robots.txt pattern always wins, Google's implementation differs in that Allow patterns with equal or more characters in the directive path win over a matching Disallow pattern. Bing uses either the Allow or Disallow directive, whichever is more specific, based on length, like Google.
+In order to be compatible to all robots, if one wants to allow single files inside an otherwise disallowed directory, it is necessary to place the Allow directive(s) first, followed by the Disallow, for example:
+This example will Disallow anything in /directory1/ except /directory1/myfile.html, since the latter will match first. The order is only important to robots that follow the standard; in the case of the Google or Bing bots, the order is not important.
+
+===Sitemap===
+
+Some crawlers support a Sitemap directive, allowing multiple Sitemaps in the same robots.txt in the form:[tpl]cite web |url=http://ysearchblog.com/2007/04/11/webmasters-can-now-auto-discover-with-sitemaps/ |title=Yahoo! Search Blog - Webmasters can now auto-discover with Sitemaps |accessdate=2009-03-23 [/tpl]
+
+===Host===
+
+Some crawlers (Yandex, Google) support a Host directive, allowing websites with multiple mirrors to specify their preferred domain.[tpl]cite web |url=http://help.yandex.com/webmaster/?id=1113851 |title=Yandex - Using robots.txt |accessdate=2013-05-13 [/tpl]
+Or alternatively
+Note: This is not supported by all crawlers and if used, it should be inserted at the bottom of the robots.txt file after Crawl-delay directive.
+
+===Universal "*" match===
+
+The Robot Exclusion Standard does not mention anything about the "*" character in the Disallow: statement. Some crawlers like Googlebot recognize strings containing "*", while MSNbot and Teoma interpret it in different ways.[tpl]cite web |url=http://ghita.org/search-engines-dynamic-content-issues.html |title=Search engines and dynamic content issues |accessdate=2007-04-01 |work=MSNbot issues with robots.txt [/tpl]''
+
+==Meta tags and headers==
+
+In addition to root-level robots.txt files, robots exclusion directives can be applied at a more granular level through the use of Robots meta tags and X-Robots-Tag HTTP headers.[tpl]cite web |url=https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag |title=Robots meta tag and X-Robots-Tag HTTP header specifications - Webmasters — Google Developers [/tpl]
+A "noindex" meta tag:
+A "noindex" HTTP response header:
+The X-Robots-Tag is only effective after the page has been requested and the server responds, and the robots meta tag is only effective after the page has loaded, whereas robots.txt is effective before the page is requested. Also, the robots meta tag only works on HTML pages, not images, text files, PDF documents, etc. Finally, if the pages/resources have already been excluded by a robots.txt file, then they will not be crawled and the meta tags and headers will have no effect. This can have the counterintuitive effect that a web address is indexed by a search engine such as Google if it honors the site's robots.txt, stops crawling and never receives the advice not to index the site.[tpl]cite web|title=Block or remove pages using a robots.txt file|url=https://support.google.com/webmasters/answer/156449?hl=en|publisher=Google|accessdate=16 March 2014[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

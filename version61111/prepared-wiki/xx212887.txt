@@ -1,0 +1,41 @@
+[[ESyPred3D]]
+
+CATEGORIES: Molecular modelling software
+
+ESyPred3D is an automated homology modeling program. The method gets the benefit of the increased alignment performances of an alignment strategy that uses neural networks. Alignments are obtained by combining, weighting and screening the results of several multiple alignment programs. The final three-dimensional structure is built using the modeling package MODELLER.
+
+==Steps==
+
+The usual four steps of homology modeling are executed:
+
+===Template selection===
+
+The template is the first PDB hit found by using maximum four PSI-BLAST iterations in the NCBI nr data bank.
+
+===Sequence alignment===
+
+The query and the template sequences are aligned using a consensus alignment method. Different multiple sequence alignments are built using different alignment programs on two sets of sequences including the query and the template sequence.
+The consensus method is using a neural network to find the best aligned residues and analyzing all possible combinations using a dead end elimination algorithm.
+
+===Model generation and loop modeling===
+
+The final 3D model is build from the target-template alignment and the 3D structure of the template using MODELLER. MODELLER is also used to build the missing loops.
+
+===Model assessment===
+
+The final model is assessed using the PROCHECK program.
+
+==Usage==
+
+ESypred3D has been evaluated in EVA, CASP and CAFASP.
+ESyPred3D is part of some meta-servers: Meta-PP, Genetegrate and PredictProtein.
+The ESyPred3D web server is running about 2600 predictions per month.
+
+==See also==
+
+==References==
+
+==External links==
+
+
+

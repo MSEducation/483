@@ -1,0 +1,164 @@
+[[High-Level Data Link Control]]
+
+CATEGORIES: Link protocols, Logical link control, Telecommunications standards, Networking standards
+
+High-Level Data Link Control (HDLC) is a bit-oriented code-transparent synchronous data link layer protocol developed by the International Organization for Standardization (ISO). The original ISO standards for HDLC are:
+The current standard for HDLC is ISO 13239, which replaces all of those standards.
+HDLC provides both connection-oriented and connectionless service.
+HDLC can be used for point to multipoint connections, but is now used almost exclusively to connect one device to another, using what is known as Asynchronous Balanced Mode (ABM). The original master-slave modes Normal Response Mode (NRM) and Asynchronous Response Mode (ARM) are rarely used.
+
+==History==
+
+HDLC is based on IBM's SDLC protocol, which is the layer 2 protocol for IBM's Systems Network Architecture (SNA).  It was extended and standardized by the ITU as LAP, while ANSI named their essentially identical version ADCCP.
+Derivatives have since appeared in innumerable standards.  It was adopted into the X.25 protocol stack as LAPB, into the V.42 protocol as LAPM, into the Frame Relay protocol stack as LAPF and into the ISDN protocol stack as LAPD.
+HDLC was the inspiration for the IEEE 802.2 LLC protocol, and it is the basis for the framing mechanism used with the PPP on synchronous lines, as used by many servers to connect to a WAN, most commonly the Internet.
+A mildly different version is also used as the control channel for E-carrier (E1) and SONET multichannel telephone lines. Some vendors, such as Cisco, implemented protocols such as Cisco HDLC that used the low-level HDLC framing techniques but added a protocol field to the standard HDLC header. More importantly, HDLC is the default encapsulation for serial interfaces on Cisco routers. It has also been used on Tellabs DXX for destination of Trunk.
+
+==Framing==
+
+HDLC frames can be transmitted over synchronous or asynchronous links. Those links have no mechanism to mark the beginning or end of a frame, so the beginning and end of each frame has to be identified. This is done by using a frame delimiter, or flag, which is a unique sequence of bits that is guaranteed not to be seen inside a frame.  This sequence is '01111110', or, in hexadecimal notation, 0x7E.  Each frame begins and ends with a frame delimiter.  A frame delimiter at the end of a frame may also mark the start of the next frame.  A sequence of 7 or more consecutive 1-bits within a frame will cause the frame to be aborted.
+When no frames are being transmitted on a simplex or full-duplex synchronous link, a frame delimiter is continuously transmitted on the link.  Using the standard NRZI encoding from bits to line levels (0 bit = transition, 1 bit = no transition), this generates one of two continuous waveforms, depending on the initial state:
+This is used by modems to train and synchronize their clocks via phase-locked loops.  Some protocols allow the 0-bit at the end of a frame delimiter to be shared with the start of the next frame delimiter, i.e. '011111101111110'.
+For half-duplex or multi-drop communication, where several transmitters share a line, a receiver on the line will see continuous idling 1-bits in the inter-frame period when no transmitter is active.
+Since the flag sequence could appear in user data, such sequences must be modified during transmission to keep the receiver from detecting a false frame delimiter.
+The receiver must also detect when this has occurred so that the original data stream can be restored before it is passed to higher layer protocols. This can be done using bit stuffing, in which a "0" is added after the occurrence of every "11111" in the data. When the receiver detects these "11111" in the data, it removes the "0" added by the transmitter.
+
+===Synchronous framing===
+
+On synchronous links, this is done with bit stuffing.  Any time that 5 consecutive 1-bits appear in the transmitted data, the data is paused and a 0-bit is transmitted.  This ensures that no more than 5 consecutive 1-bits will be sent.  The receiving device knows this is being done, and after seeing 5 1-bits in a row, a following 0-bit is stripped out of the received data.  If, after 5 consecutive 1-bits, the following bit is also a 1-bit, the receiving device knows that either a flag has been found (if the sixth 1-bit is followed by a 0-bit) or an error has occurred (if the sixth 1-bit is followed by seventh 1-bit). In the latter case, the frame receive procedure, depending on state, is generally either aborted or restarted.
+This also (assuming NRZL with transition for 0 encoding of the output) provides a minimum of one transition per 6 bit times during transmission of data, and one transition per 7 bit times during transmission of flag, so the receiver can stay in sync with the transmitter. Note however, that for new protocols, newer encodings such as 8b/10b encoding are better suited.
+HDLC transmits bytes of data with the least significant bit first (not to be confused with little-endian order, which refers to byte ordering within a multi-byte field).
+
+===Asynchronous framing===
+
+When using asynchronous serial communication such as standard RS-232 serial ports, bits are sent in groups of 8, and bit-stuffing is inconvenient.  Instead they use "control-octet transparency", also called "byte stuffing" or "octet stuffing".  The frame boundary octet is 01111110, (7E in hexadecimal notation).  A "control escape octet", has the bit sequence '01111101', (7D hexadecimal).  If either of these two octets appears in the transmitted data, an escape octet is sent, followed by the original data octet with bit 5 inverted.  For example, the data sequence "01111110" (7E hex) would be transmitted as "01111101 01011110" ("7D 5E" hex).  Other reserved octet values (such as XON or XOFF) can be escaped in the same way if necessary.
+
+==Structure==
+
+The contents of an HDLC frame are shown in the following table:
+Note that the end flag of one frame may be (but does not have to be) the beginning (start) flag of the next frame.
+Data is usually sent in multiples of 8 bits, but only some variants require this; others theoretically permit data alignments on other than 8-bit boundaries.
+The frame check sequence (FCS) is a 16-bit CRC-CCITT or a 32-bit CRC-32 computed over the Address, Control, and Information fields. It provides a means by which the receiver can detect errors that may have been induced during the transmission of the frame, such as lost bits, flipped bits, and extraneous bits. However, given that the algorithms used to calculate the FCS are such that the probability of certain types of transmission errors going undetected increases with the length of the data being checked for errors, the FCS can implicitly limit the practical size of the frame.
+If the receiver's calculation of the FCS does not match that of the sender's, indicating that the frame contains errors, the receiver can either send a negative acknowledge packet to the sender, or send nothing. After either receiving a negative acknowledge packet or timing out waiting for a positive acknowledge packet, the sender can retransmit the failed frame.
+The FCS was implemented because many early communication links had a relatively high bit error rate, and the FCS could readily be computed by simple, fast circuitry or software.  More effective forward error correction schemes are now widely used by other protocols.
+
+==Types of Stations (Computers), and Data Transfer Modes==
+
+Synchronous Data Link Control (SDLC) was originally designed to connect one computer with multiple peripherals.  The original "normal response mode" is a master-slave mode where the computer (or primary terminal) gives each peripheral (secondary terminal) permission to speak in turn.  Because all communication is either to or from the primary terminal, frames include only one address, that of the secondary terminal; the primary terminal is not assigned an address.  There is also a strong distinction between commands sent by the primary to a secondary, and responses sent by a secondary to the primary.  Commands and responses are in fact indistinguishable; the only difference is the direction in which they are transmitted.
+Normal response mode allows operation over half-duplex communication links, as long as the primary is aware that it
+may not transmit when it has given permission to a secondary.
+Asynchronous response mode is an HDLC addition[tpl]harv|Friend|1988|p=191[/tpl] for use over full-duplex links.  While retaining the primary/secondary distinction, it allows the secondary to transmit at any time.
+Asynchronous balanced mode added the concept of a combined terminal which can act as both a primary and a secondary.  There are some subtleties about this mode of operation; while many features of the protocol do not care whether they are in a command or response frame, some do, and the address field of a received frame must be examined to determine whether it contains a command (the address received is ours) or a response (the address received is that of the other terminal).
+Some HDLC variants extend the address field to include both source and destination addresses, or an explicit command/response bit.
+
+==HDLC Operations, and Frame Types==
+
+There are three fundamental types of HDLC frames.
+
+===Control Field===
+
+The general format of the control field is:
+There are also extended (2-byte) forms of I and S frames.  Again, the least significant bit (rightmost in this table) is sent first.
+
+===The P/F bit===
+
+Poll/Final is a single bit with two names. It is called Poll when set by the primary station to obtain a response from a secondary station, and Final when set by the secondary station to indicate a response or the end of transmission.  In all other cases, the bit is clear.
+The bit is used as a token that is passed back and forth between the stations.  Only one token should exist at a time.  The secondary only sends a Final when it has received a Poll from the primary.  The primary only sends a Poll when it has received a Final back from the secondary, or after a timeout indicating that the bit has been lost.
+When operating as a combined station, it is important to maintain the distinction between P and F bits, because there may be two checkpoint cycles operating simultaneously.  A P bit arriving in a command from the remote station is not in response to our P bit; only an F bit arriving in a response is.
+
+===N(R), the receive sequence number===
+
+Both I and S frames contain a receive sequence number N(R).
+N(R) provides a positive acknowledgement for the receipt of I-frames from the other side of the link.
+Its value is always the first frame not received; it acknowledges that all frames with N(S) values up to N(R)-1 (modulo 8 or modulo 128) have been received and indicates the N(S) of the next frame it expects to receive.
+N(R) operates the same way whether it is part of a command or response.  A combined station only has
+one sequence number space.
+
+===N(S), the sequence number of the sent frame===
+
+This is incremented for successive I-frames, modulo 8 or modulo 128. Depending on the number of bits in the sequence number, up to 7 or 127 I-frames may be awaiting acknowledgment at any time.
+
+===I-Frames (user data)===
+
+Information frames, or I-frames, transport user data from the network layer. In addition they also include flow and error control information piggybacked on data. The sub-fields in the control field define these functions.
+The least significant bit (first transmitted) defines the frame type. 0 means an I-frame.
+Except for the interpretation of the P/F field, there is no difference between a command I frame and a response I frame; when P/F is 0, the two forms are exactly equivalent.
+
+===S-Frames (control)===
+
+Supervisory Frames, or S-frames, are used for flow and error control whenever piggybacking is impossible or inappropriate, such as when a station does not have data to send.  S-frames do not have information fields.
+The S-frame control field includes a leading "10" indicating that it is an S-frame.  This is followed by a 2-bit type, a poll/final bit, and a sequence number.  If 7-bit sequence numbers are used, there is also a 4-bit padding field.
+The first 2 bits mean it is an S-frame.  All S frames include a P/F bit and a receive sequence number as described above.  Except for the interpretation of the P/F field, there is no difference between a command S frame and a response S frame; when P/F is 0, the two forms are exactly equivalent.
+1|0 |S|S|P(F)|N(R)|
+The 2-bit type field encodes the type of S frame.
+
+====Receive Ready (RR)====
+
+====Receive Not Ready (RNR)====
+
+====Reject (REJ)====
+
+====Selective Reject (SREJ)====
+
+===U-Frames===
+
+Unnumbered frames, or U-frames, are used for link management, and can also be used to transfer user data. They  exchange session management and control information between connected devices, and some U-frames contain an information field, used for system management information or user data.
+The first 2 bits (11) mean it is a U-frame. The 5 type bits (2 before P/F bit and 3 bit after P/F bit) can create 32 different types of U-frame
+
+==Link Configurations==
+
+Link configurations can be categorized as being either:
+The three link configurations are:
+An additional link configuration is Disconnected mode.  This is the mode that a secondary station is in before it is initialized by the primary, or when it is explicitly disconnected.  In this mode, the secondary responds to almost every frame other than a mode set command with a "Disconnected mode" response.  The purpose of this mode is to allow the primary to reliably detect a secondary being powered off or otherwise reset..
+
+==HDLC Command and response repertoire==
+
+===Basic Operations===
+
+The HDLC module on the other end transmits (UA) frame when the request is accepted. And if the request is rejected it sends (DM) disconnect mode frame.
+
+===Functional Extensions (Options)===
+
+==HDLC Command/Response Repertoire==
+
+===Unnumbered Frames===
+
+Unnumbered frames are identified by the low two bits being 1.  With the P/F flag, that leaves 5 bits as a frame type.  Even though fewer than 32 values are in use, some types have different meanings depending on the direction they are sent: as a request or as a response.  The relationship between the DISC (disconnect) command and the RD (request disconnect) response seems clear enough, but the reason for making SARM command numerically equal to the DM response is obscure.
+The UI, XID and TEST frames contain a payload, and can be used as both commands and responses.
+The FRMR frame contains a payload describing the unacceptable frame.  The first 1 or 2 bytes are a copy of the rejected control field, the next 1 or 2 contain the current send and receive sequence numbers, and the following 4 or 5 bits indicate the reason for the rejection.
+
+==See also==
+
+==Notes==
+
+==References==
+
+|last=Friend
+|first=George E.
+|coauthors=John L. Fike, H. Charles Baker, John C. Bellamy
+|title=Understanding Data Communications
+|edition=2nd
+|year=1988
+|publisher=Howard W. Sams & Company
+|location=Indianapolis
+|isbn=0-672-27270-9}}
+|last=Stallings
+|first=William
+|title=Data and Computer Communications
+|edition=7th
+|year=2004
+|publisher=Pearson/Prentice Hall
+|location=Upper Saddle River
+|isbn=978-0-13-100681-2}}
+|last=S. Tanenbaum
+|first=Andrew 
+|title=Computer Networks
+|edition=4th
+|year=2005
+|publisher=Dorling Kindersley(India)Pvt. Ltd.,licenses of Pearson Education in South Asia
+|location=482,F.I.E., Patparganj, Delhi 110 092
+|isbn=81-7758-165-1}}
+
+==External links==
+
+

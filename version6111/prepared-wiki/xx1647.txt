@@ -1,0 +1,79 @@
+</ref>  In 1986, [[Doug Lenat]] estimated the effort to complete Cyc would be 250,000 rules and 350 [[man-year]]s of effort.<ref>
+</ref> 
+The Cyc Project was spun off into Cycorp, Inc. in Austin, Texas in 1994.
+The name "Cyc" (from "encyclopedia", pronounced [tpl]IPA|saɪk[/tpl] like syke) is a registered trademark owned by Cycorp. The original knowledge base is proprietary, but a smaller version of the knowledge base, intended to establish a common vocabulary for automatic reasoning, was released as OpenCyc under an open source (Apache) license. More recently, Cyc has been made available to AI researchers under a research-purposes license as ResearchCyc.
+Typical pieces of knowledge represented in the database are "Every tree is a plant" and "Plants die eventually". When asked whether trees die, the inference engine can draw the obvious conclusion and answer the question correctly. The Knowledge Base (KB) contains over one million human-defined assertions, rules or common sense ideas. These are formulated in the language CycL, which is based on predicate calculus and has a syntax similar to that of the Lisp programming language.
+Much of the current work on the Cyc project continues to be knowledge engineering, representing facts about the world by hand, and implementing efficient inference mechanisms on that knowledge. Increasingly, however, work at Cycorp involves giving the Cyc system the ability to communicate with end users in natural language, and to assist with the knowledge formation process via machine learning.
+Like many companies, Cycorp has ambitions to use the  Cyc natural language understanding tools  to parse the entire internet to extract structured data.[tpl]cite web|url=http://www.cyc.com/cyc/cycrandd/areasofrandd_dir/is|title=Cyc R&D|accessdate=2009-02-19[/tpl]
+In 2008, Cyc resources were mapped to many Wikipedia articles,[tpl]cite web|url=http://researchcommons.waikato.ac.nz/bitstream/handle/10289/2150/Medelyan_Legg_Wikiai08.pdf?sequence=1|title=Integrating Cyc and Wikipedia: Folksonomy meets rigorously defined common-sense |accessdate=2013-05-10[/tpl] potentially easing connecting with other open datasets like DBpedia and Freebase.
+
+==Knowledge base==
+
+The concept names in Cyc are known as constants. Constants start with an optional "#$" and are case-sensitive. There are constants for:
+The most important predicates are #$isa and #$genls. The first one describes that one item is an instance of some collection, the second one that one collection is a subcollection of another one. Facts about concepts are asserted using certain CycL sentences. Predicates are written before their arguments, in parentheses:
+  (#$isa #$BillClinton #$UnitedStatesPresident)
+"Bill Clinton belongs to the collection of U.S. presidents" and
+  (#$genls #$Tree-ThePlant #$Plant)
+"All trees are plants".
+  (#$capitalCity #$France #$Paris)
+"Paris is the capital of France."
+Sentences can also contain variables, strings starting with "?". These sentences are called "rules". One important rule asserted about the #$isa predicate reads
+ (#$implies
+    (#$and   
+      (#$isa ?OBJ ?SUBSET)
+      (#$genls ?SUBSET ?SUPERSET))
+    (#$isa ?OBJ ?SUPERSET))
+with the interpretation "if OBJ is an instance of the collection SUBSET and SUBSET is a subcollection of SUPERSET, then OBJ is an instance of the collection SUPERSET". Another typical example is
+  (#$relationAllExists #$biologicalMother #$ChordataPhylum #$FemaleAnimal)
+which means that for every instance of the collection #$ChordataPhylum (i.e. for every chordate), there exists a female animal (instance of #$FemaleAnimal) which is its mother (described by the predicate #$biologicalMother).
+The knowledge base is divided into microtheories (Mt), collections of concepts and facts typically pertaining to one particular realm of knowledge. Unlike the knowledge base as a whole, each microtheory is required to be free from contradictions. Each microtheory has a name which is a regular constant; microtheory constants contain the string "Mt" by convention. An example is #$MathMt, the microtheory containing mathematical knowledge. The microtheories can inherit from each other and are organized in a hierarchy:
+one specialization of #$MathMt is #$GeometryGMt, the microtheory about geometry.
+
+==Inference engine==
+
+An inference engine is a computer program that tries to derive answers from a knowledge base.
+The Cyc inference engine performs general logical deduction (including modus ponens, modus tollens, universal quantification and existential quantification).[tpl]cite web|url=http://www.cyc.com/cyc/technology/technology/whatiscyc_dir/howdoescycreason|title=cyc Inference engine|accessdate=2009-02-19[/tpl]
+
+==Releases==
+
+===OpenCyc===
+
+The latest version of OpenCyc, 4.0, was released in June 2012. OpenCyc 4.0 includes the entire Cyc ontology containing hundreds of thousands of terms, along with millions of assertions relating the terms to each other; however, these are mainly taxonomic assertions, not the complex rules available in Cyc. The knowledge base contains 239,000 concepts and 2,093,000 facts and can be browsed on the OpenCyc website.
+The first version of OpenCyc was released in spring 2002 and contained only 6,000 concepts and 60,000 facts.  The knowledge base is released under the Apache License. Cycorp has stated its intention to release OpenCyc under parallel, unrestricted licences to meet the needs of its users. The CycL and SubL interpreter (the program that allows you to browse and edit the database as well as to draw inferences) is released free of charge, but only as a binary, without source code. It is available for Linux and Microsoft Windows. The open source TexaiThe open source Texai project project has released the RDF-compatible content extracted from OpenCyc.Texai SourceForge project files
+
+===ResearchCyc===
+
+In July 2006, Cycorp released the executable of ResearchCyc 1.0, a version of Cyc aimed at the research community, at no charge. (ResearchCyc was in beta stage of development during all of 2004; a beta version was released in February 2005.) In addition to the taxonomic information contained in OpenCyc, ResearchCyc includes significantly more semantic knowledge (i.e., additional facts) about the concepts in its knowledge base, and includes a large lexicon, English parsing and generation tools, and Java based interfaces for knowledge editing and querying.
+
+==Applications==
+
+===Terrorism Knowledge Base===
+
+The comprehensive Terrorism Knowledge Base is an application of Cyc in development that will try to ultimately contain all relevant knowledge about "terrorist" groups, their members, leaders, ideology, founders, sponsors, affiliations, facilities, locations, finances, capabilities, intentions, behaviors, tactics, and full descriptions of specific terrorist events. The knowledge is stored as statements in mathematical logic, suitable for computer understanding and reasoning.[tpl]cite web|url=http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.70.9247&rep=rep1&type=pdf|title=The Comprehensive Terrorism Knowledge Base in Cyc |accessdate=2013-12-05[/tpl]
+
+===Cyclopedia===
+
+Cyclopedia is being developed; it superimposes Cyc keywords on pages taken from Wikipedia pages.[tpl]cite web|url=http://wiki.dbpedia.org/OpenCyc|title=DBpedia and (Open-)Cyc|accessdate=2009-06-09[/tpl]Cyclopedia Sampleshowing cyc highlighted cyc concept for family
+
+===Cleveland Clinic Foundation===
+
+The Cleveland Clinic has used Cyc to develop a natural language query interface of biomedical information.http://www.w3.org/2001/sw/sweo/public/UseCases/ClevelandClinic/
+The query is parsed into a set of CycL (higher-order logic) fragments with open variables, then after applying various constraints (medical domain knowledge, common sense, discourse pragmatics, syntax), there is a way to fit those fragments together, one semantically meaningful formal query.http://www.aaai.org/ojs/index.php/aimagazine/article/viewArticle/2299
+
+==Criticisms==
+
+The Cyc project has been described as "one of the most controversial endeavors of the artificial intelligence history",[tpl]harvnb|Bertino|Piero|Zarri|2001|p=275[/tpl] so it has inevitably garnered criticism.  Criticisms include:
+
+==Notable Employees (Current and Former)==
+
+This is a list of notable people who have worked on Cyc either as employees of MCC (where Cyc was first started) or Cycorp.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

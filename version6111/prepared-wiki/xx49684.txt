@@ -1,0 +1,68 @@
+[[Simpson's rule]]
+
+CATEGORIES: Integral calculus, Numerical integration (quadrature), Numerical analysis, Articles with example Python code
+
+In numerical analysis, Simpson's  rule is a method for numerical integration, the numerical approximation of definite integrals. Specifically, it is the following approximation:
+Simpson's rule also corresponds to the three-point Newton-Cotes quadrature rule.
+The method is credited to the mathematician Thomas Simpson (1710–1761) of Leicestershire, England. Kepler used similar formulas over 100 years prior. In German, the method is sometimes called Keplersche Fassregel for this reason.
+Simpson's rule is a staple of scientific data analysis and engineering.[tpl]fact|date=February 2014[/tpl]
+
+==Derivation==
+
+Simpson's rule can be derived in various ways.
+
+===Quadratic interpolation===
+
+An easy (albeit tedious) calculation shows that
+
+===Averaging the midpoint and the trapezoidal rules===
+
+Another derivation constructs Simpson's rule from two simpler approximations: the midpoint rule
+and the trapezoidal rule
+The errors in these approximations are
+This weighted average is exactly Simpson's rule.
+Using another approximation (for example, the trapezoidal rule with twice as many points), it is possible to take a suitable weighted average and eliminate another error term.  This is Romberg's method.
+
+===Undetermined coefficients===
+
+The third derivation starts from the ansatz
+The coefficients α, β and γ can be fixed by requiring that this approximation be exact for all quadratic polynomials. This yields Simpson's rule.
+
+==Error==
+
+The error in approximating an integral by Simpson's rule is
+
+==Composite Simpson's rule==
+
+The error committed by the composite Simpson's rule is bounded (in absolute value) by
+
+==Alternative extended Simpson's rule==
+
+This is another formulation of a composite Simpson's rule: instead of applying Simpson's rule to disjoint segments of the integral to be approximated, Simpson's rule is applied to overlapping segments, yielding:Press (1989), p. 122
+The formula above is obtained by combining the original composite Simpson's rule with the one consisting in using Simpson's 3/8 rule in the extreme subintervals and the standard 3-point rule in the remaining subintervals. The result is then obtained by taking the mean of the two formulas.
+
+==Simpson's 3/8 rule==
+
+Simpson's 3/8 rule is another method for numerical integration proposed by Thomas Simpson. It is based upon a cubic interpolation rather than a quadratic interpolation. Simpson's 3/8 rule is as follows:
+where b - a = 3h. The error of this method is:
+A further generalization of this concept for interpolation with arbitrary degree polynomials are the Newton–Cotes formulas.
+
+==Simpson's 3/8 rule (for n intervals)==
+
+Defining,
+we have
+A simplified version of Simpson's rules are used in naval architecture. The 3/8th rule is also called Simpson's Second Rule.
+
+==Sample implementation==
+
+An implementation of the composite Simpson's rule in Python 2:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

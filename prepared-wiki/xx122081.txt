@@ -1,0 +1,57 @@
+[[C-treeACE]]
+
+CATEGORIES: Database engines, NoSQL, Proprietary database management systems
+
+c-treeACE is a cross-platform database engine developed by FairCom Corporation. Software developers  typically embed the c-treeACE engine within the applications that they create and then deploy the application and engine together as an integrated solution.  
+At its core, c-treeACE uses a record-oriented, Indexed Sequential Access Method (ISAM) structure offering high speed indexing mechanisms over those files. Developers can use these direct access methods to design the data and index structures that closely parallel the needs of their application. This paradigm is sometimes referred to as an application-specific database[tpl]cite web|title=Application-Specific Databases|publisher=SD Times|url=http://www.sdtimes.com/link/26632|work=SD|accessdate=25 August 2011[/tpl]  or an embedded database because of the tightly coupled nature of the application and database. 
+The nature of c-treeACE allows it to be used in a range of products including:  embedded systems that require limited disk and memory footprint and silent operation; shrink-wrap products developed by ISVs that require cross-platform support, minimal maintenance, and mass deployment; and enterprise systems that depend on performance and more precision control of database operations than a traditional enterprise database offers.
+Two versions of the product are available. c-treeACE Express is freely available for development from FairCom's web site and supports only the client/server architecture. The client-side libraries are precompiled, making it easy to use for evaluation. c-treeACE Professional is licensed separately and supports all architectures and includes full source code for the client libraries and much of the source code for the server.
+
+==Features==
+
+c-treeACE offers support for the following features:
+
+==APIs==
+
+c-treeACE has a layered system architecture with different application programming interfaces (APIs) available to the developer at each layer. The lower layers have proprietary APIs that allow more direct control of data and index manipulation at the expense of added complexity whereas higher layers offer more industry standard APIs but may offer less precise control. Software developers can chose to use one API for the application or use multiple APIs concurrently.[tpl]cite web|title=FairCom Marries Speed of ISAM With Standard SQL|publisher=SD Times|url=http://www.sdtimes.com/link/27328|accessdate=2011-08-25[/tpl]
+Underpinning c-treeACE is an ISAM engine. Developers can use a native C API to access the engine directly. Because the ISAM API can be used to create applications with non-relational data structures, c-treeACE can be included as part of the NoSQL class of databases. Here, because the software can also be used to create databases that are in fact SQL/relational  (particularly with the SQL layer discussed below), NoSQL would refer to a database offering "Not Only SQL" rather than one that excludes SQL.
+The next layer up is what FairCom terms the 'c-treeDB' layer. Interfaces at this layer include C and C++ APIs, VCL components for use with Delphi and C++Builder, and .NET components. In this layer, the data begins to take on a more 
+Finally there is an optional SQL layer that allows SQL-92 compliant access to the database engine. At this layer, there are multiple API choices including an ADO.NET data provider, Type 4 JDBC driver, ODBC driver, PHP interface, DbExpress driver for Delphi and C++ Builder. Stored procedures—written in Java for cross-platform portability—are included at the SQL layer.
+
+==Architecture Choices==
+
+c-treeACE includes several different architectures or operational models for developers to choose from.[tpl]cite web|title=c-treeACE Professional Operational    Models|publisher=FairCom|url=http://www.faircom.com/ace/ace_models_t.php|accessdate=2011-08-25[/tpl]
+
+===Client/Server===
+
+The client/server model available with c-treeACE uses a typical client/server database architecture. The client-side libraries are compiled into the application and then communicate with the server component (identified as the c-treeACE Server in FairCom parlance). The c-treeACE Express package that FairCom makes freely available for development via its web site supports only this model. FairCom offers licenses to the server component for both ISAM servers (supporting the ISAM and c-treeDB APIs) and SQL servers (supporting all APIs, including SQL).
+
+===Embedded Server===
+
+This model is the same as the client/server model above, but the entire server engine can be dynamically linked directly with the application. When practical, this approach can be beneficial by avoiding interprocess communication between the client and server. The communication instead takes place across the stack.
+
+===Standalone===
+
+In the standalone models, there is no separate server process to which applications communicate. Instead, a standalone library is built using c-treeACE and linked to the application. Data management operations are performed via one of the record-oriented APIs which then use the native runtime library routines. 
+Both single user and multiuser libraries can be built with c-treeACE. The multiuser support is a shared-file mode implementation where the operating system provides the locking rather than the server process. Resource contention can become an issue with the standalone multiuser model as concurrency requirements and network operations increase.
+The features available with these models are significantly limited as compared to the client/server model. Neither the single user nor multiuser standalone models support SQL APIs, stored procedures, triggers, user defined functions,  replication, realtime backup, automatic recovery, encryption, memory files, or partitioned files. Although there is support for transaction processing and data/index caching with the single user libraries, there is no support with the multiuser libraries..
+
+===Hybrid===
+
+A hybrid model exists that FairCom calls LOCLIB which allows a client to perform both local data storage via a standalone library as well as client/server access.
+
+==Platforms==
+
+c-treeACE natively supports the following operating systems:[tpl]cite web|title=Cross Platform Support|publisher=FairCom|url=http://www.faircom.com/ace/ace_cross_platform_t.php|accessdate=2011-08-25[/tpl]
+
+==History==
+
+The product was originally developed by Dr. William Fairman[tpl]cite web|title=Outstanding Alumni|publisher=Columbia Public Schools Foundation|url=http://www.cpsf.org/hall-of-leaders/2006-2|accessdate=2011-08-25[/tpl] and released as the 'c-tree File Handler' in 1984. The name originated from the fact that c-tree was an implementation of a B+ tree written for the then burgeoning microcomputer market in the C programming language. 
+The original client/server architecture was introduced in 1987.[tpl]cite web|title=A brief history of FairCom Corporation|publisher=FairCom Corporation|url=http://www.faircom.com/ace/company_history_t.php|accessdate=2011-08-25[/tpl] At that time, the client/server version supported only the ISAM API. The c-tree DB and SQL APIs were introduced later, in 2003.[tpl]cite web|title=FairCom releases c-treeSQL Server and new edition of c-tree Plus incorporating an array of interface technology |publisher=FairCom Corporation|url=http://www.faircom.com/ace/pr_030612_t.php|accessdate=2011-08-25[/tpl]
+The product underwent a name change in 1990 with the release of 'c-tree Plus' version 6 and then again in 2008 with the release of 'c-treeACE' (Advanced Core Engine) version 9. Along with the name change in 2008 came the release of 'c-treeACE Express'.[tpl]cite web|title=FairCom announces c-treeACE Express database engine|publisher=FairCom Corporation|url=http://www.faircom.com/ace/pr_080303_t.php|accessdate=2011-08-25[/tpl]
+
+==External links==
+
+==References==
+
+

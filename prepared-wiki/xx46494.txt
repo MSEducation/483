@@ -1,0 +1,88 @@
+[[Microsoft Outlook]]
+
+CATEGORIES: Microsoft Office, Personal information managers, Windows email clients, Calendaring software, Microsoft email software, 1997 software, News aggregators
+
+Microsoft Outlook is a personal information manager from Microsoft, available as a part of the Microsoft Office suite.  The current versions are Microsoft Office Outlook 2013 for Windows and Microsoft Office Outlook 2011 for Mac.
+Although often used mainly as an email application, it also includes a calendar, task manager, contact manager, note taking,  journal, and web browsing.
+It can be used as a stand-alone application, or can work with Microsoft Exchange Server and Microsoft SharePoint Server for multiple users in an organization, such as shared mailboxes and calendars, Exchange public folders, SharePoint lists, and meeting schedules.  There are third-party add-on applications that integrate Outlook with devices such as BlackBerry mobile phones and with other software such as Office and Skype internet communication.  Developers can also create their own custom software that works with Outlook and Office components using Microsoft Visual Studio.Top 10 Reasons to Use Outlook - Business Center - PC World  In addition, Windows Mobile devices can synchronize almost all Outlook data to Outlook Mobile.
+
+==Versions==
+
+Microsoft Outlook has replaced Microsoft's previous scheduling and mail program, Schedule+ and Exchange Client.
+Versions of Microsoft Outlook include:
+Outlook 98 and Outlook 2000  of two configurations:
+
+===Windows===
+
+====Outlook 2007====
+
+Outlook 2007 was available in retail stores at the end of January 2007.   Features that debuted in Outlook 2007 include:Microsoft Office Outlook 2007 product overview
+
+====Outlook 2010====
+
+Features that debuted in Outlook 2010 include:Microsoft Office Outlook 2010 product overview
+
+====Outlook 2013====
+
+Features that debuted in Outlook 2013, which was released on January 29, 2013, include:
+
+===Macintosh===
+
+Microsoft also released several versions of Outlook for Mac OS, though it was only for use with Exchange servers. It was not provided as a component of Microsoft Office for Mac, but instead made available to users from administrators or by download. The final version was Outlook for Mac 2001, which was fairly similar to Outlook 2000 and 2002 apart from being exclusively for Exchange users.
+Microsoft Entourage was introduced as an Outlook-like application for Mac OS in Office 2001, but it lacked Exchange connectivity. Partial support for Exchange server became available natively in Mac OS X with Entourage 2004 Service Pack 2. Entourage is not directly equivalent to Outlook in terms of design or operation; rather, it is a distinct application which has several overlapping features including Exchange client capabilities. Somewhat improved Exchange support was added in Entourage 2008 Web Services Edition.
+Entourage was replaced by Outlook for Mac 2011, which features greater compatibility and parity with Outlook for Windows than Entourage offered. It is the first native version of Outlook for Mac OS X.
+Outlook 2011 initially supported Mac OS X's Sync Services only for contacts, not events, tasks or notes. It also does not have a Project Manager equivalent to that in Entourage.[tpl]cite news | url=http://www.macworld.com/reviews/product/671493/review/outlook_for_mac_2011.html | title=Microsoft Outlook for Mac 2011 | last=Welsh | first=John C. | work=Macworld | date=October 1, 2010 | accessdate=November 7, 2010[/tpl] With Service Pack 1 (v 14.1.0), published on April 12, 2011, Outlook can now sync calendar, notes and tasks with Exchange 2007 and Exchange 2010.
+
+==Internet standards compliance==
+
+===HTML rendering===
+
+Outlook 2007 was the first Outlook to switch from Internet Explorer HTML rendering to Microsoft Word 2007 HTML rendering. This means HTML and CSS items not handled by Word are no longer supported.  On the other hand, HTML messages composed in Word will look more or less as they appeared to the author.[tpl]cite web|url=http://www.email-standards.org/clients/microsoft-outlook-2007/ |title=Microsoft Outlook 2007 Report | Email Standards Project |publisher=Email-standards.org |date= |accessdate=February 24, 2013[/tpl]
+This affects publishing newsletters and HTML/CSS reports, because they frequently use intricate HTML and/or CSS to form their layout. For example, forms can no longer be embedded in email.
+
+===Support of CSS properties and HTML attributes===
+
+Outlook for Windows has very limited CSS support compared to various other e-mail clients. Neither CSS1 and CSS2 specifications are fully implemented and many CSS properties are only to be used with certain HTML elements.Guide to CSS support in email Some HTML attributes help achieve proper rendering of e-mails in Outlook, but most of these attributes are already deprecated in the HTML 4.0 specifications.HTML 4.0 Specification In order to achieve the best compatibility with Outlook, most HTML e-mails are created using multiple tables, as the table element and its sub-elements support the width and height property in Outlook.
+Outlook might recognize unsupported HTML attributes or CSS properties and will then display the notice "If there are problems with how this message is displayed, click here to view it in a web browser." in the header of the email. The link will open the email in Internet Explorer, ignoring your browser-preference.
+Outlook for Mac however supports most of the CSS specifications.
+
+===Transport Neutral Encapsulation Format===
+
+Outlook and Exchange Server internally handle messages, appointments and items as objects in a data model which is derived from the old proprietary Microsoft Mail system, the Rich Text Format from Microsoft Word and the complex OLE general data model.Outlook Data Model Reference (page on the MailItem object class members), MSDN development documentation, http://msdn.microsoft.com/en-us/library/ff861252.aspx, retrieved May 2011  When these programs interface with other protocols such as the various Internet and X.400 protocols, they try to map this internal model onto those protocols in a way that can be reversed if the ultimate recipient is also running Outlook or Exchange.Preface of the TNEF specification, Outlook 2010 edition, http://msdn.microsoft.com/en-us/library/cc815562%28v=office.14%29.aspx, retrieved May 2011
+This focus on the possibility that emails and other items will ultimately be converted back to Microsoft Mail format is so extreme that if Outlook/Exchange cannot figure out a way to encode the complete data in the standard format, it simply encodes the entire message/item in a proprietary binary format called Transport Neutral Encapsulation Format (TNEF) and sends this as an attached file (usually named "winmail.dat") to an otherwise incomplete rendering of the mail/item.  If the recipient is Outlook/Exchange it can simply discard the incomplete outer message and use the encapsulated data directly, but if the recipient is any other program, the message received will be incomplete because the data in the TNEF attachment will be of little use without the Microsoft software for which it was created.  As a workaround, numerous tools for (partially) decoding TNEF files exist.See list of some TNEF decoders in the main TNEF article
+
+===Calendar compatibility===
+
+Outlook does not fully support data and syncing specifications for calendaring and contacts, such as iCalendar, CalDAV, SyncML, and vCard 3.0. Outlook 2007 claims to be fully iCalendar compliant; however, it does not support all core objects, such as VTODO or VJOURNAL.[tpl]cite web|url=http://www.microsoft.com/office/editions/prodinfo/compare.mspx#EBAA|title=Microsoft Office 2003 editions comparison|publisher=Microsoft|accessdate=October 3, 2008[/tpl] Also, Outlook supports vCard 2.1 and does not support multiple contacts in the vCard format as a single file. Outlook has also been criticized for having proprietary "Outlook extensions" to these Internet standards.
+
+==Security concerns==
+
+As part of its Trustworthy Computing initiative, Microsoft took corrective steps to fix Outlook's reputation in Office Outlook 2003. Among the most publicized security features are that Office Outlook 2003 does not automatically load images in HTML emails or permit opening executable attachments by default, and includes a built-in Junk Mail filter.[tpl]cite web|url=http://download.microsoft.com/download/D/3/3/D334A189-E51B-47FF-B0E8-C0479AFB0E3C/%5BMS-STANOICAL%5D.pdf|title=MS-STANOICAL - v1.01  Outlook iCalendar Standards Compliance |format=PDF |publisher=Microsoft|accessdate=March 9, 2008[/tpl] [tpl]Dead link|date=September 2010|bot=H3llBot[/tpl] Service Pack 2 has augmented these features and adds an anti-phishing filter.Microsoft 'Security at Home' website
+
+==Outlook add-ins==
+
+Outlook add-ins are small helping programs for the Microsoft Outlook application. The main purpose of the add-ins is to add new functional capabilities into Microsoft Outlook and automate some routine operations. The term also refers to programs where the main function is to work on Outlook files, such as synchronization or backup utilities. Outlook add-ins may be developed in Microsoft Visual Studio or third-party tools such as Add-in Express. Outlook add-ins are not supported in Outlook Web App.
+From Outlook 97 on, Exchange Client Extensions are supported in Outlook. Outlook 2000 and later support specific COM components called Outlook AddIns. The exact supported features (such as .NET components) for later generations were extended with each release.
+
+===Hotmail Connector===
+
+Microsoft Outlook Hotmail Connector (shortened Hotmail Connector, formerly Microsoft Office Outlook Connector), was a free add-in for Microsoft Outlook 2003, 2007 and 2010 that allowed users to access Hotmail accounts through Microsoft Outlook. It uses DeltaSync, a proprietary Microsoft communications protocol.[tpl]cite web|title=Microsoft Office Outlook Hotmail Connector overview|url=http://office.microsoft.com/en-us/outlook-help/microsoft-office-outlook-hotmail-connector-overview-HA010222518.aspx|work=Microsoft Office website|publisher=Microsoft|accessdate=March 1, 2013[/tpl]
+In version 12, access to tasks and notes and online synchronization with MSN Calendar was only available to MSN subscribers of paid premium accounts. Version 12.1, released in December 2008 as an optional upgrade, used Windows Live Calendar instead of the former MSN Calendar. This meant that calendar features became free for all users, except for tasks synchronization which became unavailable. In April 2008, version 12.1 became a required upgrade to continue using the service as part of a migration from MSN Calendar to Windows Live Calendar.[tpl]cite web|url=http://ask.officelive.com/smallbusiness/blogs/team/archive/2009/04/02/outlook-connector-users-you-must-upgrade-to-a-new-version.aspx |title=Transition information for former Office Live Small Business customers - Manage Office 365 - Office 365 - Microsoft Office 365 Community |publisher=Ask.officelive.com |date= |accessdate=June 15, 2013[/tpl]
+This add-on is discontinued, although Microsoft Outlook 2013 has intrinsic support for accessing Hotmail and Outlook.com over Exchange ActiveSync (EAS) protocol.[tpl]cite web|title=What's new in Outlook 2013|url=http://technet.microsoft.com/en-us/library/cc179110(v=office.15)|work=TechNet Library|publisher=Microsoft|accessdate=March 1, 2013|date=December 11, 2012[/tpl]
+
+===Social Connector===
+
+Outlook Social Connector was a free add-in for Microsoft Outlook 2003 and 2007 by Microsoft that allowed integration of social networks such as Facebook, Linkedin and Windows Live Messenger into Microsoft Outlook.[tpl]cite web|last=Thomas|first=Doug|title=How to install the Outlook Social Connector (video)|url=http://blogs.office.com/b/office_casual/archive/2010/08/24/how-to-install-the-outlook-social-connector.aspx|work=Office Casual blog|publisher=Microsoft|accessdate=March 1, 2013|date=August 24, 2010[/tpl] It was first introduced in November 18, 2009.[tpl]cite web|title=Announcing the Outlook Social Connector|url=http://blogs.office.com/b/microsoft-outlook/archive/2009/11/18/announcing-the-outlook-social-connector.aspx|work=Outlook Blog|publisher=Microsoft|accessdate=March 1, 2013|date=November 18, 2009[/tpl] Starting with Microsoft Office 2010, Outlook Social Connector is an integral part of Outlook.[tpl]cite web|title=Changes in Outlook 2010 (for IT pros)|url=http://technet.microsoft.com/en-us/library/cc179110%28office.14%29|work=Microsoft TechNet#Library[tpl]![/tpl]TechNet Library|publisher=Microsoft|accessdate=March 1, 2013|date=November 27, 2012[/tpl]
+
+==Importing from other email clients==
+
+Traditionally, Outlook supported importing messages from Outlook Express and Lotus Notes. In addition, Microsoft Outlook supports POP3 and IMAP protocols, enabling users to import mails from server that support these protocols, such as Gmail. Microsoft Hotmail Connector add-in (described above) helps importing email from Hotmail accounts. Outlook 2013 later integrated the functionality of this add-in and added the ability to import email (as well as calendar) through Exchange ActiveSync protocol.
+There are some ways to get the emails from Thunderbird; the first is to use a toolIMAPSize that can convert a Thunderbird folder to a format that can be imported from Outlook Express. This method must be processed folder by folder. The other method is to use a couple of free tools that keep the original folder structure.Export messages and folders from Thunderbird to Outlook / Outlook Express / Windows Mail If Exchange is available, an easier method is to connect the old mail client (Thunderbird) to Exchange using IMAP, and upload the original mail from the client to the Exchange account.
+
+==See also==
+
+==References==
+
+==External links==
+
+

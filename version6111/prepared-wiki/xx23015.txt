@@ -1,0 +1,210 @@
+[[Formal power series]]
+
+CATEGORIES: Abstract algebra, Ring theory, Enumerative combinatorics, Mathematical series
+
+In mathematics, formal power series are a generalization of polynomials as formal objects, where the number of terms is allowed to be infinite; this implies giving up the possibility to substitute arbitrary values for indeterminates. This perspective contrasts with that of power series, whose variables designate numerical values, and which series therefore only have a definite value if convergence can be established. Formal power series are often used merely to represent the whole collection of their coefficients. In combinatorics, they provide representations of numerical sequences and of multisets, and for instance allow giving concise expressions for recursively defined sequences regardless of whether the recursion can be explicitly solved; this is known as the method of generating functions.
+
+==Introduction==
+
+A formal power series can be loosely thought of as an object that is like a polynomial, but with infinitely many terms. Alternatively, for those familiar with power series (or Taylor series), one may think of a formal power series as a power series in which we ignore questions of convergence by not assuming that the variable X denotes any numerical value (not even an unknown value). For example, consider the series
+If we studied this as a power series, its properties would include, for example, that its radius of convergence is 1. However, as a formal power series, we may ignore this completely; all that is relevant is the sequence of coefficients −3, 5, −7, 9, −11, .... In other words, a formal power series is an object that just records a sequence of coefficients. It is perfectly acceptable to consider a formal power series with the factorials 1, 2, 6, 24, 120, 720, 5040, …  as coefficients, even though the corresponding power series diverges for any nonzero value of X.
+Arithmetic on formal power series is carried out by simply pretending that the series are polynomials. For example, if
+then we add A and B term by term:
+We can multiply formal power series, again just by treating them as polynomials (see in particular Cauchy product):
+Notice that each coefficient in the product AB only depends on a finite number of coefficients of A and B. For example, the X5 term is given by
+For this reason, one may multiply formal power series without worrying about the usual questions of absolute, conditional and uniform convergence which arise in dealing with power series in the setting of analysis.
+Once we have defined multiplication for formal power series, we can define multiplicative inverses as follows.  The multiplicative inverse of a formal power series A is a formal power series C such that AC = 1, provided that such a formal power series exists.  It turns out that if A has a multiplicative inverse, it is unique, and we denote it by A−1.  Now we can define division of formal power series by defining B/A to be the product BA−1, provided that the inverse of A exists.  For example, one can use the definition of multiplication above to verify the familiar formula
+An important operation on formal power series is coefficient extraction. In its most basic form, the coefficient extraction operator for a formal power series in one variable extracts the coefficient of Xn, and is written e.g. Xn(A), so that X2(A) = 5 and X5(A) = −11.  Other examples include
+Similarly, many other operations that are carried out on polynomials can be extended to the formal power series setting, as explained below.
+
+==The ring of formal power series==
+
+The set of all formal power series in X with coefficients in a commutative ring R form another ring that is written RX, and called the ring of formal power series in the variable X over R.
+
+===Definition of the formal power series ring===
+
+One can characterize RX abstractly as the completion of the polynomial ring RX equipped with a particular metric. This automatically gives RX the structure of a topological ring (and even of a complete metric space). But the general construction of a completion of a metric space is more involved than what is needed here, and would make formal power series seem more complicated than they are. 
+It is possible to describe RX more explicitly, and define the ring structure and topological structure separately, as follows.
+
+====Ring structure====
+
+As a set, RX can be constructed as the set RN of all infinite sequences of elements of R, indexed by the natural numbers (taken to include 0). Designating a sequence whose term at index n is an by (an)n∈N, one defines addition of two such sequences by
+and multiplication by
+This type of product is called the Cauchy product of the two sequences of coefficients, and is a sort of discrete convolution. With these operations, RN becomes a commutative ring with zero element (0, 0, 0, ...) and multiplicative identity (1, 0, 0,...).
+The product is in fact the same one used to define the product of polynomials in one indeterminate, which suggests using a similar notation. One embeds R into RX by sending any (constant) a ∈ R to the sequence (a, 0, 0, ...) and designates the sequence (0, 1, 0, 0, ...) by X; then using the above definitions every sequence with only finitely many nonzero terms can be expressed in terms of these special elements as
+and
+which is quite convenient, but one must be aware of the distinction between formal summation (a mere convention) and actual addition.
+
+====Topological structure====
+
+Having stipulated conventionally that
+one would like to interpret the right hand side as a well-defined infinite summation. To that end, a notion of convergence in RN is defined and a topology on RN is constructed. There are several equivalent ways to define the desired topology.
+Informally, two sequences (an) and (bn) become closer and closer if and only if more and more of their terms agree exactly. Formally, the sequence of partial sums of some infinite summation converges if for every fixed power of X the coefficient stabilizes: there is a point beyond which all further partial sums have the same coefficient. This is clearly the case for the right hand side of (1), regardless of the values an, since inclusion of the term for i = n gives the last (and in fact only) change to the coefficient of Xn. It is also obvious that the limit of the sequence of partial sums is equal to the left hand side.
+This topological structure, together with the ring operations described above, form a topological ring. This is called the ring of formal power series over ''R and is denoted by RX. The topology has the useful property that an infinite summation converges if and only if the sequence of its terms converges to 0, which just means that any fixed power of X'' occurs in only finitely many terms. 
+The topological structure allows much more flexible use of infinite summations. For instance the rule for multiplication can be restated simply as
+since only finitely many terms on the right affect any fixed Xn. Infinite products are also defined by the topological structure; it can be seen that an infinite product converges if and only if the sequence of its factors converges to 1.
+
+====Alternative topologies====
+
+Consider the ring of formal power series
+then the topology of above construction only relates to the indeterminate Y, since the topology that was put on ZX has been replaced by the discrete topology when defining the topology of the whole ring. So
+This way of defining the topology is in fact the standard one for repeated constructions of rings of formal power series, and gives the same topology as one would get by taking formal power series in all inderteminates at once. In the above example that would mean constructing ZX, Y, and here a sequence converges if and only if the coefficient of every monomial XiYj stabilizes. This topology, which is also the I-adic topology, where I = (X,Y) is the ideal generated by X and Y, still enjoys the property that a summation converges if and only if its terms tend to 0.
+The same principle could be used to make other divergent limits converge. For instance in RX the limit
+
+===Universal property===
+
+The ring  RX may be characterized by the following universal property. If S is a commutative associative algebra over R, if I is an ideal of S such that the I-adic topology on S is complete, and if x is an element of I, then there is a unique Φ :  RX → S with the following properties:
+
+==Operations on formal power series==
+
+One can perform algebraic operations on power series to generate new power series.Sec 0.313, I.S. Gradshteyn (И.С. Градштейн), I.M. Ryzhik (И.М. Рыжик); Alan Jeffrey, Daniel Zwillinger, editors. Table of Integrals, Series, and Products, seventh edition. Academic Press, 2007. ISBN 978-0-12-373637-6. Errata. (Several previous editions as well.)Ivan Niven, "Formal Power Series", American Mathematical Monthly, volume 76, number 8, October 1969, pages 871–889. Besides the ring structure operations defined above, we have the following.
+
+===Power series raised to powers===
+
+If n is a natural number we have
+where
+for m ≥ 1. (This formula can only be used if m and a0 are invertible in the ring of scalars.)
+In the case of formal power series with complex coefficients, the complex powers are well defined at least for series f with constant term equal to 1. In this case, fα can be defined either by composition with the binomial series (1+x)α, or by  composition with the exponential and the logarithmic series, fα := exp(αlog(f)), or  as the solution of the differential equation f(fα)′ = αfαf′ with constant term 1, the three definitions being equivalent. The rules of calculus (fα)β = fαβ and fαgα = (fg)α easily follow.
+
+===Inverting series===
+
+The series
+An important special case is that the geometric series formula is valid in RX:
+If R = K is a field, then a series is invertible if and only if the constant term is non-zero, i.e., if and only if the series is not divisible by X.  This says that KX is a discrete valuation ring with uniformizing parameter X.
+
+===Dividing series===
+
+The computation of a quotient  f/g = h
+assuming the denominator is invertible (that is, a0 is invertible in the ring of scalars), can be performed as a product f and the inverse of g, or directly equating the coefficients in f = gh:
+
+===Extracting coefficients===
+
+The coefficient extraction operator applied to a formal power series 
+in X is written
+and extracts the coefficient of Xm, so that
+
+===Composition of series===
+
+Given formal power series
+one may form the composition
+where the coefficients cn are determined by "expanding out" the powers of f(X):
+A more explicit description of these coefficients is provided by Faà di Bruno's formula, at least in the case where the coefficient ring is a field of  characteristic 0.
+A point here is that this operation is only valid when f(X) has no constant term, so that the series for g(f(X)) converges in the topology of RX. In other words, each cn depends on only a finite number of coefficients of f(X) and g(X).
+
+====Example====
+
+Assume that the ring R has characteristic 0.  If we denote by exp(X) the formal power series
+then the expression
+makes perfect sense as a formal power series. However, the statement
+is not a valid application of the composition operation for formal power series. Rather, it is confusing the notions of convergence in RX and convergence in R; indeed, the ring R may not even contain any number e with the appropriate properties.
+
+===Composition inverse===
+
+===Formal differentiation of series===
+
+Given a formal power series
+in RX, we define its formal derivative, denoted Df or f′, by
+The symbol D is called the formal differentiation operator. The motivation behind this definition is that it simply mimics term-by-term differentiation of a polynomial.
+This operation is R-linear:
+for any a, b in R and any f, g in RX. Additionally, the formal derivative has many of the properties of the usual derivative of calculus. For example, the product rule is valid:
+and the chain rule works as well:
+whenever the appropriate compositions of series are defined (see above under composition of series).
+Thus, in these respects formal power series behave like Taylor series. Indeed, for the f defined above, we find that
+where Dk denotes the kth formal derivative (that is, the result of formally differentiating k times).
+
+==Properties==
+
+===Algebraic properties of the formal power series ring===
+
+RX is an associative algebra over R which contains the ring RX of polynomials over R; the polynomials correspond to the sequences which end in zeros.
+The Jacobson radical of RX is the ideal generated by X and the Jacobson radical of R; this is implied by the element invertibility criterion discussed above.
+The maximal ideals of RX all arise from those in R in the following manner: an ideal M of RX is maximal if and only if M ∩ R is a maximal ideal of R and M is generated as an ideal by X and M ∩ R.
+Several algebraic properties of R are inherited by RX:
+
+===Topological properties of the formal power series ring===
+
+The metric space (RX, d) is complete. 
+The ring RX is compact if and only if R is finite. This follows from Tychonoff's theorem and the characterisation of the topology on RX as a product topology.
+
+==Applications==
+
+Formal power series can be used to solve recurrences occurring in number theory and combinatorics. For an example involving finding a closed form expression for the Fibonacci numbers, see the article on Examples of generating functions.
+One can use formal power series to prove several relations familiar from analysis in a purely algebraic setting. Consider for instance the following elements of QX:
+Then one can show that
+The last one being valid in the ring QX,Y.
+For K a field, the ring KX1, ..., Xr is often used as the "standard, most general" complete local ring over K in algebra.
+
+==Interpreting formal power series as functions==
+
+In mathematical analysis, every convergent power series defines a function with values in the real or complex numbers. Formal power series can also be interpreted as functions, but one has to be careful with the domain and codomain. If f = ∑an Xn is an element of RX, S is a commutative associative algebra over R, I is an ideal in S such that the I-adic topology on S is complete, and x is an element of I, then we can define
+This latter series is guaranteed to converge in S given the above assumptions on X. Furthermore, we have
+and
+Unlike in the case of bona fide functions, these formulas are not definitions but have to be proved.
+Since the topology on RX is the (X)-adic topology and RX is complete, we can in particular apply power series to other power series, provided that the arguments don't have constant coefficients (so that they belong to the ideal (X)): f(0), f(X2−X) and f((1−X)−1 − 1) are all well defined for any formal power series f∈RX.
+With this formalism, we can give an explicit formula for the multiplicative inverse of a power series f whose constant coefficient a = f(0) is invertible in R:
+If the formal power series g with g(0) = 0 is given implicitly by the equation
+where f is a known power series with f(0) = 0, then the coefficients of g can be explicitly computed using the Lagrange inversion formula.
+
+==Generalizations==
+
+===Formal Laurent series===
+
+A formal Laurent series over a ring R is defined in a similar way to a formal power series, except that we also allow finitely many terms of negative degree (this is different from the classical Laurent series), that is series of the form
+where an = 0 for all but finitely many negative indices n. Multiplication of such series can  be defined. Indeed, similarly to the definition for formal power series, the coefficient of Xk of two series with respective sequences of coefficients (an)n∈Z and (bn)n∈Z is
+which sum is effectively finite because of the assumed vanishing of coefficients at sufficiently negative indices, and which sum zero for sufficiently negative k for the same reason.
+For a non-zero formal Laurent series, the minimal integer n such that an ≠ 0 is called the order of f, denoted ord(f).   (The order of  the zero series is +∞.) The formal Laurent series form the ring of formal Laurent series over R, denoted by R((X)). It is equal to the localization of RX with respect to the set of positive powers of X. It is a topological ring with the metric d(f, g) = 2−ord(f−g).
+If R = K is a field, then K((X)) is in fact a field, which may alternatively be obtained as the field of fractions of the integral domain KX.
+One may define formal differentiation for formal Laurent series in a natural way (term-by-term). Precisely, the formal derivative of the formal Laurent series f above is 
+which is again an element of  K((X)). Notice that if f is a non-constant formal Laurent series, and K is a field of characteristic 0, then one has
+However, in general this is not  the case since the factor n for the lowest order term could be equal to 0 in R.
+
+====Formal residue====
+
+Assume that R is a field K of characteristic 0. Then the map
+is a K-derivation that verifies
+The latter shows that the coefficient of X−1 in f is of particular interest; it is called formal residue of f and denoted Res(f).  The map
+is K-linear, and by the above observation one has an exact sequence 
+Some rules of calculus. As a quite direct consequence of the above definition, and of the rules of formal derivation, one has, for any f and g in K((X))
+
+===The Lagrange inversion formula===
+
+As mentioned above, any formal series f ∈ KX with f0 = 0 and f1 ≠ 0 has a composition inverse g in KX. The following relation between the coefficients of gn and f−k holds ("[tpl]Visible anchor|Lagrange inversion formula[/tpl]"):
+In particular, for n = 1 and all k ≥ 1,
+Since the proof of the Lagrange inversion formula is a very short computation, it is worth reporting it here. By the above rules of calculus,
+For instance, this way one finds the power series for complex powers of the Lambert function.
+
+===Power series in several variables===
+
+and
+
+====Topology====
+
+As remarked above, the topology on a repeated formal power series ring like RXY is usually chosen in such a way that it becomes isomorphic as a topological ring to RX,Y.
+
+====Operations====
+
+All of the operations defined for series in one variable may be extended to the several variables case.
+In the case of the formal derivative, there are now separate partial derivative operators, which differentiate with respect to each of the indeterminates. They all commute with each other.
+
+====Universal property====
+
+In the several variables case, the universal property characterizing RX1, ..., Xr becomes the following. If S is a commutative associative algebra over R, if I is an ideal of S such that the I-adic topology on S is complete, and if x1, ..., xr are elements of I, then there is a unique Φ : RX1, ..., Xn → S with the following properties:
+
+===Non-commuting variables===
+
+and multiplication by
+where · denotes concatenation of words.  These formal power series over R form the Magnus ring over R.[tpl]cite book | first=Helmut | last=Koch | title=Algebraic Number Theory | publisher=Springer-Verlag | year=1997 | isbn=3-540-63003-1 | zbl=0819.11044 | series=Encycl. Math. Sci. | volume=62 | edition=2nd printing of 1st | page=167 [/tpl][tpl]cite book | title=The Mathematical Theory of Knots and Braids: An Introduction | volume=82 | series=North-Holland Mathematics Studies | first=Siegfried | last=Moran | publisher=Elsevier | year=1983 | isbn=0-444-86714-7 | page=211 | zbl=0528.57001 [/tpl]
+
+===Replacing the index set by an ordered abelian group===
+
+Suppose G is an ordered abelian group, meaning an abelian group with a total ordering "for all such I, with ai in a commutative ring R, where we assume that for any index set, if all of the ai are zero then the sum is zero. Then R((G)) is the ring of formal power series on G; because of the condition that the indexing set be well-ordered the product is well-defined, and we of course assume that two elements which differ by zero are the same.
+Various properties of R transfer to R((G)). If R is a field, then so is R((G)). If R is an ordered field, we can order R((G)) by setting any element to have the same sign as its leading coefficient, defined as the least element of the index set I associated to a non-zero coefficient. Finally if G is a divisible group and R is a real closed field, then R((G)) is a real closed field, and if R is algebraically closed, then so is R((G)).
+This theory is due to Hans Hahn, who also showed that one obtains subfields when the number of (non-zero) terms is bounded by some fixed infinite cardinality.
+
+==Examples and related topics==
+
+==Notes==
+
+==References==
+
+

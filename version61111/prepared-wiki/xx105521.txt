@@ -1,0 +1,29 @@
+[[Common Indexing Protocol]]
+
+CATEGORIES: Internet protocols, Identity management
+
+The Common Indexing Protocol (CIP) was an attempt in the IETF working group FIND during the mid-1990s to define a protocol for exchanging index information between directory services.  
+In the X.500 Directory model, searches scoped near the root of the tree (e.g. at a particular country) were 
+problematic to implement, as potentially hundreds or thousands of directory servers would need to be contacted
+in order to handle that query.  
+The indexes contained summaries or subsets of information about individuals and organizations represented in
+a white pages schema.  By merging subsets of information from multiple sources, it was hoped that an index 
+server holding that subset could be able to process a query more efficiently by chaining it only to some 
+of the sources: those sources which did not hold information would not be contacted.  For example, if a server 
+holding the base entry for a particular country were provided with a list of names of all the people in all the 
+entries in that country subtree, then that server would be able to process a query searching for a person with
+a particular name by only chaining it to those servers which held data about such a person. 
+The protocol evolved from earlier work developing WHOIS++, and was intended to be capable of interconnecting
+services from both the evolving WHOIS and LDAP activities. 
+This protocol has not seen much recent deployment, as WHOIS and LDAP environments 
+have followed separate evolution paths.  WHOIS deployments are typically in domain name registrars, and its 
+data management issues have been addressed through specifications for domain name registry interconnection such as 
+CRISP.  In contrast, enterprises that manage employee, customer
+or student identity data in an LDAP directory have looked to federation protocols for interconnection between 
+organizations.
+
+==RFCs==
+
+==See also==
+
+

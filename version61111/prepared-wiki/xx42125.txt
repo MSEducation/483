@@ -1,0 +1,19 @@
+[[Class variable]]
+
+CATEGORIES: Object-oriented programming, Variable (computer programming)
+
+In object-oriented programming with classes, a class variable is a variable defined in a class (i.e. a member variable) of which a single copy exists, regardless of how many instances of the class exist.[tpl]cite web|url=http://download.oracle.com/javase/tutorial/java/nutsandbolts/variables.html|title=The Java Tutorial, Variables |accessdate=2010-10-21[/tpl][tpl]cite web|url=http://download.oracle.com/javase/tutorial/java/javaOO/classvars.html|title=The Java Tutorial, Understanding Instance and Class Members|accessdate=2010-10-21[/tpl][tpl]cite web|url=http://docs.python.org/reference/compound_stmts.html#class-definitions|title=The Python Language Reference, Compound Statements|accessdate=2010-10-21[/tpl][tpl]cite web|url=http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html|title= Objective-C Runtime Reference |accessdate=2010-10-21[/tpl]
+A class variable is not an instance variable. It is a special type of class attribute (or class property, field, or data member). The same dichotomy between instance and class members applies to methods ("member functions") as well; a class may have both instance methods and class methods.
+
+==Static member variables and static member functions==
+
+In some languages, class variables and class methods are either statically resolved, not via dynamic dispatch, or their memory statically allocated at compile time (once for the entire class, as static variables), not dynamically allocated at run time (at every instantiation of an object). In other cases, however, either or both of these are dynamic. For example, if classes can be dynamically defined (at run time), class variables of these classes are allocated dynamically when the class is defined, and in some languages class methods are also dispatched dynamically.
+Thus in some languages, static member variable or static member function are used synonymously with or in place of "class variable" or "class function", but these are not synonymous across languages. These terms are commonly used in Java, C#, and C++, where class variables and class methods are declared with the static keyword, and referred to  as static member variables or static member functions.
+
+==Example==
+
+In this C++ example, the class variable Request::count is incremented on each call to the constructor, so that Request::count always holds the number of Requests that have been constructed, and each new Request object is given a number in sequential order. Since count is a class variable, there is only one object Request::count; in contrast, each Request object contains its own distinct number field.
+
+==Notes==
+
+

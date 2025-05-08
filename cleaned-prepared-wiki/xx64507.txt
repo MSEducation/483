@@ -1,0 +1,79 @@
+[[Uptime]]
+
+CATEGORIES: Real-time computing, Unix user management and support-related utilities, Fault-tolerant computer systems
+
+Uptime is a measure of the time a machine, typically a computer, has been working and available.  Uptime is the opposite of downtime.
+thumb|right|Htop adds an exclamation mark when uptime is bigger than 100 daysIt is often used as a measure of computer operating system reliability or stability, in that this time represents the time a computer can be left unattended without crashing, or needing to be rebooted for administrative or maintenance purposes.
+Conversely, long uptime may indicate negligence, because some critical updates can require reboots on some platforms.
+
+Records
+
+In 2005, Novell reported a server with a 6-year uptime. Although that might sound unusual, that is actually common when servers are maintained under an industrial context and host critical applications such as banking systems.
+Netcraft maintains the uptime records for many thousands of web hosting computers.
+A server running Novell NetWare has been reported to have been shut down after 16 years of uptime due to a failing hard disk. 
+
+Determining system uptime
+
+Microsoft Windows
+
+=Using systeminfo=
+
+Users of Windows XP Professional, Windows Server 2003 and Windows Vista systems can type systeminfo at the Command Prompt to display all system information, including the System Up Time.
+Note: Windows Vista Business 64-bit and Windows 7 do not return a "System Up Time" but "System Boot Time" instead. Also note that the exact text and date format is dependent of the language and locale Windows is running.
+Note:Windows 7's "System Boot Time" is not a reliable indicator of boot time.  It does not take into account the time spent in sleep or hibernation mode.  Hence, the boot time drifts forward every time the computer is left in sleep or hibernate mode.
+
+=Using net statistics server/workstation=
+
+The line that start with "Statistics since ..." provides the time that the server was up from. The command "net stats srv" is shorthand for "net statistics server." The exact text and date format is dependent of the language and locale Windows is running.
+
+=Using Uptime.exe=
+
+Microsoft has also provided a downloadable utility:
+''Note:On Windows 7's the Uptime.  It gives the same wrong information than boot time and that Task Manager Uptime. It does not take into account the time spent in sleep or hibernation mode. The only real indicator may be the one given through "net statistics workstation" under "Statistics".
+
+=Using WMI=
+
+Uptime can also be determined via Windows Management Instrumentation from the command-line with WMIC:
+The timestamp is in the format yyyymmddhhmmss.822. WMI can also be used to find the boot time of remote computers as well (Windows permissions allowing), for example with WMIC:
+The text "LastBootUpTime" and the timestamp format are always the same regardless of the language and locale, Windows is running.
+WMI can also be used via a programming language such as VBScript or Powershell
+
+=Using Windows Task Manager=
+
+Users of Windows Vista, Windows 7 and Windows 8 can see uptime in Windows Task Manager under the tab Performance. The uptime format is DD:HH:MM:SS, that is Days:Hours:Minutes:Seconds that the system has been up.
+
+Linux
+
+=Using uptime=
+
+Users of Linux systems can use the uptime utility () to get the uptime, together with the current time, the number of users and load averages for the past 1, 5 and 15 minute intervals:
+
+=Using /proc/uptime=
+
+Shows how long the system has been on since it was last restarted:
+The first number is the total number of seconds the system has been up. The second number is how much of that time the machine has spent idle, in seconds.
+
+BSD
+
+=Using uptime=
+
+Like Linux, BSD-based operating systems such as FreeBSD and Mac OS X also have the uptime command (See ).
+
+=Using sysctl=
+
+There is also a method of using sysctl to call the system's last boot time:
+
+OpenVMS
+
+Users of OpenVMS systems can type show system at the command prompt.
+This shows the uptime as days then hours:minutes:seconds.
+
+External measurement services
+
+There are a many external services which can be used to monitor the uptime and downtime as well as availability of a service or a host. Some examples:
+
+
+
+
+
+

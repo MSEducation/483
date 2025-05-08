@@ -1,0 +1,55 @@
+[[Syntax highlighting]]
+
+CATEGORIES: User interface techniques, Text editor features
+
+Syntax highlighting is a feature of text editors that displays text, especially source code, in different colors and fonts according to the category of terms.g., The Java Developer's Guide to Eclipse By Jim D'Anjou, Sherry Shavor, Scott Fairbrother, Dan Kehn, John Kellerman, Pat McCarthy Published by Addison-Wesley, 2004 ISBN 0-321-30502-7, ISBN 978-0-321-30502-2 1136 pages This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.
+Syntax highlighting is a form of secondary notation, since the highlights are not part of the text meaning, but serve to reinforce it. Some editors also integrate syntax highlighting with other features, such as spell checking or code folding, as aids to editing which are external to the language.
+
+Practical considerations
+
+Syntax highlighting is one strategy to improve the readability and context of the text; especially for code that spans several pages. The reader can easily ignore large sections of comments or code, depending on what they are looking for.
+Syntax highlighting also helps programmers find errors in their program. For example, most editors highlight string literals in a different color. Consequently, spotting a missing delimiter is much easier because of the contrasting color of the text. Brace matching is another important feature with many popular editors. This makes it simple to see if a brace has been left out or locate the match of the brace the cursor is on by highlighting the pair in a different color.
+Some text editors can also export the color markup in a format that is suitable for printing or for importing into word-processing or other kinds of text-formatting software; for instance an HTML, colorized LaTeX, PostScript or RTF version of its syntax highlighting.
+
+Multi-document editors
+
+For editors that support more than one language, the user can usually specify the language of the text, such as C, LaTeX, HTML, or the text editor can automatically recognize it based on the file extension or by scanning contents of the file. This automatic language detection presents potential problems. For example, a user may want to edit a document containing:
+In these cases, it is not clear what language to use, and a document may not be highlighted or be highlighted incorrectly.
+
+Syntax elements
+
+Most editors with syntax highlighting allow different colors and text styles to be given to dozens of different lexical sub-elements of syntax. These include keywords, comments, control-flow statements, variables, and other elements. Programmers often heavily customize their settings in an attempt to show as much useful information as possible without making the code difficult to read.
+
+Examples
+
+Below is a snippet of syntax highlighted C code:
+Here is the same code non-highlighted:
+ 
+ /* Hello World */
+int main()
+{
+    printf("Hello World\n");
+    return 0;
+}
+
+Below is another snippet of syntax highlighted C++ code:
+In the C++ example, the editor has recognized the keywords int, new, and for.  The  comment at the beginning is also highlighted in a specific manner to distinguish it from working code.
+
+History and limitations
+
+The ideas of syntax highlighting overlap significantly with those of syntax-directed editors. One of the first such editor for code was Wilfred Hansen's 1969 code editor, Emily. It provided advanced language-independent code completion facilities, and unlike modern editors with syntax highlighting, actually made it impossible to create syntactically incorrect programs.
+Other editors followed, for example, on microcomputers, MacPascal 1.0 (October 10, 1985) recognized Pascal syntax as it was typed and used font changes (e.g., bold for keywords) to highlight syntax and automatically indented code to match its structure.
+The Live Parsing Editor (LEXX) was written for the VM operating system for the computerization of the Oxford English Dictionary in 1985 and was one of the first to use color syntax highlighting.  Its live parsing capability allowed user-supplied parsers to be added to the editor, for text, programs, data file, etc.  See: LEXX – A programmable structured editor, Cowlishaw, M. F., IBM Journal of Research and Development, Vol 31, No. 1, 1987, IBM Reprint order number G322-0151
+Many text editors and code formatting tools perform syntax highlighting using pattern matching heuristics (e.g. RegularExpression) rather than implementing a parser for each possible language. This can result in some text rendering systems' syntax highlighting being somewhat inaccurate and, in some cases, can perform slowly.  Some text editors overcome this problem by not always parsing the whole file but rather just the visible area, sometimes scanning backwards in the text up to a limited number of lines for "syncing".
+However, some modern, language-specific IDEs (in contrast to text editors) perform full language parsing which results in very accurate and high-performance syntax highlighting.
+See the Programming features section of the Comparison of text editors article for a list of some editors that have syntax highlighting.
+
+Syntax highlighting engines
+
+There are several syntax highlighting libraries or "engines" that can be used in other applications, but are not complete programs in themselves. Some examples are listed below.
+
+
+
+
+
+

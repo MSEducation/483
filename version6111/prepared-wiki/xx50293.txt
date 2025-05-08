@@ -1,0 +1,33 @@
+[[Encapsulation (object-oriented programming)]]
+
+CATEGORIES: Object-oriented programming
+
+In programming languages,   encapsulation is used to refer to one of two related but distinct notions, and sometimes to the combinationMichael Lee Scott, Programming language pragmatics, Edition	2, Morgan Kaufmann, 2006, ISBN 0-12-633951-1, p. 481:  "Encapsulation mechanisms enable the programmer to group data and the subroutines that operate on them together in one place, and to hide irrelevant details from the users of an abstraction."Nell B. Dale, Chip Weems, Programming and problem solving with Java, Edition 2, Jones & Bartlett Publishers, 2007, ISBN 0-7637-3402-0, p. 396 thereof:
+Some programming language researchers and academics use the first meaning alone or in combination with the second as a distinguishing feature of object-oriented programming, while other programming languages which provide lexical closures view encapsulation as a feature of the language orthogonal to object orientation.
+The second definition is motivated by the fact that in many OOP languages hiding of components is not automatic or can be overridden; thus, information hiding is defined as a separate notion by those who prefer the second definition.
+
+==As information hiding mechanism==
+
+Under this definition, encapsulation means that the internal representation of an object is generally hidden from view outside of the object's definition. Typically, only the object's own methods can directly inspect or manipulate its fields. Some languages like Smalltalk and Ruby only allow access via object methods, but most others (e.g. C++, C# or Java) offer the programmer a degree of control over what is hidden, typically via keywords like public and private. It should be noted that the ISO C++ standard refers to protected, private and public as "access specifiers" and that they do not "hide any information".  Information hiding is accomplished by furnishing a compiled version of the source code that is interfaced via a header file.
+Hiding the internals of the object protects its integrity by preventing users from setting the internal data of the component into an invalid or inconsistent state. A supposed benefit of encapsulation is that it can reduce system complexity, and thus increase robustness, by allowing the developer to limit the inter-dependencies between software components[tpl]Citation needed|date=April 2014[/tpl].
+Almost always, there is a way to override such protection – usually via reflection API (Ruby, Java, C#, etc.), sometimes by mechanism like name mangling (Python), or special keyword usage like friend in C++.
+Below is an example in C# that shows how access to a data field can be restricted through the use of a private keyword:
+Below is an example in Java:
+Encapsulation is also possible in older, non-object-oriented languages. In C, for example, a structure can be declared in the public API (i.e., the header file) for a set of functions that operate on an item of data containing data members that are not accessible to clients of the API:
+Clients call the API functions to allocate, operate on, and deallocate objects of an opaque type. The contents of this type are known and accessible only to the implementation of the API functions; clients cannot directly access its contents. The source code for these functions defines the actual contents of the structure:
+
+==General definition==
+
+In general, encapsulation is one of the four fundamentals of OOP (object-oriented programming). Encapsulation refers to the bundling of data with the methods that operate on that data.[tpl]cite web|last=Rodgers|first=Wm. Paul|title=Encapsulation is not information hiding|url=http://www.javaworld.com/article/2075271/core-java/encapsulation-is-not-information-hiding.html|publisher=JavaWorld|accessdate=2014-03-15[/tpl] Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct access to them. Publicly accessible methods are generally provided in the class (so-called getters and setters) to access the values, and other client classes call these methods to retrieve and modify the values within the object.
+This mechanism is not unique to object-oriented programming. Implementations of abstract data types, e.g. modules, offer a similar form of encapsulation. This similarity stems from the fact that both notions rely on the same mathematical fundament of an existential type.Pierce (2002), Section 24.2 "Data Abstraction with Existentials"
+
+==In combination==
+
+With regard to combination (or bundling) data, this is prevalent in any object that is created. An object's state will depend on its methods that do work on or with the object's internal data.
+An analogy can be made here with the notion of a capsule, which not only encloses its contents, but also protects it from the exterior environment.
+
+==References==
+
+==External links==
+
+

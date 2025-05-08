@@ -1,0 +1,48 @@
+[[Price of anarchy]]
+
+CATEGORIES: Game theory
+
+The Price of Anarchy (PoA) E. Koutsoupias, C. H. Papadimitriou Worst-case equilibria, STACS 99 is a concept in game theory that measures how the efficiency of a system degrades due to selfish behavior of its agents. It is a general notion that can be extended to diverse systems and notions of efficiency. For example, consider the system of transportation of a city and many agents trying to go from some initial location to a destination. Let efficiency in this case mean the average time for an agent to reach the destination. In the 'centralized' solution, a central authority can tell each agent which path to take in order to minimize the average travel time. In the 'decentralized' version, each agent chooses its own path. The Price of Anarchy measures the ratio between average travel time in the two cases.
+Usually the system is modeled as a game and the efficiency is some function of the outcomes (e.g. maximum delay in a network, congestion in a transportation system, social welfare in an auction, ...). Different concepts of equilibrium can be used to model the selfish behavior of the agents, among which the most common is the Nash equilibrium. Different flavors of Nash equilibrium lead to variations of the notion of Price of Anarchy as Pure Price of Anarchy (for deterministic equilibria), Mixed Price of Anarchy (for randomized equilibria), Bayes-Nash Price of Anarchy (for games with incomplete information), ... Other notions, other than Nash equilibria, lead to variations of the concept, as the Price of Sinking.M. Goemans, V. Mirrokni, A. Vetta, Sink equilibria and convergence, FOCS 05
+The term Price of Anarchy was first used by Koutsoupias and Papadimitriou, but the idea of measuring inefficiency of equilibrium is older.P. Dubey. Inefficiency of Nash equilibria. Math. Operat. Res., 11(1):1–8, 1986 The concept in its current form was designed to be the analogue of the 'approximation ratio' in an approximation algorithm or the 'competitive ratio' in an online algorithm. This is in the context of the current trend of analyzing games using algorithmic lenses (algorithmic game theory).
+
+==Mathematical definition==
+
+A related notion is that of the Price of Stability (PoS) which measures the ratio between the 'best equilibrium' and the optimal 'centralized' solution: 
+or in the case of cost functions:
+
+==Examples==
+
+===Prisoner's dilemma===
+
+Consider the 2x2 game called prisoner's dilemma, given by the following payoff matrix:
+
+===Job scheduling===
+
+Claim.  For each job scheduling game, there exists at least one pure-strategy Nash equilibrium.
+ ''Q.E.D.'' 
+
+===Selfish Routing===
+
+====Braess' paradox====
+
+Consider a road network in which a fixed number of drivers need to move from a common source to a common destination; assume that each driver chooses its route selfishly, and that the time to traverse a road depends linearly on the number of drivers choosing that road.
+Hence, the uncommon result of denying access to the fastest road by central control to be beneficial to the public in some cases.
+
+====Generalized routing problem====
+
+The routing problem introduced in the Braess' paradox can be generalized to many different flows traversing the same graph at the same time.
+This definition is closely related to what we said about the support of mixed-strategy Nash equilibria in normal-form games.
+ ''Q.E.D.'' 
+ ''Q.E.D.'' 
+By using Fact 2, we have that
+since
+ ''Q.E.D.'' 
+
+==See also==
+
+==References==
+
+==Further reading==
+
+

@@ -1,0 +1,43 @@
+[[SNePS]]
+
+CATEGORIES: Knowledge representation software, Cognitive architecture, Artificial intelligence, Common Lisp software
+
+SNePS is a knowledge representation, reasoning, and acting (KRRA) system developed and maintained by Stuart C. Shapiro and colleagues at the State University of New York at Buffalo. 
+SNePS is simultaneously a logic-based, frame-based, and network-based KRRA system.  It uses an assertional model of knowledge, in that a SNePS knowledge base (KB) consists of a set of assertions (propositions) about various entities.  Its intended model is of an intensional domain of mental entities---the entities conceived of by some agent, and the propositions believed by it.  The intensionality is primarily accomplished by the absence of a built-in equality operator, since any two syntactically different terms might have slightly different Fregean senses.
+SNePS has three styles of inference: formula-based, derived from its logic-based personality; slot-based, derived from its frame-based personality; and path-based, derived from its network-based personality.  However, all three are integrated, operating together.
+SNePS may be used as a stand-alone KRR system.  It has also been used, along with its integrated acting component, to implement the mind of intelligent agents (cognitive robots), in accord with the GLAIR agent architecture (a layered cognitive architecture).  The SNePS Research Group often calls its agents Cassie.
+
+==SNePS as a Logic-Based System==
+
+As a logic-based system, a SNePS KB consists of a set of terms, and functions and formulas over those terms. The set of logical connectives and quantifiers extends the usual set used by first-order logics, all taking one or more arbitrarily-sized sets of arguments. In accord with the intended use of SNePS to represent the mind of a natural-language-competent intelligent agent, propositions are first-class entities of the intended domain, so formulas are actually proposition-denoting functional terms. SNePSLOG, the input-output language of the logic-based face of SNePS, looks like a naive logic in that function symbols (including "predicates"), and formulas (actually proposition-denoting terms) may be the arguments of functions and may be quantified over. The underlying SNePS, however, is a first order logic, with the user's function symbols and formulas reified.
+Formula-based inference is implemented as a natural-deduction-style inference engine in which there are introduction and elimination rules for the connectives and quantifiers. SNePS formula-based inference is sound but not complete, as rules of inference that are less useful for natural language understanding and commonsense reasoning have not been implemented.
+A proposition-denoting term in a SNePS KB might or might not be "asserted", that is, treated as true in the KB. The SNePS logic is a paraconsistent version of relevance logic, so that a contradiction does not imply anything whatsoever. Nevertheless, SNeBR, the SNePS Belief Revision subsystem, will notice any explicit contradiction and engage the user in a dialogue to repair it. SNeBR is an Assumption-Based Truth Maintenance System (ATMS), and removes the assertion status of any proposition whose support has been removed.
+
+==SNePS as a Frame-Based System==
+
+As a frame-based system, every SNePS functional term (including proposition-valued terms) is represented by a frame with slots and fillers. Each slot may be filled by an arbitrarily-sized set of other terms. However, cycles cannot be constructed. SNePSUL, the SNePS User Language is an input-output language for interacting with SNePS in its guise as a frame-based system.
+SNePSLOG may be used in any of three modes. In two modes, the caseframe (set of slots) associated with each functional term is determined by the system. In mode 3, the user declares what caseframe is to be used for each function symbol.
+In slot-based inference, any proposition-valued frame is considered to imply the frame with any of its slots filled by a subset of its fillers. In the current implementation, this is not always sound.
+
+==SNePS as a Network-Based System==
+
+As a network-based system, SNePS is a propositional semantic network,
+thus the original meaning of "SNePS" as "The Semantic Network
+Processing System".  This view is obtained by considering every
+individual constant and every functional term to be a node of the
+network, and every slot to be a directed labeled arc from the
+frame-node it is in to every node in its filler.  In the intended
+interpretation, every node denotes a mental entity, some of which are
+propositions, and every proposition represented in the network is
+represented by the node that denotes it.  Some nodes are variables of
+the SNePS logic, and they range over nodes, and only over nodes.
+Path-based inference rules may be defined, although they, themselves,
+are not represented in SNePS.  A path-based inference rule specifies
+that some labeled arc r may be inferred as present from some node n
+to some other node m just in case a given path exists from n to m.
+There is an extensive recursive set of path constructors available.
+
+==Components==
+
+==Applications==
+

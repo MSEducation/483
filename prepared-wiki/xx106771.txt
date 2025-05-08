@@ -1,0 +1,47 @@
+[[File shortcut]]
+
+CATEGORIES: Computer file formats, Microsoft Windows
+
+In computing, a file shortcut is a handle in a user interface that allows the user to find a file or resource located in a different directory or folder from the place where the shortcut is located. 
+Shortcuts are typically implemented as a small file containing a target URI or GUID to an object, or the name of a target program file that the shortcut represents. The shortcut might additionally specify parameters to be passed to the target program when it is run. Each shortcut can have its own icon. Shortcuts are very commonly placed on a desktop, in an application launcher panel such as the  Microsoft Windows Start menu, or in the main menu of a desktop environment. The functional equivalent in the Macintosh operating system is called an alias, and a symbolic link (or symlink) in UNIX-like systems.
+
+==Implementations==
+
+===Microsoft Windows===
+
+File shortcuts (also known as shell links) were introduced in Windows 95.[tpl]Citation|author=Raymond Chen|date=October 2009|magazine=TechNet Magazine|title=Windows Confidential: Tracking Shortcuts|url=http://technet.microsoft.com/en-us/magazine/2009.10.windowsconfidential.aspx[/tpl] Microsoft Windows uses .lnk as the filename extension for shortcuts to local files, and .URL for shortcuts to remote files, like web pages.  Commonly referred to as "shortcuts" or "link files", both are displayed with a curled arrow overlay icon by default, and no filename extension.  (The extension remains hidden in Windows Explorer even when "Hide extensions for known file types" is unchecked in File Type options, because it is controlled by the NeverShowExt option in HKEY_CLASSES_ROOT\lnkfile in the Registry.  The IsShortcut option causes the arrow to be displayed.) Shortcut files can be used to launch programs in minimized or maximized window states if the program supports it.
+Microsoft Windows .lnk files operate as Windows Explorer extensions, rather than file system extensions. As a shell extension, .lnk files cannot be used in place of the file except in Windows Explorer, and have other uses in Windows Explorer in addition to use as a shortcut to a local file (or GUID). These files also begin with "L".
+A link file with the magic name "target.lnk" may be used as the target of "desktop.ini", the folder customization file. A folder customized in this way becomes an alias for the target specified in the lnk file. That is, the customized folder becomes the effective shortcut.Manually creating junction points in Windows XP This technique is used by Microsoft Windows for items like WebDAV folders.
+Generally, the effect of double-clicking a shortcut is intended to be the same as double-clicking the application or document to which it refers, but Windows shortcuts contain separate properties for the target file and the "Start In" directory. If the latter parameter is not entered, attempting to use the shortcut for some programs may generate "missing DLL" errors not present when the application is accessed directly.http://www.gearhack.com/Forums/DisplayComments.php?file=Computer/Games/Dawn_of_War_-_Dark_Crusade._Error_Loading_Module
+Although shortcuts, when created, point to specific files or folders, they may break if the target is moved to another location. Microsoft Windows has standard algorithms for fixing up shortcuts when they are moved. Windows 9x-based versions of Windows use a simple search algorithm to fix broken shortcuts. On Windows NT-based operating systems and the NTFS file system, the target object's unique identifier is stored in the shortcut file and Windows can use the Distributed Link Tracking service for tracking the targets of shortcuts, so that the shortcut may be silently updated if the target moves to another hard drive.Distributed Link Tracking on Windows-based domain controllers Windows Installer introduced in Windows 2000 introduced another special type of shortcuts called Advertised shortcuts.
+File shortcuts in Windows can store a working directory path besides the target path. Environment variables can be used. For shortcuts that are located in the Start Menu, a hotkey can be defined in the shortcut's properties. Windows 2000 onwards, file shortcuts can also store comments which are displayed as a tooltip when the mouse hovers over the shortcut. 
+File system links can also be created on Windows systems, which serve a similar function, although they are a feature of the file system. Windows shortcuts are files and work independently of the file system.[tpl]Citation|author=Raymond Chen|date=September 2006|magazine=TechNet Magazine|title=Windows Confidential: Why are Shortcuts Files?|url=http://technet.microsoft.com/en-us/magazine/2006.09.windowsconfidential.aspx[/tpl]
+Beginning with Windows 7, some shortcuts also store Application User Model IDs (AppUserModelIDs). Working with Application User Model IDs (AppUserModelIDs): MSDN  Instead of the target command line, AppUserModelIDs may directly be used to launch applications. Shortcuts with AppUserModelIDs are used by some desktop programs and all WinRT Modern apps for launching.
+
+===Unix===
+
+Some desktop environments for Unix-like operating systems, such as GNOME or KDE provide freedesktop.org .desktop files.  These can be used to point to local or remote files, folders, and applications.  Symbolic links can also be created on Unix systems, which serve a similar function.
+
+====List of X window managers that support desktop shortcuts====
+
+Following are some of the window managers which support the use of shortcut icons on the desktop;
+
+===Apple Macintosh===
+
+Macintosh does not have extensions for shortcuts, although symbolic links can be created within the Unix subsystem.
+The extension .webloc is used for Internet URLs within the Safari browser. Macintosh System 7 through Mac OS 9 used  "aliases", which distinguished themselves visually to the user by the fact that their file names were in italics. In Mac OS 8 and later, another distinguishing mark was added, badging with an "alias arrow" – a black arrow on a small white square – similar to that used for shortcuts in Microsoft Windows.
+In Mac OS X, the filenames of aliases are not italicized, but the arrow badge remains. In Mac OS X, an alias retains its dynamic reference to an object and does not have to be specified even when calling files on remote servers.
+
+==History==
+
+With early Graphical User Interfaces to execute an application or render a file, the user had to click on the representation of the actual file or executable in the location where the application or file was.
+The concept of disassociating the executable from the icon representing an instruction to perform a task associated with that file or executable so that they may be grouped by function or task rather than physical organisation in the file structure was first described in the research paper "A Task Oriented Front End For The Windows Graphical User Interface", published in 1991 by Kingston University and presented to both Microsoft and Xerox EuroPARC that same year under an academia/business technology sharing agreement.
+A simplified form of this research was incorporated into System 7 in 1991, and four years later into Windows 95.
+
+==See also==
+
+==References==
+
+==External links==
+
+

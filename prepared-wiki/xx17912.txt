@@ -1,0 +1,57 @@
+[[Fermat pseudoprime]]
+
+CATEGORIES: Pseudoprimes, Asymmetric-key algorithms
+
+In number theory, the Fermat pseudoprimes make up the most important class of pseudoprimes that come from Fermat's little theorem.
+
+==Definition==
+
+Fermat's little theorem states that if p is prime and a is coprime to p, then ap−1 − 1 is divisible by p. If a composite integer x is coprime to an integer a > 1 and x divides ax−1 − 1, then x is called a Fermat pseudoprime to base a. In other words, a composite integer is a Fermat pseudoprime to base a if it successfully passes Fermat primality test for the base a.[tpl]cite book|author=Desmedt, Yvo|chapter=Encryption Schemes|editors=Atallah, Mikhail J. & Blanton, Marina|title=Algorithms and theory of computation handbook: Special topics and techniques|publisher=CRC Press|year=2010|isbn=978-1-58488-820-8|pages=10–23|url=http://books.google.com/books?id=SbPpg_4ZRGsC&pg=SA10-PA23[/tpl]
+The smallest base-2 Fermat pseudoprime is 341. It is not a prime, since it equals 11·31, but it satisfies Fermat's little theorem: 2340 ≡ 1 (mod 341) and thus passes 
+Fermat primality test for the base 2.
+Pseudoprimes to base 2 are sometimes called Poulet numbers, after the Belgian mathematician Paul Poulet, Sarrus numbers, or Fermatians [tpl]OEIS|id=A001567[/tpl].
+A Fermat pseudoprime is often called a pseudoprime, with the modifier Fermat being understood.
+An integer x that is a Fermat pseudoprime for all values of a that are coprime to x is called a Carmichael number.
+
+===Variations===
+
+Some sources use variations of the definition, for example to only allow odd numbers to be pseudoprimes.[tpl]MathWorld|title=Fermat Pseudoprime|urlname=FermatPseudoprime[/tpl] 
+
+==Properties==
+
+===Distribution===
+
+There are infinitely many pseudoprimes to a given base (in fact, infinitely many strong pseudoprimes (see Theorem 1 of
+[tpl]cite journal|coauthors=John L. Selfridge, Samuel S. Wagstaff, Jr.|title=The pseudoprimes to 25·109|journal=Mathematics of Computation|date=July 1980|volume=35|issue=151|pages=1003–1026|url=http://www.math.dartmouth.edu/~carlp/PDF/paper25.pdf|author = Carl Pomerance| doi=10.1090/S0025-5718-1980-0572872-7 [/tpl])
+and infinitely many Carmichael numbers
+[tpl]cite journal |author=W. R. Alford |coauthors=Andrew Granville, Carl Pomerance |title=There are Infinitely Many Carmichael Numbers |journal=Annals of Mathematics |volume=139 |year=1994 |pages=703–722 |doi=10.2307/2118576 |url=http://www.math.dartmouth.edu/~carlp/PDF/paper95.pdf[/tpl])
+, but they are rather rare.
+There are only three pseudoprimes to base 2 below 1000, 245 below one million, and only 21853 less than 25·109 (see Table 1 of ).
+Starting at 17·257, the product of consecutive Fermat numbers is a base-2 pseudoprime. 
+
+===Factorizations===
+
+The factorizations of the 60 Poulet numbers up to 60787, including 13 Carmichael numbers (in bold), are in the below table.
+|
+|
+|
+|}
+A Poulet number all of whose divisors d divide 2d − 2 is called a super-Poulet number. There are infinitely many Poulet numbers which are not super-Poulet Numbers.
+
+===Smallest Fermat pseudoprimes===
+
+The smallest pseudoprime for each base a ≤ 200 is given in the following table; the colors mark the number of prime factors. Unlike in the definition at the start of the article, pseudoprimes below a are excluded in the table. 
+
+==Euler–Jacobi pseudoprimes==
+
+Another approach is to use more refined notions of pseudoprimality, e.g. strong pseudoprimes or Euler–Jacobi pseudoprimes, for which there are no analogues of Carmichael numbers. This leads to probabilistic algorithms such as the Solovay–Strassen primality test, the Baillie-PSW primality test, and the Miller–Rabin primality test, which produce what are known as industrial-grade primes.  Industrial-grade primes are integers for which primality has not been "certified" (i.e. rigorously proven), but have undergone a test such as the Miller–Rabin test which has nonzero, but arbitrarily low, probability of failure.
+
+==Applications==
+
+The rarity of such pseudoprimes has important practical implications. For example, public-key cryptography algorithms such as RSA require the ability to quickly find large primes. The usual algorithm to generate prime numbers is to generate random odd numbers and test them for primality. However, deterministic primality tests are slow. If the user is willing to tolerate an arbitrarily small chance that the number found is not a prime number but a pseudoprime, it is possible to use the much faster and simpler Fermat primality test.
+
+==References==
+
+==External links==
+
+

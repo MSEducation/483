@@ -1,0 +1,29 @@
+[[Urysohn's lemma]]
+
+CATEGORIES: Lemmas, Topology, Theorems in topology, Articles containing proofs, Separation axioms
+
+In topology, Urysohn's lemma is a lemma that states that a topological space is normal if and only if any two disjoint closed subsets can be separated by a function.
+Urysohn's lemma is commonly used to construct continuous functions with various properties on normal spaces. It is widely applicable since all metric spaces and all compact Hausdorff spaces are normal. The lemma is generalized by (and usually used in the proof of) the Tietze extension theorem.
+The lemma is named after the mathematician Pavel Samuilovich Urysohn.
+
+==Formal statement==
+
+Two disjoint closed subsets A and B of a topological space X are said to be separated by neighbourhoods if there are neighbourhoods U of A and V of B that are also disjoint. A and B are said to be separated by a function if there exists a continuous function f from X into the unit interval 0,1 such that f(a) = 0 for all a in A and f(b) = 1 for all b in B. Any such function is called a Urysohn function for A and B.
+A normal space is a topological space in which any two disjoint closed sets can be separated by neighbourhoods. Urysohn's lemma states that a topological space is normal if and only if any two disjoint closed sets can be separated by a continuous function.
+The sets A and B need not be precisely separated by f, i.e., we do not, and in general cannot, require that f(x) ≠ 0 and ≠ 1 for x outside of A and B. This is possible only in perfectly normal spaces.
+Urysohn's lemma has led to the formulation of other topological properties such as the 'Tychonoff property' and 'completely Hausdorff spaces'. For example, a corollary of the lemma is that normal T1 spaces are Tychonoff.
+
+==Sketch of proof==
+
+For every dyadic fraction r ∈ (0,1), we are going to construct an open subset U(r) of X such that:
+Once we have these sets, we define f(x) = inf { r : x ∈ U(r) } for every x ∈ X. Using the fact that the dyadic rationals are dense, it is then not too hard to show that f is continuous and has the property f(A) ⊆ {0} and f(B) ⊆ {1}.
+In order to construct the sets U(r), we actually do a little bit more: we construct sets U(r) and V(r) such that
+Since the complement of V(r) is closed and contains U(r), the latter condition then implies condition (2) from above.
+This construction proceeds by mathematical induction. Since X is normal, we can find two disjoint open sets U(1/2) and V(1/2) which contain A and B, respectively. Now assume that n≥1 and the sets U(a/2n) and V(a/2n) have already been constructed for a = 1,...,2n-1. Since X is normal, we can find two disjoint open sets which contain the complement of V(a/2n) and the complement of U((a+1)/2n), respectively. Call these two open sets U((2a+1)/2n+1) and V((2a+1)/2n+1), and verify the above three conditions.
+The Mizar project has completely formalized and automatically checked a proof of Urysohn's lemma in the URYSOHN3 file.
+
+==See also==
+
+==External links==
+
+

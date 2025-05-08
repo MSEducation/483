@@ -1,0 +1,106 @@
+[[Haar wavelet]]
+
+CATEGORIES: Orthogonal wavelets
+
+In mathematics, the Haar wavelet is a sequence of rescaled "square-shaped" functions which together form a wavelet family or basis. Wavelet analysis is similar to Fourier analysis in that it allows a target function over an interval to be represented in terms of an orthonormal function basis. The Haar sequence is now recognised as the first known wavelet basis and extensively used as a teaching example.
+The Haar sequence was proposed in 1909 by Alfréd Haar.see p. 361 in [tpl]harvtxt|Haar|1910[/tpl]. 
+Haar used these functions to give an example of an orthonormal system for the space of square-integrable functions on the unit interval 0, 1.  The study of wavelets, and even the term "wavelet", did not come until much later. As a special case of the Daubechies wavelet, the Haar wavelet is also known as D2.
+The Haar wavelet is also the simplest possible wavelet. The technical disadvantage of the Haar wavelet is that it is not continuous, and therefore not differentiable. This property can, however, be an advantage for the analysis of signals with sudden transitions, such as monitoring of tool failure in machines.[tpl]cite journal |first=B. |last=Lee |first2=Y. S. |last2=Tarng |title=Application of the discrete wavelet transform to the monitoring of tool failure in end milling using the spindle motor current |journal=International Journal of Advanced Manufacturing Technology |year=1999 |volume=15 |issue=4 |pages=238–243 |doi=10.1007/s001700050062 [/tpl]
+
+==Haar functions and Haar system==
+
+For every pair n, k of integers in Z, the Haar function ψn, k is defined on the real line R by the formula
+This function is supported on the right-open interval [tpl]nowrap| In,  k [tpl]=[/tpl][/tpl] [tpl]nowrap|[ k 2−n, (k+1) 2−n )[/tpl], i.e., it vanishes outside that interval. It has integral 0 and norm 1 in the Hilbert space L2(R),
+The Haar functions are pairwise orthogonal,
+The Haar system on the real line is the set of functions
+It is complete in L2(R): The Haar system on the line is an orthonormal basis in L2(R).
+
+==Haar wavelet properties==
+
+The Haar wavelet has several notable properties:
+Here δi,j represents the Kronecker delta. The dual function of ψ(t) is ψ(t) itself.
+
+==Haar system on the unit interval and related systems==
+
+In this section, the discussion is restricted to the unit interval 0, 1 and to the Haar functions that are supported on 0, 1. The system of functions considered by Haar in 1910,p. 361 in [tpl]harvtxt|Haar|1910[/tpl]
+called the Haar system on 0, 1 in this article, consists of the subset of Haar wavelets defined as
+with the addition of the constant function 1 on 0, 1.
+In Hilbert space terms, this Haar system on 0, 1 is a complete orthonormal system, i.e., an orthonormal basis, for the space L2(0, 1) of square integrable functions on the unit interval.
+The Haar system on 0, 1 —with the constant function 1 as first element, followed with the Haar functions ordered according to the lexicographic ordering of couples [tpl]nowrap|(n, k)[/tpl]— is further a monotone Schauder basis for the space Lp(0, 1) when [tpl]nowrap|1 ≤ p < ∞[/tpl].see p. 3 in J. Lindenstrauss, L. Tzafriri, (1977), "Classical Banach Spaces I, Sequence Spaces", Ergebnisse der Mathematik und ihrer Grenzgebiete 92, Berlin: Springer-Verlag, ISBN 3-540-08072-4. 
+This basis is unconditional  when [tpl]nowrap|1 < p < ∞[/tpl].The result is due to R. E. Paley, A remarkable series of orthogonal functions (I), Proc. London Math. Soc. 34 (1931) pp. 241-264. See also p. 155 in J. Lindenstrauss, L. Tzafriri, (1979), "Classical Banach spaces II, Function spaces". Ergebnisse der Mathematik und ihrer Grenzgebiete 97, Berlin: Springer-Verlag, ISBN 3-540-08888-1.
+There is a related Rademacher system consisting of sums of Haar functions, 
+Notice that |rn(t)| = 1 on [0, 1). This is an orthonormal system but it is not complete.[tpl]cite web |url=http://eom.springer.de/O/o070380.htm |title=Orthogonal system |work=Encyclopaedia of Mathematics [/tpl][tpl]cite book |first=Gilbert G. |last=Walter |first2=Xiaoping |last=Shen |title=Wavelets and Other Orthogonal Systems |year=2001 |location=Boca Raton |publisher=Chapman |isbn=1-58488-227-1 [/tpl]
+In the language of probability theory, the Rademacher sequence is an instance of a sequence of independent Bernoulli random variables with mean 0. The Khintchine inequality expresses the fact that in all the spaces Lp(0, 1), [tpl]nowrap|1 ≤ p < ∞[/tpl], the Rademacher sequence is equivalent to the unit vector basis in ℓ2.see for example p. 66 in J. Lindenstrauss, L. Tzafriri, (1977), "Classical Banach Spaces I, Sequence Spaces", Ergebnisse der Mathematik und ihrer Grenzgebiete 92, Berlin: Springer-Verlag, ISBN 3-540-08072-4. In particular, the closed linear span of the Rademacher sequence in Lp(0, 1), [tpl]nowrap|1 ≤ p < ∞[/tpl], is isomorphic to ℓ2.
+
+===The Faber–Schauder system===
+
+The Faber–Schauder system[ref]Faber, Georg (1910), "Über die Orthogonalfunktionen des Herrn Haar", Deutsche Math.-Ver (in German) 19: 104–112. ISSN 0012-0456; 
+http://www-gdz.sub.uni-goettingen.de/cgi-bin/digbib.cgi?PPN37721857X ; http://resolver.sub.uni-goettingen.de/purl?GDZPPN002122553[/ref]Schauder, Juliusz (1928), "Eine Eigenschaft des Haarschen Orthogonalsystems", Mathematische Zeitschrift 28: 317–320.[ref]
+</ref> 
+is the family of continuous functions on 0, 1 consisting of the constant function 1, and of multiples of indefinite integrals of the functions in the Haar system on 0, 1, chosen to have norm 1 in the maximum norm. This system begins with s0 = 1, then [tpl]nowrap| s1(t) [tpl]=[/tpl] t[/tpl] is the indefinite integral vanishing at 0 of the function 1, first element of the Haar system on 0, 1.  Next, for every integer [tpl]nowrap|n ≥ 0[/tpl], functions [tpl]nowrap| sn, k[/tpl] are defined by the formula
+These functions [tpl]nowrap| sn, k[/tpl] are continuous, piecewise linear, supported by the interval [tpl]nowrap| In, k[/tpl] that also supports [tpl]nowrap| ψn, k[/tpl]. The function [tpl]nowrap| sn, k[/tpl] is equal to 1 at the midpoint [tpl]nowrap| xn, k[/tpl] of the interval [tpl]nowrap| In, k[/tpl], linear on both halves of that interval. It takes values between 0 and 1 everywhere.
+The Faber–Schauder system is a Schauder basis for the space C(0, 1) of continuous functions on 0, 1. 
+For every f in C(0, 1), the partial sum
+of the series expansion of f in the Faber–Schauder system is the continuous piecewise linear function that agrees with f at the [tpl]nowrap|2n + 1[/tpl] points [tpl]nowrap|k 2−n[/tpl], where [tpl]nowrap| 0 ≤ k ≤ 2n[/tpl]. Next, the formula
+gives a way to compute the expansion of f step by step. Since f is uniformly continuous, the sequence {fn} converges uniformly to f.  It follows that the Faber–Schauder series expansion of f converges in C(0, 1), and the sum of this series is equal to f.
+
+===The Franklin system===
+
+The Franklin system is obtained from the Faber–Schauder system by the Gram–Schmidt orthonormalization procedure.see Z. Ciesielski, Properties of the orthonormal Franklin system. Studia Math. 23 1963 141–157.Franklin system. B.I. Golubov (originator), Encyclopedia of Mathematics. URL: http://www.encyclopediaofmath.org/index.php?title=Franklin_system&oldid=16655
+Since the Franklin system has the same linear span as that of the Faber–Schauder system, this span is dense in C(0, 1), hence in L2(0, 1). The Franklin system is therefore an orthonormal basis for L2(0, 1), consisting of continuous piecewise linear functions. P. Franklin proved in 1928 that this system is a Schauder basis for C(0, 1).Philip Franklin, A set of continuous orthogonal functions, Math. Ann. 100 (1928), 522-529. 
+The Franklin system is also an unconditional basis for the space Lp(0, 1) when [tpl]nowrap|1 < p < ∞[/tpl].S. V. Bočkarev, Existence of a basis in the space of functions analytic in the disc, and some properties of Franklin's system. Mat. Sb. 95 (1974), 3–18 (Russian). Translated in Math. USSR-Sb. 24 (1974), 1–16.
+The Franklin system provides a Schauder basis in the disk algebra A(D).
+This was proved in 1974 by Bočkarev, after the existence of a basis for the disk algebra had remained open for more than forty years.The question appears p. 238, §3 in Banach's book, [tpl]citation|first=Stefan|last=Banach|authorlink=Stefan Banach|url=http://matwbn.icm.edu.pl/kstresc.php?tom=1&wyd=10|title=Théorie des opérations linéaires|publication-place=Warszawa|publisher=Subwencji Funduszu Kultury Narodowej|year=1932|series=Monografie Matematyczne|volume=1|zbl=0005.20901[/tpl].  The disk algebra A(D) appears as Example 10, p. 12 in Banach's book.
+Bočkarev's construction of a Schauder basis in A(D) goes as follows: let f be a complex valued Lipschitz function on 0, π; then f is the sum of a cosine series with absolutely summable coefficients. Let T(f) be the element of A(D) defined by the complex power series with the same coefficients,
+Bočkarev's basis for A(D) is formed by the images under T of the functions in the Franklin system on 0, π. Bočkarev's equivalent description for the mapping T starts by extending f to an even Lipschitz function g1 on −π, π, identified with a Lipschitz function on the unit circle T. Next, let g2 be the conjugate function of g1, and define T(f) to be the function in A(D) whose value on the boundary T of D is equal to [tpl]nowrap|g1 + i g2[/tpl].
+When dealing with 1-periodic continuous functions, or rather with continuous functions f on 0, 1 such that [tpl]nowrap|f(0) [tpl]=[/tpl] f(1)[/tpl], one removes the function [tpl]nowrap| s1(t) [tpl]=[/tpl] t[/tpl] from the Faber–Schauder system, in order to obtain the periodic Faber–Schauder system. The periodic Franklin system is obtained by orthonormalization from the periodic Faber–-Schauder system.[ref]See p. 161, III.D.20 and p. 192, III.E.17 in 
+[/ref]
+One can prove Bočkarev's result on A(D) by proving that the periodic Franklin system on 0, 2π is a basis for a Banach space Ar isomorphic to A(D). 
+The space Ar consists of complex continuous functions on the unit circle T whose conjugate function is also continuous.
+
+==Haar matrix==
+
+The 2×2 Haar matrix that is associated with the Haar wavelet is
+If one has a sequence of length a multiple of four, one can build blocks of 4 elements and transform them in a similar manner with the 4×4 Haar matrix
+which combines two stages of the fast Haar-wavelet transform.
+Compare with a Walsh matrix, which is a non-localized 1/–1 matrix.
+Generally, the 2N×2N Haar matrix can be derived by the following equation.
+Note that, the above matrix is an un-normalized Haar matrix. The Haar matrix required by the Haar transform should be normalized.
+
+==Haar transform==
+
+The Haar transform is the simplest of the wavelet transforms. This transform cross-multiplies a function against the Haar wavelet with various shifts and stretches, like the Fourier transform cross-multiplies a function against a sine wave with two phases and many stretches.The Haar Transform
+
+===Introduction===
+
+The Haar transform is one of the oldest transform functions, proposed in 1910 by a Hungarian mathematician Alfred Haar. It is found effective in applications such as signal and image compression in electrical and computer engineering as it provides a simple and computationally efficient approach for analysing the local aspects of a signal.
+The Haar transform is derived from the Haar matrix. An example of a 4x4 Haar transformation matrix is shown below.
+The Haar transform can be thought of as a sampling process in which rows of the transformation matrix act as samples of finer and finer resolution.
+Compare with the Walsh transform, which is also 1/–1, but is non-localized.
+
+===Property===
+
+The Haar transform has the following properties
+
+===Haar transform and Inverse Haar transform===
+
+The Haar transform yn of an n-input function xn is
+The Haar transform matrix is real and orthogonal. Thus, the inverse Haar transform can be derived by the following equations.
+Thus, the inverse Haar transform is
+
+===Example===
+
+The input signal can reconstruct by the inverse Haar transform
+
+===Application===
+
+Modern cameras are capable of producing images with resolutions in the range of tens of megapixels. These images need to be compressed before storage and transfer. The Haar transform can be used for image compression. The basic idea is to transfer the image into a matrix in which each element of the matrix represents a pixel in the image. For example, a 256×256 matrix is saved for a 256×256 image. JPEG image compression involves cutting the original image into 8×8 sub-images. Each sub-image is a 8×8 matrix.
+
+==See also==
+
+==Notes==
+
+==References==
+
+ | last = Haar |first = Alfréd | author-link = Alfréd Haar
+ | title = Zur Theorie der orthogonalen Funktionensysteme

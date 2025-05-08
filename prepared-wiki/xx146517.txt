@@ -1,0 +1,27 @@
+[[CDC 160 series]]
+
+CATEGORIES: CDC hardware, History of electronic engineering, Transistorized computers
+
+The CDC 160 series was a series of minicomputers built by Control Data Corporation.  The CDC 160 and CDC 160-A were 12-bit minicomputers[tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/023a_160_Computer_Programming_Manual_1960.pdf|title=160 Computer Programming Manual|publisher=Control Data Corporation|year=1960|accessdate=March 28, 2013[/tpl][tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/145e_CDC160A_ProgMan_Mar63.pdf|title=Control Data 160-A Computer Programming Manual|publisher=Control Data Corporation|date=March 1963|accessdate=March 28, 2013[/tpl] built from 1960 to 1965; the CDC 160G was a 13-bit minicomputer, with an extended version of the CDC 160-A instruction set, and a compatibility mode in which it didn't use the 13th bit.[tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/G02000c_160G_Programming_May65.pdf|title=Control Data 160G Programming Reference Manual|publisher=Control Data Corporation|date=May 11, 1965|accessdate=March 28, 2013[/tpl] The 160 was designed by Seymour Cray - reportedly over a long three-day weekend[tpl]Citation needed|date=January 2008[/tpl]. It fit into the desk where its operator sat.
+The 160 architecture used ones' complement arithmetic with end-around carry.[ref]
+"A Programmer's Reference Manual for the CDC-160" by Douglas W. Jones[/ref]
+NCR joint-marketed the 160-A under its own name for several years in the 1960s.
+
+==Overview==
+
+The CDC 160A was a simple piece of hardware, and yet provided a variety of features which were scaled-down capabilities found only on larger systems. It was therefore an ideal platform for introducing neophyte programmers to the sophisticated concepts of low-level IO and interrupt systems.
+All One-Sixty systems had a paper-tape reader, and a punch, and most had an IBM Electric typewriter modified to act as a computer terminal.[tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/073e_161_Typewriter_Unit_Dec62.pdf|title=Control Data 160 Typewriter Unit|date=December 1962|publisher=Control Data Corporation|accessdate=March 28, 2013[/tpl][tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/CDC_160_Brochure_Aug61.pdf|title=Control Data 160 Computer|publisher=Control Data Corporation|accessdate=March 28, 2013[/tpl][tpl]cite book|url=http://bitsavers.org/pdf/cdc/160/160-A_Peripheral_Brochure_Nov62.pdf|title=Control Data 160-A Computer|publisher=Control Data Corporation|date=November 1962|accessdate=March 28, 2013[/tpl]  Memory on the 160 was 4096 12-bit words.  The instruction set was small and RISC-like. The CPU had a 12-bit ones' complement accumulator but no multiply or divide.  There was a full complement of instructions and several addressing modes.  Indirect addressing was almost as good as index registers. The instruction set supported both relative (to the current P register) and absolute.   The original instruction set did not have a subroutine call instruction and could only address one bank of memory.
+In the 160A model, a "return jump" and a memory bank-switch instruction was added.  Return-jump allowed simple subroutine calls and bank-switching allowed other 4K banks of memory to be addressed, albeit clumsily, up to a total of 32,768 words.  The extra memory was expensive and had to live in a separate box as large as the 160 itself.  The -A model could also accept a multiply-divide unit, which was another large and expensive peripheral box.
+In the 160 and 160-A, the memory cycle time was 6.4 microseconds. An add took two cycles. The average instruction took 15 microseconds, for a processing rate of 67 000 instructions per second.
+The 160G model extended the registers and memory words to 13 bits; in G mode, all 13 bits were used, while in A mode, only the lower 12 bits were used, for binary compatibility with the 160-A.  The 160G added some instructions, including built-in multiply and divide instructions, and some additional addressing modes.[tpl]cite web|url=http://bitsavers.org/pdf/cdc/160/CDC_160G_Brochure_Feb64.pdf|title=Control Data 160G Computer System|publisher=Control Data Corporation|accessdate=March 28, 2013[/tpl]
+Low-level IO allowed control of devices, interfacing for determining device status, and for reading and writing data as either single bytes, or as blocks.  IO could be completed to a register, or to memory, or via a direct-memory-access (DMA) channel.  The distinction between these IO types was that regular IO would 'hang' the CPU until the IO operation completed, but DMA IO allowed the CPU to proceed with instruction execution concurrently with the data transfer.  The interrupt system was purely based on IO, meaning that all interrupts were generated externally.  Interrupts were introduced to neophytes as being the alert mechanism by which a program could be informed that a previously initiated DMA IO operation was completed.
+
+==Successors==
+
+The 160 architecture was modified to become the basis of the peripheral processors (PPs) in the CDC 6000 series mainframe computers and its successors. Large parts of the 160 instruction set were unchanged in the peripheral processors.  However there were changes to incorporate the 6000 data channel programming, and control of the central processor.  In the early days of the 6000s, almost the entire operating system ran in the PPs.  This left the central processor unemcumbered by operating system demands and available for user programs.
+
+==References==
+
+==External links==
+
+

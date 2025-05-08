@@ -1,0 +1,46 @@
+[[SYSLINUX]]
+
+CATEGORIES: Free boot loaders, Linux software
+
+The SYSLINUX Project is a suite of lightweight IBM PC MBR bootloaders for starting up computers with the Linux kernel. It is the work of H. Peter Anvin, and consists of several separate systems, the best-known of which is ISOLINUX.
+
+==List==
+
+==Use==
+
+===SYSLINUX and ISOLINUX===
+
+SYSLINUX is not normally used for booting full Linux installations since Linux is not normally installed on FAT filesystems. Instead, it is often used for boot or rescue floppy discs, Live USBs, or other lightweight boot systems. ISOLINUX is generally used by Linux Live CDs and bootable install CDs.
+A minor complication is involved when booting from CD-ROM. The El Torito standard allows for booting in two different modes:
+To have this choice is sometimes useful, since ISOLINUX is vulnerable to BIOS bugs; for that reason, it is handy to be able to boot using SYSLINUX. This mostly affects computers built before about 1999, and, in fact, for modern computers no emulation mode is generally the more reliable method.
+The use of SYSLINUX for the creation of Live USBs is growing, though, and allowing the creation of distributions like Slax that allow users to try Linux with complete interactivity and persistent changes without needing to install it on their hard disk.
+Newer ISOLINUX versions allow for creation of so-called "hybrid ISO" images, that put both CD el-torito and HDD MBR boot records into an ISO image, which lets users use a single-image as either a CD/DVD boot or USB boot.
+
+===PXELINUX===
+
+PXELINUX is used in conjunction with a PXE compliant ROM on a network card. The PXE environment uses DHCP or BOOTP to enable basic TCP/IP networking, then downloads a bootstrap program via TFTP. This bootstrap program loads and configures a kernel according to directives that are also downloaded from the TFTP server.
+Typically, PXELINUX is used for Linux installations from a central network server or for booting diskless workstations.
+
+===EXTLINUX===
+
+EXTLINUX is typically used as a general-purpose bootloader, similar to LILO or GRUB.
+Since Syslinux 4, EXTLINUX has been merged with SYSLINUX.
+
+==COMBOOT==
+
+SYSLINUX can be extended by COMBOOT modules written in C or assembly language. 32-bit modules typically use file extension .c32. Since version 5 16-bit .com modules are no longer supported.
+
+===Hardware Detection Tool (HDT)===
+
+Since the 3.74 release, the Syslinux project hosts the Hardware Detection Tool (HDT) project.
+This tool is a Syslinux com32 module that displays low-level information for any x86 compatible system. It provides both a command-line interface and a semi-graphical menu mode for browsing.
+HDT is available as a com32 file, a bootable ISO and a 2.88 MB floppy disk.
+HDT is registered as a SourceForge project.
+
+==See also==
+
+==References==
+
+==External links==
+
+

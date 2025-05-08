@@ -1,0 +1,26 @@
+[[Delegation pattern]]
+
+CATEGORIES: Articles with example C++ code, Articles with example Java code, Software design patterns
+
+In software engineering, the delegation pattern is a design pattern in object-oriented programming where an object, instead of performing one of its stated tasks, delegates that task to an associated helper object. There is an Inversion of Responsibility in which a helper object, known as a delegate, is given the responsibility to execute a task for the delegator. The delegation pattern is one of the fundamental abstraction patterns that underlie other software patterns such as composition (also referred to as aggregation), mixins and aspects.
+
+==Examples==
+
+===Java examples===
+
+====Simple====
+
+In this Java example, the [tpl]Java|Printer[/tpl] class has a [tpl]Java|print[/tpl] method. This print method, rather than performing the print itself, delegates to class [tpl]Java|RealPrinter[/tpl]. To the outside world it appears that the [tpl]Java|Printer[/tpl] class is doing the print, but the [tpl]Java|RealPrinter[/tpl] class is the one actually doing the work.
+Delegation is simply passing a duty off to someone/something else. Here is a simple example:
+
+====Complex====
+
+By using interfaces, delegation can be made more flexible and typesafe. "Flexibility" here means that [tpl]Java|C[/tpl] need not refer to [tpl]Java|A[/tpl] or [tpl]Java|B[/tpl] in any way, as the switching of delegation is abstracted from [tpl]Java|C[/tpl]. In this example, class [tpl]Java|C[/tpl] can delegate to any class that implements [tpl]Java|I[/tpl]. Class [tpl]Java|C[/tpl] has a method to switch to another delegator. Including the [tpl]Java|implements[/tpl] clauses improves type safety, because each class must implement the methods in the interface. The main tradeoff is more code.
+
+===Scala example===
+
+==See also==
+
+==External links==
+
+

@@ -1,0 +1,32 @@
+  | isbn=3-540-00158-1}}</ref> multi-layer drawing and other methods related to [[N-body simulation]]. For example, the [[Barnes–Hut simulation]]-based method FADE<ref name="quigley+eades">
+.</ref> can improve running time to n*log(n) per iteration. As a rough guide, in a few seconds one can expect to draw at most 1,000 nodes with a standard n<sup>2</sup> per iteration technique, and 100,000 with a n*log(n) per iteration technique.<ref name="quigley+eades" /> Force-directed algorithm, when combined with a multilevel approach, can draw graphs of millions of nodes.<ref>[tpl]cite web|title=A Gallery of Large Graphs|url=http://www2.research.att.com/~yifanhu/GALLERY/GRAPHS/|accessdate=1 July 2012[/tpl]</ref>
+ | last1 = Collberg | first1 = Christian
+ | last2 = Kobourov | first2 = Stephen
+ | last3 = Nagra | first3 = Jasvir
+ | last4 = Pitts | first4 = Jacob
+ | last5 = Wampler | first5 = Kevin
+ | contribution = A System for Graph-based Visualization of the Evolution of Software
+ | doi = 10.1145/774833.774844
+ | isbn = 1-58113-642-0
+ | location = New York, NY, USA
+ | page = 77–86; figures on p.&nbsp;212
+ | publisher = ACM
+ | title = Proceedings of the 2003 ACM Symposium on Software Visualization (SoftVis '03)
+ | url = http://www.researchgate.net/publication/2851716_A_System_for_Graph-Based_Visualization_of_the_Evolution_of_Software/file/32bfe510fcc3a2ac65.pdf
+ | year = 2003|quote=To achieve an aesthetically pleasing layout of the graph it is also necessary to employ modified Fruchterman–Reingold forces, as the Kamada–Kawai method does not achieve satisfactory methods by itself but rather creates a good approximate layout so that the Fruchterman-Reingold calculations can quickly "tidy up" the layout.}}</ref> For example, using the Kamada–Kawai algorithm<ref name="kk89"/> to quickly generate a reasonable initial layout and then the Fruchterman–Reingold algorithm<ref name="fr91"/> to improve the placement of neighbouring nodes. Another technique to achieve a global minimum is to use a multilevel approach.
+
+==History==
+
+Force-directed methods in graph drawing date back to the work of [tpl]harvtxt|Tutte|1963[/tpl], who showed that polyhedral graphs may be drawn in the plane with all faces convex by fixing the vertices of the outer face of a planar embedding of the graph into convex position, placing a spring-like attractive force on each edge, and letting the system settle into an equilibrium.[tpl]citation|first=W. T.|last=Tutte|authorlink=W. T. Tutte|title=How to draw a graph|journal=Proceedings of the London Mathematical Society|volume=13|issue=52|pages=743–768|year=1963[/tpl]. Because of the simple nature of the forces in this case, the system cannot get stuck in local minima, but rather converges to a unique global optimum configuration. Because of this work, embeddings of planar graphs with convex faces are sometimes called Tutte embeddings.
+The combination of attractive forces on adjacent vertices, and repulsive forces on all vertices, was first used by [tpl]harvtxt|Eades|1984[/tpl];[ref] 
+.</ref> additional pioneering work on this type of force-directed layout was done by [tpl]harvtxt|Fruchterman|Reingold|1991[/tpl].<ref name="fr91">
+.</ref> The idea of using only spring forces between all pairs of vertices, with ideal spring lengths equal to the vertices' graph-theoretic distance, is from [tpl]harvtxt|Kamada|Kawai|1989[/tpl].<ref name="kk89">
+.</ref>
+
+==See also==
+
+==References==
+
+==Further reading==
+
+  | last=di Battista | first=Giuseppe

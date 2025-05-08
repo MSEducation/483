@@ -1,0 +1,59 @@
+[[Least mean squares filter]]
+
+CATEGORIES: Digital signal processing, Filter theory, Stochastic algorithms
+
+Least mean squares (LMS) algorithms are a class of adaptive filter used to mimic a desired filter by finding the filter coefficients that relate to producing the least mean squares of the error signal (difference between the desired and the actual signal). It is a stochastic gradient descent method in that the filter is only adapted based on the error at the current time.  It was invented in 1960 by Stanford University professor Bernard Widrow and his first Ph.D. student, Ted Hoff.
+
+==Problem formulation==
+
+===Relationship to the least mean squares filter===
+
+is
+The FIR least mean squares filter is related to the Wiener filter, but minimizing the error criterion of the former does not rely on cross-correlations or auto-correlations. Its solution converges to the Wiener filter solution. 
+
+===Definition of symbols===
+
+==Idea==
+
+filter weights in a manner to converge to the optimum filter weight. The algorithm starts by assuming a small weights
+(zero in most cases), and at each step, by finding the gradient of the mean square error, the weights are updated.
+That is, if the MSE-gradient is positive, it implies, the error would keep increasing positively, 
+if the same weight is used for further iterations, which means we need to reduce the weights. In the same way, if the gradient is negative, we need to increase the weights. So, the
+basic weight update equation is :
+The negative sign indicates that, we need to change the weights in a direction opposite to that of the gradient slope.
+The mean-square error, as a function of filter weights is a quadratic function which means it has only one extrema, that minimises 
+the mean-square error, which is the optimal weight. The LMS thus, approaches towards this optimal weights by ascending/descending 
+down the mean-square-error vs filter weight curve.
+
+==Derivation==
+
+We start by defining the cost function as 
+Generally, the expectation above is not computed. Instead, to run the LMS in an online (updating after each new sample is received) environment, we use an instantaneous estimate of that expectation. See below.
+
+==Simplifications==
+
+For that simple case the update algorithm follows as
+Indeed this constitutes the update algorithm for the LMS filter.
+
+==LMS algorithm summary==
+
+==Convergence and stability in the mean==
+
+Maximum convergence speed is achieved when
+The common interpretation of this result is therefore that the LMS converges quickly for white input signals, and slowly for colored input signals, such as processes with low-pass or high-pass characteristics.
+
+==Normalised least mean squares filter (NLMS)==
+
+===Optimal learning rate===
+
+===Proof===
+
+Assuming independence, we have:
+
+==See also==
+
+==References==
+
+==External links==
+
+

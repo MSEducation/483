@@ -1,0 +1,41 @@
+[[Iterator pattern]]
+
+CATEGORIES: Articles with example PHP code, Articles with example Perl code, Articles with example C++ code, Iteration in programming
+
+In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements. The iterator pattern decouples algorithms from containers; in some cases, algorithms are necessarily container-specific and thus cannot be decoupled.
+For example, the hypothetical algorithm SearchForElement can be implemented generally using a specified type of iterator rather than implementing it as a container-specific algorithm. This allows SearchForElement to be used on any container that supports the required type of iterator.
+
+==Definition==
+
+The essence of the Iterator Factory method Pattern is to "Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.".Gang Of Four
+
+==Language-specific implementation==
+
+Some languages standardize syntax. C++ and Python are notable examples.
+
+===C++===
+
+C++ implements iterators with the semantics of pointers in that language.  In C++, a class can overload all of the pointer operations, so an iterator can be implemented that acts more or less like a pointer, complete with dereference, increment, and decrement. This has the advantage that C++ algorithms such as std::sort can immediately be applied to plain old memory buffers, and that there is no new syntax to learn. However, it requires an "end" iterator to test for equality, rather than allowing an iterator to know that it has reached the end. In C++ language, we say that an iterator models the iterator concept.
+
+===Java===
+
+Java has the [tpl]Javadoc:SE|java/util|Iterator[/tpl] interface.
+As of Java 5, objects implementing the [tpl]Javadoc:SE|java/lang|Iterable[/tpl] interface, which returns an Iterator from its only method, can be traversed using the enhanced for loop syntax.[tpl]cite web |url=http://jcp.org/aboutJava/communityprocess/jsr/tiger/enhanced-for.html |title=An enhanced for loop for the Java™ Programming Language |accessdate=25 June 2013[/tpl] The [tpl]Javadoc:SE|java/util|Collection[/tpl] interface from the Java collections framework extends Iterable.
+
+===Python===
+
+Python prescribes a syntax for iterators as part of the language itself, so that language keywords such as for work with what Python calls sequences. A sequence has an () method that returns an iterator object. The "iterator protocol" requires next() return the next element or raise a StopIteration exception upon reaching the end of the sequence. Iterators also provide an () method returning themselves so that they can also be iterated over e.g., using a for loop. Generators are available since 2.2. 
+In Python 3, next() was renamed ().[tpl]cite web |url=http://docs.python.org/library/stdtypes.html |title=Python v2.7.1 documentation: The Python Standard Library: 5. Built-in Types |accessdate=2 May 2011[/tpl]
+
+===PHP===
+
+PHP supports the iterator pattern via the Iterator interface, as part of the standard distribution.[tpl]cite web |url=http://www.php.net/manual/en/class.iterator.php |title=PHP: Iterator |accessdate=23 June 2013[/tpl] Objects that implement the interface can be iterated over with the foreach language construct.
+Example of patterns using PHP:
+
+==See also==
+
+==References==
+
+==External links==
+
+

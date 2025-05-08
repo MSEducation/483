@@ -1,0 +1,50 @@
+[[CookXml]]
+
+CATEGORIES: XML software, Java programming language, Java platform software, Computer libraries, Free computer programming tools, Parser generators
+
+CookXml is a unique XML data binding engine in Java.  It is capable of mapping XML documents of desired format directly onto the corresponding object-oriented classes, essentially treating XML as a programming language rather than merely a data storage format.  Therefore, it is ideal to use CookXml to write any programs that interpret XML.  The tag library of CookXml is constructed dynamically at run time, and thus allows dynamic XML schema.  The current implementation has unmarshalling part done.
+CookXml is free software, distributed under a permissive, X11 style, licence.
+
+==Unmarshalling==
+
+CookXml offers the ability to directly map XML documents onto existing classes by breaking down the process into three general steps.  Then use a set of delegates, together forming a tag library, to handle actions performed at these steps.
+Except for CDATA nodes, the three above types of actions can handle all elements in an XML document.  CDATA in general can be handled either in the creator function or the adder function.
+Creators, setters, adders, and converters together form a tag library which is used by the CookXml engine to perform the XML data binding.
+
+===Dynamic Tag Library Construction===
+
+Because the CookXml tag library uses delegates, its tag library needs to be dynamically constructed.  This feature is both good and bad.  It is bad because there will be a slight initiation cost when the tag library is constructed, and its integrity may not be verified until runtime.  It is good because it allows developers to easily extend an existing tag library at runtime.
+
+===Preorder and Postorder Addition===
+
+Like any trees that can be traversed in preorder and postorder, the object corresponding to an XML element can be added to the parent object in preorder or postorder.  In the preorder addition, the object is added to the parent before descendant XML elements get processed.  In the postorder addition, the object is added to the parent after descendant XML elements get processed.
+
+===XML Tag Inheritance===
+
+One discovery made while writing CookXml was that class inheritance of Object-oriented languages can be mirrored into XML element tag inheritance.  Semantically, tag inheritance means that the derived tag will inherit the setters and adders of the inherited tags.
+For example, javax.swing.JMenu is a child class of javax.swing.JMenuItem.  Assuming that javax.swing.JMenu is mapped to  tag and javax.swing.JMenuItem is mapped to  tag, then we can declare in CookXml that  tag inherits  tag.   tag then inherts the setters for attributes such as "text" and "icon" of the  tag.
+Polymorphism of OOP can be mirrored in XML tag inheritance as well.  Class casting is similar to dynamically renaming the current namespace and the tag of the element being processed.
+XML tag inheritance is a methodology not present in any other XML data binding tools.  This feature is immensely useful in mapping XML documents to classes with a deep inheritance hierarchy, typically found in GUI API.  Thus CookXml is useful in writing XUL motors.  CookSwing and CookSwt are two such examples for mapping XML documents to Swing and SWT classes.
+
+===Namespace Handling===
+
+Since version 3.0, CookXml is capable of dealing with XML documents with multiple namespaces.  For backward compatibility, CookXml also parse XML documents without namespaces or partially utilizing namespaces.
+
+===Other Implementation Details===
+
+As of version 3.0, CookXml operates on top of the XML DOM tree to map an XML document to objects.  This feature allows developers to utilize XML schema if such exists to verify the incoming XML documents.  On the other hand, the memory consumption for a large XML document can be problematic.
+
+===Schema and Documentation Generation===
+
+Since a tag library for CookXml contains all the mappings between an XML element and its corresponding object classes, it is entirely possible to use this map to generate documentations from this feature.  The documentation output can be HTML documents, or XML Schemas.
+CookXmlDoc, a doclet API for CookXml can extract Javadoc tags and comments from the tag library source code.  The resulting information can in turn be used by an HTML doclet to generate the appropriate tag documentation.  See CookSwing Tag Documentation for an example.
+
+==Future Work==
+
+Streaming is a key feature that is under consideration.  Such capability would reduce the memory consumption due to the construction of the DOM tree as well as improving the overall performance.
+
+==See also==
+
+==External links==
+
+

@@ -1,0 +1,80 @@
+[[Dragon curve]]
+
+CATEGORIES: Fractal curves, Paper folding
+
+A dragon curve is any member of a family of self-similar fractal curves, which can be approximated by recursive methods such as Lindenmayer systems.
+
+Heighway dragon
+
+The Heighway dragon (also known as the Harter–Heighway dragon or the Jurassic Park dragon) was first investigated by NASA physicists John Heighway, Bruce Banks, and William Harter. It was described by Martin Gardner in his Scientific American column Mathematical Games in 1967. Many of its properties were first published by Chandler Davis and Donald Knuth.  It appeared on the section title pages of the Michael Crichton novel Jurassic Park.
+
+Construction
+
+It can be written as a Lindenmayer system with
+That can be described this way : Starting from a base segment, replace each segment by 2 segments with a right angle and with a rotation of 45° alternatively to the right and to the left:
+The Heighway dragon is also the limit set of the following iterated function system in the complex plane:
+Using pairs of real numbers instead, this is the same as the two functions consisting of
+This representation is more commonly used in software such as Apophysis.
+
+UnFolding the Dragon
+
+Tracing an iteration of the Heighway dragon curve from one end to the other, one encounters a series of 90 degree turns, some to the right and some to the left. For the first few iterations the sequence of right (R) and left (L) turns is as follows:
+This suggests the following pattern: each iteration is formed by taking the previous iteration, adding an R at the end, and then taking the original iteration again, flipping it retrograde, swapping each letter and adding the result after the R.
+This pattern in turn suggests the following method of creating models of iterations of the Heighway dragon curve by folding a strip of paper. Take a strip of paper and fold it in half to the right. Fold it in half again to the right. If the strip was opened out now, unbending each fold to become a 90 degree turn, the turn sequence would be RRL i.e. the second iteration of the Heighway dragon. Fold the strip in half again to the right, and the turn sequence of the unfolded strip is now RRLRRLL – the third iteration of the Heighway dragon. Continuing folding the strip in half to the right to create further iterations of the Heighway dragon (in practice, the strip becomes too thick to fold sharply after four or five iterations).
+This pattern also gives a method for determining the direction of the nth turn in the turn sequence of a Heighway dragon iteration. First, express n in the form k2m where k is an odd number. The direction of the nth turn is determined by k mod 4 i.e. the remainder left when k is divided by 4. If k mod 4 is 1 then the nth turn is R; if k mod 4 is 3 then the nth turn is L.
+For example, to determine the direction of turn 76376:
+There is a simple one line non-recursive method of implementing the above k mod 4 method of finding the turn direction in code.  Treating turn n as a binary number, calculate the following boolean value:
+
+=Gray code method=
+
+Another way of handling this is a reduction for the above algorithm. Using Gray code, starting from zero, determine the change to the next value. If the change is a 1 turn left, and if it is 0 turn right. Given a binary input, B, the corresponding gray code, G, is given by "G = B XOR (B>>1)". Using Gi and Gi−1, turn equals" (not Gi) AND Gi−1".
+
+Dimensions
+
+In fact it can be found analytically:"The Boundary of Periodic Iterated Function Systems"  by Jarek Duda, The Wolfram Demonstrations Project. Recurrent construction of the boundary of dragon curve.
+
+Tiling
+
+The dragon curve can tile the plane in many ways.
+
+Image:Dragon tiling1.svg|1st element with 4 curves
+Image:Dragon tiling2.svg|2nd element with 4 curves
+Image:Dragon tiling3.svg|3rd element with 4 curves
+Image:Dragon tiling dragon.svg|The dragon curve can tile itself
+Image:Dragon tiling4.svg|1st element with 2 curves
+Image:Dragon tiling5.svg|2nd element with 2 curves (twindragon)
+Image:Dragon tiling6.svg|3rd element with 2 curves
+Image:Full tiling dragon.svg|Example of plane tiling
+Image:Full tiling dragon2.svg|Example of plane tiling
+Image:Full tiling dragon3.svg|Example of plane tiling
+Image:Dragon spiral tiling. 4 of these spirals (with rotation 90°) tile the plane.
+
+Twindragon
+
+The twindragon (also known as the Davis-Knuth dragon) can be constructed by placing two Heighway dragon curves back-to-back. It is also the limit set of the following iterated function system:
+It can be also written as a Lindenmayer system – it only needs adding another section in initial string:
+
+Terdragon
+
+The terdragon can be written as a Lindenmayer system:
+It is the limit set of the following iterated function system:
+
+Lévy dragon
+
+The Lévy C curve is sometimes known as the Lévy dragon.[ref]
+.</ref>
+
+Occurrences of the dragon curve in solution sets
+
+Having obtained the set of solutions to a differential equation, any linear combination of the solutions will, because of the superposition principle also obey the original equation. In other words, new solutions are obtained by applying a function to the set of existing solutions. This is similar to how an iterated function system produce new points in a set, though not all IFS are linear functions.
+In a conceptually similar vein, a set of Littlewood polynomials can be arrived at by such iterated applications of a set of functions.
+For some |w| It can be seen that for w = (1+i)/2, the above pair of functions is equivalent to the IFS formulation of the Heighway dragon. That is, the Heighway dragon, iterated to a certain iteration, describe the set of all Littlewood polynomials up to a certain degree, evaluated at the point w = (1+i)/2.
+Indeed, when plotting a sufficiently high number of roots of the Littlewood polynomials, structures similar to the dragon curve appear at points close to these coordinates.ucr.html
+
+
+
+Notes
+
+
+
+

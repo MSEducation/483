@@ -1,0 +1,85 @@
+[[Routing]]
+
+CATEGORIES: Internet architecture, Routing
+
+Routing is the process of selecting best paths in a network.  In the past, the term routing was also used to mean forwarding network traffic among networks. However this latter function is much better described as simply forwarding.  Routing is performed for many kinds of networks, including the telephone network (circuit switching), electronic data networks (such as the Internet), and transportation networks. This article is concerned primarily with routing in electronic data networks using packet switching technology.
+In packet switching networks, routing directs packet forwarding (the transit of logically addressed network packets from their source toward their ultimate destination)  through intermediate nodes. Intermediate nodes are typically network hardware devices such as routers, bridges, gateways, firewalls, or switches. General-purpose computers can also forward packets and perform routing, though they are not specialized hardware and may suffer from limited performance. The routing process usually directs forwarding on the basis of routing tables which maintain a record of the routes to various network destinations. Thus, constructing routing tables, which are held in the router's memory, is very important for efficient routing. Most routing algorithms use only one network path at a time. Multipath routing techniques enable the use of multiple alternative paths.
+In case of overlapping/equal routes, the following elements are considered in order to decide which routes get installed into the routing table (sorted by priority):
+Routing, in a more narrow sense of the term, is often contrasted with bridging in its assumption that network addresses are structured and that similar addresses imply proximity within the network. Structured addresses allow a single routing table entry to represent the route to a group of devices.  In large networks, structured addressing (routing, in the narrow sense) outperforms unstructured addressing (bridging). Routing has become the dominant form of addressing on the Internet. Bridging is still widely used within localized environments.
+
+Delivery semantics
+
+Routing schemes differ in their delivery semantics:
+Unicast is the dominant form of message delivery on the Internet.  This article focuses on unicast routing algorithms.
+
+Topology distribution
+
+In static routing (or non-adaptive routing), small networks may use manually configured routing tables. Larger networks have complex topologies that can change rapidly, making the manual construction of routing tables unfeasible. Nevertheless, most of the public switched telephone network (PSTN) uses pre-computed routing tables, with fallback routes if the most direct route becomes blocked (see routing in the PSTN). Adaptive routing, or dynamic routing, attempts to solve this problem by constructing routing tables automatically, based on information carried by routing protocols, allowing the network to act nearly autonomously in avoiding network failures and blockages.
+Examples of adaptive-routing algorithms are the Routing Information Protocol (RIP) and the Open-Shortest-Path-First protocol (OSPF). Adaptive routing dominates the Internet. However, the configuration of the routing protocols often requires a skilled touch; networking technology has not developed to the point of the complete automation of routing.
+
+Distance vector algorithms
+
+Distance vector algorithms use the Bellman–Ford algorithm. This approach assigns a cost number to each of the links between each node in the network. Nodes will send information from point A to point B via the path that results in the lowest total cost (i.e. the sum of the costs of the links between the nodes used).
+The algorithm operates in a very simple manner. When a node first starts, it only knows of its immediate neighbours, and the direct cost involved in reaching them. (This information — the list of destinations, the total cost to each, and the next hop to send data to get there — makes up the routing table, or distance table.) Each node, on a regular basis, sends to each neighbour node its own current assessment of the total cost to get to all the destinations it knows of. The neighbouring nodes examine this information and compare it to what they already 'know'; anything that represents an improvement on what they already have, they insert in their own routing table(s). Over time, all the nodes in the network will discover the best next hop for all destinations, and the best total cost.
+When one network node goes down, any nodes that used it as their next hop discard the entry, and create new routing-table information. These nodes convey the updated routing information to all adjacent nodes, which in turn repeat the process. Eventually all the nodes in the network receive the updates, and discover new paths to all the destinations they can still "reach".
+e.g. RIPV1,RIPV2
+
+Link-state algorithms
+
+When applying link-state algorithms, a graphical map of the network is the fundamental data used for each node. To produce its map, each node floods the entire network with information about the other nodes it can connect to.  Each node then independently assembles this information into a map. Using this map, each router independently determines the least-cost path from itself to every other node using a standard shortest paths algorithm such as Dijkstra's algorithm. The result is a tree graph rooted at the current node, such that the path through the tree from the root to any other node is the least-cost path to that node. This tree then serves to construct the routing table, which specifies the best next hop to get from the current node to any other node.
+
+Optimised Link State Routing algorithm
+
+A link-state routing algorithm optimised for mobile ad hoc networks is the Optimised Link State Routing Protocol (OLSR). Using Hello messages, each node discovers 2-hop neighbor information and elects a set of multipoint relays (MPRs). MPRs distinguish OLSR from other link state routing protocols.
+
+Path vector protocol
+
+Distance vector and link state routing are both intra-domain routing protocols. They are used inside an autonomous system, but not between autonomous systems. Both of these routing protocols become intractable in large networks and cannot be used in Inter-domain routing. Distance vector routing is subject to instability if there are more than a few hops in the domain. Link state routing needs huge amount of resources to calculate routing tables. It also creates heavy traffic due to flooding.
+Path vector routing is used for inter-domain routing. It is similar to distance vector routing. In path vector routing we assume there is one node (there can be many) in each autonomous system which acts on behalf of the entire autonomous system. This node is called the speaker node. The speaker node creates a routing table and advertises it to neighboring speaker nodes in neighboring autonomous systems. The idea is the same as distance vector routing except that only speaker nodes in each autonomous system can communicate with each other. The speaker node advertises the path, not the metric of the nodes, in its autonomous system or other autonomous systems.
+Path vector routing is discussed in RFC 1322; the path vector routing algorithm is somewhat similar to the distance vector algorithm in the sense that each border router advertises the destinations it can reach to its neighboring router. However, instead of advertising networks in terms of a destination and the distance to that destination, networks are advertised as destination addresses and path descriptions to reach those destinations. A route is defined as a pairing between a destination and the attributes of the path to that destination, thus the name, path vector routing, where the routers receive a vector that contains paths to a set of destinations.
+The path, expressed in terms of the domains (or confederations) traversed so far, is carried in a special path attribute that records the sequence of routing domains through which the reachability information has passed.
+
+Path selection
+
+Path selection involves applying a routing metric to multiple routes, in order to select (or predict) the best route.
+In computer networking, the metric is computed by a routing algorithm, and can cover information such as bandwidth, network delay, hop count, path cost, load, MTU, reliability, and communication cost (see e.g. this survey  for a list of proposed routing metrics). The routing table stores only the best possible routes, while link-state or topological databases may store all other information as well.
+Because a routing metric is specific to a given routing protocol, multi-protocol routers must use some external heuristic in order to select between routes learned from different routing protocols. Cisco routers, for example, attribute a value known as the administrative distance to each route, where smaller administrative distances indicate routes learned from a supposedly more reliable protocol.
+A local network administrator, in special cases, can set up host-specific routes to a particular device which provides more control over network usage, permits testing and better overall security. This can come in handy when debugging network connections or routing tables.
+
+Multiple agents
+
+In some networks, routing is complicated by the fact that no single entity is responsible for selecting paths: instead, multiple entities are involved in selecting paths or even parts of a single path. Complications or inefficiency can result if these entities choose paths to optimize their own objectives, which may conflict with the objectives of other participants.
+A classic example involves traffic in a road system, in which each driver picks a path which minimizes their own travel time. With such routing, the equilibrium routes can be longer than optimal for all drivers. In particular, Braess paradox shows that adding a new road can lengthen travel times for all drivers.
+In another model, for example, used for routing automated guided vehicles (AGVs) on a terminal, reservations are made for each vehicle to prevent simultaneous use of the same part of an infrastructure. This approach is also referred to as context-aware routing.[ref]
+Jonne Zutt, Arjan J.C. van Gemund, Mathijs M. de Weerdt, and Cees Witteveen (2010). Dealing with Uncertainty in Operational Transport Planning. In R.R. Negenborn and Z. Lukszo and H. Hellendoorn (Eds.) Intelligent Infrastructures, Ch. 14, pp. 355–382. Springer.[/ref]
+The Internet is partitioned into autonomous systems (ASs) such as internet service providers (ISPs), each of which has control over routes involving its network, at multiple levels. First, AS-level paths are selected via the BGP protocol, which produces a sequence of ASs through which packets will flow. Each AS may have multiple paths, offered by neighboring ASs, from which to choose. Its decision often involves business relationships with these neighboring ASs,Matthew Caesar and Jennifer Rexford. BGP routing policies in ISP networks. IEEE Network Magazine, special issue on Interdomain Routing, Nov/Dec 2005. which may be unrelated to path quality or latency. Second, once an AS-level path has been selected, there are often multiple corresponding router-level paths, in part because two ISPs may be connected in multiple locations. In choosing the single router-level path, it is common practice for each ISP to employ hot-potato routing: sending traffic along the path that minimizes the distance through the ISP's own network—even if that path lengthens the total distance to the destination.
+Consider two ISPs, A and B, which each have a presence in New York, connected by a fast link with latency 5 ms; and which each have a presence in London connected by a 5 ms link. Suppose both ISPs have trans-Atlantic links connecting their two networks, but A link has latency 100 ms and B's has latency 120 ms. When routing a message from a source in A London network to a destination in B New York network, A may choose to immediately send the message to B in London. This saves A the work of sending it along an expensive trans-Atlantic link, but causes the message to experience latency 125 ms when the other route would have been 20 ms faster.
+A 2003 measurement study of Internet routes found that, between pairs of neighboring ISPs, more than 30% of paths have inflated latency due to hot-potato routing, with 5% of paths being delayed by at least 12 ms. Inflation due to AS-level path selection, while substantial, was attributed primarily to BGP's lack of a mechanism to directly optimize for latency, rather than to selfish routing policies. It was also suggested that, were an appropriate mechanism in place, ISPs would be willing to cooperate to reduce latency rather than use hot-potato routing. Quantifying the Causes of Path Inflation. Proc. SIGCOMM 2003.
+Such a mechanism was later published by the same authors, first for the case of two ISPsRatul Mahajan, David Wetherall, and Thomas Anderson. Negotiation-Based Routing Between Neighboring ISPs. Proc. NSDI 2005. and then for the global case. Mutually Controlled Routing with Independent ISPs. Proc. NSDI 2007.
+
+Route analytics
+
+As the Internet and IP networks become mission critical business tools, there has been increased interest in techniques and methods to monitor the routing posture of networks. Incorrect routing or routing issues cause undesirable performance degradation, flapping and/or downtime. Monitoring routing in a network is achieved using route analytics tools and techniques.
+
+
+
+Routing algorithms and techniques
+
+ 
+ 
+
+Routing in specific networks
+
+Routing protocols
+
+Alternative methods for network data flow
+
+Router software and suites
+
+Router platforms
+
+
+
+
+
+

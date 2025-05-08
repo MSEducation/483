@@ -1,0 +1,122 @@
+[[ISCSI]]
+
+CATEGORIES: Application layer protocols, Ethernet, SCSI
+
+In computing, iSCSI (), is an acronym for Internet Small Computer System Interface, an Internet Protocol (IP)-based storage networking standard for linking data storage facilities.
+By carrying SCSI commands over IP networks, iSCSI is used to facilitate data transfers over intranets and to manage storage over long distances. iSCSI can be used to transmit data over local area networks (LANs), wide area networks (WANs), or the Internet and can enable location-independent data storage and retrieval.
+The protocol allows clients (called initiators) to send SCSI commands (CDBs) to SCSI storage devices (targets) on remote servers. It is a storage area network (SAN) protocol, allowing organizations to consolidate storage into data center storage arrays while providing hosts (such as database and web servers) with the illusion of locally attached disks.
+Unlike traditional Fibre Channel, which requires special-purpose cabling, iSCSI can be run over long distances using existing network infrastructure.
+
+Concepts
+
+In essence, iSCSI allows two hosts to negotiate and then exchange SCSI commands using Internet Protocol (IP) networks. By doing this, iSCSI takes a popular high-performance local storage bus and emulates it over a wide range of networks, creating a storage area network (SAN). Unlike some SAN protocols, iSCSI requires no dedicated cabling; it can be run over existing IP infrastructure. As a result, iSCSI is often seen as a low-cost alternative to Fibre Channel, which requires dedicated infrastructure except in its FCoE (Fibre Channel over Ethernet) form. However, the performance of an iSCSI SAN deployment can be severely degraded if not operated on a dedicated network or subnet (LAN or VLAN), due to competition for a fixed amount of bandwidth.
+Although iSCSI can communicate with arbitrary types of SCSI devices, system administrators almost always use it to allow server computers (such as database servers) to access disk volumes on storage arrays. iSCSI SANs often have one of two objectives:
+
+Initiator
+
+An initiator functions as an iSCSI client. An initiator typically serves the same purpose to a computer as a SCSI bus adapter would, except that, instead of physically cabling SCSI devices (like hard drives and tape changers), an iSCSI initiator sends SCSI commands over an IP network. An initiator falls into two broad types:
+A software initiator uses code to implement iSCSI. Typically, this happens in a kernel-resident device driver that uses the existing network card (NIC) and network stack to emulate SCSI devices for a computer by speaking the iSCSI protocol. Software initiators are available for most popular operating systems and are the most common method of deploying iSCSI.
+A hardware initiator uses dedicated hardware, typically in combination with firmware running on that hardware, to implement iSCSI. A hardware initiator mitigates the overhead of iSCSI and TCP processing and Ethernet interrupts, and therefore may improve the performance of servers that use iSCSI.
+An iSCSI host bus adapter (more commonly, HBA) implements a hardware initiator. A typical HBA is packaged as a combination of a Gigabit (or 10 Gigabit) Ethernet network interface controller, some kind of TCP/IP offload engine (TOE) technology and a SCSI bus adapter, which is how it appears to the operating system.
+An iSCSI HBA can include PCI option ROM to allow booting from an iSCSI SAN.
+An iSCSI offload engine, or "iSOE card", offers an alternative to a full iSCSI HBA.  An iSOE "offloads" the iSCSI initiator operations for this particular network interface from the host processor, freeing up CPU cycles for the main host applications.  iSCSI HBAs or iSOEs are used when the additional performance enhancement justifies the additional expense of using an HBA for iSCSI,40G iSCSI rather than using a software-based iSCSI client (initiator). iSOE may be implemented with additional services such as TCP offload engine, or "TOE" to further reduce host server CPU utilization.
+
+Target
+
+The iSCSI specification refers to a storage resource located on an iSCSI server (more generally, one of potentially many instances of iSCSI storage nodes running on that server) as a target.
+"iSCSI target" should not be confused with the term "iSCSI" as the latter is a protocol and not a storage server instance.
+An iSCSI target is often a dedicated network-connected hard disk storage device, but may also be a general-purpose computer, since as with initiators, software to provide an iSCSI target is available for most mainstream operating systems.
+Common deployment scenarios for an iSCSI target include:
+
+=Storage array=
+
+In a data center or enterprise environment, an iSCSI target often resides in a large storage array, such as Pure Storage, HP LeftHand StoreVirtual or 3PAR StoreServ, EqualLogic, Tegile Systems, Nimble Storage, Reduxio, IBM Storwize, Isilon, NetApp filer, EMC NS-series, CX4,VNX, VNXe, VMAX, HDS HNAS computer appliance, or Pivot3 vSTAC. A storage array usually provides distinct iSCSI targets for numerous clients. Patterson, Berkeley, IEEE Internet Computing, September–October 2002.
+
+=Software target=
+
+Nearly all modern mainstream server operating systems (such as BSD, Linux, Solaris or Windows Server) can provide iSCSI target functionality, either as a built-in feature or with supplemental software.  Some specific-purpose operating systems (such as FreeNAS, NAS4Free, Openfiler, OpenMediaVault, or based on OpenSolaris and derivatives like napp-it, NexentaStor, OmniOS and OpenIndiana) implement iSCSI target support.
+
+=Logical unit number=
+
+In SCSI terminology, LUN stands for logical unit number. A LUN represents an individually addressable  (logical) SCSI device that is part of a physical SCSI device (target). In an iSCSI environment, LUNs are essentially numbered disk drives. An initiator negotiates with a target to establish connectivity to a LUN; the result is an iSCSI connection that emulates a connection to a SCSI hard disk. Initiators treat iSCSI LUNs the same way as they would a raw SCSI or IDE hard drive; for instance, rather than mounting remote directories as would be done in NFS or CIFS environments, iSCSI systems format and directly manage filesystems on iSCSI LUNs.
+In enterprise deployments, LUNs usually represent subsets of large RAID disk arrays, often allocated one per client. iSCSI imposes no rules or restrictions on multiple computers sharing individual LUNs; it leaves shared access to a single underlying filesystem as a task for the operating system.
+
+Network booting
+
+For general data storage on an already-booted computer, any type of generic network interface may be used to access iSCSI devices.
+A separate DHCP server may be configured to assist interfaces equipped with network boot capability to be able to boot over iSCSI. In this case, the network interface looks for a DHCP server offering a PXE or bootp boot image. This is used to kick off the iSCSI remote boot process, using the booting network interface's MAC address to direct the computer to the correct iSCSI boot target. This can be achieved using an existing Preboot Execution Environment (PXE) boot ROM, which is available on many wired Ethernet adapters. The boot code can also be loaded from CD/DVD, floppy disk (or floppy disk image) and USB storage, or it can replace existing PXE boot code on adapters that can be re-flashed. The most popular free software to offer iSCSI boot support is iPXE.
+Most Intel Ethernet controllers for servers support iSCSI boot.
+
+Addressing
+
+iSCSI uses TCP (typically TCP ports 860 and 3260) for the protocols itself, with higher-level names used to address the objects within the protocol.
+Special names refer to both iSCSI initiators and targets. iSCSI provides three name-formats:
+                   Naming     String defined by
+      Type  Date    Auth      "example.com" naming authority
+     +--++-----+ +---------+ +-----------------------------+
+     |  ||     | |         | |                             |     
+     iqn.1992-01.example:storage:diskarrays-sn-a8675309
+     iqn.1992-01.example
+     iqn.1992-01.example:storage.sys1.xyz
+     iqn.1992-01.example:storage.sys1.xyz<ref></ref>
+IQN format addresses occur most commonly. They are qualified by a date (yyyy-mm) because domain names can expire or be acquired by another entity.
+The IEEE Registration authority provides EUI in accordance with the EUI-64 standard. NAA is part OUI which is provided by the IEEE Registration Authority. NAA name formats were added to iSCSI in RFC 3980, to provide compatibility with naming conventions used in Fibre Channel and Serial Attached SCSI (SAS) storage technologies.
+Usually, an iSCSI participant can be defined by three or four fields: 
+
+iSNS
+
+iSCSI initiators can locate appropriate storage resources using the Internet Storage Name Service (iSNS) protocol. In theory, iSNS provides iSCSI SANs with the same management model as dedicated Fibre Channel SANs. In practice, administrators can satisfy many deployment goals for iSCSI without using iSNS.
+
+Security
+
+Authentication
+
+iSCSI initiators and targets prove their identity to each other using the CHAP protocol, which includes a mechanism to prevent cleartext passwords from appearing on the wire. By itself, the CHAP protocol is vulnerable to dictionary attacks, spoofing, or reflection attacks. If followed carefully, the rules for using CHAP within iSCSI prevent most of these attacks.
+Additionally, as with all IP-based protocols, IPsec can operate at the network layer. The iSCSI negotiation protocol is designed to accommodate other authentication schemes, though interoperability issues limit their deployment.
+
+Logical network isolation
+
+To ensure that only valid initiators connect to storage arrays, administrators most commonly run iSCSI only over logically isolated backchannel networks. In this deployment architecture, only the management ports of storage arrays are exposed to the general-purpose internal network, and the iSCSI protocol itself is run over dedicated network segments or virtual LANs (VLAN). This mitigates authentication concerns; unauthorized users are not physically provisioned for iSCSI, and thus cannot talk to storage arrays. However, it also creates a transitive trust problem, in that a single compromised host with an iSCSI disk can be used to attack storage resources for other hosts.
+
+Physical network isolation
+
+While iSCSI can be logically isolated from the general network using VLANs only, it is still no different from any other network equipment and may use any cable or port as long as there is a completed signal path between source and target. Just a single cabling mistake by an inexperienced network technician can compromise the barrier of logical separation, and an accidental bridging may not be immediately detected because it does not cause network errors.
+In order to further differentiate iSCSI from the regular network and prevent cabling mistakes when changing connections, administrators may implement self-defined color-coding and labeling standards, such as only using yellow-colored cables for the iSCSI connections and only blue cables for the regular network, and clearly labeling ports and switches used only for iSCSI.
+While iSCSI could be implemented as just a VLAN cluster of ports on a large multi-port switch that is also used for general network usage, the administrator may instead choose to use physically separate switches dedicated to iSCSI VLANs only, to further prevent the possibility of an incorrectly connected cable plugged into the wrong port bridging the logical barrier.
+
+Authorization
+
+Because iSCSI aims to consolidate storage for many servers into a single storage array, iSCSI deployments require strategies to prevent unrelated initiators from accessing storage resources. As a pathological example, a single enterprise storage array could hold data for servers variously regulated by the Sarbanes–Oxley Act for corporate accounting, HIPAA for health benefits information, and PCI DSS for credit card processing. During an audit, storage systems must demonstrate controls to ensure that a server under one regime cannot access the storage assets of a server under another.
+Typically, iSCSI storage arrays explicitly map initiators to specific target LUNs; an initiator authenticates not to the storage array, but to the specific storage asset it intends to use. However, because the target LUNs for SCSI commands are expressed both in the iSCSI negotiation protocol and in the underlying SCSI protocol, care must be taken to ensure that access control is provided consistently.
+
+Confidentiality and integrity
+
+For the most part, iSCSI operates as a cleartext protocol that provides no cryptographic protection for data in motion during SCSI transactions. As a result, an attacker who can listen in on iSCSI Ethernet traffic can:
+These problems do not occur only with iSCSI, but rather apply to any SAN protocol without cryptographic security. IP-based security protocols, such as IPsec, can provide standards-based cryptographic protection to this traffic, generally at a severe performance penalty.
+
+Industry implementation
+
+Operating-system capability
+
+The dates in the following table denote the first appearance of a native driver in each operating system. Third-party drivers for Windows and Linux were available as early as 2001, specifically for attaching IBM's IP Storage 200i appliance.
+† Target available only as part of Windows Unified Data Storage Server. Target available in Storage Server 2008 (excepted Basic edition).
+Target available for Windows Server 2008 R2 as a separate download. Windows Server 2012 has built-in iSCSI target version 3.3 (at least in preview versions).
+†† OS X has neither initiator nor target coming from vendor directly. There are a few OS X initiators and targets available but they are from third-party vendors only.
+
+Targets
+
+Most iSCSI targets involve disk, though iSCSI tape and medium-changer targets are popular as well.  So far, physical devices have not featured native iSCSI interfaces on a component level.  Instead, devices with Parallel SCSI or Fibre Channel interfaces are bridged by using iSCSI target software, external bridges, or controllers internal to the device enclosure.
+Alternatively, it is possible to virtualize disk and tape targets.  Rather than representing an actual physical device, an emulated virtual device is presented.  The underlying implementation can deviate drastically from the presented target as is done with virtual tape library (VTL) products.  VTLs use disk storage for storing data written to virtual tapes.  As with actual physical devices, virtual targets are presented by using iSCSI target software, external bridges, or controllers internal to the device enclosure.
+In the security products industry, some manufacturers use an iSCSI RAID as a target, with the initiator being either an IP-enabled encoder or camera.
+
+Converters and bridges
+
+Multiple systems exist that allow Fibre Channel, SCSI and SAS devices to be attached to an IP network for use via iSCSI. They can be used to allow migration from older storage technologies, access to SANs from remote servers and the linking of SANs over IP networks. An iSCSI gateway bridges IP servers to Fibre Channel SANs. The TCP connection is terminated at the gateway, which is implemented on a Fibre Channel switch or as a standalone appliance.
+
+
+
+
+
+RFCs
+
+

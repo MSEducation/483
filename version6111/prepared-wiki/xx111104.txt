@@ -1,0 +1,52 @@
+[[JSON-RPC]]
+
+CATEGORIES: JSON, Web services, Remote procedure call
+
+JSON-RPC is a remote procedure call protocol encoded in JSON. It is a very simple protocol (and very similar to XML-RPC), defining only a handful of data types and commands. JSON-RPC allows for notifications (data sent to the server that does not require a response) and for multiple calls to be sent to the server which may be answered out of order.
+
+==History==
+
+==Usage==
+
+JSON-RPC works by sending a request to a server implementing this protocol. The client in that case is typically software intending to call a single method of a remote system. Multiple input parameters can be passed to the remote method as an array or object, whereas the method itself can return multiple output data as well. (This depends on the implemented version.)
+
+A remote method is invoked by sending a request to a remote service using HTTP or a TCP/IP socket (starting with version 2.0). When using HTTP, the content-type may be defined as application/json.RFC 4627
+All transfer types are single objects, serialized using JSON.specification - JSON-RPC - Trac A request is a call to a specific method provided by a remote system. It must contain three certain properties:
+The receiver of the request must reply with a valid response to all received requests. A response must contain the properties mentioned below.
+Since there are situations where no response is needed or even desired, notifications were introduced. A notification is similar to a request except for the id, which is not needed because no response will be returned. In this case the id property should be omitted (Version 2.0) or be null (Version 1.0).
+
+==Examples==
+
+In these examples, --> denotes data sent to a service (request), while  denotes data coming from a service. (Although  often is called response in client-server computing, depending on the JSON-RPC version it does not necessarily imply answer to a request).
+
+===Version 1.0===
+
+A simple request and response:
+This example shows parts of a communication from an example chat application. The chat service sends notifications for each chat message the client peer should receive. The client peer sends requests to post messages to the chat and expects a positive reply to know the message has been posted.
+Because params field is an array of objects, the following format is also ok:
+
+===Version 1.1 (Working Draft)===
+
+The format of the contents of a request might be something like that shown below:
+The format of a response might be something like this:
+
+===Version 2.0===
+
+Procedure call with positional parameters:
+Procedure call with named parameters:
+Notification:
+Procedure call of non-existent procedure:
+Procedure call with invalid JSON:
+Procedure call with invalid JSON-RPC:
+
+==Implementations==
+
+The original official homepageJSON-RPC - Trac has links to more implementations. CPAN lists Perl implementations.
+
+==See also==
+
+==References==
+
+==External links==
+
+

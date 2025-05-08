@@ -1,0 +1,98 @@
+[[Wishart distribution]]
+
+CATEGORIES: Continuous distributions, Multivariate continuous distributions, Multivariate statistics, Random matrices, Conjugate prior distributions, Exponential family distributions, Probability distributions
+
+In statistics, the Wishart distribution is a generalization to multiple dimensions of the chi-squared distribution, or, in the case of non-integer degrees of freedom, of the gamma distribution. It is named in honor of John Wishart, who first formulated the distribution in 1928.[tpl]cite journal |first=J. |last=Wishart |authorlink=John Wishart (statistician) |title=The generalised product moment distribution in samples from a normal multivariate population |journal=Biometrika |volume=20A |issue=1–2 |pages=32–52 |year=1928 |doi=10.1093/biomet/20A.1-2.32 |jfm=54.0565.02 |jstor=2331939[/tpl]
+It is any of a family of probability distributions defined over symmetric, nonnegative-definite matrix-valued random variables (“random matrices”). These distributions are of great importance in the estimation of covariance matrices in multivariate statistics. In Bayesian statistics, the Wishart distribution is the conjugate prior of the inverse covariance-matrix  of a multivariate-normal random-vector.
+
+==Definition==
+
+Suppose [tpl]mvar|X[/tpl] is an [tpl]math|n × p[/tpl] matrix, each row of which is independently drawn from a [tpl]mvar|p[/tpl]-variate normal distribution with zero mean:
+Then the Wishart distribution is the probability distribution of the [tpl]math|p × p[/tpl] random matrix [tpl]math|S [tpl]=[/tpl] XT X[/tpl] known as the scatter matrix. One indicates that [tpl]mvar|S[/tpl] has that probability distribution by writing
+The positive integer [tpl]mvar|n[/tpl] is the number of degrees of freedom.  Sometimes this is written [tpl]math|W(V, p, n)[/tpl]. For [tpl]math|n ≥ p[/tpl] the matrix [tpl]mvar|S[/tpl] is invertible with probability [tpl]math|1[/tpl] if [tpl]mvar|V[/tpl] is invertible.
+If [tpl]math|p [tpl]=[/tpl] V [tpl]=[/tpl] 1[/tpl] then this distribution is a chi-squared distribution with [tpl]mvar|n[/tpl] degrees of freedom.
+
+==Occurrence==
+
+The Wishart distribution arises as the distribution of the sample covariance matrix for a sample from a multivariate normal distribution.[tpl]Citation needed|date=October 2010[/tpl]  It occurs frequently in likelihood-ratio tests in multivariate statistical analysis.  It also arises in the spectral theory of random matrices[tpl]Citation needed|date=October 2010[/tpl] and in multidimensional Bayesian analysis.[tpl]Citation needed|date=October 2010[/tpl] It is also encountered in wireless communications, while analyzing the performance of Rayleigh fading MIMO wireless channels .[tpl]cite journal| last=Zanella| first=A.| coauthors=Chiani, M.; Win, M.Z.|title=On the marginal distribution of the eigenvalues of wishart matrices| journal=IEEE Transactions on Communications|date=April 2009| volume=57| issue=4| pages=1050–1060 | doi=10.1109/TCOMM.2009.04.070143[/tpl]
+
+==Probability density function==
+
+The Wishart distribution can be characterized by its probability density function as follows:
+Let [tpl]math|X[/tpl] be a [tpl]math|p × p[/tpl] symmetric matrix of random variables that is positive definite. Let [tpl]math|V[/tpl] be a (fixed) positive definite matrix of size [tpl]math|p × p[/tpl].
+Then, if [tpl]math|n ≥ p[/tpl], [tpl]math|X[/tpl] has a Wishart distribution with [tpl]mvar|n[/tpl] degrees of freedom if it has a probability density function given by
+where [tpl]math|Γp(·)[/tpl] is the multivariate gamma function defined as
+In fact the above definition can be extended to any real [tpl]math|n > p − 1[/tpl].  If [tpl]math|n ≤ p − 1[/tpl], then the Wishart no longer has a density—instead it represents a singular distribution that takes values in a lower-dimension subspace of the space of [tpl]math|p × p[/tpl] matrices. [tpl]Cite doi|10.1214/aos/1176325375[/tpl]
+
+==Use in Bayesian statistics==
+
+In Bayesian statistics, in the context of the multivariate normal distribution, the Wishart distribution is the conjugate prior to the precision matrix [tpl]math|Ω [tpl]=[/tpl] Σ−1[/tpl], where [tpl]math|Σ[/tpl] is the covariance matrix.
+
+===Choice of [tpl]mvar|W[/tpl]===
+
+The least informative, proper Wishart prior is obtained by setting [tpl]math|n [tpl]=[/tpl] p[/tpl].
+The prior mean of [tpl]math|Wp(V, n)[/tpl] is [tpl]math|nV−1[/tpl]. This implies that a good choice for [tpl]math|V[/tpl] is [tpl]math|nΣ0[/tpl], where [tpl]math|Σ0[/tpl] is some prior guess for the covariance matrix.
+
+==Properties==
+
+===Log-expectation===
+
+Note the following formula:C.M. Bishop, Pattern Recognition and Machine Learning, Springer 2006, p. 693.
+where [tpl]mvar|ψ[/tpl] is the digamma function (the derivative of the log of the gamma function).
+This plays a role in variational Bayes derivations for Bayes networks involving the Wishart distribution.
+
+===Entropy===
+
+The information entropy of the distribution has the following formula:
+where [tpl]math|B(V, n)[/tpl] is the normalizing constant of the distribution:
+This can be expanded as follows:
+
+===Characteristic function===
+
+The characteristic function of the Wishart distribution is
+In other words,
+where [tpl]math|E⋅[/tpl] denotes expectation. (Here [tpl]math|Θ[/tpl] and [tpl]math|I[/tpl] are matrices the same size as [tpl]math|V[/tpl]([tpl]math|I[/tpl] is the identity matrix); and [tpl]mvar|i[/tpl] is the square root of −1).[ref]
+</ref>
+
+==Theorem==
+
+===Corollary 1===
+
+If [tpl]math|z[/tpl] is a nonzero [tpl]math|p × 1[/tpl] constant vector, then:
+
+===Corollary 2===
+
+Consider the case where [tpl]math|zT [tpl]=[/tpl] (0, ..., 0, 1, 0, ..., 0)[/tpl] (that is, the [tpl]mvar|j[/tpl]-th element is one and all others zero). Then corollary 1 above shows that 
+gives the marginal distribution of each of the elements on the matrix's diagonal.
+Noted statistician George Seber points out[tpl]Citation needed|date=October 2010[/tpl] that the Wishart distribution is not called the “multivariate chi-squared distribution” because the marginal distribution of the off-diagonal elements is not chi-squared. Seber prefers[tpl]Citation needed|date=October 2010[/tpl] to reserve the term multivariate for the case when all univariate marginals belong to the same family.
+
+==Estimator of the multivariate normal distribution==
+
+The Wishart distribution is the sampling distribution of the maximum-likelihood estimator (MLE) of the covariance matrix of a multivariate normal distribution.C. Chatfield and A. J. Collins, 1980,"Introduction to Multivariate Analysis" p.103-108 A derivation of the MLE uses the spectral theorem.
+
+==Bartlett decomposition==
+
+The Bartlett decomposition of a matrix [tpl]math|X[/tpl] from a [tpl]mvar|p[/tpl]-variate Wishart distribution with scale matrix [tpl]math|V[/tpl] and [tpl]mvar|n[/tpl] degrees of freedom is the factorization:
+where [tpl]math|L[/tpl] is the  Cholesky factor of [tpl]math|V[/tpl], and:
+
+==Marginal distribution of matrix elements==
+
+Let [tpl]math|V[/tpl] be a [tpl]math|2 × 2[/tpl] variance matrix characterized by correlation coefficient {{math|−1 Multiplying through the Bartlett decomposition above, we find that a random sample from the [tpl]math|2 × 2[/tpl] Wishart distribution is
+The diagonal elements, most evidently in the first element, follow the [tpl]math|χ2[/tpl] distribution with [tpl]mvar|n[/tpl] degrees of freedom (scaled by [tpl]math|σ2[/tpl]) as expected.  The off-diagonal element is less familiar but can be identified as a normal variance-mean mixture where the mixing density is a [tpl]math|χ2[/tpl] distribution.  The corresponding marginal probability density for the off-diagonal element is therefore the variance-gamma distribution
+where [tpl]math|Kν(z)[/tpl] is the modified Bessel function of the second kind.[tpl]cite journal | last1 = Pearson | first1 = Karl | author1-link = Karl Pearson | last2 = Jeffery | first2 = G. B. | author2-link = George Barker Jeffery | last3 = Elderton | first3 = Ethel M. | author3-link = Ethel M. Elderton | title = On the Distribution of the First Product Moment-Coefficient, in Samples Drawn from an Indefinitely Large Normal Population | journal = Biometrika | volume = 21 | issue = | pages = 164–201 | publisher = Biometrika Trust | date = December 1929 | year = 1929 | jstor = 2332556 | doi = 10.2307/2332556[/tpl] Similar results may be found for higher dimensions, but the interdependence of the off-diagonal correlations becomes increasingly complicated.  It is also possible to write down the moment-generating function even in the noncentral case (essentially the nth power of Craig (1936)[tpl]cite journal | last = Craig | first = Cecil C. | title = On the Frequency Function of xy | journal = Ann. Math. Statist. | volume = 7 | issue = | pages = 1–15 | year = 1936 | url = http://projecteuclid.org/euclid.aoms/1177732541 | doi = 10.1214/aoms/1177732541[/tpl] equation 10) although the probability density becomes an infinite sum of Bessel functions.
+
+==The possible range of the shape parameter==
+
+It can be shown [tpl]cite journal |doi=10.1214/aop/1176990455 |last=Peddada and Richards |first1=Shyamal Das |last2=Richards |first2=Donald St. P. |title=Proof of a Conjecture of M. L. Eaton on the Characteristic Function of the Wishart Distribution, |journal=Annals of Probability |volume=19 |issue=2 |pages=868–874 |year=1991 [/tpl] that the Wishart distribution can be defined if and only if the shape parameter [tpl]math|n[/tpl] belongs to the set
+This set is named after Gindikin, who introduced it[tpl]cite journal |doi=10.1007/BF01078179 |first=S.G. |last=Gindikin |title=Invariant generalized functions in homogeneous domains, |journal=Funct. Anal. Appl., |volume=9 |issue=1 |pages=50–52 |year=1975[/tpl] in the seventiesin the context of gamma distributions on homogeneous cones. However, for the new parameters in the discrete spectrum of the Gindikin ensemble, namely,
+the corresponding Wishart distribution has no Lebesgue density.
+
+==Relationships to other distributions==
+
+==See also==
+
+==References==
+
+==External links==
+
+

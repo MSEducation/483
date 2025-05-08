@@ -1,0 +1,29 @@
+[[Undefined behavior]]
+
+CATEGORIES: Programming language implementation, C programming language, C++, Articles with example C++ code
+
+In computer programming, undefined behavior refers to computer code whose behavior is specified to be arbitrary. It is a feature of some programming languages—most famously C.[tpl]cite web |url=http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html |title=What Every C Programmer Should Know About Undefined Behavior |first=Chris |last=Lattner |authorlink=Chris Lattner |date=May 13, 2011 |work=LLVM Project Blog |publisher=LLVM.org |accessdate=May 24, 2011[/tpl] In these languages the semantics of certain operations are undefined, so an implementation can assume that such operations never occur in program code, since the implementation will be correct whatever it does in such cases analogously to don't-care terms in digital logic. This assumption can make various program transformations valid or simplify their proof of correctness giving flexibility to the implementation. It is the responsibility of the programmer to write code that never invokes undefined behaviour, but an implementation is allowed to print diagnostics when it happens.
+For example, in C the use of any automatic variable before it has been initialized yields undefined behavior, as does division by zero or indexing an array outside of its defined bounds (see buffer overflow). In general, any behavior afterwards is also undefined. In particular, it is never required that the compiler diagnose undefined behavior — therefore, programs invoking undefined behavior may compile and run without apparent failures or fail in seemingly unrelated ways, or behave seemingly inconsistently with the source code.
+Under some circumstances there can be specific restrictions on undefined behavior. For example, the instruction set specifications of a CPU might leave the behavior of some forms of an instruction undefined, but if the CPU supports memory protection then the specification will probably include a blanket rule stating that no user-accessible instruction may cause a hole in the operating system's security; so an actual CPU would be permitted to corrupt any or all user registers in response to such an instruction but would not be allowed to, for example, switch into supervisor mode.
+In C and C++, implementation-defined behavior is also used, where the language standard does not specify the behavior, but the implementation must choose a behavior and needs to document and observe the rules it chose. These standards also use unspecified behavior to mean that from a given set of possibilities it is not specified which behaviour an implementation must choose, it need not document the choice or even be consistent, but it must choose one possibility.
+
+==Examples in C and C++==
+
+Attempting to modify a string literal causes undefined behavior:ISO/IEC (2003). ISO/IEC 14882:2003(E): Programming Languages - C++ §2.13.4 String literals lex.string para. 2
+One way to prevent this is defining it as an array instead of a pointer.
+In C++, one can use a standard string as follows:
+Integer division by zero results in undefined behavior:ISO/IEC (2003). ISO/IEC 14882:2003(E): Programming Languages - C++ §5.6 Multiplicative operators expr.mul para. 4
+Certain pointer operations may result in undefined behavior:ISO/IEC (2003). ISO/IEC 14882:2003(E): Programming Languages - C++ §5.7 Additive operators expr.add para. 5
+Reaching the end of a value-returning function (other than main()) without a return statement may result in undefined behavior:
+The original The C Programming Language book cites the following examples of code which “can (and does) produce different results on different machines”[tpl]cite book | last1 = Kernighan | first1 = Brian W. | authorlink1 = Brian Kernighan | last2 = Ritchie | first2 = Dennis M. | authorlink2 = Dennis M. Ritchie | title = The C Programming Language | edition = 1st | publisher = Prentice Hall | date = February 1978 | location = Englewood Cliffs, NJ | isbn = 0-13-110163-3 | page = 50 [/tpl] (which could be considered just unspecified or implementation-defined behavior in today's terms):
+The later ANSI C standard chose to leave similar constructions undefined, e.g. “This paragraph renders undefined statement expressions such as i = ++i + 1; while allowing i = i + 1;”.ANSI X3.159-1989 Programming Language C, footnote 26
+
+==Risks of undefined behavior==
+
+HTML versions 4 and earlier left error handling undefined. Over time pages started relying on unspecified error-recovery implemented in popular browsers. This caused difficulties for vendors of less-popular browsers who were forced to reverse-engineer and implement bug compatible error recovery. This has led to de facto standard that was much more complicated than it could have been if this behavior was specified from the start.
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,68 @@
+[[XSLT]]
+
+CATEGORIES: Extensible Stylesheet Language Transformations, Declarative programming languages, Functional languages, Markup languages, Transformation languages, World Wide Web Consortium standards, XML-based programming languages, XML-based standards
+
+XSLT (Extensible Stylesheet Language Transformations) is a language for transforming XML documents into other XML documents,[tpl]cite web|url=http://www.w3.org/standards/xml/transformation |title=Transformation|date=2012-09-19[/tpl] or other objects such as HTML for web pages, plain text or into XSL Formatting Objects which can then be converted to PDF, PostScript and PNG.[tpl]cite web|url=http://www.w3.org/TR/xslt#output |title=XML Output Method|date=2012-09-19[/tpl]
+The original document is not changed; rather, a new document is created based on the content of an existing one.[tpl]cite web | url=http://www.w3.org/TR/xslt#section-Introduction | title=Introduction | publisher=W3C | work=XSL Transformations (XSLT) Version 1.0  W3C Recommendation | date=16 November 1999 | accessdate=November 7, 2012[/tpl] Typically, input documents are XML files, but anything from which the processor can build an XQuery and XPath Data Model can be used, for example relational database tables, or geographical information systems.
+XSLT is a Turing-complete language, meaning it can specify any computation that can be performed by a computer.[tpl]cite web|last=Kepser|first=Stephan|title=A Simple Proof for the Turing-Completeness of XSLT and XQuery|url=http://conferences.idealliance.org/extreme/html/2004/Kepser01/EML2004Kepser01.html|publisher=Proceedings of Extreme Markup Languages|accessdate=28 October 2012[/tpl][tpl]cite web|title=Universal Turing Machine in XSLT|url=http://www.unidex.com/turing/utm.htm|publisher=Unidex|accessdate=28 October 2012[/tpl]
+
+==History==
+
+XSLT is influenced by functional languages,[tpl]cite web | url=http://conferences.idealliance.org/extreme/html/2006/Novatchev01/EML2006Novatchev01.html | author=Dimitre Novatchev | title=Higher-Order Functional Programming with XSLT 2.0 and FXSL | accessdate=August 8, 2009|work=ExtremeMarkupLanguages[/tpl] and by text-based pattern matching languages like SNOBOL and awk. Its most direct predecessor is DSSSL, which did for SGML what XSLT does for XML.[tpl]cite web | url=http://www.w3.org/TR/NOTE-XSL.html | title=A Proposal for XSL | publisher=W3C | accessdate=November 7, 2012[/tpl]
+|}}[/ref]
+[tpl]cite web|last=Kay|first=Michael|title=A Streaming XSLT Processor|url=http://www.balisage.net/Proceedings/vol5/html/Kay01/BalisageVol5-Kay01.html|publisher=Balisage: The Markup Conference 2010 Proceedings|accessdate=15 February 2012[/tpl][/ref] and output could not be written until processing had finished (although Saxon does have a streaming extension). The working draft allows XML streaming which will be useful for processing documents too large to fit in memory, or when transformations are chained in XML Pipelines.
+
+==Design and processing model==
+
+The XSLT processor takes one or more XML source documents, plus one or more XSLT stylesheets, and processes them to produce an output document. In contrast to widely-implemented imperative programming languages like C, XSLT is declarative.[tpl]cite web|title=Discover the Wonders of XSLT: XSLT Quirks | url=http://www.developer.com/xml/article.php/3357231#Coding%20styles | quote=XSLT is a very specialized language with a distinct declarative flavor.[/tpl]  This makes a given XSLT program more resilient to change to the input it is likely to receive, useful in a language used for information processing applications.  The basic processing paradigm is pattern matching.[tpl]cite web|last=Kay|first=Michael|title=What kind of language is XSLT?|url=http://www.ibm.com/developerworks/library/x-xslt/|publisher=IBM|accessdate=13 November 2013[/tpl] Rather than listing an imperative sequence of actions to perform in a stateful environment, template rules only define how to handle a node matching a particular XPath-like pattern, if the processor should happen to encounter one, and the contents of the templates effectively comprise functional expressions that directly represent their evaluated form: the result tree, which is the basis of the processor's output.
+The processor follows a fixed algorithm.[tpl]cite web| title=XSLT Definitions | url=http://microsoftechies.wordpress.com/2010/09/16/xslt-definitions/ | quote=XSLT declarations define a set of rules and guidelines that are applied during processing according to a predefined algorithm.[/tpl] First, assuming a stylesheet has already been read and prepared, the processor builds a source tree from the input XML document. It then processes the source tree's root node, finds the best-matching template for that node in the stylesheet, and evaluates the template's contents. Instructions in each template generally direct the processor to either create nodes in the result tree, or to process more nodes in the source tree in the same way as the root node. Output derives from the result tree.
+
+==Processor implementations==
+
+===Performance===
+
+Most early XSLT processors were interpreters.  More recently, code generation is increasingly common, using portable intermediate languages (such as Java bytecode or .NET Common Intermediate Language) as the target. However, even the interpretive products generally offer separate analysis and execution phases, allowing an optimized expression tree to be created in memory and reused to perform multiple transformations. This gives substantial performance benefits in online publishing applications, where the same transformation is applied many times per second to different source documents.Saxon: Anatomy of an XSLT processor - Article describing implementation & optimization details of a popular XSLT processor. This separation is reflected in the design of XSLT processing APIs (such as JAXP).
+Early XSLT processors had very few optimizations.  Stylesheet documents were read into Document Object Models and the processor would act on them directly. XPath engines were also not optimized. Increasingly, however, XSLT processors use optimization techniques found in functional programming languages and database query languages, such as static rewriting of an expression tree (e.g., to move calculations out of loops), and lazy pipelined evaluation to reduce the memory footprint of intermediate results (and allow "early exit" when the processor can evaluate an expression such as following-sibling::*1 without a complete evaluation of all subexpressions). Many processors also use tree representations that are significantly more efficient (in both space and time) than general-purpose DOM implementations.
+
+==XSLT and XPath==
+
+XSLT uses XPath to identify subsets of the source document tree and perform calculations. XPath also provides a range of functions, which XSLT itself further augments.
+XSLT 1.0 uses XPath 1.0. XSLT 2.0 uses XPath 2.0. And XSLT 3.0 uses XPath 3.0. All specifications were published on the same date.
+
+==XSLT and XQuery compared==
+
+XSLT functionalities overlap with those of XQuery, which was initially conceived as a query language for large collections of XML documents.
+The XSLT 2.0 and XQuery 1.0 standards were developed by separate working groups within W3C, working together to ensure a common approach where appropriate. They share the same data model, type system, and function library, and both include XPath 2.0 as a sublanguage.
+The two languages, however, are rooted in different traditions and serve the needs of different communities. XSLT was primarily conceived as a stylesheet language whose primary goal was to render XML for the human reader on screen, on the web (as web template language), or on paper. XQuery was primarily conceived as a database query language in the tradition of SQL.
+Because the two languages originate in different communities, XSLT is stronger in its handling
+of narrative documents with more flexible structure, while XQuery is stronger in its data handling, for example when performing relational joins.[tpl]Citation needed|date=July 2009[/tpl]
+
+==XSLT media types==
+
+The  element can optionally take the attribute media-type, which allows one to set the media type (or MIME type) for the resulting output, for example: . The XSLT 1.0 recommendation recommends the more general attribute types text/xml and application/xml since for a long time there was no registered media type for XSLT. During this time text/xsl became the de facto standard. In XSLT 1.0 it was not specified how the media-type values should be used.
+With the release of the XSLT 2.0, the W3C recommended the registration of the MIME media type application/xslt+xml[tpl]cite web|title=XSL Transformations (XSLT) Version 2.0|url=http://www.w3.org/TR/2007/REC-xslt20-20070123/#media-type-registration|publisher=W3C|accessdate=19 October 2012[/tpl] and it was later registered with the Internet Assigned Numbers Authority[tpl]cite web|title=Application Media Types|url=http://www.iana.org/assignments/media-types/application/index.html|publisher=IANA|accessdate=19 October 2012[/tpl] 
+Pre-1.0 working drafts of XSLT used text/xsl in their embedding examples, and this type was implemented and continues to be promoted by Microsoft in Internet Explorer[tpl]cite web|title=XSLT Requirements for Viewing XML in a Browser|url=http://msdn.microsoft.com/en-us/library/windows/desktop/ms757857(v=vs.85).aspx|publisher=Microsoft|accessdate=19 October 2012[/tpl] and MSXML. It is also widely recognized in the xml-stylesheet processing instruction by other browsers. In practice, therefore, users wanting to control transformation in the browser using this processing instruction are obliged to use this unregistered media type.[tpl]cite book | last=Kay | first=Michael | title=XSLT 2.0 and XPath 2.0 Programmer's Reference | year=2008 | publisher=Wiley | ISBN=978-0-470-19274-0 | page=100[/tpl]
+
+==XSLT examples==
+
+===Example 1 (transforming XML to XML)===
+
+Its evaluation results in a new XML document, having another structure:
+
+===Example 2 (transforming XML to XHTML)===
+
+Processing the following example XSLT file
+with the XML input file shown above results in the following XHTML (whitespace has been adjusted here for clarity):
+This XHTML generates the output below when rendered in a web browser.
+In order for a web browser to be able automatically to apply an XSL transformation to an XML document on display, an XML stylesheet processing instruction can be inserted into XML. So, for example, if the stylesheet in Example 2 above were available as "example2.xsl", the following instruction could be added to the original incoming XML:[tpl]cite web | url = http://www.w3.org/TR/xslt#section-Embedding-Stylesheets | title = XSL Transformations (XSLT) Version 1.0: W3C Recommendation – Embedding Stylesheets | date = 16 November 1999 | publisher = W3C | accessdate = 2009-01-06[/tpl]
+In this example, text/xsl is technically incorrect according to the W3C specifications, but it is the only media type that is widely supported across browsers as of 2009.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

@@ -1,0 +1,264 @@
+[[Control flow]]
+
+CATEGORIES: Control flow, Articles with example Ada code
+
+In computer science, control flow (or alternatively, flow of control) refers to the order in which the individual statements, instructions or function calls of an imperative or a declarative program are executed or evaluated.
+Within an imperative programming language, a control flow statement is a statement whose execution results in a choice being made as to which of two or more paths should be followed. For non-strict functional languages, functions and language constructs exist to achieve the same result, but they are not necessarily called control flow statements.
+The kinds of control flow statements supported by different languages vary, but can be categorized by their effect:
+A set of statements is in turn generally structured as a block, which in addition to grouping also defines a lexical scope.
+Interrupts and signals are low-level mechanisms that can alter the flow of control in a way similar to a subroutine, but usually occur as a response to some external stimulus or event (that can occur asynchronously), rather than execution of an 'in-line' control flow statement. Self-modifying code can also be used to affect control flow through its side effects, but does not usually involve an explicit control flow statement (an exception being the ALTER verb in COBOL).
+At the level of machine or assembly language, control flow instructions usually work by altering the program counter. For some CPUs the only control flow instructions available are conditional or unconditional branch instructions (also called jumps).
+
+Primitives
+
+Labels
+
+A label is an explicit name or number assigned to a fixed position within the source code, and which may be referenced by control flow statements appearing elsewhere in the source code.  Other than marking a position within the source code a label has no effect.
+Line numbers are an alternative to a named label (and used in some languages such as Fortran and BASIC), that are whole numbers placed at the beginning of each line of text within the source code.  Languages which use these often impose the constraint that the line numbers must increase in value in each subsequent line, but may not require that they be consecutive.  For example, in BASIC:
+In other languages such as C and Ada a label is an identifier, usually appearing at the beginning of a line and immediately followed by a colon.  For example, in C:
+The Algol 60 language allowed both whole numbers and identifiers as labels (both attached by colons to the following statement), but few if any other variants of Algol allowed whole numbers.
+
+Goto
+
+The goto statement (a combination of the English words go and to, and pronounced accordingly) is the most basic form of unconditional transfer of control.
+Although the keyword may either be in upper or lower case depending on the language, it is usually written as:
+    '''goto''' ''label''
+The effect of a goto statement is to cause the next statement to be executed to be the statement appearing at (or immediately after) the indicated label.
+Goto statements have been considered harmful by many computer scientists, notably Dijkstra.
+
+Subroutines
+
+The terminology for subroutines varies; they may alternatively be known as routines, procedures, functions (especially if they return results) or methods (especially if they belong to classes or type classes).
+In the 1950s, computer memories were very small by current standards so subroutines were used primarily to reduce program size; a piece of code was written once and then used many times from various other places in the program.
+Nowadays, subroutines are more frequently used to help make a program that is more structured, e.g. by isolating some particular algorithm or hiding some particular data access method.
+If many programmers are working on a single program, subroutines are one kind of modularity that can help split up the work.
+
+Minimal structured control flow
+
+In May 1966, Böhm and Jacopini published an articleBöhm, Jacopini. "Flow diagrams, turing machines and languages with only two formation rules" Comm. ACM, 9(5):366-371, May 1966. in Communications of the ACM which showed that any program with gotos could be transformed into a goto-free form involving only choice (IF THEN ELSE) and loops (WHILE condition DO xxx), possibly with duplicated code and/or the addition of Boolean variables (true/false flags).
+Later authors have shown that choice can be replaced by loops (and yet more Boolean variables).
+The fact that such minimalism is possible does not necessarily mean that it is desirable; after all, computers theoretically only need 
+one machine instruction (subtract one number from another and branch if the result is negative), but practical computers have dozens or even hundreds of machine instructions.
+What Böhm and Jacopini's article showed was that all programs could be goto-free.
+Other research showed that control structures with one entry and one exit were much easier to understand than any other form, primarily because they could be used anywhere as a statement without disrupting the control flow. In other words, they were composable. (Later developments, such as non-strict programming languages - and more recently, composable software transactions - have continued this line of thought, making components of programs even more freely composable.)
+
+Control structures in practice
+
+Most programming languages with control structures have an initial keyword which indicates the type of control structure involved. Languages then divide as to whether or not control structures have a final keyword.
+
+Choice
+
+If-then-(else) statements
+
+Conditional expressions and conditional constructs are features of a programming language which perform different computations or actions depending on whether a programmer-specified boolean condition evaluates to true or false. 
+Less common variations include:-
+
+Case and switch statements
+
+Switch statements (or case statements, or multiway branches) compare a given value with specified constants and take action according to the first constant to match. There is usually a provision for a default action ("else", "otherwise") to be taken if no match succeeds. Switch statements can allow compiler optimizations, such as lookup tables. In dynamic languages, the cases may not be limited to constant expressions, and might extend to pattern matching, as in the shell script example on the right, where the *) implements the default case as a glob matching any string. Case logic
+can also be implemented in functional form, as in SQL's decode statement.
+
+Loops
+
+A loop is a sequence of statements which is specified once but which may be carried out several times in succession.
+The code "inside" the loop (the body of the loop, shown below as xxx) is obeyed a specified number of times, or once for each of a collection of items, or until some condition is met, or indefinitely.
+In functional programming languages, such as Haskell and Scheme, loops can be expressed by using recursion or fixed point iteration rather than explicit looping constructs. Tail recursion is a special case of recursion which can be easily transformed to iteration.
+
+Count-controlled loops
+
+Most programming languages have constructions for repeating a loop a certain number of times.
+Note that if N is less than 1 in these examples then the language may specify that the body is skipped completely, or that the body is executed just once with N = 1.
+In most cases counting can go downwards instead of upwards and step sizes other than 1 can be used.
+    FOR I = 1 TO N           | '''for''' I := 1 '''to''' N '''do''' '''begin'''
+        xxx                  |     xxx
+    NEXT I                   | '''end''';
+ ------------------------------------------------------------
+    DO I = 1,N               | '''for''' ( I=1; I<=N; ++I ) {
+        xxx                  |     xxx
+    END DO                   | }
+In many programming languages, only integers can be reliably used in a count-controlled loop. Floating-point numbers are represented imprecisely due to hardware constraints, so a loop such as 
+    '''for''' X := 0.1 '''step''' 0.1 '''to''' 1.0 '''do'''
+might be repeated 9 or 10 times, depending on rounding errors and/or the hardware and/or the compiler version. Furthermore, if the increment of X occurs by repeated addition, accumulated rounding errors may mean that the value of X in each iteration can differ quite significantly from the expected sequence 0.1, 0.2, 0.3, ..., 1.0.
+
+Condition-controlled loops
+
+Most programming languages have constructions for repeating a loop until some condition changes.
+Note that some variations place the test at the start of the loop, while others have the test at the end of the loop.
+In the former case the body may be skipped completely, while in the latter case the body is always executed at least once.
+    DO WHILE (test)          | '''repeat''' 
+        xxx                  |     xxx 
+    LOOP                     | '''until''' test;
+ ----------------------------------------------
+    '''while''' (test) {           | '''do'''
+        xxx                  |     xxx
+    }                        | '''while''' (test);
+A control break is a value change detection method used within ordinary loops to trigger processing for groups of values.  A key changeable value or values are monitored within the loop and a change diverts program flow to the handling of the group event associated with the changeable value. 
+    DO UNTIL (End-of-File)
+       IF new-zipcode <> current-zipcode
+          display_tally(current-zipcode, zipcount)
+          current-zipcode = new-zipcode
+          zipcount = 0
+       ENDIF
+       zipcount++
+    LOOP
+
+Collection-controlled loops
+
+Several programming languages (e.g. Ada, D, Smalltalk, PHP, Perl, Object Pascal, Java, C#, Matlab, Mythryl, Visual Basic, Ruby, Python, JavaScript, Fortran 95 and later) have special constructs which allow implicitly looping through all elements of an array, or all members of a set or collection.
+    someCollection '''do''': [:eachElement |xxx].
+    '''for''' Item '''in''' Collection '''do''' '''begin''' xxx '''end''';
+    '''foreach''' (item; myCollection) { xxx }
+    '''foreach''' someArray { xxx }
+    '''foreach''' ($someArray as $k => $v) { xxx }
+    Collection<String> coll; '''for''' (String s : coll) {}
+    '''foreach''' ('''string''' s '''in''' myStringCollection) { xxx }
+    $someCollection | ForEach-Object { $_ }
+    '''forall''' ( index = first:last:step... )
+Scala has for-expressions, which generalise collection-controlled loops, and also support other uses, such as asynchronous programming. Haskell has do-expressions and comprehensions, which together provide similar functionality to for-expressions in Scala.
+
+General iteration
+
+General iteration constructs such as C's for statement and Common Lisp's do form can be used to express any of the above sorts of loops, as well as others—such as looping over a number of collections in parallel. Where a more specific looping construct can be used, it is usually preferred over the general iteration construct, since it often makes the purpose of the expression more clear.
+
+Infinite loops
+
+Infinite loops are used to assure a program segment loops forever or until an exceptional condition arises, such as an error. For instance, an event-driven program (such as a server) should loop forever, handling events as they occur, only stopping when the process is terminated by an operator.
+Often, an infinite loop is unintentionally created by a programming error in a condition-controlled loop, wherein the loop condition uses variables that never change within the loop.
+
+Continuation with next iteration
+
+Sometimes within the body of a loop there is a desire to skip the remainder of the loop body and continue with the next iteration of the loop.  Some languages provide a statement such as continue (most languages), skip, or next (Perl and Ruby), which will do this.  The effect is to prematurely terminate the innermost loop body and then resume as normal with the next iteration.  If the iteration is the last one in the loop, the effect is to terminate the entire loop early.
+
+Redo current iteration
+
+Some languages, like Perl and Ruby, have a redo statement that restarts the current iteration from the beginning.
+
+Restart loop
+
+Ruby has a retry statement that restarts the entire loop from the initial iteration.
+
+Early exit from loops
+
+When using a count-controlled loop to search through a table, it might be desirable to stop searching as soon as the required item is found. Some programming languages provide a statement such as break (most languages), exit, or last (Perl), whose effect is to terminate the current loop immediately and transfer control to the statement immediately following that loop.
+The following example is done in Ada which supports both early exit from loops and loops with test in the middle. Both features are very similar and comparing both code snippets will show the difference: early exit needs to be combined with an if statement while a condition in the middle is a self-contained construct.
+Python supports conditional execution of code depending on whether a loop was exited early (with a break statement) or not by using an else-clause with the loop.  For example,
+Note that the else clause in the above example is attached to the for statement, and not the inner if statement.  Both Python's for and while loops support such an else clause, which is executed only if early exit of the loop has not occurred.
+Some languages support breaking out of nested loops; one common example is searching a multi-dimensional table. This can be done either via multilevel breaks (break out of N levels), as in bashAdvanced Bash Scripting Guide: 11.3. Loop Control and PHP,PHP Manual: "break" or via labeled breaks (break out and continue at given label), as in Java and Perl. C does not include a multilevel break, and the usual alternative is to use a goto to implement a labeled break.lang.c FAQ list · "Question 20.20b" Python does not have a multilevel break or continue – this was proposed in PEP 3136, and rejected on the basis that the added complexity was not worth the rare legitimate use.Python-3000 Announcing PEP 3136, Guido van Rossum
+One can also return out of a subroutine executing the looped statements, breaking out of both the nested loop and the subroutine. There are other proposed control structures for multiple breaks, but these are generally implemented as exceptions instead.
+
+Loop variants and invariants
+
+Loop variants and loop invariants are used to express correctness of loops.
+In practical terms, a loop variant is an integer expression which has an initial non-negative value. The variant's value must decrease during each loop iteration but must never become negative during the correct execution of the loop. Loop variants are used to guarantee that loops will terminate.
+A loop invariant is an assertion which must be true before the first loop iteration and remain true after each iteration. This implies that when a loop terminates correctly, both the exit condition and the loop invariant are satisfied. Loop invariants are used to monitor specific properties of a loop during successive iterations.
+Some programming languages, such as Eiffel contain native support for loop variants and invariants. In other cases, support is an add-on, such as the Java Modeling Language's specification for loop statements in Java.
+
+Loop sublanguage
+
+Some Lisp dialects are providing an extensive sublanguage for describing Loops. An early example can be found in Conversional Lisp of Interlisp. Common Lisp  provides a Loop macro which implements such a sublanguage.
+
+Loop system cross-reference table
+
+Structured non-local control flow
+
+Many programming languages, particularly those which favor more dynamic styles of programming, offer constructs for non-local control flow. These cause the flow of execution to jump out of a given context and resume at some predeclared point. Conditions, exceptions and continuations are three common sorts of non-local control constructs; more exotic ones also exist, such as generators, coroutines and the async keyword.
+
+Conditions
+
+PL/I has some 22 standard conditions (e.g. ZERODIVIDE SUBSCRIPTRANGE ENDFILE) which can be raised and which can be intercepted by: ON condition action; Programmers can also define and use their own named conditions.
+Like the unstructured if, only one statement can be specified so in many cases a GOTO is needed to decide where flow of control should resume.
+Unfortunately, some implementations had a substantial overhead in both space and time (especially SUBSCRIPTRANGE), so many programmers tried to avoid using conditions.
+Common Syntax examples:
+  '''ON''' ''condition'' '''GOTO''' ''label''
+
+Exceptions
+
+Modern languages have a structured construct for exception handling which does not rely on the use of GOTO:
+Any number and variety of catch clauses can be used above. In Object Pascal, D, Java, C#, and Python a finally clause can be added to the try construct. No matter how control leaves the try the code inside the finally clause is guaranteed to execute. This is useful when writing code that must relinquish an expensive resource (such as an opened file or a database connection) when finished processing:
+Since this pattern is fairly common, C# has a special syntax:
+Upon leaving the using-block, the compiler guarantees that the stm object is released, effectively binding the variable to the file stream while abstracting from the side effects of initializing and releasing the file. Python's with statement and Ruby's block argument to File.
+All these languages define standard exceptions and the circumstances under which they are thrown.
+Users can throw exceptions of their own (in fact C++ allows users to throw and catch almost any type).
+If there is no catch matching a particular throw, control percolates back through subroutine calls and/or nested blocks until a matching catch is found or until the end of the main program is reached, at which point the program is forcibly stopped with a suitable error message.
+The AppleScript scripting programming language provides several pieces of information to a "try" block:
+
+Continuations
+
+Async
+
+C# 5.0 introduced the async keyword for supporting asynchronous I/O in a "direct style".
+
+Generators
+
+Generators, also known as semicoroutines, allow control to be yielded to a consumer method temporarily, typically using a  keyword. Like the async keyword, this supports programming in a "direct style".
+
+Coroutines
+
+Coroutines are functions that can yield control to each other - a form of co-operative multitasking without threads.
+Coroutines can be implemented as a library if the programming language provides either continuations or generators - so the distinction between coroutines and generators in practice is a technical detail.
+
+Non-local control flow cross reference
+
+Proposed control structures
+
+In a spoof Datamation articleWe don't know where to GOTO if we don't know where we've COME FROM. This (spoof) linguistic innovation lives up to all expectations. By R. Lawrence Clark* From DATAMATION, December, 1973 in 1973, R. Lawrence Clark suggested that the GOTO statement could be replaced by the COMEFROM statement, and provides some entertaining examples.
+This was actually implemented in INTERCAL, a deliberately esoteric programming language.
+In his 1974 article "Structured Programming with go to Statements",Knuth, Donald E. "Structured Programming with go to Statements" ACM Computing Surveys 6(4):261-301, December 1974. Donald Knuth identified two situations which were not covered
+by the control structures listed above, and gave examples of control structures which could handle these situations. Despite their utility, these constructions have not yet found their way into mainstream programming languages.
+
+Loop with test in the middle
+
+The following was proposed by Dahl in 1972:Dahl & Dijkstra & Hoare, "Structured Programming" Academic Press, 1972.
+    '''loop'''                           '''loop'''
+        xxx1                           read(char);
+    '''while''' test;                    '''while''' '''not''' atEndOfFile;
+        xxx2                           write(char);
+    '''repeat''';                        '''repeat''';
+If xxx1 is omitted we get a loop with the test at the top.
+If xxx2 is omitted we get a loop with the test at the bottom.
+If while is omitted we get an infinite loop.
+Hence this single construction can replace several constructions in most programming languages.
+A possible variant is to allow more than one while test; within the loop, but the use of exitwhen (see next section) appears to cover this case better.
+Languages lacking this construct generally emulate it using an equivalent infinite-loop-with-break idiom:
+ '''while''' (true) {
+     xxx1
+     '''if''' ('''not''' test)
+         '''break'''
+     xxx2
+ }
+In Ada, the above loop construct (loop-while-repeat) can be represented using a standard infinite loop (loop - end loop) that has an exit when clause in the middle (not to be confused with the exitwhen statement in the following section).
+Naming a loop (like Read_Data in this example) is optional but permits leaving the outer loop of several nested loops.
+
+Multiple early exit/exit from nested loops
+
+This was proposed by Zahn in 1974. T. "A control statement for natural top-down structured programming" presented at Symposium on Programming Languages, Paris, 1974. A modified version is presented here.
+    '''exitwhen''' EventA '''or''' EventB '''or''' EventC;
+        xxx
+    '''exits'''
+        EventA: actionA
+        EventB: actionB
+        EventC: actionC
+    '''endexit''';
+exitwhen is used to specify the events which may occur within xxx,
+their occurrence is indicated by using the name of the event as a statement.
+When some event does occur, the relevant action is carried out, and then control passes just after endexit.
+This construction provides a very clear separation between determining that some situation applies, and the action to be taken for that situation.
+exitwhen is conceptually similar to exception handling, and exceptions or similar constructs are used for this purpose in many languages.
+The following simple example involves searching a two-dimensional table for a particular item.
+    '''exitwhen''' found '''or''' missing;
+        '''for''' I := 1 '''to''' N '''do'''
+            '''for''' J := 1 '''to''' M '''do'''
+                '''if''' table[I,J] = target '''then''' found;
+        missing;
+    '''exits'''
+        found:   print ("item is in table");
+        missing: print ("item is not in table");
+    '''endexit''';
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+[[Linear independence]]
+
+CATEGORIES: Abstract algebra, Linear algebra, Articles containing proofs
+
+In linear algebra, two slightly different notions of linear independence are used: the linear independence of a family of vectors, and the linear independence of a set of vectors.
+Both notions are important and used in common, and sometimes even confused in the literature.
+Here the first three vectors are linearly independent; but the fourth vector equals 9 times the first plus 5 times the second plus 4 times the third, so the four vectors together are linearly dependent. Linear dependence is a property of the family, not of any particular vector; for example in this case we could just as well write the first vector as a linear combination of the last three.
+In probability theory and statistics there is an unrelated measure of linear dependence between random variables.
+
+Definition
+
+A subset S of a vector space V is called linearly dependent if there exist a finite number of distinct vectors v1, v2, ..., vn in S and scalars a1, a2, ..., an, not all zero, such that
+Note that the zero on the right is the zero vector, not the number zero.
+For any vectors  u1, u2, ..., un we have that
+This is called the trivial representation of 0 as a linear combination of u1, u2, ..., un, this motivates a very simple definition of both linear independence and linear dependence, for a set to be linearly dependent, there must exist a non-trivial representation of 0 as a linear combination of vectors in the set.
+A subset S of a vector space V is then said to be linearly independent if it is not linearly dependent, in other words, a set is linearly independent if the only representations of 0 as a linear combination of its vectors are trivial representations. 
+Note that in both definitions we also say that the vectors in the subset S are linearly dependent or linearly independent.
+More generally, let V be a vector space over a field K, and let {vi | i∈I} be a family of elements of V. The family is linearly dependent over K if there exists a family {aj | j∈J} of elements of K, not all zero, such that
+where the index set J is a nonempty, finite subset of I.
+A set X of elements of V is linearly independent if the corresponding family {x}x∈X is linearly independent.
+Equivalently, a family is dependent if a member is in the linear span of the rest of the family, i.e., a member is a linear combination of the rest of the family.
+The trivial case of the empty family must be regarded as linearly independent for theorems to apply.
+A set of vectors which is linearly independent and spans some vector space, forms a basis for that vector space. For example, the vector space of all polynomials in x over the reals has the (infinite) subset {1, x, x2, ...} as a basis.
+
+Geometric meaning
+
+A geographic example may help to clarify the concept of linear independence.  A person describing the location of a certain place might say, "It is 3 miles north and 4 miles east of here."  This is sufficient information to describe the location, because the geographic coordinate system may be considered as a 2-dimensional vector space (ignoring altitude and the curvature of the Earth's surface).  The person might add, "The place is 5 miles northeast of here."  Although this last statement is true, it is not necessary.
+In this example the "3 miles north" vector and the "4 miles east" vector are linearly independent.  That is to say, the north vector cannot be described in terms of the east vector, and vice versa.  The third "5 miles northeast" vector is a linear combination of the other two vectors, and it makes the set of vectors linearly dependent, that is, one of the three vectors is unnecessary.
+Also note that if altitude is not ignored, it becomes necessary to add a third vector to the linearly independent set.  In general, n linearly independent vectors are required to describe any location in n-dimensional space.
+
+Example I
+
+Proof
+
+Let λ1 and λ2 be two real numbers such that
+Taking each coordinate alone, this means
+Solving for λ1 and λ2, we find that λ1 = 0 and λ2 = 0.
+
+Alternative method using determinants
+
+In this case, the matrix formed by the vectors is
+We may write a linear combination of the columns as
+We are interested in whether AΛ = 0 for some nonzero vector Λ. This depends on the determinant of A, which is
+Since the determinant is non-zero, the vectors (1, 1) and (−3, 2) are linearly independent.
+Otherwise, suppose we have m vectors of n coordinates, with m < n. Then A is an n×m matrix and Λ is a column vector with m entries, and we are again interested in AΛ = 0. As we saw previously, this is equivalent to a list of n equations. Consider the first m rows of A, the first m equations; any solution of the full list of equations must also be true of the reduced list. In fact, if 〈i1,...,im〉 is any list of m rows, then the equation must be true for those rows.
+Furthermore, the reverse is true. That is, we can test whether the m vectors are linearly dependent by testing whether
+for all possible lists of m rows. (In case m = n, this requires only one determinant, as above. If m > n, then it is a theorem that the vectors must be linearly dependent.) This fact is valuable for theory; in practical calculations more efficient methods are available.
+
+Example II
+
+Let V = Rn and consider the following elements in V:
+Then e1, e2, ..., en are linearly independent.
+
+Proof
+
+Suppose that a1, a2, ..., an are elements of R such that
+Since
+then ai = 0 for all i in {1, ..., n}.
+
+Example III
+
+Let V be the vector space of all functions of a real variable t. Then the functions et and e2t in V are linearly independent.
+
+Proof
+
+Suppose a and b are two real numbers such that
+for all values of t. We need to show that a = 0 and b = 0. In order to do this, we divide through by et (which is never zero) and subtract to obtain
+In other words, the function bet must be independent of t, which only occurs when b = 0.  It follows that a is also zero.
+
+Example IV
+
+The following vectors in R4 are linearly dependent.
+
+Proof
+
+Forming the simultaneous equations:
+we can solve (using, for example, Gaussian elimination) to obtain:
+Since these are nontrivial results, the vectors are linearly dependent.
+
+Projective space of linear dependences
+
+A linear dependence among vectors v1, ..., vn is a tuple (a1, ..., an) with n scalar components, not all zero, such that
+If such a linear dependence exists, then the n vectors are linearly dependent. It makes sense to identify two linear dependences if one arises as a non-zero multiple of the other, because in this case the two describe the same linear relationship among the vectors. Under this identification, the set of all linear dependences among v1, ...., vn is a projective space.
+
+Linear dependence between random variables
+
+The covariance is sometimes called a measure of "linear dependence" between two random variables. That does not mean the same thing as in the context of linear algebra. When the covariance is normalized, one obtains the correlation matrix. From it, one can obtain the Pearson coefficient, which gives us the goodness of the fit for the best possible linear function describing the relation between the variables. In this sense covariance is a linear gauge of dependence.
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+[[Clock signal]]
+
+CATEGORIES: Clock signal
+
+In electronics and especially synchronous digital circuits, a clock signal is a particular type of signal that oscillates between a high and a low state and is utilized like a metronome to coordinate actions of circuits. Although the word signal has a number of other meanings, the term here is used for "transmitted energy that can carry information".
+A clock signal is produced by a clock generator. Although more complex arrangements are used, the most common clock signal is in the form of a square wave with a 50% duty cycle, usually with a fixed, constant frequency. Circuits using the clock signal for synchronization may become active at either the rising edge, falling edge, or, in the case of double data rate, both in the rising and in the falling edges of the clock cycle.
+
+Digital circuits
+
+Most integrated circuits (ICs) of sufficient complexity use a clock signal in order to synchronize different parts of the circuit, cycling at a rate less than the worst-case internal propagation delays. In some cases, more than one clock cycle is required to perform a predictable action. As ICs become more complex, the problem of supplying accurate and synchronized clocks to all the circuits becomes increasingly difficult. The preeminent example of such complex chips is the microprocessor, the central component of modern computers, which relies on a clock from a crystal oscillator. The only exceptions are asynchronous circuits such as asynchronous CPUs.
+A clock signal might also be gated, that is, combined with a controlling signal that enables or disables the clock signal for a certain part of a circuit. This technique is often used to save power by effectively shutting down portions of a digital circuit when they are not in use, but comes at a cost of increased complexity in timing analysis.
+
+Single-phase clock
+
+Most modern synchronous circuits use only a "single phase clock"—in other words, they transmit all clock signals on (effectively) 1 wire.
+
+Two-phase clock
+
+In synchronous circuits, a "two-phase clock" refers to clock signals distributed on 2 wires, each with non-overlapping pulses. Traditionally one wire is called "phase 1" or "phi1", the other wire carries the "phase 2" or "phi2" signal.
+MOS ICs typically used dual clock signals (a two-phase clock) in the 1970s. These were generated externally for both the 6800 and the 8080.
+The 6501 required an external 2-phase clock generator.
+The MOS Technology 6502 used the same 2-phase logic internally, but also included a two-phase clock generator on-chip, so it only needed a single phase clock input, simplifying system design.
+
+4-phase clock
+
+A "4-phase clock" has clock signals distributed on 4 wires (four phase logic).
+In some early microprocessors such as the National Semiconductor IMP-16 family, a multi-phase clock was used. In the case of the IMP-16, the clock had four phases, each 90 degrees apart, in order to synchronize the operations of the processor core and its peripherals.
+Some ICs use four-phase logic.
+Intrinsity's  Fast14 technology uses a multi-phase clock.
+Most modern microprocessors and microcontrollers use a single-phase clock, however.
+
+Clock multiplier
+
+Many modern microcomputers use a "clock multiplier" which multiplies a lower frequency external clock to the appropriate clock rate of the microprocessor. This allows the CPU to operate at a much higher frequency than the rest of the computer, which affords performance gains in situations where the CPU does not need to wait on an external factor (like memory or input/output).
+
+Dynamic frequency change
+
+The vast majority of digital devices do not require a clock at a fixed, constant frequency.
+As long as the minimum and maximum clock times are respected, the time between clock edges can vary widely from one edge to the next and back again.
+Such digital devices work just as well with a clock generator that dynamically changes its frequency, such as spread-spectrum clock generation, dynamic frequency scaling, PowerNow!, Cool'n'Quiet, SpeedStep, etc.
+Devices that use static logic do not even have a maximum clock time; such devices can be slowed down and paused indefinitely, then resumed at full clock speed at any later time.
+
+Other circuits
+
+Some sensitive mixed-signal circuits, such as precision analog-to-digital converters, use sine waves rather than square waves as their clock signals, because square waves contain high-frequency harmonics that can interfere with the analog circuitry and cause noise. Such sine wave clocks are often differential signals, because this type of signal has twice the slew rate, and therefore half the timing uncertainty, of a single-ended signal with the same voltage range. Differential signals radiate less strongly than a single line. Alternatively, a single line shielded by power and ground lines can be used.
+In CMOS circuits, gate capacitances are charged and uncharged continually. A capacitor does not dissipate energy, but energy is wasted in the driving transistors. In reversible computing, inductors can be used to store this energy and reduce the energy loss, but they tend to be quite large. Alternatively, using a sine wave clock, CMOS transmission gates and energy-saving techniques, the power requirements can be reduced.
+
+Distribution
+
+The most effective way to get the clock signal to every part of a chip that needs it, with the lowest skew, is a metal grid. In a large microprocessor, the power used to drive the clock signal can be over 30% of the total power used by the entire chip. The whole structure with the gates at the ends and all amplifiers in between have to be loaded and unloaded every cycle. To save energy, clock gating temporarily shuts off part of the tree.
+The clock distribution network (or clock tree, when this network forms a tree) distributes the clock signal(s) from a common point to all the elements that need it. Since this function is vital to the operation of a synchronous system, much attention has been given to the characteristics of these clock signals and the electrical networks used in their distribution. Clock signals are often regarded as simple control signals; however, these signals have some very special characteristics and attributes.
+Clock signals are typically loaded with the greatest fanout and operate at the highest speeds of any signal within the synchronous system. Since the data signals are provided with a temporal reference by the clock signals, the clock waveforms must be particularly clean and sharp. Furthermore, these clock signals are particularly affected by technology scaling (see Moore's law), in that long global interconnect lines become significantly more resistive as line dimensions are decreased. This increased line resistance is one of the primary reasons for the increasing significance of clock distribution on synchronous performance. Finally, the control of any differences and uncertainty in the arrival times of
+the clock signals can severely limit the maximum performance of the entire system and create catastrophic race conditions in which an incorrect data signal may latch within a register.
+Most synchronous digital systems consist of cascaded banks of sequential registers with combinational logic between each set of registers. The functional requirements of the digital system are satisfied by the logic stages. Each logic stage introduces delay that affect timing performance, and the timing performance of the digital design can be evaluated relative to the timing requirements by a timing analysis.  Often special consideration must be made to meet the timing requirements. For example, the global performance and local timing requirements may be satisfied by
+the careful insertion of pipeline registers into equally spaced time windows to satisfy critical worst-case timing constraints. The proper design of the clock distribution network helps ensure that critical timing requirements are satisfied and that no race conditions exist (see also clock skew).
+The delay components that make up a general synchronous system are composed of the following three individual subsystems: the memory storage elements, the logic elements, and the clocking circuitry and distribution network.
+Novel structures are currently under development to ameliorate these issues and provide effective solutions. Important areas of research include resonant clocking techniques, on-chip optical interconnect, and local synchronization methodologies.
+
+
+
+
+
+Adapted from Eby Friedman's column in the ACM SIGDA e-newsletter by Igor Markov 
+
+Original text is available at 
+

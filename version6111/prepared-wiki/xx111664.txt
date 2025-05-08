@@ -1,0 +1,48 @@
+[[Java APIs for Bluetooth]]
+
+CATEGORIES: Java device platform, Java specification requests, Bluetooth software
+
+Java APIs for Bluetooth Wireless Technology (JABWT) is a J2ME specification for APIs that allows Java MIDlets running on embedded devices such as mobile phones to use Bluetooth for short-range wireless communication.  JABWT was developed as JSR-82 under the Java Community Process.[tpl]cite web|title=Java Specification Request: JSR-82|publisher=jcp.org|url=http://jcp.org/en/jsr/detail?id=82|accessdate=12 February 2013[/tpl]
+JSR 82 implementations for Java 2 Platform Standard Edition (J2SE) are also available.
+
+==Background==
+
+The original Java Specification Request (JSR-82) was submitted by Motorola and Sun Microsystems,[tpl]cite web|title=Java Specification Request: JSR-82|publisher=jcp.org|url=http://jcp.org/en/jsr/detail?id=82|accessdate=12 February 2013[/tpl] and approved by the Executive Committee for J2ME in September 2000.  JSR-82 provided the first standardized Java API for Bluetooth protocols, allowing developers to write applications using Bluetooth that work on all devices conforming to the specification.  The first version of JSR-82 was released in March 2002.  The most recent update to JSR-82, Maintenance Draft Review 4, was released in March 2010.  The specification, reference implementation, and Technology Compatibility Kit (TCK) are maintained at Motorola Open Source.[tpl]cite web|title=Motorola Open Source|publisher=Motorola|url=https://opensource.motorola.com/sf/sfmain/do/viewProject/projects.jsr82|accessdate=12 February 2013[/tpl]
+
+==Technologies and Usage==
+
+===Discovery===
+
+JABWT provides support for discovery of nearby Bluetooth devices.[tpl]cite web|title=Using the Java APIs for Bluetooth Wireless Technology|publisher=Oracle Technology Network|url=http://www.oracle.com/technetwork/articles/javame/index-156193.html|accessdate=12 February 2013[/tpl]  Java applications can use the API to scan for discoverable devices, identify services provided by discovered devices, and search for devices that the device frequently contacts.
+
+===Communication===
+
+After a connection with a remote device is established, JABWT specifies API calls for wireless communication. JABWT includes support for the RFCOMM and L2CAP Bluetooth data exchange protocols.  Bluetooth properties of the local device can be accessed through the LocalDevice.getProperty() method.
+
+===Object Exchange APIs===
+
+JABWT provides an object exchange API for transfer of data objects between devices.  For example, two devices conforming to the OBEX protocol could exchange virtual business cards or calendar appointments.
+
+===Device Management===
+
+JABWT allows management of the local device’s state.[tpl]cite web|title=My Thesis - Literature Study - JSR 82|publisher=Kerjaannya Gumi|url=http://kerjaannyagumi.blogspot.com/2008/06/my-thesis-literature-study-jsr-82.html|accessdate=12 February 2013[/tpl]  JABWT applications are able to access information about the host device (such as Bluetooth address), mark their host device as discoverable to other Bluetooth devices, and register to provide services.
+
+===Security===
+
+JABWT supports connections with different levels of security.  Applications using the APIs can pass parameters to the Connector.open() method indicating the level of security required to establish a connection to another device.
+
+===Compatible Devices===
+
+Hundreds of mobile devices from different manufacturers comply with the JSR-82 specification.[tpl]cite web|title=JSR-82 Compliant Devices|publisher=Bluecove Wiki|url=http://code.google.com/p/bluecove/wiki/phones|accessdate=12 February 2013[/tpl]  Google maintains a list of devices that conform to the JSR-82 specification.
+
+==Implementations==
+
+Several open-source implementations of the JSR-82 specification are available:
+
+==See also==
+
+==External links==
+
+==References==
+
+

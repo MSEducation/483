@@ -1,0 +1,61 @@
+[[Tuple relational calculus]]
+
+CATEGORIES: Relational model, Logical calculi
+
+Tuple calculus is a calculus that was introduced by Edgar F. Codd as part of the relational model, in order to provide a declarative database-query language for this data model. It formed the inspiration for the database-query languages QUEL and SQL, of which the latter, although far less faithful to the original relational model and calculus, is now the de-facto-standard database-query language; a dialect of SQL is used by nearly every relational-database-management system. Lacroix and Pirotte proposed domain calculus, which is closer to first-order logic and which showed that both of these calculi (as well as relational algebra) are equivalent in expressive power. Subsequently, query languages for the relational model were called relationally complete if they could express at least all of these queries.
+
+Definition of the calculus
+
+Relational database
+
+Since the calculus is a query language for relational databases we first have to define a relational database. The basic relational building block is the domain, or data type.  A tuple is an ordered multiset of attributes, which are ordered pairs of domain and value; or just a row.  A relvar (relation variable) is a set of ordered pairs of domain and name, which serves as the header for a relation.  A relation is a set of tuples.  Although these relational concepts are mathematically defined, those definitions map loosely to traditional database concepts.  A table is an accepted visual representation of a relation; a tuple is similar to the concept of row.
+We first assume the existence of a set C of column names, examples of which are "name", "author", "address" et cetera. We define headers as finite subsets of C. A relational database schema is defined as a tuple S = (D, R, h) where D is the domain of atomic values (see relational model for more on the notions of domain and atomic value), R is a finite set of relation names, and 
+a function that associates a header with each relation name in R. (Note that this is a simplification from the full relational model where there is more than one domain and a header is not just a set of column names but also maps these column names to a domain.) Given a domain D we define a tuple over D as a partial function 
+that maps some column names to an atomic value in D. An example would be (name : "Harry", age : 25). 
+The set of all tuples over D is denoted as TD. The subset of C for which a tuple t is defined is called the domain of t (not to be confused with the domain in the schema) and denoted as dom(t).
+Finally we define a relational database given a schema S = (D, R, h) as a function 
+that maps the relation names in R to finite subsets of TD, such that for every relation name r in R and tuple t in db(r) it holds that 
+The latter requirement simply says that all the tuples in a relation should contain the same column names, namely those defined for it in the schema.
+
+Atoms
+
+For the construction of the formulae we will assume an infinite set V of tuple variables. The formulas are defined given a database schema S = (D, R, h) and a partial function  type : V -> 2C that defines a type assignment that assigns headers to some tuple variables. We then define the set of atomic formulas AS,type with the following rules:
+Examples of atoms are:
+The formal semantics of such atoms is defined given a database db over S and a tuple variable binding val : V -> TD that maps tuple variables to tuples over the domain in S:
+
+Formulas
+
+The atoms can be combined into formulas, as is usual in first-order logic, with the logical operators ∧ (and), ∨ (or) and ¬ (not), and we can use the existential quantifier (∃) and the universal quantifier (∀) to bind the variables. We define the set of formulas FS,type inductively with the following rules:
+Examples of formulas:
+Note that the last formula states that all books that are written by C. J. Date have as their subject the relational model. As usual we omit brackets if this causes no ambiguity about the semantics of the formula.
+We will assume that the quantifiers quantify over the universe of all tuples over the domain in the schema. This leads to the following formal semantics for formulas given a database db over S and a tuple variable binding val : V -> TD:
+
+Queries
+
+Finally we define what a query expression looks like given a schema S = (D, R, h):
+where v is a tuple variable, H a header and f(v) a formula in FS,type where type = { (v, H) } and with v as its only free variable. The result of such a query for a given database db over S is the set of all tuples t over D with dom(t) = H such that f is true for db and val = { (v, t) }.
+Examples of query expressions are:
+
+Semantic and syntactic restriction of the calculus
+
+Domain-independent queries
+
+Because the semantics of the quantifiers is such that they quantify over all the tuples over the domain in the schema it can be that a query may return a different result for a certain database if another schema is presumed. For example, consider the two schemas S1 = ( D1, R, h ) and S2 = ( D2, R, h ) with domains D1 = { 1 }, D2 = { 1, 2 }, relation names R = { "r1" } and headers h = { ("r1", {"a"}) }. Both schemas have a common instance:
+If we consider the following query expression
+then its result on db is either { (a : 1) } under S1 or { (a : 1), (a : 2) } under S2. It will also be clear that if we take the domain to be an infinite set, then the result of the query will also be infinite. To solve these problems we will restrict our attention to those queries that are domain independent, i.e., the queries that return the same result for a database under all of its schemas.
+An interesting property of these queries is that if we assume that the tuple variables range over tuples over the so-called active domain of the database, which is the subset of the domain that occurs in at least one tuple in the database or in the query expression, then the semantics of the query expressions does not change. In fact, in many definitions of the tuple calculus this is how the semantics of the quantifiers is defined, which makes all queries by definition domain independent.
+
+Safe queries
+
+In order to limit the query expressions such that they express only domain-independent queries a syntactical notion of safe query is usually introduced. To determine whether a query expression is safe we will derive two types of information from a query. The first is whether a variable-column pair t.a is bound to the column of a relation or a constant, and the second is whether two variable-column pairs are directly or indirectly equated (denoted t.v == s.w).
+For deriving boundedness we introduce the following reasoning rules:
+For deriving equatedness we introduce the following reasoning rules (next to the usual reasoning rules for equivalence relations: reflexivity, symmetry and transitivity):
+We then say that a query expression { v : H | f(v) } is safe if
+The restriction to safe query expressions does not limit the expressiveness since all domain-independent queries that could be expressed can also be expressed by a safe query expression. This can be proven by showing that for a schema S = (D, R, h), a given set K of constants in the query expression, a tuple variable v and a header H we can construct a safe formula for every pair v.a with a in H that states that its value is in the active domain. For example, assume that K={1,2}, R={"r"} and h = { ("r", {"a, "b"}) } then the corresponding safe formula for v.b is:
+This formula, then, can be used to rewrite any unsafe query expression to an equivalent safe query expression by adding such a formula for every variable v and column name a in its type where it is used in the expression. Effectively this means that we let all variables range over the active domain, which, as was already explained, does not change the semantics if the expressed query is domain independent.
+
+
+
+
+
+

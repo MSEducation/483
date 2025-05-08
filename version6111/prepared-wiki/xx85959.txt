@@ -1,0 +1,49 @@
+[[Short-circuit evaluation]]
+
+CATEGORIES: Evaluation strategy, Articles with example C code, Articles with example Perl code
+
+Short-circuit evaluation, minimal evaluation, or McCarthy evaluation denotes the semantics of some Boolean operators in some programming languages in which the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression: when the first argument of the AND function evaluates to false, the overall value must be false; and when the first argument of the OR function evaluates to true, the overall value must be true.  In some programming languages (Lisp), the usual Boolean operators are short-circuit.  In others (Java, Ada), both short-circuit and standard Boolean operators are available. For some Boolean operations, like XOR, it is not possible to short-circuit, because both operands are always required to determine the result.
+The short-circuit expression x Sand y (using Sand to denote the short-circuit variety) is equivalent to the conditional expression if x then y else false; the expression x Sor y is equivalent to if x then true else y.
+Short-circuit operators are, in effect, control structures rather than simple arithmetic operators, as they are not strict. In imperative language terms (notably C and C++), where side effects are important, short-circuit operators introduce a sequence point – they completely evaluate the first argument, including any side effects, before (optionally) processing the second argument. ALGOL 68 used "proceduring" to achieve user defined short-circuit operators & procedures.
+In loosely typed languages that have more than the two truth-values True and False, short-circuit operators may return the last evaluated subexpression, so that x Sor y and x Sand y are actually equivalent to if x then x else y and if x then y else x respectively (without actually evaluating x twice). This is called "Last value" in the table below.
+In languages that use lazy evaluation by default (like Haskell), all functions are effectively "short-circuit", and special short-circuit operators are unnecessary.
+
+==Support in common programming languages==
+
+1 ABAP does not actually have a distinct boolean type.
+
+3 When overloaded, the operators && and || are eager and can return any type.
+
+4 ISO Pascal allows but does not require short-circuiting.
+
+5 Fortran operators are neither short-circuit nor eager: the language specification allows the compiler to select the method for optimization.
+
+6 ISO-10206 Extended Pascal supports and_then and or_else.[tpl]cite web|url=http://www.gnu-pascal.de/gpc/and_005fthen.html#and_005fthen#GNU |title=and_then - The GNU Pascal Manual |publisher=Gnu-pascal.de |date= |accessdate=2013-08-24[/tpl] 
+7 Smalltalk uses short-circuit semantics as long as the argument to and: is a block (e.g. false and: show: 'Wont see me'). 
+8 BASIC languages that supported CASE statements did so by using the conditional evaluation system, rather than as jump tables limited to fixed labels.
+
+==Common usage==
+
+===Avoiding the execution of second expression's side effects===
+
+Usual example, using a C-based language:
+Consider the following example:
+In this example, short-circuit evaluation guarantees that myfunc(b) is never called. This is because a != 0 evaluates to false.  This feature permits two useful programming constructs.  Firstly, if the first sub-expression checks whether an expensive computation is needed and the check evaluates to false, one can eliminate expensive computation in the second argument.  Secondly, it permits a construct where the first expression guarantees a condition without which the second expression may cause a run-time error. Both are illustrated in the following C snippet where minimal evaluation prevents both null pointer dereference and excess memory fetches:
+
+==Possible problems==
+
+===Untested second condition leads to unperformed side effect===
+
+Despite these benefits, minimal evaluation may cause problems for programmers who do not realize (or forget) it is happening. For example, in the code
+if myfunc(b) is supposed to perform some required operation regardless of whether do_something() is executed, such as allocating system resources, and expressionA evaluates as false, then myfunc(b) will not execute, which could cause problems. Some programming languages, such as Java, have two operators, one that employs minimal evaluation and one that does not, to avoid this problem.
+Problems with unperformed side effect statements can be easily solved with proper programming style, i.e. not using side effects in boolean statements, as using values with side effects in evaluations tends to generally make the code opaque and error-prone.[tpl]cite web|url=http://www.itu.dk/people/sestoft/papers/SondergaardSestoft1990.pdf |title=Referential Transparency, Definiteness and Unfoldability |publisher=Itu.dk |accessdate=2013-08-24[/tpl]
+Since minimal evaluation is part of an operator's semantic definition and not an (optional) optimization, many coding styles[tpl]Which|date=July 2010[/tpl] rely on it as a succinct (if idiomatic) conditional construct, such as these Perl idioms:
+
+===Code efficiency===
+
+If both expressions used as conditions are simple boolean variables, it can be actually faster to evaluate both conditions used in boolean operation at once, as it always requires a single calculation cycle, as opposed to one or two cycles used in short-circuit evaluation (depending on the value of the first). The difference in terms of computing efficiency between these two cases depends heavily on compiler and optimization scheme used; with proper optimization they will execute at the same speed, as they will get compiled to identical machine code.[tpl]cite web|url=http://www.agner.org/optimize/#manuals |title=Software optimization resources. C++ and assembly. Windows, Linux, BSD, Mac OS X |publisher=Agner.org |date= |accessdate=2013-08-24[/tpl]
+Short-circuiting can lead to errors in branch prediction on modern processors, and dramatically reduce performance (a notable example is highly optimized ray with axis aligned box intersection code in ray tracing).[tpl]clarify|date=November 2010[/tpl] Some compilers can detect such cases and emit faster code, but it is not always possible due to possible violations of the C standard. Highly optimized code should use other ways for doing this (like manual usage of assembly code).[tpl]Citation needed|date=July 2010[/tpl]
+
+==References==
+
+

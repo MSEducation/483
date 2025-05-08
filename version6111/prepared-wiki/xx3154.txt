@@ -1,0 +1,40 @@
+[[EBCDIC]]
+
+CATEGORIES: IBM mainframe operating systems, EBCDIC code pages
+
+Extended Binary Coded Decimal Interchange Code (EBCDIC) is an 8-bit character encoding used mainly on IBM mainframe and IBM midrange computer operating systems.
+EBCDIC  descended from the code used with punched cards and the corresponding six bit binary-coded decimal code used with most of IBM's computer peripherals of the late 1950s and early 1960s.[tpl]cite web|last=Bemer|first=Bob|title=EBCDIC and the P-Bit|url=http://www.bobbemer.com/P-BIT.HTM|accessdate=July 2, 2013[/tpl] 
+It is also employed on various non-IBM platforms such as Fujitsu-Siemens' BS2000/OSD, OS-IV, MSP, MSP-EX, HP MPE/iX, and Unisys VS/9 and MCP.
+
+==History==
+
+EBCDIC [tpl]IPAc-en|ˈ|ɛ|b|s|ɨ|d|ɪ|k[/tpl] was devised in 1963 and 1964 by IBM and was announced with the release of the IBM System/360 line of mainframe computers. It is an 8-bit character encoding, in contrast to, and developed separately from, the 7-bit ASCII encoding scheme. It was created to extend the existing binary-coded decimal (BCD) interchange code, or BCDIC, which itself was devised as an efficient means of encoding the two zone and number punches on punched cards into 6 bits.
+While IBM was a chief proponent of the ASCII standardization committee,They had 4 staff on the final 21-member ASA X3.2 sub-committee they did not have time to prepare ASCII peripherals (such as card punch machines) to ship with its System/360 computers, so the company settled on EBCDIC."...but their printers and punches were not ready to handle ASCII, and IBM just HAD to announce.", EBCDIC and the P-Bit, Bob Bemer The System/360 became wildly successful, and together with clones such as RCA Spectra 70, ICL System 4, and Fujitsu FACOM, thus so did EBCDIC.
+All IBM mainframe and midrange peripherals and operating systems use EBCDIC as their inherent encoding,[ref]
+[tpl]Dead link|date=January 2012[/tpl][/ref] but AIX running on the RS/6000 and its descendants including the IBM Power Systems, Linux running on the zSeries, and operating systems running on the IBM PC and its descendants use ASCII. Software and many hardware peripherals can translate to and from encodings, and modern mainframes (such as IBM zSeries) include processor instructions, at the hardware level, to accelerate translation between character sets.
+EBCDIC has no technical advantage compared to some ASCII-based character encodings, such as the ISO-8859 series, except for the inclusion of the "¢" (cent) character; however, the ASCII-based Unicode does include the cent character. While EBCDIC, like ASCII, has one bit flagging upper or lower case, unlike ASCII the EBCDIC alphabet is non-contiguous, interleaved with unassigned characters which may or may not be in use. Data portability is hindered by a lack of many symbols commonly used in programming and in network communications, and by different, incompatible translations for EBCDIC characters not included in 7-bit ASCII. The collating sequence of upper case alphabetic characters is higher than lower case and numerics are higher still — the exact opposite of ASCII.  As with single-byte extended ASCII codepages, EBCDIC codepages are language-dependent with no nomenclature or internal mechanism to denote non-"standard" usage. 
+Where true support for multilingual text is desired, a system supporting far more characters is needed. Generally this is done with some form of Unicode support. There is an EBCDIC Unicode Transformation Format called UTF-EBCDIC proposed by the Unicode consortium, but it is not intended to be used in open interchange environments and, even on EBCDIC-based systems, it is almost never used. IBM mainframes support UTF-16, but they do not support UTF-EBCDIC natively.
+Arabic EBCDIC versions are typically in left-to-right presentation order as displayed by older mainframes and line printers rather than in the right-to-left logical order used by later encodings such as Unicode.
+
+==Codepage layout==
+
+The table below is based on  CCSID 500, one of the code page variants of EBCDIC; it shows only the basic (English) EBCDIC characters. Characters 00–3F and FF are controls, 40 is space, 41 is no-break space (RSP: "Required Space"), E1 is numeric space (NSP: "Numeric Space"), and CA is soft hyphen. Characters are shown with their equivalent Unicode codes. Invariant alphanumeric, punctuation, and control characters common to all EBCDIC code pages are shown in bold. Unassigned codes are typically filled with international or region-specific characters in the various EBCDIC code page variants.
+In each table cell below, the first row is an abbreviation for a control code or (for printable characters) the character itself; the second row is the Unicode code; and the third row is decimal value of the EBCDIC code.
+
+==Criticism and humor==
+
+Open-source-software advocate and hacker Eric S. Raymond writes in his Jargon File that EBCDIC was almost universally loathed by early hackers and programmers because of its multitude of different versions, none of which resembled the other versions, and that IBM produced it in direct competition with the already-established ASCII.
+The Jargon File 4.4.7 gives the following definition:[tpl]cite web|url=http://catb.org/jargon/html/E/EBCDIC.html|title=EBCDIC|work=Jargon File[/tpl]
+
+Another popular complaint is that the EBCDIC alphabetic characters follow a punched card encoding convention rather than a linear ordering like ASCII. One consequence of this is that incrementing the character code for "I" does not produce the code for "J", and likewise there is a gap between the codes for "R" and "S".
+These incompatibilities were also the source of many jokes. One such joke went: 
+References to the EBCDIC character set are made in the classic Infocom adventure game series Zork. In the "Machine Room" in Zork II, there is a collection of ancient computers and other machines of uncertain purpose.  The following is the description of the room, with EBCDIC used to imply an incomprehensible language:
+Furthermore, a similar description can be found in the "Maintenance Room" in Zork:
+
+==See also==
+
+==References==
+
+==External links==
+
+

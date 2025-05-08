@@ -1,0 +1,27 @@
+[[Apple SOS]]
+
+CATEGORIES: Apple Inc. operating systems, Disk operating systems, Discontinued operating systems
+
+The Sophisticated Operating System, or SOS [tpl]IPAc-en|ˈ|s|ɔː|s[/tpl],[tpl]cite web|url=http://www.1000bit.it/support/manuali/download.asp?id=662|title=Apple III SOS Reference Manual, Volume 1: How SOS Works|first=Reed|last= Don|publisher=Apple Computer, Inc.|format=PDF|year=1982|accessdate=2009-10-28|quote=This manual describes SOS (pronounced "sauce") the Sophisticated Operating System of the Apple III.[/tpl] is the primary operating system developed for the Apple III computer. The system was developed by Apple Computer, Inc. and released in 1980. SOS makes the resources of the Apple III available in the form of a menu-driven utility program as well as a programming API.
+The Apple III System Utilities program shipped with each Apple III computer. It provided what today would be called the end user "experience" of the operating system if the user were running it instead of an application program. The System Utilities program was menu-driven and performed tasks in three categories:
+
+==Technical details==
+
+SOS was a single-tasking operating system. A single program is loaded at boot time, called the interpreter. Once running, the interpreter could then use the SOS application programming interface to make requests of the system. The SOS API was divided into four main areas:
+SOS had two types of devices it communicated with via their device drivers: character devices and block devices. Examples of SOS character devices are keyboards and serial ports. Disk drives are typical block devices. Block devices could read or write one or more 512-byte blocks at a time; character devices could read or write single characters at a time.[tpl]cite web|url=http://www.1000bit.it/support/manuali/apple/a3sosrm.pdf|title=Apple III SOS Reference Manual, Volume 1: How SOS Works| publisher=Apple Computer, Inc.|format=PDF|year=1982|accessdate=2008-09-28[/tpl]
+
+==Boot sequence==
+
+When powered on, the Apple III ran through system diagnostics, then read block number one (zero-indexed) from the built-in diskette drive into memory and executed it. SOS-formatted diskettes placed a loader program in block one. That loader program searched the diskette directory for a file named SOS.KERNEL, the kernel and API of the operating system. The SOS loader program loaded and executed the SOS.KERNEL file, which in turn searched for and loaded a file named SOS.INTERP (the interpreter, or program, to run) and SOS.DRIVER, the set of device drivers to use. Once all files were loaded, control was passed to the SOS.INTERP program.[tpl]cite journal| title=John Jeppson's Guided Tour of Highway III|first=John|last=Jeppson|publisher=Softalk Magazine|date=May 1983|pages=100–112[/tpl]
+Since Apple ProDOS uses the same file system as SOS, and since ProDOS stores its own boot code in block number zero rather than block number one, SOS and ProDOS can co-exist on the same medium. Some software, e.g. ADTPro, makes use of this to store Apple II and Apple III versions of a program on the same disk, which is then bootable on both systems.
+
+==History==
+
+In 1985 Steve Wozniak, while critical of the Apple III's hardware flaws, called SOS "the finest operating system on any microcomputer ever".[tpl]cite news | url=https://archive.org/stream/byte-magazine-1985-01/1985_01_BYTE_10-01_Through_the_Hourglass#page/n167/mode/2up | title=The Apple Story / Part 2: More History and the Apple III | work=BYTE | date=January 1985 | accessdate=26 October 2013 | author=Williams, Gregg; Moore, Rob | pages=166 | type=interview[/tpl] In spite of SOS's advantages, it wasn't backward-compatible with DOS 3.2 and DOS 3.3, which most Apple II software used at the time—though the Apple III itself was designed to be mostly backward-compatible with the Apple II Plus in hardware, users had to boot Apple DOS from a separate disk to use Apple II series software, losing the advantages of SOS. Many average computer users also weren't ready in 1980 for an operating system with the capabilities and flexible configuration options that SOS offered, especially combined with the Apple III's bad reputation due to poor engineering and its high retail price of near $4,000.[tpl]cite web|url=http://www.wap.org/a3/a3library/a3faq.html|title=The Apple /// FAQ File (V5.1)|first=David|last=Ottalini|publisher=Washington Apple Pi Users Group|date=August 2005|page=Section 1|accessdate=2007-12-08[/tpl]
+
+==References==
+
+==External links==
+
+
+

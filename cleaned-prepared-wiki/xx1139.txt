@@ -1,0 +1,97 @@
+[[Curl (mathematics)]]
+
+CATEGORIES: Linear operators in calculus, Vector calculus, Analytic geometry
+
+In vector calculus, the curl  is a vector operator that describes the infinitesimal rotation of a 3-dimensional vector field. At every point in the field, the curl of that field is represented by a vector.  The attributes of this vector (length and direction) characterize the rotation at that point.
+The direction of the curl is the axis of rotation, as determined by the right-hand rule, and the magnitude of the curl is the magnitude of rotation.  If the vector field represents the flow velocity of a moving fluid, then the curl is the circulation density of the fluid.  A vector field whose curl is zero is called irrotational.
+The curl is a form of differentiation for vector fields.  The corresponding form of the fundamental theorem of calculus is Stokes' theorem, which relates the surface integral of the curl of a vector field to the line integral of the vector field around the boundary curve.
+The alternative terminology rotor or rotational and alternative notations rot F and ∇ × F are often used (the former especially in many European countries, the latter, using the del operator and the cross product, is more used in other countries) for curl and curl F.
+Unlike the gradient and divergence, curl does not generalize as simply to other dimensions; some generalizations are possible, but only in three dimensions is the geometrically defined curl of a vector field again a vector field. This is a similar phenomenon as in the 3 dimensional cross product, and the connection is reflected in the notation ∇ × for the curl.
+The name "curl" was first suggested by James Clerk Maxwell in 1871.Proceedings of the London Mathematical Society, March 9th, 1871
+
+Definition
+
+As such, the curl operator maps continuously differentiable functions f : R3 → R3 to continuous functions g : R3 → R3.  In fact, it maps Ck functions in to R3 Ck-1 functions in R3. 200px|right|thumb|Convention for vector orientation of the line integral
+Implicitly, curl is defined by:Mathematical methods for physics and engineering, K.F. Riley, M.P. Hobson, S.J. Bence, Cambridge University Press, 2010, ISBN 978-0-521-86153-3Vector Analysis (2nd Edition), M.R. Spiegel, S. Lipschutz, D. Spellman, Schaum's Outlines, McGraw Hill (USA), 2009, ISBN 978-0-07-161545-7
+The above formula means that the curl of a vector field is defined as the infinitesimal area density of the circulation of that field. To this definition fit naturally 
+If (x1, x2, x3) are the Cartesian coordinates and (u1,u2,u3) are the orthogonal coordinates, then 
+is the length of the coordinate vector corresponding to ui. The remaining two components of curl result from cyclic permutation of indices: 3,1,2 → 1,2,3 → 2,3,1.
+
+Intuitive interpretation
+
+Suppose the vector field describes the velocity field of a fluid flow (such as a large tank of liquid or gas) and a small ball is located within the fluid or gas (the centre of the ball being fixed at a certain point).  If the ball has a rough surface, the fluid flowing past it will make it rotate. The rotation axis (oriented according to the right hand rule) points in the direction of the curl of the field at the centre of the ball, and the angular speed of the rotation is half the magnitude of the curl at this point.
+
+Usage
+
+In practice, the above definition is rarely used because in virtually all cases, the curl operator can be applied using some set of curvilinear coordinates, for which simpler representations have been derived.
+The notation ∇ × F has its origins in the similarities to the 3 dimensional cross product, and it is useful as a mnemonic in Cartesian coordinates if we take ∇ as a vector differential operator del.  Such notation involving operators is common in physics and algebra. However, in certain coordinate systems, such as polar-toroidal coordinates (common in plasma physics), using the notation ∇ × F will yield an incorrect result.
+Expanded in Cartesian coordinates (see Del in cylindrical and spherical coordinates for spherical and cylindrical coordinate representations), ∇ × F is, for F composed of Fy, Fz:
+where i, j, and k are the unit vectors for the x-, y-, and z-axes, respectively. This expands as follows:Arfken, p. 43.
+Although expressed in terms of coordinates, the result is invariant under proper rotations of the coordinate axes but the result inverts under reflection.
+In a general coordinate system, the curl is given by
+where ε denotes the Levi-Civita symbol, the metric tensor is used to lower the index on F, and the Einstein summation convention implies that repeated indices are summed over.  Equivalently,
+where ek are the coordinate vector fields.  Equivalently, using the exterior derivative, the curl can be expressed as:
+
+Examples
+
+A simple vector field
+
+Take the vector field, which depends on x and y linearly:
+Its plot looks like this:
+Simply by visual inspection, we can see that the field is rotating.  If we place a paddle wheel anywhere, we see immediately its tendency to rotate clockwise. Using the right-hand rule, we expect the curl to be into the page.  If we are to keep a right-handed coordinate system, into the page will be in the negative z direction. The lack of x and y directions is analogous to the cross product operation.
+If we calculate the curl:
+Which is indeed in the negative z direction, as expected.  In this case, the curl is actually a constant, irrespective of position.  The "amount" of rotation in the above vector field is the same at any point (x, y).  Plotting the curl of F is not very interesting:
+
+A more involved example
+
+Suppose we now consider a slightly more complicated vector field:
+Its plot:
+We might not see any rotation initially, but if we closely look at the right, we see a larger field at, say, x=4 than at x=3.  Intuitively, if we placed a small paddle wheel there, the larger "current" on its right side would cause the paddlewheel to rotate clockwise, which corresponds to a curl in the negative z direction.  By contrast, if we look at a point on the left and placed a small paddle wheel there, the larger "current" on its left side would cause the paddlewheel to rotate counterclockwise, which corresponds to a curl in the positive z direction.  Let's check out our guess by doing the math:
+Indeed the curl is in the positive z direction for negative x and in the negative z direction for positive x, as expected.  Since this curl is not the same at every point, its plot is a bit more interesting:
+We note that the plot of this curl has no dependence on y or z (as it shouldn't) and is in the negative z direction for positive x and in the positive z direction for negative x.
+
+Identities
+
+Consider the example ∇ × (v × F). Using Cartesian coordinates, it can be shown that
+In the case where the vector field v and ∇ are interchanged:
+which introduces the Feynman subscript notation ∇F, which means the subscripted gradient operates only on the factor F.
+Another example is ∇ × (∇ × F). Using Cartesian coordinates, it can be shown that:
+which can be construed as a special case of the previous example with the substitution v → ∇.
+(Note: ∇2F represents the vector Laplacian of F)
+The curl of the gradient of any scalar field φ is always the zero vector:
+If φ is a scalar valued function and F is a vector field, then
+
+Descriptive examples
+
+Generalizations
+
+The vector calculus operations of grad, curl, and div are most easily generalized and understood in the context of differential forms, which involves a number of steps. In a nutshell, they correspond to the derivatives of 0-forms, 1-forms, and 2-forms, respectively. The geometric interpretation of curl as rotation corresponds to identifying bivectors (2-vectors) in 3 dimensions with the special orthogonal Lie algebra so(3) of infinitesimal rotations (in coordinates, skew-symmetric 3 × 3 matrices), while representing rotations by vectors corresponds to identifying 1-vectors (equivalently, 2-vectors) and so(3), these all being 3-dimensional spaces.
+
+Differential forms
+
+then the exterior derivative d leads to
+The exterior derivative of a 1-form is therefore a 2-form, and that of a 2-form is a 3-form. On the other hand, because of the interchangeability of mixed derivatives, e.g. because of
+the twofold application of the exterior derivative leads to 0.
+the 1-dimensional fibers correspond to functions, and the 3-dimensional fibers to vector fields, as described below.  Note that modulo suitable identifications, the three nontrivial occurrences of the exterior derivative correspond to grad, curl, and div.
+Differential forms and the differential can be defined on any Euclidean space, or indeed any manifold, without any notion of a Riemannian metric. On a Riemannian manifold, or more generally pseudo-Riemannian manifold, k-forms can be identified with k-vector fields (k-forms are k-covector fields, and a pseudo-Riemannian metric gives an isomorphism between vectors and covectors), and on an oriented vector space with a nondegenerate form (an isomorphism between vectors and covectors), there is an isomorphism between k-vectors and (n−k)-vectors; in particular on (the tangent space of) an oriented pseudo-Riemannian manifold. Thus on an oriented pseudo-Riemannian manifold, one can interchange k-forms, k-vector fields, (n−k)-forms, and (n−k)-vector fields; this is known as Hodge duality. Concretely, on R3 this is given by:
+Thus, identifying 0-forms and 3-forms with functions, and 1-forms and 2-forms with vector fields:
+Grad and div generalize to all oriented pseudo-Riemannian manifolds, with the same geometric interpretation, because the spaces of 0-forms and n-forms is always (fiberwise) 1-dimensional and can be identified with scalar functions, while the spaces of 1-forms and (n−1)-forms are always fiberwise n-dimensional and can be identified with vector fields.
+Curl does not generalize in this way to 4 or more dimensions (or down to 2 or fewer dimensions); in 4 dimensions the dimensions are
+so the curl of a 1-vector field (fiberwise 4-dimensional) is a 2-vector field, which is fiberwise 6-dimensional, one has
+which yields a sum of six independent terms, and cannot be identified with a 1-vector field. Nor can one meaningfully go from a 1-vector field to a 2-vector field to a 3-vector field (4 → 6 → 4), as taking the differential twice yields zero (d2 = 0). Thus there is no curl function from vector fields to vector fields in other dimensions arising in this way.
+However, one can define a curl of a vector field as a 2-vector field in general, as described below.
+
+Curl geometrically
+
+Note also that the curl of a 3-dimensional vector field which only depends on 2 coordinates (say x, y) is simply a vertical vector field (in the z direction) whose magnitude is the curl of the 2-dimensional vector field, as in the examples on this page.
+Considering curl as a 2-vector field (an antisymmetric 2-tensor) has been used to generalize vector calculus and associated physics to higher dimensions.W. McDavid, C.D. McMullen, 2006
+
+
+
+Notes
+
+
+
+
+
+

@@ -1,0 +1,232 @@
+</ref> for [[breadth-first traversal]] of trees makes uses of queues. Here we present a version of that algorithm parameterized over an abstract queue structure:
+ '''functor''' BFT ('''structure''' Q: QUEUE) = (* after Okasaki, ICFP, 2000 *)
+  '''struct''' 
+     '''datatype''' 'a tree
+      = E
+      | T '''of''' 'a * 'a tree * 'a tree
+    '''fun''' bftQ (q  : 'a tree Q.queue)  : 'a list = 
+      '''if''' Q.isEmpty q '''then''' []
+      '''else''' '''let'''
+         '''val''' (t, q') = Q.remove q
+        '''in''' '''case''' t
+          '''of''' E => bftQ q'
+ <nowiki>          |</nowiki> T (x, l, r) => <nowiki></nowiki>'''let'''
+                '''val''' q<nowiki>''</nowiki> = Q.insert (r, Q.insert (l, q'))
+               '''in'''
+                 x  :: bftQ q<nowiki>''</nowiki>
+                '''end'''
+         '''end'''
+     '''fun''' bft t = bftQ (Q.singleton t)
+  '''end'''
+Please note that inside the BFT structure, the program has no access to the particular queue representation in play. More concretely, there is no way for the program to, say. select the first list in the two-list queue representation, if that is indeed the representation being used. This data abstraction mechanism makes the breadth-first code truly agnostic to the queue representation choice.
+This is in general desirable; in the present case, the queue structure can safely maintain any of the various logical invariants on which its correctness depends behind the bulletproof wall of abstraction.
+
+==Code examples==
+
+Snippets of SML code are most easily studied by entering them into a "top-level", also known as a read-eval-print loop. This is an interactive session that prints the inferred types of resulting or defined expressions. Many SML implementations provide an interactive top-level, including SML/NJ:
+ $ sml
+   Standard ML of New Jersey v110.52 [built: Fri Jan 21 16:42:10 2005]
+   -
+Code can then be entered at the "-" prompt. For example, to calculate 1+2*3:
+ - 1 + 2 * 3;
+   val it = 7  : int
+The top-level infers the type of the expression to be "int" and gives the result "7".
+
+===Hello world===
+
+The following program "hello.sml":
+ print "Hello world!\n";
+can be compiled with MLton:
+ $ mlton hello.sml
+and executed:
+ $ ./hello
+   Hello world!
+
+===Insertion sort===
+
+Insertion sort for lists of integers (ascending) is expressed concisely as follows:
+ '''fun''' ins (n, []) = [n]
+ <nowiki>   | ins (n, ns </nowiki>'''as''' h::t) = '''if''' (n<h) '''then''' n::ns '''else''' h::(ins (n, t))
+  '''val''' insertionSort = List.foldr ins []
+This can be made polymorphic by abstracting over the ordering operator. Here we use the symbolic name << for that operator.
+ '''fun''' ins' << (num, nums) = '''let'''
+     '''fun''' i (n, []) = [n]
+ <nowiki>     | i (n, ns </nowiki>'''as''' h::t) = '''if''' <<(n,h) '''then''' n::ns '''else''' h::i(n,t)
+    '''in'''
+      i (num, nums)
+    '''end'''
+   '''fun''' insertionSort' << = List.foldr (ins' <<) []
+The type of insertionSort' is ('a * 'a -> bool) -> ('a list) -> ('a list).
+
+===Mergesort===
+
+Here, the classic mergesort algorithm is implemented in three functions: split, merge and mergesort.
+The function split is implemented with a local function named loop, which has two additional parameters. The local function loop is written in a  tail-recursive style; as such it can be compiled efficiently. This function makes use of SML's pattern matching syntax to differentiate between non-empty list (x::xs) and empty list () cases. For stability, the input list ns is reversed before being passed to loop.
+ ''(* Split list into two near-halves, returned as a pair.''
+ '' * The “halves” will either be the same size,''
+ '' * or the first will have one more element than the second.''
+ '' * Runs in O(n) time, where n = |xs|. *)''
+   '''local'''
+     '''fun''' loop (x::y::zs, xs, ys) = loop (zs, x::xs, y::ys)
+       | loop (x::[], xs, ys) = (x::xs, ys)
+       | loop ([], xs, ys) = (xs, ys)
+   '''in'''
+     '''fun''' split ns = loop (List.rev ns, [], [])
+   '''end'''
+The local-in-end syntax could be replaced with a let-in-end syntax, yielding the equivalent definition:
+ '''fun''' split ns = '''let'''
+   '''fun''' loop (x::y::zs, xs, ys) = loop (zs, x::xs, y::ys)
+     | loop (x::[], xs, ys) = (x::xs, ys)
+     | loop ([], xs, ys) = (xs, ys)
+   '''in'''
+     loop (List.rev ns, [], [])
+   '''end'''
+As with split, merge also uses a local function loop for efficiency.  The inner loop is defined in terms of cases: when two non-empty lists are passed, when one non-empty list is passed, and when two empty lists are passed.  Note the use of the underscore (_) as a wildcard pattern.
+This function merges two "ascending" lists into one ascending list. Note how the accumulator out is built "backwards", then reversed with List.rev before being returned. This is a common technique—build a list backwards, then reverse it before returning it. In SML, lists are represented as imbalanced binary trees, and thus it is efficient to prepend an element to a list, but inefficient to append an element to a list. The extra pass over the list is a linear time operation, so while this technique requires more wall clock time, the asymptotics are not any worse.
+ ''(* Merge two ordered lists using the order lt.''
+ '' * Pre: the given lists xs and ys must already be ordered per lt.''
+ '' * Runs in O(n) time, where n = |xs| + |ys|. *)''
+  '''fun''' merge lt (xs, ys) = '''let'''
+    '''fun''' loop (out, left '''as''' x::xs, right '''as''' y::ys) =
+            '''if''' lt (x, y) '''then''' loop (x::out, xs, right)
+            '''else''' loop (y::out, left, ys)
+      | loop (out, x::xs, []) = loop (x::out, xs, [])
+      | loop (out, [], y::ys) = loop (y::out, [], ys)
+      | loop (out, [], []) = List.rev out
+    '''in'''
+      loop ([], xs, ys)
+    '''end'''
+The main function.
+ ''(* Sort a list in according to the given ordering operation lt.''
+ '' * Runs in O(n log n) time, where n = |xs|.''
+ '' *)''
+  '''fun''' mergesort lt xs = '''let'''
+    '''val''' merge' = merge lt
+    '''fun''' ms [] = []
+      | ms [x] = [x]
+      | ms xs = '''let'''
+          '''val''' (left, right) = split xs
+          '''in'''
+            merge' (ms left, ms right)
+          '''end'''
+    '''in'''
+      ms xs
+    '''end'''
+Also note that the code makes no mention of variable types, with the exception of the :: and  syntax which signify lists.  This code will sort lists of any type, so long as a consistent ordering function lt can be defined.  Using Hindley–Milner type inference, the compiler is capable of inferring the types of all variables, even complicated types such as that of the lt function.
+
+===Quicksort===
+
+Quicksort can be expressed as follows. This generic quicksort consumes an order operator <<.
+  '''fun''' quicksort << xs = '''let'''
+     '''fun''' qs [] = []
+ <nowiki>      | qs [x] = [x]
+      | qs (p::xs) = </nowiki>'''let'''
+          '''val''' (less, more) = List.partition ('''fn''' x => << (x, p)) xs
+          '''in'''
+            qs less @ p :: qs more
+          '''end'''
+     '''in'''
+       qs xs
+     '''end'''
+
+===Expression language===
+
+Note the relative ease with which a small expression language is defined and processed.
+ '''exception''' Err
+  '''datatype''' ty
+    = IntTy
+    | BoolTy
+  '''datatype''' exp
+    = True
+    | False
+    | Int '''of''' int
+ <nowiki>   | Not </nowiki>'''of''' exp
+ <nowiki>   | Add </nowiki>'''of''' exp * exp
+ <nowiki>   | If </nowiki>'''of''' exp * exp * exp
+  '''fun''' typeOf (True) = BoolTy
+ <nowiki>   |</nowiki> typeOf (False) = BoolTy<nowiki>
+    |</nowiki> typeOf (Int _) = IntTy<nowiki>
+    |</nowiki> typeOf (Not e) = <nowiki></nowiki>'''if''' typeOf e = BoolTy '''then''' BoolTy '''else''' '''raise''' Err
+ <nowiki>   |</nowiki> typeOf (Add (e1, e2)) = <nowiki></nowiki>
+        '''if''' (typeOf e1 = IntTy) '''andalso''' (typeOf e2 = IntTy) '''then''' IntTy '''else''' '''raise''' Err
+ <nowiki>   |</nowiki> typeOf (If (e1, e2, e3)) = <nowiki></nowiki>
+        '''if''' typeOf e1 <> BoolTy '''then''' '''raise''' Err
+        '''else''' '''if''' typeOf e2 <> typeOf e3 '''then''' '''raise''' Err
+        '''else''' typeOf e2
+  '''fun''' eval (True) = True
+ <nowiki>   |</nowiki> eval (False) = False<nowiki>
+    |</nowiki> eval (Int n) = Int n<nowiki>
+    |</nowiki> eval (Not e) = 
+ <nowiki>      (</nowiki>'''case''' eval e
+          '''of''' True => False
+ <nowiki>          | False => True
+           | _ => </nowiki>'''raise''' Fail "type-checking is broken")
+ <nowiki>   |</nowiki> eval (Add (e1, e2)) = <nowiki></nowiki>'''let'''
+         '''val''' (Int n1) = eval e1
+        '''val''' (Int n2) = eval e2
+        '''in'''
+          Int (n1 + n2)
+        '''end'''
+    | eval (If (e1, e2, e3)) = 
+        '''if''' eval e1 = True '''then''' eval e2 '''else''' eval e3
+  '''fun''' chkEval e = (ignore (typeOf e); eval e) ''(* will raise Err on type error *)''
+
+===Arbitrary-precision factorial function (libraries)===
+
+In SML, the IntInf module provides arbitrary-precision integer arithmetic. Moreover, integer literals may be used as arbitrary-precision integers without the programmer having to do anything.
+The following program "fact.sml" implements an arbitrary-precision factorial function and prints the factorial of 120:
+ '''fun''' fact n  : IntInf.int =
+       '''if''' n=0 '''then''' 1 '''else''' n * fact(n - 1)
+ '''val''' () =
+       print (IntInf.toString (fact 120) ^ "\n")
+and can be compiled and run with:
+   $ mlton fact.sml
+   $ ./fact
+   66895029134491270575881180540903725867527463331380298102956713523016335
+   57244962989366874165271984981308157637893214090552534408589408121859898
+   481114389650005964960521256960000000000000000000000000000
+
+===Numerical derivative (higher-order functions)===
+
+Since SML is a functional programming language, it is easy to create and pass around functions in SML programs. This capability has an enormous number of applications. Calculating the numerical derivative of a function is one such application. The following SML function "d" computes the numerical derivative of a given function "f" at a given point "x":
+ - fun d delta f x =
+       (f (x + delta) - f (x - delta)) / (2.0 * delta);
+   val d = fn  : real -> (real -> real) -> real -> real
+This function requires a small value "delta". A good choice for delta when using this algorithm is the cube root of the machine epsilon.[tpl]Citation needed|date=August 2008[/tpl]
+The type of the function "d" indicates that it maps a "float" onto another function with the type "(real -> real) -> real -> real". This allows us to partially apply arguments. This functional style is known as currying. In this case, it is useful to partially apply the first argument "delta" to "d", to obtain a more specialised function:
+ - val d = d 1E~8;
+   val d = fn  : (real -> real) -> real -> real
+ - d (fn x => x * x * x - x - 1.0) 3.0;
+   val it = 25.9999996644  : real
+The function "d" is called a "higher-order function" because it accepts another function ("f") as an argument.
+Curried and higher-order functions can be used to eliminate redundant code. For example, a library may require functions of type a -> b, but it is more convenient to write functions of type a * c -> b where there is a fixed relationship between the objects of type a and c. A higher order function of type (a * c -> b) -> (a -> b) can factor out this commonality. This is an example of the adapter pattern.
+
+===Discrete wavelet transform (pattern matching)===
+
+The 1D Haar wavelet transform of an integer-power-of-two-length list of numbers can be implemented very succinctly in SML and is an excellent example of the use of pattern matching over lists, taking pairs of elements ("h1" and "h2") off the front and storing their sums and differences on the lists "s" and "d", respectively:
+ - fun haar l = let
+       fun aux [s] [] d = s  :: d
+ <nowiki>        |</nowiki> aux [] s d = aux s [] d<nowiki>
+         |</nowiki> aux (h1::h2::t) s d = aux t (h1+h2<nowiki></nowiki>  :: s) (h1-h2  :: d)
+ <nowiki>        |</nowiki> aux _ _ _ = raise Empty
+ <nowiki>      in  
+  </nowiki>       aux l [] []
+ <nowiki>      end;
+   val haar = fn</nowiki>  : int list -> int list
+For example:
+ - haar [1, 2, 3, 4, ~4, ~3, ~2, ~1];
+   val it = [0,20,4,4,~1,~1,~1,~1]  : int list
+Pattern matching is a useful construct that allows complicated transformations to be represented clearly and succinctly. Moreover, SML compilers turn pattern matches into efficient code, resulting in programs that are not only shorter but also faster.
+
+==Implementations==
+
+Many SML implementations exist, including:
+All of these implementations are open-source and freely available.  Most are implemented themselves in SML.  There are no longer any commercial SML implementations.  Harlequin once produced a commercial IDE and compiler for SML called MLWorks.  The company is now defunct.  MLWorks passed on to Xanalys and was later acquired by Ravenbrook Limited on 2013-04-26 and open sourced.
+
+==See also==
+
+==References==
+
+==External links==
+
+

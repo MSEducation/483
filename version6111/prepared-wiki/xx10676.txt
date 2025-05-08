@@ -1,0 +1,33 @@
+ [[absolute value|abs]] -2 + 3
+returns 1, since the infix addition takes precedence over the computation of the absolute value. When evaluating infix expressions, the order of evaluation is left to right, no operator takes precedence over another. For example,
+ 2 + 3 * 4
+returns 20, while an evaluation giving precedence to multiplication would yield 14. All operators have prefix versions. Do usually evaluates arguments before passing them to a function. So, the below expression:
+ print read <span class="plainlinks">http://en.wikipedia.org/wiki/Rebol</span>
+first reads http://en.wikipedia.org/wiki/Rebol and then passes the result to the print function. Parentheses can be used to change the order of evaluation. Using prefix notation, the usage of parentheses in expressions can be avoided.
+The simple precedence rules are both an advantage:
+as well as a disadvantage:
+
+===parse===
+
+The parse function is preferably used to specify, validate, transform and interpret dialects. It does so by matching parse expressions at run time.
+Parse expressions are written in the parse dialect, which, like the do dialect, is an expression-oriented sublanguage of the data exchange dialect. Unlike the do dialect, the parse dialect uses keywords representing operators and the most important nonterminals, infix parsing operators don't have prefix equivalents and use precedence rules (sequence has higher precedence than choice).
+Actions can be included to be taken during the parsing process as well and the parse function can be used to process blocks or strings. At the string parsing level parse must handle the "low level" parsing, taking into account characters and delimiters. Block parsing is higher level, handling the scanning at the level of Rebol values.
+The parse dialect belongs to the family of grammars represented by the top-down parsing language or the parsing expression grammar (PEG). The main similarity is the presence of the sequence and choice operators all the family members have. Parse dialect syntax and the similarities between the parse dialect and the PEG are illustrated by this transliteration of a PEG example that parses an arithmetic expression:
+
+==Implementations==
+
+The official REBOL 2.7.8 implementation is available in several editions (/Core, /View, /Command, /SDK and /IOS). Both /Core and /View editions are freely redistributable software.
+The runtime environment is stored in a single executable file. REBOL/Core 2.7.8, the console edition, is about 300 KB and REBOL/View 2.7.8, the graphical user interface edition, is about 650 KB in size.
+REBOL/View provides platform-independent graphics and sound access, and comes with its own windowing toolkit and extensible set of styles (GUI widgets). Extended editions, such as REBOL/Command 2.7.8 or REBOL/SDK 2.7.8 require a paid license; they add features like ODBC data access, and the option to create standalone executable files.
+Rebol 2.101.0 has been released under the Apache 2.0 license.  The tentative version numbering strategy is that the number will not be officially bumped to 3.0.0 until the community has fully finalized the specification.
+There are also independent alternatives to the Rebol interpreter (or parts of it), which are written as implementations of Rebol dialects.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

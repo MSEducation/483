@@ -1,0 +1,90 @@
+[[VESA BIOS Extensions]]
+
+CATEGORIES: BIOS, VESA
+
+VESA BIOS Extensions (VBE) is a VESA standard, currently at version 3, that defines the interface that can be used by software to access compliant video boards at high resolutions and bit depths. This is opposed to the "traditional" int 10h BIOS calls, which are limited to resolutions of 640×480 pixels with 16 color (4-bit) depth or less. VBE is made available through the video card's BIOS, which installs during boot up some interrupt vectors that point to itself.
+Most newer cards implement the more capable VBE 3.0 standard. Older versions of VBE provide only a real mode interface, which cannot be used without a significant performance penalty from within protected mode operating systems. Consequently, the VBE standard has almost never been used for writing a video card's drivers; each vendor has thus had to invent a proprietary protocol for communicating with its own video card. Despite this, it is common that a driver thunk out to the real mode interrupt in order to initialize screen modes and gain direct access to a card's linear frame buffer, because these tasks would otherwise require handling many hundreds of proprietary variations that exist from card to card.
+
+==Standards==
+
+===VESA BIOS Extensions (VBE core) 2.0 1994===
+
+This standard provides the primary functionality of the VESA BIOS Extensions. It allows applications to determine the capabilities of the graphics card and provides the ability to set the display modes that are found. VBE 2.0 adds some new features above the prior VBE 1.2 standard including linear framebuffer access and protected mode banking. Some of the VBE Core 2.0 features include:
+
+===VESA BIOS Extensions (VBE core) 3.0 1998===
+
+A superset of the VBE 2.0 standard. This standard adds refresh rate control, facilities for stereo glasses, improved multi-buffering and other functions to the VBE 2.0 standard.
+
+===VBE/accelerator functions (VBE/AF) 1996===
+
+VBE/AF provides a low-level, standard interface to common acceleration functions available on most hardware. Some of the functions defined in the standard are access to hardware cursors, Bit Block Transfers (Bit Blt), off screen sprites, hardware panning, drawing and other functions.
+
+===Supplemental specifications===
+
+Supplemental specifications provides device independent interface between application software and Super VGA hardware.  Function numbers are assigned by VESA Software Standards Committee (SSC).
+
+====Power Management Extensions (PM)====
+
+DPMS is a hardware standard that allows graphics cards to communicate with DPMS-compliant monitors via a special signaling system that can be used with existing graphics controllers and monitor cables. This signaling system allows the graphics card to tell the monitor to go into a number of different power management or power saving states, which effectively allow the monitor to turn itself off when it is not in use.
+
+====Flat Panel Interface Extensions (FP)====
+
+Allows access to special features in flat panel controllers.
+
+====Audio Interface Extensions (AI)====
+
+Provides standard to audio services.
+Currently (version 1.00), the VBE/AI specification defines three device classes: WAVE, MIDI, and VOLUME. Device types not covered:
+
+====OEM Extensions====
+
+Provides standard entry to vendor specific extensions.
+
+====Display Data Channel (DDC)====
+
+The Display Data Channel or DDC is a digital connection between a computer display and a graphics adapter that allows the display to communicate its specifications to the adapter. The standard was created by VESA.
+
+====Serial Control Interface (SCI)====
+
+Provides hardware independent means for operating system and application to read and write data over I²C serial control interface.
+
+==VBE mode numbers==
+
+Although mode number is a 16-bit value, the optional VBE mode numbers are 14 bits wide. Bit 7 is used by VGA BIOS as a flag to clear or preserve display memory.
+VBE defined mode numbers as follows:
+Starting in VBE/Core 2.0, VESA no longer defines new VESA mode numbers and no longer requires a device to implement the old numbers.  To properly detect information of a screen mode, use Function 01h - Return VBE Mode Information.
+Mode 81FFh is a special video mode designed to preserve current memory contents and give access to the entire video memory.
+
+===Modes defined by VESA===
+
+Beginning with the VBE 2.0 standard, no new modes will be defined by VESA, and old modes are no longer mandatory. The use of defined modes should be considered deprecated: modern video cards may or may not use these mode numbers (even though most do for backward compatibility), and modern software should not use them.  The correct way for software to discover available display modes is to obtain a list of modes (using "Function 00h - Return VBE Controller Information") and then to check each mode (using "Function 01h: Return VBE Mode Information") until it finds the mode/s it requires.[tpl]Citation needed|date=February 2011[/tpl]
+Modes 264–268 are text modes. 264 (0108h) is 80 columns × 60 rows (80×60), 265 (0109h) is 132×25, 266 (010Ah) is 132×43, 267 (010Bh) is 132×50 and 268 (010Ch) is 132×60. 
+
+==Other commonly available graphics modes==
+
+The table below combines the modes defined by VESA (the values denoted in black) along with modes commonly used, but which may not work on all graphics cards as they are not defined by any standard ([tpl]color|red|denoted in red[/tpl]).
+
+==Linux video mode numbers==
+
+The Linux kernel allows user configuration of VESA modes at boot time using a kernel boot parameter, either specified by the framebuffer driver itself or via the 'vga=' boot parameter (if applicable to the framebuffer driver; see the kernel documentation in Documentation/svga.txt and Documentation/fb/vesafb.txt ). In the later case, the Linux video mode value is passed to the kernel in either the form of 'vga=XXX', where XXX is the decimal value, or in form of 'vga=0xHHH', where HHH is the hexadecimal value. However, the 'vga=' boot parameter does not directly accept VESA video mode numbers; rather, the Linux video mode number is the VESA number plus 512 (in the case of the decimal representation) or plus 0x200 (in the case of the hexadecimal representation).  For example, the defined VESA value of 257 (0x101), representing 640x480 and 256 colours, has an equivalent Linux video mode value of 769 (0x301).
+As indicated earlier, the VESA standard defines a limited set of modes; in particular, none above 1,280×1,024 are covered and, instead, their implementation is completely optional for graphics adapter manufacturers.  As vendors are free to utilize whatever additional values they please, this means that, in the table below, the modes [tpl]color|red|denoted in red[/tpl] (and expressed in decimal form) may not apply to your graphics adapter!  
+1: 32-bit is really (8:8:8:8), but the final 8-bit number is an "empty" alpha channel. It is otherwise equal to 24-bit color. Many GPUs use 32-bit color mode instead of 24-bit mode merely for faster video memory access through 32-bit memory alignment.
+vga=[tpl]color|red|864 (0160h)[/tpl] also appears to select 1,280×800 (8-bit) for various laptops' displays.  
+vga=[tpl]color|red|834 (0142h)[/tpl] is 1,400×1,050
+
+===Alternative Method===
+
+hwinfo is the hardware detection tool used in SuSE Linux and may be available in other GNU/Linux distributions. To use hwinfo to get the actual mode number that you need to pass as a parameter to the kernel:
+ 
+ 
+The command should be run as root. Pick the number corresponding to the desired resolution. The modes reported by hwinfo are in hexadecimal. Use them with the '0x' prefix or convert them to decimal.
+
+==Modes available in Parallels==
+
+The VESA BIOS emulation in the Parallels virtual machine has a different set of non-standard VESA modes. As of build 3214, vbetest reveals these modes:
+
+==References==
+
+==External links==
+
+

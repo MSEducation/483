@@ -1,0 +1,57 @@
+ <code>Trace[fib[3], fib[[_]]</code>
+returns a structure that represents the occurrences of the pattern fib_ in the computational structure:
+ <code>{fib[3],{fib[2],{fib[1]},{fib[0]}},{fib[1]}}</code>
+
+===Declarative programming===
+
+In symbolic programming languages, it is easy to have patterns as arguments to functions or as elements of data structures. A consequence of this is the ability to use patterns to declaratively make statements about pieces of data and to flexibly instruct functions how to operate.
+For instance, the Mathematica function Compile can be used to make more efficient versions of the code. In the following example the details do not particularly matter; what matters is that the subexpression [tpl]com_,  Integer[/tpl] instructs Compile that expressions of the form com_ can be assumed to be integers for the purposes of compilation:
+
+ com[i_] := Binomial[2i, i]
+ Compile[{x, {i, _Integer}}, x^com[i], [tpl]com[_],  Integer[/tpl]]
+
+Mailboxes in Erlang also work this way.
+The Curry-Howard correspondence between proofs and programs relates ML-style pattern matching to case analysis and proof by exhaustion.
+
+==Pattern matching and strings==
+
+By far the most common form of pattern matching involves strings of characters. In many programming languages, a particular syntax of strings is used to represent regular expressions, which are patterns describing string characters.
+However, it is possible to perform some string pattern matching within the same framework that has been discussed throughout this article.
+
+===Tree patterns for strings===
+
+In Mathematica, strings are represented as trees of root StringExpression and all the characters in order as children of the root. Thus, to match "any amount of trailing characters", a new wildcard ___ is needed in contrast to _ that would match only a single character.
+In Haskell and functional programming languages in general, strings are represented as functional lists of characters. A functional list is defined as an empty list, or an element constructed on an existing list. In Haskell syntax:
+The structure for a list with some elements is thus element:list. When pattern matching, we assert that a certain piece of data is equal to a certain pattern. For example, in the function:
+we assert that the first element of head's argument is called element, and the function returns this. We know that this is the first element because of the way lists are defined, a single element constructed onto a list. This single element must be the first. The empty list would not match the pattern at all, as an empty list does not have a head (the first element that is constructed).
+In the example, we have no use for list, so we can disregard it, and thus write the function:
+The equivalent Mathematica transformation is expressed as
+ head[element, ]:=element
+
+===Example string patterns===
+
+In Mathematica, for instance,
+ StringExpression["a", ]
+will match a string that has two characters and begins with "a".
+The same pattern in Haskell:
+Symbolic entities can be introduced to represent many different classes of relevant features of a string. For instance,
+ StringExpression[LetterCharacter, DigitCharacter]
+will match a string that consists of a letter first, and then a number.
+In Haskell, guards could be used to achieve the same matches:
+The main advantage of symbolic string manipulation is that it can be completely integrated with the rest of the programming language, rather than being a separate, special purpose subunit. The entire power of the language can be leveraged to build up the patterns themselves or analyze and transform the programs that contain them.
+
+===SNOBOL===
+
+SNOBOL (String Oriented Symbolic Language) is a computer programming language developed between 1962 and 1967 at AT&T Bell Laboratories by David J. Farber, Ralph E. Griswold and Ivan P. Polonsky.
+SNOBOL4 stands apart from most programming languages by having patterns as a first-class data type (i.e. a data type whose values can be manipulated in all ways permitted to any other data type in the programming language) and by providing operators for pattern concatenation and alternation. Strings generated during execution can be treated as programs and executed.
+SNOBOL was quite widely taught in larger US universities in the late 1960s and early 1970s and was widely used in the 1970s and 1980s as a text manipulation language in the humanities.
+Since SNOBOL's creation, newer languages such as Awk and Perl have made string manipulation by means of regular expressions fashionable. SNOBOL4 patterns, however, subsume BNF grammars, which are equivalent to context-free grammars and more powerful than regular expressions
+Gimpel, J. F. 1973. A theory of discrete patterns and their implementation in SNOBOL4. Commun. ACM 16, 2 (Feb. 1973), 91-100. DOI=http://doi.acm.org/10.1145/361952.361960
+
+==See also==
+
+==References==
+
+==External links==
+
+

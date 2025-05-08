@@ -1,0 +1,49 @@
+[[Escape sequence]]
+
+CATEGORIES: Control characters
+
+An escape sequence is a series of characters used to change the state of computers and their attached peripheral devices. These are also known as control sequences, reflecting their use in device control.  Some control sequences are special characters that always have the same meaning. Escape sequences use an escape character to change the meaning of the characters which follow it, meaning that the characters can be interpreted as a command to be executed rather than as data.
+Escape sequences are commonly used when a computer and a peripheral have only a single channel through which to send information back and forth. If the device in question is "dumb" and can only do one thing with the information being sent to it (for instance, print it) then there is no need for an escape sequence. However most devices have more than one capability, and thus need some way to distinguish information that is to be treated as data from information that is to be treated as commands.
+
+Keyboard
+
+An escape character is usually assigned to the Esc key on a computer keyboard, and can be sent in other ways than as part of an escape sequence.  For example, the Esc key may be used as an input character in editors such as vi, or for backing up one level in a menu in some applications. The Hewlett Packard HP 2640 terminals had a key for a "display functions" mode which would display graphics for all control characters, including Esc, to aid in debugging applications.
+If the Esc key and other keys that send escape sequences are both supposed to be meaningful to an application, an ambiguity arises if a character terminal is in use. When the application receives the ASCII escape character, it is not clear whether that character is the result of the user pressing the Esc key or whether it is the initial character of an escape sequence (e.g., resulting from an arrow key press).  The traditional method of resolving the ambiguity is to observe whether or not another character quickly follows the escape character. If not, it is assumed not to be part of an escape sequence. This heuristic can fail under some circumstances, especially without fast modern communication speeds.
+Escape sequences date back at least to the 1874 Baudot code.
+
+Modem control
+
+The Hayes command set, for instance, defines a single escape sequence, +++. (In order to interpret +++, which may be a part of data, as the escape sequence the sender stops communication for one second before and after the +++) . You can switch back to the online mode by sending the O command.
+The Hayes command set is modal, switching from command mode to online mode. This is not appropriate in the case where the commands and data will switch back and forth rapidly. An example of a non-modal escape sequence control language is the VT100, which used a series of commands prefixed by the Control Sequence Introducer, escape-.
+
+Control characters
+
+A control character is a character that, in isolation, has some control function, such as carriage return (CR). Escape sequences, by contrast, consist of an escape character or sequence which changes the interpretation of following characters.
+A common use of escape sequences is in fact to remove control characters found in a binary data stream so that they will not cause their control function by mistake. In this case, the control character is replaced by a defined "escape character" (which need not be the US-ASCII Escape Character) and another character; after exiting the context where the control character would have caused an action, the sequence is recognized and replaced by the removed character.
+The earlier VT52 terminal used simple digraph commands like escape-A: in isolation, "A" simply meant the letter "A", but as part of the escape sequence "escape-A", it had a different meaning. The VT52 also supported parameters: it was not a straightforward control language encoded as substitution.
+
+ASCII video data terminals
+
+The VT100 terminal implemented the more sophisticated ANSI standard (now ECMA-48) for functions such as controlling cursor movement, character set, and display enhancements. The Hewlett Packard HP 2640 series had perhaps the most elaborate escape sequences for block and character modes, programming keys and their soft labels, graphics vectors, and even saving data to tape or disk files.
+
+Use in DOS and Windows
+
+A utility, ANSI.  The rise of GUI applications, which directly write to display cards, has greatly reduced the usage of escape sequences on Microsoft platforms, but they can still be used to create interactive random-access character-based screen interfaces with the character-based library routines such as printf without resorting to a GUI program.
+
+Programming languages
+
+In many programming languages escape sequences are used in character literals and string literals, to express characters which are not printable or clash with the syntax of characters or strings. The escape character is usually the backslash. For example the single quotation mark character might be expressed as  since writing  is not acceptable.
+Many modern programming languages specify the doublequote character () as a delimiter for a string literal. The backslash () escape character typically provides two ways to include doublequotes inside a string literal, either by modifying the meaning of the doublequote character embedded in the string ( becomes ), or by modifying the meaning of a sequence of characters including the hexadecimal value of a doublequote character ( becomes ).
+In Perl or Python
+produces a syntax error, whereas:
+produces the intended output.
+Another alternative:
+uses "x" to indicate the following two characters are hexadecimal digits, "22" being the ASCII value for a quotemark in hexadecimal.  This would not produce the required text if compiled with an ASCII-incompatible character set.
+C, C++, Java, and Ruby all allow exactly the same two backslash escape styles. The PostScript language and Microsoft Rich Text Format also use backslash escapes. The quoted-printable encoding uses the equals sign as an escape character.
+URL and URI use %-escapes to quote characters with a special meaning, as for non-ASCII characters. The ampersand (&) character may be considered as an escape character in SGML and derived formats such as HTML and XML.
+Another similar (and partially overlapping) syntactic trick is stropping.
+Some programming languages also provide other ways to represent special characters in literals, without requiring an escape character (see e.g. delimiter collision).
+
+
+
+

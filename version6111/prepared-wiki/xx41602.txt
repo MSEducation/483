@@ -1,0 +1,33 @@
+[[Template method pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code, Method (computer programming)
+
+In software engineering, the template method pattern is a behavioral design pattern that defines the program skeleton of an algorithm in a method, called template method, which defers some steps to subclasses.[ref]
+</ref> It lets one redefine certain steps of an algorithm without changing the algorithm's structure.<ref>
+[/ref]
+This use of "template" is unrelated to C++ templates.
+
+==Introduction==
+
+In the template method of this design pattern, one or more algorithm steps can be overridden by subclasses to allow differing behaviors while ensuring that the overarching algorithm is still followed.
+In object-oriented programming, first a class is created that provides the basic steps of an algorithm design. These steps are implemented using abstract methods. Later on, subclasses change the abstract methods to implement real actions. Thus the general algorithm is saved in one place but the concrete steps may be changed by the subclasses.
+The Template Method pattern thus manages the larger picture of task semantics, and more refined implementation details of selection and sequence of methods. This larger picture calls abstract and non-abstract methods for the task at hand. The non-abstract methods are completely controlled by the template method, but the abstract methods, implemented in subclasses, provide the pattern's expressive power and degree of freedom. Template Method's abstract class may also define hook methods that may be overridden by subclasses. Some or all of the abstract methods can be specialized in a subclass, allowing the writer of the subclass to provide particular behavior with minimal modifications to the larger semantics. The template method (that is non-abstract) remains unchanged in this pattern, ensuring that the subordinate non-abstract methods and abstract methods are called in the originally intended sequence.
+The Template Method pattern occurs frequently, at least in its simplest case, where a method calls only one abstract method, with object oriented languages. If a software writer uses a polymorphic method at all, this design pattern may be a rather natural consequence. This is because a method calling an abstract or polymorphic function is simply the reason for being of the abstract or polymorphic method. The Template Method pattern may be used to add immediate present value to the software or with a vision to enhancements in the future. It is strongly related to the Non-Virtual Interface (NVI) pattern.
+The Template Method pattern implements the Protected Variations GRASP principle, like the Adapter pattern does. The difference is that Adapter gives the same interface for several operations, while Template Method does so only for one.
+
+==Structure==
+
+==Usage==
+
+The template method is used in frameworks, where each implements the invariant parts of a domain's architecture, leaving "placeholders" for customisation options. This is an example for inversion of control, also called the Hollywood principle. Reasons to use the template method are to:
+The control structure (inversion of control) that is the result of the application of a template pattern is often referred to as the Hollywood Principle: "Don't call us, we'll call you." Using this principle, the template method in a parent class controls the overall process by calling subclass methods as required. This is shown in the following Java example:
+
+==Example==
+
+==See also==
+
+==References==
+
+==External links==
+
+

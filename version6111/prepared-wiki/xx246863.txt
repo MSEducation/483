@@ -1,0 +1,16 @@
+[[Native Image Generator]]
+
+CATEGORIES: .NET framework
+
+The Native Image Generator, or simply NGen is the ahead-of-time compilation service of the .NET Framework. It allows a CLI assembly to be pre-compiled instead of letting the Common Language Runtime do a just-in-time compilation at runtime. In some cases the execution will be significantly faster than with JIT.
+
+==General information==
+
+The Native Image Generator produces a native binary image for the current environment (i.e.; operating systems). This eliminates the JIT overhead at the expense of portability and disk space; whenever an NGen-generated image is run in an incompatible environment, .NET framework automatically reverts to using JIT. Once NGen is run against an assembly, the resulting native image is placed into the Native Image Cache for use by all other CLI assemblies. This makes it possible, for example, to use NGen to process CLI assemblies at installation time, saving processor time later on, when the end-user invokes the application on their system.
+NGen is intended to make the assembly execute faster by removing the JIT compilation process at runtime, but this does not always improve performance because some optimizations can be done only by a JIT compiler (e.g., if the JIT compiler knows that the code is already running with full trust, it can skip certain expensive security checks). Because of this fact, it makes sense to use NGen only after benchmarking the application performance before and after it.
+
+==See also==
+
+==External links==
+
+

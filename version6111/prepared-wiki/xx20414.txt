@@ -1,0 +1,92 @@
+[[Uniform convergence]]
+
+CATEGORIES: Calculus, Mathematical series, Topology of function spaces, Convergence (mathematics)
+
+In the mathematical field of analysis, uniform convergence is a type of convergence stronger than pointwise convergence. A sequence {fn} of functions converges uniformly to a limiting function f if the speed of convergence of fn(x) to f(x) does not depend on x. 
+The concept is important because several properties of the functions fn, such as continuity and Riemann integrability, are transferred to the limit f if the convergence is uniform. 
+Uniform convergence to a function on a given interval can be defined in terms of the uniform norm.
+
+==History==
+
+Some historians claim[tpl]who?|date=January 2014[/tpl] that in 1821 Augustin Louis Cauchy  published a false statement, but with a purported proof, that the pointwise limit of a series of continuous functions is always continuous; however,  Lakatos offers a re-assessment[tpl]cn|date=January 2014[/tpl] of Cauchy's approach.  Niels Henrik Abel in 1826 found purported counterexamples to this statement in the context of Fourier series, arguing that Cauchy's proof had to be incorrect.[tpl]cn|date=January 2014[/tpl]  Cauchy ultimately responded in 1853 with a clarification of his 1821 formulation.[tpl]cn|date=January 2014[/tpl]
+|title=A history of analysis
+|first=Hans Niels
+|last=Jahnke
+|publisher=AMS Bookstore
+|year=2003
+|isbn=978-0-8218-2623-2
+|chapter=6.7 The Foundation of Analysis in the 19th Century: Weierstrass
+|postscript=, p. 184.
+}}[/ref]
+Later Gudermann's pupil Karl Weierstrass, who attended his course on elliptic functions in 1839–1840, coined the term gleichmäßig konvergent ([tpl]lang-de|uniformly convergent[/tpl]) which he used in his 1841 paper Zur Theorie der Potenzreihen, published in 1894. Independently a similar concept was used by Philipp Ludwig von Seidel[tpl]cite book |last=Lakatos |first=Imre |authorlink=Imre Lakatos |title=Proofs and Refutations|year=1976|publisher=Cambridge University Press |pages=141 |isbn=0-521-21078-X[/tpl] and George Gabriel Stokes but without having any major impact on further development.[tpl]Citation needed|date=December 2011[/tpl] G. H. Hardy compares the three definitions in his paper "Sir George Stokes and the concept of uniform convergence" and remarks: "Weierstrass's discovery was the earliest, and he alone fully realized its far-reaching importance as one of the fundamental ideas of analysis."
+Under the influence of Weierstrass and Bernhard Riemann this concept and related questions were intensely studied at the end of the 19th century by Hermann Hankel, Paul du Bois-Reymond, Ulisse Dini, Cesare Arzelà and others.
+== Definition == 
+Suppose [tpl]math|S[/tpl] is a set and [tpl]math|fn : S → R[/tpl] is a real-valued function for every natural number [tpl]math|n[/tpl]. We say that the sequence [tpl]math|(fn)n∈N[/tpl] is uniformly convergent with limit [tpl]math|f : S → R[/tpl] if for every [tpl]math|ε > 0[/tpl], there exists a natural number [tpl]math|N[/tpl] such that for all [tpl]math|x ∈ S[/tpl] and all [tpl]math|n ≥ N[/tpl] we have {{math|[tpl]![/tpl]fn(x) − f(x)[tpl]![/tpl] Consider the sequence [tpl]math|αn [tpl]=[/tpl]  supx [tpl]![/tpl]fn(x) − f(x)[tpl]![/tpl][/tpl] where the supremum is taken over all [tpl]math|x ∈ S[/tpl]. Then [tpl]math|fn[/tpl] converges to [tpl]math|f[/tpl] uniformly if and only if [tpl]math|αn[/tpl] tends to 0.
+The sequence [tpl]math|(fn)n∈N[/tpl] is said to be locally uniformly convergent with limit [tpl]math|f[/tpl] if for every [tpl]math|x[/tpl] in some metric space [tpl]math|S[/tpl],  there exists an [tpl]math|r > 0[/tpl] such that [tpl]math|(fn)[/tpl] converges uniformly on [tpl]math|B(x,r) ∩ S[/tpl].
+
+===Notes===
+
+Note that interchanging the order of "there exists [tpl]math|N[/tpl]" and "for all [tpl]math|x[/tpl]" in the definition above results in a statement equivalent to the pointwise convergence of the sequence. That notion can be defined as follows: the sequence (fn) converges pointwise with limit [tpl]math|f : S → R[/tpl] if and only if 
+Here the order of the universal quantifiers for [tpl]math|x[/tpl] and for [tpl]math|ε[/tpl] is not important, but the order of the former and the existential quantifier for [tpl]math|N[/tpl] is.
+In the case of uniform convergence, [tpl]math|N[/tpl] can only depend on [tpl]math|ε[/tpl], while in the case of pointwise convergence [tpl]math|N[/tpl] may depend on both [tpl]math|ε[/tpl] and [tpl]math|x[/tpl]. It is therefore plain that uniform convergence implies pointwise convergence. The converse is not true, as the following example shows: take [tpl]math|S[/tpl] to be the unit interval 0,1 and define [tpl]math|fn(x) [tpl]=[/tpl] xn[/tpl] for every natural number [tpl]math|n[/tpl]. Then [tpl]math|(fn)[/tpl] converges pointwise to the function [tpl]math|f[/tpl] defined by [tpl]math|f(x) [tpl]=[/tpl] 0[/tpl] if [tpl]math|x < 1[/tpl] and [tpl]math|f(1) [tpl]=[/tpl] 1[/tpl]. This convergence is not uniform: for instance for [tpl]math|ε [tpl]=[/tpl] 1/4[/tpl], there exists no [tpl]math|N[/tpl] as required by the definition. This is because solving for [tpl]math|n[/tpl] gives [tpl]math|n > log ε / log x[/tpl]. This depends on [tpl]math|x[/tpl] as well as on [tpl]math|ε[/tpl]. Also note that it is impossible to find a suitable bound for [tpl]math|n[/tpl] that does not depend on [tpl]math|x[/tpl] because for any nonzero value of [tpl]math|ε[/tpl], [tpl]math|log ε / log x[/tpl] grows without bounds as [tpl]math|x[/tpl] tends to 1.
+
+===Generalizations===
+
+One may straightforwardly extend the concept to functions S → M, where (M, d) is a metric space, by replacing |fn(x) − f(x)| with d(fn(x), f(x)).
+The most general setting is the uniform convergence of nets of functions S → X, where X is a uniform space. We say that the net (fα) converges uniformly with limit f : S → X if and only if
+The above mentioned theorem, stating that the uniform limit of continuous functions is continuous, remains correct in these settings.
+
+===Definition in a hyperreal setting===
+
+==Examples==
+
+Given a topological space X, we can equip the space of bounded real or complex-valued functions over X with the uniform norm topology. Then uniform convergence simply means convergence in the uniform norm topology.
+
+===Exponential function===
+
+Here is the series:
+This is trivial:
+The ratio test can be used here:
+
+==Properties==
+
+==Applications==
+
+===To continuity===
+
+This theorem is important, since pointwise convergence of continuous functions is not enough to guarantee continuity of the limit function as the image illustrates.
+More precisely, this theorem states that the uniform limit of uniformly continuous functions is uniformly continuous; for a locally compact space, continuity is equivalent to local uniform continuity, and thus the uniform limit of continuous functions is continuous.
+
+===To differentiability===
+
+===To integrability===
+
+Similarly, one often wants to exchange integrals and limit processes. For the Riemann integral, this can be done if uniform convergence is assumed:
+Much stronger theorems in this respect, which require not much more than pointwise convergence, can be obtained if one abandons the Riemann integral and uses the Lebesgue integral instead.
+
+===To Analyticity===
+
+If a sequence of analytic functions converges uniformly in a region S of the complex plane, then the limit is analytic in S. This demonstrates an example that complex functions are more well-behaved than real functions, since the uniform limit of analytic functions on a real interval need not even be differentiable.
+
+===Extended Results to Series===
+
+i) pointwise on E if and only if the sequence sn converges where s'n(x) is the sequence of partial sums.
+ii) uniformly on E if and only if sn''(x) converges uniformly as n goes to infinity.
+With this definition comes the immediate result that comes naturally from the theorems about sequences:
+
+==Almost uniform convergence==
+
+If the domain of the functions is a measure space then the related notion of almost uniform convergence can be defined. We say a sequence of functions converges almost uniformly on E if the sequence of functions converges uniformly almost everywhere on E, that is, if the set of points for which the sequence does not converge uniformly has an arbitrarily small measure.
+Note that almost uniform convergence of a sequence does not mean that the sequence converges uniformly almost everywhere as might be inferred from the name.
+Egorov's theorem guarantees that on a finite measure space, a sequence of functions that converges almost everywhere also converges almost uniformly on the same set.
+Almost uniform convergence implies almost everywhere convergence and convergence in measure.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

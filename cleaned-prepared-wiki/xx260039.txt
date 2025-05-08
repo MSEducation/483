@@ -1,0 +1,45 @@
+[[Walk forward optimization]]
+
+CATEGORIES: Finance, Mathematical finance, Stock market, Technical analysis
+
+Walk forward optimization is a method used in finance for determining the best parameters to use in a trading strategy.  The trading strategy is optimized with in sample data for a time window in a data series.  The remainder of the data are reserved for out of sample testing.  A small portion of the reserved data following the in sample data is tested with the results recorded.  The in sample time window is shifted forward by the period covered by the out of sample test, and the process repeated.  At the end, all of the recorded results are used to assess the trading strategy.
+It means to get the most suitable/stable parameters of the system and run the system with these parameters using another segment of data and these two segments of data do not overlap each other. It is the culmination of the following methods and helps in creation of robust systems.
+Backtesting is using past data to test a trading system. It's useful because if a system was not profitable in the past it will not be profitable in the future. It refers to applying a trading system to historical data to verify how a system would have performed during the specified time period.Investopedia: Backtesting And Forward Testing
+Forward testing is also known as Walk forward testing is the simulation of the real markets data on paper only. It means that though you are moving along the markets live, but you are not actually putting in real money, but doing virtual trading in lie markets to understand the movements of markets better. Hence, it is also called as the Paper Trading. Forward performance testing is a simulation of actual trading and involves following the system's logic in a live market.
+
+
+
+One of the biggest issues with system development is that many systems do not hold up into the future. There are several reasons for this. The first is that the system is not based on a valid premise. Another is that the testing is not sound  for reasons such as:
+Walk Forward Analysis does optimization on a training set; test on a period after the set and then rolls it all forward and repeats the process. We have multiple out-of-sample periods and look at these results combined. Walk forward analysis was originally discussed by Robert E. Pardo. Walking forward can keep a trading model a step ahead.
+Walk forward testing allows us to develop a trading system while maintaining a reasonable 'degree of freedom'. Walk-forward testing carries the idea of 'out-of-sample' testing to the next level. Think of it as an 'out-of-sample' testing on steroids. It is a specific application of a technique known as Cross-validation. It means to take a segment of your data to optimize a system, and another segment of data to validate. Hence, here you optimize a window of data say past 1000 bars, and then test it on next 200 bars. Then roll the whole thing forward 200 bars and repeat the process. This gives you a large out of sample period and allows you to see how stable the system is over time.
+Suppose you consider a strategy around a moving average. You take the first 3 months of data, and find that for that period a 20-minute moving average was optimal (using tick data). You then validate this rule by assessing its performance for the 4th month (i.e. profit, reward/risk or any other statistic of interest). Next, you repeat the optimization using data from month 2-4, and validate using month 5, and keep repeating this until you've reached the end of the data. The performance you get for the validation months (4-13) are your out-of-sample performance.
+
+The basics behind the data used
+
+Before doing the backtesting or optimization, one needs to set up the data required which is the historical data of a  specific time period. This historical data segment is divided into the following two types:
+The process is to first develop a trading system using in-sample data and then apply the out-of-sample data to the system. The results of both cases can then be compared and tested.
+
+Explanation
+
+The concept for walk-forward testing is similar to using 'in-sample' and 'out-of-sample' testing periods. Instead of optimizing on twenty years of data and using the last four years of data for testing, the optimization is done across ten years and the system is tested on the eleventh. Once this test is completed, move the whole time window forward one year and run the test-run on the next year. Find the optimum set of parameters for each of the 10-year windows and use that set of parameters to trade for the next year. Move the time window forward one year and run the test on the next year until all of the years in the data series have been tested.
+When the system performance is evaluated, all of the one-year windows are consolidated to compose the out-of-sample periods for each of the optimal windows. The out-of-sample performance is used to judge how good the system is.
+Walk-forward testing works like this. Let's say that you have twelve years of data extending from 1998 to 2009 for the markets that you want to trade. Let's also assume that your trading strategy needs a minimum of three years of data for testing and optimization.
+To begin, start by developing and optimizing the system using only the first three years of data – in this example, 1998–2000. On these three years of data, try as many ideas as you like and optimize parameters in as many ways as you can think of. It is important not to look at any data after 2000! When you think you have found the 'Holy Grail' of trading systems, record the rules for the system with the optimum parameters. These rules and optimized parameters are to be used later for the final testing with new data starting with 2000.
+Slide the three-year time window of data forward a little – say one month. Now, the data that you are working with runs from the 2nd month of 1998 to the 2nd month of 2000. Repeat the analysis, including optimization and record the rules and optimized parameters. In the final pass, these parameters will be used for the 2nd month of 2000.
+Continue with 'walking forward' and optimizing the three-year data periods. Record the results for use in the first month following the three-year optimization period. When your data finally runs out in 2009, go back, and test the system for the entire period from 2000 to 2009. Switch the rules and parameters each month to use the ones that you found and recorded.  In effect, you are performing a new out-of-sample test for each month. The system performance for these nine out-of-sample years (108 out-of-sample months) is a much better indication of how a system will perform in real time than the performance of any single time period used for optimization.
+There is nothing magic about the assumed time-periods – three years for system development and one month for the walk-forward interval. Picking these two time parameters is a trade-off between optimization time and statistical validity of the results. In practice, I have found that using about 20% of the optimization period for the walk- forward window works fairly well. Which window sizes work best is also affected by the given system, for different systems the optimal training and out-of-sample window size will be different.
+If the results for the 'out-of-sample' months look good, continue the walk-forward process in real time to find the parameters to use with real money. Another advantage to this method of system development and trading is that your system will better adapt to changes in market behavior over time. Markets do change with time – we have all seen systems that have made money for several years and then simply stopped working because the markets have changed how often these changes affect the system is related to the best size for the training and out-of-sample set. Manual in-sample and out-of-sample walk forward testing as described is useful, but automated walk forward testing with automated parameter selection is the best way to avoid curve fitting.
+
+Conclusion
+
+For a better understanding, please see the example here.Can your system do the walk
+In order to evaluate any system, one should check out its performance when using the "Out-of-Sample Data" (test data) and not the "In-Sample Data" (data used for optimization of the system). Thus, walk forward test determines the optimized system performance as follows:
+Hence, the out-of-sample data plays a crucial role in determining the validity and reliability of the system and is a realistic estimate of how a system should work in real markets.
+
+
+
+
+
+
+
+

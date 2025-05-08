@@ -1,0 +1,41 @@
+[[Motorola Type II]]
+
+CATEGORIES: Trunked radio systems
+
+Motorola Type II refers to the second generation Motorola trunked radio systems that replaced fleets and subfleets with the concept of talkgroups and individual radio IDs. There are no dependencies on fleetmaps, therefore there are no limitations on how many radio IDs can participate on a talkgroup. This allows for greater flexibility for the agency. When scanning Motorola IDs, each Type II user ID appears as an even 4- or 5-digit number without a dash (example 2160).
+With the introduction of Type II, the "System ID" was also introduced.  This is a four digit identifier unique to each trunking system.  The purpose of the System ID is to allow radios to operate only on that specific system, and to identify each system.  The System ID also allows for enhanced security because a radio now requires a System Key, unique to the System ID in order to be programmed onto any given system.  Type I systems do not use unique System IDs, thus the possibility exists for overlapping coverage in busy areas.
+The term SmartNet refers to a set of features that make Motorola Type I and II trunked systems APCO-16 compliant. These include better security, emergency signaling, dynamic regrouping, remote radio monitoring, and other features. 
+The following is true of a Type II SmartNet system:
+
+==Status bits==
+
+Type II SmartNet systems uses status bits for special transmissions such as Emergency, Patches, DES/DVP encrypted transmissions, and Multiselects on Motorola Trunking systems. Motorola Trunking radios directly interpret these status bits for their special functions, therefore no difference is noticed by the user. The Trunktracker Scanner, however, interpret these special talkgroup status bits as different talkgroups entirely. Below is the conversion chart for these special status bits:
+ Dec ID + # 	Usage
+ -------------------------------------------------------
+ ID+0 	        Normal Talkgroup
+ ID+1 	        All Talkgroup
+ ID+2 	        Emergency
+ ID+3 	        Talkgroup patch to another
+ ID+4 	        Emergency Patch
+ ID+5 	        Emergency multi-group
+ ID+6 	        Not assigned
+ ID+7 	        Multi-select (initiated by dispatcher)
+ ID+8 	        DES Encryption talkgroup
+ ID+9 	        DES All Talkgroup
+ ID+10 	        DES Emergency
+ ID+11 	        DES Talkgroup patch
+ ID+12 	        DES Emergency Patch
+ ID+13 	        DES Emergency multi-group
+ ID+14 	        Not assigned
+ ID+15 	        Multi-select DES TG
+Therefore, if a user was transmitting a multi-select call on talkgroup 1808, the trunktracker would actually receive those transmissions on 1815. Some common uses of these status bits are as follows:
+SmartNet systems also added a scanning feature, called "Priority Monitor," which permitted priority scanning of talkgroups. The subscriber radio has the choice of selecting two priority talkgroups (one high and one low priority in addition to eight non-priority talkgroups). When the radio is in the middle of a voice call it is continually receiving sub-audible data on the voice channel indicating the talkgroup activity on the other channels of the system. If a talkgroup ID appears which is seen as a higher priority than the active call, the radio will switch back to the control channel to look for the late entry data word indicating which channel to tune to.
+This voice channel sub-audible datastream has a limitation in the number of bits it can use to represent a talkgroup ID. Because of this the last digit of the talkgroup ID (right-most) is removed. The radio then presumes any ID it receives is an odd-numbered talkgroup ID. This is the reason behind odd numbering of talkgroups on SmartNet systems. If the systems administrator assigned odd AND even numbered talkgroups there would be a lot of confusion with the Priority Monitor feature when reading the data over the voice channel. This was a problem with the Radio Shack PRO-92 as it used only the sub-audible data to track trunked systems.
+
+==SmartZone==
+
+SmartZone systems are Motorola Type II systems that are networked together via microwave or land-line data circuits to provide multi-site wide-area communications. Many large public safety and state agencies use SmartZone systems for wide-area communications. Each individual trunked system is considered a site, or a sub-system of a Simulcast system, and is controlled by the Zone Controller, which is the master controller for all activity and is where all network links terminate. The primary types of sites are 6809 (named after the type of microprocessor used, and can be single or simulcast configurations), MTC 3600 (introduced to take the place of the 6809, and named for the speed of the control channel data stream in baud), and IntelliRepeaters (single-site only, a type of controllerless site). SmartZone allows efficient use of channels at each site by feature called "Dynamic Site Assignment", or DSA. DSA's simple purpose is to determine whether a site actually needs to broadcast a call or not. In order to make this feature work subscriber radios are required to affiliate, or send in their radio identification and selected talkgroup information whenever they power-up, change channels, or change sites. A programmable "timeout" can be set to automatically query any given radio to determine its affiliation status on the network.  These affiliations are compiled into a table which the Zone Controller maintains. When a call is requested at a site, the Zone Controller determines which site that talkgroup is registered at and routes that audio via a switch, referred to as the Ambassador Electronics Bank (AEB), to the appropriate channel at the site. SmartZone allows seamless roaming between sites that is transparent to the user. To the user, the system, when properly configured, appears as just one large system, when in fact the user is actually roaming between several different sites at different locations.
+The characteristics of a Motorola SmartZone system are similar to SmartNet systems with the following changes:
+The system can be programmed to send to certain tower sites certain talkgroups even with no user affiliated on that TG. This allows users who are on another TG but scanning to be able to hear traffic on that particular TG. Large utilities, like Entergy use this on their multiZoned network. At Entergy, TG 29 is used for interZone communications (An analog solution that people in the Texas Telecom group of Entergy (Current Texas Telecom supervisor Steve Gomez, former employee Chris Boone and others) came up with using certain boards extra to the CEB or Central Electronics Bank) to feed the 2175Hz Push To Talk tone to the other Zone controllers and a Tellabs audio bridge. The digital Omnilink option from Motorola is Mother M's answer to the problem and allows private call and all other features to work across Zones but Entergy has not bought the option since the analog solution worked though none of the special features within a Zone can work..only clear communication between all users happens but it sure was cheaper!) Entergy's 4 state SmartZone system was the largest in the world when it went online in 1995-96, with 50+ sites in each Zone.
+The new MZC 3000 SmartZone Zone Controller introduced an Ethernet based connection point for sites, consoles, data broadcast boxes, and C/DIUs. This Zone Controller supports 64 sites in addition to the other pieces of hardware that previously limited the number of sites as the connection ports were shared.
+

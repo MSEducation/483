@@ -1,0 +1,63 @@
+[[Localization of a ring]]
+
+CATEGORIES: Ring theory, Localization (mathematics)
+
+In abstract algebra, localization is a systematic method of adding multiplicative inverses to a ring. Given a ring R and a subset S, one wants to construct some ring R* and ring homomorphism from R to R*, such that the image of S consists of units (invertible elements) in R*. Further one wants R* to be the 'best possible' or 'most general' way to do this – in the usual fashion this should be expressed by a universal property. The localization of R by S is usually denoted by S −1R; however other notations are used in some important special cases. If S is the set of the non zero elements of an integral domain, then the localization is the field of fractions and thus usually denoted Frac(R). If S is the complement of a prime ideal I the localization is denoted by RI, and Rf is used to denote the localization by the powers of an element f. In particular the definition of an affine scheme is based on the properties of these two kinds of localizations.
+An important related process is completion: one often localizes a ring, then completes.
+
+Terminology
+
+The term localization originates in algebraic geometry: if R is a ring of functions defined on some geometric object (algebraic variety) V, and one wants to study this variety "locally" near a point p, then one considers the set S of all functions that are not zero at p and localizes R with respect to S. The resulting ring R* contains only information about the behavior of V near p. Cf. the example given at local ring.
+In number theory and algebraic topology, one refers to the behavior of a ring at a number n or away from n. "Away from n" means "in the ring localized by the set of the powers of n" (which is a Z1/n-algebra). If n is a prime number, "at n" means "in the ring localized by the set of the integers which are not multiple of n".
+
+Construction and properties for commutative rings
+
+The set S is assumed to be a submonoid of the multiplicative monoid of R, i.e. 1 is in S and for s and t in S we also have st in S. A subset of R with this property is called a multiplicatively closed set or more briefly, a multiplicative set. This requirement on S is natural and necessary to have since its elements will be turned into units of the localization, and units must be closed under multiplication.
+It is standard practice to assume that S is multiplicatively closed. If S is not multiplicatively closed, it suffices to replace it by its multiplicative closure, consisting of the set of the products of elements of S (including the empty product 1). This does not change the result of the localization. The fact that we talk of "a localization with respect to the powers of an element" instead of "a localization with respect to an element" is an example of this. Therefore we shall suppose S to be multiplicatively closed in what follows.
+
+Construction
+
+=For integral domains=
+
+In case R is an integral domain there is an easy construction of the localization. Since the only ring in which 0 is a unit is the trivial ring {0}, the localization R* is {0} if 0 is in S. Otherwise, the field of fractions K of R can be used: we take R* to be the subset of K consisting of the elements of the form r/s with r in R and s in of S; as we have supposed S multiplicatively closed, R* is a subring. The standard embedding of R into R* is injective in this case, although it may be non injective in a more general setting. For example, the dyadic fractions are the localization of the ring of integers with respect to the powers of two. In this case, R* is the dyadic fractions, R is the integers, the denominators are powers of 2, and the natural map from R to R* is injective. The result would be exactly the same if we had taken S={2}.
+
+=For general commutative rings=
+
+For general commutative rings, we don't have a field of fractions. Nevertheless, a localization can be constructed consisting of "fractions" with denominators coming from S; in contrast with the integral domain case, one can safely 'cancel' from numerator and denominator only elements of S.
+This construction proceeds as follows: on R × S define an equivalence relation ~ by setting (r1,s1) ~ (r2,s2) if there exists t in S such that 
+(The presence of t is crucial to the transitivity of ~)
+We think of the equivalence class of (r,s) as the "fraction" r/s and, using this intuition, the set of equivalence classes R* can be turned into a ring with operations that look identical to those of elementary algebra: , then their images under j are equal.
+To see why the factor t in the definition of the equivalence relation above is necessary, note first that for any annihilators of elements of S, i.e. . This equivalence relation together with the definition of the annihilator and the quotient yields the relation as given above.
+
+=Universal property=
+
+The above mentioned universal property is the following: the ring homomorphism j : R → R* maps every element of S to a unit in R*, and if f : R → T is some other ring homomorphism which maps every element of S to a unit in T, then there exists a unique ring homomorphism g : R* → T such that f = g ∘ j.
+
+Examples
+
+Properties
+
+Some properties of the localization R* = S −1R:
+
+Category theoretic description
+
+Another way to describe the localization of a ring R at a subset S is via category theory.  If R is a ring and S is a subset, consider all R-algebras A, so that, under the canonical homomorphism R → A, every element of S is mapped to a unit. These algebras are the objects of a category, with R-algebra homomorphisms as morphisms. Then, the localization of R at S is the initial object of this category. (This is a more abstract way of expressing the universal property above.)
+
+Applications
+
+Two classes of localizations occur commonly in commutative algebra and algebraic geometry and are used to construct the rings of functions on open subsets in Zariski topology of the spectrum of a ring, Spec(R).
+
+Non-commutative case
+
+Localizing non-commutative rings is more difficult; the localization does not exist for every set S of prospective units. One condition which ensures that the localization exists is the Ore condition.
+One case for non-commutative rings where localization has a clear interest is for rings of differential operators. It has the interpretation, for example, of adjoining a formal inverse D−1 for a differentiation operator D. This is done in many contexts in methods for differential equations. There is now a large mathematical theory about it, named microlocalization, connecting with numerous other branches. The micro- tag is to do with connections with Fourier theory, in particular.
+
+
+
+Localization
+
+
+
+
+
+

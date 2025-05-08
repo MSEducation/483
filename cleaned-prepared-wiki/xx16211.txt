@@ -1,0 +1,140 @@
+[[Visitor pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code
+
+In object-oriented programming and software engineering, the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.  A practical result of this separation is the ability to add new operations to existing object structures without modifying those structures.  It is one way to follow the open/closed principle.
+In essence, the visitor allows one to add new virtual functions to a family of classes without modifying the classes themselves; instead, one creates a visitor class that implements all of the appropriate specializations of the virtual function. The visitor takes the instance reference as input, and implements the goal through double dispatch.
+
+Motivation
+
+Consider the design of a 2D CAD system. At its core there are several types to represent basic geometric shapes like circles, lines and arcs. The entities are ordered into layers, and at the top of the type hierarchy is the drawing, which is simply a list of layers, plus some additional properties.
+A fundamental operation on this type hierarchy is saving the drawing to the system's native file format. At first glance it may seem acceptable to add local save methods to all types in the hierarchy. But then we also want to be able to save drawings to other file formats, and adding more and more methods for saving into lots of different file formats soon clutters the relatively pure geometric data structure we started out with.
+A naive way to solve this would be to maintain separate functions for each file format. Such a save function would take a drawing as input, traverse it and encode into that specific file format. But if you do this for several different formats, you soon begin to see lots of duplication between the functions. For example, saving a circle shape in a raster format requires very similar code no matter what specific raster form is used, and is different from other primitive shapes; the case for other primitive shapes like lines and polygons is similar. The code therefore becomes a large outer loop traversing through the objects, with a large decision tree inside the loop querying the type of the object. Another problem with this approach is that it is very easy to miss a shape in one or more savers, or a new primitive shape is introduced but the save routine is implemented only for one file type and not others, leading to code extension and maintenance problems.
+Instead, one could apply the Visitor pattern. The Visitor pattern encodes a logical operation on the whole hierarchy into a single class containing one method per type. In our CAD example, each save function would be implemented as a separate Visitor subclass. This would remove all duplication of type checks and traversal steps. It would also make the compiler complain if a shape is omitted.
+Another motivation is to reuse iteration code.  For example iterating over a directory structure could be implemented with a visitor pattern.  This would allow you to create file searches, file backups, directory removal, etc. by implementing a visitor for each function while reusing the iteration code.
+
+Details
+
+The visitor pattern requires a programming language that supports single dispatch and method overloading. Under these conditions, consider two objects, each of some class type; one is called the "element", and the other is called the "visitor". An element has an accept() method that can take the visitor as an argument. The accept() method calls a visit() method of the visitor; the element passes itself as an argument to the visit() method. Thus:
+In this way, a single algorithm can be written for traversing a graph of elements, and many different kinds of operations can be performed during that traversal by supplying different kinds of visitors to interact with the elements based on the dynamic types of both the elements and the visitors.
+
+Java example
+
+The following example is in the Java programming language, and shows how the contents of a tree of nodes (in this case describing the components of a car) can be printed.  Instead of creating "print" methods for each subclass (Wheel, Engine, Body, and Car), a single class (CarElementPrintVisitor) performs the required printing action.  Because different subclasses require slightly different actions to print properly, CarElementDoVisitor dispatches actions based on the class of the argument passed to it.
+
+Diagram
+
+Sources
+
+Note: A more flexible approach to this pattern is to create a wrapper class implementing the interface defining the accept method. The wrapper contains a reference pointing to the ICarElement which could be initialized through the constructor. This approach avoids having to implement an interface on each element. article Java Tip 98 article below
+
+Output
+
+ 
+ Visiting front left wheel
+Visiting front right wheel
+Visiting back left wheel
+Visiting back right wheel
+Visiting body
+Visiting engine
+Visiting car
+Kicking my front left wheel
+Kicking my front right wheel
+Kicking my back left wheel
+Kicking my back right wheel
+Moving my body
+Starting my engine
+Starting my car
+
+Common Lisp Example
+
+Sources
+
+Output
+
+ "front-left-wheel"
+ "front-right-wheel"
+"rear-right-wheel"
+"rear-right-wheel"
+"body"
+"engine"
+kicking wheel "front-left-wheel" 42 times
+kicking wheel "front-right-wheel" 42 times
+kicking wheel "rear-right-wheel" 42 times
+kicking wheel "rear-right-wheel" 42 times
+don't know how "body" and 42 should interact
+starting engine "engine" 42 times
+kicking wheel "front-left-wheel" symbolically using symbol ABC
+kicking wheel "front-right-wheel" symbolically using symbol ABC
+kicking wheel "rear-right-wheel" symbolically using symbol ABC
+kicking wheel "rear-right-wheel" symbolically using symbol ABC
+don't know how "body" and ABC should interact
+starting engine "engine" symbolically using symbol ABC
+
+Notes
+
+The other-object parameter is superfluous in traverse.  The reason is that it is possible to use an anonymous function which calls the desired target method with a lexically captured object:
+Now, the multiple dispatch occurs in the call issued from the body of the anonymous function, and so traverse is just a mapping function which distributes a function application over the elements of an object. Thus all traces of the Visitor Pattern disappear, except for the mapping function, in which there is no evidence of two objects being involved. All knowledge of there being two objects and a dispatch on their types is in the lambda function.
+
+Scala Example
+
+Sources
+
+Output
+
+ Visiting front left wheel
+ Visiting front right wheel
+Visiting back left wheel
+Visiting back right wheel
+Visiting body
+Visiting engine
+Visiting car
+Kicking my front left wheel
+Kicking my front right wheel
+Kicking my back left wheel
+Kicking my back right wheel
+Moving my body
+Starting my engine
+Starting my car
+
+Notes
+
+The Scala implementation has neither the notion of a visitor interface nor a visitable interface. 
+Now, suppose we add the following class definition:
+and change the definition of the Car class to:
+Upon rerunning the program, we get:
+
+Output
+
+ 
+ Visiting front left wheel
+Visiting front right wheel
+Visiting back left wheel
+Visiting back right wheel
+Visiting body
+Visiting engine
+Visting unknown CarElement Manual Transmission
+Visting car
+Kicking my front left wheel
+Kicking my front right wheel
+Kicking my back left wheel
+Kicking my back right wheel
+Moving my body
+Starting my engine
+Unknown CarElement Manual Transmission no interaction defined
+Starting my car
+
+State
+
+Aside from potentially improving separation of concerns, the visitor pattern has an additional advantage over simply calling a polymorphic method: a visitor object can have state. This is extremely useful in many cases where the action performed on the object depends on previous such actions.
+An example of this is a pretty-printer in a programming language implementation (such as a compiler or interpreter). Such a pretty-printer object (implemented as a visitor, in this example), will visit nodes in a data structure that represents a parsed and processed program. The pretty-printer will then generate a textual representation of the program tree. To make the representation human-readable, the pretty-printer should properly indent program statements and expressions. The current indentation level can then be tracked by the visitor as its state, correctly applying encapsulation, whereas in a simple polymorphic method invocation, the indentation level would have to be exposed as a parameter and the caller would rely on the method implementation to use and propagate this parameter correctly.
+
+Related design patterns
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+[[Inner product space]]
+
+CATEGORIES: Normed spaces, Bilinear forms
+
+In linear algebra, an inner product space is a vector space with an additional structure called an inner product. This additional structure associates each pair of vectors in the space with a scalar quantity known as the inner product of the vectors.  Inner products allow the rigorous introduction of intuitive geometrical notions such as the length of a vector or the angle between two vectors. They also provide the means of defining orthogonality between vectors (zero inner product). Inner product spaces generalize Euclidean spaces (in which the inner product is the dot product, also known as the scalar product) to vector spaces of any (possibly infinite) dimension, and are studied in functional analysis.
+An inner product naturally induces an associated norm, thus an inner product space is also a normed vector space. A complete space with an inner product is called a Hilbert space. An incomplete space with an inner product is called a pre-Hilbert space, since its completion with respect to the norm induced by the inner product becomes a Hilbert space. Inner product spaces over the field of complex numbers are sometimes referred to as unitary spaces.
+
+Definition
+
+In this article, the field of scalars denoted .
+Formally, an inner product space is a vector space  together with an inner product, i.e., with a map
+
+Alternative definitions, notations and remarks
+
+There are various technical reasons why it is necessary to restrict the basefield to , such as those used in quantum computation, are automatically metrically complete and hence Hilbert spaces.
+
+Elementary properties
+
+Moreover, sesquilinearity (see below) implies that
+Conjugate symmetry and linearity in the first variable gives
+so an inner product is a sesquilinear form. Conjugate symmetry is also called Hermitian symmetry, and a conjugate symmetric sesquilinear form is called a Hermitian form. While the above axioms are more mathematically economical, a compact verbal definition of an inner product is a positive-definite Hermitian form.
+In the case of , conjugate-symmetry reduces to symmetry, and sesquilinear reduces to bilinear. So, an inner product on a real vector space is a positive-definite symmetric bilinear form.
+Combining the linearity of the inner product in its first argument and the conjugate symmetry gives the following important generalization of the familiar square expansion:
+Assuming the underlying field to be , the inner product becomes symmetric, and we obtain
+The property of an inner product space  that
+is also known as additivity.
+
+Examples
+
+Norms on inner product spaces
+
+A linear space with a norm such as:
+is a normed space but not an inner product space, because this norm does not satisfy the parallelogram equality required of a norm to have an inner product associated with it.
+However, inner product spaces have a naturally defined norm based upon the inner product of the space itself that does satisfy the parallelogram equality:
+This is well defined by the nonnegativity axiom of the definition of inner product space. The norm is thought of as the length of the vector . Directly from the axioms, we can prove the following:
+
+Orthonormal sequences
+
+This definition of orthonormal basis generalizes to the case of infinite-dimensional inner product spaces in the following way. Let  be any inner product space. Then a collection
+is a basis for  if it is a basis and
+Using an infinite-dimensional analog of the Gram-Schmidt process one may show:
+Theorem.  Any separable inner product space  has an orthonormal basis.
+Using the Hausdorff maximal principle and the fact that in a complete inner product space orthogonal projection onto linear subspaces is well-defined, one may also show that
+Theorem.  Any complete inner product space  has an orthonormal basis.
+The two previous theorems raise the question of whether all inner product spaces have an orthonormal basis. The answer, it turns out is negative. This is a non-trivial result, and is proved below. The following proof is taken from Halmos's A Hilbert Space Problem Book (see the references).
+!Proof
+|-
+| Recall that the dimension of an inner product space is the cardinality of a maximal orthonormal system that it contains (by Zorn's lemma it contains at least one, and any two have the same cardinality).  An orthonormal basis is certainly a maximal orthonormal system, but as we shall see, the converse need not hold.  Observe that if .
+|}
+Parseval's identity leads immediately to the following theorem:
+Theorem. Let . Then the map
+is an isometric linear map  with a dense image.
+This theorem can be regarded as an abstract form of Fourier series, in which an arbitrary orthonormal basis plays the role of the sequence of trigonometric polynomials.  Note that the underlying index set can be taken to be any countable set (and in fact any set whatsoever, provided  is defined appropriately, as is explained in the article Hilbert space). In particular, we obtain the following result in the theory of Fourier series:
+is an isometric linear map with dense image.
+Orthogonality of the sequence {ek}k follows immediately from the fact that if k ≠ j, then
+
+Operators on inner product spaces
+
+Several types of linear maps  are of relevance:
+From the point of view of inner product space theory, there is no need to distinguish between two spaces which are isometrically isomorphic.  The spectral theorem provides a canonical form for symmetric, unitary and more generally normal operators on finite dimensional inner product spaces.  A generalization of the spectral theorem holds for continuous normal operators in Hilbert spaces.
+
+Generalizations
+
+Any of the axioms of an inner product may be weakened, yielding generalized notions. The generalizations that are closest to inner products occur where bilinearity and conjugate symmetry are retained, but positive-definiteness is weakened.
+
+Degenerate inner products
+
+This construction is used in numerous contexts.  The Gelfand–Naimark–Segal construction is a particularly important example of the use of this technique. Another example is the representation of semi-definite kernels on arbitrary sets.
+
+Nondegenerate conjugate symmetric forms
+
+Purely algebraic statements (ones that do not use positivity) usually only rely on the nondegeneracy (the injective homomorphism ) and thus hold more generally.
+
+Related products
+
+The term "inner product" is opposed to outer product, which is a slightly more general opposite. Simply, in coordinates, the inner product is the product of a 1×n covector with an n×1 vector, yielding a 1×1 matrix (a scalar), while the outer product is the product of an m×1 vector with a 1×n covector, yielding an m×n matrix. Note that the outer product is defined for different dimensions, while the inner product requires the same dimension. If the dimensions are the same, then the inner product is the trace of the outer product (trace only being properly defined for square matrices).
+On an inner product space, or more generally a vector space with a nondegenerate form (so an isomorphism ) vectors can be sent to covectors (in coordinates, via transpose), so one can take the inner product and outer product of two vectors, not simply of a vector and a covector.
+In a quip: "inner is horizontal times vertical and shrinks down, outer is vertical times horizontal and expands out".
+The inner product and outer product should not be confused with the interior product and exterior product, which are instead operations on vector fields and differential forms, or more generally on the exterior algebra.
+As a further complication, in geometric algebra the inner product and the exterior (Grassmann) product are combined in the geometric product (the Clifford product in a Clifford algebra) – the inner product sends two vectors (1-vectors) to a scalar (a 0-vector), while the exterior product sends two vectors to a bivector (2-vector) – and in this context the exterior product is usually called the "outer (alternatively, wedge) product". The inner product is more correctly called a scalar product in this context, as the nondegenerate quadratic form in question need not be positive definite (need not be an inner product).
+
+
+
+Notes and in-line references
+
+
+
+

@@ -1,0 +1,21 @@
+[[Group identifier]]
+
+CATEGORIES: Unix, Unix file system technology
+
+In Unix-like systems, multiple users can be categorized into groups. POSIX and conventional Unix file system permissions are organized into three classes, user, group, and others. The use of groups allows additional abilities to be delegated in an organized fashion, such as access to disks, printers, and other peripherals. This method, among others, also enables the Superuser to delegate some administrative tasks to normal users, similar to the Administrators group on Microsoft Windows NT and its derivatives.
+A group identifier, often abbreviated to GID, is a numeric value used to represent a specific group. The range of values for a GID varies amongst different systems; at the very least, a GID can be between 0 and 32,767, with one restriction: the login group for the superuser must have GID 0. This numeric value is used to refer to groups in the /etc/passwd and /etc/group files or their equivalents. Shadow password files and Network Information Service also refer to numeric GIDs. The group identifier is a necessary component of Unix file systems and processes.
+The limits on the range of possible group identifiers come from the memory space used to store them. Originally, a signed 16-bit integer was used. Since the sign was not necessary—negative numbers do not make valid group IDs—an unsigned integer is now used instead, allowing group IDs between 0 and 65,535. Modern operating systems usually use unsigned 32-bit integers, which allow for group IDs between 0 and 4,294,967,295. The switch from 16 to 32 bits was originally not necessary—one machine or even one network did not serve more than 65,536 users at the time—but was made to eliminate the need to do so in the future, when it would be more difficult to implement.
+
+==Primary vs. supplementary==
+
+In Unix systems, every user must be a member of at least one group, which is identified by the numeric GID of the user's entry in /etc/passwd. This group is referred to as the primary group ID. A user may be listed as member of additional groups in the relevant entries in the /etc/group; the IDs of these groups are referred to as supplementary group IDs.
+
+==Effective vs. real==
+
+Unix processes have an effective (EUID, EGID), a real (UID, GID) and a saved (SUID, SGID) ID. Normally these are identical, but in setgid processes they are different.
+
+==References==
+
+==See also==
+
+

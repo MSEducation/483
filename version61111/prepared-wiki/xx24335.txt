@@ -1,0 +1,20 @@
+[[Shorten (file format)]]
+
+CATEGORIES: Lossless audio codecs, Cross-platform software
+
+Shorten (SHN) is a file format used for compressing audio data. It is a form of data compression of files and is used to losslessly compress CD-quality audio files (44.1 kHz 16-bit stereo PCM). Shorten is no longer developed and other lossless audio codecs such as FLAC, Monkey's Audio (APE), TTA, and WavPack (WV) have become more popular. However, Shorten is still in use by some people because there are legally traded concert recordings in circulation that are encoded as Shorten files.  Shorten files use the .shn file extension.
+
+==Handling Shorten files==
+
+Since few players or media writers attempt to decompress Shorten files, a standalone decompression program is usually required to convert to a different file format that those applications can handle.  Some Rockbox applications can play Shorten files without decompression, and third-party Shorten plug-ins exist for Nero Burning ROM, Foobar2000, and Winamp. All libavcodec based players and converters support the Shorten codec.
+
+===Converting on Linux===
+
+Current versions of ffmpeg support the shorten format. To convert all .shn files in the current directory to FLAC:
+for f in *.shn; do ffmpeg -i "$f" "${f/%.shn/.flac}"; done
+
+==See also==
+
+==External links==
+
+

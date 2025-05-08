@@ -1,0 +1,43 @@
+[[Likelihood-ratio test]]
+
+CATEGORIES: Statistical ratios, Statistical tests, Statistical theory
+
+In statistics, a likelihood ratio test is a statistical test used to compare the fit of two models, one of which (the null model) is a special case of the other (the alternative model). The test is based on the likelihood ratio, which expresses how many times more likely the data are under one model than the other. This likelihood ratio, or equivalently its logarithm, can then be used to compute a p-value, or compared to a critical value to decide whether to reject the null model in favour of the alternative model. When the logarithm of the likelihood ratio is used, the statistic is known as a log-likelihood ratio statistic, and the probability distribution of this test statistic, assuming that the null model is true, can be approximated using Wilks's theorem.
+In the case of distinguishing between two models, each of which has no unknown parameters, use of the likelihood ratio test can be justified by the Neyman–Pearson lemma, which demonstrates that such a test has the highest power among all competitors.[tpl]cite doi|10.1098/rsta.1933.0009[/tpl]
+
+==Use==
+
+Each of the two competing models, the null model and the alternative model, is separately fitted to the data and the log-likelihood recorded. The test statistic (often denoted by D) is twice the difference in these log-likelihoods:
+The model with more parameters will always fit at least as well (have an equal or greater log-likelihood). Whether it fits significantly better and should thus be preferred is determined by deriving the probability or p-value of the difference D. Where the null hypothesis represents a special case of the alternative hypothesis, the probability distribution of the test statistic is approximately a chi-squared distribution with degrees of freedom equal to df2 − df1 .[tpl]cite jstor|2952500[/tpl] Symbols df1 and df2 represent the number of free parameters of models 1 and 2, the null model and the alternative model, respectively.
+The test requires nested models, that is: models in which the more complex one can be transformed into the simpler model by imposing a set of constraints on the parameters.An example using phylogenetic analyses is described at [tpl]cite doi|10.1093/sysbio/45.4.546 [/tpl]
+For example: if the null model has 1 parameter and a log-likelihood of −8024 and the alternative model has 3 parameters and a log-likelihood of −8012, then the probability of this difference is that of chi-squared value of +2·(8024 − 8012) = 24 with 3 − 1 = 2 degrees of freedom. Certain assumptions[tpl]cite doi|10.1214/aoms/1177732360[/tpl] must be met for the statistic to follow a chi-squared distribution and often empirical p-values are computed.
+
+==Background==
+
+A likelihood ratio test is a statistical test for making a decision between two hypotheses based on the value of this ratio.
+It is central to the Neyman–Pearson approach to statistical hypothesis testing, and, like statistical hypothesis testing in general, is both widely used and criticized.[tpl]Citation needed|date=July 2012[/tpl]
+
+==Simple-vs-simple hypotheses==
+
+Note that under either hypothesis, the distribution of the data is fully specified; there are no unknown parameters to estimate. The likelihood ratio test statistic can be written as:Mood, A.M.; Graybill, F.A. (1963)  Introduction to the Theory of Statistics, 2nd edition. McGraw-Hill ISBN 978-0070428638 (page 286)Kendall, M.G., Stuart, A. (1973) The Advanced Theory of Statistics, Volume 2, Griffin. ISBN 0852642156 (page 234)
+or
+
+==Definition (likelihood ratio test for composite hypotheses)==
+
+===Interpretation===
+
+The numerator corresponds to the maximum likelihood of an observed outcome under the null hypothesis. The denominator corresponds to the maximum likelihood of an observed outcome varying parameters over the whole parameter space. The numerator of this ratio is less than the denominator.  The likelihood ratio hence is between 0 and 1.  Low values of the likelihood ratio mean that the observed result was less likely to occur under the null hypothesis as compared to the alternative.  High values of the statistic mean that the observed outcome was nearly as likely to occur under the null hypothesis as compared to the alternative, and the null hypothesis cannot be rejected.
+
+===[tpl]anchor|Wilks's theorem[/tpl] Distribution: Wilks's theorem===
+
+==Examples==
+
+===Coin tossing===
+
+For the general contingency table, we can write the log-likelihood ratio statistic as
+
+==References==
+
+==External links==
+
+

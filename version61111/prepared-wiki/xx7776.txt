@@ -1,0 +1,40 @@
+[[Multicast]]
+
+CATEGORIES: Internet architecture, Internet broadcasting, Television terminology
+
+In computer networking, multicast (one-to-many distribution) is the addressing of a message or information to a group of destination computers simultaneously. Network assisted multicast makes it possible for the source to efficiently send to the group in a single transmission. Copies are automatically created in other network elements, such as routers, switches and cellular network base stations, but only to networks segments where that currently resides members of the group.
+Multicast is  commonly implemented  using IP multicast, which is often employed in Internet Protocol (IP) applications of streaming media, such as Internet television brodcasts (but not media-on-demand) and multipoint videoconferencing, but also for  ghost distribution of backup disk images to multiple computers simultaneosly. In IP multicast the implementation of the multicast concept occurs at the IP routing level, where routers create optimal distribution paths for datagrams sent to a multicast destination address.
+At the Data Link Layer, multicast describes one-to-many distribution such as Ethernet multicast addressing, Asynchronous Transfer Mode (ATM) point-to-multipoint virtual circuits (P2MP) or Infiniband multicast.
+
+==IP multicast==
+
+IP multicast is a technique for one-to-many communication over an IP infrastructure in a network. The destination nodes send join and leave messages, for example in the case of Internet television when the user changes TV channel. IP multicast scales to a larger receiver population by not requiring prior knowledge of who or how many receivers there are. Multicast uses network infrastructure efficiently by requiring the source to send a packet only once, even if it needs to be delivered to a large number of receivers. The nodes in the network take care of replicating the packet to reach multiple receivers only when necessary.
+The most common transport layer protocol to use multicast addressing is User Datagram Protocol (UDP). By its nature, UDP is not reliable—messages may be lost or delivered out of order. Reliable multicast protocols such as Pragmatic General Multicast (PGM) have been developed to add loss detection and retransmission on top of IP multicast.
+IP multicast is widely deployed in enterprises, commercial stock exchanges, and multimedia content delivery networks. A common enterprise use of IP multicast is for IPTV applications such as distance learning and televised company meetings.[tpl]Citation needed|date=September 2010[/tpl]
+[tpl]As of|2006[/tpl], most effort at scaling multicast up to large networks have concentrated on the simpler case of single-source multicast, which seems to be more computationally tractable.[tpl]Citation needed|date=March 2009[/tpl]
+Still, the large state requirements in routers make applications using a large number of trees unable to work while using IP multicast. Take presence information as an example where each person needs to keep at least one tree of its subscribers, if not several. No mechanism has yet been demonstrated that would allow the IP multicast model to scale to millions of senders and millions of multicast groups and, thus, it is not yet possible to make fully general multicast applications practical.[tpl]Citation needed|date=June 2012[/tpl] For these reasons, and also reasons of economics[tpl]Citation needed|date=June 2012[/tpl], IP multicast is not, in general, used in commercial Internet backbones.
+
+==Multicast-over-unicast overlay applications==
+
+Application layer multicast-over-unicast services (not based on IP or Ethernet multicast) for application level group communication are widely used. Notably the Internet Relay Chat (IRC), which is more pragmatic and scales better for large numbers of small groups.  IRC implements a single spanning tree across its overlay network for all conference groups. However, this leads to suboptimal routing for some of these groups. Additionally, IRC keeps a large amount of distributed states that limit growth of an IRC network, leading to fractioning into several non-interconnected networks.RFC 1324 2.5.1 Size, IETF. The lesser known PSYC technology uses custom multicast strategies per conference.[tpl]Citation | url = http://www.psyc.eu/whitepaper/ | publisher = PSYC | title = White paper | place = EU[/tpl]. Also some peer-to-peer technologies employ the multicast concept when distributing content to multiple recipients, known as peercasting.
+Explicit Multi-Unicast (Xcast) is an alternate multicast strategy that provides reception addresses of all destinations with each packet. As such, since the IP packet size is limited in general, Xcast cannot be used for multicast groups with many destinations. The Xcast model generally assumes that stations participating in the communication are known ahead of time, so that distribution trees can be generated and resources allocated by network elements in advance of actual data traffic.[tpl]Cite web |title= Explicit Multicast (Xcast) Concepts and Options |date= November 2007 |author= Rick Boivie, Nancy Feldman, Yuji Imai, Wim Livens, and Dirk Ooms |url= http://tools.ietf.org/html/rfc5058 |accessdate= May 25, 2013 [/tpl]
+
+==Multicasting over radio and TV networks==
+
+Wireless communications (with exception to radio links) as well as cable TV bus networks are inherently one-directional broadcasting media, i.e. multipoint channels, especially if the antennas are omni-directional and all radio/TV transmitters in an area form a broadcasting network that send the same content.  However, the communication service provided may be unicasting, multicasting as well as broadcasting services, depending on if the data is addressed to one, to a group or to all receivers, respectively.
+In digital-TV, the concept of multicast service sometimes is used to refer to content protection by broadcast encryption, i.e. encrypted content over a simplex broadcast channel only addressed to paying viewers (pay television). In this case, data is broadcasted (distributed to all) receivers, but only addressed to a group.
+The concept of interactive multicast, for example using IP multicast, may be used over TV broadcast networks, but relies on an additional interaction channel (a back-channel or return channel), where user equipment may send join an leave messages when the user change TV channel. TV programmes are sent only over transmitters where there are viewers. Interactive multicast has been suggested as an efficient transmission in DVB-H and DVB-T2 broadcasting system,M. Eriksson,  S.M. Hasibur Rahman, F. Fraille, M. Sjöström, ”Efficient Interactive Multicast over DVB-T2 - Utilizing Dynamic SFNs and PARPS”, 2013 IEEE International Conference on Computer and Information Technology (BMSB’13), London, UK, June 2013. I similar concept is switched boradast over cable-TV networks, where where only the currently most popular content is delivered in the cable-TV network.N. Sinha, R. Oz and S. V. Vasudevan, “The statistics of switched broadcast”, Proceedings of the SCTE 2005 Conference on Emerging Technologies, Tampa, FL, USA, January 2005
+Cell-TV implies TV distribution over 3G cellular networks with the Multimedia Broadcast Multicast Service (MBMS), or over 4G/LTE cellular networks with the ehanced MBMS (eMBMS) service.
+Scalable video multicast in a application of interactive multicast, where a subset of the viewers receive additional data for high-resolution video.
+
+==Other multicast technologies==
+
+In an optical mesh network, protecting multicast lightpaths is one of the key concerns.[tpl]cn|date=August 2013[/tpl] The most straight forward approach to protect a multicast tree is to establish a link-disjoint backup tree which establishes dedicated protection. It is much easier to find an arc-disjoint path for each leaf node in a light tree.[tpl]cn|date=August 2013[/tpl] The essence of protecting a multicast session is to find a backup path for each destination node when a link on the working path to that node fails.
+
+==See also==
+
+==References==
+
+==External links==
+
+

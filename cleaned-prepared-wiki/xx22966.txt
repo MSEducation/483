@@ -1,0 +1,73 @@
+[[Power series]]
+
+CATEGORIES: Real analysis, Complex analysis, Multivariable calculus, Mathematical series
+
+In mathematics, a power series (in one variable) is an infinite series of the form
+where an represents the coefficient of the nth term, c is a constant, and x varies around c (for this reason one sometimes speaks of the series as being centered at c). This series usually arises as the Taylor series of some known function.
+In many situations c is equal to zero, for instance when considering a Maclaurin series.  In such cases, the power series takes the simpler form
+These power series arise primarily in analysis, but also occur in combinatorics (as generating functions, a kind of formal power series) and in electrical engineering (under the name of the Z-transform).  The familiar decimal notation for real numbers can also be viewed as an example of a power series, with integer coefficients, but with the argument x fixed at . In number theory, the concept of p-adic numbers is also closely related to that of a power series.
+
+Examples
+
+or indeed around any other center c.  One can view power series as being like "polynomials of infinite degree," although power series are not polynomials. 
+The geometric series formula
+formula
+and the sine formula
+valid for all real x.
+These power series are also examples of Taylor series. 
+
+Radius of convergence
+
+A power series will converge for some values of the variable x and may diverge for others. All power series f(x) in powers of (x-c) will converge at x = c. (The correct value f(c) = a0 requires interpreting the expression 00 as equal to 1.) If c is not the only convergent point, then there is always a number r with 0  r.  The number r is called the radius of convergence of the power series; in general it is given as
+or, equivalently,
+(this is the Cauchy–Hadamard theorem; see limit superior and limit inferior for an explanation of the notation). A fast way to compute it is
+if this limit exists.
+The series converges absolutely for |x − c| For |x − c| = r, we cannot make any general statement on whether the series converges or diverges. However, for the case of real variables, Abel's theorem states that the sum of the series is continuous at x if the series converges at x. In the case of complex variables, we can only claim continuity along the line segment starting at c and ending at x.
+
+Operations on power series
+
+Addition and subtraction
+
+When two functions f and g are decomposed into power series around the same center c, the power series of the sum or difference of the functions can be obtained by termwise addition and subtraction. That is, if:
+then
+
+Multiplication and division
+
+With the same definitions above, for the power series of the product and quotient of the functions can be obtained as follows:
+For division, observe:
+and then use the above, comparing coefficients.
+
+Differentiation and integration
+
+Once a function is given as a power series, it is differentiable on the interior of the domain of convergence. It can be differentiated and integrated quite easily, by treating every term separately:
+Both of these series have the same radius of convergence as the original one.
+
+Analytic functions
+
+A function f defined on some open subset U of R or C is called analytic if it is locally given by a convergent power series. This means that every a ∈ U has an open neighborhood V ⊆ U, such that there exists a power series with center a which converges to f(x) for every x ∈ V. 
+Every power series with a positive radius of convergence is analytic on the interior of its region of convergence. All holomorphic functions are complex-analytic. Sums and products of analytic functions are analytic, as are quotients as long as the denominator is non-zero. 
+If a function is analytic, then it is infinitely often differentiable, but in the real case the converse is not generally true. For an analytic function, the coefficients an can be computed as 
+The global form of an analytic function is completely determined by its local behavior in the following sense: if f and g are two analytic functions defined on the same connected open set U, and if there exists an element c∈U such that f (n)(c) = g (n)(c) for all n ≥ 0, then f(x) = g(x) for all x ∈ U.
+If a power series with radius of convergence r is given, one can consider analytic continuations of the series, i.e. analytic functions f which are defined on larger sets than { x : |x − c| The power series expansion of the inverse function of an analytic function can be determined using the Lagrange inversion theorem.
+
+Formal power series
+
+In abstract algebra, one attempts to capture the essence of power series without being restricted to the fields of real and complex numbers, and without the need to talk about convergence. This leads to the concept of formal power series, a concept of great utility in algebraic combinatorics.
+
+Power series in several variables
+
+An extension of the theory is necessary for the purposes of multivariable calculus. A power series is here defined to be an infinite series of the form
+where j = (j1, ..., jn) is a vector of natural numbers, the coefficients
+a(j1,...,jn) are usually real or complex numbers, and the center  c = (c1, ..., cn) and argument x = (x1, ..., xn) are usually real or complex vectors. In the more convenient multi-index notation this can be written
+
+Order of a power series
+
+Let α be a multi-index for a power series f(x1, x2, …, xn).  The order of the power series f is defined to be the least value |α| such that aα ≠ 0, or 0 if f ≡ 0.  In particular, for a power series f(x) in a single variable x, the order of f is the smallest power of x with a nonzero coefficient.  This definition readily extends to Laurent series.
+
+
+
+
+
+
+
+

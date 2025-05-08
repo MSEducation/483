@@ -1,0 +1,50 @@
+[[CDDB]]
+
+CATEGORIES: Online music and lyrics databases
+
+CDDB, short for Compact Disc Database, is  a database for software applications to look up audio CD (compact disc) information over the Internet. This is performed by a client which calculates a (nearly) unique disc ID and then queries the database. As a result, the client is able to display the artist name, CD title, track list and some additional information. CDDB is a licensed trademark of Gracenote, Inc.
+The database is used primarily by media players and CD ripper software. If a CD is not recognized by a media player or CD ripper it can be added to the database if the user fills in the names and artists etc. in a media player such as iTunes or MusicMatch Jukebox.
+The need for CDDB is a direct consequence of the original design of the CD, which was conceived as an evolution of the gramophone record, and did not consider the audio tracks as data files to be identified and indexed. The audio CD format does not include the disc name or track names, so a supplemental database is needed to supply this information when discs are used with modern media systems. A later development called CD-Text is another solution to the same problem.
+
+History
+
+CDDB was invented by Ti Kan around late 1993 as a local database that was delivered with his popular xmcd music player application. The application's change history first mentions the acronym CDDB in version 1.1 released on February 25, 1994. Users would submit new entries to the database via e-mail to Kan.
+The database quickly became unwieldy and Kan enlisted the help of Steve Scherf to create a network accessible version of the database operating as CDDB Inc. Graham Toal supplied hosting for the CDDB server and created a banner advertising revenue model to pay for the hosting. The original software behind CDDB was released under the GNU General Public License, and many people submitted CD information thinking the service would also remain free.
+The project was eventually incorporated as CDDB LLC in 1998
+In 2000, CDDB Inc. was renamed Gracenote.
+In March 2001, CDDB, now owned by Gracenote, banned all unlicensed applications from accessing their database. New licenses for CDDB1 (the original version of CDDB) were no longer available, since Gracenote wanted to force programmers to switch to CDDB2, a new version incompatible with CDDB1 and hence with freedb.
+The license change motivated many forks in the CDDB project tree, including the freedb project, which is intended to remain free software.
+As of June 2, 2008, Sony Corp. of America completed acquisition (full ownership) of Gracenote, per the news note on the Gracenote website.
+
+How CDDB works
+
+CDDB was designed around the task of identifying entire CDs, not merely single tracks. The identification process involves creating a "discid", a sort of "fingerprint" of a CD created by performing calculations on the track duration information stored in the table-of-contents of the CD (see the following section for an example calculation). This discid is used with the Internet database, typically either to download track names for the whole CD or to submit track names for a newly identified CD.
+This information is often provided by end users.iTunes Mac 8.2 Help: Sending CD information to the Gracenote media database
+Since identification of CDs is based on the length and order of the tracks, CDDB cannot identify playlists in which the order of tracks has been changed, or compilations of tracks from different CDs.  CDDB also cannot distinguish between different CDs that have the same number of tracks and the same track lengths.
+
+Example calculation of a CDDB1 (FreeDB) disc ID
+
+CDDB1 identifies CDs with a 32-bit number, usually displayed as a hexadecimal number containing 8 digits: XXYYYYZZ.  The first two digits (labeled XX) represent a checksum based on the starting times of each track on the CD, mod 255.  The next four digits (YYYY) represent the total time of the CD in seconds from the start of the first track to the end of the last track.  The last two digits (ZZ) represent the number of tracks on the CD.
+For example, suppose a CD contains a single track of duration 3610 seconds.
+First the XX checksum is calculated by summing the track starting times mod 255. Since CDs have a 2-second offset from the start of disc data, XX becomes "02".
+Second, the total CD play duration of 3610 seconds in hexadecimal is 0e1a, so YYYY becomes "0e1a".
+Finally, there is one track on this CD so ZZ becomes "01".
+The full disc ID of the example CD is "020e1a01".  Any CD which contains one track with a duration of 3610 seconds starting 2 seconds from the beginning of the CD will have this disc ID. To distinguish between different CDs which happen to have the same disc ID, the CDDB1 database is organized into multiple categories. If there is a conflict with different CD releases possessing the same CDDB1 ID, they can be placed in a different category (such as classical, rock, blues, folk or misc).
+Sample code for calculating CDDB1 disc IDs in various programming languages is available on the
+web, such as in Java.
+
+Classical music
+
+At its origin, CDDB was oriented towards pop/rock music with the typical artist/album/song structure. Their database often lacks adequate information on classical music CDs, mostly due to its structure, which originally lacked a standard way of storing composers' names. A classical track title would now contain the composer, for instance "Vivaldi: The Four Seasons, Op. 8/1, 'Spring' — 1. Allegro". The artist field would contain all information about the ensemble, conductor and perhaps soloist, for instance "Joseph Silverstein, Seiji Ozawa, Boston Symphony Orchestra". In 2007, about 10,000 classical CDs had been converted to this new convention.
+
+Alternatives
+
+Alternative projects include freedb, MusicBrainz, Discogs, Decibel Music Systems Ltd and AMG LASSO, .
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+[[Game tree]]
+
+CATEGORIES: Combinatorial game theory, Trees (graph theory)
+
+In game theory, a game tree is a directed graph whose nodes are positions in a game and whose edges are moves. The complete game tree for a game is the game tree starting at the initial position and containing all possible moves from each position; the complete tree is the same tree as that obtained from the extensive-form game representation.
+The diagram shows the first two levels, or plies, in the game tree for tic-tac-toe. The rotations and reflections of positions are equivalent, so the first player has three choices of move: in the center, at the edge, or in the corner. The second player has two choices for the reply if the first player played in the center, otherwise five choices. And so on.
+The number of leaf nodes in the complete game tree is the number of possible different ways the game can be played. For example, the game tree for tic-tac-toe has 255,168 leaf nodes.
+Game trees are important in artificial intelligence because one way to pick the best move in a game is to search the game tree using the minimax algorithm or its variants. The game tree for tic-tac-toe is easily searchable, but the complete game trees for larger games like chess are much too large to search. Instead, a chess-playing program searches a partial game tree: typically as many plies from the current position as it can search in the time available. Except for the case of "pathological" game trees [tpl]cite journal |last=Nau |first=Dana | year=1982 |title=An investigation of the causes of pathology in games |journal= Artificial Intelligence |volume=19 |pages=257–278 |doi=10.1016/0004-3702(82)90002-9[/tpl] (which seem to be quite rare in practice), increasing the search depth (i.e., the number of plies searched) generally improves the chance of picking the best move.
+Two-person games can also be represented as and-or trees. For the first player to win a game, there must exist a winning move for all moves of the second player. This is represented in the and-or tree by using disjunction to represent the first player's alternative moves and using conjunction to represent all of the second player's moves.
+
+==Solving game trees==
+
+===Deterministic Algorithm Version===
+
+With a complete game tree, it is possible to "solve" the game – that is to say, find a sequence of moves that either the first or second player can follow that will guarantee either a win or tie.  The algorithm (which is generally called backward induction or retrograde analysis) can be described recursively as follows.
+The diagram shows a game tree for an arbitrary game, colored using the above algorithm.
+It is usually possible to solve a game (in this technical sense of "solve") using only a subset of the game tree, since in many games a move need not be analyzed if there is another move that is better for the same player (for example alpha-beta pruning can be used in many deterministic games).
+Any subtree that can be used to solve the game is known as a decision tree, and the sizes of decision trees of various shapes are used as measures of game complexity.[tpl]cite book | author = Victor Allis | year = 1994 | title = Searching for Solutions in Games and Artificial Intelligence | publisher = Ph.D. Thesis, University of Limburg, Maastricht, The Netherlands | isbn = 90-900748-8-0 | url = http://fragrieu.free.fr/SearchingForSolutions.pdf[/tpl]
+
+===Randomized Algorithms Version===
+
+Randomized algorithms can be used in solving game trees. There are two main advantages in this type of implementation: speed and practicality. Whereas a deterministic version of solving game trees can be done in Ο(n), the following randomized algorithm has an expected run time of θ(n0.792). Moreover, it is practical because randomized algorithms are capable of "foiling an enemy" which means that an opponent can not beat the system of game trees by knowing the algorithm used to solve the game tree because the order of solving is random. 
+The following is an implementation of randomized game tree solution algorithm:[tpl]cite book | author = Daniel Roche | year = 2013 | title = SI486D: Randomness in Computing, Game Trees Unit | publisher = United States Naval Academy, Computer Science Department  url = http://www.usna.edu/Users/cs/roche/courses/s13si486d/u03/[/tpl]
+The algorithm makes use of the idea of "short-circuiting" - meaning that if the root node is considered an "OR" operator, then once one "TRUE" is found, the root is classified as true, conversely, if the root node is considered an "AND" operator than once one "FALSE" is found, the root is classified as false.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+
+

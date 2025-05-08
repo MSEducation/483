@@ -1,0 +1,32 @@
+.</ref>) is a particularly ineffective [[sorting algorithm]] based on the [[Trial and error|generate and test]] paradigm. It is not useful for sorting, but may be used for educational purposes, to contrast it with other more realistic algorithms; it has also been used as an example in [[logic programming]].<ref name="KSFS"/><ref name="Naish86"/><ref name="Naish95"/> If bogosort were used to sort a [[deck of cards]], it would consist of checking if the deck were in order, and if it were not, throwing the deck into the air, picking the cards up at random, and repeating the process until the deck is sorted. Its name comes from the word ''bogus''.<ref>[tpl]cite web|title=Bogosort|url=http://www.catb.org/jargon/html/B/bogo-sort.html|work=The Jargon File 4.4.8|accessdate=11 April 2013|year=2003[/tpl]</ref> 
+
+==Description of the algorithm==
+
+The following is a description of the algorithm in pseudocode:
+ '''while not''' isInOrder(deck):
+     shuffle(deck)
+
+==Running time and termination==
+
+ | last1 = Gruber | first1 = H.
+ | last2 = Holzer | first2 = M.
+ | last3 = Ruepp | first3 = O.
+ | contribution = Sorting the slow way: an analysis of perversely awful randomized sorting algorithms
+ | doi = 10.1007/978-3-540-72914-3_17
+ | pages = 183–197
+ | publisher = Springer-Verlag
+ | series = Lecture Notes in Computer Science
+ | title = 4th International Conference on Fun with Algorithms, Castiglioncello, Italy, 2007
+ | url = http://www.hermann-gruber.com/data/fun07-final.pdf
+ | volume = 4475}}.</ref> The expected number of swaps grows faster than the expected number of comparisons, because if the elements are not in order, this will usually be discovered after only a few comparisons no matter how many elements there are, but the work of shuffling the collection is proportional to its size. In the worst case, the number of comparisons and swaps are both unbounded, for the same reason that a tossed coin might turn up heads any number of times in a row.
+For any collection of fixed size, the expected running time of the algorithm is finite for much the same reason that the infinite monkey theorem holds: there is some probability of getting the right permutation, so given an unbounded number of tries it will almost surely eventually be chosen.
+
+==Related algorithms==
+
+==See also==
+
+==References==
+
+==External links==
+
+

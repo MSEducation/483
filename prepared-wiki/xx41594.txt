@@ -1,0 +1,30 @@
+[[Proxy pattern]]
+
+CATEGORIES: Software design patterns, Articles with example Java code, Articles with example C Sharp code
+
+In computer programming, the proxy pattern is a software design pattern.
+A proxy, in its most general form, is a class functioning as an interface to something else. The proxy could interface to anything: a network connection, a large object in memory, a file, or some other resource that is expensive or impossible to duplicate.
+A well-known example of the proxy pattern is a reference counting pointer object.
+In situations where multiple copies of a complex object must exist, the proxy pattern can be adapted to incorporate the flyweight pattern in order to reduce the application's memory footprint. Typically, one instance of the complex object and multiple proxy objects are created, all of which contain a reference to the single original complex object. Any operations performed on the proxies are forwarded to the original object. Once all instances of the proxy are out of scope, the complex object's memory may be deallocated.
+
+==Example==
+
+The following Java example illustrates the "virtual proxy" pattern. The ProxyImage class is used to access a remote method.
+The example creates first an interface against which the pattern creates the classes. This interface contains only one method to display the image, called displayImage(), that has to be coded by all classes implementing it.
+The proxy class ProxyImage is running on another system than the real image class itself and can represent the real image RealImage over there. The image information is accessed from the disk. Using the proxy pattern, the code of the ProxyImage avoids multiple loading of the image, accessing it from the other system in a memory-saving manner. It should be noted, however, that the lazy loading demonstrated in this example is not part of the proxy pattern, but is merely an advantage made possibly by the use of the proxy.
+The program's output is:
+ Loading   HiRes_10MB_Photo1
+ Displaying HiRes_10MB_Photo1
+ Displaying HiRes_10MB_Photo1
+ Loading   HiRes_10MB_Photo2
+ Displaying HiRes_10MB_Photo2
+ Displaying HiRes_10MB_Photo2
+ Displaying HiRes_10MB_Photo1
+
+==See also==
+
+==References==
+
+==External links==
+
+

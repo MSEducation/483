@@ -1,0 +1,168 @@
+[[Orbital mechanics]]
+
+CATEGORIES: Astrodynamics
+
+Orbital mechanics or astrodynamics is the application of ballistics and celestial mechanics to the practical problems concerning the motion of rockets and other spacecraft.  The motion of these objects is usually calculated from Newton's laws of motion and Newton's law of universal gravitation.  It is a core discipline within space mission design and control.  Celestial mechanics treats more broadly the orbital dynamics of systems under the influence of gravity, including both spacecraft and natural astronomical bodies such as star systems, planets, moons, and comets.  Orbital mechanics focuses on spacecraft trajectories, including orbital maneuvers, orbit plane changes, and interplanetary transfers, and is used by mission planners to predict the results of propulsive maneuvers.  General relativity is a more exact theory than Newton's laws for calculating orbits, and is sometimes necessary for greater accuracy or in high-gravity situations (such as orbits close to the Sun).
+
+History
+
+Until the rise of space travel in the twentieth century, there was little distinction between orbital and celestial mechanics. The fundamental techniques, such as those used to solve the Keplerian problem (determining position as a function of time), are therefore the same in both fields. Furthermore, the history of the fields is almost entirely shared.
+Johannes Kepler was the first to successfully model planetary orbits to a high degree of accuracy, publishing his laws in 1605. Isaac Newton published more general laws of celestial motion in his 1687 book, Philosophiæ Naturalis Principia Mathematica.
+
+Practical techniques
+
+Rules of thumb
+
+The following rules of thumb are useful for situations approximated by classical mechanics under the standard assumptions of astrodynamics.  The specific example discussed is of a satellite orbiting a planet, but the rules of thumb could also apply to other situations, such as orbits of small bodies around a star such as the Sun.
+The consequences of the rules of orbital mechanics are sometimes counter-intuitive.  For example, if two spacecraft are in the same circular orbit and wish to dock, unless they are very close, the trailing craft cannot simply fire its engines to go faster.  This will change the shape of its orbit, causing it to gain altitude and miss its target.  One approach is to thrust retrograde, or opposite to the direction of motion, and then thrust again to re-circularize the orbit at a lower altitude.  Because lower orbits are faster than higher orbits, the trailing craft will begin to catch up.  A third firing at the right time will put the trailing craft in an elliptical orbit which will intersect the path of the leading craft, approaching from below.
+To the degree that the standard assumptions of astrodynamics do not hold, actual trajectories will vary from those calculated.  For example, simple atmospheric drag is another complicating factor for objects in Earth orbit.  These rules of thumb are decidedly inaccurate when describing two or more bodies of similar mass, such as a binary star system (see n-body problem).  (Celestial mechanics uses more general rules applicable to a wider variety of situations.)  The differences between classical mechanics and general relativity can also become important for large objects like planets.
+
+Laws of astrodynamics
+
+The fundamental laws of astrodynamics are Newton's law of universal gravitation and Newton's laws of motion, while the fundamental mathematical tool is his differential calculus.
+Every orbit and trajectory outside atmospheres is in principle reversible, i.e., in the space-time function the time is reversed. The velocities are reversed and the accelerations are the same, including those due to rocket bursts. Thus if a rocket burst is in the direction of the velocity, in the reversed case it is opposite to the velocity. Of course in the case of rocket bursts there is no full reversal of events, both ways the same delta-v is used and the same mass ratio applies.
+Standard assumptions in astrodynamics include non-interference from outside bodies, negligible mass for one of the bodies, and negligible other forces (such as from the solar wind, atmospheric drag, etc.).  More accurate calculations can be made without these simplifying assumptions, but they are more complicated.  The increased accuracy often does not make enough of a difference in the calculation to be worthwhile.
+Kepler's laws of planetary motion may be derived from Newton's laws, when it is assumed that the orbiting body is subject only to the gravitational force of the central attractor. When an engine thrust or propulsive force is present, Newton's laws still apply, but Kepler's laws are invalidated.  When the thrust stops, the resulting orbit will be different but will once again be described by Kepler's laws.  The three laws are:
+
+Escape velocity
+
+The formula for escape velocity is easily derived as follows.  The specific energy (energy per unit mass) of any space vehicle is composed of two components, the specific potential energy and the specific kinetic energy. The specific potential energy associated with a planet of mass M is given by
+while the specific kinetic energy of an object is given by
+Since energy is conserved, the total specific orbital energy
+The escape velocity from the Earth's surface is about 11 km/s, but that is insufficient to send the body an infinite distance because of the gravitational pull of the Sun. To escape the Solar System from a location at a distance from the Sun equal to the distance Sun–Earth, but not close to the Earth, requires around 42 km/s velocity, but there will be "part credit" for the Earth's orbital velocity for spacecraft launched from Earth, if their further acceleration (due to the propulsion system) carries them in the same direction as Earth travels in its orbit.
+
+Formulae for free orbits
+
+Orbits are conic sections, so, naturally, the formulas for the distance of a body for a given angle corresponds to the formula for that curve in polar coordinates, which is:
+where μ is called the gravitational parameter,  G is the gravitational constant, m1 and m2 are the masses of objects 1 and 2, and h is the specific angular momentum of object 2 with respect to object 1. The parameter θ is known as the true anomaly, p is the semi-latus rectum, while e is the orbital eccentricity, all obtainable from the various forms of the six independent orbital elements.
+
+Circular orbits
+
+All bounded orbits where the gravity of a central body dominates are elliptical in nature. A special case of this is the circular orbit, which is an ellipse of zero eccentricity. The formula for the velocity of a body in a circular orbit at distance r from the center of gravity of mass M is
+To properly use this formula, the units must be consistent; for example, M must be in kilograms, and r must be in meters. The answer will be in meters per second.
+The quantity GM is often termed the standard gravitational parameter, which has a different value for every planet or moon in the Solar System.
+Once the circular orbital velocity is known, the escape velocity is easily found by multiplying by the square root of 2:
+
+Elliptical orbits
+
+If 0p which is given by:
+The maximum value r is reached when θ = 180. This point is called the apoapsis, and its radial coordinate, denoted ra, is
+Let 2a be the distance measured along the apse line from periapsis P to apoapsis A, as illustrated in the equation below:
+Substituting the equations above, we get:
+a is the semimajor axis of the ellipse. Solving for r we get:
+
+=Orbital period=
+
+where:
+Conclusions:
+
+=Velocity=
+
+where:
+
+=Energy=
+
+where:
+Conclusions:
+Using the virial theorem we find:
+
+Parabolic orbits
+
+If the eccentricity equals 1, then the orbit equation becomes:
+where:
+As the true anomaly θ approaches 180°, the denominator approaches zero, so that r tends towards infinity. Hence, the energy of the trajectory for which e=1 is zero, and is given by:
+where:
+In other words, the speed anywhere on a parabolic path is:
+
+Hyperbolic orbits
+
+If e>1, the orbit formula,
+describes the geometry of the hyperbolic orbit. The system consists of two symmetric curves. the orbiting body occupies one of them. The other one is its empty mathematical image. Clearly, the denominator of the equation above goes to zero when cosθ = -1/e. we denote this value of true anomaly
+since the radial distance approaches infinity as the true anomaly approaches θ∞. θ∞ is known as the true anomaly of the asymptote. Observe that θ∞ lies between 90° and 180°. From the trig identity sin2θ+cos2θ=1 it follows that:
+
+=Energy=
+
+where:
+
+=Hyperbolic excess velocity=
+
+where:
+The hyperbolic excess velocity is related to the specific orbital energy or characteristic energy by
+
+Calculating trajectories
+
+Kepler's equation
+
+One approach to calculating orbits (mainly used historically) is to use Kepler's equation:
+Evaluating this yields:
+
+Conic orbits
+
+For simple procedures, such as computing the delta-v for coplanar transfer ellipses, traditional approaches are fairly effective. Others, such as time-of-flight are far more complicated, especially for near-circular and hyperbolic orbits.
+
+The patched conic approximation
+
+The Hohmann transfer orbit alone is a poor approximation for interplanetary trajectories because it neglects the planets' own gravity.  Planetary gravity dominates the behaviour of the spacecraft in the vicinity of a planet and in most cases Hohmann severely overestimates delta-v, and produces highly inaccurate prescriptions for burn timings.
+A relatively simple way to get a first-order approximation of delta-v is based on the 'Patched Conic Approximation' technique. One must choose the one dominant gravitating body in each region of space through which the trajectory will pass, and to model only that body's effects in that region.  For instance, on a trajectory from the Earth to Mars, one would begin by considering only the Earth's gravity until the trajectory reaches a distance where the Earth's gravity no longer dominates that of the Sun.  The spacecraft would be given escape velocity to send it on its way to interplanetary space.  Next, one would consider only the Sun's gravity until the trajectory reaches the neighbourhood of Mars.  During this stage, the transfer orbit model is appropriate.  Finally, only Mars's gravity is considered during the final portion of the trajectory where Mars's gravity dominates the spacecraft's behaviour.  The spacecraft would approach Mars on a hyperbolic orbit, and a final retrograde burn would slow the spacecraft enough to be captured by Mars.
+This simplification is sufficient to compute rough estimates of fuel requirements, and rough time-of-flight estimates, but it is not generally accurate enough to guide a spacecraft to its destination.  For that, numerical methods are required.
+
+The universal variable formulation
+
+To address computational shortcomings of traditional approaches for solving the 2-body problem, the universal variable formulation was developed.  It works equally well for the circular, elliptical, parabolic, and hyperbolic cases, the differential equations converging well when integrated for any orbit.  It also generalizes well to problems incorporating perturbation theory.
+
+Perturbations
+
+The following are some effects which make real orbits differ from the simple models based on a spherical earth.  Most of them can be handled on short timescales (perhaps less than a few thousand orbits) by perturbation theory because they are small relative to the corresponding two-body effects.
+Over very long timescales (perhaps millions of orbits), even small perturbations can dominate, and the behaviour can become chaotic. On the other hand, the various perturbations can be orchestrated by clever astrodynamicists to assist with orbit maintenance tasks, such as station-keeping, ground track maintenance or adjustment, or phasing of perigee to cover selected targets at low altitude.
+
+Orbital maneuver
+
+In spaceflight, an orbital maneuver is the use of propulsion systems to change the orbit of a spacecraft. For spacecraft far from Earth—for example those in orbits around the Sun—an orbital maneuver is called a deep-space maneuver (DSM).
+
+Orbital transfer
+
+Transfer orbits are usually elliptical orbits that allow spacecraft to move from one (usually substantially circular) orbit to another.  Usually they require a burn at the start, a burn at the end, and sometimes one or more burns in the middle.
+For the case of orbital transfer between non-coplanar orbits, the change-of-plane thrust must be made at the point where the orbital planes intersect (the "node").
+
+Gravity assist and the Oberth effect
+
+In a gravity assist, a spacecraft swings by a planet and leaves in a different direction, at a different speed.  This is useful to speed or slow a spacecraft instead of carrying more fuel.
+This maneuver can be approximated by an elastic collision at large distances, though the flyby does not involve any physical contact.  Due to Newton's Third Law (equal and opposite reaction), any momentum gained by a spacecraft must be lost by the planet, or vice versa.  However, because the planet is much, much more massive than the spacecraft, the effect on the planet's orbit is negligible.
+The Oberth effect can be employed, particularly during a gravity assist operation. This effect is that use of a propulsion system works better at high speeds, and hence course changes are best done when close to a gravitating body; this can multiply the effective delta-v.
+
+Interplanetary Transport Network and fuzzy orbits
+
+It is now possible to use computers to search for routes using the nonlinearities in the gravity of the planets and moons of the Solar System. For example, it is possible to plot an orbit from high earth orbit to Mars, passing close to one of the Earth's Trojan points. Collectively referred to as the Interplanetary Transport Network, these highly perturbative, even chaotic, orbital trajectories in principle need no fuel beyond that needed to reach the Lagrange point (in practice keeping to the trajectory requires some course corrections). The biggest problem with them is they can be exceedingly slow, taking many years to arrive. In addition launch windows can be very far apart.
+They have, however, been employed on projects such as Genesis. This spacecraft visited the Earth-Sun Lagrange  point and returned using very little propellant.
+
+
+
+
+
+|last= Bate
+|first= Roger R.
+|coauthors= Mueller, Donald D., and White, Jerry E.
+|title=Fundamentals of Astrodynamics
+|year=1971
+|publisher=Dover Publications
+|location=New York
+|isbn=0-486-60061-0
+|pages=
+}}
+|last=Sellers
+|first=Jerry J.
+|coauthors= Astore, William J., Giffen, Robert B., Larson, Wiley J.
+|editor=Kirkpatrick, Douglas H.
+|title= Understanding Space: An Introduction to Astronautics
+|edition=2
+|year=2004
+|publisher=McGraw Hill
+|isbn=0-07-242468-0
+|pages= 228}}
+
+
+
+Further reading
+
+Many of the options, procedures, and supporting theory are covered in standard works such as:
+

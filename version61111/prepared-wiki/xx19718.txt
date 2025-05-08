@@ -1,0 +1,139 @@
+ | journal = [[American Mathematical Monthly]]
+ | mr = 0023257
+ | pages = 589–592
+ | title = Binomial coefficients modulo a prime
+ | volume = 54
+ | year = 1947}}. See in particular Theorem 2, which gives a generalization of this fact for all prime moduli.</ref>
+
+===Diagonals===
+
+The diagonals of Pascal's triangle contain the figurate numbers of simplices:
+The symmetry of the triangle implies that the nth d-dimensional number is equal to the dth n-dimensional number.
+An alternative formula that does not involve recursion is as follows:
+The geometric meaning of a function Pd is:  Pd(1) = 1 for all d.  Construct a d-dimensional triangle (a 3-dimensional triangle is a tetrahedron) by placing additional dots below an initial dot, corresponding to Pd(1) = 1.  Place these dots in a manner analogous to the placement of numbers in Pascal's triangle.  To find Pd(x), have a total of x dots composing the target shape.  Pd(x) then equals the total number of dots in the shape.  A 0-dimensional triangle is a point and a 1-dimensional triangle is simply a line, and therefore P0(x) = 1 and P1(x) = x, which is the sequence of natural numbers.  The number of dots in each layer corresponds to Pd − 1(x).
+
+===Calculating a row or diagonal by itself===
+
+There are simple algorithms to compute all the elements in a row or diagonal without computing other elements or factorials.
+
+===Overall patterns and properties===
+
+|- align=center
+|bgcolor=red|1
+|- align=center
+| style="background:orange;"|1
+| style="background:yellow;"|1
+|- align=center
+| style="background:yellow;"|1
+|bgcolor=lime|2
+|bgcolor=aqua|1
+|- align=center
+|bgcolor=lime|1
+|bgcolor=aqua|3
+| style="background:violet;"|3
+|bgcolor=red|1
+|- align=center
+|bgcolor=aqua|1
+| style="background:violet;"|4
+|bgcolor=red|6
+| style="background:orange;"|4
+| style="background:yellow;"|1
+|- align=center
+| style="background:violet;"|1
+|bgcolor=red|5
+| style="background:orange;"|10
+| style="background:yellow;"|10
+|bgcolor=lime|5
+|bgcolor=aqua|1
+|- align=center
+|bgcolor=red|1
+| style="background:orange;"|6
+| style="background:yellow;"|15
+|bgcolor=lime|20
+|bgcolor=aqua|15
+| style="background:violet;"|6
+|bgcolor=red|1
+|- align=center
+| style="background:orange;"|1
+| style="background:yellow;"|7
+|bgcolor=lime|21
+|bgcolor=aqua|35
+| style="background:violet;"|35
+|bgcolor=red|21
+| style="background:orange;"|7
+| style="background:yellow;"|1
+|- align=center
+| style="background:yellow; width:50px;"|1
+| style="background:lime; width:50px;"|8
+| style="background:aqua; width:50px;"|28
+| style="background:violet; width:50px;"|56
+| style="background:red; width:50px;"|70
+| style="background:orange; width:50px;"|56
+| style="background:yellow; width:50px;"|28
+| style="background:lime; width:50px;"|8
+| style="background:aqua; width:50px;"|1
+|}
+
+===Construction as matrix exponential===
+
+Due to its simple construction by factorials, a very basic representation of Pascal's triangle in terms of the matrix exponential can be given: Pascal's triangle is the exponential of the matrix which has the sequence 1, 2, 3, 4, … on its subdiagonal and zero everywhere else.
+
+===Number of elements of polytopes===
+
+Pascal's triangle can be used as a lookup table for the number of elements (such as edges and corners) within a polytope (such as a triangle, a tetrahedron, a square and a cube).
+Let's begin by considering the 3rd line of Pascal's triangle, with values 1, 3, 3, 1.  A 2-dimensional triangle has one 2-dimensional element (itself), three 1-dimensional elements (lines, or edges), and three 0-dimensional elements (vertices, or corners).  The meaning of the final number (1) is more difficult to explain (but see below).  Continuing with our example, a tetrahedron has one 3-dimensional element (itself), four 2-dimensional elements (faces), six 1-dimensional elements (edges), and four 0-dimensional elements (vertices).  Adding the final 1 again, these values correspond to the 4th row of the triangle (1, 4, 6, 4, 1).  Line 1 corresponds to a point, and Line 2 corresponds to a line segment (dyad).  This pattern continues to arbitrarily high-dimensioned hyper-tetrahedrons (known as simplices).
+To understand why this pattern exists, one must first understand that the process of building an n-simplex from an (n − 1)-simplex consists of simply adding a new vertex to the latter, positioned such that this new vertex lies outside of the space of the original simplex, and connecting it to all original vertices. As an example, consider the case of building a tetrahedron from a triangle, the latter of whose elements are enumerated by row 3 of Pascal's triangle: 1 face, 3 edges, and 3 vertices (the meaning of the final 1 will be explained shortly). To build a tetrahedron from a triangle, we position a new vertex above the plane of the triangle and connect this vertex to all three vertices of the original triangle.
+The number of a given dimensional element in the tetrahedron is now the sum of two numbers: first the number of that element found in the original triangle, plus the number of new elements, each of which is built upon elements of one fewer dimension from the original triangle. Thus, in the tetrahedron, the number of cells (polyhedral elements) is 0 (the original triangle possesses none) + 1 (built upon the single face of the original triangle) = 1; the number of faces is 1 (the original triangle itself) + 3 (the new faces, each built upon an edge of the original triangle) = 4; the number of edges is 3 (from the original triangle) + 3 (the new edges, each built upon a vertex of the original triangle) = 6; the number of new vertices is 3 (from the original triangle) + 1 (the new vertex that was added to create the tetrahedron from the triangle) = 4. This process of summing the number of elements of a given dimension to those of one fewer dimension to arrive at the number of the former found in the next higher simplex is equivalent to the process of summing two adjacent numbers in a row of Pascal's triangle to yield the number below. Thus, the meaning of the final number (1) in a row of Pascal's triangle becomes understood as representing the new vertex that is to be added to the simplex represented by that row to yield the next higher simplex represented by the next row. This new vertex is joined to every element in the original simplex to yield a new element of one higher dimension in the new simplex, and this is the origin of the pattern found to be identical to that seen in Pascal's triangle. Alternately, the "extra" 1 in a row can be thought of as the empty space, or field, in which the vertices, edges, faces, etc., exist.
+A similar pattern is observed relating to squares, as opposed to triangles.  To find the pattern, one must construct an analog to Pascal's triangle, whose entries are the coefficients of (x + 2)Row Number, instead of (x + 1)Row Number.  There are a couple ways to do this.  The simpler is to begin with Row 0 = 1 and Row 1 = 1, 2.  Proceed to construct the analog triangles according to the following rule:
+That is, choose a pair of numbers according to the rules of Pascal's triangle, but double the one on the left before adding.  This results in:
+                              1
+                          1       2
+                      1       4       4
+                  1       6       12      8
+              1       8       24      32      16
+          1       10      40      80      80       32
+      1       12      60      160     240     192       64
+  1       14      84      280     560     672      448       128
+The other way of manufacturing this triangle is to start with Pascal's triangle and multiply each entry by 2k, where k is the position in the row of the given number.  For example, the 2nd value in row 4 of Pascal's triangle is 6 (the slope of 1s corresponds to the zeroth entry in each row).  To get the value that resides in the corresponding position in the analog triangle, multiply 6 by 2Position Number = 6 × 22 = 6 × 4 = 24.  Now that the analog triangle has been constructed, the number of elements of any dimension that compose an arbitrarily dimensioned cube (called a hypercube) can be read from the table in a way analogous to Pascal's triangle.  For example, the number of 2-dimensional elements in a 2-dimensional cube (a square) is one, the number of 1-dimensional elements (sides, or lines) is 4, and the number of 0-dimensional elements (points, or vertices) is 4.  This matches the 2nd row of the table (1, 4, 4).  A cube has 1 cube, 6 faces, 12 edges, and 8 vertices, which corresponds to the next line of the analog triangle (1, 6, 12, 8).  This pattern continues indefinitely.
+To understand why this pattern exists, first recognize that the construction of an n-cube from an (n − 1)-cube is done by simply duplicating the original figure and displacing it some distance (for a regular n-cube, the edge length) orthogonal to the space of the original figure, then connecting each vertex of the new figure to its corresponding vertex of the original. This initial duplication process is the reason why, to enumerate the dimensional elements of an n-cube, one must double the first of a pair of numbers in a row of this analog of Pascal's triangle before summing to yield the number below. The initial doubling thus yields the number of "original" elements to be found in the next higher n-cube and, as before, new elements are built upon those of one fewer dimension (edges upon vertices, faces upon edges, etc.). Again, the last number of a row represents the number of new vertices to be added to generate the next higher n-cube.
+
+===Fourier transform of sin(x)n+1/x===
+
+As stated previously, the coefficients of (x + 1)n are the nth row of the triangle.   Now the coefficients of (x − 1)n are the same, except that the sign alternates from +1 to −1 and back again.  After suitable normalization, the same pattern of numbers occurs in the  Fourier transform of sin(x)n+1/x. More precisely: if n is even, take the real part of the transform, and if n is odd, take the imaginary part. Then the result is a step function, whose values (suitably normalized) are given by the nth row of the triangle with alternating signs.For a similar example, see e.g. [tpl]citation|title=Solvent suppression in Fourier transform nuclear magnetic resonance|first=P. J.|last=Hore|journal=Journal of Magnetic Resonance|year=1983|volume=55|issue=2|pages=283–300|doi=10.1016/0022-2364(83)90240-8[/tpl]. For example, the values of the step function that results from:
+compose the 4th row of the triangle, with alternating signs.  This is a generalization of the following basic result (often used in electrical engineering):
+is the boxcar function.[tpl]citation|title=An Introduction to Digital Signal Processing|first=John H.|last=Karl|publisher=Elsevier|year=2012|isbn=9780323139595|page=110|url=http://books.google.com/books?id=9Dv1PClLZWIC&pg=PA110[/tpl].  The corresponding row of the triangle is row 0, which consists of just the number 1.
+If n is congruent to 2 or to 3 mod 4, then the signs start with −1. In fact, the sequence of the (normalized) first terms corresponds to the powers of i, which cycle around the intersection of the axes with the unit circle in the complex plane:
+
+===Elementary cellular automaton===
+
+The pattern produced by an elementary cellular automaton using rule 60 is exactly Pascal's triangle of binomial coefficients reduced modulo 2 (black cells correspond to odd binomial coefficients).[tpl]cite book |author=Wolfram, S. |title=A New Kind of Science |publisher=Wolfram Media |location=Champaign IL |year=2002 |pages=870, 931–2 [/tpl] Rule 102 also produces this pattern when trailing zeros are omitted. Rule 90 produces the same pattern but with an empty cell separating each entry in the rows.
+
+==Extensions==
+
+Pascal's Triangle can be extended to negative row numbers.
+First write the triangle in the following form:
+Next, extend the column of 1s upwards:
+Now the rule:
+can be rearranged to:
+which allows calculation of the other entries for negative rows:
+This extension preserves the property that the values in the mth column viewed as a function of n are fit by an order m polynomial, namely
+This extension also preserves the property that the values in the nth row correspond to the coefficients of (1 + x)n:
+For example:
+When viewed as a series, the rows of negative n diverge.  However, they are still Abel summable, which summation gives the standard values of 2n.  (In fact, the n = -1 row results in Grandi's series which "sums" to 1/2, and the n = -2 row results in another well-known series which has an Abel sum of 1/4.)
+Another option for extending Pascal's triangle to negative rows comes from extending the other line of 1s:
+Applying the same rule as before leads to
+Note that this extension also has the properties that just as
+we have
+Also, just as summing along the lower-left to upper-right diagonals of the Pascal matrix yields the Fibonacci numbers, this second type of extension still sums to the Fibonacci numbers for negative index.
+Either of these extensions can be reached if we define
+
+==See also==
+
+==References==
+
+Meeting: 1003, Atlanta, Georgia, SS 24A, AMS Special Session on Design Theory and Graph Theory, I
+1003-06-607 Avery S. Zoch, Pascal’s Grey Scale
+
+==External links==
+
+

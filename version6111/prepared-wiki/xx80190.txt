@@ -1,0 +1,40 @@
+[[Rayleigh quotient iteration]]
+
+CATEGORIES: Numerical linear algebra
+
+Rayleigh quotient iteration is an eigenvalue algorithm which extends the idea of the inverse iteration by using the Rayleigh quotient to obtain increasingly accurate eigenvalue estimates.
+Rayleigh quotient iteration is an iterative method, that is, it must be repeated until it converges to an answer (this is true for all eigenvalue algorithms).  Fortunately, very rapid convergence is guaranteed and no more than a few iterations are needed in practice.  The Rayleigh quotient iteration algorithm converges cubically for Hermitian or symmetric matrices, given an initial vector that is sufficiently close to an eigenvector of the matrix that is being analyzed.
+
+==Algorithm==
+
+and set the next approximation of the eigenvalue to the Rayleigh quotient of the current iteration equal to 
+To compute more than one eigenvalue, the algorithm can be combined with a deflation technique.
+
+==Example==
+
+Consider the matrix
+\begin{matrix}
+   1 \\
+   -\varphi \\
+   1 \\
+\begin{matrix}
+   1 \\
+   0.6180 \\
+   1 \\
+\end{matrix}\right].
+
+We begin with an initial eigenvalue guess of
+Then, the first iteration yields
+the second iteration,
+and the third,
+from which the cubic convergence is evident.
+
+==Octave Implementation==
+
+The following is a simple implementation of the algorithm in Octave.
+
+==See also==
+
+==References==
+
+

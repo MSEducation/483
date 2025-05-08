@@ -1,0 +1,28 @@
+[[Margin classifier]]
+
+CATEGORIES: Classification algorithms, Statistical classification
+
+In machine learning, a margin classifer is a classifier which is able to give an associated distance from the decision boundary for each example.  For instance, if a linear classifier (e.g. perceptron or linear discriminant analysis) is used, the distance (typically euclidean distance, though others may be used) of an example from the separating hyperplane is the margin of that example.
+The notion of margin is important in several machine learning classification algorithms, as it can be used to bound the generalization error of the classifier.  These bounds are frequently shown using the VC dimension.  Of particular prominence is the generalization error bound on boosting algorithms and support vector machines.
+
+==Support vector machine definition of margin==
+
+See support vector machines and maximum-margin hyperplane for details.
+
+==Margin for boosting algorithms==
+
+By this definition, the margin is positive if the example is labeled correctly and negative is the example is labeled incorrectly.
+This definition may be modified and is not the only way to define margin for boosting algorithms.  However, there are reasons why this definition may be appealing.Robert E. Schapire, Yoav Freund, Peter Bartlett and Wee Sun Lee.(1998) "Boosting the margin: A new explanation for the effectiveness of voting methods", The Annals of Statistics, 26(5):1651–1686
+
+==Examples of margin-based algorithms==
+
+Many classifiers can give an associated margin for each example.  However, only some classifiers utilize information of the margin while learning from a data set.  
+Many boosting algorithms rely on the notion of a margin to give weights to examples.  If a convex loss is utilized (as in AdaBoost, LogitBoost, and all members of the AnyBoost family of algorithms) then an example with higher margin will receive less (or equal) weight than an example with lower margin.  This leads the boosting algorithm to focus weight on low margin examples.  In nonconvex algorithms (e.g. BrownBoost), the margin still dictates the weighting of an example, though the weighting is non-monotone with respect to margin.  There exists boosting algorithms that provably maximize the minimum margin (e.g. see Manfred Warmuth and Karen Glocer and Gunnar Rätsch. Boosting Algorithms for Maximizing the Soft Margin. In the Proceedings of Advances in Neural Information Processing Systems 20, 2007, pp 1585–1592.).
+Support vector machines provably maximize the margin of the separating hyperplane.  Support vector machines that are trained using noisy data (there exists no perfect separation of the data in the given space) maximize the soft margin.  More discussion of this can be found in the support vector machine article.
+The voted-perceptron algorithm is a margin maximizing algorithm based on an iterative application of the classic perceptron algorithm.
+
+==Generalization error bounds==
+
+==References==
+
+

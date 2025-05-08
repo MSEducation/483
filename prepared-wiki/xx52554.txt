@@ -1,0 +1,62 @@
+[[Asymptotic equipartition property]]
+
+CATEGORIES: Information theory, Statistical theorems
+
+In information theory, the asymptotic equipartition property (AEP) is a general property of the output samples of a stochastic source. It is fundamental to the concept of typical set used in theories of compression.
+Roughly speaking, the theorem states that although there are many series of results that may be produced by a random process, the one actually produced is most probably from a loosely defined set of outcomes that all have approximately the same chance of being the one actually realized. (This is a consequence of the law of large numbers and ergodic theory.) Although there are individual outcomes which have a higher probability than any outcome in this set, the vast number of outcomes in the set almost guarantees that the outcome will come from the set. One way of intuitively understanding the property is through Cramér's large deviation theorem, which states that the probability of a large deviation from mean decays exponentially with the number of samples. Such results are studied in large deviations theory; intuitively, it is the large deviations that would violate equipartition, but these are unlikely.
+In the field of pseudorandom number generation, a candidate generator of undetermined quality whose output sequence lies too far outside the typical set by some statistical criteria is rejected as insufficiently random. Thus, although the typical set is loosely defined, practical notions arise concerning sufficient typicality.
+
+==Definition==
+
+Given a discrete-time stationary ergodic stochastic process X on the probability space (Ω, B, p), AEP is an assertion that
+
+==AEP for discrete-time i.i.d. sources==
+
+Given X is an i.i.d. source, its time series X1, ..., Xn is i.i.d. with entropy H(X) in the discrete-valued case and differential entropy in the continuous-valued case. The weak law of large numbers gives the AEP with convergence in probability,
+since the entropy is equal to the expectation of 
+The strong law of large numbers asserts the stronger almost sure convergence,
+which implies the result from the weak law of large numbers.
+
+==AEP for discrete-time finite-valued stationary ergodic sources==
+
+==AEP for non-stationary discrete-time source producing independent symbols==
+
+The assumptions of stationarity/ergodicity/identical distribution of random variables is not essential for the AEP to hold. Indeed, as is quite clear intuitively, the AEP requires only some form of the law of large numbers to hold, which is fairly general. However, the expression needs to be suitably generalized, and the conditions need to be formulated precisely.
+where 
+
+===Proof===
+
+Even this condition is not necessary, but given a non-stationary random process, it should not be difficult to test whether the AEP holds using the above method.
+
+===Applications for AEP for non-stationary source producing independent symbols===
+
+The AEP for non-stationary discrete-time independent process leads us to (among other results) source coding theorem for non-stationary source (with independent output symbols) and channel coding theorem for non-stationary memoryless channels. 
+
+====Source Coding Theorem====
+
+The source coding theorem for discrete time non-stationary independent sources can be found here: source coding theorem
+
+====Channel Coding Theorem====
+
+Channel coding theorem for discrete time non-stationary memoryless channels can be found here: noisy channel coding theorem
+
+==AEP for certain continuous-time stationary ergodic sources==
+
+Any time-invariant operations also preserves AEP, stationarity and ergodicity and we may easily turn a stationary process to non-stationary without losing AEP by nulling out a finite number of time samples in the process.
+
+==Category theory==
+
+Similarly, define
+Given a sequence HN that is asymptotically equivalent to PN, the entropy H(P) of P may be taken as
+
+==See also==
+
+==References==
+
+===The Classic Paper===
+
+===Other Journal Articles===
+
+===Textbooks on Information Theory===
+
+

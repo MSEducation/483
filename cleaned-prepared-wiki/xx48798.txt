@@ -1,0 +1,199 @@
+[[TI MSP430]]
+
+CATEGORIES: Microcontrollers, Texas Instruments hardware
+
+The MSP430 is a mixed-signal microcontroller family from Texas Instruments. Built around a  CPU, the MSP430 is designed for low cost and, specifically, low power consumptionMSP430 will run on grapes - video on YouTube embedded applications.
+
+Applications
+
+The MSP430 can be used for low powered embedded devices. The electric current drawn in idle mode can be less than 1 µA. The top CPU speed is 25 MHz. It can be throttled back for lower power consumption. The MSP430 also uses six different low-power modes, which can disable unneeded clocks and CPU. Additionally, the MSP430 is capable of wake-up times below 1 microsecond, allowing the microcontroller to stay in sleep mode longer, minimizing its average current consumption.
+The device comes in a variety of configurations featuring the usual peripherals: internal oscillator, timer including PWM, watchdog, USART, SPI, I²C, 10/12/14/16-bit ADCs, and brownout reset circuitry. Some less usual peripheral options include comparators (that can be used with the timers to do simple ADC), on-chip op-amps for signal conditioning, 12-bit DAC, LCD driver, hardware multiplier, USB, and DMA for ADC results. Apart from some older EPROM (MSP430E3xx) and high volume mask ROM (MSP430Cxxx) versions, all of the devices are in-system programmable via JTAG (full four-wire or Spy-Bi-Wire) or a built in bootstrap loader (BSL) using RS-232.
+There are, however, limitations that preclude its use in more complex embedded systems. The MSP430 does not have an external memory bus, so it is limited to on-chip memory (up to 256 KB flash memory and 16 KB RAM) which might be too small for applications that require large buffers or data tables. Also, although it has a DMA controller, it is very difficult to use it to move data off the chip due to a lack of a DMA output strobe. D. Peters, D. Raskovic, and D. Thorsen, "An Energy Efficient Parallel Embedded System for Small Satellite Applications", ISAST Transactions on Computers and Intelligent Systems, vol. 1(2), 2009
+
+MSP430 part numbering
+
+An MSP430 part number such as "MSP430F2618ATZQWT-EP" consists of the following pieces:
+ 
+ Trailing suffix letters indicate options not visible to software:
+
+MSP430 generations
+
+There are six general generations of MSP430 processors. In order of development, they were the '3xx generation, the '1xx generation, the '4xx generation, the '2xx generation, the '5xx generation, and the '6xx generation. The digit after the generation identifies the model (generally higher model numbers are larger and more capable), the third digit identifies the amount of memory on board, and the fourth, if present, identifies a minor model variant. The most common variation is a different on-chip analog-to-digital converter.
+The 3xx and 1xx generations were limited to a 16-bit address space. In the later generations this was expanded to include '430X' instructions that allow a 20-bit address space. As happened with other processor architectures (e.g. the processor of the PDP-11), extending the addressing range beyond the 16-bit word size introduced some peculiarities and inefficiencies for programs larger than 64 kBytes.
+In the following list, it helps to think of the typical 200 mA·Hr capacity of a CR2032 lithium coin cell as 200,000 μA·Hr, or 22.8 μA·year.  Thus, considering only the CPU draw, such a battery could supply a 0.7 μA current draw for 32 years. (In reality, battery self-discharge would reduce this number.)
+The significance of the 'RAM retention' vs the 'real-time clock mode' is that in real time clock mode the CPU can go to sleep with a clock running which will wake it up at a specific future time.  In RAM retention mode, some external signal is required to wake it, e.g. I/O pin signal or SPI slave receive interrupt.
+
+MSP430x1xx series
+
+The MSP430x1xx Series  is the basic generation without an embedded LCD controller. They are generally smaller than the '3xx generation. These flash- or ROM-based ultra-low-power MCUs offer 8 MIPS, 1.8–3.6 V operation, up to 60 KB flash, and a wide range of analog and digital peripherals.
+
+MSP430F2xx series
+
+The MSP430F2xx Series are similar to the '1xx generation, but operate at even lower power, support up to 16 MHz operation, and have a more accurate (±2%) on-chip clock that makes it easier to operate without an external crystal. These flash-based ultra-low power devices offer 1.8–3.6 V operation. Includes the very-low power oscillator (VLO), internal pull-up/pull-down resistors, and low-pin count options.
+
+MSP430G2xx series
+
+The MSP430G2xx Value Series features flash-based Ultra-Low Power MCUs up to 16 MIPS with 1.8–3.6 V operation. Includes the Very-Low power Oscillator (VLO), internal pull-up/pull-down resistors, and low-pin count options, at lower prices than the MSP430F2xx series.
+
+MSP430x3xx series
+
+The MSP430x3xx Series is the oldest generation, designed for portable instrumentation with an embedded LCD controller. This also includes a frequency-locked loop oscillator that can automatically synchronize to a low-speed (32 kHz) crystal. This generation does not support EEPROM memory, only mask ROM and UV-eraseable and one-time programmable EPROM. Later generations provide only flash memory and mask ROM options. These devices offer 2.5–5.5 V operation, up to 32 KB ROM.
+
+MSP430x4xx series
+
+The MSP430x4xx Series are similar to the '3xx generation, but include an integrated LCD controller, and are larger and more capable. These flash or ROM based devices offers 8–16 MIPS at 1.8–3.6 V operation, with FLL, and SVS. Ideal for low power metering and medical applications.
+
+MSP430x5xx series
+
+The MSP430x5xx Series are able to run up to 25 MHz, have up to 256 KB flash memory and up to 18 KB RAM. This flash-based family features low active power consumption with up to 25 MIPS at 1.8-3.6 V operation (165 uA/MIPS). Includes an innovative power management module for optimal power consumption and integrated USB.Lowest Power MSP430 Microcontrollers from Texas Instruments
+
+MSP430x6xx series
+
+The MSP430x6xx Series are able to run up to 25 MHz, have up to 256 KB flash memory and up to 18 KB RAM. This flash-based family features low active power consumption with up to 25 MIPS at 1.8-3.6 V operation (165 uA/MIPS). Includes an innovative power management module for optimal power consumption and integrated USB.
+
+RF SoC (CC430) series
+
+The RF SoC (CC430) Series provides tight integration between the microcontroller core, peripherals, software, and RF transceiver. Features 
+FRAM series (MSP430FR57xx)
+
+The FRAM Series (MSP430FR57xx) from Texas Instruments provides unified memory with dynamic partitioning and memory access speeds 100 times faster than flash. FRAM is also capable of zero power state retention in all power modes, which means that writes are guaranteed, even in the event of a power loss. With a write endurance of over 100 trillion cycles, EEPROM is no longer required. Active power consumption at less than 100μA/MHz.
+
+Low voltage series
+
+The Low Voltage Series include the MSP430C09x and MSP430L092 parts. These 2 series of low voltage 16 bit microcontrollers have configurations with two 16-bit timers, an 8-bit analog-to-digital (A/D) converter, an 8-bit digital-to-analog (D/A) converter, and up to 11 I/O pins. For more information, see Low Voltage Wiki.
+
+Other MSP430 families
+
+Additional families within MSP430 include Fixed Function, Automotive, and Extended Temp parts.
+Fixed Function:
+The MSP430BQ1010 16-bit microcontroller is an advanced fixed-function device that forms the control and communications unit on the receiver side for wireless power transfer in portable applications. MSP430BQ1010 complies with the Wireless Power Consortium (WPC) specification. For more information, see Contactless Power.
+Automotive:
+Automotive MSP430 microcontrollers (MCUs) from Texas Instruments (TI) are 16-bit, RISC-based, mixed-signal processors that are AEC-Q100 qualified and suitable for automotive applications in environments up to 105 °C ambient temperature. LIN compliant drivers for the MSP430 MCU provided by IHR GmbH.
+Extended Temp:
+MSP430 devices are very popular in harsh environments such as industrial sensing for their low power consumption and innovative analog integration. Some harsh environment applications include transportation/automotive, renewable energy, military/space/avionics, mineral exploration, industrial, and safety & security.
+Note that when the flash size is over 64K words (128 KBytes), instruction addresses can no longer be encoded in just two bytes. This change in pointer size causes some incompatibilities with previous parts.
+
+Peripherals
+
+The MSP430 peripherals are generally easy to use, with (mostly) consistent addresses between models, and no write-only registers.
+
+General-purpose I/O ports 0–10
+
+As is standard on microcontrollers, most pins connect to a more specialized peripheral, but if that peripheral is not needed, the pin may be used for general-purpose I/O. The pins are divided into 8-bit groups called "ports", each of which is controlled by a number of 8-bit registers. In some cases, the ports are arranged in pairs which can be accessed as 16-bit registers.
+The MSP430 family defines 11 I/O ports, P0 through P10, although no chip implements more than 10 of them. P0 is only implemented on the '3xx family. P7 through P10 are only implemented on the largest members (and highest pin count versions) of the '4xx and '2xx families.  The newest '5xx and '6xx families has P1 through P11, and the control registers are reassigned to provide more port pairs.
+Each port is controlled by the following registers.  Ports which do not implement particular features (such as interrupt on state change) do not implement the corresponding registers.
+Ports 0–2 can produce interrupts when inputs change.  Additional registers configure this ability:
+Some pins have special purposes either as inputs or outputs.  (For example, timer pins can be configured as capture inputs or PWM outputs.) In this case, the PxDIR bit controls which of the two functions the pin performs when the PxSEL bit is set. If there is only one special function, then PxDIR is generally ignored.
+The PxIN register is still readable if the PxSEL bit is set, but interrupt generation is disabled. If PxSEL is clear, the special function's input is frozen and disconnected from the external pin. Also, configuring a pin for general-purpose output does not disable interrupt generation.
+|
+|}
+
+Integrated peripherals
+
+|-
+! Address || Name || Function
+|-
+| 0x130 || MPY || Operand1 for unsigned multiply
+|-
+| 0x132 || MPYS || Operand1 for signed multiply
+|-
+| 0x134 || MAC || Operand1 for unsigned multiply-accumulate
+|-
+| 0x136 || MACS || Operand1 for signed multiply-accumulate
+|-
+| 0x138 || OP2 || Second operand for multiply operation
+|-
+| 0x13A || ResLo || Low word of multiply result
+|-
+| 0x13C || ResHi || High word of multiply result
+|-
+| 0x13E || SumExt || Carry out of multiply-accumulate
+|}
+
+Software development environment
+
+Texas Instruments provides various hardware experimenter boards that support large (approximately two centimeters square) and small (approximately one millimeter square) MSP430 chips. TI also provides software development tools, both directly, and in conjunction with partners (see the full list of compilers, assemblers, and IDEs). One such toolchain is the IAR C/C++ compiler and Integrated development environment, or IDE. A Kickstart edition can be downloaded for free from TI or IAR; it is limited to 8 KB of C/C++ code in the compiler and debugger (assembly language programs of any size can be developed and debugged with this free toolchain).
+TI also combines a version of its own compiler and tools with its Eclipse-based Code Composer Studio IDE ("CCS").  It sells full-featured versions, and offers a free version for download which has a code size limit of 16 KB.  CCS supports in-circuit emulators, and includes a simulator and other tools; it can also work with other processors sold by TI.
+The open source community produces a freely available software development toolset based on the GNU toolset.
+The GNU compiler is currently declined in three versions:
+(MSPGCC)
+(MSPGCC Uniarch)
+There is a very early llvm-msp430 project, which may eventually provide better support for MSP430 in LLVM.
+Other commercial development tool sets, which include editor, compiler, linker, assembler, debugger and in some cases code wizards, are available. VisSim, a block diagram language for model based development, generates efficient fixed point C-Code directly from the diagram. VisSim generated code for a closed loop ADC+PWM based PID control on the F2013 compiles to less than 1 KB flash and 100 bytes RAM.
+
+Low cost development platforms
+
+The MSP430F2013 and its siblings are set apart by the fact that (except for the MSP430G2 Value Line) it is the only MSP430 part that is available in a dual in-line package (DIP). Other variants in this family are only available in various surface-mount packages. TI has gone to some trouble to support the eZ430 development platform by making the raw chips easy for hobbyists to use in prototypes.
+
+eZ430-F2013
+
+TI has tackled the low-budget problem by offering a very small experimenter board, the eZ430-F2013, on a USB stick. This makes it easy for designers to choose the MSP430 chip for inexpensive development platforms that can be used with a computer. The eZ430-F2013 contains an MSP430F2013 microcontroller on a detachable prototyping board, and accompanying CD with development software. It is helpful for schools, hobbyists and garage inventors. It is also welcomed by engineers in large companies prototyping projects with capital budget problems.
+
+MSP430 Launchpad
+
+Texas Instruments released the MSP430 Launchpad in July 2010.  The MSP430 Launchpad has an onboard flash emulator, USB, 2 programmable LEDs, and 1 programmable push button.MSP430 LaunchPad (MSP-EXP430G2), Texas Instruments Embedded Processors Wiki
+
+Debugging interface
+
+In common with other microcontroller vendors, TI has developed a two-wire debugging interface found on some of their MSP430 parts that can replace the larger JTAG interface. The eZ430 Development Tool contains a full USB-connected flash emulation tool ("FET") for this new two-wire protocol, named "Spy-Bi-Wire" by TI. Spy-Bi-Wire was initially introduced on only the smallest devices in the 'F2xx family with limited number of I/O pins, such as the MSP430F20xx, MSP430F21x2, and MSP430F22x2. The support for Spy-Bi-Wire has been expanded with the introduction of the latest '5xx family, where all devices have support Spy-Bi-Wire interface in addition to JTAG.
+The advantage of the Spy-Bi-Wire protocol is that it uses only two communication lines, one of which is the dedicated _RESET line. The JTAG interface on the lower pin count MSP430 parts is multiplexed with general purpose I/O lines.  This makes it relatively difficult to debug circuits built around the small, low-I/O-budget chips, since the full 4-pin JTAG hardware will conflict with anything else connected to those I/O lines. This problem is alleviated with the Spy-Bi-Wire-capable chips, which are still compatible with the normal JTAG interface for backwards compatibility with the old development tools.
+JTAG debugging and flash programming tools based on OpenOCD and widely used in the ARM community are not available for the MSP430. Programming tools specially designed for the MSP430 are marginally less expensive than JTAG interfaces that use OpenOCD. However, should a project discover midstream that more MIPS, more memory, and more I/O peripherals are needed, those tools will not transfer to a processor from another vendor.
+
+MSP430 CPU
+
+The MSP430 CPU uses a von Neumann architecture, with a single address space for instructions and data. Memory is byte-addressed, and pairs of bytes are combined little-endian to make 16-bit words.
+The processor contains 16 16-bit registers, of which 4 are dedicated to special purposes: R0 is the program counter, R1 is the stack pointer, R2 is the status register, and R3 is a special register called the constant generator, providing access to 6 commonly used constant values without requiring an additional operand. R3 always reads as 0 and writes to it are ignored. R4 through R15 are available for general use.
+The instruction set is very simple; there are 27 instructions in three families. Most instructions are available in .B (8-bit byte) and .W (16-bit word) suffixed versions, depending on the value of a B/W bit: the bit is set to 1 for 8-bit and 0 for 16-bit.  A missing suffix is equivalent to .W.  Byte operations to memory affect only the addressed byte, while byte operations to registers clear the most significant byte.
+Instructions are 16 bits, followed by up to two 16-bit extension words. Addressing modes are specified by the 2-bit As field and the 1-bit Ad field. Some special versions can be constructed using R0, and modes other than register direct using R2 (the status register) and R3 (the constant generator) are interpreted specially. Ad can use only a subset of the addressing modes for As.
+Indexed addressing modes add a 16-bit extension word to the instruction. If both source and destination are indexed, the source extension word comes first.  x refers to the next extension word in the instruction stream in the table below.
+Instructions generally take 1 cycle per word fetched or stored, so instruction times range from 1 cycle for a simple register-register instruction to 6 cycles for an instruction with both source and destination indexed.
+The MSP430X extension with 20-bit addressing adds additional instructions that can require up to 10 clock cycles. Setting or clearing a peripheral bit takes two clocks. A jump, taken or not takes two clocks. With the 2xx series 2 MCLKs is 125 ns at 16 MHz.
+Moves to the program counter are allowed and perform jumps. Return from subroutine, for example, is implemented as MOV @SP+,PC.
+When R0 (PC) or R1 (SP) are used with the autoincrement addressing mode, they are always incremented by two. Other registers (R4 through R15) are incremented by the operand size, either 1 or 2 bytes.
+The status register contains 4 arithmetic status bits, a global interrupt enable, and 4 bits that disable various clocks to enter low-power mode. When handling an interrupt, the processor saves the status register on the stack and clears the low-power bits. If the interrupt handler does not modify the saved status register, returning from the interrupt will then resume the original low-power mode.
+
+Pseudo-operations
+
+A number of additional instructions are implemented as aliases for forms of the above.  For example, there is no specific "return from subroutine" instruction, but it is implemented as "MOV @SP+,PC".  Emulated instructions are:
+Note that the immediate constants −1 (0xffff), 0, 1, 2, 4 and 8 can be specified in a single-word instruction without needing a separate immediate operand.
+
+MSP430X 20-bit extension
+
+The basic MSP430 cannot support more memory (ROM + RAM + peripherals) than its 64K address space.  In order to support this, an extended form of the MSP430 uses 20-bit registers and a 20-bit address space, allowing up to 1 MB of memory.  This uses the same instruction set as the basic form, but with two extensions:
+The extended instructions include some additional capabilities, notably multi-bit shifts and multi-register load/store operations.
+20-bit operations use the length suffix ".A" (for address) instead of .B or .W.  .W is still the default.  In general, shorter operations clear the high-order bits of the destination register.
+The new instructions are as follows:
+All other instructions can have a prefix word added which extends them to 20 bits.  The prefix word contains an additional operand size bit, which is combined with the existing B/W bit to specify the operand size.  There is one unused size combination; there are indications that this might be used in future for a 32-bit operand size.  Also the description of the SXTX instruction (MSP430F5xx Family User's Guide alau208f page 237) describes the effect of the instruction in register bits 20–31.
+The prefix word comes in two formats, and the choice between them depends on the instruction which follows.
+If the instruction has any non-register operands, then the simple form is used, which provides 2 4-bit fields to extend any offset or immediate constant in the instruction stream.
+If the instruction is register-to-register, a different extension word is used.  This includes a "ZC" flag which suppresses carry-in (useful for instructions like DADD which always use the carry bit), and a repeat count.  A 4-bit field in the extension word encodes either a repeat count (0–15 repetitions in addition to the initial execution), or a register number which contains a 4-bit repeat count.
+
+MSP430 address space
+
+The general layout of the MSP430 address space is:
+A few models include more than 2048 bytes of RAM; in that case RAM begins at 0x1100. The first 2048 bytes (0x1100–0x18FF) is mirrored at 0x0200–0x09FF for compatibility. Also, some recent models bend the 8-bit and 16-bit peripheral rules, allowing 16-bit access to peripherals in the 8-bit peripheral address range.
+There is a new extended version of the architecture (called MSP430X) which allows a 20-bit address space. It allows additional program ROM beginning at 0x10000.
+The '5xx series has a greatly redesigned address space, with the first 4K devoted to peripherals, and up to 16K of RAM.
+
+
+
+
+
+Community and information sites
+
+Visual programming C code generators
+
+Compilers, assemblers and IDEs
+
+=  Free Compiler and IDEs=
+
+=  Most popular unrestricted IDEs and compilers=
+
+=  Miscellaneous IDEs=
+
+List of debugging tools (not complete)
+
+Other tools
+
+
+

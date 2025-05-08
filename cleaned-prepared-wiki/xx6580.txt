@@ -1,0 +1,40 @@
+[[Lisp (programming language)]]
+
+CATEGORIES: 1958 in computer science, Academic programming languages, American inventions, Articles with example Lisp code, Dynamically typed programming languages, Functional languages, Lisp programming language, Lisp programming language family, Programming languages created in 1958, Programming languages created in the 1950s, Extensible syntax programming languages
+
+Lisp (historically, LISP) is a family of computer programming languages with a long history and a distinctive, fully parenthesized Polish prefix notation.[ref]
+
+</ref>
+Originally specified in 1958, Lisp is the second-oldest high-level programming language in widespread use today; only Fortran is older (by one year). Like Fortran, Lisp has changed a great deal since its early days, and a number of dialects have existed over its history. Today, the most widely known general-purpose Lisp dialects are Common Lisp and Scheme.
+Lisp was originally created as a practical mathematical notation for computer programs, influenced by the notation of Alonzo Church's lambda calculus. It quickly became the favored programming language for artificial intelligence (AI) research. As one of the earliest programming languages, Lisp pioneered many ideas in computer science, including tree data structures, automatic storage management, dynamic typing, conditionals, higher-order functions, recursion, and the self-hosting compiler.
+The name LISP derives from "LISt Processing". Linked lists are one of Lisp language's major data structures, and Lisp source code is itself made up of lists. As a result, Lisp programs can manipulate source code as a data structure, giving rise to the macro systems that allow programmers to create new syntax or new domain-specific languages embedded in Lisp.
+The interchangeability of code and data also gives Lisp its instantly recognizable syntax. All program code is written as s-expressions, or parenthesized lists. A function call or syntactic form is written as a list with the function or operator's name first, and the arguments following; for instance, a function f that takes three arguments might be called using .
+
+History
+
+Lisp was invented by John McCarthy in 1958 while he was at the Massachusetts Institute of Technology (MIT). McCarthy published its design in a paper in Communications of the ACM in 1960, entitled "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I" ("Part II" was never published). He showed that with a few simple operators and a notation for functions, one can build a Turing-complete language for algorithms.
+Information Processing Language was the first AI language, from 1955 or 1956, and already included many of the concepts, such as list-processing and recursion, which came to be used in Lisp.
+McCarthy's original notation used bracketed "M-expressions" that would be translated into S-expressions. As an example, the M-expression  by Horace Enea and CGOL by Vaughan Pratt.
+Lisp was first implemented by Steve Russell on an IBM 704 computer. Russell had read McCarthy's paper, and realized (to McCarthy's surprise) that the Lisp eval function could be implemented in machine code. 185, McCarthy said: "Steve Russell said, look, why don't I program this eval..., and I said to him, ho, ho, you're confusing theory with practice, this eval is intended for reading, not for computing. But he went ahead and did it. That is, he compiled the eval in my paper into IBM 704 machine code, fixing bug, and then advertised this as a Lisp interpreter, which it certainly was. So at that point Lisp had essentially the form that it has today..." The result was a working Lisp interpreter which could be used to run Lisp programs, or more properly, 'evaluate Lisp expressions.'
+Two assembly language macros for the IBM 704 became the primitive operations for decomposing lists: ) for the operations that return the first item in a list and the rest of the list respectively.
+The first complete Lisp compiler, written in Lisp, was implemented in 1962 by Tim Hart and Mike Levin at MIT. This compiler introduced the Lisp model of incremental compilation, in which compiled and interpreted functions can intermix freely. The language used in Hart and Levin's memo is much closer to modern Lisp style than McCarthy's earlier code.
+Lisp was a difficult system to implement with the compiler techniques and stock hardware of the 1970s. Garbage collection routines, developed by then-MIT graduate student Daniel Edwards, made it practical to run Lisp on general-purpose computing systems, but efficiency was still a problem.
+During the 1980s and 1990s, a great effort was made to unify the work on new Lisp dialects (mostly successors to Maclisp like ZetaLisp and NIL (New Implementation of Lisp)) into a single language. The new language, Common Lisp, was somewhat compatible with the dialects it replaced (the book Common Lisp the Language notes the compatibility of various constructs). In 1994, ANSI published the Common Lisp standard, "ANSI X3.226-1994 Information Technology Programming Language Common Lisp."
+
+Preset    = TimeHorizontal_AutoPlaceBars_UnitYear
+ImageSize = width:1024
+PlotArea = right:256
+Define $bold = fontsize:L shift:(10,-4)
+Colors =
+  id:offWhite  value:rgb(0.97,0.97,0.97)
+  id:paleGray  value:rgb(0.86,0.86,0.86)
+  id:darkGray  value:gray(0.6)
+BackgroundColors = canvas:offWhite
+Period     = from:1958 till:2013
+ScaleMajor = unit:year increment:5 start:1958 gridcolor:paleGray
+BarData=
+  barset:Dialects
+PlotData=
+  width:15 fontsize:M textcolor:black align:left anchor:from shift:(0,-2) color:darkGray
+  barset:Dialects
+  from:1958 till:1965 text:"Lisp 1.5"

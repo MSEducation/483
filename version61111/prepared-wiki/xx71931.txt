@@ -1,0 +1,373 @@
+  [[drive:][path]filename] Specifies the program file to load or run.
+
+QBASIC replaces GW-BASIC from earlier versions of DOS.
+
+==QCONFIG==
+
+External - PC DOS 6.1 and above
+ 
+ QCONFIG /?/A/C/D/E/I/Ofile/P/Q key="text"
+   /?      Displays this help information.
+   /A      Displays all Micro Channel adapters supported by QCONFIG.
+   /C      Displays additional detail on async ports.
+   /D      Displays a detailed listing of hardware.
+   /E      Displays current environment.
+   /I      Displays CONFIG.SYS & AUTOEXEC.BAT.
+   /O      Redirects output to file QCONFIG.OUT.
+   /Ofile  Redirects output to file (anyname).
+   /P      Pauses the output between screens.
+   /Q      Does not display redirect message.
+key="text" Defines key with text to appear in output (must be last option).
+
+QCONFIG is only included with PC DOS versions and replaces the Microsoft MSD utility.
+
+==RECOVER==
+
+External - DOS 2.0 to DOS 5.0
+ 
+ RECOVER drive:pathfilename
+RECOVER drive:
+
+==REM==
+
+Internal - DOS 1.0 and above
+ 
+ REM comment
+
+==RENAME or REN[tpl]anchor|RENAME|REN[/tpl]==
+
+Internal - DOS 1.0 and above
+ 
+ RENAME drive:pathfilename1 filename2
+REN drive:pathfilename1 filename2
+Note that you cannot specify a new drive or path for your destination file.
+Use MOVE to move files from one directory to another, or to rename a directory.
+
+RENAME (but not its alias REN) originated as an internal command in 86-DOS.
+
+==REPLACE==
+
+External - DOS 3.2 and above
+ 
+ REPLACE drive1:path1filename drive2:path2 /A /P /R /W
+REPLACE drive1:path1filename drive2:path2 /P /R /S /W /U
+  [drive1:][path1]filename Specifies the source file or files.
+  [drive2:][path2]         Specifies the directory where files are to be
+                           replaced.
+  /A                       Adds new files to destination directory. Cannot
+                           use with /S or /U switches.
+  /P                       Prompts for confirmation before replacing a file or
+                           adding a source file.
+  /R                       Replaces read-only files as well as unprotected
+                           files.
+  /S                       Replaces files in all subdirectories of the
+                           destination directory. Cannot use with the /A
+                           switch.
+  /W                       Waits for you to insert a disk before beginning.
+  /U                       Replaces (updates) only files that are older than
+                           source files. Cannot use with the /A switch.
+
+==RESTORE==
+
+External - DOS 2.0 and above
+ 
+ RESTORE drive1: drive2:pathfilename /S /P /B:date /A:date /E:time
+  [/L:time] [/M] [/N] [/D]
+  drive1:  Specifies the drive on which the backup files are stored.
+  drive2:[path[filename]]
+           Specifies the file(s) to restore.
+  /S       Restores files in all subdirectories in the path.
+  /P       Prompts before restoring read-only files or files changed since
+           the last backup (if appropriate attributes are set).
+  /B       Restores only files last changed on or before the specified date.
+  /A       Restores only files changed on or after the specified date.
+  /E       Restores only files last changed at or earlier than the specified
+           time.
+  /L       Restores only files changed at or later than the specified time.
+  /M       Restores only files changed since the last backup.
+  /N       Restores only files that no longer exist on the destination disk.
+  /D       Displays files on the backup disk that match specifications.
+
+==REXX==
+
+External - PC DOS 7
+ 
+ REXX filename parameters
+  filename    Specifies the name of the REXX program to execute.
+  parameters  Specifies any parameters for the REXX program.
+
+==REXXDUMP==
+
+External - PC DOS 7
+ 
+ REXXDUMP
+
+==RMDIR or RD[tpl]anchor|RMDIR|RD[/tpl]==
+
+Internal - DOS 2.0 and above
+ 
+ RMDIR drive:path
+RD drive:path
+
+==SCANDISK==
+
+External - MS-DOS 6.2 and above
+ 
+ To check and repair a drive, use the following syntax:
+   SCANDISK [drive: | /ALL] [/CHECKONLY | /AUTOFIX [/NOSAVE]] [/SURFACE]
+To check and repair an unmounted DriveSpace compressed volume file, use:
+   SCANDISK drive:\DRVSPACE.nnn [/CHECKONLY | /AUTOFIX[/NOSAVE]]
+To examine a file for fragmentation, use the following syntax:
+   SCANDISK /FRAGMENT [drive:][path]filename
+To undo repairs you made previously, use the following syntax:
+   SCANDISK /UNDO [drive:]
+For drive:, specify the drive containing your Undo disk.
+/ALL         Checks and repairs all local drives.
+/AUTOFIX     Fixes damage without prompting.
+/CHECKONLY   Checks a drive, but does not repair any damage.
+/CUSTOM      Configures and runs ScanDisk according to SCANDISK.INI settings.
+/NOSAVE      With /AUTOFIX, deletes lost clusters rather than saving as files.
+/NOSUMMARY   With /CHECKONLY or /AUTOFIX, prevents ScanDisk from stopping at
+                    summary screens.
+/SURFACE     Performs a surface scan after other checks.
+/MONO        Configures ScanDisk for use with a monochrome display.
+To check and repair the current drive, type SCANDISK without parameters.
+
+Scandisk is only included with MS-DOS versions.
+
+==SET==
+
+Internal - DOS 2.0 and above
+ 
+ SET variable=string
+  variable  Specifies the environment-variable name.
+  string    Specifies a series of characters to assign to the variable.
+Type SET without parameters to display the current environment variables.
+
+==SETVER==
+
+External - DOS 5.0 and above
+ 
+ Display current version table:  SETVER drive:path
+Add entry:                      SETVER drive:path filename n.nn
+Delete entry:                   SETVER drive:path filename /DELETE /QUIET
+  [drive:path]    Specifies location of the SETVER.EXE file.
+  filename        Specifies the filename of the program.
+  n.nn            Specifies the DOS version to be reported to the program.
+  /DELETE or /D   Deletes the version-table entry for the specified program.
+  /QUIET          Hides the message typically displayed during deletion of
+                  version-table entry.
+
+SETVER.EXE must be loaded as a device driver in CONFIG.SYS in order to use this command.
+While the internal version setting functionality was present in DOS 4, the SETVER command did not appear until DOS 5.
+
+==SHARE==
+
+External - DOS 3.0 and above
+ 
+ SHARE /F:space /L:locks /NOHMA
+  /F:space   Allocates file space (in bytes) for file-sharing information.
+  /L:locks   Sets the number of files that can be locked at one time.
+  /NOHMA     Don't load code into the HMA.
+
+/NOHMA is only available in PC DOS 7.
+
+==SHIFT==
+
+Internal - DOS 2.0 and above
+ 
+ SHIFT
+
+==SMARTDRV==
+
+External - DOS 6.0 and above
+ 
+ SMARTDRV /X -...] /U | /R /L | /Q | /S
+         [InitCacheSize [WinCacheSize]] [/E:ElementSize] [/B:BufferSize]
+/X              Disables write-behind caching for all drives.
+drive           Sets caching options on specific drive(s). The specified
+                drive(s) will have write-caching disabled unless you add +.
++               Enables write-behind caching for the specified drive.
+-               Disables all caching for the specified drive.
+/U              Do not load CD-ROM caching module.
+/C              Writes all information currently in write-cache to hard disk.
+/R              Clears the cache and restarts SMARTDrive.
+/L              Prevents SMARTDrive from loading itself into upper memory.
+/V              Displays SMARTDrive status messages when loading.
+/Q              Does not display status information.
+/S              Displays additional information about SMARTDrive's status.
+InitCacheSize   Specifies XMS memory (KB) for the cache.
+WinCacheSize    Specifies XMS memory (KB) for the cache with Windows.
+/E:ElementSize  Specifies how many bytes of information to move at one time.
+/B:BufferSize   Specifies the size of the read-ahead buffer.
+
+==SORT==
+
+External - DOS 2.0 and above
+ 
+ SORT /R /+n   /R                         Reverses the sort order; that is, sorts Z to A,
+                             then 9 to 0.
+  /+n                        Sorts the file according to characters in
+                             column n.
+  [drive1:][path1]filename1  Specifies a file to be sorted.
+  [drive2:][path2]filename2  Specifies a file where the sorted input is to be
+                             stored.
+  command                    Specifies a command whose output is to be sorted.
+
+==SUBST==
+
+External - DOS 3.1 and above
+ 
+ SUBST drive2:path
+SUBST drive1: /D
+  drive1:        Specifies a virtual drive to which you want to assign a path.
+  [drive2:]path  Specifies a physical drive and path you want to assign to
+                 a virtual drive.
+  /D             Deletes a substituted (virtual) drive.
+Type SUBST with no parameters to display a list of current virtual drives.
+
+==SYS==
+
+External - DOS 1.0 and above
+ 
+ SYS drive1:path drive2:
+  [drive1:][path] Specifies the location of the system files.
+  drive2:         Specifies the drive the files are to be copied to.
+
+SYS originated as an external command in 86-DOS.
+
+==TIME==
+
+External - DOS 1.0
+
+Internal - DOS 1.1 and above
+ 
+ TIME time
+Type TIME with no parameters to display the current time setting and a prompt
+for a new one.  Press ENTER to keep the same time.
+
+==TREE==
+
+External - DOS 2.0 and above
+ 
+ TREE drive:path /F /A
+  /F   Displays the names of the files in each directory.
+  /A   Uses ASCII instead of extended characters.
+
+==TRUENAME==
+
+Internal - DOS 4.0 and above
+ 
+ TRUENAME drive:pathfilename
+
+This command was undocumented in DOS 3.x.
+
+==TYPE==
+
+Internal - DOS 1.0 and above
+ 
+ TYPE drive:pathfilename
+
+TYPE originated as an internal command in 86-DOS.
+
+==UNDELETE==
+
+External - DOS 5.0 and above
+ 
+ UNDELETE drive:pathfilename | /DS | /DOS
+UNDELETE [/LIST | /ALL | /PURGEDRIVE | /STATUS | /LOAD | /UNLOAD
+          /S[DRIVE] | /T[DRIVE]-entrys ]]
+  /LIST                Lists the deleted files available to be recovered.
+  /ALL                 Recovers files without prompting for confirmation.
+  /DOS                 Recovers files listed as deleted by MS-DOS.
+  /DT                  Recovers files protected by Delete Tracker.
+  /DS                  Recovers files protected by Delete Sentry.
+  /LOAD                Loads Undelete into memory for delete protection.
+  /UNLOAD              Unloads Undelete from memory.
+  /PURGE[drive]        Purges all files in the Delete Sentry directory.
+  /STATUS              Display the protection method in effect for each drive.
+  /S[drive]            Enables Delete Sentry method of protection.
+  /T[drive][-entrys]   Enables Delete Tracking method of protection.
+
+UNDELETE is licensed from Central Point Software PC Tools
+
+==UNFORMAT==
+
+External - DOS 5.0 and above
+ 
+ UNFORMAT drive: /J
+UNFORMAT drive: /U /L /TEST /P
+UNFORMAT /PARTN /L
+  drive:   Specifies the drive to unformat.
+  /J       Verifies that the mirror files agree with the system information
+           on the disk.
+  /U       Unformats without using MIRROR files.
+  /L       Lists all file and directory names found, or, when used with the
+           /PARTN switch, displays current partition tables.
+  /TEST    Displays information but does not write changes to disk.
+  /P       Sends output messages to printer connected to LPT1.
+  /PARTN   Restores disk partition tables.
+
+UNFORMAT is licensed from Central Point Software PC Tools
+
+==VER==
+
+Internal - DOS 2.0 and above
+ 
+ VER
+
+The undocumented /R switch displays the revision level and where DOS is loaded (low, HMA or ROM) in DOS 5 and above.
+Version returned:
+
+==VERIFY==
+
+Internal - DOS 2.0 and above
+ 
+ VERIFY | OFF
+Type VERIFY without a parameter to display the current VERIFY setting.
+
+==VOL==
+
+Internal - DOS 2.0 and above
+ 
+ VOL drive:
+
+==XCOPY==
+
+External - DOS 3.2 and above
+ 
+ XCOPY /Y|/-Y source destination /A|/M /D:date /P /S /E /V /W
+  source       Specifies the file(s) to copy.
+  destination  Specifies the location and/or name of new files.
+  /A           Copies files with the archive attribute set,
+               doesn't change the attribute.
+  /M           Copies files with the archive attribute set,
+               turns off the archive attribute.
+  /C           Ignores errors.
+  /D:date      Copies files changed on or after the specified date.
+  /P           Prompts you before creating each destination file.
+  /S           Copies directories and subdirectories except empty ones.
+  /E           Copies any subdirectories, even if empty.
+  /V           Verifies each new file.
+  /W           Prompts you to press a key before copying.
+  /Y           Suppresses prompting to confirm you want to overwrite an
+               existing destination file.
+  /-Y          Causes prompting to confirm you want to overwrite an
+               existing destination file.
+The switch /Y may be preset in the COPYCMD environment variable.
+This may be overridden with /-Y on the command line
+
+/Y and /-Y are only available in DOS 6 and above.
+/C is only available under MS-DOS 7.0-8.0 (provided by XCOPY32).
+Renaming the XCOPY program file to MCOPY under MS-DOS 3.2, the command will no longer ask for confirmation if the target was meant as file or directory. Instead, it will then automatically assume the target to be an directory, if the source was given as a directory or as multiple files or was ending on "\".
+
+==See also==
+
+==References==
+
+[ref][tpl]cite book | title = NWDOS-TIPs — Tips & Tricks rund um Novell DOS 7, mit Blick auf undokumentierte Details, Bugs und Workarounds | work= MPDOSTIP | first = Matthias | last = Paul | date = 1997-07-30 | edition = 3, release 157 | language= German | format = e-book | url = http://www.antonis.de/dos/dos-tuts/mpdostip/html/nwdostip.htm | accessdate = 2012-01-11[/tpl] NWDOSTIP.TXT is a comprehensive work on Novell DOS 7 and OpenDOS 7.01, including the description of many undocumented features and internals. It is part of the author's yet larger MPDOSTIP.ZIP collection maintained up to 2001 and distributed on many sites at the time. The provided link points to a HTML-converted older version of the NWDOSTIP.TXT file.
+
+==External links==
+
+There are several guides to DOS commands available that are licenced under the GNU Free Documentation License:
+

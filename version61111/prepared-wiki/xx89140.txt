@@ -1,0 +1,11 @@
+[[Numerical tower]]
+
+CATEGORIES: Data types
+
+In Scheme and some other Lisp dialects, a numerical tower is the set of data types that represent numbers in a given programming language.
+Each type in the tower conceptually "sits on" a more fundamental type, so an integer is a rational number and a number, but the inverse is not necessarily true, i.e. not every number is an integer; this asymmetry implies that a language can allow implicit coercions of numerical types—without creating semantic problems—in only one direction: coercing an integer to a rational loses no information and does not affect the results of a function, but to coerce most reals to an integer could well result in a problem (for example, the real 1/3 does not equal any integer).
+Scheme programming language, and also other Lisp dialects, defines all its arithmetic within this model.http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_sec_6.2.1 Some given implementations may extend or adapt the tower. Kawa, for example, extends it with a Quantity type that is even more generic than Number. Smalltalk is another programming language that follows this model, but it has a Magnitude as superclass of Number. Another popular variant is having both exact and inexact versions of the tower or parts of it. Most languages and language implementations do not support a Scheme-like numerical tower. Some languages support it only in a limited way.
+
+==References==
+
+

@@ -1,0 +1,178 @@
+[[Perl 6]]
+
+CATEGORIES: Perl 6, Articles with example Perl code, Computer programming
+
+Perl 6 is a member of the Perl family of programming languages. It is still in development as a specification from which several interpreter and compiler implementations are being written. It is introducing elements of many modern and historical languages. Perl 6 is intended to have many implementations. Compatibility with Perl 5 is not a goal, though a compatibility mode is part of the specification. The design process for Perl 6 began in 2000.
+Development on Pugs, the first high-traction implementation, began in 2005, and today there are multiple Perl 6 implementation projects. Rakudo Perl is based on Parrot and NQP (Not Quite Perl), and releases a new version every month; in July 2010, the project released the first Rakudo Star distribution, a useful and usable collection of a Perl 6 implementation and related materials.  Larry Wall maintains a reference grammar known as STD.
+Niecza, another major Perl 6 implementation, focuses on optimization and efficient implementation research. It targets the Common Language Infrastructure.
+
+History
+
+The Perl 6 design process was first announced on July 19, 2000, on the fourth day of that year's Perl Conference,
+Once the RFC process was complete, Wall reviewed and classified each request (361 were received). He then began the process of writing several "Apocalypses", a term which means "revealing." 
+There are also a series of Exegeses written by Damian Conway that explain the content of each Apocalypse in terms of practical usage. Each Exegesis consists of code examples along with discussion of the usage and implications of the examples.
+There are three primary methods of communication used in the development of Perl 6 today. The first is the #perl6 IRC channel on freenode. The second is a set of mailing lists on The Perl Foundation's servers at perl. The third is the Git source code repository hosted at 
+
+Goals
+
+The break in compatibility was mandated from the start of the project, and immediately allowed some of the changes that Larry Wall had suggested in his initial speech. "Historical warts" such as the confusion surrounding sigil usage for containers; the ambiguity between the select functions; the syntactic impact of bareword filehandles; and many other problems that Perl programmers had discussed fixing for years were some of the first issues addressed.
+Over the years, Perl 6 has undergone several alterations in its direction. The introduction of concepts from Python and Ruby were early influences,
+
+Mascot
+
+The language's mascot is "Camelia, the Perl 6 bug".
+Her name is a nod to the camel mascot associated with Perl, and her form, in the pun-loving tradition of the Perl community, is a play on "software bug". Symmetric designs embedded in her butterfly-like wings resemble the characters "P6", the favored nickname for Perl 6.
+
+Implementations
+
+, multiple Perl 6 implementations are under development, but none of them are considered "complete". As noted in the history section, the language design itself is still subject to change. No implementation will be designated as the official Perl 6 implementation; rather, "Perl 6 is anything that passes the official test suite."
+Rakudo Perl is a Perl 6 implementation targeting a number of virtual machines, such as the JVM, MoarVM, JavaScript and the Parrot virtual machine. Parrot is a virtual machine designed for dynamic programming languages, primarily for Perl 6. It provides several powerful compiler tools, many of which take inspiration from Perl 6. In particular, the Parser Grammar Engine, or PGE, provides an implementation of Perl 6 grammars. As well, the language used for building compilers is itself Not Quite Perl 6, or NQP. The Rakudo implementation of Perl 6 on Parrot takes advantage of PGE and NQP. Large portions of Rakudo are written in Perl 6 itself, though this is not a self-hosting implementation, nor are there concrete plans at this point to make Rakudo a bootstrapping compiler.
+Pugs is an implementation of Perl 6 written in Haskell.  Pugs can execute Perl 6 code directly, and has also compiled Perl 6 to JavaScript, Perl 5 and Parrot bytecode. Pugs used to be the most advanced implementation of Perl 6, but since mid 2007 it is mostly dormant (with updates made only to track the current version of GHC).
+v6. It aims to make the existing Perl runtime a first-class virtual machine for both Perl 5 and Perl 6.
+In 2007, v6-MiniPerl6 ("mp6") and its reimplementation, v6-KindaPerl6 ("kp6") were written as a means to bootstrap the Perl-6.0.0 STD, using Perl 5. The STD is a full grammar for Perl 6 and is written in Perl 6. In theory, anything capable of parsing the STD and generating executable code is a suitable bootstrapping system for Perl 6. kp6 is currently compiled by mp6 and can work with multiple backends. mp6 and kp6 are not full Perl 6 implementations and are designed only to implement the minimum featureset required to bootstrap a full Perl 6 compiler.
+Sprixel is being written as a means to bootstrap the Perl-6.0.0 STD on the CLR, using another new intermediary language/environment named Perlesque, which intends to implement closely the strongly typed subset of Perl 6. Its source code repository is located on Google Code as CSMeta.  CSMeta/Perlesque/Sprixel evolved from the JSMeta/Sprixel project in JavaScript, located on Google Code and in the pugscode repository.
+Yapsi is a Perl 6 compiler and runtime written in Perl 6 itself. As a result, it requires an existing Perl 6 interpreter, such as one of the Rakudo Star releases, in order to run.
+´
+
+Module system
+
+The Perl 6 specification requests that modules are identified by name, version and authority. It is possible to load only a specific version of a module, or even two modules of the same name that differ in version or authority. As a convenience, aliasing to a short name is provided.
+CPAN, the Perl 5 module distribution system, does not yet handle Perl 6 modules. Instead a prototype module system is in use.
+
+Major changes from Perl 5
+
+Perl 5 and Perl 6 differ fundamentally, though in general the intent has been to "keep Perl 6 Perl", so that Perl 6 is clearly "a perl programming language". Most of the changes are intended to normalize the language, to make it easier for learning and expert programmers alike to understand, and to make "easy things easier and hard things more possible".
+
+A specification
+
+A major, but non-technical difference between Perl 5 and Perl 6 is that Perl 6 began as a specification. even outside of the Perl community where even mixed reviews typically note its maturity and breadth. However, the documentation is not considered authoritative and only describes the behavior of the actual Perl 5 interpreter informally. Any discrepancies found between the documentation and the implementation may lead to either being changed to reflect the other, a dynamic which drives the continuing development and refinement of the Perl 5 releases.
+
+A type system
+
+In Perl 6, the dynamic type system of Perl 5 has been augmented by the addition of static types. For example:
+However, static typing remains optional, so programmers can do most things without any explicit typing at all:
+Perl 6 offers a hybrid typing system whereby the programmer may choose to use static typing, use dynamic typing, or mix the two.
+
+Formal subroutine parameter lists
+
+Perl 5 defines subroutines without formal parameter lists at all (though simple parameter counting and some very loose type checking can be done using Perl 5's "prototypes").  Subroutine arguments passed in are aliased into the elements of the array @_.  If the elements of @_ are modified, the changes are reflected in the original data.
+Perl 6 introduces true formal parameters to the language.  In Perl 6, a subroutine declaration looks like this:
+As in Perl 5, the formal parameters (i.e., the variables in the parameter list) are aliases to the actual parameters (the values passed in), but by default, the aliases are constant so they cannot be modified. They may be declared explicitly as read-write aliases for the original value or as copies using the is rw or is copy directives should the programmer require them to be modified locally.
+
+=Parameter passing modes=
+
+Perl 6 provides three basic modes of parameter passing:
+Positional parameters are the typical ordered list of parameters that most programming languages use. All parameters may also be passed by using their name in an unordered way. A named-only parameter can only be passed by specifying its name (that is, it never captures a positional argument), and are indicated with a leading : character. Slurpy parameters (indicated by an * before the parameter name) are Perl 6's tool for creating variadic functions. A slurpy hash will capture remaining passed-by-name parameters, whereas a slurpy array will capture remaining passed-by-position parameters.
+Here is an example of the use of all three parameter-passing modes:
+Positional parameters, such as those used above are always required, unless followed by ? to indicate that they are optional. Named parameters are optional by default, but may be marked as required by adding ! after the variable name. Slurpy parameters are always optional.
+
+=Blocks and closures=
+
+Parameters can also be passed to arbitrary blocks, which act as closures. This is how, for example, for and while loop iterators are named. In the following example, a list is traversed, 3 elements at a time, and passed to the loop's block as the variables, $a, $b, $c.
+This is generally referred to as a "pointy sub" or "pointy block", and the arrow behaves almost exactly like the sub keyword, introducing an anonymous closure (or anonymous subroutine in Perl 5 terminology).
+
+Sigil invariance
+
+In Perl 5, sigils – the punctuation characters that precede a variable name – change depending on how the variable is used:
+ # Perl 5 code
+ my array = ('a', 'b', 'c');
+ my $element = array[1];    # $element equals 'b', 
+ my @extract = array[1, 2]; # @extract equals ('b', 'c')
+ my $element = array[1];    # 'b' comes with a warning (5.10 option)
+In Perl 6, sigils are invariant, which mean they do not change based on whether it is the array or the array element that is needed:
+ # Perl 6 code 
+ my array = ('a', 'b', 'c');
+ my $element = array[1];    # $element equals 'b'
+ my @extract = array[1];    # @extract equals ('b')
+ my @extract = array[1, 2]; # @extract equals ('b', 'c')
+The variance in Perl 5 is inspired by number agreement in English and many other natural languages:
+ "'''This''' apple."                    # $a        CORRECT
+ "'''These''' apples."                  # @a        CORRECT
+ "'''This''' third apple."              # $a[3]     CORRECT
+ "'''These''' third apple."             # @a[3]     WRONG
+However, this conceptual mapping breaks down when references come into play, since they may refer to data structures even though they are scalars. Thus, dealing with nested data structures may require an expression of both singular and plural form in a single term:
+This complexity has no equivalent either in common use of natural language or in other programming languages, and it causes high cognitive load when writing code to manipulate complex data structures.  Compare this with Perl 6:
+
+Object-oriented programming
+
+Perl 5 supports object-oriented programming via a mechanism known as blessing.  Any reference can be blessed into being an object of a particular class.  A blessed object can have methods invoked on it using the "arrow syntax" which will cause Perl to locate or "dispatch" an appropriate subroutine by name, and call it with the blessed variable as its first argument.
+While extremely powerful—virtually any other computer language's object model can be simulated using this simple facility—it makes the most common case of object orientation, a struct-like object with some associated code, unnecessarily difficult.  In addition, because Perl can make no assumptions about the object model in use, method invocation cannot be optimized very well.
+In the spirit of making the "easy things easy and hard things possible", Perl 6 retains the blessing model and supplies a more robust object model for the common cases.  For example, a class to encapsulate a Cartesian point could be defined and used this way:
+The dot replaces the arrow in a nod to the many other languages (e.g. Java, Python, etc.) that have coalesced around dot as the syntax for method invocation.
+In the terminology of Perl 6, $.x is called an "attribute". Some languages call these fields or members. The method used to access an attribute is called an "accessor". Auto-accessors are methods that are created automatically, as the method x is in the example above. These accessor functions return the value of the attribute. When a class or individual attribute is declared with the is rw modifier (short for "read/write"), the auto-accessor can be passed a new value to set the attribute to, or it can be directly assigned to as an lvalue (as in the example). Auto-accessors can be replaced by user-defined methods, should the programmer desire a richer interface to an attribute. Attributes can only be accessed directly from within a class definition. All other access must go through the accessor methods.
+The Perl 6 object system has inspired the Moose framework that introduces many of Perl 6's OOP features to Perl 5.
+
+=Roles=
+
+Roles in Perl 6 take on the function of interfaces in Java, mixins in Ruby, and traits
+Essentially, a role is a bundle of (possibly abstract) methods and attributes that can be added to a class without using inheritance.  A role can even be added to an individual object; in this case, Perl 6 will create an anonymous subclass, add the role to the subclass, and change the object's class to the anonymous subclass.
+For example, a Dog is a Mammal.  Dogs inherit certain characteristics from Mammals, such as mammary glands and (through Mammal's parent, Vertebrate) a backbone.  Dogs may have one of several distinct types of behavior; for example, a Dog may be a Pet, a Stray, or a Guide for the blind.  However, these are simply sets of additional behaviors that can be added to a Dog; a Cat can equally be a Pet or Stray, for example.  Hence, Dog and Mammal are classes, while Pet, Stray, and Guide are roles.
+Roles are added to a class or object with the does keyword, as opposed to inheritance's is.  The keywords reflect the differing meanings of the two features: role composition gives a class the behavior of the role, but doesn't indicate that it is truly the same thing as the role.
+Although roles are distinct from classes, both are types, so a role can appear in a variable declaration where one would normally put a class.  For example, a Blind role for a Human could include an attribute of type Guide; this attribute could contain a Guide Dog, a Guide Horse, a Guide Human, or even a Guide Machine.
+
+Regular expressions
+
+Perl's regular expression and string-processing support has always been one of its defining features. Perl 6 documentation will exclusively refer to them as regexes, distancing the term from the formal definition.
+Perl 6 provides a superset of Perl 5 features with respect to regexes, folding them into a larger framework called "rules" which provide the capabilities of context-sensitive parsing formalisms (such as the syntactic predicates of parsing expression grammars and ANTLR), as well as acting as a closure with respect to their lexical scope. Rules are introduced with the rule keyword which has a usage quite similar to subroutine definition. Anonymous rules can also be introduced with the regex (or rx) keyword, or they can simply be used inline as regexps were in Perl 5 via the m (matching) or s (substitute) operators.
+In Apocalypse 5, Larry Wall enumerated 20 problems with "current regex culture". Among these were that Perl's regexes were "too compact and 'cute'", had "too much reliance on too few metacharacters", "little support for named captures", "little support for grammars", and "poor integration with 'real' language".
+
+Syntactic simplification
+
+Some Perl 5 constructs have been changed in Perl 6, optimized for different syntactic cues for the most common cases. For example, the parentheses (round brackets) required in control flow constructs in Perl 5 are now optional:
+Also, the , (comma) operator is now a list constructor, so enclosing parentheses are no longer required around lists. The code
+now makes @array an array with exactly the elements '1', '2', '3', and '4'.
+
+Chained comparisons
+
+Perl 6 allows comparisons to "chain". That is, a sequence of comparisons such as the following are allowed:
+This is treated as if each left-to-right comparison were performed on its own, and the result is logically combined via the and operation.
+
+Lazy evaluation
+
+Perl 6 uses the technique of lazy evaluation of lists that has been a feature of some functional programming languages such as Haskell:
+The code above will not crash by attempting to assign a list of infinite size to the array @integers, nor will it hang indefinitely in attempting to expand the list if a limited number of slots are searched.
+This simplifies many common tasks in Perl 6 including input/output operations, list transformations and parameter passing.
+
+Gather
+
+Related to lazy evaluation is the construction of lazy lists using gather and take, behaving somewhat like generators in languages like Icon or Python.
+$squares will be an infinite list of square numbers, but lazy evaluation of the gather ensures that elements are only computed when they are accessed.
+
+Junctions
+
+Perl 6 introduces the concept of junctions: values that are composites of other values. In the earliest days of Perl 6's design, these were called "superpositions", by analogy to the concept in quantum physics of quantum superpositions — waveforms that can simultaneously occupy several states until observation "collapses" them. A Perl 5 module released in 2000 by Damian Conway called Quantum::Superpositions provided an initial proof of concept. While at first such superpositional values seemed like merely a programmatic curiosity, over time their utility and intuitiveness became widely recognized, and junctions now occupy a central place in Perl 6's design.
+In their simplest form, junctions are created by combining a set of values with junctive operators:
+| indicates a value which is equal to either its left or right-hand arguments. & indicates a value which is equal to both its left and right-hand arguments. These values can be used in any code that would use a normal value. Operations performed on a junction act on all members of the junction equally, and combine according to the junctive operator. So, ("apple"|"banana") ~ "s" would yield "apples"|"bananas". In comparisons, junctions return a single true or false result for the comparison. "any" junctions return true if the comparison is true for any one of the elements of the junction. "all" junctions return true if the comparison is true for all of the elements of the junction.
+Junctions can also be used to more richly augment the type system by introducing a style of generic programming that is constrained to junctions of types:
+
+=Autothreading=
+
+Junctions are unordered; 1|2|3 and 3|2|1 represent the same value.  This lack of ordering means that the Perl 6 compiler can choose to evaluate junctive expressions in parallel. For instance, the code:
+would indicate to the compiler that all matches of a string against a list of regexes can be executed in parallel, possibly in separate threads. This feature is dubbed "autothreading".
+
+Macros
+
+In low-level languages, the concept of macros has become synonymous with textual substitution of source-code due to the widespread use of the C preprocessor. However, high-level languages such as Lisp pre-dated C in their use of macros that were far more powerful. It is this Lisp-like macro concept that Perl 6 will take advantage of. The power of this sort of macro stems from the fact that it operates on the program as a high-level data structure, rather than as simple text, and has the full capabilities of the programming language at its disposal.
+A Perl 6 macro definition will look like a subroutine or method definition, and can operate on unparsed strings, an AST representing pre-parsed code, or a combination of the two. A macro definition would look like this:
+In this particular example, the macro is no more complex than a C-style textual substitution, but because parsing of the macro parameter occurs before the macro operates on the calling code, diagnostic messages would be far more informative. However, because the body of a macro is executed at compile time each time it is used, many techniques of optimization can be employed. It is even possible to entirely eliminate complex computations from resulting programs by performing the work at compile-time.
+
+Examples
+
+Hello world
+
+The hello world program is a common program used to introduce a language. In Perl 6, hello world is:
+— though there is more than one way to do it.  The say function prints its arguments, like the print function, but with a trailing newline.  (This feature was backported into Perl 5.10.)
+
+Quicksort
+
+Quicksort is a well-known sorting algorithm. A working implementation using the functional programming paradigm can be succinctly written in Perl 6:
+
+Tower of Hanoi
+
+Tower of Hanoi is often used to introduce recursive programming in computer science. This implementation uses Perl 6's  multi-dispatch mechanism and parametric constraints:
+
+
+
+
+
+

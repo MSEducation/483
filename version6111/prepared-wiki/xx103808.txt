@@ -1,0 +1,36 @@
+[[SPECint]]
+
+CATEGORIES: Computer benchmarks
+
+SPECint is a computer benchmark specification for CPU integer processing power. It is maintained by the Standard Performance Evaluation Corporation (SPEC). SPECint is the integer performance testing component of the SPEC test suite. The first SPEC test suite, CPU92, was announced in 1992. It was followed by CPU95, CPU2000, and CPU2006. The latest standard of SPECint is CINT2006 (aka SPECint2006).
+
+==SPECint 2006==
+
+CPU2006 is a set of benchmarks designed to test the CPU performance of a modern server computer system.  It is split into 2 components, the first being CINT2006, the other being CFP2006 (SPECfp), for floating point testing.
+SPEC defines a base runtime for each of the 12 benchmark programs.  For SPECint2006, that number ranges from 1000–3000 seconds.  The timed test is run on the system, and the time of the test system is compared to the reference time, and a ratio is computed.  That ratio becomes the SPECint score for that test. (This differs from the rating in SPECINT2000, which multiplies the ratio by 100.)
+As an example for SPECint2006, consider a processor which can run 400.perlbench in 2000 seconds.  The time it takes the reference machine to run the benchmark is 9770 seconds.[tpl]cite web|url=http://www.mrob.com/pub/comp/benchmarks/spec.html|title=The SPEC Benchmarks|date=2003-02-03|accessdate=2008-09-01[/tpl]  Thus the ratio is 4.885.  Each ratio is computed, and then the geometric mean of those ratios is computed to produce an overall value.
+
+==Background==
+
+For a fee, SPEC distributes source code files to users wanting to test their systems.  These files are written in a standard programming language, which is then compiled for each particular CPU architecture and operating system.  Thus, the performance measured is that of the CPU, RAM, and compiler, and does not test I/O, networking, or graphics.
+Two metrics are reported for a particular benchmark, "base" and "peak".  Compiler options account for the difference between the two numbers. As the SPEC benchmarks are distributed as source code, it is up to the party performing the test to compile this code.  There is agreement that the benchmarks should be compiled in the same way as a user would compile a program, but there is no consistent method for user compilation, it varies system by system. SPEC, in this case, defines two reference points, "base" and "peak".  Base has a more strict set of compilation rules than peak.  Less optimization can be done, the compiler flags must be the same for each benchmark, in the same order, and there must be a limited number of flags.  Base, then, is closest to how a user would compile a program with standard flags. The 'peak' metric can be performed with maximum compiler optimization, even to the extent of different optimizations for each benchmark.  This number represents maximum system performance, achieved by full compiler optimization.
+SPECint tests are carried out on a wide range of hardware, with results typically published for the full range of system-level implementations employing the latest CPUs. For SPECint2006, the CPUs include Intel and AMD x86 & x86-64 processors, Sun SPARC CPUs, IBM POWER CPUs, and IA-64 CPUs.  This range of capabilities, specifically in this case the number of CPUs, means that the SPECint benchmark is usually run on only a single CPU, even if the system has many CPUs.  If a single CPU has multiple cores, only a single core is used; hyper-threading is also typically disabled,
+A more complete system-level benchmark that allows all CPUs to be used is known as SPECint_rate2006, also called "CINT2006 Rate".
+
+==Benchmarks==
+
+The SPECint2006 test suite consists of 12 benchmark programs, designed to test exclusively the integer performance of the system.
+The benchmarks are:
+
+==Critique==
+
+In the SpecInt2006 benchmarks, the 462.libquantum benchmark is highly vectorizable.  The baseline computer for all benchmarks is a 1997 Sun Ultrasparc server computer.  Whereas most of the spec sub-benchmarks turn in a performance improvement of about 5x to 80x times faster than the Ultrasparc, the particular 462.libquantum sub-benchmark turns in a result that is up to 4082 times faster than the Sun Ultrasparc
+.[tpl]cite web|url=http://www.spec.org/cgi-bin/osgresults?conf=cpu2006;op=dump;format=csvdump|date=2013-04-04|accessdate=2013-04-04|title=SPEC Data Dump[/tpl]  This suggests that for this sub-benchmark, most of the improvements over the Ultrasparc are due to vectorizing compiler improvements, NOT due to CPU hardware improvements, since 1997.
+
+==See also==
+
+==References==
+
+==External links==
+
+

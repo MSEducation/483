@@ -1,0 +1,178 @@
+[[Navier–Stokes equations]]
+
+CATEGORIES: Concepts in physics, Equations of fluid dynamics, Aerodynamics, Partial differential equations, Conservation equations
+
+In physics, the Navier–Stokes equations stəʊks}}, named after Claude-Louis Navier and George Gabriel Stokes, describe the motion of fluid substances. These equations arise from applying Newton's second law to fluid motion, together with the assumption that the stress in the fluid is the sum of a diffusing viscous term (proportional to the gradient of velocity) and a pressure term - hence describing viscous flow.
+The equations are useful because they describe the physics of many things of academic and economic interest. They may be used to model the weather, ocean currents, water flow in a pipe and air flow around a wing. The Navier–Stokes equations in their full and simplified forms help with the design of aircraft and cars, the study of blood flow, the design of power stations, the analysis of pollution, and many other things. Coupled with Maxwell's equations they can be used to model and study magnetohydrodynamics.
+The Navier–Stokes equations are also of great interest in a purely mathematical sense. Somewhat surprisingly, given their wide range of practical uses, it has not yet been proven that in three dimensions solutions always exist (existence), or that if they do exist, then they do not contain any singularity. (They are smooth.) These are called the Navier–Stokes existence and smoothness problems. The Clay Mathematics Institute has called this one of the seven most important open problems in mathematics and has offered a US$1,000,000 prize for a solution or a counter-example.
+
+Velocity field
+
+The Navier–Stokes equations dictate not position but rather velocity. A solution of the Navier–Stokes equations is called a velocity field or flow field, which is a description of the velocity of the fluid at a given point in space and time. Once the velocity field is solved for, other quantities of interest (such as flow rate or drag force) may be found. This is different from what one normally sees in classical mechanics, where solutions are typically trajectories of position of a particle or deflection of a continuum. Studying velocity instead of position makes more sense for a fluid; however for visualization purposes one can compute various trajectories.
+
+Properties
+
+Nonlinearity
+
+The Navier–Stokes equations are nonlinear partial differential equations in almost every real situation. Potter, D.C. Wiggert, Schaum's Outlines, McGraw-Hill (USA), 2008, ISBN 978-0-07-148781-8Vectors, Tensors, and the basic Equations of Fluid Mechanics, R. Aris, Dover Publications, 1989, ISBN(10) 0-486-66110-5 In some cases, such as one-dimensional flow and Stokes flow (or creeping flow), the equations can be simplified to linear equations. The nonlinearity makes most problems difficult or impossible to solve and is the main contributor to the turbulence that the equations model.
+The nonlinearity is due to convective acceleration, which is an acceleration associated with the change in velocity over position. Hence, any convective flow, whether turbulent or not, will involve nonlinearity. An example of convective but laminar (nonturbulent) flow would be the passage of a viscous fluid (for example, oil) through a small converging nozzle. Such flows, whether exactly solvable or not, can often be thoroughly studied and understood.B. Parker, 1994, ISBN 0-07-051400-3
+
+Turbulence
+
+Turbulence is the time-dependent chaotic behavior seen in many fluid flows. It is generally believed that it is due to the inertia of the fluid as a whole: the culmination of time dependent and convective acceleration; hence flows where inertial effects are small tend to be laminar (the Reynolds number quantifies how much the flow is affected by inertia). It is believed, though not known with certainty, that the Navier–Stokes equations describe turbulence properly.G. Lerner, G.L. Trigg, VHC publishers, 1991, ISBN (Verlagsgesellschaft) 3-527-26954-1, ISBN (VHC Inc.) 0-89573-752-3
+The numerical solution of the Navier–Stokes equations for turbulent flow is extremely difficult, and due to the significantly different mixing-length scales that are involved in turbulent flow, the stable solution of this requires such a fine mesh resolution that the computational time becomes significantly infeasible for calculation (see Direct numerical simulation). Attempts to solve turbulent flow using a laminar solver typically result in a time-unsteady solution, which fails to converge appropriately. To counter this, time-averaged equations such as the Reynolds-averaged Navier–Stokes equations (RANS), supplemented with turbulence models, are used in practical computational fluid dynamics (CFD) applications when modeling turbulent flows. Some models include the Spalart-Allmaras, k-ω (k-omega), k-ε (k-epsilon), and SST models which add a variety of additional equations to bring closure to the RANS equations. Another technique for solving numerically the Navier–Stokes equation is the Large eddy simulation (LES). This approach is computationally more expensive than the RANS method (in time and computer memory), but produces better results since the larger turbulent scales are explicitly resolved.
+
+Applicability
+
+Together with supplemental equations (for example, conservation of mass) and well formulated boundary conditions, the Navier–Stokes equations seem to model fluid motion accurately; even turbulent flows seem (on average) to agree with real world observations.
+The Navier–Stokes equations assume that the fluid being studied is a continuum (it is infinitely divisible and not composed of particles such as atoms or molecules), and is not moving at relativistic velocities. At very small scales or under extreme conditions, real fluids made out of discrete molecules will produce results different from the continuous fluids modeled by the Navier–Stokes equations. Depending on the Knudsen number of the problem, statistical mechanics or possibly even molecular dynamics may be a more appropriate approach.
+Another limitation is simply the complicated nature of the equations. Time tested formulations exist for common fluid families, but the application of the Navier–Stokes equations to less common families tends to result in very complicated formulations which are an area of current research. For this reason, these equations are usually written for Newtonian fluids. Studying such fluids is "simple" because the viscosity model ends up being linear; truly general models for the flow of other kinds of fluids (such as blood) do not, as of 2012, exist .
+
+Derivation and description
+
+The derivation of the Navier–Stokes equations begins with an application of Newton's second law: conservation of momentum (often alongside mass and energy conservation) being written for an arbitrary portion of the fluid. In an inertial frame of reference, the general form of the equations of fluid motion is:Batchelor (1967) pp. 137 & 142.
+
+This equation is often written using the material derivative Dv/Dt, making it more apparent that this is a statement of Newton's second law:
+The left side of the equation describes acceleration, and may be composed of time dependent or convective effects (also the effects of non-inertial coordinates if present). The right side of the equation is in effect a summation of body forces (such as gravity) and divergence of stress (pressure and shear stress).
+
+Convective acceleration
+
+A significant feature of the Navier–Stokes equations is the presence of convective acceleration: the effect of time independent acceleration of a fluid with respect to space. While individual fluid particles are indeed experiencing time dependent acceleration, the convective acceleration of the flow field is a spatial effect, one example being fluid speeding up in a nozzle.
+Regardless of what kind of fluid is being dealt with, convective acceleration is a nonlinear effect. Convective acceleration is present in most flows (exceptions include one-dimensional incompressible flow), but its dynamic effect is disregarded in creeping flow (also called Stokes flow). Convective acceleration is represented by the nonlinear quantity:
+
+=Interpretation as (v·∇)v=
+
+The convection term is often written as
+
+=Interpretation as v·(∇v)=
+
+=In irrotational flow=
+
+The convection term may, by a vector calculus identity, be expressed without a tensor derivative:See Batchelor (1967), §3.5, p. 160.
+
+Stresses
+
+, Vol. 1, §9–4 and §12–1.[/ref]  For this reason, assumptions on the specific behavior of a fluid are made (based on natural observations) and applied in order to specify the stresses in terms of the other flow variables, such as velocity and density.
+As a result, in the Navier–Stokes equations the deviatoric stress tensor has the following form:
+
+Other forces
+
+Other equations
+
+The Navier–Stokes equations are strictly a statement of the conservation of momentum. In order to fully describe fluid flow, more information is needed (how much depends on the assumptions made). This additional information may include boundary data (no-slip, capillary surface, etc.), the conservation of mass, the conservation of energy, and/or an equation of state.
+
+=Continuity equation=
+
+Regardless of the flow assumptions, a statement of the conservation of mass is generally necessary. This is achieved through the mass continuity equation, given in its most general form as:
+or, using the substantive derivative:
+
+Incompressible flow of Newtonian fluids
+
+A simplification of the resulting flow equations is obtained when considering an incompressible flow of a Newtonian fluid. The assumption of incompressibility rules out the possibility of sound or shock waves to occur; so this simplification is not useful if these phenomena are of interest. The incompressible flow assumption typically holds well even when dealing with a "compressible" fluid — such as air at room temperature — at low Mach numbers (even when flowing up to about Mach 0.3). Taking the incompressible flow assumption into account and assuming constant viscosity, the Navier–Stokes equations will read, in vector form:See Acheson (1990).
+
+and tensor notation:
+
+It's well worth observing the meaning of each term (compare to the Cauchy momentum equation):
+Note that only the convective terms are nonlinear for incompressible Newtonian flow. The convective acceleration is an acceleration caused by a (possibly steady) change in velocity over position, for example the speeding up of fluid entering a converging nozzle. Though individual fluid particles are being accelerated and thus are under unsteady motion, the flow field (a velocity distribution) will not necessarily be time dependent.
+Another important observation is that the viscosity is represented by the vector Laplacian of the velocity field (interpreted here as the difference between the velocity at a point and the mean velocity in a small volume around). This implies that – for a Newtonian fluid – viscosity operates in a diffusion of momentum, in much the same way as the diffusion of heat seen in the heat equation (which also involves the Laplacian).
+If temperature effects are also neglected, the only "other" equation (apart from initial/boundary conditions) needed is the mass continuity equation. Under the assumption of incompressibility, the density of a fluid parcel is constant, and when using the substantive derivative it follows easily that the continuity equation simplifies to:
+This is more specifically a statement of the conservation of volume (see divergence and isochoric process).
+These equations are commonly used in 3 coordinates systems: Cartesian, cylindrical, and spherical. While the Cartesian equations seem to follow directly from the vector equation above, the vector form of the  Navier–Stokes equation involves some tensor calculus which means that writing it in other coordinate systems is not as simple as doing so for scalar equations (such as the heat equation).
+
+Cartesian coordinates
+
+Note that gravity has been accounted for as a body force, and the values of gx, gy, gz will depend on the orientation of gravity with respect to the chosen set of coordinates.
+The continuity equation reads:
+The velocity components (the dependent variables to be solved for) are typically named u, v, w. This system of four equations comprises the most commonly used and studied form. Though comparatively more compact than other representations, this is still a nonlinear system of partial differential equations for which solutions are difficult to obtain.
+
+Cylindrical coordinates
+
+The gravity components will generally not be constants, however for most applications either the coordinates are chosen so that the gravity components are constant or else it is assumed that gravity is counteracted by a pressure field (for example, flow in horizontal pipe is treated normally without gravity and without a vertical pressure gradient). The continuity equation is:
+
+Spherical coordinates
+
+In spherical coordinates, the r, ϕ, and θ momentum equations are (note the convention used: θ is polar angle, or colatitude, 0 ≤ θ ≤ π):
+Mass continuity will read:
+
+Stream function formulation
+
+results in mass continuity being unconditionally satisfied (given the stream function is continuous), and then incompressible Newtonian 2D momentum and mass conservation degrade into one equation:
+This single equation together with appropriate boundary conditions describes 2D fluid flow, taking only kinematic viscosity as a parameter. Note that the equation for creeping flow results when the left side is assumed zero.
+In axisymmetric flow another stream function formulation, called the Stokes stream function, can be used to describe the velocity components of an incompressible flow with one scalar function.
+
+Pressure-free velocity formulation
+
+The incompressible Navier–Stokes equation is a differential algebraic equation, having the inconvenient feature that there is no explicit mechanism for advancing the pressure in time. Consequently, much effort has been expended to eliminate the pressure from all or part of the computational process. The stream function formulation above eliminates the pressure (in 2D) at the expense of introducing higher derivatives and elimination of the velocity, which is the primary variable of interest.
+The incompressible Navier–Stokes equation is composite, the sum of two orthogonal equations,
+The explicit functional form of the projection operator in 3D is found from the Helmholtz Theorem
+with a similar structure in 2D. Thus the governing equation is an integro-differential equation and not convenient for numerical computation.
+An equivalent weak or variational form of the equation, proved to produce the same velocity solution as the Navier–Stokes equation, is given by,
+The absence of pressure forces from the governing velocity equation demonstrates that the equation is not a dynamic one, but rather a kinematic equation where the divergence-free condition serves the role of a conservation law. This all would seem to refute the frequent statements that the incompressible pressure enforces the divergence-free condition.
+
+=Discrete velocity=
+
+With partitioning of the problem domain and defining basis functions on the partitioned domain, the discrete form of the governing equation is,
+It is desirable to choose basis functions which reflect the essential feature of incompressible flow – the elements must be divergence-free. While the velocity is the variable of interest, the existence of the stream function or vector potential is necessary by the Helmholtz Theorem. Further, to determine fluid flow in the absence of a pressure gradient, one can specify the difference of stream function values across a 2D channel, or the line integral of the tangential component of the vector potential around the channel in 3D, the flow being given by Stokes' Theorem. Discussion will be restricted to 2D in the following.
+We further restrict discussion to continuous Hermite finite elements which have at least first-derivative degrees-of-freedom. With this, one can draw a large number of candidate triangular and rectangular elements from the plate-bending literature.
+These elements have derivatives as components of the gradient. In 2D, the gradient and curl of a scalar are clearly orthogonal, given by the expressions,
+Adopting continuous plate-bending elements, interchanging the derivative degrees-of-freedom and changing the sign of the appropriate one gives many families of stream function elements.
+Taking the curl of the scalar stream function elements gives divergence-free velocity elements. The requirement that the stream function elements be continuous assures that the normal component of the velocity is continuous across element interfaces, all that is necessary for vanishing divergence on these interfaces.
+Boundary conditions are simple to apply. The stream function is constant on no-flow surfaces, with no-slip velocity conditions on surfaces.
+Stream function differences across open channels determine the flow. No boundary conditions are necessary on open boundaries, though consistent values may be used with some problems. These are all Dirichlet conditions.
+The algebraic equations to be solved are simple to set up, but of course are non-linear, requiring iteration of the linearized equations.
+Similar considerations apply to three-dimensions, but extension from 2D is not immediate because of the vector nature of the potential, and there exists no simple relation between the gradient and the curl as was the case in 2D.
+
+=Pressure recovery=
+
+Recovering pressure from the velocity field is easy. The discrete weak equation for the pressure gradient is,
+
+Compressible flow of Newtonian fluids
+
+There are some phenomena that are closely linked with fluid compressibility. One of the obvious examples is sound. Description of such phenomena requires more general presentation of the Navier–Stokes equation that takes into account fluid compressibility. If viscosity is assumed a constant, one additional term appears, as shown here:Landau & Lifshitz (1987) pp. 44–45. 147 & 154.
+
+Application to specific problems
+
+The Navier–Stokes equations, even when written explicitly for specific fluids, are rather generic in nature and their proper application to specific problems can be very diverse. This is partly because there is an enormous variety of problems that may be modeled, ranging from as simple as the distribution of static pressure to as complicated as multiphase flow driven by surface tension.
+Generally, application to specific problems begins with some flow assumptions and initial/boundary condition formulation, this may be followed by scale analysis to further simplify the problem.
+a)  
+Assume steady, parallel, one dimensional, non-convective pressure-driven flow between parallel plates, the resulting scaled (dimensionless) boundary value problem is:
+The boundary condition is the no slip condition. This problem is easily solved for the flow field:
+From this point onward more quantities of interest can be easily obtained, such as viscous drag force or net flow rate.
+b)
+This ordinary differential equation is what is obtained when the Navier–Stokes equations are written and the flow assumptions applied (additionally, the pressure gradient is solved for). The nonlinear term makes this a very difficult problem to solve analytically (a lengthy implicit solution may be found which involves elliptic integrals and roots of cubic polynomials). Issues with the actual existence of solutions arise for R > 1.41 (approximately; this is not the square root of 2), the parameter R being the Reynolds number with appropriately chosen scales.  This is an example of flow assumptions losing their applicability, and an example of the difficulty in "high" Reynolds number flows.
+
+Exact solutions of the Navier–Stokes equations
+
+Some exact solutions to the Navier–Stokes equations exist. Examples of degenerate cases — with the non-linear terms in the Navier–Stokes equations equal to zero — are Poiseuille flow, Couette flow and the oscillatory Stokes boundary layer. But also more interesting examples, solutions to the full non-linear equations, exist; for example the Taylor–Green vortex.[ref]
+Landau & Lifshitz (1987) pp. 75–88.
+[/ref]
+Note that the existence of these exact solutions does not imply they are stable: turbulence may develop at higher Reynolds numbers.
+
+[/ref]
+|style = border: 1px solid lightgray; width: 90%;
+|headerstyle = text-align:left
+}}
+
+A three-dimensional steady-state vortex solution
+
+A nice steady-state example with no singularities comes from considering the flow along the lines of a Hopf fibration. Let r be a constant radius to the inner coil. One set of solutions is given by:
+
+Wyld diagrams
+
+Wyld diagrams are bookkeeping graphs that correspond to the Navier–Stokes equations via a perturbation expansion of the fundamental continuum mechanics. Similar to the Feynman diagrams in quantum field theory, these diagrams are an extension of Keldysh's technique for nonequilibrium processes in fluid dynamics.  In other words, these diagrams assign graphs to the (often) turbulent phenomena in turbulent fluids by allowing correlated and interacting fluid particles to obey stochastic processes associated to pseudo-random functions in probability distributions. pp. 121–128.
+
+Navier–Stokes equations use in games
+
+The Navier–Stokes equations are used extensively in video games in order to model a wide variety of natural phenomena. Simulations of small-scale gaseous fluids, such as fire and smoke are often based on the seminal paper "Real-Time Fluid Dynamics for Games" by Jos Stam, which elaborates one of the methods proposed in Stam's earlier, more famous paper "Stable Fluids" from 1999. Stam proposes stable fluid simulation using a Navier–Stokes solution method from 1968, coupled with an unconditionally stable semi-Lagrangian advection scheme, as first proposed in 1992. More recent implementations based upon this work run on the GPU as opposed to the CPU and achieve a much higher degree of performance.
+Many improvements have been proposed to Stam's original work, which suffers inherently from high numerical dissipation in both velocity and mass.
+An introduction to interactive fluid simulation can be found in the 2007 ACM SIGGRAPH course "Fluid Simulation for Computer Animation" by Robert Bridson and Matthias Müller-Fischer, available online.
+
+
+
+Notes
+
+
+
+  | last = Acheson
+  | first = D. J.
+  | title = Elementary Fluid Dynamics

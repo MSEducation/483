@@ -1,0 +1,205 @@
+[[Web Ontology Language]]
+
+CATEGORIES: World Wide Web Consortium standards, Resource Description Framework, School of Computer Science, University of Manchester, XML-based standards, Declarative programming languages, Ontology languages, Semantic Web
+
+The Web Ontology Language (OWL) is a family of knowledge representation languages or ontology languages for authoring ontologies or knowledge bases.
+The languages are characterised by formal semantics and RDF/XML-based serializations for the Semantic Web. OWL is endorsed by the World Wide Web Consortium (W3C)[tpl]cite web |url=http://www.w3.org/TR/owl2-overview/ |title=OWL 2 Web Ontology Language Document Overview |date=2009-10-27 |publisher=W3C [/tpl] and has attracted academic, medical and commercial interest.
+In October 2007, a new W3C working groupW3C working group was started to extend OWL with several new features as proposed in the OWL 1.1 member submission.[tpl]cite web |url=http://www.w3.org/Submission/2006/10/ |title=Submission Request to W3C: OWL 1.1 Web Ontology Language |publisher=W3C |date=2006-12-19 [/tpl] W3C announced the new version of OWL on 27 October 2009.[tpl]cite web |url=http://www.w3.org/2009/10/owl2-pr |title=W3C Standard Facilitates Data Management and Integration |publisher=W3.org |date=2009-10-27 |deadurl=no |accessdate=15 October 2013[/tpl] This new version, called OWL 2, soon found its way into semantic editors such as Protégé and semantic reasoners such as Pellet,[tpl]cite doi |10.1016/j.websem.2007.03.004 [/tpl]Pellet[tpl]primary source inline|date=January 2014[/tpl] RacerPro,RacerPro[tpl]primary source inline|date=January 2014[/tpl] FaCT++[tpl]cite doi |10.1007/11814771_26[/tpl]FaCT++[tpl]primary source inline|date=January 2014[/tpl] and HermiT.HermiT[tpl]primary source inline|date=January 2014[/tpl]
+The OWL family contains many species, serializations, syntaxes and specifications with similar names. OWL and OWL2 are used to refer to the 2004 and 2009 specifications, respectively. Full species names will be used, including specification version (for example, OWL2 EL). When referring more generally, OWL Family will be used.
+
+==History==
+
+===Early ontology languages===
+
+There is a long history of ontological development in philosophy and computer science. Since the 1990s, a number of research efforts have explored how the idea of knowledge representation (KR) from artificial intelligence (AI) could be made useful on the World Wide Web. These included languages based on HTML (called SHOE), based on XML (called XOL, later OIL), and various frame-based KR languages and knowledge acquisition approaches.
+
+===Ontology languages for the web===
+
+In 2000 in the United States, DARPA started development of DAML led by James Hendler.[tpl]cite book |title=OWL: Representing Information Using the Web Ontology Language |last=Lacy |first=Lee W. |year=2005 |publisher=Trafford Publishing |location=Victoria, BC |isbn=1-4120-3448-5 |chapter=Chapter 10 [/tpl]
+In March 2001, the Joint EU/US Committee on Agent Markup Languages decided that DAML should be merged with OIL.
+The EU/US ad hoc Joint Working Group on Agent Markup Languages was convened to develop DAML+OIL as a web ontology language. This group was jointly funded by the DARPA (under the DAML program) and the European Union's Information Society Technologies (IST) funding project. DAML+OIL was intended to be a thin layer above RDFS,
+with formal semantics based on a description logic (DL).
+OWL started as a research-based[tpl]cite web |url=http://www.w3.org/TR/2002/WD-owl-features-20020729/ |title=Feature Synopsis for OWL Lite and OWL: W3C Working Draft 29 July 2002 |publisher=W3C |date=2002-07-29 [/tpl] revision of DAML+OIL aimed at the semantic web.
+
+===Semantic web standards===
+
+[tpl]quote|The Semantic Web provides a common framework that allows data to be shared and reused across application, enterprise, and community boundaries.|World Wide Web Consortium|W3C Semantic Web Activity[tpl]cite web |url=http://www.w3.org/2001/sw/ |title=W3C Semantic Web Activity |author=World Wide Web Consortium |date=2010-02-06 |work= |accessdate=18 April 2010 [/tpl][/tpl]
+
+====RDF schema====
+
+[tpl]quote|a declarative representation language influenced by ideas from knowledge representation|World Wide Web Consortium|Metadata Activity[tpl]cite web |url=http://www.w3.org/Metadata/Activity.html |title=Metadata Activity Statement |author=World Wide Web Consortium |date=2002-08-23 |publisher=World Wide Web Consortium |accessdate=20 April 2010 [/tpl][/tpl]
+In the late 1990s, the World Wide Web Consortium (W3C) Metadata Activity started work on RDF Schema (RDFS), a language for RDF vocabulary sharing. The RDF became a W3C Recommendation in February 1999, and RDFS a Candidate Recommendation in March 2000. In February 2001, the Semantic Web Activity replaced the Metadata Activity. In 2004 (as part of a wider revision of RDF) RDFS became a  W3C Recommendation.[tpl]cite web |url=http://www.w3.org/Metadata/Activity.html |title=RDF Vocabulary Description Language 1.0: RDF Schema |author=World Wide Web Consortium |date=2002-08-23 | work=RDF Vocabulary Description Language 1.0 |publisher=World Wide Web Consortium |accessdate=20 April 2010 [/tpl]
+Though RDFS provides some support for ontology specification, the need for a more expressive ontology language had become clear.[tpl]cite book |title=OWL: Representing Information Using the Web Ontology Language |last=Lacy |first=Lee W. |year=2005 |publisher=Trafford Publishing |location=Victoria, BC |isbn=1-4120-3448-5 |chapter=Chapter 9 - RDFS[/tpl]
+
+====Web-Ontology Working Group====
+
+The World Wide Web Consortium (W3C) created the Web-Ontology Working Group as part of their Semantic Web Activity. It began work on November 1, 2001 with co-chairs James Hendler and Guus Schreiber.[tpl]cite web |url=http://www.w3.org/2001/sw/WebOnt/#L151 |publisher=W3C |title=Web-Ontology (WebOnt) Working Group (Closed) [/tpl] The first working drafts of the abstract syntax, reference and synopsis were published in July 2002. OWL became a formal W3C recommendation on February 10, 2004 and the working group was disbanded on May 31, 2004.
+
+====OWL Working Group====
+
+In 2005, at the OWL Experiences And Directions Workshop a consensus formed that recent advances in description logic would allow a more expressive revision to satisfy user requirements more comprehensively whilst retaining good computational properties.
+In December 2006, the OWL1.1 Member Submission[tpl]cite web |url=http://www.w3.org/Submission/2006/SUBM-owl11-overview-20061219/ |title=OWL 1.1 Web Ontology Language |last1=Patel-Schneider |first1=Peter F. |authorlink1=Peter F. Patel-Schneider |last2=Horrocks |first2=Ian |date=2006-12-19 |publisher=World Wide Web Consortium |accessdate=26 April 2010 [/tpl] was made to the W3C. The W3C chartered the OWL Working Group as part of the Semantic Web Activity in September 2007. In April 2008, this group decided to call this new language OWL2, indicating a substantial revision.[tpl]cite doi |10.1016/j.websem.2008.05.001 [/tpl]
+OWL 2 became a W3C recommendation in October 2009. OWL 2 introduces profiles to improve scalability in typical applications.
+
+===Acronym===
+
+[tpl]quote|Why not be inconsistent in at least one aspect of a language which is all about consistency?|Guus Schreiber|Why OWL and not WOL?[tpl]cite web |url=http://www.w3.org/People/Ivan/CorePresentations/RDFTutorial/Slides.html#%28114%29 |title=Why OWL and not WOL? |first=Ivan |last=Herman |authorlink=Ivan Herman |work=Tutorial on Semantic Web Technologies |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl][/tpl]
+The natural initialism for Web Ontology Language would be WOL instead of OWL. Although the character Owl from Winnie-the-Pooh wrote his name WOL, the acronym OWL was proposed without reference to that character, as an easily pronounced acronym that would yield good logos, suggest wisdom, and honor William A. Martin's One World Language knowledge representation project from the 1970s.[tpl]cite web |url= http://lists.w3.org/Archives/Public/www-webont-wg/2001Dec/0169.html|title=Re: NAME: SWOL versus WOL|work=message sent to W3C webont-wg mailing list on 27 December 2001[/tpl][tpl]cite web|title=Ontologe Reasoning: The Why and The How|url=http://www2.informatik.hu-berlin.de/~wandelt/SW201213/5OWLDL.pdf|accessdate=January 28, 2014|author=Ian Horrocks|authorlink=Ian Horrocks|page=7|format=PDF|year=2012[/tpl]
+
+===Adoption===
+
+A survey (published in 2006) of ontologies available on the web collected 688 OWL ontologies. Of these, 199 were OWL Lite, 149 were OWL DL and 337 OWL Full (by syntax). They found that 19 ontologies had in excess of 2,000 classes, and that 6 had more than 10,000. The same survey collected 587 RDFS vocabularies.[tpl]cite doi |10.1007/11926078_49 [/tpl]
+
+==Ontologies==
+
+===Introduction===
+
+The data described by an ontology in the OWL family is interpreted as a set of "individuals" and a set of "property assertions" which relate these individuals to each other. An ontology consists of a set of axioms which place constraints on sets of individuals (called "classes") and the types of relationships permitted between them. These axioms provide semantics by allowing systems to infer additional information based on the data explicitly provided. A full introduction to the expressive power of the OWL is provided in the W3C's OWL Guide.[tpl]cite web|url=http://www.w3.org/TR/owl-guide/|title=OWL Web Ontology Language Guide|editor=W3C[/tpl]
+
+===Example===
+
+An ontology describing families might include axioms stating that a "hasMother" property is only present between two individuals when "hasParent" is also present, and individuals of class "HasTypeOBlood" are never related via "hasParent" to members of the "HasTypeABBlood" class. If it is stated that the individual Harriet is related via "hasMother" to the individual Sue, and that Harriet is a member of the "HasTypeOBlood" class, then it can be inferred that Sue is not a member of "HasTypeABBlood".
+
+==Species==
+
+===OWL sublanguages===
+
+The W3C-endorsed OWL specification includes the definition of three variants of OWL, with different levels of expressiveness. These are OWL Lite, OWL DL and OWL Full (ordered by increasing expressiveness). Each of these sublanguages is a syntactic extension of its simpler predecessor. The following set of relations hold. Their inverses do not.
+
+====OWL Lite====
+
+OWL Lite was originally intended to support those users primarily needing a classification hierarchy and simple constraints. For example, while it supports cardinality constraints, it only permits cardinality values of 0 or 1. It was hoped that it would be simpler to provide tool support for OWL Lite than its more expressive relatives, allowing quick migration path for systems using thesauri and other taxonomies. In practice, however, most of the expressiveness constraints placed on OWL Lite amount to little more than syntactic inconveniences: most of the constructs available in OWL DL can be built using complex combinations of OWL Lite features. Development of OWL Lite tools has thus proven almost as difficult as development of tools for OWL DL, and OWL Lite is not widely used.
+
+====OWL DL====
+
+OWL DL was designed to provide the maximum expressiveness possible while retaining computational completeness (either φ or ¬φ belong), decidability (there is an effective procedure to determine whether φ is derivable or not), and the availability of practical reasoning algorithms. OWL DL includes all OWL language constructs, but they can be used only under certain restrictions (for example, number restrictions may not be placed upon properties which are declared to be transitive). OWL DL is so named due to its correspondence with description logic, a field of research that has studied the logics that form the formal foundation of OWL.
+
+====OWL Full====
+
+OWL Full is based on a different semantics from OWL Lite or OWL DL, and was designed to preserve some compatibility with RDF Schema. For example, in OWL Full a class can be treated simultaneously as a collection of individuals and as an individual in its own right; this is not permitted in OWL DL. OWL Full allows an ontology to augment the meaning of the pre-defined (RDF or OWL) vocabulary. OWL Full is undecidable, so no reasoning software is able to perform complete reasoning for it.
+
+===OWL2 profiles===
+
+In OWL 2, there are three sublanguages of the language. OWL 2 EL is a fragment that has polynomial time reasoning complexity; OWL 2 QL is designed to enable easier access and query to data stored in databases; OWL 2 RL is a rule subset of OWL 2.
+
+==Syntax==
+
+The OWL family of languages supports a variety of syntaxes. It is useful to distinguish high level syntaxes aimed at specification from exchange syntaxes more suitable for general use.
+
+===High level===
+
+These are close to the ontology structure of languages in the OWL family.
+
+====OWL abstract syntax====
+
+This high level syntax is used to specify the OWL ontology structure and semantics.[tpl]cite web |url=http://www.w3.org/TR/2004/REC-owl-semantics-20040210/syntax.html |title=OWL Web Ontology Language Semantics and Abstract Syntax |first1=Peter F. |last1=Patel-Schneider |first2=Ian |last2=Horrocks |first3=Hayes |last3=Patrick J. |authorlink3=Patrick J. Hayes |date=2004-02-10 |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+The OWL abstract syntax presents an ontology as a sequence of annotations, axioms and facts. Annotations carry machine and human oriented meta-data. Information about the classes, properties and individuals that compose the ontology is contained in axioms and facts only.
+Each class, property and individual is either anonymous or identified by an URI reference. Facts state data either about an individual or about a pair of individual identifiers (that the objects identified are distinct or the same). Axioms specify the characteristics of classes and properties. This style is similar to frame languages, and quite dissimilar to well known syntaxes for description logics (DLs) and Resource Description Framework (RDF).
+Sean Bechhofer, et al. argue that though this syntax is hard to parse, it is quite concrete. They conclude that the name abstract syntax may be somewhat misleading.[tpl]cite web |url=http://owl.man.ac.uk/2003/concrete/20031210/ |title=OWL Web Ontology Language Concrete Abstract Syntax |first1=Sean |last1=Bechhofer |authorlink1=Sean Bechhofer |first2=Peter F. |last2=Patel-Schneider |first3=Daniele |last3=Turi |authorlink3=Daniele Turi |date=2003-12-10 |publisher=University of Manchester |accessdate=18 April 2010 [/tpl]
+
+====OWL2 functional syntax====
+
+This syntax closely follows the structure of an OWL2 ontology. It is used by OWL2 to specify semantics, mappings to exchange syntaxes and profiles.[tpl]cite web |url=http://www.w3.org/TR/2009/REC-owl2-syntax-20091027/ |title= OWL 2 Web Ontology Language Structural Specification and Functional-Style Syntax |last1=Motik |first1=Boris |authorlink1=Boris Motik |last2=Patel-Schneider |first2=Peter F. |last3=Parsia |first3=Bijan |authorlink3=Bijan Parsia |date=2009-10-27 |work=OWL 2 Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+
+===Exchange syntaxes===
+
+====RDF syntaxes====
+
+Syntactic mappings into RDF are specified[tpl]cite web |url=http://www.w3.org/TR/2009/REC-owl2-mapping-to-rdf-20091027/ |title= OWL 2 Web Ontology Language Mapping to RDF Graphs |last2=Motik |first2=Boris |last1=Patel-Schneider |first1=Peter F. |date=2009-10-27 |work=OWL 2 Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+for languages in the OWL family. Several RDF  serialization formats have been devised. Each leads to a syntax for languages in the OWL family through this mapping. RDF/XML is normative.
+
+====OWL2 XML syntax====
+
+OWL2 specifies an XML serialization that closely models the structure of an OWL2 ontology.[tpl]cite web |url=http://www.w3.org/TR/2009/REC-owl2-xml-serialization-20091027/ |title=OWL 2 Web Ontology Language XML Serialization |last1=Motik |first1=Boris |last2=Parsia |first2=Bijan |last3=Patel-Schneider |first3=Peter F. |date=2009-10-27 |work=OWL 2 Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+
+====Manchester Syntax====
+
+The Manchester Syntax is a compact, human readable syntax with a style close to frame languages.
+Variations are available for OWL and OWL2. Not all OWL and OWL2 ontologies can be expressed in this syntax.[tpl]cite web |url= http://www.w3.org/TR/owl2-manchester-syntax/ |title= OWL 2 Web Ontology Language Manchester Syntax |last1=Horridge |first1=Matthew |authorlink1=Matthew Horridge |last2=Patel-Schneider |first2=Peter F. |date=2009-10-27 |work=W3C OWL 2 Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+
+===Examples===
+
+====Tea ontology====
+
+Consider an ontology for tea based on a Tea class. But first, an ontology is needed. Every OWL ontology must be identified by an URI (, say). This is enough to get a flavour of the syntax. To save space below, preambles and prefix definitions have been skipped.
+RDF/XML syntax
+
+==Semantics==
+
+===Relation to description logic===
+
+Early attempts to build large ontologies were plagued by a lack of clear definitions. Members of the OWL family have model theoretic formal semantics, and so have strong logical foundations.
+Description logics (DLs) are a family of logics that are decidable fragments of first-order logic with attractive and well-understood computational properties. OWL DL and OWL Lite semantics are based on DLs.[tpl]cite web |url=http://www.cs.man.ac.uk/~horrocks/Publications/download/2003/HoPa03c.pdf |format=PDF |first=Ian |last=Horrocks |first2=Peter F. |last2=Patel-Schneider |title=Reducing OWL Entailment to Description Logic Satisfiability [/tpl]
+They combine a syntax for describing and exchanging ontologies, and formal semantics that gives them meaning. For example, OWL DL corresponds to the SHOIN (D) description logic, while OWL 2 corresponds to the SROIQ(D) logic.[tpl]cite book |title=Foundations of Semantic Web Technologies |first=Pascal |last=Hitzler |first2=Markus |last2=Krötzsch |first3=Sebastian |last3=Rudolph |publisher=CRCPress |date=2009-08-25 |isbn=1-4200-9050-X |url=http://www.semantic-web-book.org [/tpl] Sound, complete, terminating reasoners (i.e. systems which are guaranteed to derive every consequence of the knowledge in an ontology) exist for these DLs.
+
+===Relation To RDFS===
+
+OWL Full is intended to be compatible with RDF Schema (RDFS), and to be capable of augmenting the meanings of existing Resource Description Framework (RDF) vocabulary.[tpl]cite web |url=http://www.w3.org/TR/2004/REC-owl-features-20040210/ |title=OWL Web Ontology Language Overview |first=Deborah |last=McGuinness |authorlink=Deborah McGuiness |first2=Frank |last2=van Harmelen |authorlink2=Frank van Harmelen |date=2004-02-10 |work=W3C Recommendation for OWL, the Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010[/tpl] A model theory describes the formal semantics for
+RDF.[tpl]cite web |url=http://www.w3.org/TR/2004/REC-rdf-mt-20040210/ |title=RDF Semantics |first=Patrick |last=Hayes |authorlink=Patrick J. Hayes |date=2004-02-10 |work=Resource Description Framework |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl] This interpretation provides the meaning of RDF and RDFS vocabulary. So, the meaning of OWL Full ontologies are defined by extension of the RDFS meaning, and OWL Full is a semantic extension of RDF.[tpl]cite web |url=http://www.w3.org/TR/owl-semantics/rdfs.html |title=OWL Web Ontology Language Semantics and Abstract Syntax Section 5. RDF-Compatible Model-Theoretic Semantics |first=Peter F. |last=Patel-Schneider |first2=Patrick |last2=Hayes |first3=Ian |last3=Horrocks |date=2004-02-10 |work=W3C Recommendation for OWL, the Web Ontology Language |publisher=World Wide Web Consortium |accessdate=18 April 2010 [/tpl]
+
+===Open world assumption===
+
+[tpl]quote|closed world assumption implies that everything we don’t know is false, while the open world assumption states that everything we don’t know is undefined.|Stefano Mazzocchi|Closed World vs. Open World: the First Semantic Web Battle[tpl]cite web |url=http://www.betaversion.org/~stefano/linotype/news/91/ |title=Closed World vs. Open World: the First Semantic Web Battle |first=Stefano |last=Mazzocchi |authorlink=Setfano Mazzocchi |date=2005-06-16 |accessdate=27 April 2010 [/tpl][/tpl]
+The languages in the OWL family use the open world assumption. Under the open world assumption, if a statement cannot be proven to be true with current knowledge, we cannot draw the conclusion that the statement is false.
+
+====Contrast to other languages====
+
+A relational database consists of sets of tuples with the same attributes. SQL is a query and management language for relational databases. Prolog is a logical programming language. Both use the closed world assumption.
+
+==Terminology==
+
+Languages in the OWL family are capable of creating classes, properties, defining instances and its operations.
+
+===Instances===
+
+An instance is an object. It corresponds to a description logic individual.
+
+===Classes===
+
+A class is a collection of objects. It corresponds to a description logic (DL) concept.  A class may contain individuals, instances of the class. A class may have any number of instances. An instance may belong to none, one or more classes.
+
+====Example====
+
+For example, Employee could be the subclass of class owl:Thing while Dealer, Manager, and Labourer all subclass of Employee.
+
+===Properties===
+
+A property is a directed binary relation that specifies class characteristics. It corresponds to a description logic role. They are attributes of instances and sometimes act as data values or link to other instances. Properties may possess logical capabilities such as being transitive, symmetric, inverse and functional. Properties may also have domains and ranges.
+
+====Datatype properties====
+
+Datatype properties are relations between instances of classes and RDF literals or XML schema datatypes. For example, modelName (String datatype) is the property of Manufacturer class. They are formulated using owl:DatatypeProperty type.
+
+====Object properties====
+
+Object properties are relations between instances of two classes. For example, ownedBy may be an object type property of the Vehicle class and may have a range which is the class Person. They are formulated using owl:ObjectProperty.
+
+===Operators===
+
+Languages in the OWL family support various operations on classes such as union, intersection and complement. They also allow class enumeration, cardinality, and disjointness.
+
+==Public ontologies==
+
+===Libraries===
+
+====Biomedical====
+
+====Miscellaneous====
+
+===Standards===
+
+===Browsers===
+
+The following tools include public ontology browsers:
+
+===Search===
+
+==Limitations==
+
+==See also==
+
+==References==
+
+==External links==
+
+

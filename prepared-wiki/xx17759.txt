@@ -1,0 +1,31 @@
+[[Lagged Fibonacci generator]]
+
+CATEGORIES: Pseudorandom number generators, Fibonacci numbers
+
+[tpl]Çeviri yeri|Lagged Fibonacci generator|Türkçe|tr[/tpl] A Lagged Fibonacci generator (LFG or sometimes LFib) is an example of a pseudorandom number generator. This class of random number generator is aimed at being an improvement on the 'standard' linear congruential generator. These are based on a generalisation of the Fibonacci sequence.
+The Fibonacci sequence may be described by the recurrence relation:
+Hence, the new term is the sum of the last two terms in the sequence. This can be generalised to the sequence:
+Generators of this type employ k words of state (they 'remember' the last k values).
+If the operation used is addition, then the generator is described as an Additive Lagged Fibonacci Generator or ALFG, if multiplication is used, it is a Multiplicative Lagged Fibonacci Generator or MLFG, and if the XOR operation is used, it is called a Two-tap generalised feedback shift register or GFSR. The Mersenne twister algorithm is a variation on a GFSR.  The GFSR is also related to the linear feedback shift register, or LFSR.
+
+==Properties of lagged Fibonacci generators==
+
+Lagged Fibonacci generators have a maximum period of (2k - 1)*2M-1 if addition or subtraction is used, and (2k-1)*k if exclusive-or operations are used to combine the previous values. If, on the other hand, multiplication is used, the maximum period is (2k - 1)*2M-3, or 1/4 of period of the additive case.
+For the generator to achieve this maximum period, the polynomial:
+must be primitive over the integers mod 2. Values of j and k satisfying this constraint have been published in the literature. Popular pairs are:
+Another list of possible values for j and k is on page 29 of volume 2 of The Art of Computer Programming:
+Note that the smaller number have short periods (only a few "random" numbers are generated before the first "random" number is repeated and the sequence restarts).
+If addition is used, it is required that at least one of the first k values chosen to initialise the generator be odd; if multiplication is used, instead, it is required that all the first k values be odd.http://www.cs.fsu.edu/~asriniva/papers/mlfg.ps
+It has been suggested that good ratios between j and k are approximately the golden ratio."Uniform random number generators for supercomputers", Richard Brent, Proc. of Fifth Australian Supercomputer Conference, Melbourne, Dec. 1992, pp. 704-706
+
+==Problems with LFGs==
+
+The initialization of LFGs is a very complex problem. The output of LFGs is very sensitive to initial conditions, and statistical defects may appear initially but also periodically in the output sequence unless extreme care is taken .[tpl]citation needed|date=June 2008[/tpl] Another potential problem with LFGs is that the mathematical theory behind them is incomplete, making it necessary to rely on statistical tests rather than theoretical performance.
+
+==Usage==
+
+==See also==
+
+==References==
+
+

@@ -1,0 +1,16 @@
+[[Common pilot channel]]
+
+CATEGORIES: Universal Mobile Telecommunications System
+
+CPICH stands for Common Pilot Channel in UMTS and some other CDMA communications systems.
+In WCDMA FDD cellular systems, CPICH is a downlink channel broadcast by Node Bs with constant power and of a known bit sequence. Its power is usually between 5% and 15% of the total Node B transmit power.  Commonly, the CPICH power is 10% of the typical total transmit power of 43 dBm. 
+The CPICH contains 20 bits of data, which are either all zeros, or in the case that Space-Time Transmit Diversity (STTD) is employed, is a pattern of alternating 1's and 0's for transmissions on the Node B's second antenna.25.211, section 5.3.3.1 "Common Pilot Channel (CPICH)"  The first antenna of a base station always transmits all zeros for CPICH.
+A UE searching for a WCDMA Node B will first use the primary and secondary synchronization channels (P-SCH and S-SCH respectively) to determine the slot and frame timing of a candidate P-CCPCH, whether STTD is in use, as well as identifying which one of 64 code groups is being used by the cell.  Crucially this allows to UE to reduce the set of possible Primary Scrambling Codes being used for P-CPICH to only 8 from 512 choices.  At this point the correct PSC can be determined through the use of a matched filter, configured with the fixed channelisation code Cch,256,0, looking for the known CPICH bit sequence, while trying each of the possible 8 PSCs in turn.  The results of each run of the matched filter can be compared, the correct PSC being identified by the greatest correlation result.
+Once the scrambling code for a CPICH is known, the channel can be used for measurements of signal quality, usually with RSCP and Ec/N0.  Timing and phase estimations can also be made, providing a reference that helps to improve reliability when decoding other channels from the same Node B.
+Pilot signals are not a requirement of CDMA, however, they do make the UE's receiver simpler and improve the reliability of the system.
+
+==Further reading==
+
+==References==
+
+

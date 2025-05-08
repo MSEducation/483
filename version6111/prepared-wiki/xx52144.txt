@@ -1,0 +1,39 @@
+[[Ringed space]]
+
+CATEGORIES: Sheaf theory, Scheme theory
+
+In mathematics, a ringed space  is, intuitively speaking, a space together with a collection of commutative rings, the elements of which are "functions" on each open set of the space. Ringed spaces appear throughout analysis and are also used to define the schemes of algebraic geometry. 
+
+==Definition==
+
+Formally, a ringed space (X, OX) is a topological space X together with a sheaf of  rings OX on X. The sheaf OX is called the structure sheaf of X.
+A locally ringed space is a ringed space (X, OX) such that all stalks of OX are local rings (i.e. they have unique maximal ideals). Note that it is not required that OX(U) be a local ring for every open set U. In fact, that is almost never going to be the case.
+
+==Examples==
+
+An arbitrary topological space X can be considered a locally ringed space by taking OX to be the sheaf of real-valued (or complex-valued) continuous functions on open subsets of X (there may exist continuous functions over open subsets of X that are not the restriction of any continuous function over X). The stalk at a point x can be thought of as the set of all germs of continuous functions at x; this is a local ring with maximal ideal consisting of those germs whose value at x is 0.
+If X is a manifold with some extra structure, we can also take the sheaf of differentiable, or complex-analytic functions. Both of these give rise to locally ringed spaces.
+If X is an algebraic variety carrying the Zariski topology, we can define a locally ringed space by taking OX(U) to be the ring of rational mappings defined on the Zariski-open set U that do not blow up (become infinite) within U. The important generalization of this example is that of the spectrum of any commutative ring; these spectra are also locally ringed spaces. Schemes are locally ringed spaces obtained by "gluing together" spectra of commutative rings.
+
+==Morphisms==
+
+A morphism from (X, OX) to (Y, OY) is a pair [tpl]math|(f, φ)[/tpl], where [tpl]math|f: X → Y[/tpl] is a continuous map between the underlying topological spaces, and [tpl]math|φ: OY → f*OX[/tpl] is a morphism from the structure sheaf of [tpl]math|Y[/tpl] to the direct image of the structure sheaf of [tpl]math|X[/tpl].[tpl]nlab|id=ringed+space|title=Ringed space[/tpl] In other words, a morphism from (X, OX) to (Y, OY) is given by the following data:
+There is an additional requirement for morphisms between locally ringed spaces:
+Two morphisms can be composed to form a new morphism, and we obtain the category of ringed spaces and the category of locally ringed spaces. Isomorphisms in these categories are defined as usual. 
+
+==Tangent spaces==
+
+Locally ringed spaces have just enough structure to allow the meaningful definition of tangent spaces. Let X be locally ringed space with structure sheaf OX; we want to define the tangent space Tx at the point x ∈ X. Take the local ring (stalk) Rx at the point x, with maximal ideal mx. Then kx := Rx/mx is a field and mx/mx2 is a vector space over that field (the cotangent space). The tangent space Tx is defined as the dual of this vector space.
+The idea is the following: a tangent vector at x should tell you how to "differentiate" "functions" at x, i.e. the elements of Rx. Now it is enough to know how to differentiate functions whose value at x is zero, since all other functions differ from these only by a constant, and we know how to differentiate constants. So we only need to worry about mx. Furthermore, if two functions are given with value zero at x, then their product has derivative 0 at x, by the product rule. So we only need to know how to assign "numbers" to the elements of mx/mx2, and this is what the dual space does.
+
+==OX modules==
+
+Given a locally ringed space (X, OX), certain sheaves of modules on X occur in the applications, the OX-modules. To define them, consider a sheaf F of abelian groups on X. If F(U) is a module over the ring OX(U) for every open set U in X, and the restriction maps are compatible with the module structure, then we call F an OX-module. In this case, the stalk of F at x will be a module over the local ring (stalk) Rx, for every x∈X.
+A morphism between two such OX-modules is a  morphism of sheaves  which is compatible with the given module structures. The category of OX-modules over a fixed locally ringed space (X, OX) is an abelian category.
+An important subcategory of the category of OX-modules is the category of quasi-coherent sheaves on X.  A sheaf of OX-modules is called quasi-coherent if it is, locally, isomorphic to the cokernel of a map between free OX-modules.  A coherent sheaf F is a quasi-coherent sheaf which is, locally, of finite type and for every open subset U of X the kernel of any morphism from a free OU-modules of finite rank to FU is also of finite type.
+
+==Citations==
+
+==References==
+
+

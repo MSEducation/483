@@ -1,0 +1,166 @@
+[[Limit of a function]]
+
+CATEGORIES: Limits (mathematics), Functions and mappings
+
+ 
+  
+  
+ Although the function (sin x)/x is not defined at zero, as x becomes closer and closer to zero, (sin x)/x becomes arbitrarily close to 1. In other words, the limit of (sin x)/x as x approaches zero equals 1.
+
+In mathematics, the limit of a function is a fundamental concept in calculus and analysis concerning the behavior of that function near a particular input.
+Formal definitions, first devised in the early 19th century, are given below. Informally, a function f assigns an output f(x) to every input x. We say the function has a limit L at an input p: this means f(x) gets closer and closer to L as x moves closer and closer to p. More specifically, when f is applied to any input sufficiently close to p, the output value is forced arbitrarily close to L. On the other hand, if some inputs very close to p are taken to outputs that stay a fixed distance apart, we say the limit does not exist.
+The notion of a limit has many applications in modern calculus.  In particular, the many definitions of continuity employ the limit: roughly, a function is continuous if all of its limits agree with the values of the function.  It also appears in the definition of the derivative: in the calculus of one variable, this is the limiting value of the slope of secant lines to the graph of a function.
+
+History
+
+Although implicit in the development of calculus of the 17th and 18th centuries, the modern idea of the limit of a function goes back to Bolzano who, in 1817, introduced the basics of the epsilon-delta technique to define continuous functions. However, his work was not known during his lifetime  .
+The modern notation of placing the arrow below the limit symbol is due to Hardy in his book A Course of Pure Mathematics in 1908 .
+
+Motivation
+
+Imagine a person walking over a landscape represented by the graph of y = f(x). His horizontal position is measured by the value of x, much like the position given by a map of the land or by a global positioning system. His altitude is given by the coordinate y. He is walking towards the horizontal position given by x = p. As he gets closer and closer to it, he notices that his altitude approaches L. Say there's a wall there so he can't stand on that point exactly, but can still get arbitrarily close to it. If asked about the altitude of x = p, he would then answer L.
+What, then, does it mean to say that his altitude approaches L? It means that his altitude gets nearer and nearer to L except for a possible small error in accuracy. For example, suppose a particular accuracy goal is set for our traveler: he must get within ten meters of L in altitude. He reports back that indeed he can get within ten meters of L, since he notes that when he is anywhere within fifty horizontal meters of p, his altitude is always ten meters or less from L.
+The accuracy goal is then changed: can he get within one vertical meter? Yes. If he is anywhere within seven horizontal meters of p, then his altitude always remains within one meter from the target L. In summary, to say that the traveler's altitude approaches L as his horizontal position approaches p means that for every target accuracy goal, however small it may be, there is some neighborhood of p whose altitude fulfills that accuracy goal.
+The initial informal statement can now be explicated:
+This explicit statement is quite close to the formal definition of the limit of a function with values in a topological space.
+
+Definitions
+
+To say that
+means that ƒ(x) can be made as close as desired to L by making x close enough, but not equal, to p.
+The following definitions (known as (ε, δ)-definitions) are the generally accepted ones for the limit of a function in various contexts.
+
+Functions on the real line
+
+Suppose f : R → R is defined on the real line and p,L ∈ R. It is said the limit of ''f'', as ''x'' approaches ''p'', is ''L'' and written
+if the following property holds:
+The value of the limit does not depend on the value of f(p), nor even that p be in the domain of f.
+A more general definition applies for functions defined on subsets of the real line.  Let (a, b) be an open interval in R, and p a point of (a, b).  Let f be a real-valued function defined on all of (a, b) except possibly at p itself.  It is then said that the limit of f, as x approaches p, is L if, for every real ε > 0, there exists a real δ > 0 such that 0 Here again the limit does not depend on f(p) being well-defined.
+The letters ε and δ can be understood as "error" and "distance", and in fact Cauchy used ε as an abbreviation for "error" in some of his work . In these terms, the error (ε) in the measurement of the value at the limit can be made as small as desired by reducing the distance (δ) to the limit point. As discussed below this definition also works for functions in a more general context. The idea that δ and  ε represent distances helps suggest these generalizations.
+
+=One-sided limits=
+
+Alternatively x may approach p from above (right) or below (left), in which case the limits may be written as
+or
+respectively. If both of these limits are equal to L then this can be referred to as the'' limit of ''f''(''x'') at ''p. Conversely, if they are not both equal to L then the limit, as such, does not exist.
+A formal definition is as follows.  The limit of f(x) as x approaches p from above is L if, for every ε > 0, there exists a δ > 0 such that |f(x) − L|  0, there exists a δ > 0 such that |f(x) − L| If the limit does not exist there is a non-zero oscillation.
+
+=Example of a function without a limit=
+
+The function  
+
+Functions on metric spaces
+
+Suppose M and N are subsets of metric spaces A and B, respectively, and f : M → N is  defined between M and N, with x ∈ M, p a limit point of M and L ∈ N. It is said that the limit of ''f'' as ''x'' approaches ''p'' is ''L'' and write
+if the following property holds:
+Again, note that p need not be in the domain of f, nor does L need to be in the range of f, and even if f(p) is defined it need not be equal to L.
+An alternative definition using the concept of neighbourhood is as follows:
+if, for every neighbourhood V of L in B, there exists a neighbourhood U of p in A such that f(U ∩ M − {p}) ⊆ V.
+
+Functions on topological spaces
+
+Suppose X,Y are topological spaces with Y a Hausdorff space. Let p be a limit point of Ω ⊆ X, and L ∈Y. For a function f : Ω → Y, it is said that the limit of ''f'' as ''x'' approaches ''p'' is ''L (i.e., f(x)→L as x→p'') and write
+if the following property holds:
+This last part of the definition can also be phrased "there exists an open punctured neighbourhood U of p such that f(U∩Ω) ⊆ V ".
+Note that the domain of f does not need to contain p. If it does, then the value of f at p is irrelevant to the definition of the limit. In particular, if the domain of f is X − {p} (or all of X), then the limit of f as x → p exists and is equal to L if, for all subsets Ω of X with limit point p, the limit of the restriction of f to Ω exists and is equal to L. Sometimes this criterion is used to establish the non-existence of the two-sided limit of a function on R by showing that the one-sided limits either fail to exist or do not agree. Such a view is fundamental in the field of general topology, where limits and continuity at a point are defined in terms of special families of subsets, called filters, or generalized sequences known as nets.
+Alternatively, the requirement that Y be a Hausdorff space can be relaxed to the assumption that Y be a general topological space, but then the limit of a function may not be unique. In particular, one can no longer talk about the limit of a function at a point, but rather a limit or the set of limits at a point.
+A function is continuous in a limit point p of and in its domain if and only if f(p) is the (or, in the general case, a) limit of f(x) as x tends to p.
+
+Limits involving infinity
+
+For f(x) a real function, the limit of ''f'' as ''x'' approaches infinity is ''L'', denoted
+Similarly, the limit of ''f'' as ''x'' approaches negative infinity is ''L'', denoted
+For example
+Limits can also have infinite values.
+When infinities are not considered legitimate values, which is standard (but see below), a formalist will insist upon various circumlocutions.
+For example, rather than say that a limit is infinity, the proper thing is to say that the function "diverges" or "grows without bound".
+In particular, the following informal example of how to pronounce the notation is arguably inappropriate in the classroom (or any other formal setting).
+In any case, for example the limit of ''f'' as ''x'' approaches ''a'' is infinity, denoted
+These ideas can be combined in a natural way to produce definitions for different combinations, such as
+For example
+Limits involving infinity are connected with the concept of asymptotes.
+These notions of a limit attempt to provide a metric space interpretation to limits at infinity. However, note that these notions of a limit are consistent with the topological space definition of limit if
+In this case, R is a topological space and any function of the form f: X → Y with X, Y⊆ R is subject to the topological definition of a limit. Note that with this topological definition, it is easy to define infinite limits at finite points, which have not been defined above in the metric sense.
+
+=Alternative notation=
+
+Many authorsFor example, "Limit" at Encyclopaedia of Mathematics allow for the real projective line to be used as a way to include infinite values as well as extended real line. With this notation, the extended real line is given as R ∪ {−∞, +∞} and the projective real line is R ∪ {∞} where a neighborhood of ∞ is a set of the form {x: |x|>c}.  The advantage is that one only needs 3 definitions for limits (left, right, and central) to cover all the cases.
+In contrast, when working with the projective real line, infinities (much like 0) are unsigned, so, the central limit does exist in that context:
+In fact there are a plethora of conflicting formal systems in use.
+In certain applications of numerical differentiation and integration, it is, for example, convenient to have signed zeroes.  
+Such zeroes can be seen as an approximation to infinitesimals.
+
+=Evaluating limits at infinity for rational functions=
+
+There are three basic rules for evaluating limits at infinity for a rational function f(x) = p(x)/q(x): (where p and q are polynomials):
+If the limit at infinity exists, it represents a horizontal asymptote at y = L. Polynomials do not have horizontal asymptotes; such asymptotes may however occur with rational functions.
+
+Limit of a function of more than one variable
+
+By noting that |x − p| represents a distance, the definition of a limit can be extended to functions of more than one variable. In the case of a function f : R2 → R,
+if
+where ||(x,y) − (p,q)|| represents the Euclidean distance.  This can be extended to any number of variables.
+
+Sequential limits
+
+Let f : X → Y be a mapping from a topological space X into a Hausdorff space Y, p∈X and L∈Y.
+If L is the limit (in the sense above) of f as x approaches p, then it is a sequential limit as well, however the converse need not hold in general. If in addition X is metrizable, then L is the sequential limit of f as x approaches p if and only if it is the limit (in the sense above) of f as x approaches p.
+
+Other characterizations
+
+=Limit of a function in terms of sequences=
+
+For functions on the real line, one way to define the limit of a function is in terms of the limit of sequences.  In this setting:
+
+=Limit of a function in non-standard calculus=
+
+In non-standard calculus the limit of a function is defined by:
+Bŀaszczyk et al. detail the usefulness of microcontinuity in developing a transparent definition of uniform continuity, and characterize Hrbacek's criticism as a "dubious lament".[ref]
+</ref>
+
+=Limit of a function in terms of Nearness=
+
+Relationship to continuity
+
+The notion of the limit of a function is very closely related to the concept of continuity. A function ƒ is said to be continuous at c if it is both defined at c and its value at c equals the limit of f as x approaches c:
+If the condition 0 
+Properties
+
+If a function f is real-valued, then the limit of f at p is L if and only if both the right-handed limit and left-handed limit of f at p exist and are equal to L.
+The function f is continuous at p if and only if the limit of f(x) as x approaches p exists and is equal to f(p).  If f : M → N is a function between metric spaces M and N, then it is equivalent that f transforms every sequence in M which converges towards p into a sequence in N which converges towards f(p).
+If N is a normed vector space, then the limit operation is linear in the following sense: if the limit of f(x) as x approaches p is L and the limit of g(x) as x approaches p is P, then the limit of f(x) + g(x) as x approaches p is L + P. If a is a scalar from the base field, then the limit of af(x) as x approaches p is aL.
+If f is a real-valued (or complex-valued) function, then taking the limit is compatible with the algebraic operations, provided the limits on the right sides of the equations below exist (the last identity only holds if the denominator is non-zero). This fact is often called the algebraic limit theorem.
+In each case above, when the limits on the right do not exist, or, in the last case, when the limits in both the numerator and the denominator are zero, nonetheless the limit on the left, called an indeterminate form, may still exist—this depends on the functions f and g. These rules are also valid for one-sided limits, for the case p = ±∞, and also for infinite limits using the rules
+(see extended real number line).
+Note that there is no general rule for the case q / 0; it all depends on the way 0 is approached. Indeterminate forms—for instance, 0/0, 0×∞, ∞−∞, and ∞/∞—are also not covered by these rules, but the corresponding limits can often be determined with L'Hôpital's rule or the Squeeze theorem.
+
+Chain rule
+
+In general, the statement
+is not true. However, this "chain rule" does hold if one of the following additional conditions holds:
+For a counterexample, consider the following function which violates both additional restrictions:
+Since the value at f(0) is a removable discontinuity,
+Thus, the naïve chain rule would suggest that the limit of f(f(x)) is 0.  However, it is the case that
+
+Limits of special interest
+
+The first limit can be proven with the squeeze theorem.  For 0 Dividing everything by sin(x) yields
+The second limit can be proven with the first limit and the following identity:  
+Starting with 
+Multiplying numerator and denominator by (1 + cos x) yields
+
+L'Hôpital's rule
+
+This rule uses derivatives to find limits of indeterminate forms  containing the desired limit point c, then if:
+Normally, the first condition is the most important one.
+For example:
+
+Summations and integrals
+
+Specifying an infinite bound on a summation or integral is a common shorthand for specifying a limit.
+
+
+
+
+
+

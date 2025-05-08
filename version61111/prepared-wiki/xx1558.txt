@@ -1,0 +1,265 @@
+</ref> What Chomsky called a phrase structure grammar is also known now as a constituency grammar, whereby constituency grammars stand in contrast to [[dependency grammar]]s. In Chomsky's [[generative grammar]] framework, the syntax of natural language was described by context-free rules combined with transformation rules.
+Block structure was introduced into computer programming languages by the Algol project (1957–1960), which, as a consequence, also featured a context-free grammar to describe the resulting Algol syntax. This became a standard feature of computer languages, and the notation for grammars used in concrete descriptions of computer languages came to be known as Backus-Naur Form, after two members of the Algol language design committee. The "block structure" aspect that context-free grammars capture is so fundamental to grammar that the terms syntax and grammar are often identified with context-free grammar rules, especially in computer science. Formal constraints not captured by the grammar are then considered to be part of the "semantics" of the language.
+Context-free grammars are simple enough to allow the construction of efficient parsing algorithms which, for a given string, determine whether and how it can be generated from the grammar. An Earley parser is an example of such an algorithm, while the widely used LR and LL parsers are simpler algorithms that deal only with more restrictive subsets of context-free grammars.
+
+==Formal definitions==
+
+A context-free grammar G is defined by the 4-tuple:The notation here is that of [tpl]harvtxt|Sipser|1997[/tpl], p. 94. [tpl]harvtxt|Hopcroft|Ullman|1979[/tpl] (p. 79) define context-free grammars as 4-tuples in the same way, but with different variable names.
+where
+
+===Production rule notation===
+
+===Rule application===
+
+===Repetitive rule application===
+
+===Context-free language===
+
+===Proper CFGs===
+
+A context-free grammar is said to be proper, if it has
+
+===Example===
+
+is context-free. It is not proper since it includes an ε-production. A typical derivation in this grammar is
+This makes it clear that 
+The language is context-free, however it can be proved that it is not regular.
+
+==Examples==
+
+===Well-formed parentheses===
+
+The canonical example of a context free grammar is parenthesis matching, which is representative of the general case. There are two terminal symbols "(" and ")" and one nonterminal symbol S. The production rules are
+The first rule allows Ss to multiply; the second rule allows Ss to become enclosed by matching parentheses; and the third rule terminates the recursion.
+
+===Well-formed nested parentheses and square brackets===
+
+A second canonical example is two different kinds of matching nested parentheses, described by the productions:
+with terminal symbols  ( ) and nonterminal S.
+The following sequence can be derived in that grammar:
+However, there is no context-free grammar for generating all sequences of two different types of parentheses, each separately balanced disregarding the other, but where the two types need not nest inside one another, for example:
+or 
+
+===A regular grammar===
+
+Every regular grammar is context-free, but not all context-free grammars are regular. The following context-free grammar, however, is also regular.
+The terminals here are a and b, while the only non-terminal is S.
+This grammar is regular: no rule has more than one nonterminal in its right-hand side, and each of these nonterminals is at the same end of the right-hand side.
+Every regular grammar corresponds directly to a nondeterministic finite automaton, so we know that this is a regular language.
+Using pipe symbols, the grammar above can be described more tersely as follows:
+
+===Matching pairs===
+
+In a context-free grammar, we can pair up characters the way we do with brackets. The simplest example:
+The special character ε stands for the empty string. By changing the above grammar to
+
+===Algebraic expressions===
+
+Here is a context-free grammar for syntactically correct infix algebraic expressions in the variables x, y and z:
+This grammar can, for example, generate the string
+as follows:
+Note that many choices were made underway as to which rewrite was going to be performed next.
+These choices look quite arbitrary. As a matter of fact, they are, in the sense that the string finally generated is always the same.  For example, the second and third rewrites
+could be done in the opposite order:
+Also, many choices were made on which rule to apply to each selected S.
+Changing the choices made and not only the order they were made in usually affects which terminal string comes out at the end.
+Let's look at this in more detail.  Consider the parse tree of this derivation:
+
+            S
+            |
+           /|\
+          S - S
+         /     \
+        /|\    /|\
+       S * S  S / S
+      /    |  |    \
+     /|\   x /|\   /|\
+    ( S )   S * S ( S )
+     /      |   |    \   
+    /|\     z   y   /|\
+   S + S           S + S
+   |   |           |   |
+   x   y           x   x
+
+Starting at the top, step by step, an S in the tree is expanded, until no more unexpanded Ses (non-terminals) remain.
+Picking a different order of expansion will produce a different derivation, but the same parse tree.
+The parse tree will only change if we pick a different rule to apply at some position in the tree.
+But can a different parse tree still produce the same terminal string,
+which is ( x + y ) * x - z * y / ( x + x ) in this case?
+Yes, for this particular grammar, this is possible.
+Grammars with this property are called ambiguous.
+For example, x + y * z can be produced with these two different parse trees:
+
+          S               S
+          |               |
+         /|\             /|\
+        S * S           S + S    
+       /     \         /     \
+      /|\     z       x     /|\
+     S + S                 S * S    
+     |   |                 |   |
+     x   y                 y   z
+
+However, the language described by this grammar is not inherently ambiguous:
+an alternative, unambiguous grammar can be given for the language, for example:
+(once again picking S as the start symbol). This alternative grammar will produce x + y * z with a parse tree similar to the left one above, i.e. implicitly assuming the association (x + y) * z, which is not according to standard operator precedence. More elaborate, unambiguous and context-free grammars can be constructed that produce parse trees that obey all desired operator precedence and associativity rules.
+
+===Further examples===
+
+====Example 1====
+
+A context-free grammar for the language consisting of all strings over {a,b} containing an unequal number of a's and b's:
+Here, the nonterminal T can generate all strings with the same number of a's as b's, the nonterminal U generates all strings with more a's than b's and the nonterminal V generates all strings with fewer a's than b's.
+
+====Example 2====
+
+====Other examples====
+
+The formation rules for the terms and formulas of formal logic fit the definition of context-free grammar, except that the set of symbols may be infinite and there may be more than one start symbol.
+
+===Derivations and syntax trees===
+
+A derivation of a string for a grammar is a sequence of grammar rule applications that transforms the start symbol into the string.
+A derivation proves that the string belongs to the grammar's language.
+A derivation is fully determined by giving, for each step:
+For clarity, the intermediate string is usually given as well.
+For instance, with the grammar:
+  (1)  S → S + S
+  (2)  S → 1
+  (3)  S → a
+the string
+ 1 + 1 + a
+can be derived with the derivation:
+ S
+     → (rule 1 on first S)
+  S+S
+     → (rule 1 on second S)
+  S+S+S
+     → (rule 2 on second S)
+  S+1+S
+     → (rule 3 on third S)
+  S+1+a
+     → (rule 2 on first S)
+  1+1+a
+Often, a strategy is followed that deterministically determines the next nonterminal to rewrite:
+Given such a strategy, a derivation is completely determined by the sequence of rules applied.  For instance, the leftmost derivation
+ S
+     → (rule 1 on first S)
+  S+S
+     → (rule 2 on first S)
+  1+S
+     → (rule 1 on first S)
+  1+S+S
+     → (rule 2 on first S)
+  1+1+S
+     → (rule 3 on first S)
+  1+1+a
+can be summarized as
+ rule 1, rule 2, rule 1, rule 2, rule 3
+The distinction between leftmost derivation and rightmost derivation is important because in most parsers the transformation of the input is defined by giving a piece of code for every grammar rule that is executed whenever the rule is applied. Therefore it is important to know whether the parser determines a leftmost or a rightmost derivation because this determines the order in which the pieces of code will be executed. See for an example LL parsers and LR parsers.
+A derivation also imposes in some sense a hierarchical structure on the string that is derived. For example, if the string "1 + 1 + a" is derived according to the leftmost derivation:
+the structure of the string would be:
+where { ... }S indicates a substring recognized as belonging to S. This hierarchy can also be seen as a tree:
+
+            S
+           /|\
+          / | \
+         /  |  \
+        S  '+'  S
+        |      /|\
+        |     / | \
+       '1'   S '+' S
+             |     |
+            '1'   'a'
+
+This tree is called a parse tree or "concrete syntax tree" of the string, by contrast with the abstract syntax tree. In this case the presented leftmost and the rightmost derivations define the same parse tree; however, there is another (rightmost) derivation of the same string
+and this defines the following parse tree:
+
+            S 
+           /|\
+          / | \
+         /  |  \
+        S  '+'  S
+       /|\      |
+      / | \     |
+     S '+' S   'a'
+     |     |
+    '1'   '1'
+
+If, for certain strings in the language of the grammar, there is more than one parsing tree, then the grammar is said to be an ambiguous grammar. Such grammars are usually hard to parse because the parser cannot always decide which grammar rule it has to apply. Usually, ambiguity is a feature of the grammar, not the language, and an unambiguous grammar can be found that generates the same context-free language. However, there are certain languages that can only be generated by ambiguous grammars; such languages are called inherently ambiguous languages.
+
+==Normal forms==
+
+Because of the especially simple form of production rules in Chomsky Normal Form grammars, this normal form has both theoretical and practical implications. For instance, given a context-free grammar, one can use the Chomsky Normal Form to construct a polynomial-time algorithm that decides whether a given string is in the language represented by that grammar or not (the CYK algorithm).
+
+==Closure properties==
+
+Context-free languages are closed under union, concatenation, Kleene star,Hopcroft & Ullman (1979), p.131, Theorem 6.1
+substitution (in particular homomorphism),Hopcroft & Ullman (1979), p.131-132, Theorem 6.2 inverse homomorphism,Hopcroft & Ullman (1979), p.132-134, Theorem 6.3
+and intersection with a regular language.Hopcroft & Ullman (1979), p.135-136, Theorem 6.5
+They are not closed under general intersection (hence neither under complementation).Hopcroft & Ullman (1979), p.134-135, Theorem 6.4
+
+==Decidable problems==
+
+There are algorithms to decide whether a context-free language is empty, and whether it is finite.Hopcroft & Ullman (1979), p.137-138, Theorem 6.6
+
+==Undecidable problems==
+
+Some questions that are undecidable for wider classes of grammars become decidable for context-free grammars; e.g. the emptiness problem (whether the grammar generates any terminal strings at all), is undecidable for context-sensitive grammars, but decidable for context-free grammars.
+However, many problems are undecidable even for context-free grammars. Examples are:
+
+===Universality===
+
+Given a CFG, does it generate the language of all strings over the alphabet of terminal symbols used in its rules?[tpl]harvtxt|Sipser|1997[/tpl], Theorem 5.10, p. 181.
+A reduction can be demonstrated to this problem from the well-known undecidable problem of determining whether a Turing machine accepts a particular input (the Halting problem). The reduction uses the concept of a computation history, a string describing an entire computation of a Turing machine. A CFG can be constructed that generates all strings that are not accepting computation histories for a particular Turing machine on a particular input, and thus it will accept all strings only if the machine doesn't accept that input.
+
+===Language equality===
+
+Given two CFGs, do they generate the same language?[tpl]harvtxt|Hopcroft|Ullman|1979[/tpl], p. 281.
+The undecidability of this problem is a direct consequence of the previous: it is impossible to even decide whether a CFG is equivalent to the trivial CFG defining the language of all strings.
+
+===Language inclusion===
+
+Given two CFGs, can the first one generate all strings that the second one can generate?
+If this problem was decidable, then language equality could be decided, too: two CFGs G1 and G2 generate the same language if L(G1) is a subset of L(G2) and L(G2) is a subset of L(G1).
+
+===Being in a lower or higher level of the Chomsky hierarchy===
+
+Using Greibach's theorem, it can be shown that the two following problems are undecidable:
+
+===Grammar ambiguity===
+
+Given a CFG, is it ambiguous?
+The undecidability of this problem follows from the fact that if an algorithm to determine ambiguity existed, the Post correspondence problem could be decided, which is known to be undecidable.
+
+===Language disjointness===
+
+Given two CFGs, is there any string derivable from both grammars?
+
+==Extensions==
+
+An obvious way to extend the context-free grammar formalism is to allow nonterminals to have arguments, the values of which are passed along within the rules. This allows natural language features such as agreement and reference, and programming language analogs such as the correct use and definition of identifiers, to be expressed in a natural way. E.g. we can now easily express that in English sentences, the subject and verb must agree in number. In computer science, examples of this approach include affix grammars, attribute grammars, indexed grammars, and Van Wijngaarden two-level grammars. Similar extensions exist in linguistics.
+An extended context-free grammar is one in which the right-hand side of the production rules is allowed to be a regular expression over the grammar's terminals and nonterminals. Extended context-free grammars describe exactly the context-free languages.[tpl]cite web | url=http://www.engr.mun.ca/~theo/Courses/fm/pub/context-free.pdf | title=A Short Introduction to Regular Expressions and Context-Free Grammars | accessdate=August 24, 2012 | author=Norvell, Theodore | pages=4[/tpl]
+Another extension is to allow additional terminal symbols to appear at the left hand side of rules, constraining their application. This produces the formalism of context-sensitive grammars.
+
+==Subclasses==
+
+There are a number of important subclasses of the context-free grammars:
+LR parsing extends LL parsing to support a larger range of grammars; in turn, generalized LR parsing extends LR parsing to support arbitrary context-free grammars.  On LL grammars and LR grammars, it essentially performs LL parsing and LR parsing, respectively, while on nondeterministic grammars, it is as efficient as can be expected.  Although GLR parsing was developed in the 1980s, many new language definitions and parser generators continue to be based on LL, LALR or LR parsing up to the present day.
+
+==Linguistic applications==
+
+Chomsky initially hoped to overcome the limitations of context-free grammars by adding transformation rules.
+Such rules are another standard device in traditional linguistics; e.g. passivization in English. Much of generative grammar has been devoted to finding ways of refining the descriptive mechanisms of phrase-structure grammar and transformation rules such that exactly the kinds of things can be expressed that natural language actually allows. Allowing arbitrary transformations doesn't meet that goal: they are much too powerful, being Turing complete unless significant restrictions are added (e.g. no transformations that introduce and then rewrite symbols in a context-free fashion).
+Chomsky's general position regarding the non-context-freeness of natural language has held up since then,[tpl]citation | title=Evidence against the context-freeness of natural language | year=1985 | last=Shieber | first=Stuart | journal=Linguistics and Philosophy | volume=8 | pages=333–343 | url=http://www.eecs.harvard.edu/~shieber/Biblio/Papers/shieber85.pdf | doi=10.1007/BF00630917 | issue=3[/tpl]. although his specific examples regarding the inadequacy of context-free grammars in terms of their weak generative capacity were later disproved.[tpl]citation | title=Natural languages and context-free languages | year=1982 | last=Pullum | first=Geoffrey K. | coauthors=Gerald Gazdar | journal=Linguistics and Philosophy | volume=4 | pages=471–504 | doi=10.1007/BF00360802 | issue=4[/tpl].
+Gerald Gazdar and Geoffrey Pullum have argued that despite a few non-context-free constructions in natural language (such as cross-serial dependencies in Swiss German and reduplication in Bambara[tpl]citation | title=The Complexity of the Vocabulary of Bambara | year=1985 | last=Culy | first=Christopher | journal=Linguistics and Philosophy | volume=8 | pages=345–351 | doi=10.1007/BF00630918 | issue=3[/tpl].), the vast majority of forms in natural language are indeed context-free.
+
+==See also==
+
+===Parsing algorithms===
+
+==Notes==
+
+==References==
+
+

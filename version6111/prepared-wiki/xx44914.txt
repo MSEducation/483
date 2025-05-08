@@ -1,0 +1,173 @@
+[[Orthogonal group]]
+
+CATEGORIES: Lie groups, Quadratic forms, Euclidean symmetries
+
+In mathematics, the orthogonal group of dimension n, denoted O(n), is the group of distance-preserving transformations of a Euclidean space of dimension n that preserve a fixed point, where the group operation is given by composing transformations. Equivalently, it is the group of n×n orthogonal matrices of a given dimension, where the group operation is given by matrix multiplication, and an orthogonal matrix is a real matrix whose inverse equals its transpose.
+The determinant of an orthogonal matrix being either 1 or −1, an important subgroup of O(n) is the special orthogonal group, denoted SO(n), of the orthogonal matrices of determinant 1. This group is also called the rotation group, because, in dimensions 2 and 3, its elements are the usual rotations around a point (in dimension 2) or a line (in dimension 3). In low dimension, these groups have been widely studied, see SO(2), SO(3) and SO(4).
+The term "orthogonal group" may also refer to a generalization of the above case: the group of invertible linear operators that preserve a non-degenerate symmetric bilinear form or quadratic formFor base fields of characteristic not 2, it is equivalent to use bilinear forms or quadratic forms. But in characteristic 2 these notions differ. on a vector space over a field. 
+In particular, when the bilinear form is the scalar product on the vector space [tpl]math|F n[/tpl] of dimension [tpl]mvar|n[/tpl] over a field [tpl]mvar|F[/tpl], with quadratic form the sum of squares, then the corresponding orthogonal group, denoted [tpl]math|O(n, F )[/tpl], is the set of [tpl]math|n × n[/tpl] orthogonal matrices with entries from [tpl]mvar|F[/tpl], with the group operation of matrix multiplication. This is a subgroup of the general linear group [tpl]math|GL(n, F )[/tpl] given by
+where [tpl]mvar|Q[/tpl]T is the transpose of [tpl]mvar|Q[/tpl] and [tpl]math|I[/tpl] is the identity matrix.
+This article mainly discusses the orthogonal groups of quadratic forms that may be expressed over some bases as the dot product; over the reals, they are the positive definite quadratic forms. Over the reals, for any non-degenerate quadratic form, there is a basis, on which the matrix of the form is a diagonal matrix such that the diagonal entries are either 1 or −1. Thus the orthogonal group depends only on the numbers of 1 and of −1, and is denoted O(p, q), where p is the number of ones and q the number of −1. For details, see indefinite orthogonal group.
+The derived subgroup [tpl]math|Ω(n, F )[/tpl] of [tpl]math|O(n, F)[/tpl] is an often studied object because, when [tpl]mvar|F[/tpl] is a finite field, [tpl]math|Ω(n, F )[/tpl] is often[tpl]clarify|date=February 2013[/tpl] a central extension of a finite simple group.
+Both [tpl]math|O(n, F )[/tpl] and [tpl]math|SO(n, F )[/tpl] are algebraic groups, because the condition that a matrix be orthogonal, i.e. have its own transpose as inverse, can be expressed as a set of polynomial equations in the entries of the matrix. The Cartan–Dieudonné theorem describes the structure of the orthogonal group for a non-singular form.
+
+==Name==
+
+The determinant of any orthogonal matrix is either 1 or −1. The orthogonal [tpl]mvar|n[/tpl]-by-[tpl]mvar|n[/tpl] matrices with determinant 1 form a normal subgroup of [tpl]math|O(n, F )[/tpl] known as the special orthogonal group [tpl]math|SO(n, F )[/tpl], consisting of all proper rotations. (More precisely, [tpl]math|SO(n, F )[/tpl] is the kernel of the Dickson invariant, discussed below.). By analogy with GL–SL (general linear group, special linear group), the orthogonal group is sometimes called the ''general'' orthogonal group and denoted GO, though this term is also sometimes used for indefinite orthogonal groups [tpl]math|O(p, q)[/tpl]. The term rotation group can be used to describe either the special or general orthogonal group.
+
+==Even and odd dimension==
+
+==Over the real number field==
+
+Over the field [tpl]math|R[/tpl] of real numbers, the orthogonal group [tpl]math|O(n, R)[/tpl] and the special orthogonal group [tpl]math|SO(n, R)[/tpl] are often simply denoted by [tpl]math|O(n)[/tpl] and [tpl]math|SO(n)[/tpl] if no confusion is possible. They form real compact Lie groups of dimension [tpl]math|n(n − 1)/2[/tpl]. [tpl]math|O(n, R)[/tpl] has two connected components, with [tpl]math|SO(n, R)[/tpl] being the identity component, i.e., the connected component containing the identity matrix.
+
+===Geometric interpretation===
+
+The real orthogonal and real special orthogonal groups have the following geometric interpretations:
+[tpl]math|O(n, R)[/tpl] is a subgroup of the Euclidean group [tpl]math|E(n)[/tpl], the group of isometries of [tpl]math|Rn[/tpl]; it contains those that leave the origin fixed – [tpl]math|1=O(n, R) = E(n) ∩ GL(n, R)[/tpl]. It is the symmetry group of the sphere ([tpl]math|1=n = 3[/tpl]) or [tpl]math|(n − 1)[/tpl]-sphere and all objects with spherical symmetry, if the origin is chosen at the center.
+[tpl]math|SO(n, R)[/tpl] is a subgroup of [tpl]math|E+(n)[/tpl], which consists of direct isometries, i.e., isometries preserving orientation; it contains those that leave the origin fixed – [tpl]math|1=SO(n, R) = E+(n) ∩ GL(n, R) = E(n) ∩ GL+(n, R)[/tpl]. It is the rotation group of the sphere and all objects with spherical symmetry, if the origin is chosen at the center.
+[tpl]math|{±I[/tpl]} is a normal subgroup and even a characteristic subgroup of [tpl]math|O(n, R)[/tpl], and, if [tpl]mvar|n[/tpl] is even, also of [tpl]math|SO(n, R)[/tpl]. If [tpl]mvar|n[/tpl] is odd,  [tpl]math|O(n, R)[/tpl] is the internal direct product of [tpl]math|SO(n, R)[/tpl] and [tpl]math|{±I[/tpl]}. For every positive integer [tpl]mvar|k[/tpl] the cyclic group [tpl]math|Ck[/tpl] of [tpl]mvar|k[/tpl]-fold rotations is a normal subgroup of [tpl]math|O(2, R)[/tpl] and [tpl]math|SO(2, R)[/tpl].
+Relative to suitable orthogonal bases, the isometries are of the form:
+where the matrices [tpl]math|R1, … , Rk[/tpl] are 2-by-2 rotation matrices in orthogonal planes of rotation. As a special case, known as Euler's rotation theorem, any (non-identity) element of [tpl]math|SO(3, R)[/tpl] is rotation about a uniquely defined axis.
+The orthogonal group is generated by reflections (two reflections give a rotation), as in a Coxeter group,The analogy is stronger: Weyl groups, a class of (representations of) Coxeter groups, can be considered as simple algebraic groups over the field with one element, and there are a number of analogies between algebraic groups and vector spaces on the one hand, and Weyl groups and sets on the other. and elements have length at most [tpl]mvar|n[/tpl] (require at most [tpl]mvar|n[/tpl] reflections to generate; this follows from the above classification, noting that a rotation is generated by 2 reflections, and is true more generally for indefinite orthogonal groups, by the Cartan–Dieudonné theorem). A longest element (element needing the most reflections) is reflection through the origin (the map [tpl]math|v ↦ −v[/tpl]), though so are other maximal combinations of rotations (and a reflection, in odd dimension).
+The symmetry group of a circle is [tpl]math|O(2, R)[/tpl]. 
+It is isomorphic (as a real Lie group) to the circle group, also known as [tpl]math|U(1)[/tpl]. This isomorphism sends the complex number [tpl]math|1=exp(φ i) = cos φ + i sin φ[/tpl] of absolute value 1 to the orthogonal matrix
+The group [tpl]math|SO(3, R)[/tpl], understood as the set of rotations of 3-dimensional space, is of major importance in the sciences and engineering, and there are numerous charts on SO(3).
+
+===Low-dimensional topology===
+
+The low-dimensional (real) orthogonal groups are familiar spaces:
+
+===Homotopy groups===
+
+In terms of algebraic topology, for [tpl]math|n > 2[/tpl] the fundamental group of [tpl]math|SO(n, R)[/tpl] is cyclic of order 2, and the spin group [tpl]math|Spin(n)[/tpl] is its universal cover. For [tpl]math|1=n = 2[/tpl] the fundamental group is infinite cyclic and the universal cover corresponds to the  real line (the group [tpl]math|Spin(2)[/tpl] is the unique 2-fold cover).
+Generally, the homotopy groups [tpl]math|πk(O)[/tpl] of the real orthogonal group are related to homotopy groups of spheres, and thus are in general hard to compute. However, one can compute the homotopy groups of the stable orthogonal group (aka the infinite orthogonal group), defined as the direct limit of the sequence of inclusions:
+Since the inclusions are all closed, hence cofibrations, this can also be interpreted as a union. On the other hand [tpl]math|Sn[/tpl] is a homogeneous space for [tpl]math|O(n + 1)[/tpl], and one has the following fiber bundle:
+which can be understood as "The orthogonal group [tpl]math|O(n + 1)[/tpl] acts transitively on the unit sphere [tpl]math|Sn[/tpl], and the stabilizer of a point (thought of as a unit vector) is the orthogonal group of the perpendicular complement, which is an orthogonal group one dimension lower. Thus the natural inclusion [tpl]math|O(n) → O(n + 1)[/tpl] is [tpl]math|(n − 1)[/tpl]-connected, so the homotopy groups stabilize, and [tpl]math|1=πk( πk(O(n))[/tpl] for [tpl]math|n > k + 1[/tpl]: thus the homotopy groups of the stable space equal the lower homotopy groups of the unstable spaces.
+From Bott periodicity we obtain [tpl]math|Ω8O ≅ O[/tpl], therefore the homotopy groups of [tpl]math|O[/tpl] are 8-fold periodic, meaning [tpl]math|1=πk + 8(O) = πk(O)[/tpl], and one needs only to compute the lower 8 homotopy groups:
+
+====Relation to KO-theory====
+
+Via the clutching construction, homotopy groups of the stable space [tpl]math|O[/tpl] are identified with stable vector bundles on spheres (up to isomorphism), with a dimension shift of 1: [tpl]math|1=πk(O) = πk + 1(BO)[/tpl]. Setting [tpl]math|1=KO = BO × Z = Ω−1O × Z[/tpl] (to make [tpl]math|π0[/tpl] fit into the periodicity), one obtains:
+
+====Computation and interpretation of homotopy groups====
+
+=====Low-dimensional groups=====
+
+The first few homotopy groups can be calculated by using the concrete descriptions of low-dimensional groups.
+
+=====Lie groups=====
+
+From general facts about Lie groups, [tpl]math|π2(G)[/tpl] always vanishes, and [tpl]math|π3(G)[/tpl] is free (free abelian).
+
+=====Vector bundles=====
+
+From the vector bundle point of view, [tpl]math|π0(KO)[/tpl] is vector bundles over [tpl]math|S0[/tpl], which is two points. Thus over each point, the bundle is trivial, and the non-triviality of the bundle is the difference between the dimensions of the vector spaces over the two points, so [tpl]math|1=π0(KO) = Z[/tpl] is dimension.
+
+=====Loop spaces=====
+
+Using concrete descriptions of the loop spaces in Bott periodicity, one can interpret higher homotopy of [tpl]math|O[/tpl] as lower homotopy of simple to analyze spaces. Using π0, [tpl]math|O[/tpl] and [tpl]math|O/U[/tpl] have two components, [tpl]math|1=KO = BO × Z[/tpl] and [tpl]math|1=KSp = BSp × Z[/tpl] have countably many components, and the rest are connected.
+
+====Interpretation of homotopy groups====
+
+In a nutshell:John Baez "This Week's Finds in Mathematical Physics" week 105
+Let [tpl]mvar|R[/tpl] be any of four division rings [tpl]math|R, C, H, O[/tpl], and let LR be the tautological line bundle over the projective line [tpl]math|RP1[/tpl], and [tpl]math|LR[/tpl] its class in K-theory. Noting that [tpl]math|1=RP1 = S1[/tpl], [tpl]math|1=CP1 = S2[/tpl], [tpl]math|1=HP1 = S4[/tpl], [tpl]math|1=OP1 = S8[/tpl], these yield vector bundles over the corresponding spheres, and
+From the point of view of symplectic geometry, [tpl]math|1=π0(KO) ≅ π8(KO) = Z[/tpl] can be interpreted as the Maslov index, thinking of it as the fundamental group [tpl]math|π1(U/O)[/tpl] of the stable Lagrangian Grassmannian as [tpl]math|U/O ≅ Ω7(KO)[/tpl], so [tpl]math|1=π1(U/O) = π1 + 7(KO)[/tpl].
+
+==Over the complex number field==
+
+Over the field [tpl]math|C[/tpl] of complex numbers, [tpl]math|O(n, C)[/tpl] and [tpl]math|SO(n, C)[/tpl] are complex Lie groups of dimension [tpl]math|n(n − 1)/2[/tpl] over C (it means the dimension over [tpl]math|R[/tpl] is twice that). [tpl]math|O(n, C)[/tpl] has two connected components, and [tpl]math|SO(n, C)[/tpl] is the connected component containing the identity matrix. For [tpl]math|n ≥ 2[/tpl] these groups are noncompact.
+Just as in the real case [tpl]math|SO(n, C)[/tpl] is not simply connected. For [tpl]math|n > 2[/tpl] the fundamental group of [tpl]math|SO(n, C)[/tpl] is cyclic of order 2 whereas the fundamental group of [tpl]math|SO(2, C)[/tpl] is infinite cyclic.
+
+==Over finite fields==
+
+Orthogonal groups can also be defined over finite fields [tpl]math|Fq[/tpl], where [tpl]mvar|q[/tpl] is a power of a prime [tpl]mvar|p[/tpl]. When defined over such fields, they come in two types[tpl]clarify|date=February 2013[/tpl] in even dimension: [tpl]math|O+(2n, q)[/tpl] and [tpl]math|O−(2n, q)[/tpl]; and one type in odd dimension: [tpl]math|O(2n + 1, q)[/tpl].
+If [tpl]mvar|V[/tpl] is the vector space on which the orthogonal group [tpl]mvar|G[/tpl] acts, it can be written as a direct orthogonal sum as follows:
+where [tpl]math|Li[/tpl] are hyperbolic lines and [tpl]mvar|W[/tpl] contains no singular vectors. If [tpl]mvar|W[/tpl] is the zero subspace, then [tpl]mvar|G[/tpl] is of plus type. If [tpl]mvar|W[/tpl] is one-dimensional then [tpl]mvar|G[/tpl] has odd dimension. If [tpl]mvar|W[/tpl] has dimension 2, [tpl]mvar|G[/tpl] is of minus type.
+In the special case where [tpl]math|1=n = 1[/tpl], [tpl]math|Oϵ(2, q)[/tpl] is a dihedral group of order [tpl]math|2(q − ϵ)[/tpl].
+We have the following formulas for the order of [tpl]math|O(n, q)[/tpl], when the characteristic is greater than two:
+If −1 is a square in [tpl]math|Fq[/tpl]
+If −1 is a non-square in [tpl]math|Fq[/tpl]
+
+==The Dickson invariant==
+
+For orthogonal groups, the Dickson invariant is a homomorphism from the orthogonal group to the quotient group [tpl]math|Z/2Z[/tpl] (integers modulo 2), taking the value 0 in case the element is the product of an even number of reflections, and the value of 1 otherwise.[tpl]citation | last=Knus | first=Max-Albert | title=Quadratic and Hermitian forms over rings | series=Grundlehren der Mathematischen Wissenschaften | volume=294 | location=Berlin etc. | publisher=Springer-Verlag | year=1991 | isbn=3-540-52117-8 | zbl=0756.11008 | page=224 [/tpl]
+Algebraically, the Dickson invariant can be defined as [tpl]math|1=D(f) = rank(I − f) modulo 2[/tpl], where [tpl]math|I[/tpl] is the identity [tpl]harv|Taylor|1992|loc=Theorem 11.43[/tpl]. Over fields that are not of characteristic 2 it is equivalent to the determinant: the determinant is −1 to the power of the Dickson invariant.
+Over fields of characteristic 2, the determinant is always 1, so the Dickson invariant gives more information than the determinant.
+The special orthogonal group is the kernel of the Dickson invariant and usually has index 2 in [tpl]math|O(n, F )[/tpl].[tpl]harv|Taylor|1992|loc=page 160[/tpl] When the characteristic of F is not 2, the Dickson Invariant is 0 whenever the determinant is 1. Thus when the characteristic is not 2, [tpl]math|SO(n, F )[/tpl] is commonly defined to be the elements of [tpl]math|O(n, F )[/tpl] with determinant 1. Each element in [tpl]math|O(n, F )[/tpl] has determinant ±1. Thus in characteristic 2, the determinant is always 1.
+The Dickson invariant can also be defined for Clifford groups and Pin groups in a similar way (in all dimensions).
+
+==Orthogonal groups of characteristic 2==
+
+Over fields of characteristic 2 orthogonal groups often exhibit special behaviors, some of which are listed in this section. (Formerly these groups were known as the hypoabelian groups but this term is no longer used.)
+
+==The spinor norm==
+
+The spinor norm is a homomorphism from an orthogonal group over a field [tpl]mvar|F[/tpl] to the quotient group [tpl]math|F */F *2[/tpl] (the multiplicative group of the field [tpl]mvar|F[/tpl] up to square elements), that takes reflection in a vector of norm [tpl]mvar|n[/tpl] to the image of [tpl]mvar|n[/tpl] in [tpl]math|F */F *2[/tpl].[tpl]harvnb|Cassels|1978|p=178[/tpl]
+For the usual orthogonal group over the reals it is trivial, but it is often non-trivial over other fields, or for the orthogonal group of a quadratic form over the reals that is not positive definite.
+
+==Galois cohomology and orthogonal groups==
+
+In the theory of Galois cohomology of algebraic groups, some further points of view are introduced. They have explanatory value, in particular in relation with the theory of quadratic forms; but were for the most part post hoc, as far as the discovery of the phenomena is concerned. The first point is that quadratic forms over a field can be identified as a Galois [tpl]math|H1[/tpl], or twisted forms (torsors) of an orthogonal group. As an algebraic group, an orthogonal group is in general neither connected nor simply-connected; the latter point brings in the spin phenomena, while the former is related to the discriminant.
+The 'spin' name of the spinor norm can be explained by a connection to the spin group (more accurately a pin group). This may now be explained quickly by Galois cohomology (which however postdates the introduction of the term by more direct use of Clifford algebras). The spin covering of the orthogonal group provides a short exact sequence of algebraic groups.
+Here [tpl]math|μ2[/tpl] is the algebraic group of square roots of 1; over a field of characteristic not 2 it is roughly the same as a two-element group with trivial Galois action. The connecting homomorphism from [tpl]math|H0(OV)[/tpl], which is simply the group  [tpl]math|OV(F )[/tpl] of [tpl]mvar|F[/tpl]-valued points, to  [tpl]math|H1(μ2)[/tpl] is essentially the spinor norm, because [tpl]math|H1(μ2)[/tpl] is isomorphic to the multiplicative group of the field modulo squares.
+There is also the connecting homomorphism from [tpl]math|H1[/tpl] of the orthogonal group, to the [tpl]math|H2[/tpl] of the kernel of the spin covering. The cohomology is non-abelian, so that this is as far as we can go, at least with the conventional definitions.
+
+==Lie algebra==
+
+[tpl]anchor|orthogonal Lie algebra[/tpl][tpl]anchor|special orthogonal Lie algebra[/tpl]
+The representation theory of the orthogonal Lie algebras includes both representations corresponding to linear representations of the orthogonal groups, and representations corresponding to projective representations of the orthogonal groups (linear representations of spin groups), the so-called spin representation, which are important in physics.
+
+==Related groups==
+
+The orthogonal groups and special orthogonal groups have a number of important subgroups, supergroups, quotient groups, and covering groups. These are listed below.
+The inclusions [tpl]math|1=O(n) ⊂ U(n) ⊂ Sp(n) = USp(2n)[/tpl] and [tpl]math|1=USp(n) ⊂ U(n) ⊂ O(2n)[/tpl] are part of a sequence of 8 inclusions used in a geometric proof of the Bott periodicity theorem, and the corresponding quotient spaces are symmetric spaces of independent interest – for example, [tpl]math|U(n)/O(n)[/tpl] is the Lagrangian Grassmannian.
+
+===Lie subgroups===
+
+In physics, particularly in the areas of Kaluza–Klein compactification, it is important to find out the subgroups of the orthogonal group. The main ones are:
+
+===Lie supergroups===
+
+The orthogonal group [tpl]math|O(n)[/tpl] is also an important subgroup of various Lie groups:
+
+====Conformal group====
+
+Being isometries, real orthogonal transforms preserve angles, and are thus conformal maps, though not all conformal linear transforms are orthogonal. In classical terms this is the difference between congruence and similarity, as exemplified by SSS (Side-Side-Side) congruence of triangles and AAA (Angle-Angle-Angle) similarity of triangles. The group of conformal linear maps of [tpl]math|Rn[/tpl] is denoted [tpl]math|CO(n)[/tpl] for the conformal orthogonal group, and consists of the product of the orthogonal group with the group of dilations. If [tpl]mvar|n[/tpl] is odd, these two subgroups do not intersect, and they are a direct product: [tpl]math|1=CO(2k + 1) = O(2k + 1) × R*[/tpl], where [tpl]math|1=R* = R\{0[/tpl]} is the real multiplicative group, while if [tpl]mvar|n[/tpl] is even, these subgroups intersect in ±1, so this is not a direct product, but it is a direct product with the subgroup of dilation by a positive scalar: [tpl]math|1=CO(2k) = O(2k) × R+[/tpl].
+Similarly one can define [tpl]math|CSO(n)[/tpl]; note that this is always: [tpl]math|1=CSO(n) = CO(n) ∩ GL+(n) = SO(n) × R+[/tpl].
+
+===Discrete subgroups===
+
+As the orthogonal group is compact, discrete subgroups are equivalent to finite subgroups.Infinite subsets of a compact space have an accumulation point and are not discrete. These subgroups are known as point group and can be realized as the symmetry groups of polytopes. A very important class of examples are the finite Coxeter groups, which include the symmetry groups of regular polytopes.
+Dimension 3 is particularly studied – see point groups in three dimensions, polyhedral groups, and list of spherical symmetry groups. In 2 dimensions, the finite groups are either cyclic or dihedral – see point groups in two dimensions.
+Other finite subgroups include:
+
+===Covering and quotient groups===
+
+The orthogonal group is neither simply connected nor centerless, and thus has both a covering group and a quotient group, respectively:
+These are all 2-to-1 covers.
+For the special orthogonal group, the corresponding groups are:
+In dimension 3 and above these are the covers and quotients, while dimension 2 and below are somewhat degenerate; see specific articles for details.
+
+==Principal homogeneous space: Stiefel manifold==
+
+The principal homogeneous space for the orthogonal group [tpl]math|O(n)[/tpl] is the Stiefel manifold [tpl]math|Vn(Rn)[/tpl] of orthonormal bases (orthonormal [tpl]mvar|n[/tpl]-frames).
+In other words, the space of orthonormal bases is like the orthogonal group, but without a choice of base point: given an orthogonal space, there is no natural choice of orthonormal basis, but once one is given one, there is a one-to-one correspondence between bases and the orthogonal group. Concretely, a linear map is determined by where it sends a basis: just as an invertible map can take any basis to any other basis, an orthogonal map can take any orthogonal basis to any other orthogonal basis.
+The other Stiefel manifolds [tpl]math|Vk(Rn)[/tpl] for {{math|k 
+==See also==
+
+===Specific transforms===
+
+===Specific groups===
+
+===Related groups===
+
+===Lists of groups===
+
+==Notes==
+
+==References==
+
+==External links==
+
+

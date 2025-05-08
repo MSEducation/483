@@ -1,0 +1,66 @@
+</ref>  [[Dragonfly BSD]] uses a technique similar to RCU that most closely resembles Linux's Sleepable RCU (SRCU) implementation.
+
+==Advantages and disadvantages==
+
+The ability to wait until all readers are done allows RCU readers to use much lighter-weight synchronization—in some cases, absolutely no synchronization at all. In contrast, in more conventional lock-based schemes, readers must use heavy-weight synchronization in order to prevent an updater from deleting the data structure out from under them. This is because lock-based updaters typically update data items in place, and must therefore exclude readers. In contrast, RCU-based updaters typically take advantage of the fact that writes to single aligned pointers are atomic on modern CPUs, allowing atomic insertion, removal, and replacement of data items in a linked structure without disrupting readers. Concurrent RCU readers can then continue accessing the old versions, and can dispense with the atomic read-modify-write instructions, memory barriers, and cache misses that are so expensive on modern SMP computer systems, even in absence of lock contention.[ref]
+</ref><ref>
+</ref>  The lightweight nature of RCU's read-side primitives provides additional advantages beyond excellent performance, scalability, and real-time response.  For example, they provide immunity to most deadlock and livelock conditions.<ref group=note>RCU-based deadlocks are still possible, for example by executing a statement that blocks until a grace period completes within an RCU read-side critical section.</ref>
+Of course, RCU also has disadvantages.  For example, RCU is a specialized technique that works best in situations with mostly reads and few updates, but is often less applicable to update-only workloads.  For another example, although the fact that RCU readers and updaters may execute concurrently is what enables the lightweight nature of RCU's read-side primitives, some algorithms may not be amenable to read/update concurrency.
+Despite well over a decade of experience with RCU, the exact extent of its applicability is still a research topic.
+
+==Patents==
+
+The technique is covered by U.S. software patent 5,442,758, issued August 15, 1995 and assigned to Sequent Computer Systems, as well as by 5,608,893, 5,727,209, 6,219,690, and 6,886,162.  The now-expired US Patent 4,809,168 covers a closely related technique. RCU is also the topic of one claim in the SCO v. IBM lawsuit.
+
+==Sample RCU interface==
+
+RCU is available in a number of operating systems, and was added to the Linux kernel in October 2002.  User-level implementations such as liburcu are also available.[ref]
+</ref>
+The implementation of RCU in version 2.6 of the Linux kernel is among the better-known RCU implementations, and will be used as an inspiration for the RCU API in the remainder of this article. The core API (Application Programming Interface) is quite small:[ref]
+</ref>
+ 
+ 	         CPU 0                  CPU 1                 CPU 2
+	     ----------------- ------------------------- ---------------
+	 1.  rcu_read_lock()
+	 2.                    enters synchronize_rcu()
+	 3.                                               rcu_read_lock()
+	 4.  rcu_read_unlock()
+	 5.                     exits synchronize_rcu()
+	 6.                                              rcu_read_unlock()
+
+The following diagram shows how each API communicates among the reader, updater, and reclaimer.
+The RCU infrastructure observes the time sequence of rcu_read_lock, rcu_read_unlock, synchronize_rcu, and call_rcu invocations in order to determine when (1) synchronize_rcu invocations may return to their callers and (2) call_rcu callbacks may be invoked. Efficient implementations of the RCU infrastructure make heavy use of batching in order to amortize their overhead over many uses of the corresponding APIs.
+
+==Simple implementation==
+
+RCU has extremely simple "toy" implementations that can aid understanding of RCU.  This section presents one such "toy" implementation that works in a non-preemptive environment.[ref]
+</ref>
+ 
+ 	void rcu_read_lock(void) { }
+	void rcu_read_unlock(void) { }
+	void call_rcu(void (*callback) (void *), void *arg)
+	{
+		// add callback/arg pair to a list
+	}
+	void synchronize_rcu(void)
+	{
+		int cpu, ncpus = 0;
+		for_each_cpu(cpu)
+                        schedule_current_task_to(cpu);
+                for each entry in the call_rcu list
+                        entry->callback (entry->arg);
+	}
+
+You can ignore rcu_assign_pointer and rcu_dereference without missing much. But here they are anyway.
+ 
+ 	#define rcu_assign_pointer(p, v)	({ \
+							smp_wmb(); \
+							ACCESS_ONCE(p) = (v); \
+						})
+	#define rcu_dereference(p)              ({ \
+					        	typeof(p) _value = ACCESS_ONCE(p); \
+					        	smp_read_barrier_depends(); /* nop on most architectures */ \
+					        	(_value); \
+					        })
+
+Note that rcu_read_lock and rcu_read_unlock do absolutely nothing. This is the great strength of classic RCU in a non-preemptive kernel: read-side overhead is precisely zero, as smp_read_barrier_depends() is an empty macro on all but DEC Alpha CPUs;[ref]

@@ -1,0 +1,82 @@
+[[Synonym (database)]]
+
+CATEGORIES: Relational model, Data structures, Data modeling, Database management systems, Databases
+
+A synonym is an alias or alternate name for a table, view, sequence, or other schema object. They are used mainly to make it easy for users to access database objects owned by other users. They hide the underlying object's identity and make it harder for a malicious program or user to target the underlying object. Because a synonym is just an alternate name for an object, it requires no storage other than its definition. When an application uses a synonym, the DBMS forwards the request to the synonym's underlying base object. By coding your programs to use synonyms instead of database object names, you insulate yourself from any changes in the name, ownership, or object locations. If you frequently refer to a database object that has a long name, you might appreciate being able to refer to it with a shorter name without having to rename it and alter the code referring to it.
+Synonyms are very powerful from the point of view of allowing users access to objects that do not lie within their schema. All synonyms have to be created explicitly with the CREATE SYNONYM command and the underlying objects can be located in the same database or in other databases that are connected by [tpl]clarify span|database links|date=September 2012[/tpl].
+There are two major uses of synonyms:
+When you create a table or a procedure, it is created in your schema, and other users can access it only by using your schema name as a prefix to the object's name.  The way around for this is for the schema owner creates a synonym with the same name as the table name.
+
+==Public synonyms==
+
+Public synonyms are owned by special schema in the Oracle Database called PUBLIC. As mentioned earlier, public synonyms can be referenced by all users in the database. Public synonyms are usually created by the application owner for the tables and other objects such as procedures and packages so the users of the application can see the objects.
+The following code shows how to create a public synonym for the employee table:
+ 
+ CREATE PUBLIC SYNONYM employees for hr.employees;
+
+Now any user can see the table by just typing the original table name. If you wish, you could provide a different table name for that table in the CREATE SYNONYM statement. Remember that the DBA must public synonyms. Just because you can see a table through public (or private) synonym doesn’t mean that you can also perform SELECT, INSERT, UPDATE or DELETE  operations on the table. To be able to perform those operations, a user needs specific privileges for the underlying object, either directly or through  roles from the application owner.
+
+==Private synonyms==
+
+A private synonym is a synonym within a database schema that a developer typically uses to mask the true name of a table, view stored procedure, or other database object in an application schema.
+Private synonyms, unlike public synonyms, can be referenced only by the schema that owns the table or object. You may want to create private synonyms when you want to refer to the same table by different contexts. Private synonym overrides public synonym definitions. You create private synonyms the same way you create public synonyms, but you omit the PUBLIC keyword in the CREATE statement.
+The following example shows how to create a private synonym called addresses for the locations table. Note that once you create the private synonym, you can refer to the synonym exactly as you would the original table name.
+ 
+ CREATE SYNONYM addresses FOR hr.locations;
+
+==Drop a synonym==
+
+Synonyms, both private and public, are dropped in the same manner by using the DROP SYNONYM command, but there is one important difference. If  you are dropping a public synonym; you need to add the keyword PUBLIC after the keyword DROP.
+ 
+ DROP SYNONYM addresses;
+
+The ALL_SYNONYMS (or DBA_SYNONYMS) view provides information on all synonyms in your database.
+
+==References==
+
+|last=Palinski 
+|first=John Adolph 
+|authorlink=
+|coauthors=
+|year=2002
+|title=Oracle SQL and PL/SQL Handbook: A Guide for Data Administrators, Developers, and Business Analysts
+|edition=
+|publisher=Addison–Wesley
+|location=
+|id=
+|isbn=978-0-201-75294-6
+}}
+|last=Gennick
+|first=Jonathan
+|authorlink=
+|coauthors=
+|year=2004
+|title=Oracle SQL*Plus: the definitive guide
+|publisher=O'Reilly Media
+|location=
+|id=
+|isbn=978-0-596-00746-1
+}}
+|last=Alapati
+|first=Sam R
+|authorlink=
+|coauthors=
+|year=2005
+|title=Expert Oracle Database 10g Administration
+|publisher=Apress
+|location=
+|id=
+|isbn=978-1-59059-451-3
+}}
+|last=Bobrowski
+|first=Steve
+|authorlink=
+|coauthors=
+|year=
+|title=Hands-on Oracle Database 10g Express Edition for Windows
+|publisher=McGraw-Hill
+|location=
+|id=
+|isbn=978-0-07-226331-2
+}}
+

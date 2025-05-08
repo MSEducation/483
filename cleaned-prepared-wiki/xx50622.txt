@@ -1,0 +1,254 @@
+[[Exterior algebra]]
+
+CATEGORIES: Algebras, Multilinear algebra, Differential forms
+
+  
+
+In mathematics, the exterior product or wedge product of vectors is an algebraic construction used in Euclidean geometry to study areas, volumes, and their higher-dimensional analogs. The exterior product of two vectors u and v, denoted by u ∧ v, is called a bivector and lives in a space called the exterior square, a geometrical vector space that differs from the original space of vectors.  The magnitudeStrictly speaking, the magnitude depends on some additional structure, namely that the vectors be in a Euclidean space.  We do not generally assume that this structure is available, except where it is helpful to develop intuition on the subject. of u ∧ v can be interpreted as the area of the parallelogram with sides u and v, which in three dimensions can also be computed using the cross product of the two vectors. Also like the cross product, the exterior product is anticommutative, meaning that  for all vectors u and v.  One way to visualize a bivector is as a family of parallelograms all lying in the same plane, having the same area, and with the same orientation of their boundaries—a choice of clockwise or counterclockwise.
+When regarded in this manner the exterior product of two vectors is called a 2-blade.  More generally, the exterior product of any number k of vectors can be defined and is sometimes called a k-blade.  It lives in a geometrical space known as the k-th exterior power.  The magnitude of the resulting k-blade is the volume of the k-dimensional parallelotope whose sides are the given vectors, just as the magnitude of the scalar triple product of vectors in three dimensions gives the volume of the parallelepiped spanned by those vectors.
+The exterior algebra, or Grassmann algebra after Hermann Grassmann, for any elements α, β, γ.  The k-vectors have degree k, meaning that they are sums of products of k vectors.  When elements of different degrees are multiplied, the degrees add like multiplication of polynomials.  This means that the exterior algebra is a graded algebra.
+In a precise sense, given by what is known as a universal construction, the exterior algebra is the largest algebra that supports an alternating product on vectors, and can be easily defined in terms of other known objects such as tensors.  The definition of the exterior algebra makes sense for spaces not just of geometric vectors, but of other vector-like objects such as vector fields or functions.  In full generality, the exterior algebra can be defined for modules over a commutative ring, and for other structures of interest in abstract algebra.  It is one of these more general constructions where the exterior algebra finds one of its most important applications, where it appears as the algebra of differential forms that is fundamental in areas that use differential geometry.  Differential forms are mathematical objects that represent infinitesimal areas of infinitesimal parallelograms (and higher-dimensional bodies), and so can be  integrated over surfaces and higher dimensional manifolds in a way that generalizes the line integrals from calculus.  The exterior algebra also has many algebraic properties that make it a convenient tool in algebra itself.  The association of the exterior algebra to a vector space is a type of functor on vector spaces, which means that it is compatible in a certain way with linear transformations of vector spaces. The exterior algebra is one example of a bialgebra, meaning that its dual space also possesses a product, and this dual product is compatible with the exterior product. This dual algebra is precisely the algebra of alternating multilinear forms on V, and the pairing between the exterior algebra and its dual is given by the interior product.
+
+Motivating examples
+
+Areas in the plane
+
+The Cartesian plane R2 is a vector space equipped with a basis consisting of a pair of unit vectors
+Suppose that
+are a pair of given vectors in R2, written in components. There is a unique parallelogram having v and w as two of its sides. The area of this parallelogram is given by the standard determinant formula:
+Consider now the exterior product of v and w:
+where the first step uses the distributive law for the exterior product, and the last uses the fact that the exterior product is alternating, and in particular . The fact that this may be positive or negative has the intuitive meaning that v and w may be oriented in a counterclockwise or clockwise sense as the vertices of the parallelogram they define. Such an area is called the signed area of the parallelogram: the absolute value of the signed area is the ordinary area, and the sign determines its orientation.
+The fact that this coefficient is the signed area is not an accident. In fact, it is relatively easy to see that the exterior product should be related to the signed area if one tries to axiomatize this area as an algebraic construct. In detail, if  denotes the signed area of the parallelogram determined by the pair of vectors v and w, then A must satisfy the following properties:
+With the exception of the last property, the exterior product satisfies the same formal properties as the area. In a certain sense, the exterior product generalizes the final property by allowing the area of a parallelogram to be compared to that of any "standard" chosen parallelogram (here, the one with sides e1 and e2). In other words, the exterior product in two dimensions provides a basis-independent formulation of area.
+
+Cross and triple products
+
+For vectors in R3, the exterior algebra is closely related to the cross product and triple product. Using the standard basis {e1, e2, e3}, the exterior product of a pair of vectors
+and
+is
+where {e1 ∧ e2, e3 ∧ e1, e2 ∧ e3} is the basis for the three-dimensional space Λ2(R3). The coefficients above are the same as those in the usual definition of the cross product of vectors in three dimensions, the only difference being that the exterior product is not an ordinary vector, but instead is a 2-vector.
+Bringing in a third vector
+the exterior product of three vectors is
+where e1 ∧ e2 ∧ e3 is the basis vector for the one-dimensional space Λ3(R3). The scalar coefficient is the triple product of the three vectors.
+The cross product and triple product in three dimensions each admit both geometric and algebraic interpretations. The cross product  can be interpreted as a vector which is perpendicular to both u and v and whose magnitude is equal to the area of the parallelogram determined by the two vectors. It can also be interpreted as the vector consisting of the minors of the matrix with columns u and v. The triple product of u, v, and w is geometrically a (signed) volume. Algebraically, it is the determinant of the matrix with columns u, v, and w. The exterior product in three dimensions allows for similar interpretations. In fact, in the presence of a positively oriented orthonormal basis, the exterior product generalizes these notions to higher dimensions.
+
+Formal definitions and algebraic properties
+
+The exterior algebra Λ(V) over a vector space V over a field K is defined as the quotient algebra of the tensor algebra by the two-sided ideal I generated by all elements of the form . Symbolically,
+The exterior product ∧ of two elements of Λ(V) is defined by
+
+Anticommutativity of the exterior product
+
+The exterior product is alternating on elements of V, which means that ,
+hence
+Conversely, it follows from the anticommutativity of the product that the product is alternating, unless K has characteristic two.
+More generally, if x1, x2, ..., xk are elements of V, and σ is a permutation of the integers 1,...,k, then
+where sgn(σ) is the signature of the permutation σ.A proof of this can be found in more generality in .
+
+The exterior power
+
+The kth exterior power of V, denoted Λk(V), is the vector subspace of Λ(V) spanned by elements of the form
+If , then α is said to be a ''k''-vector. If, furthermore, α can be expressed as an exterior product of k elements of V, then α is said to be decomposable. Although decomposable k-vectors span Λk(V), not every element of Λk(V) is decomposable. For example, in R4, the following 2-vector is not decomposable:
+(This is in fact a symplectic form, since α ∧ α ≠ 0.)
+
+=Basis and dimension=
+
+If the dimension of V is n and {e1,...,en} is a basis of V, then the set
+is a basis for Λk(V). The reason is the following: given any exterior product of the form
+then every vector vj can be written as a linear combination of the basis vectors ei; using the bilinearity of the exterior product, this can be expanded to a linear combination of exterior products of those basis vectors. Any exterior product in which the same basis vector appears more than once is zero; any exterior product in which the basis vectors do not appear in the proper order can be reordered, changing the sign whenever two basis vectors change places. In general, the resulting coefficients of the basis k-vectors can be computed as the minors of the matrix that describes the vectors vj in terms of the basis ei.
+By counting the basis elements, the dimension of Λk(V) is equal to a binomial coefficient:
+In particular, Λk(V) = {0} for k > n.
+Any element of the exterior algebra can be written as a sum of k-vectors. Hence, as a vector space the exterior algebra is a direct sum
+(where by convention Λ0(V) = K and Λ1(V) = V), and therefore its dimension is equal to the sum of the binomial coefficients, which is 2n.
+
+=Rank of a k-vector=
+
+If α ∈ Λk(V), then it is possible to express α as a linear combination of decomposable k-vectors:
+where each α(i) is decomposable, say
+The rank of the k-vector α is the minimal number of decomposable k-vectors in such an expansion of α. This is similar to the notion of tensor rank.
+Rank is particularly important in the study of 2-vectors . The rank of a 2-vector α can be identified with half the rank of the matrix of coefficients of α in a basis. Thus if ei is a basis for V, then α can be expressed uniquely as
+where aij = −aji (the matrix of coefficients is skew-symmetric). The rank of the matrix aij is therefore even, and is twice the rank of the form α.
+In characteristic 0, the 2-vector α has rank p if and only if
+and
+
+Graded structure
+
+The exterior product of a k-vector with a p-vector is a (k+p)-vector, once again invoking bilinearity. As a consequence, the direct sum decomposition of the preceding section
+gives the exterior algebra the additional structure of a graded algebra. Symbolically,
+Moreover, the exterior product is graded anticommutative, meaning that if α ∈ Λk(V) and β ∈ Λp(V), then
+In addition to studying the graded structure on the exterior algebra,  studies additional graded structures on exterior algebras, such as those on the exterior algebra of a graded module (a module that already carries its own gradation).
+
+Universal property
+
+Let V be a vector space over the field K. Informally, multiplication in Λ(V) is performed by manipulating symbols and imposing a distributive law, an associative law, and using the identity v ∧ v = 0 for v ∈ V. Formally, Λ(V) is the "most general" algebra in which these rules hold for the multiplication, in the sense that any unital associative K-algebra containing V with alternating multiplication on V must contain a homomorphic image of Λ(V). In other words, the exterior algebra has the following universal property:See , and throughout the works of Bourbaki.
+ 
+ Given any unital associative K-algebra A and any K-linear map  for all v in V.
+
+To construct the most general algebra that contains V and whose multiplication is alternating on V, it is natural to start with the most general algebra that contains V, the tensor algebra T(V), and then enforce the alternating property by taking a suitable quotient. We thus take the two-sided ideal I in T(V) generated by all elements of the form v⊗v for v in V, and define Λ(V) as the quotient
+(and use ∧ as the symbol for multiplication in Λ(V)). It is then straightforward to show that Λ(V) contains V and satisfies the above universal property.
+As a consequence of this construction, the operation of assigning to a vector space V its exterior algebra Λ(V) is a functor from the category of vector spaces to the category of algebras.
+Rather than defining Λ(V) first and then identifying the exterior powers Λk(V) as certain subspaces, one may alternatively define the spaces Λk(V) first and then combine them to form the algebra Λ(V). This approach is often used in differential geometry and is described in the next section.
+
+Generalizations
+
+Given a commutative ring R and an R-module M, we can define the exterior algebra Λ(M) just as above, as a suitable quotient of the tensor algebra T(M). It will satisfy the analogous universal property. Many of the properties of Λ(M) also require that M be a projective module. Where finite dimensionality is used, the properties further require that M be finitely generated and projective. Generalizations to the most common situations can be found in .
+Exterior algebras of vector bundles are frequently considered in geometry and topology. There are no essential differences between the algebraic properties of the exterior algebra of finite-dimensional vector bundles and those of the exterior algebra of finitely generated projective modules, by the Serre–Swan theorem. More general exterior algebras can be defined for sheaves of modules.
+
+Duality
+
+Alternating operators
+
+Given two vector spaces V and X, an alternating operator from Vk to X is a multilinear map
+such that whenever v1,...,vk are linearly dependent vectors in V, then
+The map
+which associates to k vectors from V their exterior product, i.e. their corresponding k-vector, is also alternating. In fact, this map is the "most general" alternating operator defined on Vk: given any other alternating operator . This universal property characterizes the space Λk(V) and can serve as its definition.
+
+Alternating multilinear forms
+
+The above discussion specializes to the case when , the base field. In this case an alternating multilinear function
+is called an alternating multilinear form. The set of all alternating multilinear forms is a vector space, as the sum of two such maps, or the product of such a map with a scalar, is again alternating. By the universal property of the exterior power, the space of alternating forms of degree k on V is naturally isomorphic with the dual vector space (ΛkV)∗.  If V is finite-dimensional, then the latter is naturally isomorphic to  Λk(V∗). In particular, the dimension of the space of anti-symmetric maps from Vk to K is the binomial coefficient n choose k.
+Under this identification, the exterior product takes a concrete form: it produces a new anti-symmetric map from two given ones. Suppose  are two anti-symmetric maps. As in the case of tensor products of multilinear maps, the number of variables of their exterior product is the sum of the numbers of their variables. It is defined as follows:[ref]Some conventions, particularly in physics, define the exterior product as
+This convention is not adopted here, but is discussed in connection with alternating tensors.[/ref]
+where the alternation Alt of a multilinear map is defined to be the signed average of the values over all the permutations of its variables:
+This definition of the exterior product is well-defined even if the field K has finite characteristic, if
+one considers an equivalent version of the above that does not use factorials or any constants:
+where here  is the subset of (k,m) shuffles: permutations σ of the set {1,2,…,k + m} such that σ(1)  
+Bialgebra structure
+
+In formal terms, there is a correspondence between the graded dual of the graded algebra Λ(V) and alternating multilinear forms on V. The exterior product of multilinear forms defined above is dual to a coproduct defined on Λ(V), giving the structure of a coalgebra.
+The coproduct is a linear function  given on decomposable elements by
+For example,
+This extends by linearity to an operation defined on the whole exterior algebra. In terms of the coproduct, the exterior product on the dual space is just the graded dual of the coproduct:
+where the tensor product on the right-hand side is of multilinear linear maps (extended by zero on elements of incompatible homogeneous degree: more precisely, , where ε is the counit, as defined presently).
+The counit is the homomorphism  which returns the 0-graded component of its argument. The coproduct and counit, along with the exterior product, define the structure of a bialgebra on the exterior algebra.
+With an antipode defined on homogeneous elements by , the exterior algebra is furthermore a Hopf algebra.
+
+Interior product
+
+Suppose that V is finite-dimensional. If V* denotes the dual space to the vector space V, then for each , it is possible to define an antiderivation on the algebra Λ(V),
+This derivation is called the interior product with α, or sometimes the insertion operator, or contraction by α.
+Suppose that . Then w is a multilinear mapping of V* to K, so it is defined by its values on the k-fold Cartesian product V* × V* × ... × V*. If u1, u2, ..., uk−1 are k − 1 elements of V*, then define
+Additionally, let iαf = 0 whenever f is a pure scalar (i.e., belonging to Λ0V).
+
+=Axiomatic characterization and properties=
+
+The interior product satisfies the following properties:
+In fact, these three properties are sufficient to characterize the interior product as well as define it in the general infinite-dimensional case.
+Further properties of the interior product include:
+
+Hodge duality
+
+Suppose that V has finite dimension n. Then the interior product induces a canonical isomorphism of vector spaces
+In the geometrical setting, a non-zero element of the top exterior power Λn(V) (which is a one-dimensional vector space) is sometimes called a volume form (or orientation form, although this term may sometimes lead to ambiguity.) Relative to a given volume form σ, the isomorphism is given explicitly by
+If, in addition to a volume form, the vector space V is equipped with an inner product identifying V with V*, then the resulting isomorphism is called the Hodge dual (or more commonly the Hodge star operator)
+where I is the identity, and the inner product has metric signature (p,q) — p plusses and q minuses.
+
+Inner product
+
+For V a finite-dimensional space, an inner product on V defines an isomorphism of V with V∗, and so also an isomorphism of ΛkV with (ΛkV)∗.  The pairing between these two spaces also takes the form of an inner product.  On decomposable k-vectors,
+the determinant of the matrix of inner products.  In the special case vi = wi, the inner product is the square norm of the k-vector, given by the determinant of the Gramian matrix (⟨vi, vj⟩).  This is then extended bilinearly (or sesquilinearly in the complex case) to a non-degenerate inner product on ΛkV.  If ei, i=1,2,...,n, form an orthonormal basis of V, then the vectors of the form
+constitute an orthonormal basis for Λk(V).
+With respect to the inner product, exterior multiplication and the interior product are mutually adjoint.  Specifically, for v ∈ Λk−1(V), w ∈ Λk(V), and x ∈ V,
+where x♭ ∈ V* is the linear functional defined by
+for all .  This property completely characterizes the inner product on the exterior algebra.
+
+Functoriality
+
+Suppose that V and W are a pair of vector spaces and  is a linear transformation. Then, by the universal construction, there exists a unique homomorphism of graded algebras
+such that
+In particular, Λ(f) preserves homogeneous degree. The k-graded components of Λ(f) are given on decomposable elements by
+Let
+The components of the transformation Λ(k) relative to a basis of V and W is the matrix of  and V is of finite dimension n, then Λn(f) is a mapping of a one-dimensional vector space Λn to itself, and is therefore given by a scalar: the determinant of f.
+
+Exactness
+
+If
+is a short exact sequence of vector spaces, then
+is an exact sequence of graded vector spacesThis part of the statement also holds in greater generality if V and W are modules over a commutative ring: That Λ converts epimorphisms to epimorphisms. See . as is
+
+Direct sums
+
+In particular, the exterior algebra of a direct sum is isomorphic to the tensor product of the exterior algebras:
+This is a graded isomorphism; i.e.,
+Slightly more generally, if
+is a short exact sequence of vector spaces then Λk(V) has a filtration
+is exact, and if W is 1-dimensional then
+is exact. This is thus more general than the result quoted above for direct sums, since not every short exact sequence splits in other abelian categories.
+
+The alternating tensor algebra
+
+If K is a field of characteristic 0,See  for generalizations. then the exterior algebra of a vector space V can be canonically identified with the vector subspace of T(V) consisting of antisymmetric tensors. Recall that the exterior algebra is the quotient of T(V) by the ideal I generated by x ⊗ x.
+Let Tr(V) be the space of homogeneous tensors of degree r. This is spanned by decomposable tensors
+The antisymmetrization (or sometimes the skew-symmetrization) of a decomposable tensor is defined by
+Although this product differs from the tensor product, the kernel of Alt is precisely the ideal I (again, assuming that K has characteristic 0), and there is a canonical isomorphism
+
+Index notation
+
+Suppose that V has finite dimension n, and that a basis e1, ..., en of V is given. then any alternating tensor  can be written in index notation as
+where ti1 ... ir is completely antisymmetric in its indices.
+The exterior product of two alternating tensors t and s of ranks r and p is given by
+The components of this tensor are precisely the skew part of the components of the tensor product , denoted by square brackets on the indices:
+where n is the dimension of V.
+
+Applications
+
+Linear algebra
+
+In applications to linear algebra, the exterior product provides an abstract algebraic manner for describing the determinant and the minors of a matrix.  For instance, it is well known that the magnitude of the determinant of a square matrix is equal to the volume of the parallelotope whose sides are the columns of the matrix.  This suggests that the determinant can be defined in terms of the exterior product of the column vectors.  Likewise, the  minors of a matrix can be defined by looking at the exterior products of column vectors chosen k at a time.  These ideas can be extended not just to matrices but to linear transformations as well: the magnitude of the determinant of a linear transformation is the factor by which it scales the volume of any given reference parallelotope.  So the determinant of a linear transformation can be defined in terms of what the transformation does to the top exterior power.  The action of a transformation on the lesser exterior powers gives a basis-independent way to talk about the minors of the transformation.
+
+Linear geometry
+
+Projective geometry
+
+Decomposable k-vectors in ΛkV correspond to weighted k-dimensional linear subspaces of V. In particular, the Grassmannian of k-dimensional subspaces of V, denoted Grk(V), can be naturally identified with an algebraic subvariety of the projective space P(ΛkV). This is called the Plücker embedding.
+
+Differential geometry
+
+The exterior algebra has notable applications in differential geometry, where it is used to define differential forms. A differential form at a point of a differentiable manifold is an alternating multilinear form on the tangent space at the point. Equivalently, a differential form of degree k is a linear functional on the k-th exterior power of the tangent space. As a consequence, the exterior product of multilinear forms defines a natural exterior product for differential forms. Differential forms play a major role in diverse areas of differential geometry.
+In particular, the exterior derivative gives the exterior algebra of differential forms on a manifold the structure of a differential algebra. The exterior derivative commutes with pullback along smooth mappings between manifolds, and it is therefore a natural differential operator. The exterior algebra of differential forms, equipped with the exterior derivative, is a cochain complex whose cohomology is called the de Rham cohomology of the underlying manifold and plays a vital role in the algebraic topology of differentiable manifolds.
+
+Representation theory
+
+In representation theory, the exterior algebra is one of the two fundamental Schur functors on the category of vector spaces, the other being the symmetric algebra. Together, these constructions are used to generate the irreducible representations of the general linear group; see fundamental representation.
+
+Physics
+
+The exterior algebra is an archetypal example of a superalgebra, which plays a fundamental role in physical theories pertaining to fermions and supersymmetry. For a physical discussion, see Grassmann number. For various other applications of related ideas to physics, see superspace and supergroup (physics).
+
+Lie algebra homology
+
+Let L be a Lie algebra over a field K, then it is possible to define the structure of a chain complex on the exterior algebra of L. This is a K-linear mapping
+defined on decomposable elements by
+The Jacobi identity holds if and only if ∂∂ = 0, and so this is a necessary and sufficient condition for an anticommutative nonassociative algebra L to be a Lie algebra.  Moreover, in that case ΛL is a chain complex with boundary operator ∂.  The homology associated to this complex is the Lie algebra homology.
+
+Homological algebra
+
+The exterior algebra is the main ingredient in the construction of the Koszul complex, a fundamental object in homological algebra.
+
+History
+
+The exterior algebra was first introduced by Hermann Grassmann in 1844 under the blanket term of Ausdehnungslehre, or Theory of Extension. published a translation of Grassmann's work in English; he translated Ausdehnungslehre as Extension Theory.
+This referred more generally to an algebraic (or axiomatic) theory of extended quantities and was one of the early precursors to the modern notion of a vector space. Saint-Venant also published similar ideas of exterior calculus for which he claimed priority over Grassmann.J Itard, Biography in Dictionary of Scientific Biography (New York 1970–1990).
+The algebra itself was built from a set of rules, or axioms, capturing the formal aspects of Cayley and Sylvester's theory of multivectors. It was thus a calculus, much like the propositional calculus, except focused exclusively on the task of formal reasoning in geometrical terms.
+In particular, this new development allowed for an axiomatic characterization of dimension, a property that had previously only been examined from the coordinate point of view.
+The import of this new theory of vectors and multivectors was lost to mid 19th century mathematicians,.
+until being thoroughly vetted by Giuseppe Peano in 1888. Peano's work also remained somewhat obscure until the turn of the century, when the subject was unified by members of the French geometry school (notably Henri Poincaré, Élie Cartan, and Gaston Darboux) who applied Grassmann's ideas to the calculus of differential forms.
+A short while later, Alfred North Whitehead, borrowing from the ideas of Peano and Grassmann, introduced his universal algebra. This then paved the way for the 20th century developments of abstract algebra by placing the axiomatic notion of an algebraic system on a firm logical footing.
+
+
+
+Notes
+
+
+
+Mathematical references
+
+Historical references
+
+Other references and further reading
+
+  | last = Shafarevich
+  | first = I. R. 
+  | authorlink = Igor Shafarevich
+  | coauthors = A. O. Remizov
+  | title = Linear Algebra and Geometry

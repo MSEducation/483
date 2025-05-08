@@ -1,0 +1,116 @@
+[[Intuitionistic logic]]
+
+CATEGORIES: Logic in computer science, Non-classical logic, Constructivism (mathematics), Systems of formal logic, Intuitionism
+
+Semantically, intuitionistic logic is a restriction of classical logic in which the law of excluded middle and double negation elimination are not admitted as axioms. Excluded middle and double negation elimination can still be proved for some propositions on a case by case basis, however, but do not hold universally as they do with classical logic.
+Several semantics for intuitionistic logic have been studied. One semantics mirrors classical Boolean-valued semantics but uses Heyting algebras in place of Boolean algebras. Another semantics uses Kripke models.
+Intuitionistic logic is practically useful because its restrictions produce proofs that have the existence property, making it also suitable for other forms of mathematical constructivism. Informally, this means that if you have a constructive proof that an object exists, you can turn that constructive proof into an algorithm for generating an example of it.
+Formalized intuitionistic logic was originally developed by Arend Heyting to provide a formal basis for Brouwer's programme of intuitionism.
+
+Syntax
+
+The syntax of formulas of intuitionistic logic is similar to propositional logic or first-order logic.  However, intuitionistic connectives are not definable in terms of each other in the same way as in classical logic, hence their choice matters. In intuitionistic propositional logic it is customary to use →, ∧, ∨, ⊥ as the basic connectives, treating ¬A as an abbreviation for . In intuitionistic first-order logic both quantifiers ∃, ∀ are needed.
+Many tautologies of classical logic can no longer be proved within intuitionistic logic. Examples include not only the law of excluded middle  may seem strange to those more familiar with classical logic, but proving this propositional formula in intuitionistic logic would require producing a proof for the truth or falsity of all possible propositional formulae, which is impossible for a variety of reasons.
+Because many classically valid tautologies are not theorems of intuitionistic logic, but all theorems of intuitionistic logic are valid classically, intuitionistic logic can be viewed as a weakening of classical logic, albeit one with many useful properties.
+
+Sequent calculus
+
+Gentzen discovered that a simple restriction of his system LK (his sequent calculus for classical logic) results in a system which is sound and complete with respect to intuitionistic logic.  He called this system LJ.  In LK any number of formulas is allowed to appear on the conclusion side of a sequent; in contrast LJ allows at most one formula in this position.
+Other derivatives of LK are limited to intuitionisitic derivations but still allow multiple conclusions in a sequent.  LJ' Proof Theory by G. Takeuti, ISBN 0-444-10492-5 is one example.
+
+Hilbert-style calculus
+
+Intuitionistic logic can be defined using the following Hilbert-style calculus. This is similar to a way of axiomatizing classical propositional logic.
+In propositional logic, the inference rule is modus ponens
+and the axioms are
+To make this a system of first-order predicate logic, the generalization rules
+are added, along with the axioms
+
+=Optional connectives=
+
+==Negation==
+
+==Equivalence==
+
+=Relation to classical logic=
+
+The system of classical logic is obtained by adding any one of the following axioms:
+Another relationship is given by the Gödel–Gentzen negative translation, which provides an embedding of classical first-order logic into intuitionistic logic: a first-order formula is provable in classical logic if and only if its Gödel–Gentzen translation is provable intuitionistically. Therefore intuitionistic logic can instead be seen as a means of extending classical logic with constructive semantics.
+In 1932, Kurt Gödel defined a system of Gödel logics intermediate between classical and intuitionistic logic; such logics are known as intermediate logics.
+
+Non-interdefinability of operators
+
+In classical propositional logic, it is possible to take one of conjunction, disjunction, or implication as primitive, and define the other two in terms of it together with negation, such as in Łukasiewicz's three axioms of propositional logic. It is even possible to define all four in terms of a sole sufficient operator such as the Peirce arrow (NOR) or Sheffer stroke (NAND). Similarly, in classical first-order logic, one of the quantifiers can be defined in terms of the other and negation.
+These are fundamentally consequences of the law of bivalence, which makes all such connectives merely Boolean functions. The law of bivalence does not hold in intuitionistic logic, only the law of non-contradiction. As a result none of the basic connectives can be dispensed with, and the above axioms are all necessary. Most of the classical identities are only theorems of intuitionistic logic in one direction, although some are theorems in both directions. They are as follows:
+Conjunction versus disjunction:
+Conjunction versus implication:
+Disjunction versus implication:
+Universal versus existential quantification:
+So, for example, "a or b" is a stronger propositional formula than "if not a, then b", whereas these are classically interchangeable. On the other hand, "not (a or b)" is equivalent to "not a, and also not b".
+If we include equivalence in the list of connectives, some of the connectives become definable from others:
+In particular, {∨, ↔, ⊥} and {∨, ↔, ¬} are complete bases of intuitionistic connectives.
+As shown by Alexander Kuznetsov, either of the following connectives – the first one ternary, the second one quinary – is by itself functionally complete: either one can serve the role of a sole sufficient operator for intuitionistic propositional logic, thus forming an analog of the Sheffer stroke from classical propositional logic:Alexander Chagrov, Michael Zakharyaschev, Modal Logic, vol. 35 of Oxford Logic Guides, Oxford University Press, 1997, pp. 58–59. ISBN 0-19-853779-4.
+
+Semantics
+
+The semantics are rather more complicated than for the classical case. A model theory can be given by Heyting algebras or, equivalently, by Kripke semantics. Recently, a Tarski-like model theory was proved complete by Bob Constable, but with a different notion of completeness than classically.
+
+Heyting algebra semantics
+
+In classical logic, we often discuss the truth values that a formula can take. The values are usually chosen as the members of a Boolean algebra.  The meet and join operations in the Boolean algebra are identified with the ∧ and ∨ logical connectives, so that the value of a formula of the form A ∧ B is the meet of the value of A and the value of B in the Boolean algebra.  Then we have the useful theorem that a formula is a valid proposition of classical logic if and only if its value is 1 for every valuation—that is, for any assignment of values to its variables.
+A corresponding theorem is true for intuitionistic logic, but instead of assigning each formula a value from  a Boolean algebra, one uses values from a Heyting algebra, of which Boolean algebras are a special case.
+A  formula is valid in intuitionistic logic if and only if it receives the value of the top element for any valuation on any Heyting algebra.
+It can be shown that to recognize valid formulas, it is sufficient to consider a  single Heyting algebra whose elements are the open subsets of the real line R.  In this algebra, the ∧ and ∨ operations correspond to set intersection and union, and the value assigned to a formula A → B is int(AC ∪ B), the interior of the union of the value of B and the complement of the value of A. The bottom element is the empty set ∅, and the top element is the entire line R. The negation  ¬A of a formula A is (as usual) defined to be A → ∅. The value of ¬A then reduces to int(AC), the interior of the complement of the value of A, also known as the exterior of A. With these assignments, intuitionistically valid formulas are precisely those that are assigned the value of the entire line.
+For example, the formula ¬(A ∧ ¬A) is valid, because no matter what set X is chosen as the value of the formula A, the value of ¬(A ∧ ¬A) can be shown to be the entire line:
+A theorem of topology tells us that int(XC) is a subset of XC, so the intersection is empty, leaving:
+So the valuation of this formula is true, and indeed the formula is valid.
+But the law of the excluded middle, A ∨ ¬A, can be shown to be invalid by letting the value of A be {y : y > 0 }.  Then the value of ¬A is the interior of {y : y ≤ 0 }, which is
+{y : y < 0 }, and the value of the formula is the union of
+{y : y > 0 }
+and
+{y : y < 0 }, which is {y : y ≠ 0 }, not the entire line.
+The interpretation of any intuitionistically valid formula in the infinite Heyting algebra described above results in the top element, representing true, as the valuation of the formula, regardless of what values from the algebra are assigned to the variables of the formula. Conversely, for every invalid formula, there is an assignment of values to the variables that yields a valuation that differs from the top element.  No finite Heyting algebra has both these properties.
+
+Kripke semantics
+
+Building upon his work on semantics of modal logic, Saul Kripke created another semantics for intuitionistic logic, known as Kripke semantics or relational semantics. Written by Joan Moschovakis. Published in Stanford Encyclopedia of Philosophy.
+
+Tarski-like semantics
+
+It was discovered that Tarski-like semantics for intuitionistic logic were not possible to prove complete. However, Robert Constable has shown that a weaker notion of completeness still holds for intuitionistic logic under a Tarski-like model. In this notion of completeness we are concerned not with all of the statements that are true of every model, but with the statements that are true in the same way in every model. That is, a single proof that the model judges a formula to be true must be valid for every model. In this case, there is not only a proof of completeness, but one that is valid according to intuitionistic logic.R. Constable, M. Bickford, Intuitionistic completeness of first-order logic, Annals of Pure and Applied Logic, to appear, . Preprint on ArXiv.
+
+Relation to other logics
+
+Intuitionistic logic is related by duality to a paraconsistent logic known as Brazilian, anti-intuitionistic or dual-intuitionistic logic.
+The subsystem of intuitionistic logic with the FALSE axiom removed is known as minimal logic.
+
+=Relation to many-valued logic=
+
+Kurt Gödel in 1932 showed that intuitionistic logic is not a finitely-many valued logic.  (See the section titled Heyting algebra semantics above for a sort of "infinitely-many valued logic" interpretation of intuitionistic logic.)
+
+=Relation to intermediate logics=
+
+Any finite Heyting algebra which is not equivalent to a Boolean algebra defines (semantically) an intermediate logic. On the other hand, validity of formulae in pure intuitionistic logic is not tied to any individual Heyting algebra but relates to any and all Heyting algebras at the same time.
+
+=Relation to modal logic=
+
+Any formula of the intuitionistic propositional logic may be translated into the modal logic S4 as follows:
+and it has been demonstratedLévy, Michel (2011). Logique modale propositionnelle S4 et logique intuitioniste propositionnelle, pp. 4–5. that the translated formula is valid in the propositional modal logic S4 if and only if the pre-translated formula is valid in IPC. The above set of formulae are called the Gödel–McKinsey–Tarski translation.
+There is also an intuitionistic version of modal logic S4 called Constructive Modal Logic CS4. Categorical and Kripke Semantics for Constructive S4 Modal Logic
+
+Lambda calculus
+
+There is an extended Curry–Howard isomorphism between IPC and simply-typed lambda calculus.
+
+
+
+ 
+ 
+
+Notes
+
+
+
+
+
+

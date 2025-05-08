@@ -1,0 +1,28 @@
+[[Online algorithm]]
+
+CATEGORIES: Online algorithms
+
+In computer science, an online algorithm is one that can process its input piece-by-piece in a serial fashion, i.e., in the order that the input is fed to the algorithm, without having the entire input available from the start.  In contrast, an offline algorithm is given the whole problem data from the beginning and is required to output an answer which solves the problem at hand. (For example, selection sort requires that the entire list be given before it can sort it, while insertion sort doesn't.)
+Because it does not know the whole input, an online algorithm is forced to make decisions that may later turn out not to be optimal, and the study of online algorithms has focused on the quality of decision-making that is possible in this setting. Competitive analysis formalizes this idea by comparing the relative performance of an online and offline algorithm for the same problem instance. Specifically, the competitive ratio of an algorithm, is defined as the worst-case ratio of its cost divided by the optimal cost, over all possible inputs . The competitive ratio of an online problem is the best competitive ratio achieved by an online algorithm. Intuitively, the competitive ratio of an algorithm gives a measure on the quality of solutions produced by this algorithm, while the competitive ratio of a problem shows the importance of knowing the future for this problem. For other points of view on online inputs to algorithms, see streaming algorithm (focusing on the amount of memory needed to accurately represent past inputs), dynamic algorithm (focusing on the time complexity of maintaining solutions to problems with online inputs) and online machine learning.
+A problem exemplifying the concepts of online algorithms is the Canadian Traveller Problem. The goal of this problem is to minimize the cost of reaching a target in a weighted graph where some of the edges are unreliable and may have been removed from the graph. However, that an edge has been removed (failed) is only revealed to the traveller when she/he reaches one of the edge's endpoints. The worst case for this problem is simply that all of the unreliable edges fail and the problem reduces to the usual Shortest Path Problem. An alternative analysis of the problem can be made with the help of competitive analysis. For this method of analysis, the offline algorithm knows in advance which edges will fail and the goal is to minimize the ratio between the online and offline algorithms' performance. This problem is PSPACE-complete.
+
+==Online algorithms==
+
+The names below are referenced with capital letters since they appear in papers with capital letters. The following are the names of some online algorithms:
+
+==See also==
+
+==References==
+
+ | authorlink = Allan Borodin
+ | author = Borodin, A.
+ | coauthors = El-Yaniv, R.
+ | url = http://www.cs.technion.ac.il/~rani/book.html
+ | title = Online Computation and Competitive Analysis
+ | publisher = Cambridge University Press
+ | year = 1998
+ | isbn = 0-521-56392-5}}
+
+==External links==
+
+

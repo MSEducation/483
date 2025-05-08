@@ -1,0 +1,84 @@
+[[Triple DES]]
+
+CATEGORIES: Broken block ciphers, Data Encryption Standard
+
+In cryptography, Triple DES is the common name for the Triple Data Encryption Algorithm (TDEA or Triple DEA) symmetric-key block cipher, which applies the Data Encryption Standard (DES) cipher algorithm three times to each data block. 
+The original DES cipher's key size of 56 bits was generally sufficient when that algorithm was designed, but the availability of increasing computational power made brute-force attacks feasible. Triple DES provides a relatively simple method of increasing the key size of DES to protect against such attacks, without the need to design a completely new block cipher algorithm.
+
+Definitive standards
+
+The Triple Data Encryption Algorithm (TDEA) is defined in each of:
+| url=
+| title=FIPS PUB 46-3: Data Encryption Standard (DES)
+| date=1999-10-25
+| author=United States Department of Commerce
+| accessdate=2014-01-20}}[/ref](withdrawn)
+| url=
+| title=NIST Special Publication 800-67 Revision 1: Recommendation for the Triple Data Encryption Algorithm (TDEA) Block Cipher
+| first1=William C.
+| last1=Barker
+| first2=Elaine
+| last2=Barker 
+| date=January 2012}}[/ref]
+| url=
+| title=ISO/IEC 18033-3:2010. Information technology -- Security techniques -- Encryption algorithms -- Part 3: Block ciphers
+| publisher=ISO
+| date=2013-04-26
+| accessdate=2014-01-20}}[/ref]
+
+Name of the algorithm
+
+The earliest standard that defines the algorithm (ANS X9.52, published in 1998) describes it as the "Triple Data Encryption Algorithm (TDEA)" — i.e. three operations of the Data Encryption Algorithm specified in ANSI X3.92 — and does not use the terms "Triple DES" or "DES" at all.
+FIPS PUB 46-3 (1999) defines the "Triple Data Encryption Algorithm (TDEA)", but also uses the terms "DES" and "Triple DES". It uses the terms "Data Encryption Algorithm" and "DES" interchangeably, including starting the specification with:
+
+NIST SP 800-67 (2004, 2008, 2012) primarily uses the term TDEA, but also refers to "Triple DES (TDEA)". ISO/IEC 18033-3 (2005) uses "TDEA", but mentions that:
+While none of the standards that define the algorithm use the term "3DES", this term is used by some vendors, users, and cryptographers. JOURNAL OF COMPUTING, VOLUME 2, ISSUE 3, MARCH 2010, ISSN 2151-9617. Retrieved 2012-12-01. Cisco. Retrieved 2012-12-01.3DES Update: Most Banks Are Done, But... ATM & Debit News. 2007-03-29. Retrieved 2012-12-01.RFC 4949
+
+Algorithm
+
+Triple DES uses a "key bundle" which comprises three DES keys, K1, K2 and K3, each of 56 bits (excluding parity bits). The encryption algorithm is:
+I.e., DES encrypt with K1, DES decrypt with K2, then DES encrypt with K3.
+Decryption is the reverse:
+I.e., decrypt with K3, encrypt with K2, then decrypt with K1.
+Each triple encryption encrypts one block of 64 bits of data.
+In each case the middle operation is the reverse of the first and last. This improves the strength of the algorithm when using keying option 2, and provides backward compatibility with DES with keying option 3.
+
+Keying options
+
+The standards define three keying options:
+Keying option 1 is the strongest, with 3 × 56 = 168 independent key bits.
+Keying option 2 provides less security, with 2 × 56 = 112 key bits. This option is stronger than simply DES encrypting twice, e.g. with K1 and K2, because it protects against meet-in-the-middle attacks.
+Keying option 3 is equivalent to DES, with only 56 key bits. This option provides backward compatibility with DES, because the first and second DES operations cancel out. It is no longer recommended by the National Institute of Standards and Technology (NIST), and is not supported by ISO/IEC 18033-3.
+Each DES key is nominally stored or transmitted as 8 bytes, each of odd parity,[ref]
+According to ANSI X3.92-1981 (one of the standards that defines the DES algorithm), section 3.5: "One bit in each 8-bit byte of the KEY may be utilized for error detection in key generation, distribution, and storage. Bits 8, 16,..., 64 are for use in ensuring that each byte is of odd parity."
+[/ref]
+so a key bundle requires 24, 16 or 8 bytes, for keying option 1, 2 or 3 respectively.
+
+Other terms used to refer to the keying options
+
+"Keying option n" is the term used by the standards (X9.52, FIPS PUB 46-3, SP 800-67, ISO/IEC 18033-3) that define the TDEA. However, other terms are used in other standards and related recommendations, and general usage.
+  | url=
+  | title=The Cryptography Guide: Triple DES
+  | publisher=Cryptography World
+  | accessdate = 2010-07-11}}</ref><ref name=IBM>
+</ref>
+
+Encryption of more than one block
+
+As with all block ciphers, encryption and decryption of multiple blocks of data may be performed using a variety of modes of operation, which can generally be defined independently of the block cipher algorithm. However, ANS X9.52 specifies directly, and NIST SP 800-67 specifies via SP 800-38ANIST Special Publication 800-38A, Recommendation for Block Cipher Modes of Operation, Methods and Techniques, 2001 Edition (PDF) that some modes shall only be used with certain constraints on them that do not necessarily apply to general specifications of those modes. For example, ANS X9.52 specifies that for cipher block chaining, the initialization vector shall be different each time, whereas ISO/IEC 10116ISO/IEC 10116:2006 Information technology — Security techniques — Modes of operation for an n-bit block cipher does not. FIPS PUB 46-3 and ISO/IEC 18033-3 define only the single block algorithm, and do not place any restrictions on the modes of operation for multiple blocks.
+
+Security
+
+In general, Triple DES with three independent keys (keying option 1) has a key length of 168 bits (three 56-bit DES keys), but due to the meet-in-the-middle attack, the effective security it provides is only 112 bits. Keying option 2  reduces the effective key size to 112 bits (because the third key is the same as the first). However, this option is susceptible to certain chosen-plaintext or known-plaintext attacks, and thus, it is designated by NIST to have only 80 bits of security.
+The best attack known on keying option 1 requires around 232 known plaintexts, 2113 steps, 290 single DES encryptions, and 288 memoryStefan Lucks: Attacking Triple Encryption (PDF), Fast Software Encryption 1998, pp 239–253. (the paper presents other tradeoffs between time and memory). This is not currently practical and NIST considers keying option 1 to be appropriate through 2030. If the attacker seeks to discover any one of many cryptographic keys, there is a memory-efficient attack which will discover one of 228 keys, given a handful of chosen plaintexts per key and around 284 encryption operations.
+
+Usage
+
+The electronic payment industry uses Triple DES and continues to develop and promulgate standards based upon it (e.g. EMV).
+Microsoft OneNote,Daniel Escapa's OneNote Blog - Encryption for Password Protected Sections, November 2006 Microsoft Outlook 2007Microsoft - Encrypt E-mail Messages, Outlook 2007 and Microsoft System Center Configuration Manager 2012Microsoft TechNet product documentation - Technical Reference for Cryptographic Controls Used in Configuration Manager, October 2012 use Triple DES to password protect user content and system data.
+
+
+
+References and notes
+
+

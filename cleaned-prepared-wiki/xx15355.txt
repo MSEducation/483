@@ -1,0 +1,38 @@
+[[Wine (software)]]
+
+CATEGORIES: Compatibility layers, Computing platforms, Cross-platform software, Free system software, Linux emulation software, Free software programmed in C, 1993 software
+
+Wine is a free and open source software application that aims to allow applications designed for Microsoft Windows to run on Unix-like operating systems. Wine also provides a software library, known as Winelib, against which developers can compile Windows applications to help port them to Unix-like systems.
+Wine is a compatibility layer. It duplicates functions of Windows by providing alternative implementations of the DLLs that Windows programs call, and a process to substitute for the Windows NT kernel. This method of duplication differs from other methods that might also be considered emulation, where Windows programs run in a virtual machine. Wine is predominantly written using black-box testing reverse-engineering, to avoid copyright issues.
+The name Wine initially was an acronym for  'windows emulator''.Wine Is Not an Emulator First proposal to change the meaning of the name WINE While the name sometimes appears in the forms WINE and wine, the project developers have agreed to standardize on the form Wine''.
+The phrase "wine is not an emulator" is a reference to the fact that no processor code execution emulation occurs when running a Windows application under Wine.  "Emulation" usually refers to the execution of compiled code intended for one processor (such as x86) by interpreting/recompiling software running on a different processor (such as PowerPC). Such emulation is almost always much slower than execution of the same code by the processor for which the code was compiled. In Wine, the Windows application's compiled x86 code runs at full native speed on the computer's x86 processor, just as it does when running under Windows. Windows system services are also supplied by Wine, in the form of wineserver.
+In a 2007 survey by desktoplinux.5% of respondents reported using Wine to run Windows applications.[ref]
+[/ref]  This plurality was larger than all x86 virtualization programs combined, as well as larger than the 27.9% who reported not running Windows applications.[ref]
+[/ref]
+
+History
+
+Bob Amstadt (the initial project leader) and Eric Youngdale started the Wine project in 1993 as a way to run Windows applications on Linux. It was inspired by two Sun Microsystems' products, the Wabi for the Solaris operating system, and the Public Windows Initiative (an attempt to get the Windows API fully reimplemented in the public domain as an ISO standard, but rejected by the entity due to pressure from Microsoft in 1996). Wine originally targeted Windows 3.x (16-bit) application software, but   focuses on 32-bit and 64-bit applications. The project originated in discussions on Usenet in comp.os. Alexandre Julliard has led the project since 1994.
+The project has proved time-consuming and difficult for the developers, mostly because of incomplete and incorrect documentation of the Windows API. While Microsoft extensively documents most Win32 functions, some areas such as file formats and protocols have no publicly official Microsoft specification. Microsoft Windows also includes undocumented low-level functions and obscure bugs that Wine must duplicate precisely in order to allow some applications to work properly. Consequently, the Wine team has reverse-engineered many function calls and file formats in such areas as thunking.
+The Wine project originally released Wine under the same MIT License as the X Window System, but owing to concern about proprietary versions of Wine not contributing their changes back to the core project, work as of March 2002 has used the LGPL for its licensing.
+Wine officially entered beta with version 0.9 on 25 October 2005. Version 1.0 was released on 17 June 2008, after 15 years of development. Version 1.2 was released on 16 July 2010, version 1.4 on 7 March 2012 Development versions are released roughly every two weeks.
+
+Corporate sponsorship
+
+The main corporate sponsor of Wine is CodeWeavers, which employs Julliard and many other Wine developers to work on Wine and on CrossOver, CodeWeavers' supported version of Wine. Crossover includes some application-specific tweaks not considered suitable for the WineHQ version, as well as some additional proprietary components.
+The involvement of Corel for a time assisted the project, chiefly by employing Julliard and others to work on it. Corel had an interest in porting WordPerfect Office, its office suite, to Linux (especially Corel Linux). Corel later cancelled all Linux-related projects after Microsoft made major investments in Corel, stopping their Wine effort.
+Other corporate sponsors include Google, which hired CodeWeavers to fix Wine so Picasa ran well enough to be ported directly to Linux using the same binary as on Windows; Google later paid for improvements to Wine's support for Adobe Photoshop CS2. Wine is also a regular beneficiary of Google's Summer of Code program.
+
+Software architecture
+
+Wine implements the Windows application binary interface (ABI) entirely in user space, rather than as a kernel module. Services normally provided by the kernel in WindowsSee the "Windows service" article are provided by a daemon known as the wineserver, whose task is to implement basic Windows functionality, as well as integration with the X Window System, and translation of signals into native Windows exceptions.
+Although Wine implements some aspects of the Windows kernel, it is not possible to use native Windows drivers with it, due to Wine's underlying architecture. This prevents certain applications and games from working, such as some copy-protected applications and games. (some copy-protection systems such as StarForce need to install virtual device drivers to work)
+Wine is primarily developed for Linux, but the OS X, FreeBSD, and Solaris (SPARC was dropped in 1.5.26) ports are currently () well maintained, although a packaged file for Mac isn't available.[ref]
+[/ref] Wine is also available for NetBSD and a number of other systems via pkgsrc. Since October 2010, Wine also works on the ARM platform when used as Winelib (which lets developers compile Windows code on Linux using Wine as a library). Some versions of Wine's DLLs are available for Microsoft Windows, but Wine does not fully compile or run on Windows yet.
+
+Gallium3D
+
+The Gallium3D driver model creates a module called Gallium3D State Tracker. A free and open-source Gallium3D State Tracker was written for Microsoft Direct3D 9 in C++ (and another one for Direct3D 10 written in C which has not been maintained). After some modification to Wine, it is now possible to use Direct3D 9 games without the requirement to translate Direct3D calls into OpenGL calls, thus gaining a huge performance boost.
+
+Functionality
+

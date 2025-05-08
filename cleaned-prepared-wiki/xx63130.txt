@@ -1,0 +1,270 @@
+[[List comprehension]]
+
+CATEGORIES: Programming constructs, Articles with example code, Articles with example Haskell code, Articles with example Python code, Articles with example Racket code
+
+A list comprehension is a syntactic construct available in some programming languages for creating a list based on existing lists. It follows the form of the mathematical set-builder notation (set comprehension) as distinct from the use of map and filter functions.
+
+
+
+Consider the following example in set-builder notation.
+In this annotated version of the example:
+A list comprehension has the same syntactic components to represent generation of a list in order from an input list or iterator:
+The order of generation of members of the output list is based on the order of items in the input.
+In Haskell's list comprehension syntax, this set-builder construct would be written similarly, as:
+List comprehensions give results in a defined order (unlike the members of sets); and list comprehensions may generate the members of a list in order, rather than produce the entirety of the list thus allowing, for example, the previous Haskell definition of the members of an infinite list.
+
+History
+
+The SETL programming language (later 1960s) had a set formation construct, and the computer algebra system AXIOM (1973) has a similar construct that processes streams,
+but the first use of the term "comprehension" for such constructs was in Rod Burstall and John Darlington's description of their functional programming language NPL from 1977.
+Smalltalk block context messages which constitute list comprehensions have been in that language since at least Smalltalk-80.
+Burstall and Darlington's work with NPL influenced many functional programming languages during the 1980s, but not all included list comprehensions. An exception was the influential pure lazy functional programming language Miranda, which was released in 1985. The subsequently developed standard pure lazy functional language Haskell includes many of Miranda's features, including list comprehensions. 
+Comprehensions were proposed as a query notation for databasesComprehensions, a query notation for DBPLs and were implemented in the Kleisli database query language.The functional guts of the Kleisli query system
+
+Examples in different programming languages
+
+The following provides a few examples of specific syntax used in programming languages.
+
+B-Prolog
+
+A list of the form : E1 in D1, ..., En in Dn, LocalVars, Goal is interpreted as a list comprehension in calls to @=/2 and constraints. A list comprehension is translated into a foreach construct with an accumulator.
+
+Ceylon
+
+ 
+ { for (x in 0..100) if ( x**2 > 3) x * 2 }
+
+Clojure
+
+Clojure generates infinite lazy sequences (similar to Haskell's lazy lists or Python's generators).  Use take to get the first N results from the infinite sequence.
+
+CoffeeScript
+
+CoffeeScript brings pretty list comprehensions to JavaScript.
+
+Common Lisp
+
+List comprehensions can be expressed with the loop macro's collect keyword. Conditionals are expressed with if, as follows:
+An infinite lazy sequence can be created in a variety of ways, such as the CLOS object system or a yield macro.
+
+Elixir
+
+The same example in Elixir:
+
+Erlang
+
+The same example in Erlang:
+
+F#
+
+The F# generator comprehension has the list comprehension syntax elements.
+Generator comprehensions can be used to generate Lists, Sequences (lazy lists) and Arrays (not discussed here).
+Generators are of the form x in collection do ... yield expr for lists and seq {for x in collection do ... yield expr} for sequences.
+For example:
+
+Falcon
+
+The "comp" generic method family provides wide support for comprehension. For example, the "mfcomp" method can be applied to an array:
+
+  s = [].mfcomp( { i => if i*i > 3: return 2*i; return oob(1)}, [1:101] )
+
+Falcon can also use functional generators to provide input lists. For example, the following code uses a continuation to create a set of pairs.
+
+  gen = Continuation( function( max, c )
+         i = 0
+         while i < max: c(++i)
+         return oob(0)
+      end )
+  data = [10,11,12]
+  s = Set().[gen 3], data )
+
+Method "comp" was introduced in version 0.9.6, and methods "mcomp" and "mfcomp" in version 0.9.6.2.
+
+Groovy
+
+Groovy supports list comprehension style expressions for any kind of Java Collection including lists, sets, and maps.
+The "it" variable is shorthand for the implicit parameter to a closure.  The above is equivalent to:
+
+Haskell
+
+Please refer to the main example in the overview.
+Here, the list 0.. generates natural numbers one by one which get bound to variable x, x^2>3 represents the predicate that either accepts or rejects a given variable's value, and 2*x represents the result expression. There might be several generators and test predicates in one list compehension expression in Haskell, in effect defining nested loops, e.g.:
+The above expression becomes unproductive ("stuck") at some point, when new xs keep being generated only to be rejected later on. This is so because any test can only reject a value it is given, not any future ones (there is no cut mechanism here, in Prolog terms - a generator in general might produce its values unordered, like e.g. the above expression itself). This can be dealt with using bounded list generators always or by enclosing a generator inside a take or takeWhile call, limiting the amount of generated values.
+
+Haxe
+
+Haxe 3 released with array and map comprehension.org/manual/haxe3/features#array-comprehension
+However, Haxe 2's syntax required use of Lambda:
+
+JavaScript 1.7
+
+JavaScript 1.7 has array comprehensions. The JavaScript engine of the popular Firefox browser from Mozilla Foundation---SpiderMonkey---supports them, for example,
+The sequence of integers can be obtained by prototyping the Number object,
+Or introducing a range function,
+
+Mathematica
+
+The Cases command with a RuleDelayed in the second argument provides a list comprehension mechanism:
+
+  s = Cases[Range[0,100], i_ /; i^2 > 3 :> 2i]</code>
+Alternatively
+
+  Table[If[i^2 > 3, 2i, Unevaluated[]], {i, 0, 100}]
+
+  Do[If[i^2 > 3, Sow[2i]], {i, 0, 100}] // Reap
+
+OCaml
+
+OCaml Batteries Included has uniform comprehension syntax for lists, arrays, enumerations (like streams), lazy lists (like lists but evaluated on-demand), sets, hashtables, etc.
+Comprehension are of the form expression | x .
+For instance,
+or, to compute a list,
+or, to compute a set,
+etc.
+
+Octave
+
+GNU Octave can do list (vector) comprehensions in the form (vector expression)(vector condition).
+For example,
+
+Perl 5
+
+Perl 5 provides an alternate approach
+
+Perl 6
+
+Perl 6 provides more than one way to implement list comprehensions.
+Or, using gather:
+
+Picat
+
+A list comprehension in Picat takes the form : E1 in D1, Cond1, ..., En in Dn, Condn. A list comprehension is compiled into a foreach loop, which is further compiled into a tail-recursive predicate.
+
+PowerShell
+
+Pure
+
+The same example in Pure:
+ s = [2*n | n=1..100; n*n > 3];
+
+Python
+
+The Python programming language has a corresponding syntax for expressing list comprehensions.
+The near-equivalent in Python to the example above is as follows:
+List comprehensions were introduced in Python version 2.0.
+
+Racket
+
+Racket provides functional versions of for-loops, which are essentially list comprehension syntax:
+The imperative for can also be used, combined with Racket's generator library to produce an infinite generator:
+
+Ruby
+
+In the Ruby language you can use multiple ways to simulate this function, for example:
+Or you can define your own method:
+
+Rust
+
+The Rust language currently doesn't have a built-in support for list comprehensions but the functionality can be implemented as a macro:
+
+macro_rules! compr(
+    ($o:expr : $v:ident <- $i:expr $(,$p:expr)+) =>
+        ($i.$(filtered(|&$v| { $p })).*.map(|&$v| { $o }));
+    ($o:expr : $v:ident <- $i:expr) =>
+        ($i.map(|&$v| { $o }))
+)
+let s = compr!(x * 2 : x  2);
+
+Scala
+
+Using a for-expression:
+
+Scheme
+
+Although there is no standard list comprehension syntax in R5RS, many implementations provide an extension for this. For example, in Chicken Scheme:
+There is also a portable library SRFI/42 "Eager Comprehensions", which in particular includes list comprehensions:
+
+SETL
+
+Smalltalk
+
+SuperCollider
+
+In SuperCollider list comprehensions are implemented as Routines, whose results can be collected with the message 'all'. A shortcut syntax is provided for defining list comprehensions, which internally translates to a routine.
+
+Visual Prolog
+
+Similar constructs
+
+Monad comprehension
+
+In Haskell, a monad comprehension is a generalization of the list comprehension to other monads in functional programming.
+
+Set comprehension
+
+Version 3.x and 2.7 of the Python language introduces syntax for set comprehensions. Similar in form to list comprehensions, set comprehensions generate Python sets instead of lists.
+Racket set comprehensions generate Racket sets instead of lists.
+
+Dictionary comprehension
+
+Version 3.x and 2.7 of the Python language introduced a new syntax for dictionary comprehensions, similar in form to list comprehensions but which generate Python dicts instead of lists.
+Racket hash table comprehensions generate Racket hash tables (one implementation of the Racket dictionary type).
+
+Parallel list comprehension
+
+The Glasgow Haskell Compiler has an extension called parallel list comprehension (also known as zip-comprehension) that permits multiple independent branches of qualifiers within the list comprehension syntax.
+Whereas qualifiers separated by commas are dependent ("nested"), qualifier branches separated by pipes are evaluated in parallel (this does not refer to any form of multithreadedness: it merely means that the branches are zipped).
+Racket's comprehensions standard library contains parallel and nested versions of its comprehensions, distinguished by "for" vs "for*" in the name. For example, the vector comprehensions "for/vector" and "for*/vector" create vectors by parallel versus nested iteration over sequences. The following is Racket code for the Haskell list comprehension examples.
+In Python we could do as follows:
+
+XQuery and XPath
+
+Like the original NPL use, these are fundamentally database access languages.
+This makes the comprehension concept more important, because it is computationally infeasible to retrieve the entire list and operate on it (the initial 'entire list' may be an entire XML database).
+In XPath, the expression:
+ /library/book//paragraph[@style='first-in-chapter']
+is conceptually evaluated as a series of "steps" where each step produces a list and the next step applies a filter function to each element in the previous step's output.
+In XQuery, full XPath is available, but FLWOR statements are also used, which is a more powerful comprehension construct.
+Here the XPath //book is evaluated to create a sequence (aka list); the where clause is a functional "filter", the order by sorts the result, and the ... XML snippet is actually an anonymous function that builds/transforms XML for each element in the sequence using the 'map' approach found in other functional languages.
+So, in another functional language the above FLWOR statement may be implemented like this:
+ map(
+   newXML(shortBook, newXML(title, $1...))
+   filter(
+     lt($1.pages, 400),
+     xpath(//book)
+   )
+ )
+
+LINQ in C#
+
+C# 3.0 has a group of related features called LINQ, which defines a set of query operators for manipulating object enumerations.
+It also offers an alternative comprehension syntax, reminiscent of SQL:
+LINQ provides a capability over typical List Comprehension implementations. When the root object of the comprehension implements the IQueryable interface, rather than just executing the chained methods of the comprehension, the entire sequence of commands are converted into an Abstract Syntax Tree (AST) object, which is passed to the IQueryable object to interpret and execute.
+This allows, amongst other things, for the IQueryable to 
+
+C++
+
+C++ does not have any language features directly supporting list comprehensions.  List comprehensions can be constructed using the erase-remove idiom to select elements in a container and the STL algorithm for_each to transform them.
+There is some effort in providing C++ with list-comprehension constructs/syntax similar to the set builder notation.
+Full example is here: 
+
+
+
+Notes and references
+
+Haskell
+
+OCaml
+
+Python
+
+Common Lisp
+
+Clojure
+
+Axiom
+
+
+
+
+

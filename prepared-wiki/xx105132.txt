@@ -1,0 +1,16 @@
+[[Extended System Configuration Data]]
+
+CATEGORIES: Motherboard, BIOS
+
+The Extended System Configuration Data (ESCD) is a specification for configuring x86 computers of the ISA PNP era. The specification was developed by Compaq, Intel and Phoenix Technologies. It consists of a method for storing configuration information in nonvolatile BIOS memory and three BIOS functions for working with that data.[tpl]cite book|author=Tom Shanley|title=Plug and Play System Architecture|year=1995|publisher=Addison-Wesley Professional|isbn=978-0-201-41013-6|page=267[/tpl]Compaq Computer Corporation, Phoenix Technologies Ltd., Intel Corporation "Plug and Play BIOS Specification" Version 1.0A, May 5, 1994 (This details the ESCD BIOS functions, but it's not the actual ESCD format specification)
+The ESC data is usually stored in the battery-backed CMOS RAM on the motherboard of a personal computer.[tpl]cite book|author=Charles J. Brooks|title=A+ Certification Training Guide: (Exam 220-301, Exam 220-302)|url=http://books.google.com/books?id=KrE0GGzOQ6oC&pg=PA593|year=2003|publisher=Que Publishing|isbn=978-0-7897-3044-2|page=593[/tpl][tpl]cite book|author=Scott Mueller|title=Upgrading and Repairing PCs|url=http://books.google.com/books?id=eV1_LjW3pTkC&pg=PA389|year=2003|publisher=Que Publishing|isbn=978-0-7897-2745-9|page=389|edition=14th[/tpl]
+It contains information about ISA PnP devices is stored. It's used by the BIOS to allocate resources for devices like expansion cards. The ESCD data is stored using the data serialization format used for EISA. Its data starts with the "ACFG" signature in ASCII. PCI configuration can also be stored in ESCD, using virtual slots.ESCD specification 1.02A, Appendix A, pp. 21-22 Typical storage usage for ESCD data is 2–4 KB
+The BIOS also updates the ESCD each time the hardware configuration changes, after deciding how to re-allocate resources like IRQ and memory mapping ranges. After the ESCD has been updated, the decision need not be made again, which thereafter results in faster startup without conflicts until the next hardware configuration change.
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

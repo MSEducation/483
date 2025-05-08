@@ -1,0 +1,26 @@
+[[RC4]]
+
+CATEGORIES: Stream ciphers, Broken stream ciphers, Pseudorandom number generators, Free ciphers, Articles with example C code
+
+In cryptography, RC4 (also known as ARC4 or ARCFOUR meaning Alleged RC4, see below) is the most widely used software stream cipher and is used in popular protocols such as Transport Layer Security (TLS) (to protect Internet traffic) and WEP (to secure wireless networks). While remarkable for its simplicity and speed in software, RC4 has weaknesses that argue against its use in new systems."RC4 Page" lists some of the biases  It is especially vulnerable when the beginning of the output keystream is not discarded, or when nonrandom or related keys are used; some ways of using RC4 can lead to very insecure cryptosystems such as WEP.
+[tpl]As of|2013[/tpl], there is speculation that some state cryptologic agencies may possess the capability to break RC4 even when used in the TLS protocol. Microsoft recommends disabling RC4 where possible.[tpl]cite web|url=http://blogs.technet.com/b/srd/archive/2013/11/12/security-advisory-2868725-recommendation-to-disable-rc4.aspx|title=Security Advisory 2868725: Recommendation to disable RC4|date=2013-11-12|publisher=Microsoft|accessdate=2013-12-04[/tpl]draft-popov-tls-prohibiting-rc4-01
+
+==History==
+
+RC4 was designed by Ron Rivest of RSA Security in 1987. While it is officially termed "Rivest Cipher 4", the RC acronym is alternatively understood to stand for "Ron's Code"Rivest FAQ (see also RC2, RC5 and RC6).
+RC4 was initially a trade secret, but in September 1994 a description of it was anonymously posted to the Cypherpunks mailing list.[tpl]cite mailing list |url=http://web.archive.org/web/20080404222417/http://cypherpunks.venona.com/date/1994/09/msg00304.html |title=Thank you Bob Anderson |date=1994-09-09 |accessdate=2007-05-28 |mailinglist=Cypherpunks[/tpl] It was soon posted on the sci.crypt newsgroup, and from there to many sites on the Internet.  The leaked code was confirmed to be genuine as its output was found to match that of proprietary software using licensed RC4.  Because the algorithm is known, it is no longer a trade secret. The name RC4 is trademarked, so RC4 is often referred to as ARCFOUR or ARC4 (meaning alleged RC4)  to avoid trademark problems. RSA Security has never officially released the algorithm;  Rivest has, however, linked to the English Wikipedia article on RC4 in his own course notes.6.857 Computer and Network Security Spring 2008: Lectures and Handouts RC4 has become part of some commonly used encryption protocols and standards, including WEP and WPA for wireless cards and TLS.
+The main factors in RC4's success over such a wide range of applications are its speed and simplicity: efficient implementations in both software and hardware are very easy to develop.
+
+==Description==
+
+RC4 generates a pseudorandom stream of bits (a keystream). As with any stream cipher, these can be used for encryption by combining it with the plaintext using bit-wise exclusive-or; decryption is performed the same way (since exclusive-or with given data is an involution). (This is similar to the Vernam cipher except that generated pseudorandom bits, rather than a prepared stream, are used.) To generate the keystream, the cipher makes use of a secret internal state which consists of two parts:
+The permutation is initialized with a variable length key, typically between 40 and 256 bits, using the key-scheduling algorithm (KSA). Once this has been completed, the stream of bits is generated using the pseudo-random generation algorithm (PRGA).
+
+===Key-scheduling algorithm (KSA)===
+
+The key-scheduling algorithm is used to initialize the permutation in the array "S". "keylength" is defined as the number of bytes in the key and can be in the range 1 ≤ keylength ≤ 256, typically between 5 and 16, corresponding to a key length of 40 – 128 bits. First, the array "S" is initialized to the identity permutation. S is then processed for 256 iterations in a similar way to the main PRGA, but also mixes in bytes of the key at the same time.
+ '''for''' i '''from''' 0 '''to''' 255
+     S[i] := i
+ '''endfor'''
+ j := 0
+ '''for''' i '''from''' 0 '''to''' 255

@@ -1,0 +1,73 @@
+[[Suffix tree]]
+
+CATEGORIES: Trees (data structures), Substring indices, String data structures
+
+In computer science, a suffix tree (also called PAT tree or, in an earlier form, position tree) is a compressed trie containing all the suffixes of the given text as their keys and positions in the text as their values. Suffix trees allow particularly fast implementations of many important string operations.
+
+==History==
+
+The concept was first introduced by [tpl]harvtxt|Weiner|1973[/tpl], which Donald Knuth subsequently characterized as "Algorithm of the Year 1973".  The construction was greatly simplified by [tpl]harvtxt|McCreight|1976[/tpl]
+, and also by [tpl]harvtxt|Ukkonen|1995[/tpl].[tpl]sfnp|Giegerich|Kurtz|1997[/tpl]  Ukkonen provided the first online-construction of suffix trees, now known as Ukkonen's algorithm, with running time that matched the then fastest algorithms.
+[tpl]harvtxt|Farach|1997[/tpl] gave the first suffix tree construction algorithm that is optimal for all alphabets.  In particular, this is the first linear-time algorithm 
+for strings drawn from an alphabet of integers in a polynomial range.  Farach's algorithm has become the basis for new algorithms for constructing both suffix trees and suffix arrays, for example, in external memory, compressed, succinct, etc.
+
+==Definition==
+
+==Generalized suffix tree==
+
+A generalized suffix tree is a suffix tree made for a set of words instead of only for a single word. It represents all suffixes from this set of words. Each word must be terminated by a different termination symbol or word.
+
+==Functionality==
+
+The costs below are given under the assumption that the alphabet is constant.
+You can:
+
+==Applications==
+
+Suffix trees can be used to solve a large number of string problems that occur in text-editing, free-text search, computational biology and other application areas. Primary applications include:[tpl]cite web|url=http://www.allisons.org/ll/AlgDS/Tree/Suffix/|title=Suffix Trees|last=Allison|first=L. |accessdate=2008-10-14[/tpl]
+Suffix trees are often used in bioinformatics applications, searching for patterns in DNA or protein sequences (which can be viewed as long strings of characters). The ability to search efficiently with mismatches might be considered their greatest strength. Suffix trees are also used in data compression; they can be used to find repeated data, and can be used for the sorting stage of the Burrows–Wheeler transform. Variants of the LZW compression schemes use suffix trees (LZSS). A suffix tree is also used in suffix tree clustering, a data clustering algorithm used in some search engines.First introduced by [tpl]harvtxt|Zamir|Etzioni|1998[/tpl].
+
+==Implementation==
+
+An important choice when making a suffix tree implementation is the parent-child relationships between nodes. The most common is using linked lists called sibling lists. Each node has a pointer to its first child, and to the next node in the child list it is a part of. Other implementations with efficient running time properties use hash maps, sorted or unsorted arrays (with array doubling), or balanced search trees. We are interested in:
+Note that the insertion cost is amortised, and that the costs for hashing are given for perfect hashing.
+The large amount of information in each edge and node makes the suffix tree very expensive, consuming about 10 to 20 times the memory size of the source text in good implementations. The suffix array reduces this requirement to a factor of 8 (for array including LCP values built within 32-bit address space and 8-bit characters.) This factor depends on the properties and may reach 2 with usage of 4-byte wide characters (needed to contain any symbol in some UNIX-like systems, see wchar t) on 32-bit systems. Researchers have continued to find smaller indexing structures.
+
+==External construction==
+
+Suffix trees quickly outgrow the main memory on standard machines
+for sequence collections in the order of gigabytes. As such, their
+construction
+calls for external memory approaches.
+There are theoretical results for constructing suffix trees in external
+memory.
+The algorithm by [tpl]harvtxt|Farach-Colton|Ferragina|Muthukrishnan|2000[/tpl]
+is theoretically optimal, with an I/O complexity equal to that of sorting.
+However the overall intricacy of this algorithm has prevented, so far, its
+practical implementation.[tpl]sfnp|Smyth|2003[/tpl]
+On the other hand, there have been practical works for constructing
+disk-based suffix trees
+which scale to (few) GB/hours.
+The state of the art methods are TDD,[tpl]harvtxt|Tata|Hankins|Patel|2003[/tpl].
+TRELLIS,[tpl]harvtxt|Phoophakdee|Zaki|2007[/tpl].
+DiGeST,[tpl]harvtxt|Barsky|Stege|Thomo|Upton|2008[/tpl].
+and
+B2ST.[tpl]harvtxt|Barsky|Stege|Thomo|Upton|2009[/tpl].
+TDD and TRELLIS scale up to the entire human genome – approximately 3GB – resulting in a disk-based suffix tree of a size in the tens of gigabytes,. However, these methods cannot handle efficiently collections of sequences exceeding 3GB.  DiGeST performs significantly better and is able to handle collections of sequences in the order of 6GB in about 6 hours.
+.
+All these methods can efficiently build suffix trees for the case when the
+tree does not fit in main memory,
+but the input does.
+The most recent method, B2ST, scales to handle
+inputs that do not fit in main memory. ERA  is a recent parallel suffix tree construction method that is significantly faster. ERA can index the entire human genome in 19 minutes on an 8-core desktop computer with 16GB RAM. On a simple Linux cluster with 16 nodes (4GB RAM per node), ERA can index the entire human genome in less than 9 minutes.[tpl]sfnp|Mansour|Allam|Skiadopoulos|Kalnis|2011[/tpl]
+
+==See also==
+
+==Notes==
+
+==References==
+
+ | last1 = Baeza-Yates | first1 = Ricardo A. | author1-link = Ricardo Baeza-Yates
+ | last2 = Gonnet | first2 = Gaston H. | author2-link = Gaston Gonnet
+ | doi = 10.1145/235809.235810
+ | issue = 6

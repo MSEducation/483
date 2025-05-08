@@ -1,0 +1,51 @@
+[[X window manager]]
+
+CATEGORIES: X window managers, X Window System, Graphical user interfaces
+
+An X window manager is a window manager which runs on top of the X Window System, a windowing system mainly used on Unix-like systems.
+Unlike the Mac OS (Apple Macintosh) and Microsoft Windows platforms (excepting Microsoft Windows explorer. The user can choose between various third-party window managers, which differ from one another in several ways, including:
+
+How X window managers work
+
+When a window manager is running, some kinds of interaction between the X server and its clients are redirected through the window manager. In particular, whenever an attempt to show a new window is made, this request is redirected to the window manager, which decides the initial position of the window. Additionally, most modern window managers are reparenting, which usually leads to a banner being placed at the top of the window and a decorative frame being drawn around the window. These two elements are controlled by the window manager rather than the program. Therefore, when the user clicks or drags these elements, it is the window manager that takes the appropriate actions (such as moving or resizing the window).
+Window managers are also responsible for icons. Indeed, icons do not exist at the X Window System core protocol level. When the user requests a window to be iconified, the window manager unmaps it (makes it non-visible) and takes the appropriate actions to show an icon in its place. Most modern window managers do not literally show icons to represent iconified windows anymore.  Often, an auxiliary toolbar program will allow access to iconified windows.
+While the main aim of a window manager is to manage the windows, many window managers have additional features such as handling mouse clicks in the root window, presenting panes and other visual elements, handling some keystrokes (e.g., Alt-F4 may close a window), deciding which application to run at start-up, etc.
+Standardized protocols exist to allow normal clients to communicate with the window manager.  The original one is Inter-Client Communication Conventions Manual (ICCCM) but this has been superseded by the Extended Window Manager Hints (EWMH).
+
+Types of window managers
+
+Stacking window managers
+
+A stacking window manager renders the windows one-by-one onto the screen at specific co-ordinates. If one window's area overlaps another, then the window "on top" overwrites part of the other's visible appearance. This results in the appearance familiar to many users in which windows act a little bit like pieces of paper on a desktop, which can be moved around and allowed to overlap.
+In contrast to compositing window managers (see below), the lack of separate off-screen buffers can mean increased efficiency, but effects such as translucency are not possible.
+Stacking window managers include Amiwm, Blackbox, Enlightenment, evilwm, Fluxbox, FVWM, IceWM, MWM, Openbox and Window Maker.
+
+Tiling window managers
+
+A tiling window manager is a window manager with an organization of the screen into mutually non-overlapping frames (hence the name tiling), as opposed to the traditional approach of coordinate-based stacking of objects (windows) that tries to emulate the desk paradigm.
+Tiling window managers include awesome, dwm, ion, larswm, ratpoison, Stumpwm, wmii, i3, xmonad, and XWEM.
+
+Compositing window managers
+
+A compositing window manager may appear to the user similar to a stacking window manager. However, the individual windows are first rendered in individual buffers, and then their images are composited onto the screen buffer; this two-step process means that visual effects (such as shadows, translucency) can be applied. It also means that compositing window managers are inherently more resource-hungry than an equivalently-powerful stacking window manager. For this reason, some window managers for X do not support compositing by default, such as LXDE.com/questions/53745/compositing-in-lubuntu
+Historically, the Amiga in 1985, OSX in 2001 (which in many ways is a window manager for X), Java Looking Glass in 2003, and the Windows Longhorn demo in 2003 (delayed until Vista in 2007) preceded compositing efforts under X11.  Compositing window managers for X include: 
+
+Virtual window managers
+
+A virtual window manager is a window manager that uses virtual screens, whose resolution can be higher than the resolution of one's monitor/display adapter thus resembling a two dimensional virtual desktop with its viewport.  This environment is very useful when one wishes to have a large number of windows open at the same time.  A number of virtual window managers have been made, including FVWM, Tvtwm, HaZe and others.
+
+Window managers that are extensible
+
+Some window managers are extensible, or programmable, by user scripts.
+In these window managers, users can define new actions or override the default, or reactions to various events, like window size and position changes, window creation and deletion, key and mouse input, timer, etc. They often provide on-the-fly code execution, too.
+Some examples of such window managers and the used languages are:
+
+X window managers
+
+
+
+
+
+
+
+

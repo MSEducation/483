@@ -1,0 +1,77 @@
+[[Electronic test equipment]]
+
+CATEGORIES: Electronic test equipment
+
+Electronic test equipment (sometimes called "testgear" or "bench top") is used to create signals and capture responses from electronic Devices Under Test (DUTs). In this way, the proper operation of the DUT can be proven or faults in the device can be traced. Use of electronic test equipment is essential to any serious work on electronics systems.
+Practical electronics engineering and assembly requires the use of many different kinds of electronic test equipment ranging from the very simple and inexpensive (such as a test light consisting of just a light bulb and a test lead) to extremely complex and sophisticated such as Automatic Test Equipment. ATE often includes many of these instruments in real and simulated forms.
+Generally, more advanced test gear is necessary when developing circuits and systems than is needed when doing production testing or when troubleshooting existing production units in the field.
+
+==Test Equipment Switching==
+
+The addition of a high-speed switching system to a test system’s configuration allows for faster, more cost-effective testing of multiple devices, and is designed to reduce both test errors and costs. Designing a test system’s switching configuration requires an understanding of the signals to be switched and the tests to be performed, as well as the switching hardware form factors available.
+
+==Types of test equipment==
+
+===Basic equipment===
+
+The following items are used for basic measurement of voltages, currents, and components in the circuit under test.
+The following are used for stimulus of the circuit under test:
+The following analyze the response of the circuit under test:
+And connecting it all together:
+
+===Advanced or less commonly used equipment===
+
+Meters
+
+====Probes====
+
+====Analyzers====
+
+====Signal-generating devices====
+
+===Miscellaneous devices===
+
+==Platforms==
+
+Several modular electronic instrumentation platforms are currently in common use for configuring automated electronic test and measurement systems. These systems are widely employed for incoming inspection, quality assurance, and production testing of electronic devices and subassemblies. Industry-standard communication interfaces link signal sources with measurement instruments in “rack-and-stack” or chassis-/mainframe-based systems, often under the control of a custom software application running on an external PC.
+
+===GPIB/IEEE-488===
+
+The General Purpose Interface Bus (GPIB) is an IEEE-488 (a standard created by the Institute of Electcal and Electronics Engineers) standard parallel interface used for attaching sensors and programmable instruments to a computer. GPIB is a digital 8-bit parallel communications interface capable of achieving data transfers of more than 8 Mbytes/s. It allows daisy-chaining up to 14 instruments to a system controller using a 24-pin connector. It is one of the most common I/O interfaces present in instruments and is designed specifically for instrument control applications. The IEEE-488 specifications standardized this bus and defined its electrical, mechanical, and functional specifications, while also defining its basic software communication rules. GPIB works best for applications in industrial settings that require a rugged connection for instrument control. 
+The original GPIB standard was developed in the late 1960s by Hewlett-Packard to connect and control the programmable instruments the company manufactured. The introduction of digital controllers and programmable test equipment created a need for a standard, high-speed interface for communication between instruments and controllers from various vendors. In 1975, the IEEE published ANSI/IEEE Standard 488-1975, IEEE Standard Digital Interface for Programmable Instrumentation, which contained the electrical, mechanical, and functional specifications of an interfacing system. This standard was subsequently revised in 1978 (IEEE-488.1) and 1990 (IEEE-488.2). The IEEE 488.2 specification includes the Standard Commands for Programmable Instrumentation (SCPI), which define specific commands that each instrument class must obey. SCPI ensures compatibility and configurability among these instruments.
+The IEEE-488 bus has long been popular because it is simple to use and takes advantage of a large selection of programmable instruments and stimuli. Large systems, however, have the following limitations:
+
+===LAN eXtensions for Instrumentation===
+
+The LXI (LXI) Standard defines the communication protocols for instrumentation and data acquisition systems using Ethernet. These systems are based on small, modular instruments, using low-cost, open-standard LAN (Ethernet). LXI-compliant instruments offer the size and integration advantages of modular instruments without the cost and form factor constraints of card-cage architectures. Through the use of Ethernet communications, the LXI Standard allows for flexible packaging, high-speed I/O, and standardized use of LAN connectivity in a broad range of commercial, industrial, aerospace, and military applications. Every LXI-compliant instrument includes an Interchangeable Virtual Instrument (IVI) driver to simplify communication with non-LXI instruments, so LXI-compliant devices can communicate with devices that are not themselves LXI compliant (i.e., instruments that employ GPIB, VXI, PXI, etc.). This simplifies building and operating hybrid configurations of instruments.
+LXI instruments sometimes employ scripting using embedded test script processors for configuring test and measurement applications. Script-based instruments provide architectural flexibility, improved performance, and lower cost for many applications. Scripting enhances the benefits of LXI instruments, and LXI offers features that both enable and enhance scripting. Although the current LXI standards for instrumentation do not require that instruments be programmable or implement scripting, several features in the LXI specification anticipate programmable instruments and provide useful functionality that enhances scripting’s capabilities on LXI-compliant instruments.Franklin, Paul and Todd A. Hayes. LXI Connection.Benefits of LXI and Scripting. July 2008. Retrieved January 5, 2010.
+
+===VME eXtensions for Instrumentation===
+
+The VME eXtensions for Instrumentation (VXI) bus architecture is an open standard platform for automated test based on the VMEbus. Introduced in 1987, VXI uses all Eurocard form factors and adds trigger lines, a local bus, and other functions suited for measurement applications. VXI systems are based on a mainframe or chassis with up to 13 slots into which various VXI instrument modules can be installed.Hardware Mechanical Components VXI Chassis and Case Manufacturers. Retrieved December 30, 2009. The chassis also provides all the power supply and cooling requirements for the chassis and the instruments it contains. VXI bus modules are typically 6U in height.
+
+===PCI eXtensions for Instrumentation===
+
+PCI eXtensions for Instrumentation, (PXI), is a peripheral bus specialized for data acquisition and real-time control systems. Introduced in 1997, PXI uses the CompactPCI 3U and 6U form factors and adds trigger lines, a local bus, and other functions suited for measurement applications. PXI hardware and software specifications are developed and maintained by the PXI Systems Alliance.PXI Systems Alliance. Specifications. Retrieved December 30, 2009. More than 50 manufacturers around the world produce PXI hardware.PXI Systems Alliance. Specifications Retrieved December 30, 2009.
+
+===Universal Serial Bus===
+
+The Universal Serial Bus (USB) connects peripheral devices, such as keyboards and mice, to PCs. The USB is a Plug and Play bus that can handle up to 127 devices on one port, and has a theoretical maximum throughput of 480 Mbit/s (high-speed USB defined by the USB 2.0 specification). Because USB ports are standard features of PCs, they are a natural evolution of conventional serial port technology. However, it is not widely used in building industrial test and measurement systems for a number of reasons; for example, USB cables are not industrial grade, are noise sensitive, can accidentally become detached, and the maximum distance between the controller and the device is 30 m. Like RS-232, USB is useful for applications in a laboratory setting that do not require a rugged bus connection.
+
+===RS-232===
+
+RS-232 is a specification for serial communication that is popular in analytical and scientific instruments, as well for controlling peripherals such as printers. Unlike GPIB, with the RS-232 interface, it is possible to connect and control only one device at a time. RS-232 is also a relatively slow interface with typical data rates of less than 20 kbytes/s. RS-232 is best suited for laboratory applications compatible with a slower, less rugged connection.
+
+===Test Script Processors and a Channel Expansion Bus===
+
+One of the most recently developed test system platforms employs instrumentation equipped with onboard test script processors combined with a high-speed bus. In this approach, one “master” instrument runs a test script (a small program) that controls the operation of the various “slave” instruments in the test system, to which it is linked via a high-speed LAN-based trigger synchronization and inter-unit communication bus. Scripting is writing programs in a scripting language to coordinate a sequence of actions. 
+This approach is optimized for small message transfers that are characteristic of test and measurement applications. With very little network overhead and a 100 Mbit/s data rate, it is significantly faster than GPIB and 100BaseT Ethernet in real applications.
+The advantage of this platform is that all connected instruments behave as one tightly integrated multi-channel system, so users can scale their test system to fit their required channel counts cost-effectively. A system configured on this type of platform can stand alone as a complete measurement and automation solution, with the master unit controlling sourcing, measuring, pass/fail decisions, test sequence flow control, binning, and the component handler or prober. Support for dedicated trigger lines means that synchronous operations between multiple instruments equipped with onboard Test Script Processors that are linked by this high speed bus can be achieved without the need for additional trigger connections.Cigoy, Dale. R&D Magazine.Smart Instruments Keep Up With Changing RD Needs Retrieved January 4, 2009.
+
+==See also==
+
+==References==
+
+==External links==
+
+

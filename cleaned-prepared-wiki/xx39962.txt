@@ -1,0 +1,105 @@
+[[Image:As wiki lgm levelsets.svg|thumb|right|300px|Zooming in on the levels sets and constraints, we see that the
+two constraint lines intersect to form a "joint" constraint that is a point. Since there is only one point to analyze, the corresponding point on the paraboloid is automatically a minimum and maximum. Yet the simplified reasoning presented in sections above seems to fail because the level set definitely appears to "cross" the point and at the same time its gradient is not parallel to the gradients of either constraint. This shows we must refine our explanation of the method to handle the kinds of constraints that are formed when we have more than one constraint acting at once.]]
+The method of Lagrange multipliers can also accommodate multiple constraints.  To see how this is done, we need to reexamine the problem in a slightly different manner because the concept of "crossing" discussed above becomes rapidly unclear when we consider the types of constraints that are created when we have more than one constraint acting together.
+As an example, consider a paraboloid with a constraint that is a single point (as might be created if we had 2 line constraints that intersect).  The level set (i.e., contour line) clearly appears to "cross" that point and its gradient is clearly not parallel to the gradients of either of the two line constraints.  Yet, it is obviously a maximum and a minimum because there is only one point on the paraboloid that meets the constraint.
+While this example seems a bit odd, it is easy to understand and is representative of the sort of  "effective" constraint that appears quite often when we deal with multiple constraints intersecting.  Thus, we take a slightly different approach below to explain and derive the Lagrange Multipliers method with any number of constraints.
+Throughout this section, the independent variables will be denoted by .
+The basic idea remains essentially the same:  if we consider only the points that satisfy the constraints (i.e., are in the constraints), then a point  changes value.
+Once we have located the stationary points, we need to do further tests to see if we have found a minimum, a maximum or just a stationary point that is neither.
+We start by considering the level set of , the following relation must hold:
+where the  notation . The equation above can be rewritten in a more compact geometric form that helps our intuition:
+is the same as writing
+This makes it clear that if we are at ).
+Now let us consider the effect of the constraints. Each constraint limits the directions that we can move from a particular point and still satisfy the constraint. We can use the same procedure, to look for the set of vectors , the following relation must hold:
+From this, we see that at point .
+Now we are ready to refine our idea further and complete the method: a point on . 
+
+Single constraint revisited
+
+For a single constraint, we use the statement above to say that at stationary points the direction that changes  is in the same direction that violates the constraint. To determine if two vectors are in the same direction, we note that if two vectors start from the same point and are "in the same direction", then one vector can always "reach" the other by changing its length and/or flipping to point the opposite way along the same direction line.  In this way, we can succinctly state that two vectors point in the same direction if and only if one of them can be multiplied by some real number such that they become equal to the other.  So, for our purposes, we require that:
+If we now add another simultaneous equation to guarantee that we only perform this test when we are at a point that satisfies the
+constraint, we end up with 2 simultaneous equations that when solved, identify all constrained stationary points:
+Note that the above is a succinct way of writing the equations. Fully expanded, there are :
+
+Multiple constraints
+
+For more than one constraint, the same reasoning applies.  If two or more constraints are active together, each constraint
+contributes a direction that will violate it.  Together, these "violation directions" form a "violation space", where infinitesimal
+movement in any direction within the space will violate one or more constraints.  Thus, to satisfy multiple constraints we can state (using this new terminology) that at the stationary points, the direction that changes  is in the "violation space" created by the constraints acting jointly.
+The violation space created by the constraints consists of all points that can be reached by adding any linear combination of violation direction vectors—in other words, all the points that are "reachable" when we use the individual violation directions as the basis of the space.  Thus, we can succinctly state that  such that:
+which for our purposes, translates to stating that the direction that changes  if and only if:
+As before, we now add simultaneous equation to guarantee that we only perform this test when we are at a point that satisfies every
+constraint, we end up with simultaneous equations that when solved, identify all constrained stationary points:
+The method is complete now (from the standpoint of solving the problem of finding stationary points) but as mathematicians delight in doing, these equations can be further condensed into an even more elegant and succinct form.  Lagrange must have cleverly noticed that the equations above look like partial derivatives of some larger scalar function  with partial derivatives that are exactly the ones we require can be constructed very simply as below:
+Solving the equation above for its unconstrained stationary points generates exactly the same stationary points as solving for the constrained stationary  points of .
+In Lagrange's honor, the function above is called  a Lagrangian, the scalars  are called Lagrange Multipliers and this optimization method itself is called The Method of Lagrange Multipliers.
+The method of Lagrange multipliers is generalized by the Karush–Kuhn–Tucker conditions, which can also take into account inequality constraints of the form .
+
+Interpretation of the Lagrange multipliers
+
+Often the Lagrange multipliers have an interpretation as some quantity of interest.  For example, if the Lagrangian expression is
+then
+So,  is the rate of change of the quantity being optimized as a function of the constraint variable.
+As examples, in Lagrangian mechanics the equations of motion are derived by finding stationary points of the action, the time integral of the difference between kinetic and potential energy.  Thus, the force on a particle due to a scalar potential, , can be interpreted as a Lagrange multiplier determining the change in action (transfer of potential to kinetic energy) following a variation in the particle's constrained trajectory.  
+In control theory this is formulated instead as costate equations.
+Moreover, by the envelope theorem the optimal value of a Lagrange multiplier has an interpretation as the marginal effect of the corresponding constraint constant upon the optimal attainable value of the original objective function: if we denote values at the optimum with an asterisk, then it can be shown that
+For example, in economics the optimal profit to a player is calculated subject to a constrained space of actions, where a Lagrange multiplier is the change in the optimal value of the objective function (profit) due to the relaxation of a given constraint (e.g. through a change in income); in such a context  is the marginal cost of the constraint, and is referred to as the shadow price.
+
+Sufficient conditions
+
+Sufficient conditions for a constrained local maximum or minimum can be stated in terms of a sequence of principal minors (determinants of upper-left-justified sub-matrices) of the bordered Hessian matrix of second derivatives of the Lagrangian expression., Fundamental Methods of Mathematical Economics, McGraw-Hill, third edition, 1984: p. 386. isbn:9757860069
+
+Examples
+
+Example 1
+
+where the last equation is the original constraint.
+The first two equations yield 
+
+Example 2
+
+Suppose we want to find the maximum values of
+with the condition that the  coordinates lie on the circle around the origin with radius √3, that is, subject to the constraint
+As there is just a single constraint, we will use only one multiplier, say .
+The constraint  unchanged in the region of interest (above the circle where our original constraint is satisfied).  Let
+The critical values of  occur where its gradient is zero. The partial derivatives are
+Then . Thus there are six critical points:
+Evaluating the objective at these points, we find that
+
+Example 3: Entropy
+
+Carrying out the differentiation of these  equations, we get
+we find
+Hence, the uniform distribution is the distribution with the greatest entropy, among distributions on  points.
+
+Example 4: numerical optimization
+
+The critical points of Lagrangians occur at saddle points, rather than at local maxima (or minima). Unfortunately, many numerical optimization techniques, such as hill climbing, gradient descent, some of the quasi-Newton methods, among others, are designed to find local maxima (or minima) and not saddle points. For this reason, one must either modify the formulation to ensure that it's a minimization problem (for example, by extremizing the square of the gradient of the Lagrangian as below), or else use an optimization technique that finds stationary points (such as Newton's method without an extremum seeking line search) and not necessarily extrema.
+Using Lagrange multipliers, this problem can be converted into an unconstrained optimization problem:
+The two critical points occur at saddle points where .
+In order to solve this problem with a numerical optimization technique, we must first transform this problem such that the critical points occur at local minima. This is done by computing the magnitude of the gradient of the unconstrained optimization problem.
+First, we compute the partial derivative of the unconstrained problem with respect to each variable:
+If the target function is not easily differentiable, the differential with respect to each variable can be approximated as
+Next, we compute the magnitude of the gradient, which is the square root of the sum of the squares of the partial derivatives:
+(Since magnitude is always non-negative, optimizing over the squared-magnitude is equivalent to optimizing over the magnitude. Thus, the ``square root" may be omitted from these equations with no expected difference in the results of optimization.)
+The critical points of  occur at local minima, so numerical optimization techniques can be used to find them.
+
+Applications
+
+Economics
+
+Constrained optimization plays a central role in economics. For example, the choice problem for a consumer is represented as one of maximizing a utility function subject to a budget constraint. The Lagrange multiplier has an economic interpretation as the shadow price associated with the constraint, in this example the marginal utility of income.  Other examples include profit maximization for a firm, along with various macroeconomic applications.
+
+Control theory
+
+In optimal control theory, the Lagrange multipliers are interpreted as costate variables, and Lagrange multipliers are reformulated as the minimization of the Hamiltonian, in Pontryagin's minimum principle.
+
+
+
+
+
+
+
+Exposition
+For additional text and interactive applets
+

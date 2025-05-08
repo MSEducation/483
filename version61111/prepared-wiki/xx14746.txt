@@ -1,0 +1,193 @@
+[[Benford's law]]
+
+CATEGORIES: Statistical laws, Discrete distributions, Probability distributions
+
+Benford's Law, also called the First-Digit Law, refers to the frequency distribution of digits in many (but not all) real-life sources of data. In this distribution, the number [tpl]formatnum:1[/tpl] occurs as the leading digit about 30% of the time, while larger numbers occur in that position less frequently: [tpl]formatnum:9[/tpl] as the first digit less than 5% of the time. Benford's Law also concerns the expected distribution for digits beyond the first, which approach a uniform distribution.
+This result has been found to apply to a wide variety of data sets, including electricity bills, street addresses, stock prices, population numbers, death rates, lengths of rivers, physical and mathematical constants, and processes described by power laws (which are very common in nature). It tends to be most accurate when values are distributed across multiple orders of magnitude.
+The graph here shows Benford's Law for base 10. There is a generalization of the law to numbers expressed in other bases (for example, base 16), and also a generalization from leading 1 digit to leading n digits.
+It is named after physicist Frank Benford, who stated it in 1938,[ref]
+ (subscription required)[/ref]
+although it had been previously stated by Simon Newcomb in 1881.[ref]
+ (subscription required)[/ref]
+
+==Mathematical statement==
+
+A set of numbers is said to satisfy Benford's Law if the leading digit d (d ∈ {1, ..., 9}) occurs with probability
+Numerically, the leading digits have the following distribution in Benford's Law, where d is the leading digit and P(d) the probability:
+The quantity P(d) is proportional to the space between d and d + 1 on a logarithmic scale. Therefore, this is the distribution expected if the mantissae of the logarithms of the numbers (but not the numbers themselves) are uniformly and randomly distributed. For example, a number x, constrained to lie between 1 and 10, starts with the digit 1 if 1 ≤ x An extension of Benford's Law predicts the distribution of first digits in other bases besides decimal; in fact, any base b ≥ 2. The general form is:
+For b = 2 (the binary number system), Benford's Law is true but trivial: All binary numbers (except for 0) start with the digit 1. (On the other hand, the generalization of Benford's law to second and later digits is not trivial, even for binary numbers.) Also, Benford's Law does not apply to unary systems such as tally marks.
+
+==Example==
+
+Examining a list of the heights of the 60 tallest structures in the world by category shows that 1 is by far the most common leading digit, irrespective of the unit of measurement:
+
+==History==
+
+The discovery of Benford's Law goes back to 1881, when the American astronomer Simon Newcomb noticed that in logarithm tables (used at that time to perform calculations) the earlier pages (which contained numbers that started with 1) were much more worn than the other pages. Newcomb's published result is the first known instance of this observation and includes a distribution on the second digit, as well. Newcomb proposed a law that the probability of a single number N being the first digit of a number was equal to log(N + 1) − log(N).
+The phenomenon was again noted in 1938 by the physicist Frank Benford, who tested it on data from 20 different domains and was credited for it. His data set included the surface areas of 335 rivers, the sizes of 3259 US populations, 104 physical constants, 1800 molecular weights, 5000 entries from a mathematical handbook, 308 numbers contained in an issue of Reader's Digest, the street addresses of the first 342 persons listed in American Men of Science and 418 death rates. The total number of observations used in the paper was 20,229. This discovery was later named after Benford (making it an example of Stigler's Law).
+In 1995, Ted Hill proved the result about mixed distributions mentioned below.
+
+==Explanations==
+
+Benford's Law has been explained in various ways.
+
+===Outcomes of exponential growth processes===
+
+The precise form of Benford's Law can be explained if one assumes that the mantissae of the logarithms of the numbers are uniformly distributed; and this is likely to be approximately true if the numbers range over several orders of magnitude. For many sets of numbers, especially sets that grow exponentially such as incomes and stock prices, this is a reasonable assumption.
+For example, if a quantity increases continuously and doubles every year, then it will be twice its original value after one year, four times its original value after two years, eight times its original value after three years, and so on. When this quantity reaches a value of 100, the value will have a leading digit of 1 for a year, reaching 200 at the end of the year. Over the course of the next year, the value increases from 200 to 400; it will have a leading digit of 2 for a little over seven months, and 3 for the remaining five months. In the third year, the leading digit will pass through 4, 5, 6, and 7, spending less and less time with each succeeding digit, reaching 800 at the end of the year. Early in the fourth year, the leading digit will pass through 8 and 9. The leading digit returns to 1 when the value reaches 1000, and the process starts again, taking a year to double from 1000 to 2000.
+From this example, it can be seen that if the value is sampled at uniformly distributed random times throughout those years, it is more likely to be measured when the leading digit is 1, and successively less likely to be measured with higher leading digits.
+This example makes it plausible that data tables that involve measurements of exponentially growing quantities will agree with Benford's Law. But the law also appears to hold for many cases where an exponential growth pattern is not obvious.
+
+===Scale invariance===
+
+If there is a list of lengths, the distribution of first digits of numbers in the list may be generally similar regardless of whether all the lengths are expressed in metres, or yards, or feet, or inches, etc. To the extent that the distribution of first digits of a data set is scale invariant, the distribution of first digits is the same regardless of the units that the data are expressed in. This implies that the distribution of first digits is given by Benford's Law.Roger S. Pinkham, On the Distribution of First Significant Digits, Ann. Math. Statist. Volume 32, Number 4 (1961), 1223-1230.MathWorld – Benford's Law To be sure of approximate agreement with Benford's Law, the data has to be approximately invariant when scaled up by any factor up to 10. A lognormally distributed data set with wide dispersion has this approximate property, as do some of the examples mentioned above.
+This means that if one converts from feet to yards (multiplication by a constant), for example, the distribution of first digits must be unchanged — it is scale invariant, and the only continuous distribution that fits this is one whose logarithm is uniformly distributed. For example, the first (non-zero) digit of the lengths or distances of objects should have the same distribution whether the unit of measurement is feet or yards, or anything else. But there are three feet in a yard, so the probability that the first digit of a length in yards is 1 must be the same as the probability that the first digit of a length in feet is 3, 4, or 5. Applying this to all possible measurement scales gives a logarithmic distribution, and combined with the fact that log10(1) = 0 and log10(10) = 1 gives Benford's Law. That is, if there is a scale invariant distribution of first digits, it must apply to a set of data regardless of what measuring units are used, and the only distribution of first digits that fits that is Benford's Law.
+
+===Multiple probability distributions===
+
+For numbers drawn from certain distributions (IQ scores, human heights) the Law fails to hold because these variates obey a normal distribution which is known not to satisfy Benford's Law, since normal distributions can't span several orders of magnitude and the mantissae of their logarithms will not be (even approximately) uniformly distributed.
+However, if one "mixes" numbers from those distributions, for example by taking numbers from newspaper articles, Benford's Law reappears. This can also be proven mathematically: if one repeatedly "randomly" chooses a probability distribution (from an uncorrelated set) and then randomly chooses a number according to that distribution, the resulting list of numbers will obey Benford's Law.[ref]
+</ref> A similar probabilistic explanation for the appearance of Benford's Law in everyday-life numbers has been advanced by showing that it arises naturally when one considers mixtures of uniform distributions.<ref>Élise Janvresse and Thierry de la Rue (2004), "From Uniform Distributions to Benford's Law", ''Journal of Applied Probability'', 41 1203–1210 [tpl]doi|10.1239/jap/1101840566[/tpl] [tpl]MR|2122815[/tpl] [https://www.univ-rouen.fr/LMRS/Persopage/Delarue/Publis/PDF/uniform_distribution_to_Benford_law.pdf preprint]</ref>
+
+==Applications==
+
+===Accounting fraud detection===
+
+In 1972, Hal Varian suggested that the law could be used to detect possible fraud in lists of socio-economic data submitted in support of public planning decisions. Based on the plausible assumption that people who make up figures tend to distribute their digits fairly uniformly, a simple comparison of first-digit frequency distribution from the data with the expected distribution according to Benford's Law ought to show up any anomalous results.[tpl]Cite journal|first=Hal |last=Varian |authorlink=Hal Varian |title=Benford's Law (Letters to the Editor) |journal=The American Statistician|year=1972 |issue=3 |volume=26 |page=65 |doi=10.1080/00031305.1972.10478934 [/tpl] Following this idea, Mark Nigrini showed that Benford's Law could be used in forensic accounting and auditing as an indicator of accounting and expenses fraud.
+In practice, applications of Benford's Law for fraud detection routinely use more than the first digit.
+
+===Legal status===
+
+In the United States, evidence based on Benford's Law has been admitted in criminal cases at the federal, state, and local levels.[ref]
+</ref>
+
+===Election data===
+
+Benford's Law has been invoked as evidence of fraud in the 2009 Iranian elections,Stephen Battersby Statistics hint at fraud in Iranian election New Scientist 24 June 2009 and also used to analyze other election results. However, other experts consider Benford's Law essentially useless as a statistical indicator of election fraud in general.Joseph Deckert, Mikhail Myagkov and Peter C. Ordeshook, (2010) The Irrelevance of Benford’s Law for Detecting Fraud in Elections[tpl]dead link|date=March 2014[/tpl], Caltech/MIT Voting Technology Project Working Paper No. 9Charles R. Tolle, Joanne L. Budzien, and Randall A. LaViolette (2000)  Do dynamical systems follow Benford?s Law?, Chaos 10, 2, pp.331–336 (2000); [tpl]doi|10.1063/1.166498[/tpl]
+
+===Macroeconomic data===
+
+Similarly, the macroeconomic data the Greek government reported to the European Union before entering the Euro Zone was shown to be probably fraudulent using Benford's Law, albeit years after the country joined.Müller, Hans Christian: Greece Was Lying About Its Budget Numbers. Forbes. 12 September 2011.
+
+===Genome data===
+
+The number of open reading frames and their relationship to genome size differs between eukaryotes and prokaryotes with the former showing a log-linear relationship and the latter a linear relationship. Benford's Law has been used to test this observation with an excellent fit to the data in both cases.Friar JL, Goldman T, Pérez-Mercader J (2012) Genome sizes and the benford distribution. PLoS One 7(5):e36624. [tpl]doi|10.1371/journal.pone.0036624[/tpl]
+
+===Scientific fraud detection===
+
+A test of regression coefficients in published papers showed agreement with Benford's law.Diekmann A (2007) Not the First Digit! Using Benford's Law to detect fraudulent scientific data. J Appl Stat 34 (3) 321–329, [tpl]doi|10.1080/02664760601004940[/tpl] As a comparison group subjects were asked to fabricate statistical estimates. The fabricated results failed to obey Benford's law.
+
+==Limitations==
+
+Benford's law can only be applied to data that are distributed across multiple orders of magnitude. For instance, one might expect that Benford's law would apply to a list of numbers representing the populations of UK villages beginning with 'A', or representing the values of small insurance claims. But if a "village" is defined as a settlement with population between 300 and 999, or a "small insurance claim" is defined as a claim between $50 and $100, then Benford's law will not apply.[tpl]cite web|url=http://www.dspguide.com/ch34.htm |title=The Scientist and Engineer's Guide to Digital Signal Processing, chapter 34, Explaining Benford's Law |author=Steven W. Smith |accessdate=15 December 2012[/tpl] (especially section 10).[tpl]Cite journal|first=R. M. |last=Fewster |title=A simple explanation of Benford's Law |journal=The American Statistician |year=2009 |volume=63 |issue=1 |pages=26–32 |doi=10.1198/tast.2009.0005 |postscript= [/tpl] More generally, if there is any cut-off which excludes a portion of the underlying data above a maximum value or below a minimum value, then the law will not apply.
+Consider the probability distributions shown below, plotted on a log scale.Note that if you have a regular probability distribution (on a linear scale), you have to multiply it by a certain function to get a proper probability distribution on a log scale: The log scale distorts the horizontal distances, so the height has to be changed also, in order for the area under each section of the curve to remain true to the original distribution. See, for example, http://www.dspguide.com/ch34/4.htm
+In each case, the total area in red is the relative probability that the first digit is 1, and the total area in blue is the relative probability that the first digit is 8.
+For the left distribution, the size of the areas of red and blue are approximately proportional to the widths of each red and blue bar. Therefore the numbers drawn from this distribution will approximately follow Benford's law. On the other hand, for the right distribution, the ratio of the areas of red and blue is very different from the ratio of the widths of each red and blue bar. Rather, the relative areas of red and blue are determined more by the height of the bars than the widths. The heights, unlike the widths, do not satisfy the universal relationship of Benford's law; instead, they are determined entirely by the shape of the distribution in question. Accordingly, the first digits in this distribution do not satisfy Benford's law at all.
+Thus, real-world distributions that span several orders of magnitude rather smoothly (e.g. populations of settlements, provided that there is no lower limit) are likely to satisfy Benford's law to a very good approximation. On the other hand, a distribution that covers only one or two orders of magnitude (e.g. heights of human adults, or IQ scores) is unlikely to satisfy Benford's law well.
+
+==Statistical tests==
+
+Statistical tests examining the fit of Benford's law to data have more power when the data values span several orders of magnitude. Since many data samples typically do not have this range, numerical transformation of the data to a base other than 10 may be useful before testing.[tpl]citation needed|date=June 2012[/tpl]
+Although the chi squared test has been used to test for compliance with Benford's law it has low statistical power when used with small samples.
+The Kolmogorov–Smirnov test and the Kuiper test are more powerful when the sample size is small particularly when Stephens's corrective factor is used.[tpl]cite journal |last=Stephens |first=M. A. |year=1970 |title=Use of the Kolmogorov–Smirnov, Cramér–Von Mises and Related Statistics without Extensive Tables |journal=Journal of the Royal Statistical Society, Series B |volume=32 |issue=1 |pages=115–122 |url=http://ebookbrowse.com/stephens-1970-use-of-the-kolmogorov-smirnov-cramer-von-mises-and-related-statistics-without-extensive-tables-pdf-d15049209 |accessdate=2013-03-09[/tpl] These tests may be overly conservative when applied to discrete distribution. Values for the Benford test have been generated by Morrow.Morrow, J. (2010) "Benford’s Law, Families of Distributions and a test basis", UW-Madison The critical values of the test statistics are shown below:
+Two alternative tests specific to this law have been published: first, the max (m) statistic[tpl]cite journal |last1=Leemis |first1=L. M. |last2=Schmeiser |first2=B. W. |last3=Evans |first3=D. L. |year=2000 |title=Survival distributions satisfying Benford's Law |journal=The Amererican Statistician |volume=54 |issue=4|pages=236–241 |doi=10.1080/00031305.2000.10474554[/tpl] is given by
+and secondly, the  distance (d) statistic[tpl]cite journal |last1=Cho |first1=W. K. T. |last2=Gaines |first2=B. J. |year=2007 |title=Breaking the (Benford) law: Statistical fraud detection in campaign ﬁnance |journal=The Amererican Statistician |volume=61 |pages=218–223 |doi=10.1198/000313007X223496 |issue=3[/tpl] is given by
+Nigrini[tpl]cite journal |last=Nigrini |first=M. |year=1996 |title=A taxpayer compliance application of Benford's Law |journal=J Amer Tax Assoc |volume=18 |pages=72–91[/tpl] has suggested the use of a z statistic
+with
+where |x| is the absolute value of x, n is the sample size, 1/(2n) is a continuity correction factor, pe is the proportion expected from Benford's law and po is the observed proportion in the sample.
+Morrow has also shown that for any random variable X (with a continuous pdf) divided by its standard deviation (σ), a value A can be found such that the probability of the distribution of the first significant digit of the random variable ( X / σ )A will differ from Benford's Law by less than ε > 0. The value of A depends on the value of ε and the distribution of the random variable.
+A method of accounting fraud detection based on bootstrapping and regression has been proposed.[tpl]cite journal |last1=Suh |first1=I. S. |last2=Headrick |first2=T. C. |last3=Minaburo |first3=S. |year=2011 |title=An effective and efficient analytic technique: A bootstrap regression procedure and Benford's Law |journal=J Forensic & Investigative Accounting |volume=3 |issue=3[/tpl]
+
+==Generalization to digits beyond the first==
+
+It is possible to extend the law to digits beyond the first.Theodore P. Hill, "The Significant-Digit Phenomenon", The American Mathematical Monthly, Vol. 102, No. 4, (Apr., 1995), pp. 322–327. Official web link (subscription required). Alternate, free web link. In particular, the probability of encountering a number starting with the string of digits n is given by:
+(For example, the probability that a number starts with the digits 3, 1, 4 is log10(1 + 1/314) ≈ 0.0014.) This result can be used to find the probability that a particular digit occurs at a given position within a number. For instance, the probability that a "2" is encountered as the second digit is
+And the probability that d (d = 0, 1, ..., 9) is encountered as the n-th (n > 1) digit is
+The distribution of the n-th digit, as n increases, rapidly approaches a uniform distribution with 10% for each of the ten digits. Four digits is often enough to assume a uniform distribution of 10% as '0' appears 10.0176% of the time in the fourth digit while '9' appears 9.9824% of the time.
+
+==Tests of Benford's Law with common distributions==
+
+Benford's Law was empirically tested against the numbers (up to the 10th digit) generated by a number of important distributions.  including the uniform distribution, the exponential distribution, the half-normal distribution, the right-truncated normal, the normal distribution, the chi square distribution and the log normal distribution Formann AK (2010) The Newcomb-Benford Law in its relation to some common distributions. PLoS 5(5): e10541. [tpl]doi|10.1371/journal.pone.0010541[/tpl] In addition to these the ratio distribution of two uniform distributions, the ratio distribution of two exponential distributions, the ratio distribution of two half-normal distributions, the ratio distribution of two right-truncated normal distributions, the ratio distribution of two chi-square distributions (the F distribution) and the log normal distribution were tested.
+The uniform distribution as might be expected does not obey Benford's Law. In contrast, the ratio distribution of two uniform distributions is well described by Benford's Law. Benford's Law also describes the exponential distribution and the ratio distribution of two exponential distributions well. Although the half-normal distribution does not obey Benford's Law, the ratio distribution of two half-normal distributions does. Neither the right-truncated normal distribution nor the ratio distribution of two right-truncated normal distributions are well described by Benford's Law. This is not surprising as this distribution is weighted towards larger numbers. Neither the normal distribution nor the ratio distribution of two normal distributions (the Cauchy distribution) obey Benford's Law. The fit of chi square distribution depends on the degrees of freedom (df) with good agreement with df = 1 and decreasing agreement as the df increases. The F distribution is fitted well for low degrees of freedom. With increasing dfs the fit decreases but much more slowly than the chi square distribution. The fit of the log-normal distribution depends on the mean and the variance of the distribution. The variance has a much greater effect on the fit than does the mean. Larger values of both parameters result in better agreement with the law. The ratio of two log normal distributions is a log normal so this distribution was not examined.
+Other distributions that have been examined include the Muth distribution, Gompertz distribution, Weibull distribution, gamma distribution, log-logistic distribution and the exponential power distribution all of which show reasonable agreement with the law.Leemis LM, Schmeiser BW, Evans DL (2000) Survival distributions satisfying Benford's Law. Am Stat 54: 236–241Dümbgen L, Leuenberger C (2008) "Explicit bounds for the approximation error in Benford's Law". Elect Comm in Probab, 13: 99–112 [tpl]doi|10.1214/ECP.v13-1358[/tpl] The Gumbel distribution – a density increases with increasing value of the random variable – does not show agreement with this law.
+
+==Distributions known to obey Benford's Law==
+
+Some well-known infinite integer sequences [tpl]not a typo|provably[/tpl] satisfy Benford's Law exactly (in the asymptotic limit as more and more terms of the sequence are included). Among these are the Fibonacci numbers,L. C. Washington, "Benford's Law for Fibonacci and Lucas Numbers", The Fibonacci Quarterly, 19.2, (1981), 175–177R. L. Duncan, "An Application of Uniform Distribution to the Fibonacci Numbers", The Fibonacci Quarterly, 5, (1967), 137–140 the factorials,P. B. Sarkar, "An Observation on the Significant Digits of Binomial Coefficients and Factorials", Sankhya B, 35, (1973), 363–364 the powers of 2,In general, the sequence k1, k2, k3, etc., satisfies Benford's Law exactly, under the condition that log10 k is an irrational number. This is a straightforward consequence of the equidistribution theorem.That the first 100 powers of 2 approximately satisfy Benford's Law is mentioned by Ralph Raimi. Ralph A. Raimi (1976) "The First Digit Problem", American Mathematical Monthly, 83 (7 ), 521–538 and the powers of almost any other number.
+Likewise, some continuous processes satisfy Benford's Law exactly (in the asymptotic limit as the process continues longer and longer). One is an exponential growth or decay process: If a quantity is exponentially increasing or decreasing in time, then the percentage of time that it has each first digit satisfies Benford's Law asymptotically (i.e., more and more accurately as the process continues for more and more time).
+
+==Distributions known to not obey Benford's law==
+
+Square roots and reciprocals do not obey this law.Raimi RA (1976) "The first digit problem". American Mathematical Monthly, 83: 521–538 Other specific collections of numbers calculated to not obey this law include the 1974 Vancouver, Canada telephone book, where no number began with the digit 1, the populations of all places with population at least 2500 from five US states according to the 1960 and 1970 censuses, where only 19% began with digit 1 but 20% began with digit 2, and the terminal digits in pathology reports.Beer TW (2009) "Terminal digit preference: beware of Benford's Law", J Clin Pathol 62: 192
+The lack of fit in these cases have known explanations: the assignment of telephone numbers in an arbitrary manner, truncation of population size at 2500 inhabitants, and rounding of data.
+
+==Criteria for distributions expected and not expected to obey Benford's Law==
+
+A number of criteria—applicable particularly to accounting data—have been suggested where Benford's Law can be expected to apply and not to apply.Durtschi C, Hillison W, Pacini C (2004) "The effective use of Benford’s Law to assist in detecting fraud in accounting data". J Forensic Accounting 5: 17–34
+
+===Distributions that can be expected to obey Benford's Law===
+
+===Distributions that would not be expected to obey Benford's Law===
+
+==Moments==
+
+Moments of random variables for the digits 1 to 9 following this law have been calculated:Scott, P.D.; Fasli, M. (2001) "Benford’s Law: An empirical investigation and a novel explanation". CSM Technical Report 349, Department of Computer Science, Univ. Essex
+For the first and second digit distribution these values are also known:Suh I.S., Headrick T.C. (2010) "A comparative analysis of the bootstrap versus traditional statistical procedures applied to digital analysis based on Benford’s Law", Journal of Forensic and Investigative Accounting 2(2) 144–175
+A table of the expected values of the first two digits according to Benford's law is available, as is the population correlation between the first and second digits: [tpl]nowrap|1=ρ2 = 0.0561 [/tpl].
+
+==See also==
+
+==References==
+
+==Further reading==
+
+ | author = Mark J. Nigrini
+ | title = Benford's Law: Applications for Forensic Accounting, Auditing, and Fraud Detection
+ | publisher = John Wiley & Sons
+ | year = 2012
+ | pages = 330
+ | isbn = 978-1-118-15285-0
+}}
+ | author = Alessandro Gambini, Giovanni Mingari Scarpello, Daniele Ritelli
+ | title = Probability of digits by dividing random numbers: A ψ and ζ functions approach
+ | journal = Expositiones Mathematicae
+ | volume = 30
+ | year = 2012
+ | pages = 223–238
+ | doi = 10.1016/j.exmath.2012.03.001
+ | last2 = Hoelzl
+ | first2 = E
+ | last3 = Kirchler
+ | first3 = E
+ | display-authors = 1
+ | issue = 4
+}}
+ | author = Sehity
+ | title = Price developments after a nominal shock: Benford's Law and psychological pricing after the euro introduction
+ | journal = International Journal of Research in Marketing
+ | volume = 22
+ | year = 2005
+ | pages = 471–480
+ | doi = 10.1016/j.ijresmar.2005.09.002
+ | last2 = Hoelzl
+ | first2 = Erik
+ | last3 = Kirchler
+ | first3 = Erich
+ | issue = 4
+}}
+ | year = 2011
+ | title =  Scatter and regularity implies Benford's Law...and more
+ | journal = Zenil: Randomness through computation: some answers, more questions
+ | volume = ISBN 9814327751
+ | issue = 
+ | pages = 58–69
+ | month = 
+ | doi = 
+| author-separator = ,
+ |author1 = Nicolas Gauvrit|author2 = Jean-Paul Delahaye| authorlink2 =  Jean-Paul Delahaye
+ | bibcode =  2009arXiv0910.1359G
+ | arxiv =  0910.1359
+ }}
+ | author = Bernhard Rauch1, Max Göttsche, Gernot Brähler, Stefan Engel
+ |date=August 2011
+ | title = Fact and Fiction in EU-Governmental Economic Data

@@ -1,0 +1,88 @@
+  2.  send [[User Datagram Protocol|UDP]] packet(s) to HC
+  3.  if no response within 5 seconds then
+  4.    attempt TCP connection with HC
+  5.    if not connected then
+  6.      attempt TCP connection with HC on port 80 (HTTP)
+  7.      if not connected then
+  8.        attempt TCP connection with HC on port 443 (HTTPS)
+  9.        if not connected then
+ 10.          attempts++
+ 11.          if attempts == 5 then
+ 12.            fail
+ 13.          else
+ 14.            wait 6 seconds
+ 15.            goto step 2
+ 16.  Success
+After a Skype client is connected it must authenticate the username and password with the Skype login server. There are many different Skype login servers using different ports. An obfuscated list of servers is hardcoded in the Skype executable.
+Skype servers are:
+Skype-SW connects randomly to 1–8.
+On each login session, Skype generates a session key from 192 random bits. The session key is encrypted with the hard-coded login server's 1536-bit RSA key to form an encrypted session key. Skype also generates a 1024-bit private/public RSA key pair. An MD5 hash of a concatenation of the user name, constant string ("\nSkyper\n") and password is used as a shared secret with the login server. The plain session key is hashed into a 256-bit AES key that is used to encrypt the session's public RSA key and the shared secret. The encrypted session key and the AES encrypted value are sent to the login server.
+On the login server side, the plain session key is obtained by decrypting the encrypted session key using the login server's private RSA key. The plain session key is then used to decrypt the session's public RSA key and the shared secret. If the shared secret match, the login server will sign the user's public RSA key with its private key. The signed data is dispatched to the super nodes.
+Upon searching for a buddy, a super node will return the buddy's public key signed by Skype. The SC will authenticate the buddy and agree on a session key by using the mentioned RSA key.
+
+==UDP==
+
+UDP packets:
+ IP
+ UDP
+ Skype SoF
+ Skype Crypted Data01
+The Start of Frame (SoF) consists of:
+
+==Obfuscation Layer==
+
+The RC4 encryption algorithm is used to obfuscate the payload of datagrams.
+The XOR of these two 32-bit values is transformed to an 80-byte RC4 key using an unknown key engine.
+A notable misuse of RC4 in Skype can be found on TCP streams (UDP is unaffected). The first 14 bytes (10 of which are known to the user, since they consist of a hash of the username and password) are XOR-ed with the RC4 stream. Then, the cipher is reinitialized to encrypt the rest of the TCP stream.[tpl]cite conference |author=Fabrice Desclaux, Kostya Kortchinsky |date=2006-06-17 |title=Vanilla Skype part 2 |booktitle=RECON2006 |url=http://www.recon.cx/en/f/vskype-part2.pdf [/tpl]
+
+==TCP==
+
+TCP packets:
+ TCP
+ Skype Init TCP packet
+The Skype Init TCP packet contains
+
+==Low-level datagrams==
+
+Almost all traffic is ciphered. Each command has its parameters appended in an object list. The object list can be compressed.
+                                  / Object List     ... -|
+         Enc      -> Cmd -> Encod
+                      ^           \ Compressed List ... -|
+         Frag         |                                  |
+                      |------------------<---------------|
+         Ack
+         NAck
+         Forward  -> Forwarded..Message
+
+===Object Lists===
+
+An object can be a number, string, an IP:port, or even another object list.  Each object has an ID.  This ID identifies which command parameter the object is.
+  Object:
+          Number
+          IP:Port
+          List of numbers
+          String
+          RSA key
+  Object List
+          List Size (n)
+          Object 1
+          .
+          .
+          Object n
+
+===Packet compression===
+
+Packets can be compressed. The algorithm is a variation of arithmetic compression that uses reals instead of bits.
+
+==Legal issues==
+
+Reverse engineering of the Skype protocol by inspecting/disassembling binaries is prohibited by the terms and conditions of Skype's license agreement. However European Union law allows reverse-engineering a computer program without getting a permission from an author for inter-operability purposes.Directive 2009/24/EC of the European Parliament and of the Council of 23 April 2009 on the legal protection of computer programs In the United States, the Digital Millennium Copyright Act grants a safe harbor to reverse engineer software for the purposes of interoperability with other software.17 U.S.C. Sec. 1201(f).WIPO Copyright and Performances and Phonograms Treaties Implementation Act There are also legal precedents in the United States when the reverse-engineering is aimed at interoperability of file formats and protocols.Sega vs Accolade, 1992Sony vs Connectix, 2000Pamela Samuelson and Suzanne Scotchmer, "The Law and Economics of Reverse Engineering", 111 Yale Law Journal 1575-1663 (May 2002) http://www.yalelawjournal.org/pdf/111-7/SamuelsonFINAL.pdf
+In addition, some countries specifically permit a program to be copied for the purposes of reverse engineering.In the French "intellectual property" law set, there is an exception that allows any software user to reverse engineer it. See code de la propriété intellectuelle [tpl]fr[/tpl]. This law is the national implementation of a piece of EU legislation: Council Directive 91/250/EEC, since then repealed by Directive 2009/24/EC of the European Parliament and of the Council of 23 April 2009 on the legal protection of computer programs which also has a very similar provision allowing reverse engineering/decompilation for the purposes of development and testing of independent but inter-operating programs).
+
+==Notes==
+
+==References==
+
+==External links==
+
+

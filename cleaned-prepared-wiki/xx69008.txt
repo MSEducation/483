@@ -1,0 +1,51 @@
+[[Business Process Execution Language]]
+
+CATEGORIES: XML-based standards, Specification languages, Web service specifications, Workflow technology, Process management
+
+Business Process Execution Language (BPEL), short for Web Services Business Process Execution Language (WS-BPEL) is an OASISOASIS Standard WS-BPEL 2.0 standard executable language for specifying actions within business processes with web services.  Processes in BPEL export and import information by using web service interfaces exclusively.
+
+
+
+One can describe Web-service interactions in two ways: as executable business processes and as abstract business processes.  An executable business process models an actual behavior of a participant in a business interaction.  Abstract business processes are partially specified processes that are not intended to be executed.  An Abstract Process may hide some of the required concrete operational details.  Abstract Processes serve a descriptive role, with more than one possible use case, including observable behavior and/or process template.  WS-BPEL aims to model the behavior of both executable and abstract processes.1 (PDF) (5 May 2003)
+WS-BPEL provides a language for the specification of Executable and Abstract business processes.  By doing so, it extends the Web Services interaction model and enables it to support business transactions.  WS-BPEL defines an interoperable integration model that should facilitate the expansion of automated process integration both within and between businesses.
+The origins of BPEL go back to WSFL and XLANG.  It is serialized in XML and aims to enable programming in the large.  The concepts of programming in the large and programming in the small distinguish between two aspects of writing the type of long-running asynchronous processes that one typically sees in business processes:
+
+History
+
+.
+In June 2007, Active Endpoints, Adobe Systems, BEA, IBM, Oracle, and SAP published the BPEL4People and WS-HumanTask specifications, which describe how human interaction in BPEL processes can be implemented.
+
+Business Process Execution Language topics
+
+BPEL design goals
+
+There were ten original design goals associated with BPEL:
+
+The BPEL language
+
+BPEL is an orchestration language, and not a choreography language.  The primary difference between orchestration and choreography is executability and control.  An orchestration specifies an executable process that involves message exchanges with other systems, such that the message exchange sequences are controlled by the orchestration designer.  A choreography specifies a protocol for peer-to-peer interactions, defining, e.g., the legal sequences of messages exchanged with the purpose of guaranteeing interoperability.  Such a protocol is not directly executable, as it allows many different realizations (processes that comply with it).  A choreography can be realized by writing an orchestration (e.g., in the form of a BPEL process) for each peer involved in it.  The orchestration and the choreography distinctions are based on analogies: orchestration refers to the central control (by the conductor) of the behavior of a distributed system (the orchestra consisting of many players), while choreography refers to a distributed system (the dancing team) which operates according to rules (the choreography) but without centralized control.
+BPEL's focus on modern business processes, plus the histories of WSFL and XLANG, led BPEL to adopt web services as its external communication mechanism.  Thus BPEL's messaging facilities depend on the use of the Web Services Description Language (WSDL) 1.1 to describe outgoing and incoming messages.
+In addition to providing facilities to enable sending and receiving messages, the BPEL programming language also supports:
+
+Relationship of BPEL to BPMN
+
+There is no standard graphical notation for WS-BPEL, as the OASIS technical committee decided this was out of scope.  Some vendors have invented their own notations.  These notations take advantage of the fact that most constructs in BPEL are block-structured (e.g., sequence, while, pick, scope, etcetera.)  This feature enables a direct visual representation of BPEL process descriptions in the form of structograms, in a style reminiscent of a Nassi–Shneiderman diagram.
+Others have proposed to use a substantially different business process modeling language, namely Business Process Model and Notation (BPMN), as a graphical front-end to capture BPEL process descriptions.  As an illustration of the feasibility of this approach, the BPMN specification includes an informal and partial mapping  A more detailed mapping of BPMN to BPEL has been implemented in a number of tools, including an open-source tool known as BPMN2BPEL.  However, the development of these tools has exposed fundamental differences between BPMN and BPEL, which make it very difficult, and in some cases impossible, to generate human-readable BPEL code from BPMN models.  Even more difficult is the problem of BPMN-to-BPEL round-trip engineering: generating BPEL code from BPMN diagrams and maintaining the original BPMN model and the generated BPEL code synchronized, in the sense that any modification to one is propagated to the other.
+
+Adding 'programming in the small' support to BPEL
+
+BPEL's control structures such as 'if-then-elseif-else' and 'while' as well as its variable manipulation facilities depend on the use of 'programming in the small' languages to provide logic.  All BPEL implementations must support XPath 1.0 as a default language.  But the design of BPEL envisages extensibility so that systems builders can use other languages as well.  BPELJBPELJ is an effort related to JSR 207JSR 207 that may enable Java to function as a 'programming in the small' language within BPEL.
+
+WS-BPEL 2.0
+
+Version 2.0 introduced some changes and new features:
+
+
+
+
+
+Further reading
+
+
+
+

@@ -1,0 +1,14 @@
+[[Mirror driver]]
+
+CATEGORIES: Device drivers
+
+A mirror driver is a display driver for a virtual device that mirrors the drawing operations of one or more additional physical display devices.
+When video mirroring is active, each time the system draws to the primary video device at a location inside the mirrored area, a copy of the draw operation is executed on the mirrored video device in real-time.[tpl]cite web | title = Windows Driver Kit: Glossary | publisher = Microsoft Developer Network | url = http://msdn2.microsoft.com/en-us/library/ms789543.aspx [/tpl]
+Windows' mirror drivers were first introduced in 1998 with the Windows 2000 display driver model, which was renamed later to XPDM. In 2006, for Windows Vista, Microsoft introduced a new Windows Display Driver Model. The older drivers were still supported under Vista, but since the older model did not encompass support for features first introduced with Vista, those newer features would necessarily be disabled when an older driver was active. As a consequence, when a mirror driver designed for the older model was active, such as when Windows Remote Assistance or Windows Live Mesh were in use, Vista disabled Desktop Window Manager and Windows Aero.[tpl]Cite web | last1 = Campbell | first1 = Matt | last2 = Calvo  | first2 = Mike | title = The Facts About Mirror Drivers in Assistive Technology | date = 2008-03-21 | url = http://serotek.com/mirror-driver-paper.html | accessdate = 2008-04-24 | format = [tpl]dead link|date=April 2009[/tpl] – Scholar search | postscript =  [/tpl] A similar situation existed with the transition from Windows 7 to Windows 8. Beginning with the DDK targeted at Windows 8, mirror drivers have to fulfill very exacting specifications - they must support a specific set of functions, and no more than those.
+Windows installations come with two mirror drivers preinstalled - "mnmdd" used by NetMeeting, and "RDPDD Chained DD" used for Terminal Server/RemoteDesktop services. Third-party mirror drivers are included with screen readers such as JAWS, Window-Eyes and FreedomBox; the monitoring software LanSchool; and remote desktop software such as Timbuktu, LogMeIn, UltraVNC, TightVNC, Radmin and RemotePC.
+
+==References==
+
+==External links==
+
+

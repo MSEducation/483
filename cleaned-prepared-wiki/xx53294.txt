@@ -1,0 +1,96 @@
+[[Binomial options pricing model]]
+
+CATEGORIES: Mathematical finance, Options (finance), Finance theories
+
+In finance, the binomial options pricing model (BOPM) provides a generalizable numerical method for the valuation of options. The binomial model was first proposed by Cox, Ross and Rubinstein in 1979. Essentially, the model uses a "discrete-time" (lattice based) model of the varying price over time of the underlying financial instrument. In general, binomial options pricing models do not have closed-form solutions.
+
+Use of the model
+
+The Binomial options pricing model approach is widely used as it is able to handle a variety of conditions for which other models cannot easily be applied. This is largely because the BOPM is based on the description of an underlying instrument over a period of time rather than a single point.  As a consequence, it is used to value American options that are exercisable at any time in a given interval as well as Bermudan options that are exercisable at specific instances of time.  Being relatively simple, the model is readily implementable in computer software (including a spreadsheet).
+Although computationally slower than the Black–Scholes formula, it is more accurate, particularly for longer-dated options on securities with dividend payments. For these reasons, various versions of the binomial model are widely used by practitioners in the options markets.
+For options with several sources of uncertainty (e.g., real options) and for options with complicated features (e.g., Asian options), binomial methods are less practical due to several difficulties, and Monte Carlo option models are commonly used instead.  When simulating a small number of time steps Monte Carlo simulation will be more computationally time-consuming than BOPM (cf. Monte Carlo methods in finance). However, the worst-case runtime of BOPM will be O(2n), where n is the number of time steps in the simulation. Monte Carlo simulations will generally have a polynomial time complexity, and will be faster for large numbers of simulation steps. Monte Carlo simulations are also less susceptible to sampling errors, since binomial techniques use discrete time units.  This becomes more true the smaller the discrete units become.
+
+Method
+
+The binomial pricing model traces the evolution of the option's key underlying variables in discrete-time.  This is done by means of a binomial lattice (tree), for a number of time steps between the valuation and expiration dates.  Each node in the lattice represents a possible price of the underlying at a given point in time.
+Valuation is performed iteratively, starting at each of the final nodes (those that may be reached at the time of expiration), and then working backwards through the tree towards the first node (valuation date).  The value computed at each stage is the value of the option at that point in time.
+Option valuation using this method is, as described, a three-step process:
+
+STEP 1: Create the binomial price tree
+
+The tree of prices is produced by working forward from valuation date to expiration.
+Above is the original Cox, Ross, & Rubinstein (CRR) method; there are other techniques for generating the lattice, such as "the equal probabilities" tree. The Trinomial tree is a similar model, allowing for an up, down or stable path.
+The CRR method ensures that the tree is recombinant, i.e. if the underlying asset moves up and then down (u,d), the price will be the same as if it had moved down and then up (d,u) — here the two paths merge or recombine. This property reduces the number of tree nodes, and thus accelerates the computation of the option price.
+This property also allows that the value of the underlying asset at each node can be calculated directly via formula, and does not require that the tree be built first. The node-value will be:
+
+STEP 2: Find Option value at each final node
+
+At each final node of the tree — i.e. at expiration of the option — the option value is simply its intrinsic, or exercise, value.
+
+STEP 3: Find Option value at earlier nodes
+
+Once the above step is complete, the option value is then found for each node, starting at the penultimate time step, and working back to the first node of the tree (the valuation date) where the calculated result is the value of the option.
+In overview: the "binomial value" is found at each node, using the risk neutrality assumption; see Risk neutral valuation. If exercise is permitted at the node, then the model takes the greater of binomial and exercise value at the node.
+The steps are as follows:
+(1) Under the risk neutrality assumption, today's fair price of a derivative is equal to the expected value of its future payoff discounted by the risk free rate. Therefore, expected value is calculated using the option values from the later two nodes (Option up and Option down) weighted by their respective probabilities—"probability" p of an up move in the underlying, and "probability" (1-p) of a down move. The expected value is then discounted at r, the risk free rate corresponding to the life of the option.
+(2) This result is the "Binomial Value". It represents the fair price of the derivative at a particular point in time (i.e. at each node), given the evolution in the price of the underlying to that point. It is the value of the option if it were to be held—as opposed to exercised at that point.
+(3) Depending on the style of the option, evaluate the possibility of early exercise at each node: if (1) the option can be exercised, and (2) the exercise value exceeds the Binomial Value, then (3) the value at the node is the exercise value.
+In calculating the value at the next time step calculated—i.e. one step closer to valuation—the model must use the value selected here, for "Option up"/"Option down" as appropriate, in the formula at the node.
+The following algorithm demonstrates the approach computing the price of an American put option, although is easily generalized for calls and for European and Bermudan options:
+
+ '''function''' americanPut(T, S, K, r, sigma, q, n) {
+     '        T... expiration time
+     '        S... stock price
+     '        K... strike price
+     '        n... height of the binomial tree
+     deltaT := T / n;
+     up := exp(sigma * sqrt(deltaT));
+     p0 := (up * exp(-r * deltaT) - exp(-q * deltaT)) * up / (up^2 - 1);
+     p1 := exp(-r * deltaT) - p0;
+     ' initial values at time T
+     '''for''' i := 0 '''to''' n {
+         p[i] := K - S * up^(2*i - n);
+         '''if''' p[i] < 0 '''then''' p[i] := 0;
+     }
+     ' move to earlier times
+     '''for''' j := n-1 '''down to''' 0 {
+         '''for''' i := 0 '''to''' j {
+             p[i] := p0 * p[i] + p1 * p[i+1];    ' binomial value
+             exercise := K - S * up^(2*i - j);  ' exercise value
+             '''if''' p[i] < exercise '''then''' p[i] := exercise;
+         }
+     }
+     '''return''' americanPut := p[0];
+ }
+
+=Discrete dividends=
+
+To model discrete dividend payments in the binomial model, apply the following rule:
+
+Relationship with Black–Scholes
+
+Similar assumptions underpin both the binomial model and the Black–Scholes model, and the binomial model thus provides a discrete time approximation to the continuous process underlying the Black–Scholes model. In fact, for European options without dividends, the binomial model value converges on the Black–Scholes formula value as the number of time steps increases. The binomial model assumes that movements in the price follow a binomial distribution; for many trials, this binomial distribution approaches the normal distribution assumed by Black–Scholes. 
+In addition, when analyzed as a numerical procedure, the CRR binomial method can be viewed as a special case of the explicit finite difference method for the Black–Scholes PDE; see Finite difference methods for option pricing.
+In 2011, Georgiadis shows that the binomial options pricing model has a lower bound on complexity that rules out a closed-form solution.
+
+
+
+
+
+
+
+Discussion
+
+Variations
+
+American and Bermudan options
+Other tree structures
+Fixed income derivatives
+
+Computer implementations
+
+Spreadsheets
+Desktop pricer
+Online pricer
+Programming languages
+

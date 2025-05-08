@@ -1,0 +1,101 @@
+[[Tree (graph theory)]]
+
+CATEGORIES: Trees (graph theory)
+
+In mathematics, and more specifically in graph theory, a tree is an undirected graph in which any two vertices are connected by exactly one simple path. In other words, any connected graph without simple cycles is a tree. A forest is a disjoint union of trees.
+The various kinds of data structures referred to as trees in computer science are equivalent as undirected graphs to trees in graph theory, although such data structures are generally rooted trees, thus in fact being directed graphs, and may also have additional ordering of branches.
+The term "tree" was coined in 1857 by the British mathematician Arthur Cayley. However it should be mentioned that in 1847, K.G.C. von Staudt, in his book Geometrie der Lage (Nürnberg, (Germany):  Bauer und Raspe, 1847), presented a proof of Euler's polyhedron theorem which relies on trees on pages 20-21.  Also in 1847, the German physicist Gustav Kirchhoff investigated electrical circuits and found a relation between the number (n) of wires/resistors (branches), the number (m) of junctions (vertices), and the number (μ) of loops (faces) in the circuit.  He proved the relation via an argument relying on trees.  See:  Kirchhoff, G. R. (1847) "Uber die Auflösung der Gleichungen auf welche man bei der Untersuchung der linearen Vertheilung galvanischer Ströme geführt wird" (On the solution of equations to which one is led by the investigation of the linear distribution of galvanic currents), Annalen der Physik und Chemie, 72 (12) : 497-508.
+
+Definitions
+
+A tree is an undirected simple graph G that satisfies any of the following equivalent conditions:
+If G has finitely many vertices, say n of them, then the above statements are also equivalent to any of the following conditions:
+As elsewhere in graph theory, the order-zero graph (graph with no vertices) is generally excluded from consideration: while it is vacuously connected as a graph (any two vertices can be connected by a path), it is not 0-connected (or even (−1)-connected) in algebraic topology, unlike non-empty trees, and violates the "one more node than edges" relation.
+A leaf is a vertex of degree 1. An internal vertex is a vertex of degree at least 2.
+An irreducible (or series-reduced) tree is a tree in which there is no vertex of degree 2.
+A forest is an undirected graph, all of whose connected components are trees; in other words, the graph consists of a disjoint union of trees. Equivalently, a forest is an undirected cycle-free graph. As special cases, an empty graph, a single tree, and the discrete graph on a set of vertices (that is, the graph with these vertices that has no edges), all are examples of forests.
+The term hedge sometimes refers to an ordered sequence of trees.
+A polytreeSee .) is a directed acyclic graph (DAG) whose underlying undirected graph is a tree. In other words, if we replace its arcs with edges, we obtain an undirected graph that is both connected and acyclic.
+A directed tree is a directed graph which would be a tree if the directions on the edges were ignored.  Some authors restrict the phrase to the case where the edges are all directed towards a particular vertex, or all directed away from a particular vertex (see arborescence).
+A tree is called a rooted tree if one vertex has been designated the root, in which case the edges have a natural orientation, towards or away from the root. The tree-order is the partial ordering on the vertices of a tree with u ≤ v if and only if the unique path from the root to v passes through u. A rooted tree which is a subgraph of some graph G is a normal tree if the ends of every edge in G are comparable in this tree-order whenever those ends are vertices of the tree . Rooted trees, often with additional structure such as ordering of the neighbors at each vertex, are a key data structure in computer science; see tree data structure. In a context where trees are supposed to have a root, a tree without any designated root is called a free tree.
+In a rooted tree, the parent of a vertex is the vertex connected to it on the path to the root; every vertex except the root has a unique parent.  A child of a vertex v is a vertex of which v is the parent.
+A labeled tree is a tree in which each vertex is given a unique label.  The vertices of a labeled tree on n vertices are typically given the labels 1, 2, …, n. A recursive tree is a labeled rooted tree where the vertex labels respect the tree order (i.e., if u An n-ary tree is a rooted tree for which each vertex has at most n children. 2-ary trees are sometimes called binary trees, while 3-ary trees are sometimes called ternary trees.
+A terminal vertex of a tree is a vertex of degree 1. In a rooted tree, the leaves are all terminal vertices; additionally, the root, if not a leaf itself, is a terminal vertex if it has precisely one child.
+
+Plane tree
+
+An  or plane tree is a rooted tree for which an ordering is specified for the children of each vertex. This is called a "plane tree" because an ordering of the children is equivalent to an embedding of the tree in the plane,  with the root at the top and the children of each vertex lower than that vertex. Given an embedding of a rooted tree in the plane, if one fixes a direction of children, say left to right, then an embedding gives an ordering of the children. Conversely, given an ordered tree, and conventionally drawing the root at the top, then the child nodes in an ordered tree can be drawn left-to-right, yielding an essentially unique planar embedding .
+A leaf in a rooted tree is a vertex of degree 1 that is not the root.  A terminal vertex of a tree is a vertex of degree 1. In a rooted tree, the leaves are all terminal vertices; additionally, the root, if not a leaf itself, is a terminal vertex if it has precisely one child.
+
+Example
+
+The example tree shown to the right has 6 vertices and 6 − 1 = 5 edges. The unique simple path connecting the vertices 2 and 6 is 2-4-5-6.
+
+Facts
+
+Enumeration
+
+Labeled trees
+
+An alternative proof uses Prüfer sequences.
+Cayley's formula is the special case of complete graphs in a more general problem of counting spanning trees in an undirected graph, which is addressed by the matrix tree theorem.  The similar problem of counting all the subtrees regardless of size has been shown to be #P-complete in the general case ().
+
+Unlabeled trees
+
+Counting the number of unlabeled free trees is a harder problem. No closed  formula for the number t(n) of trees with n vertices up to graph isomorphism is known. The first few values of t(n) are:
+ proved the asymptotic estimate: 
+with D around 0.43992401257… and the same α as above (cf. , Chap. VII.5, p. 475).
+The first few values of r(n) are:See .
+
+Types of trees
+
+A star graph is a tree which consists of a single internal vertex (and n − 1 leaves).  In other words, a star graph of order n is a tree of order n with as many leaves as possible.  Its diameter is at most 2.
+A tree with two leaves (the fewest possible) is a path graph; a forest in which all components are isolated nodes and path graphs is called a linear forest. If all vertices in a tree are within distance one of a central path subgraph, then the tree is a caterpillar tree. If all vertices are within distance two of a central path subgraph, then the tree is a lobster.
+
+
+
+Notes
+
+
+
+ | last1 = Dasgupta| first1 = Sanjoy
+ | contribution = Learning polytrees
+ | pages = 134–141
+ | title = in Proc. 15th Conference on Uncertainty in Artificial Intelligence (UAI 1999), Stockholm, Sweden, July-August 1999
+ | url = 
+ | year = 1999}}.
+ | last1 = Harary | first1 = Frank | author1-link = Frank Harary
+ | last2 = Sumner | first2 = David
+ | mr = 603363
+ | issue = 3
+ | journal = Journal of Combinatorics, Information & System Sciences
+ | pages = 184–187
+ | title = The dichromatic number of an oriented tree
+ | volume = 5
+ | year = 1980}}.
+ | last1 = Kim | first1 = Jin H.
+ | last2 = Pearl | first2 = Judea
+ | contribution = A computational model for causal and diagnostic reasoning in inference engines
+ | pages = 190–193
+ | title = in Proc. 8th International Joint Conference on Artificial Intelligence (IJCAI 1983), Karlsruhe, Germany, August 1983
+ | url = 
+ | year = 1983}}.
+ | last1 = Li | first1 = Gang
+ | contribution = Generation of Rooted Trees and Free Trees
+ | page = 9
+ | title = M.S. Thesis, Dept. of Computer Science, University of Victoria, BC, Canada
+ | url = 
+ | year = 1996}}.
+ | last = Simion | first = Rodica | authorlink = Rodica Simion
+ | doi = 10.1016/0012-365X(91)90061-6
+ | mr = 1099270
+ | issue = 1
+ | journal = Discrete Mathematics
+ | pages = 93–104
+ | title = Trees with 1-factors and oriented trees
+ | volume = 88
+ | year = 1991}}.
+
+Further reading
+
+

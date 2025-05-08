@@ -1,0 +1,76 @@
+[[International Securities Identification Number]]
+
+CATEGORIES: Financial regulation, Security identifier types
+
+An International Securities Identification Number (ISIN) uniquely identifies a security. Its structure is defined in ISO 6166. Securities for which ISINs are issued include bonds, commercial paper, stocks and warrants. The ISIN code is a 12-character alpha-numerical code that does not contain information characterizing financial instruments but serves for uniform identification of a security at trading and settlement.
+Securities to which ISINs can be issued include debt securities, shares, options, derivatives and futures. The ISIN identifies the security, not the exchange (if any) on which it trades; it is not a ticker symbol. For instance, Daimler AG stock trades through almost 30 trading platforms and exchanges worldwide, and is priced in five different currencies; it has the same ISIN on each, though not the same ticker symbol. ISIN cannot specify a particular trading location in this case, and another identifier, typically MIC (Market Identification Code) or the three-letter exchange code, will have to be specified in addition to the ISIN. The Currency of the trade will also be required to uniquely identify the instrument using this method.
+
+==Description==
+
+An ISIN consists of three parts: Generally, a two letter country code, a nine character alpha-numeric national security identifier, and a single check digit. The country code is the ISO 3166-1 alpha-2 code for the country of issue, which is not necessarily the country where the issuing company is domiciled. International securities cleared through Clearstream or Euroclear, which are worldwide, use "XS" as the country code.
+
+==Issuance==
+
+The ISIN is based on the National Securities Identifying Number, or NSIN, assigned by governing bodies in each country, known as the national numbering agency (NNA). The NNAs are co-ordinated through the Association of National Numbering Agences, ANNA.http://www.anna-web.com ISIN and CFI information can be accessed through the ANNA Service Bureau,http://www.annaservice.com run by S&P Capital IQ and SIX Financial Information.
+The NSIN element of the ISIN can be up to 9 digits long. Shorter numbers are padded with leading zeros before the addition of the country code and a check digit transform the NSIN to an ISIN.
+In North America the NNA is the CUSIP organization, meaning that CUSIPs can easily be converted into ISINs by adding the US or CA country code to the beginning of the existing CUSIP code and adding an additional check digit at the end. In the United Kingdom and Ireland the NNA is the London Stock Exchange and the NSIN is the SEDOL, converted in a similar fashion. Swiss ISINs are issued by SIX Financial Information and are based on the VALOR number. Most other countries use similar conversions, but if no country NNA exists then regional NNAs are used instead.
+
+==ISIN Calculation Methodology==
+
+The procedure for calculating ISIN check digits is similar to the "Modulus 10 Double Add Double" technique used in CUSIPs. To calculate the check digit, first convert any letters to numbers by adding their ordinal position in the alphabet to 9, such that A = 10 and M = 22. Starting with the right most digit, every other digit is multiplied by two.  (For CUSIP check digits, these two steps are reversed.) The resulting string of digits (numbers greater than 9 becoming two separate digits) are added up.  Subtract this sum from the smallest number ending with zero that is greater than or equal to it: this gives the check digit, which is also known as the ten's complement of the sum modulo 10. That is, the resulting sum, including the check-digit, is a multiple of 10.
+ISINs are slowly being introduced worldwide. At present, trading, clearing and settlement systems in many countries have adopted ISINs as a secondary measure of identifying securities. Additionally, some of those countries, mainly in Europe,  have moved to using ISINs as their primary means of identifying securities.
+Conversion table for characters is :
+In other words; Take the ASCII code for the capital letter and subtract 55
+
+==Examples==
+
+===Apple Inc.===
+
+Apple Inc.: ISIN US0378331005, expanded from CUSIP 037833100
+The main body of the ISIN is the original CUSIP, assigned in the 1970s. The country code "US" has been added on the front, and an additional check digit at the end. The country code indicates the country of issue. The check digit is calculated in this way...
+Convert any letters to numbers:
+U = 30, S = 28. US037833100 -> 3028037833100.
+Collect odd and even characters:
+3028037833100 = (3, 2, 0, 7, 3, 1, 0), (0, 8, 3, 8, 3, 0)
+Multiply the group containing the rightmost character (which is the FIRST group) by 2:
+(6, 4, 0, 14, 6, 2, 0)
+Add up the individual digits:
+(6 + 4 + 0 + (1 + 4) + 6 + 2 + 0) + (0 + 8 + 3 + 8 + 3 + 0) = 45
+Take the 10s modulus of the sum:
+45 mod 10 = 5
+Subtract from 10:
+10 - 5 = 5
+Take the 10s modulus of the result (this final step is important in the instance where the modulus of the sum is 0, as the resulting check digit would be 10).
+5 mod 10 = 5
+So the ISIN check digit is five.
+
+===Treasury Corporation of Victoria===
+
+TREASURY CORP VICTORIA 5 3/4% 2005-2016: ISIN AU0000XVGZA3
+Convert any letters to numbers:
+A = 10, G = 16, U = 30, V = 31, X = 33, Z = 35. AU0000XVGZA -> 103000003331163510.
+Collect odd and even characters:
+103000003331163510 = (1, 3, 0, 0, 3, 3, 1, 3, 1), (0, 0, 0, 0, 3, 1, 6, 5, 0)
+Multiply the group containing the rightmost character (which is the SECOND group) by 2:
+(0, 0, 0, 0, 6, 2, 12, 10, 0)
+Add up the individual digits:
+(1 + 3 + 0 + 0 + 3 + 3 + 1 + 3 + 1) + (0 + 0 + 0 + 0 + 6 + 2 + (1 + 2) + (1 + 0) + 0) = 27
+Take the 10s modulus of the sum:
+27 mod 10 = 7
+Subtract from 10:
+10 - 7 = 3
+Take the 10s modulus of the result (this final step is important in the instance where the modulus of the sum is 0, as the resulting check digit would be 10).
+3 mod 10 = 3
+So the ISIN check digit is three.
+
+===BAE Systems===
+
+BAE Systems: ISIN GB0002634946, expanded from SEDOL 0263494
+The main body is the SEDOL, padded on the front with the addition of two zeros. The country code "GB" is then added on the front, and the check digit on the end as in the example above.
+
+==External links==
+
+==References==
+
+
+

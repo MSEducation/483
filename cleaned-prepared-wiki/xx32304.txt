@@ -1,0 +1,66 @@
+[[Graphical Environment Manager]]
+
+CATEGORIES: Formerly proprietary software, Atari ST software, Digital Research software, CP/M software, DOS software, Windowing systems, Free windowing systems, File managers
+
+GEM (Graphical Environment Manager) was an operating environment created by Digital Research, Inc. (DRI) for use with the CP/M operating system on the Intel 8088 and Motorola 68000 microprocessors. Later versions ran over DOS as well.
+GEM is known primarily as the graphical user interface (GUI) for the Atari ST series of computers, and was also supplied with a series of IBM PC-compatible computers from Amstrad. It also was available for standard IBM PC, at the time when the 6 MHz IBM PC AT (and the very concept of a GUI) was brand new. It was the core for a small number of DOS programs, the most notable being Ventura Publisher. It was ported to a number of other computers that previously lacked graphical interfaces, but never gained popularity on those platforms. DRI also produced FlexGem for their FlexOS real-time operating system.
+
+History
+
+GSX
+
+GEM started life at DRI as a more general purpose graphics library known as GSX (''Graphics System eXtension''), written by a team led by Lee Jay Lorenzen (at GSS) who had recently left Xerox PARC (birthplace of the GUI). GSX was essentially a DRI-specific implementation of the GKS graphics standard proposed in the late 1970s. GSX was intended to allow DRI to write graphics programs (charting, etc.) for any of the platforms CP/M-80, CP/M-86 and MS-DOS (NEC APC-III) would run on, a task that would otherwise require considerable effort to port due to the large differences in graphics hardware (and concepts) between the various systems of that era.
+GSX consisted of two parts: a selection of routines for common drawing operations, and the device drivers that are responsible for handling the actual output. The former was known as GDOS and the latter as GIOS, a play on the division of CP/M into machine-independent BDOS and machine-specific BIOS. GDOS was a selection of routines that handled the GKS drawing, while GIOS actually used the underlying hardware to produce the output.
+
+GEM
+
+GSX evolved into one part of what would later be known as GEM, which was an effort to build a fully GUI system using the earlier GSX work as its basis. Originally known as Crystal as a play on an IBM project called Glass, the name was later changed to Gem.
+Under GEM, GSX became the GEM VDI (''Virtual Device Interface''), responsible for basic graphics and drawing. VDI also added the ability to work with multiple fonts and added a selection of raster drawing commands to the formerly vector-only GKS-based drawing commands. VDI also added multiple viewports, a key addition for use with windows.
+A new module, GEM AES (''Application Environment Services), provided the window management and UI elements, and 'GEM Desktop''' used both libraries in combination to provide a GUI. The 8086 version of the entire system was first demoed at the 1984 COMDEX,Digital Research Announces GEM Date:November 1984 - Corporate Histories Collection - Computer History Museum and shipped as GEM/1 on 28 February 1985.A.N.A.L.O.G. TCS #1 001 03/20/85 DRI SHIPS GEM (1985/7/2) - net.atari - Google Groups
+DRI originally designed GEM for DOS so that it would check for and only run on IBM computers, and not PC compatibles like those from Compaq, as the company hoped to receive license fees from compatible makers. Developers reacted with what BYTE described as "a small explosion"; it reported that at a DRI-hosted seminar in February 1985, more than half of the attendees agreed that GEM's incompatibility with Compaq was a serious limitation. Later that month the company removed the restriction.
+
+Later versions
+
+At this point, Apple Computer sued DRI
+DRI responded with the "lawsuit friendly" GEM/2, which allowed the display of only two fixed windows on the "desktop" (other programs could do what they wished however), changed the trash can icon, and removed the animations for things like opening and closing windows. It was otherwise similar to GEM/1, but also included a number of bug fixes and cosmetic improvements.
+The last commercial release was GEM/3, which had speed improvements and shipped with a number of basic applications. Commercial sales of GEM ended with GEM/3; the source code was subsequently made available to a number of DRI's leading customers.
+
+Custom versions
+
+GEM/4 included the ability to work with Bézier curves, a feature still not common outside the PostScript world. This version was produced specifically for Artline, a drawing program from CCP. The system also included changes to the font management system, which made it incompatible with the likes of Timeworks Publisher.
+Another version of GEM called GEM/5 was produced by GST for Timeworks Publisher 2.1. It contained an updated look with 3D buttons. Font scaling on the fly was included. It came complete with all the standard 3.1 tools. This version was produced from GEM 3.13 with only the Bézier handling taken from GEM 4.
+
+ViewMAX
+
+GEM Desktop itself was spun off as a product known as ViewMAX which was used solely as a file management shell under DR-DOS. In this form the system could not run other GEM programs. This led to a situation where a number of applications (including ViewMAX) could exist all with their own statically linked copy of the GEM system. This scenario was actually rare, as few native GEM programs were published.
+In these forms GEM survived until DRI was purchased by Novell and all GEM development was cancelled.
+Throughout this time DRI had also been working on making the GEM system capable of multitasking. This started with X/GEM based on GEM/1, but this required use of one of the multitasking CP/M based operating systems. GEM/XM was an updated version of GEM/2 which allowed multitasking and the ability to run DOS programs in shell windows (as Windows does today). None of these saw the light of day, but the GEM/XM source code is now freely available under the GNU General Public License.
+Lee Lorenzen had left soon after the release of GEM/1, when it became clear that DRI had no strong interest in applications development. He then formed his own company with another of the GEM developers, Dan Meyer, and started Ventura Software. They developed Ventura Publisher, which was later marketed by Xerox (and eventually by Corel), which would go on to be a very popular desktop publishing program for some time.
+
+Atari versions
+
+Development of the production 68000 version of GEM began in September 1984, when Atari sent a team called "The Monterey Group" to Digital Research to begin work on porting GEM. Originally the plan was to run GEM on top of CP/M-68K, both ostensibly ported to the Motorola 68000 by DRI prior to the ST design being created. In fact, these ports were unusable and would require considerable development. Atari eventually decided to give up on the existing code and port GEMDOS, a DOS-like operating system that DRI had experimented with instead, referring to it as TOS.3 Years With the ST An exclusive look inside Tramiel's Atari - by Jeffrey Daniels - START VOL. 3 NO. 1 / SUMMER 1988 / PAGE 22
+As Atari had provided most of the development of the 68k version, they were given full rights to continued developments without needing to reverse-license it back to DRI, who had apparently lost interest in the 68000 platform. As a result, the Apple-DRI lawsuit did not apply to the Atari versions of GEM, and they were allowed to keep a more Mac-like UI.
+Over the next seven years, from 1985 to 1992, new versions of TOS were released with each new generation of the ST line. Updates included support for more colors and higher resolutions in the raster-side of the system, but remained generally similar to the original in terms of GKS support. In 1992 Atari released TOS 4, or MultiTOS, along with their final computer system, the Falcon030. In combination with MiNT, TOS 4 allowed full multitasking support in GEM.
+
+Continued development
+
+Caldera Thin Clients (later known as Lineo) released the source to GEM under the GNU General Public License (GPL) in April 1999. The development of GEM for PC is continued as OpenGEM and FreeGEM. It also has been ported to the Atari ST again to be used in the free TOS clone EmuTOS.
+
+Description
+
+The "full" GEM system consisted of three main parts:
+The GEM VDI was the core graphics system of the overall GEM engine. It was responsible for "low level" drawing in the form of "draw line from here to here". VDI included a resolution and coordinate independent set of vector drawing instructions which were called from applications through a fairly simple interface. TVDI also included environment information (state, or context), current color, line thickness, output device, etc.
+These commands were then examined by GDOS, whose task it was to send the commands to the proper driver for actual rendering. For instance, if a particular GEM VDI environment was connected to the screen, the VDI instructions were then routed to the screen driver for drawing. Simply changing the environment to point to the printer was all that was needed (in theory) to print, dramatically reducing the developer workload (they formerly had to do printing "by hand" in all applications). GDOS was also responsible for loading up the drivers and any requested fonts when GEM was first loaded.
+One major advantage the VDI provided over the Macintosh was the way multiple devices and contexts were handled. In the Mac such information was stored in memory inside the application. This resulted in serious problems when attempting to make the Mac handle pre-emptive multitasking, as the drawing layer (QuickDraw) needed to have direct memory access into all programs. In GEM VDI however, such information was stored in the device itself, with GDOS creating "virtual devices" for every context – each window for instance.
+The GEM AES provided the window system, window manager, UI style and other GUI elements (widgets). For performance reasons, many of the GUI widgets were actually drawn using character graphics. Compared to the Macintosh, AES provided a rather spartan look and the system shipped with a single monospaced font.
+The AES performs its operations by calling the VDI, but in a more general sense the two parts of GEM were often completely separated in applications. Applications typically called AES commands to set up a new window, with the rest of the application using VDI calls to actually draw into that window.
+The GEM Desktop was an application program that used AES to provide a file manager and launcher, the traditional "desktop" environment that users had come to expect from the Macintosh. Unlike the Macintosh, the GEM Desktop was based on top of DOS (MS-DOS, DOS Plus or DR DOS on the PC, GEMDOS on the Atari), and as a result the actual display was cluttered with computer-like items including path names and wildcards. In general GEM was much more "geeky" than the Mac, but simply running a usable shell on DOS was a huge achievement on its own. Otherwise, GEM has its own advantages over Mac OS such as proportional sliders.
+
+
+
+
+
+
+
+

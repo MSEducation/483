@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.lucene.analysis.phonetic"}];updateSearchResults();

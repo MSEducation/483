@@ -1,0 +1,74 @@
+[[Instruction pipeline]]
+
+CATEGORIES: Instruction processing
+
+An instruction pipeline is a technique used in the design of computers to increase their instruction throughput (the number of instructions that can be executed in a unit of time). The basic instruction cycle is broken up into a series called a pipeline. Rather than processing each instruction sequentially (one at a time, finishing one instruction before starting the next), each instruction is split up into a sequence of steps – different steps can be executed concurrently (by different circuitry), and indeed in parallel (at the same time).
+Pipelining increases instruction throughput by performing multiple operations at the same time (in parallel), but does not reduce instruction latency (the time to complete a single instruction from start to finish) as it still must go through all steps. Indeed, it may increase latency due to additional overhead from breaking the computation into separate steps and worse, the pipeline may stall (or even need to be flushed), further increasing latency. Pipelining thus increases throughput at the cost of latency, and is frequently used in CPUs, but avoided in realtime systems, where latency is a hard constraint.
+Each instruction is split into a sequence of dependent steps.  The first step is always to fetch the instruction from memory; the final step is usually writing the results of the instruction to processor registers or to memory.  Pipelining seeks to let the processor work on as many instructions as there are dependent steps, just as an assembly line builds many vehicles at once, rather than waiting until one vehicle has passed through the line before admitting the next one.  Just as the goal of the assembly line is to keep each assembler productive at all times, pipelining seeks to keep every portion of the processor busy with some instruction.  Pipelining lets the computer's cycle time be the time of the slowest step, and ideally lets one instruction complete in every cycle.
+The term pipeline is an analogy to the fact that there is fluid in each link of a pipeline, as each part of the processor is occupied with work.
+
+==Introduction==
+
+Central processing units (CPUs) are driven by a clock.  Each clock pulse need not do the same thing; rather, logic in the CPU directs successive pulses to different places to perform a useful sequence.  There are many reasons that the entire execution of a machine instruction cannot happen at once.  For example, if one clock pulse latches a value into a register or begins a calculation, it will take some time for the value to be stable at the outputs of the register or for the calculation to complete.  As another example, reading an instruction out of a memory unit cannot be done at the same time that an instruction writes a result to the same memory unit.  In pipelining, effects that cannot happen at the same time are made the dependent steps of the instruction.
+
+===Number of steps===
+
+The number of dependent steps varies with the machine architecture.  For example:
+As the pipeline is made "deeper" (with a greater number of dependent steps), a given step can be implemented with simpler circuitry, which may let the processor clock run faster.[tpl]cite book |url=http://books.google.ca/books?id=Nibfj2aXwLYC&lpg=PA94&dq=deep%20pipeline%20processor&pg=PA94 |title=Modern Processor Design |author=John Paul Shen, Mikko H. Lipasti |year=2004 |publisher=McGraw-Hill Professional[/tpl]
+A processor is said to be fully pipelined if it can fetch an instruction on every cycle.  To the extent that some instructions or some conditions require delays that inhibit fetching new instructions, the processor is not fully pipelined.
+
+===Hazards===
+
+The sequential-execution model assumes that each instruction completes before the next one begins. Though, this assumption is not true on a pipelined processor. A situation where the expected result is problematic is known as a hazard. Imagine the following two register instructions to a hypothetical RISC processor:
+  1: add 1 to R5
+  2: copy R5 to R6
+If the processor has the 5 steps listed in the initial illustration, instruction 1 would be fetched at time t1 and its execution would be complete at t5.  Instruction 2 would be fetched at t2 and would be complete at t6.  The first instruction might deposit the incremented number into R5 as its fifth step (register write back) at t5.  But the second instruction might get the number from R5 (to copy to R6) in its second step (instruction decode and register fetch) at time t3.  It seems that the first instruction would not have incremented the value by then.  The above code invokes a hazard.
+Writing computer programs in a compiled language might not raise these concerns, as the compiler could be designed to generate machine code that avoids hazards.
+
+===Workarounds===
+
+In some early DSP and RISC processors, the documentation advises programmers to avoid such dependencies in adjacent and nearly adjacent instructions (called delay slots), or declares that the second instruction uses an old value rather than the desired value (in the example above, the processor might counter-intuitively copy the unincremented value), or declares that the value it uses is undefined.  The programmer may have unrelated work that the processor can do in the meantime; or, to ensure correct results, the programmer may insert NOPs into the code, partly negating the advantages of pipelining.
+
+===Solutions===
+
+Pipelined processors commonly use three techniques to work as expected when the programmer assumes that each instruction completes before the next one begins:
+
+===Branches===
+
+A branch out of the normal instruction sequence often involves a hazard.  Unless the processor can give effect to the branch in a single time cycle, the pipeline will continue fetching instructions sequentially.  Such instructions cannot be allowed to take effect because the programmer has diverted control to another part of the program.
+A conditional branch is even more problematic.  The processor may or may not branch, depending on a calculation that has not yet occurred.  Various processors may stall, may attempt branch prediction, and may be able to begin to execute two different program sequences (eager execution), both assuming the branch is and is not taken, discarding all work that pertains to the incorrect guess.[tpl]efn|Early pipelined processors without any of these heuristics, such as the PA-RISC processor of Hewlett-Packard, dealt with hazards by simply warning the programmer; in this case, that one or more instructions following the branch would be executed whether or not the branch was taken.  This could be useful; for instance, after computing a number in a register, a conditional branch could be followed by loading into the register a value more useful to subsequent computations in both the branch and the non-branch case.[/tpl]
+A processor with an implementation of branch prediction that usually makes correct predictions can minimize the performance penalty from branching. However, if branches are predicted poorly, it may create more work for the processor, such as flushing from the pipeline the incorrect code path that has begun execution before resuming execution at the correct location.
+Programs written for a pipelined processor deliberately avoid branching to minimize possible loss of speed.  For example, the programmer can handle the usual case with sequential execution and branch only on detecting unusual cases.  Using programs such as gcov to analyze code coverage lets the programmer measure how often particular branches are actually executed and gain insight with which to optimize the code.
+
+===Special situations===
+
+==Design considerations==
+
+==Illustrated example==
+
+To the right is a generic pipeline with four stages:
+The top gray box is the list of instructions waiting to be executed; the bottom gray box is the list of instructions that have been completed; and the middle white box is the pipeline.
+Execution is as follows:
+
+===A bubble in the pipeline===
+
+A pipelined processor may deal with hazards by stalling and creating a bubble in the pipeline, resulting in one or more cycles in which nothing useful happens.
+In the illustration at right, in cycle 3, the processor cannot decode the purple instruction, perhaps because the processor determines that decoding depends on results produced by the execution of the green instruction.  The green instruction can proceed to the Execute stage and then to the Write-back stage as scheduled, but the purple instruction is stalled for one cycle at the Fetch stage.  The blue instruction, which was due to be fetched during cycle 3, is stalled for one cycle, as is the red instruction after it.
+Because of the bubble (the blue ovals in the illustration), the processor's Decode circuitry is idle during cycle 3.  Its Execute circuitry is idle during cycle 4 and its Write-back circuitry is idle during cycle 5.
+When the bubble moves out of the pipeline (at cycle 6), normal execution resumes.  But everything now is one cycle late.  It will take 8 cycles (cycle 1 through 8) rather than 7 to completely execute the four instructions shown in colors.
+
+==History==
+
+Seminal uses of pipelining were in the ILLIAC II project and the IBM Stretch project, though a simple version was used earlier in the Z1 in 1939 and the Z3 in 1941.
+Pipelining began in earnest in the late 1970s in supercomputers such as vector processors and array processors. One of the early supercomputers was the Cyber series built by Control Data Corporation. Its main architect, Seymour Cray, later headed Cray Research. Cray developed the XMP line of supercomputers, using pipelining for both multiply and add/subtract functions. Later, Star Technologies added parallelism (several pipelined functions working in parallel), developed by Roger Chen. In 1984, Star Technologies added the pipelined divide circuit developed by James Bradley. By the mid 1980s, supercomputing was used by many different companies around the world.
+Today, pipelining and most of the above innovations are implemented by the instruction unit of most microprocessors.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

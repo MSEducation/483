@@ -1,0 +1,83 @@
+[[Overlap–save method]]
+
+CATEGORIES: Signal processing, Transforms, Fourier analysis, Numerical analysis
+
+where hm=0 for m outside the region M.
+The concept is to compute short segments of yn of an arbitrary length L, and concatenate the segments together.  Consider a segment that begins at n = kL + M, for any integer k, and define:
+Then, for kL + M  ≤  n  ≤  kL + L + M − 1, and equivalently M  ≤  n − kL  ≤  L + M − 1, we can write:
+The task is thereby reduced to computing ykn, for M  ≤  n  ≤  L + M − 1.
+Now note that if we periodically extend xkn with period N  ≥  L + M − 1, according to:
+The advantage is that the circular convolution can be computed very efficiently as follows, according to the circular convolution theorem:
+where:
+
+==Pseudocode==
+
+  <span style="color:green;">(''Overlap–save algorithm for linear convolution'')</span>
+  h = FIR_impulse_response
+  M = length(h)
+  overlap = M-1
+  N = 4*overlap    <span style="color:green;">(or a nearby power-of-2)</span>
+  step_size = N-overlap
+  H = DFT(h, N)
+  position = 0
+  '''while''' position+N <= length(x)
+      yt = IDFT( DFT( x(1+position : N+position), N ) * H, N )
+      y(1+position : step_size+position) = yt(M : N)    #discard M-1 y-values
+      position = position + step_size
+  '''end'''
+
+==Efficiency==
+
+When the DFT and its inverse is implemented by the FFT algorithm, the pseudocode above requires about N log2(N) + N complex multiplications for the FFT, product of arrays, and IFFT.Cooley-Tukey FFT algorithm for N=2k needs (N/2) log2(N) - see FFT - Definition and speed  Each iteration produces N-M+1 output samples, so the number of complex multiplications per output sample is about:
+For example, when M=201 and N=1024, [tpl]EquationNote|Eq.2[/tpl] equals 13.67, whereas direct evaluation of [tpl]EquationNote|Eq.1[/tpl] would require up to 201 complex multiplications per output sample, the worst case being when both x and h are complex-valued.  Also note that for any given M, [tpl]EquationNote|Eq.2[/tpl] has a minimum with respect to N.  It diverges for both small and large block sizes.
+
+==Overlap–discard==
+
+Overlap–discardHarris 1987. and Overlap–scrapFrerking 1994. are less commonly used labels for the same method described here.  However, these labels are actually better (than overlap–save) to distinguish from overlap–add, because both methods "save", but only one discards.  "Save" merely refers to the fact that M − 1 input (or output) samples from segment k are needed to process segment k + 1.
+
+===Extending overlap–save===
+
+The overlap-save algorithm may be extended to include other common operations of a system:Carlin et al. 1999, p 31, col 20.Borgerding 2006, pp 158–161.
+
+==Notes==
+
+==References==
+
+ | inventor-last =Carlin
+ | inventor-first =Joe 
+ | inventor2-last =Collins
+ | inventor2-first =Terry 
+ | inventor3-last =Hays
+ | inventor3-first =Peter 
+ | inventor4-last =Hemmerdinger
+ | inventor4-first =Barry 
+ | inventor5-last =Kellogg
+ | inventor5-first =Robert 
+ | inventor6-last =Kettig
+ | inventor6-first =Robert 
+ | inventor7-last =Lemmon
+ | inventor7-first =Bradley 
+ | inventor8-last =Murdock
+ | inventor8-first =Thomas 
+ | inventor9-last =Tamaru
+ | inventor9-first =Robert 
+ | inventor10-last =Ware
+ | inventor10-first =Stuart 
+ | publication-date = 1999
+ | issue-date = 2005
+ | title = Wideband communication intercept and direction finding device using hyperchannelization 
+ | country-code = US
+ | description = patent 
+ | patent-number = 6898235
+}}
+  | last = Borgerding
+  | first = Mark
+  | title = Turning Overlap-Save into a Multiband Mixing, Downsampling Filter Bank
+  | journal = IEEE Signal Processing Magazine
+  | volume = 
+  | issue = March 2006
+  | pages = 158–161
+  | year = 2006
+  | url = http://www.3db-labs.com/01598092_MultibandFilterbank.pdf
+  }}
+

@@ -1,0 +1,25 @@
+. Morisette writes that [[Alain Robbe-Grillet]], one of the screenwriters for the film, "thought he had invented" the game.</ref>
+At the 1940 New York World's Fair Westinghouse displayed a machine, the Nimatron, that played Nim.[tpl]cite book|last=Flesch|first=Rudolf|title=The Art of Clear Thinking|year=1951|publisher=Harper and Brothers Publishers|location=New York|page=3[/tpl] It was also one of the first ever electronic computerized games (1952). Herbert Koppel, Eugene Grant and Howard Bailer, engineers from the W.L. Maxon Corporation,  developed a machine weighing 50 pounds which played Nim against a human opponent and regularly won.[tpl]Cite news |url=http://www.newyorker.com/archive/1952/08/02/1952_08_02_018_TNY_CARDS_000236053 |title=The Talk of the Town – It |first1=Eugene F. |last1=Grant |first2=Rex |last2=Lardner |date=August 2, 1952 |newspaper=The New Yorker[/tpl]
+Nim is a special case of a poset game where the poset consists of disjoint chains (the heaps).
+
+==Game play and illustration==
+
+The normal game is between two players and played with three heaps of any number of objects.  The two players alternate taking any number of objects from any single one of the heaps. The goal is to be the last to take an object. In misère play, the goal is instead to ensure that the opponent is forced to take the last remaining object.
+The following example game is played between fictional players Bob and Alice who start with heaps of three, four and five objects. The winning strategy is for a player to  always leave an even total number of 1's, 2's, and 4's.  In the example, Bob implements this strategy.
+ Sizes of heaps  Moves
+ A B C
+ &nbsp;
+ 3 4 5           Bob   takes 2 from A
+ 1 4 5           Alice takes 3 from C
+ 1 4 2           Bob   takes 1 from B
+ 1 3 2           Alice takes 1 from B
+ 1 2 2           Bob   takes entire A heap, leaving two 2s.
+ 0 2 2           Alice takes 1 from B
+ 0 1 2           Bob   takes 1 from C leaving two 1s. (''In misère play he would take 2 from C leaving (0, 1, 0).'')
+ 0 1 1           Alice takes 1 from B
+ 0 0 1           Bob   takes entire C heap and wins.
+
+==Mathematical theory==
+
+Nim has been mathematically solved for any number of initial heaps and objects, and there is an easily calculated way to determine which player will win and what winning moves are open to that player. In a game that starts with heaps of three, four, and five, the first player will win with optimal play, whether the misère or normal play convention is followed.
+The key to the theory of the game is the binary digital sum of the heap sizes, that is, the sum (in binary) neglecting all carries from one digit to another. This operation is also known as "exclusive or" (xor) or "vector addition over GF(2)".  Within combinatorial game theory it is usually called the nim-sum, as will be done here.  The nim-sum of x and y is written x ⊕ y to distinguish it from the ordinary sum, x + y.  An example of the calculation with heaps of size 3, 4, and 5 is as follows:

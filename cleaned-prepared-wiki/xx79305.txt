@@ -1,0 +1,40 @@
+[[Dial-on-demand routing]]
+
+CATEGORIES: Routing
+
+Dial on Demand Routing (DDR) is a routing technique where a network connection to a remote site is established only when needed. In other words, if the router tries to send out data and the connection is off, then the router will automatically establish a connection, send the information, and close the connection when no more data needs to be sent.   DDR is advantageous for companies that must pay per minute for a WAN setup, where a connection is always established.  Constant connections can become needlessly expensive if the company does not require a constant internet connection. (n.d.). . Retrieved March 2, 2010, from 
+
+How it works
+
+There are two parts to an establishing a connection with DDR: the physical connection and the digital connection. The physical connection consists of the actual cable that connects computers on the network and the network interface card that allows for communication over these cables. DDR uses  existing Public Switched Telephone Network (PSTN) lines – or the network of all public circuit-switched telephone networks - to form a connection between the sender and receiver.
+The second part of establishing a DDR connection consists establishing the digital signal.  This requires one to determine the protocols to be used over the logical connection. DDR uses a Point-to-Point Protocol (PPP) link, which handles all networking functions such as sending, receiving and compressing the signals between two computers on the internet. In other words, the PPP link uses telephone lines to send signals between you and the computer containing your desired website when you wish make a connection to the internet.
+DDR can be used both as a primary and as a backup connection. Today, DDR is mainly used for backup connections which go live when the primary connection fails. DDR connections are inherently slow and service fees are charged like phone calls depending on the uptime. DDR can be used with modems or Integrated Services Digital Network (ISDN) connections, which allow it to achieve a maximum connection speed of only 1.544 Mbit/s in the US and 2.048 Mbit/s in Europe and Australia. (n.d.). . Retrieved March 2, 2010, from 
+
+Design Considerations
+
+One important factor to be minimized is the connection establishment delay.  This is the time from when the user first attempts to make a connection to when the receiving computer begins to receive information. This delay can range from 3 to over 20 seconds depending on various factors.  These include but are not limited to the type of physical cable used in the connection, the distance the data is being sent, and the protocols used to send the information. Knowing the extent of the delay is a very important part of designing an efficient DDR system.  If the delay when attempting to establish a connection is too great, the application will abandon the connection attempt and try again.d.). . Retrieved March 2, 2010, from 
+
+Why DDR is Still Used Today
+
+Despite its drawbacks, there are two important reasons why Dial-on-Demand routing is used today: reliability and cost.  These two factors become exceedingly important when a company has multiple locations that need to communicate with one another on a regular basis.
+If a company or organization communicates between its different branches or firms regularly, it will most likely lease a dedicated cable line to connect each of the branches together.  These lines are not always reliable meaning one branch may be cut off from the rest. In situations like this, having a backup connection ready is essential. Since DDR uses existing telephone lines, a DDR connection will almost always be available as a backup solution.
+A second reason why DDR is still used is because it's cheap. Leasing cable lines can be needlessly expensive if information isn't constantly being sent back and forth between branches. This makes DDR very cost effective.
+
+Defining Connection Access
+
+DDR is commonly configured as a hub and spoke network, where remote sites dial a central site to exchange data. Depending on the needs, the central site can also be the one to contact the remote sites to retrieve data. Calls are initiated on a per need basis and are shut down once the transmission is terminated. 
+Access Control Lists (ACLs) can be used to restrict which type of traffic is allowed to establish a connection. ACLs can be refined so that the interface is brought up only when the connection established matches a specific set of criteria. These specific criteria are essential to minimizing connections which would otherwise be initiated needlessly, thereby minimizing cost. 
+When using dynamic routing protocols to discover remote networks, it is crucial to configure interesting traffic accordingly; otherwise the connection will be initiated on every dynamic routing update. Depending on the protocol being used this could occur as often as once every 60 seconds. Additionally, it is equally crucial to filter out any native Ethernet traffic which would otherwise cause an unwanted connection to initialize. 
+ACLs can also restrict the establishment of a link depending on the destination host being contacted and the host trying to establish the connection. For example, if only certain users are to be allowed to establish connections, but all users should have intranet access, then ACLs can be configured so that only the computers of the select users are allowed access. 
+Furthermore, ACLs can be configured so that only connections to a specific destination will be initialized.  For example, if a hypothetical user Alice wants to connect to a Destination X and a hypothetical User Bob wants to connect to Destination Y, but traffic to destination X is not considered interesting, then only Bob would be able to establish a WAN connection.
+Interesting traffic can also be defined such that only SSH packets are allowed to establish the link. In that case, then all other packets trying to access valid destinations will be discarded. When configuring dynamic routing protocols to communicate over a DDR connection, their update packets must be classified as interesting traffic. Depending on the dynamic routing protocol being used, setting their updates as interesting traffic might cause the connection to be initialized often. 
+For example RIP v1, which updates every 30 seconds, would cause the connection to be initialized on every update. It is common to see static routes defined for these connections in order to avoid extra service charges. Other routing protocols such as Open Shortest Path First (OSPF) and Enhanced Interior Gateway Routing Protocol (EIGRP) only send updates when a connection changes. These routing protocols are ideal for DDR and must be configured with "default-information originate" on a Cisco router. (n.d.). . Retrieved March 2, 2010, from 
+
+Dialer Maps and Rotary Groups
+
+Dialer maps are configured on each interface to specify which numbers to dial and how long to stay on the line waiting for the receiving end to pick up. For example, if two dialer map commands on the Serial Interface 0/0/0 (Serial port 0 of module 0 of interface 0) have the same next hop address, or the IP address of the connection at the destination end, but with different phone numbers, then the first number is dialed and only once the wait-for-carrier timer expires will the next number be dialed. The wait-for-carrier timer can be specified when configuring the dialer map. 
+Backup interfaces can also be defined in the event that all of the numbers on a dialer map for that interface were unreachable. A single interface can be configured for multiple remote sites because no two connections to one interface can be on at the same time. The first step in specifying a DDR interface is defining a rotary group. Although the DDR interface is a virtual one, all of the configuration commands for physical interfaces are available. A dialer Rotary Group can be created so that either of the interfaces in it can be used to dial any of the destinations defined in it. (n.d.). . Retrieved March 2, 2010, from 
+
+
+
+

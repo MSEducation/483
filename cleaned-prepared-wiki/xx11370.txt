@@ -1,0 +1,67 @@
+[[Virtual machine]]
+
+CATEGORIES: Virtual machines, Operating system technology, Programming language implementation
+
+A virtual machine (VM) is a software-based emulation of a computer. Virtual machines operate based on the computer architecture and functions of a real or hypothetical computer.
+
+Definitions
+
+A virtual machine (VM) is a software implementation of a machine (e.g., a computer) that executes programs like a physical machine. Virtual machines are separated into two major classifications, based on their use and degree of correspondence to any real machine: 
+A VM was originally defined by Popek and Goldberg as "an efficient, isolated duplicate of a real machine". Current use includes virtual machines which have no direct correspondence to any real hardware.
+
+System virtual machines
+
+System virtual machine advantages:
+The main disadvantages of VMs are:
+Multiple VMs each running their own operating system (called guest operating system) are  frequently used in server consolidation, where different services that used to run on individual machines to avoid interference are instead run in separate VMs on the same physical machine.
+The desire to run multiple operating systems was the original motivation for virtual machines, as it allowed time-sharing a single computer between several single-tasking Operation Systems. In some respects, a system virtual machine can be considered a generalization of the concept of virtual memory that historically preceded it. IBM's CP/CMS, the first systems to allow full virtualization, implemented time sharing by providing each user with a single-user operating system, the CMS. Unlike virtual memory, a system virtual machine allowed the user to use privileged instructions in their code. This approach had certain advantages, for instance it allowed users to add input/output devices not allowed by the standard system. 395–396
+As technology evolves virtual memory, in respect to virtualization, will utilize the technologies of memory overcommitment to manage the memory sharing between multiple virtual machines on one physical computer. Sometimes it is possible to share those memory pages that have identical contents among multiple virtual machines running on the same physical machine, mapping them to the same physical page, by a technique known as Kernel SamePage Merging. This is particularly useful for read-only pages, such as those ones containing code segments, especially in the case of multiple virtual machines running the same or similar software, such as the Operating System, software libraries, web server, middleware components, etc.
+The guest OSes do not have to be compliant with the hardware making it possible to run different OSes on the same computer (e.g., Microsoft Windows and Linux, or older versions of an OS to support software that has not yet been ported to the latest version). The use of virtual machines to support different guest OSes is becoming popular in embedded systems; a typical use is to support a real-time operating system at the same time as a high-level OS such as Linux or Windows.
+Another use is to sandbox an OS that is not trusted, possibly because it is a system under development. Virtual machines have other advantages for OS development, including better debugging access and faster reboots. vmwarez. Retrieved on 2013-06-14.
+
+Process virtual machines
+
+A process VM, sometimes called an application virtual machine, or Managed Runtime Environment (MRE), runs as a normal application inside a host OS and supports a single process. It is created when that process is started and destroyed when it exits. Its purpose is to provide a platform-independent programming environment that abstracts away details of the underlying hardware or operating system, and allows a program to execute in the same way on any platform.
+A process VM provides a high-level abstraction — that of a high-level programming language (compared to the low-level ISA abstraction of the system VM). Process VMs are implemented using an interpreter; performance comparable to compiled programming languages is achieved by the use of just-in-time compilation.
+This type of VM has become popular with the Java programming language, which is implemented using the Java virtual machine. Other examples include the Parrot virtual machine, and the . All of them can serve as an abstraction layer for any computer language.
+A special case of process VMs are systems that abstract over the communication mechanisms of a (potentially heterogeneous) computer cluster. Such a VM does not consist of a single process, but one process per physical machine in the cluster. They are designed to ease the task of programming concurrent applications by letting the programmer focus on algorithms rather than the communication mechanisms provided by the interconnect and the OS. They do not hide the fact that communication takes place, and as such do not attempt to present the cluster as a single machine.
+Unlike other process VMs, these systems do not provide a specific programming language, but are embedded in an existing language; typically such a system provides bindings for several languages (e.g., C and FORTRAN). Examples are PVM (Parallel Virtual Machine) and MPI (Message Passing Interface). They are not strictly virtual machines, as the applications running on top still have access to all OS services, and are therefore not confined to the system model.
+
+Techniques
+
+Emulation of the underlying raw hardware (native execution)
+
+This approach is described as full virtualization of the hardware, and can be implemented using a Type 1 or Type 2 hypervisor. (A Type 1 hypervisor runs directly on the hardware; a Type 2 hypervisor runs on another operating system, such as Linux). Each virtual machine can run any operating system supported by the underlying hardware. Users can thus run two or more different "guest" operating systems simultaneously, in separate "private" virtual computers.
+The pioneer system using this concept was IBM's CP-40, the first (1967) version of IBM's CP/CMS (1967–1972) and the precursor to IBM's VM family (1972–present). With the VM architecture, most users run a relatively simple interactive computing single-user operating system, CMS, as a "guest" on top of the VM control program (VM-CP). This approach kept the CMS design simple, as if it were running alone; the control program quietly provides multitasking and resource management services "behind the scenes". In addition to CMS, in the early stage especially communication tasks were performed by multitasking VMs (RSCS, GCS, TCP/IP, UNIX), and users can run any of the other IBM operating systems, such as MVS, even a new CP itself or now z/OS. Even the simple CMS could be run in a threaded environment (LISTSERV, TRICKLE). z/VM is the current version of VM, and is used to support hundreds or thousands of virtual machines on a given mainframe. Some installations use Linux for zSeries to run Web servers, where Linux runs as the operating system within many virtual machines.
+Full virtualization is particularly helpful in operating system development, when experimental new code can be run at the same time as older, more stable, versions, each in a separate virtual machine. The process can even be recursive: IBM debugged new versions of its virtual machine operating system, VM, in a virtual machine running under an older version of VM, and even used this technique to simulate new hardware.See History of CP/CMS for IBM's use of virtual machines for operating system development and simulation of new hardware
+The standard x86 processor architecture as used in the modern PCs does not actually meet the Popek and Goldberg virtualization requirements. Notably, there is no execution mode where all sensitive machine instructions always trap, which would allow per-instruction virtualization. 
+Despite these limitations, several software packages have managed to provide virtualization on the x86 architecture, even though dynamic recompilation of privileged code, as first implemented by VMware, incurs some performance overhead as compared to a VM running on a natively virtualizable architecture such as the IBM System/370 or Motorola MC68020. By now, several other software packages such as Virtual PC, VirtualBox, Parallels Workstation and Virtual Iron manage to implement virtualization on x86 hardware.
+Intel and AMD have introduced features to their x86 processors to enable virtualization in hardware.
+As well as virtualization of the resources of a single machine, multiple independent nodes in a cluster can be combined and accessed as a single virtual NUMA machine. vNUMA: A virtual shared-memory multiprocessor. Proceedings of the 2009 USENIX Annual Technical Conference, San Diego, CA, USA, June, 2009 
+
+Emulation of a non-native system
+
+Virtual machines can also perform the role of an emulator, allowing software applications and operating systems written for another computer processor architecture to be run.
+Some virtual machines emulate hardware that only exists as a detailed specification. For example:
+This technique allows diverse computers to run any software written to that specification; only the virtual machine software itself must be written separately for each type of computer on which it runs.
+
+Operating system-level virtualization
+
+Operating system-level virtualization is a server virtualization technology which virtualizes servers on an operating system (kernel) layer. It can be thought of as partitioning: a single physical server is sliced into multiple small partitions (otherwise called virtual environments (VE), virtual private servers (VPS), guests, zones, etc.); each such partition looks and feels like a real server, from the point of view of its users.
+For example, Solaris Zones supports multiple guest OSes running under the same OS (such as Solaris 10). All guest OSes have to use the same kernel level and cannot run as different OS versions. Solaris native Zones also requires that the host OS be a version of Solaris; other OSes from other manufacturers are not supported. However one would need to use Solaris Branded zones to use other OSes as zones.
+Another example is System Workload Partitions (WPARs), introduced in the IBM AIX 6.1 operating system. System WPARs are software partitions running under one instance of the global AIX OS environment.
+The operating system level architecture has low overhead that helps to maximize efficient use of server resources. The virtualization introduces only a negligible overhead and allows running hundreds of virtual private servers on a single physical server. In contrast, approaches such as full virtualization (like VMware) and paravirtualization (like Xen or UML) cannot achieve such level of density, due to overhead of running multiple kernels. From the other side, operating system-level virtualization does not allow running different operating systems (i.e. different kernels), although different libraries, distributions, etc. are possible.
+
+List of hardware with virtual machine support
+
+List of virtual machine software
+
+
+
+
+
+Further reading
+
+
+
+

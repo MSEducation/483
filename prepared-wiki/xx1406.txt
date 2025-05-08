@@ -1,0 +1,23 @@
+</ref> that could be invoked from the console, as part of '''[[Power-on reset#POR on IBM mainframes|Power On Reset]]''' ('''POR''') or from another processor in a [[Tightly coupled system|tightly coupled]] [[multiprocessor]] complex.  This permitted IBM to easily repair microprogramming defects in the field. Even when the majority of the control store is stored in ROM of some sort, computer vendors often sell writeable control store as an option, allowing the customers to customize the machine's microprogram. Other vendors, e.g., IBM, use the WCS to run microcode for emulator features<ref>
+</ref><ref>
+</ref> and hardware diagnostics.<ref>
+</ref>
+Other commercial machines that used writable microcode include early Xerox workstations, the DEC VAX 8800 ("Nautilus") family, and the Symbolics L- and G-machines. Some DEC PDP-10 machines stored their microcode in SRAM chips (about 80 bits wide x 2 Kwords), which was typically loaded on power-on through some other front-end CPU.http://pdp10.nocrew.org/cpu/kl10-ucode.txt  Many more machines offered user-programmable writable control stores as an option (including the HP 2100, DEC PDP-11/60 and Varian Data Machines V-70 series minicomputers).
+The Mentec M11 and Mentec M1 stored its microcode in SRAM chips, loaded on power-on through another CPU.
+The Data General Eclipse MV/8000 ("Eagle") had a SRAM writable control store, loaded on power-on through another CPU.[tpl]cite web|author=Mark Smotherman|title=CPSC 330 / The Soul of a New Machine|url=http://www.cs.clemson.edu/~mark/330/eagle.html|quote=4096 x 75-bit SRAM writeable control store: 74-bit microinstruction with 1 parity bit (18 fields)[/tpl]
+WCS offered several advantages including the ease of patching the microprogram and, for certain hardware generations, faster access than ROMs could provide. User-programmable WCS allowed the user to optimize the machine for specific purposes.
+Some CPU designs compile the instruction set to a writable RAM or FLASH inside the CPU (such as the Rekursiv processor and the Imsys Cjip),[tpl]cite web|url=http://cpushack.com/CPU/cpu7.html |title=Great Microprocessors of the Past and Present (V 13.4.0) |publisher=Cpushack.com |date= |accessdate=2010-04-26[/tpl] or an FPGA (reconfigurable computing).
+Several Intel CPUs in the x86 architecture family have writable microcode.[ref]
+"Intel(R) 64 and IA-32 Architectures Software Developer’s Manual", Volume 3A: System Programming Guide, Part 1, chapter 9.11: "Microcode update facilities", December 2009.
+[/ref]
+This has allowed bugs in the Intel Core 2 microcode and Intel Xeon microcode to be fixed in software, rather than requiring the entire chip to be replaced.
+Such fixes can be installed by Linux,"Intel Microcode Update Utility for Linux" FreeBSD,[tpl]cite web|url=http://www.freebsd.org/cgi/cvsweb.cgi/ports/sysutils/devcpu/ |title=ports/sysutils/devcpu/ |publisher=Freebsd.org |date=2008-09-23 |accessdate=2010-04-26[/tpl] Microsoft Windows,"A microcode reliability update is available that improves the reliability of systems that use Intel processors" or the motherboard BIOS."BIOS Update required when Missing Microcode message is seen during POST"
+
+===Timing, latching and avoiding a race condition===
+
+The control store usually has a register on its outputs. The outputs that go back into the sequencer to determine the next address have to go through some sort of register to prevent the creation of a race condition. In most designs all of the other bits also go through a register. This is because the machine will work faster if the execution of the next microinstruction is delayed by one cycle. This register is known as a pipeline register. Very often the execution of the next microinstruction is dependent on the result of the current microinstruction, which will not be stable until the end of the current microcycle. It can be seen that either way, all of the outputs of the control store go into one big register. Historically it used to be possible to buy EPROMs with these register bits on the same chip.
+The clock signal determining the cycle time of the system primarily clocks this register.
+
+==References==
+
+

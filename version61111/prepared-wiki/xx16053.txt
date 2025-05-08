@@ -1,0 +1,21 @@
+[[Plesiochronous digital hierarchy]]
+
+CATEGORIES: Telecommunications standards, Multiplexing
+
+The plesiochronous digital hierarchy (PDH) is a technology used in telecommunications networks to transport large quantities of data over digital transport equipment such as fibre optic and microwave radio systems.[tpl]cite book|last=Valdar|first=Andy|title=Understanding Telecommunications Networks|year=2006|publisher=IET|isbn=9780863413629|pages=78|url=http://books.google.com/books?id=6uOdy57TUIgC&pg=PA78[/tpl] The term plesiochronous is derived from Greek plēsios, meaning near, and chronos, time, and refers to the fact that PDH networks run in a state where different parts of the network are nearly, but not quite perfectly, synchronised.
+PDH is typically[tpl]When|date=July 2011[/tpl] being replaced by synchronous digital hierarchy (SDH) or synchronous optical networking (SONET) equipment in most telecommunications networks.
+PDH allows transmission of data streams that are nominally running at the same rate, but allowing some variation on the speed around a nominal rate. By analogy, any two watches are nominally running at the same rate, clocking up 60 seconds every minute. However, there is no link between watches to guarantee they run at exactly the same rate, and it is highly likely that one is running slightly faster than the other.
+
+==Implementation==
+
+The data rate is controlled by a clock in the equipment generating the data. The rate is allowed to vary by ±50 ppm of 2.048 Kbit/s (according to ITU-T recommendation[tpl]cn|date=December 2013[/tpl]). This means that different data streams can be (probably are) running at slightly different rates to one another.
+In order to move multiple data streams from one place to another, they are multiplexed in groups of four. This is done by taking 1 bit from stream #1, followed by 1 bit from stream #2, then #3, then #4. The transmitting multiplexer also adds additional bits in order to allow the far end receiving multiplexer to decode which bits belong to which data stream, and so correctly reconstitute the original data streams. These additional bits are called "justification" or "stuffing" bits.
+Because each of the four data streams is not necessarily running at the same rate, some compensation has to be introduced. The transmitting multiplexer combines the four data streams assuming that they are running at their maximum allowed rate. This means that occasionally, (unless the 2 Mbit/s really is running at the maximum rate) the multiplexer will look for the next bit but it will not have arrived. In this case, the multiplexer signals to the receiving multiplexer that a bit is "missing". This allows the receiving multiplexer to correctly reconstruct the original data for each of the four 2 Mbit/s data streams, and at the correct, different, plesiochronous rates.
+The resulting data stream from the above process runs at 8.448 Mbit/s (about 8 Mbit/s). Similar techniques are used to combine four × 8 Mbit/s together, plus bit stuffing, giving 34 Mbit/s. Four × 34 Mbit/s, gives 140. Four × 140 gives 565.
+565 Mbit/s is the rate typically used to transmit data over a fibre optic system for long distance transport. Recently,[tpl]When|date=July 2011[/tpl] telecommunications companies have been replacing their PDH equipment with SDH equipment capable of much higher transmission rates.
+
+==See also==
+
+==References==
+
+

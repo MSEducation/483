@@ -1,0 +1,79 @@
+[[Computable function]]
+
+CATEGORIES: Computability theory, Theory of computation
+
+Computable functions are the basic objects of study in computability theory. Computable functions are the formalized analogue of the intuitive notion of algorithm. They are used to discuss computability without referring to any concrete model of computation such as Turing machines or register machines. Any definition, however, must make reference to some specific model of computation but all valid definitions yield the same class of functions.
+Particular models of computability that give rise to the set of computable functions are the Turing-computable functions and the μ-recursive functions.
+Before the precise definition of computable function, mathematicians often used the informal term effectively calculable.   This term has since come to be identified with the computable functions. Note that the effective computability of these functions does not imply that they can be efficiently computed (i.e. computed within a reasonable amount of time). In fact, for some effectively calculable functions it can be shown that any algorithm that computes them will be very inefficient in the sense that the running time of the algorithm increases exponentially (or even superexponentially) with the length of the input. The fields of feasible computability and computational complexity study functions that can be computed efficiently.
+According to the Church–Turing thesis, computable functions are exactly the functions that can be calculated using a mechanical calculation device given unlimited amounts of time and storage space. Equivalently, this thesis states that any function which has an algorithm is computable.  Note that an algorithm in this sense is understood to be a sequence of steps a person with unlimited time and an infinite supply of pen and paper could follow.
+The Blum axioms can be used to define an abstract computational complexity theory on the set of computable functions. In computational complexity theory, the problem of determining the complexity of a computable function is known as a function problem.
+
+Definition
+
+The class of computable functions can be defined in many equivalent models of computation, including
+Although those models use different representations for the functions, their inputs and their outputs, translations exist between any two models. In the remainder of this article, functions from natural numbers to natural numbers are used (as is the case for, e.g., the μ-recursive functions).
+Each computable function  takes a fixed, finite number of natural numbers as arguments.  Note that the functions are partial in general, i.e. they may not be defined for every possible choice of input.  If a computable function is defined for a certain input, then it returns a single natural number as output (this output can be interpreted as a list of numbers using a pairing function). These functions are also called partial recursive functions. In computability theory, the domain of a function is taken to be the set of all inputs for which the function is defined.
+A function which is defined for all possible arguments is called total. If a computable function is total, it is called a total computable function or total recursive function.
+The notation  .
+
+Characteristics of computable functions
+
+The basic characteristic of a computable function is that there must be a finite procedure (an algorithm) telling how to compute the function.  The models of computation listed above give different interpretations of what a procedure is and how it is used, but these interpretations share many properties.  The fact that these models give equivalent classes of computable functions stems from the fact that each model is capable of reading and mimicking a procedure for any of the other models, much as a compiler is able to read instructions in one computer language and emit instructions in another language.
+Enderton 1977 gives the following characteristics of a procedure for computing a computable function; similar characterizations have been given by Turing 1936, Rogers 1967, and others.
+Thus every computable function must have a finite program that completely describes how the function is to be computed.  It is possible to compute the function by just following the instructions; no guessing or special insight is required.
+Intuitively, the procedure proceeds step by step, with a specific rule to cover what to do at each step of the calculation.  Only finitely many steps can be carried out before the value of the function is returned.
+Thus if a value for f('x') is ever found, it must be the correct value. It is not necessary for the computing agent to distinguish correct outcomes from incorrect ones because the procedure is always correct when it produces an outcome.
+Enderton goes on to list several clarifications of these 3 requirements of the procedure for a computable function:
+The field of computational complexity studies functions with prescribed bounds on the time and/or space allowed in a successful computation.
+
+Computable sets and relations
+
+A set .
+A set of natural numbers is called computably enumerable (synonyms: recursively enumerable, semidecidable) if there is a computable function  of the natural numbers:
+If a set  then the function can be viewed as an
+enumeration of .
+Because each finitary relation on the natural numbers can be identified with a corresponding set of finite sequences of natural numbers, the notions of computable relation and computably enumerable relation can be defined from their analogues for sets.
+
+Formal languages
+
+''
+In computability theory in computer science, it is common to consider formal languages.   An alphabet is an arbitrary set.  A word on an alphabet is a finite sequence of symbols from the alphabet; the same symbol may be used more than once.  For example, binary strings are exactly the words on the alphabet .  A language is a subset of the collection of all words on a fixed alphabet. For example, the collection of all binary strings that contain exactly 3 ones is a language over the binary alphabet.
+A key property of a formal language is the level of difficulty required to decide whether a given word is in the language.  Some coding system must be developed to allow a computable function to take an arbitrary word in the language as input; this is usually considered routine.  A language is called computable (synonyms: recursive, decidable) if there is a computable function  if the word is not in the language. Thus a language is computable just in case there is a procedure that is able to correctly tell whether arbitrary words are in the language.
+A language is computably enumerable (synonyms: recursively enumerable, semidecidable) if there is a computable function  is in the language.  The term enumerable has the same etymology as in computably enumerable sets of natural numbers.
+
+Examples
+
+The following functions are computable:
+f is unary, max(f,g), min(f,g), arg max{y ≤ f(x)}  and many more combinations.
+The following examples illustrate that a function may be computable though it is not known which algorithm computes it.
+
+Church–Turing thesis
+
+The Church–Turing thesis states that any function computable from a procedure possessing the three properties listed above is a computable function.  Because these three properties are not formally stated, the Church–Turing thesis cannot be proved.  The following facts are often taken as evidence for the thesis:
+The Church–Turing thesis is sometimes used in proofs to justify that a particular function is computable by giving a concrete description of a procedure for the computation.  This is permitted because it is believed that all such uses of the thesis can be removed by the tedious process of writing a formal procedure for the function in some model of computation.
+
+Uncomputable functions and unsolvable problems
+
+Every computable function has a finite procedure giving explicit, unambiguous instructions on how to compute it. Furthermore, this procedure has to be encoded in the finite alphabet used by the computational model, so there are only countably many computable functions. For example, functions may be encoded using a string of bits (the alphabet ).
+The real numbers are uncountable so most real numbers are not computable.  See computable number. The set of finitary functions on the natural numbers is uncountable so most are not computable.  Concrete examples of such functions are Busy beaver, Kolmogorov complexity, or any function that outputs the digits of a noncomputable number, such as Chaitin's constant.
+Similarly, most subsets of the natural numbers are not computable. The Halting problem was the first such set to be constructed. The Entscheidungsproblem, proposed by David Hilbert, asked whether there is an effective procedure to determine which mathematical statements (coded as natural numbers) are true.  Turing and Church independently showed in the 1930s that this set of natural numbers is not computable.  According to the Church–Turing thesis, there is no effective procedure (with an algorithm) which can perform these computations.
+
+Extensions of computability
+
+Relative computability
+
+The notion of computability of a function can be relativized to an arbitrary set of natural numbers A.  A function f is defined to be computable in ''A (equivalently A''-computable or computable relative to ''A) when it satisfies the definition of a computable function with modifications allowing access to A as an oracle.  As with the concept of a computable function relative computability can be given equivalent definitions in many different models of computation.  This is commonly accomplished by supplementing the model of computation with an additional primitive operation which asks whether a given integer is a member of A.  We can also talk about f being 'computable in g' by identifying g'' with its graph.
+
+Higher recursion theory
+
+Hyperarithmetical theory studies those sets that can be computed from a computable ordinal number of iterates of the Turing jump of the empty set.  This is equivalent to sets defined by both a universal and existential formula in the language of second order arithmetic and to some models of Hypercomputation.  Even more general recursion theories have been studied, such as E-recursion theory in which any set can be used as an argument to an E-recursive function.
+
+Hyper-computation
+
+Although the Church-Turing thesis states that the computable functions include all functions with algorithms, it is possible to consider broader classes of functions that relax the requirements that algorithms must possess.  The field of Hypercomputation studies models of computation that go beyond normal Turing computation.
+
+
+
+
+
+

@@ -1,0 +1,151 @@
+[[Expected value]]
+
+CATEGORIES: Theory of probability distributions, Gambling terminology
+
+In probability theory, the expected value (or expectation, mathematical expectation, EV, mean, or first moment) refers, intuitively, to the value of a random variable one would "expect" to find if one could repeat the random variable process an infinite number of times and take the average of the values obtained.  More formally, the expected value is a weighted average of all possible values.  In other words, each possible value that the random variable can assume is multiplied by its assigned weight, and the resulting products are then added together to find the expected value.  The weights used in computing this average are the probabilities in the case of a discrete random variable (that is, a random variable that can only take on a finite number of values, such as a roll of a pair of dice), or the values of a probability density function in the case of a continuous random variable (that is, a random variable that can assume a theoretically infinite number of values, such as the height of a person).
+From a rigorous theoretical standpoint, the expected value of a continuous variable is the integral of the random variable with respect to its probability measure.  Since probability can never be negative (although it can be zero), the expected value is proportional to the area under the curve of the graph of the values of a random variable multiplied by the probability of that value.  Thus, for a continuous random variable the expected value is the limit of the weighted sum, i.e. the integral.
+The intuitive explanation of the expected value above is a consequence of the law of large numbers: the expected value, when it exists, is almost surely the limit of the sample mean as the sample size grows to infinity. More informally, it can be interpreted as the long-run average of the results of many independent repetitions of an experiment (e.g. a dice roll). The value may not be expected in the ordinary sense—the "expected value" itself may be unlikely or even impossible (such as having 2.5 children), as is also the case with the sample mean.
+The expected value does not exist for random variables having some distributions with large "tails", such as the Cauchy distribution.  For random variables such as these, the long-tails of the distribution prevent the sum/integral from converging.
+The expected value is a key aspect of how one characterizes a probability distribution; it is one type of location parameter. By contrast, the variance is a measure of dispersion of the possible values of the random variable around the expected value. The variance itself is defined in terms of two expectations: it is the expected value of the squared deviation of the variable's value from the variable's expected value.
+The expected value plays important roles in  a variety of contexts. In regression analysis, one desires a formula in terms of observed data that will give a "good" estimate of the parameter giving the effect of some explanatory variable upon a dependent variable. The formula will give different estimates using different samples of data, so the estimate it gives is itself a random variable. A formula is typically considered good in this context if it is an unbiased estimator—that is, if the expected value of the estimate (the average value it would give over an arbitrarily large number of separate samples) can be shown to equal the true value of the desired parameter.
+In decision theory, and in particular in choice under uncertainty, an agent is described as making an optimal choice in the context of incomplete information. For risk neutral agents, the choice involves using the expected values of uncertain quantities, while for risk averse agents it involves maximizing the expected value of some objective function such as a von Neumann-Morgenstern utility function.
+
+Definition
+
+Univariate discrete random variable, finite case
+
+Suppose random variable X can take value x1 with probability p1, value x2 with probability p2, and so on, up to value xk with probability pk. Then the expectation of this random variable X is defined as
+Since all probabilities pi add up to one (p1 + p2 + ... + pk = 1), the expected value can be viewed as the weighted average, with pi's being the weights:
+If all outcomes xi are equally likely (that is, p1 = p2 = ... = pk), then the weighted average turns into the simple average. This is intuitive: the expected value of a random variable is the average of all values it can take; thus the expected value is what one expects to happen on average. If the outcomes xi are not equally probable, then the simple average must be replaced with the weighted average, which takes into account the fact that some outcomes are more likely than the others. The intuition however remains the same: the expected value of X is what one expects to happen on average.
+Example 1. Let X represent the outcome of a roll of a six-sided ). The expectation of X is
+If one rolls the  and how they converge to the expected value of 3.5. More generally, the rate of convergence can be roughly quantified by e.g. Chebyshev's inequality and the Berry-Esseen theorem.
+Example 2. The roulette game consists of a small ball and a wheel with 38 numbered pockets around the edge. As the wheel is spun, the ball bounces around randomly until it settles down in one of the pockets. Suppose random variable X represents the (monetary) outcome of a $1 bet on a single number ("straight up" bet). If the bet wins (which happens with probability ), the payoff is $35; otherwise the player loses the bet. The expected profit from such a bet will be
+
+Univariate discrete random variable, countable case
+
+Let X be a discrete random variable taking values x, ... respectively. Then the expected value of this random variable is the infinite sum
+provided that this series converges absolutely (that is, the sum must remain finite if we were to replace all x's with their absolute values). If this series does not converge absolutely, we say that the expected value of X does not exist.
+For example, suppose random variable X takes values 1, −2, 3, −4, ..., with respective probabilities  is a normalizing constant that ensures the probabilities sum up to one. Then the infinite sum
+converges and its sum is equal to . However it would be incorrect to claim that the expected value of X is equal to this number—in fact EX does not exist, as this series does not converge absolutely (see harmonic series).
+
+Univariate continuous random variable
+
+General definition
+
+In general, if X is a random variable defined on a probability space , then the expected value of X, denoted by EX, 〈X〉, X or EX, is defined as the Lebesgue integral 
+When this integral exists, it is defined as the expectation of X. Note that not all random variables have a finite expected value, since the integral may not converge absolutely; furthermore, for some it is not defined at all (e.g., Cauchy distribution). Two variables with the same probability distribution will have the same expected value, if it is defined.
+It follows directly from the discrete case definition that if X is a constant random variable, i.e. X = b for some fixed real number b, then the expected value of X is also b.
+The expected value of a measurable function of X, g(X), given that X has a probability density function f(x), is given by the inner product of f and g:
+This is sometimes called the law of the unconscious statistician. Using representations as Riemann–Stieltjes integral and integration by parts the formula can be restated as
+As a special case let α denote a positive real number. Then
+In particular, if α = 1 and , then this reduces to
+where F is the cumulative distribution function of X.  This last identity is an instance of what, in a non-probabilistic setting, has been called the layer cake representation.
+The law of the unconscious statistician applies also to a measurable function g of several random variables X1, ... Xn having a joint density f:
+
+Properties
+
+Constants
+
+The expected value of a constant is equal to the constant itself; i.e., if c is a constant, then .
+
+Monotonicity
+
+If X and Y are random variables such that .
+
+Linearity
+
+The expected value operator (or expectation operator) E is linear in the sense that
+Note that the second result is valid even if X is not statistically independent of Y. Combining the results from previous three equations, we can see that
+for any two random variables X and Y (which need to be defined on the same probability space) and any real numbers a, b and c.
+
+Iterated expectation
+
+=Iterated expectation for discrete random variables=
+
+For any two discrete random variables X, Y one may define the conditional expectation:
+which means that E= y is a function of y.  Let g(y) be that function of y; then the notation EX|Y is then a random variable in its own right, equal to g(Y).
+Lemma. Then the expectation of X satisfies:
+Proof.
+The left-hand side of this equation is referred to as the iterated expectation. The equation is sometimes called the tower rule or the tower property; it is treated under law of total expectation.
+
+=Iterated expectation for continuous random variables=
+
+In the continuous case, the results are completely analogous. The definition of conditional expectation would use inequalities, density functions, and integrals to replace equalities, mass functions, and summations, respectively. However, the main result still holds:
+
+Inequality
+
+If a random variable X is always less than or equal to another random variable Y, the expectation of X is less than or equal to that of Y:
+If .
+In particular, if we set Y to |X| we know X ≤ Y and −X ≤ Y. Therefore we know EX ≤ EY and E−X ≤ EY. From the linearity of expectation we know −EX ≤ EY. Therefore the absolute value of expectation of a random variable is less than or equal to the expectation of its absolute value:
+
+Non-multiplicativity
+
+If one considers the joint probability density function of X and Y, say j(x,y), then the expectation of XY is
+In general, the expected value operator is not multiplicative, i.e. EXY is not necessarily equal to EX·EY. In fact, the amount by which multiplicativity fails is called the covariance:
+Thus multiplicativity holds precisely when , in which case X and Y are said to be uncorrelated (independent variables are a notable case of uncorrelated variables).
+Now if X and Y are independent, then by definition  where f and g are the marginal PDFs for X and Y.  Then
+and .
+Observe that independence of X and Y is required only to write j(x, y) = f(x)g(y), and this is required to establish the second equality above. The third equality follows from a basic application of the Fubini-Tonelli theorem.
+
+Functional non-invariance
+
+In general, the expectation operator and functions of random variables do not commute; that is
+A notable inequality concerning this topic is Jensen's inequality, involving expected values of convex (or concave) functions.
+
+Uses and applications
+
+It is possible to construct an expected value equal to the probability of an event by taking the expectation of an indicator function that is one if the event has occurred and zero otherwise. This relationship can be used to translate properties of expected values into properties of probabilities, e.g. using the law of large numbers to justify estimating probabilities by frequencies.
+The expected values of the powers of X are called the moments of X; the moments about the mean of X are expected values of powers of X − EX. The moments of some random variables can be used to specify their distributions, via their moment generating functions.
+To empirically estimate the expected value of a random variable, one repeatedly measures observations of the variable and computes the arithmetic mean of the results. If the expected value exists, this procedure estimates the true expected value in an unbiased manner and has the property of minimizing the sum of the squares of the residuals (the sum of the squared differences between the observations and the estimate). The law of large numbers demonstrates (under fairly mild conditions) that, as the size of the sample gets larger, the variance of this estimate gets smaller.
+thumb|The mass of probability distribution is balanced at the expected value, here a Beta(α,β) distribution with expected value α/(α+β). In classical mechanics, the center of mass is an analogous concept to expectation. For example, suppose X is a discrete random variable with values xi and corresponding probabilities pi. Now consider a weightless rod on which are placed weights, at locations xi along the rod and having masses pi (whose sum is one). The point at which the rod balances is EX.
+Expected values can also be used to compute the variance, by means of the computational formula for the variance
+
+Expectation of matrices
+
+If X is an m × n matrix, then the expected value of the matrix is defined as the matrix of expected values:
+This is utilized in covariance matrices.
+
+Formulas for special cases
+
+Discrete distribution taking only non-negative integer values
+
+When a random variable takes only values in {0, 1, 2, 3, ...} we can use the following formula for computing its expectation (even when the expectation is infinite):
+Proof.
+Interchanging the order of summation, we have
+
+Continuous distribution taking non-negative values
+
+Analogously with the discrete case above, when a continuous random variable X takes only non-negative values, we can use the following formula for computing its expectation (even when the expectation is infinite):
+Proof:  It is first assumed that X has a density fX(x).  We present two techniques:
+and the bracket vanishes because (see Cumulative distribution function#Derived functions)
+In case no density exists, it is seen that
+
+History
+
+The idea of the expected value originated in the middle of the 17th century from the study of the so-called problem of points. This problem is: how to divide the stakes in a fair way between two players who have to end their game before it's properly finished? This problem had been debated for centuries, and many conflicting proposals and solutions had been suggested over the years, when it was posed in 1654 to Blaise Pascal by French writer and amateur mathematician Chevalier de Méré. de Méré claimed that this problem couldn't be solved and that it showed just how flawed mathematics was when it came to its application to the real world. Pascal, being a mathematician, was provoked and determined to solve the problem once and for all. He began to discuss the problem in a now famous series of letters to Pierre de Fermat. Soon enough they both independently came up with a solution. They solved the problem in different computational ways but their results were identical because their computations were based on the same fundamental principle. The principle is that the value of a future gain should be directly proportional to the chance of getting it. This principle seemed to have come naturally to both of them. They were very pleased by the fact that they had found essentially the same solution and this in turn made them absolutely convinced they had solved the problem conclusively. However, they did not publish their findings. They only informed a small circle of mutual scientific friends in Paris about it.
+Three years later, in 1657, a Dutch mathematician Christiaan Huygens, who had just visited Paris, published a treatise (see ) "De ratiociniis in ludo aleæ" on probability theory. In this book he considered the problem of points and presented a solution based on the same principle as the solutions of Pascal and Fermat. Huygens also extended the concept of expectation by adding rules for how to calculate expectations in more complicated situations than the original problem (e.g., for three or more players). In this sense this book can be seen as the first successful attempt of laying down the foundations of the theory of probability.
+In the foreword to his book, Huygens wrote: "It should be said, also, that for some time some of the best mathematicians of France have occupied themselves with this kind of calculus so that no one should attribute to me the honour of the first invention. This does not belong to me. But these savants, although they put each other to the test by proposing to each other many questions difficult to solve, have hidden their methods. I have had therefore to examine and go deeply for myself into this matter by beginning with the elements, and it is impossible for me for this reason to affirm that I have even started from the same principle. But finally I have found that my answers in many cases do not differ from theirs." (cited by ). Thus, Huygens learned about de Méré's Problem in 1655 during his visit to France; later on in 1656 from his correspondence with Carcavi he learned that his method was essentially the same as Pascal's; so that before his book went to press in 1657 he knew about Pascal's priority in this subject.
+Neither Pascal nor Huygens used the term "expectation" in its modern sense. In particular, Huygens writes: "That my Chance or Expectation to win any thing is worth just such a Sum, as wou'd procure me in the same Chance and Expectation at a fair Lay. ... If I expect a or b, and have an equal Chance of gaining them, my Expectation is worth ." More than a hundred years later, in 1814, Pierre-Simon Laplace published his tract "Théorie analytique des probabilités", where the concept of expected value was defined explicitly:
+The use of the letter E to denote expected value goes back to W.A. Whitworth in 1901,Whitworth, W.A. (1901) Choice and Chance with One Thousand Exercises. Fifth edition. Deighton Bell, Cambridge. by Hafner Publishing Co., New York, 1959. who used a script E. The symbol has become popular since for English writers it meant "Expectation", for Germans "Erwartungswert", and for French "Espérance mathématique".
+
+
+
+Notes
+
+Literature
+
+  | last = Edwards | first = A.W.F
+  | title = Pascal's arithmetical triangle: the story of a mathematical idea
+  | year = 2002
+  | edition = 2nd
+  | publisher = JHU Press
+  | isbn = 0-8018-6946-3
+  | ref = harv
+  }}
+  | last = Huygens | first = Christiaan
+  | title = De ratiociniis in ludo aleæ
+  | format  = English translation, published in 1714: | url = 
+  | year = 1657
+  | ref = harv
+  }}
+

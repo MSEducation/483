@@ -1,0 +1,77 @@
+[[File:Knapsack. 
+
+(Answer: if any number of each box is available, then three yellow boxes and three grey boxes; if only the shown boxes are available, then all but the green box.)]]
+The knapsack problem or rucksack problem is a problem in combinatorial optimization: Given a set of items, each with a mass and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible. It derives its name from the problem faced by someone who is constrained by a fixed-size knapsack and must fill it with the most valuable items.
+The problem often arises in resource allocation where there are financial constraints and is studied in fields such as combinatorics, computer science, complexity theory, cryptography and applied mathematics.
+The knapsack problem has been studied for more than a century, with early works dating as far back as 1897. It is not known how the name "knapsack problem" originated, though the problem was referred to as such in the early works of mathematician Tobias Dantzig (1884–1956),Dantzig, Tobias. Numbers: The Language of Science, 1930. suggesting that the name could have existed in folklore before a mathematical problem had been fully defined. 3
+
+Applications
+
+A 1998 study of the Stony Brook University Algorithm Repository showed that, out of 75 algorithmic problems, the knapsack problem was the 18th most popular and the 4th most needed after kd-trees, suffix trees, and the bin packing problem.
+Knapsack problems appear in real-world decision-making processes in a wide variety of fields, such as finding the least wasteful way to cut raw materials,Kellerer, Pferschy, and Pisinger 2004, p. 449 seating contest of investments and portfolios,Kellerer, Pferschy, and Pisinger 2004, p. 461 seating contest of assets for asset-backed securitization,Kellerer, Pferschy, and Pisinger 2004, p. 465 and generating keys for the Merkle–Hellman knapsack cryptosystem. 472
+One early application of knapsack algorithms was in the construction and scoring of tests in which the test-takers have a choice as to which questions they answer. For small examples it is a fairly simple process to provide the test-takers with such a choice. For example, if an exam contains 12 questions each worth 10 points, the test-taker need only answer 10 questions to achieve a maximum possible score of 100 points. However, on tests with a heterogeneous distribution of point values—i.e. different questions are worth different point values— it is more difficult to provide choices. Feuerman and Weiss proposed a system in which students are given a heterogeneous test with a total of 125 possible points. The students are asked to answer all of the questions to the best of their abilities. Of the possible subsets of problems whose total point values add up to 100, a knapsack algorithm would determine which subset gives each student the highest possible score.
+
+Definition
+
+The most common problem being solved is the 0-1 knapsack problem, which restricts the number xi of copies of each kind of item
+to zero or one.
+Mathematically the 0-1-knapsack problem can be formulated as:
+The maximum weight that we can carry in the bag is W.
+It is common to assume that all values and weights are nonnegative. To simplify the representation, we also assume that the items are listed in increasing order of weight.
+Maximize the sum of the values of the items in the knapsack so that the sum of the weights must be less than the knapsack's capacity.
+Mathematically the bounded knapsack problem can be formulated as:
+
+Computational complexity
+
+The knapsack problem is interesting from the perspective of computer science for many reasons:
+There is a link between the "decision" and "optimization" problems in that if there exists a polynomial algorithm that solves the  "decision" problem, then one can find the maximum value for the optimization problem in polynomial time by applying this algorithm iteratively while increasing the value of k . On the other hand, if an algorithm finds the optimal value of optimization problem in polynomial time, then the decision problem can be solved in polynomial time by comparing the value of the solution output by this algorithm with the value of k . Thus, both versions of the problem are of similar difficulty.
+One theme in research literature is to identify what the "hard" instances of the knapsack problem look like,Pisinger, D. 2003. Where are the hard knapsack problems? Technical Report 2003/08, Department of Computer Science, University of Copenhagen, Copenhagen, Denmark.[ref]
+L. Caccetta, A. Kulanoot, Computational Aspects of Hard Knapsack Problems,
+Nonlinear Analysis 47 (2001) 5547–5558.[/ref] or viewed another way, to identify what properties of instances in practice might make them more amenable than their worst-case NP-complete behaviour suggests.doi.1016/j.2008.09.004[/ref] The goal in finding these "hard" instances is for their use in public key cryptography systems, such as the Merkle-Hellman knapsack cryptosystem.
+
+Solving
+
+Several algorithms are freely available to solve knapsack problems, based on dynamic programming approach,[ref]Rumen Andonov, Vincent Poirriez, Sanjay Rajopadhye (2000)  Unbounded Knapsack Problem : dynamic programming revisited   European Journal of Operational Research 123: 2. 168–181  
+[/ref] branch and bound approach[ref]S. Martello, P. Toth, Knapsack Problems: Algorithms and Computer Implementation,
+John Wiley and Sons, 1990[/ref] or hybridizations of both approaches. Martello, D. Pisinger, P. Toth, Dynamic programming and strong bounds for the 0-1
+knapsack problem, Manag. Sci., 45:414–424, 1999.[/ref]name="plateau85">G. Plateau, M. Elkihel, A hybrid algorithm for the 0-1 knapsack problem, ''Methods of
+Oper. Res., 49:277–293, 1985.[/ref]S. Martello, P. Toth, A mixture of dynamic programming and branch-and-bound for the subset-sum problem, Manag. Sci.'', 30:765–771
+
+Dynamic programming
+
+=Unbounded knapsack problem=
+
+nonnegative integers, the knapsack problem can be solved in pseudo-polynomial time using dynamic programming. The following describes a dynamic programming solution for the unbounded knapsack problem.
+To simplify things, assume all weights are strictly positive (wi > 0). We wish to maximize total value subject to the constraint that total weight is less than or equal to W. Then for each w ≤ W, define mw to be the maximum value that can be attained with total weight less than or equal to w. mW then is the solution to the problem.
+Observe that mw has the following properties:
+(To formulate the equation above, the idea used is that the solution for a knapsack is the same as the value of one correct item plus the solution for a knapsack with smaller capacity, specifically one with the capacity reduced by the weight of that chosen item.)
+
+=0/1 knapsack problem=
+
+The following is pseudo code for the dynamic program:
+ // Input:
+ // Values (stored in array v)
+ // Weights (stored in array w)
+ // Number of distinct items (n)
+ // Knapsack capacity (W)
+ for j from 0 to W do
+   m[0, j] := 0
+ end for 
+ for i from 1 to n do
+   for j from 0 to W do
+     if w[i] <= j then
+       m[i, j] := max(m[i-1, j], m[i-1, j-w[i]<nowiki></nowiki>] + v[i])
+     else
+       m[i, j] := m[i-1, j]
+     end if
+   end for
+ end for
+
+Meet-in-the-middle
+
+Another algorithm for 0-1 knapsack, discovered in 1974 [ref]
+ A6: MP9, pg.247.
+
+
+
+

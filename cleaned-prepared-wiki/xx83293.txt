@@ -1,0 +1,207 @@
+[[Foreach loop]]
+
+CATEGORIES: Articles with example Ada code, Articles with example Perl code, Articles with example PHP code, Articles with example Python code, Articles with example Racket code, Articles with example Smalltalk code, Articles with example Tcl code, Control flow, Programming language comparisons, Articles with example Java code, Articles with example Haskell code
+
+For each (or foreach) is a computer language idiom for traversing items in a collection. Foreach is usually used in place of a standard for statement. Unlike other for loop constructs, however, foreach loops   usually maintain no explicit counter: they essentially say "do this to everything in this set", rather than "do this x times". This avoids potential off-by-one errors and makes code simpler to read. In object-oriented languages an iterator, even if implicit, is often used as the means of traversal.
+
+Syntax
+
+Syntax varies among languages. Most use the simple word for, roughly as follows:
+ for each item in collection:
+   do something to item
+
+Language support
+
+Some of the languages with support for foreach loops include ABC, ActionScript, Ada, C++11, C#, CFML, Cobra, D, Daplex (a query language), ECMAScript, Java (since 1.5, using the reserved word for for the for loop and the foreach loop), JavaScript, Objective-C (since 2.0), ParaSail, Perl, PHP, Python, REALbasic, Ruby, Smalltalk, Tcl, tcsh, Unix shells, Visual Basic . Notable languages without foreach are C and C++ prior to C++11.
+
+ActionScript
+
+ActionScript supports foreach loops by key/index and by value:
+
+Ada
+
+Ada supports foreach loops as part of the normal for loop. Say X is an array:
+Ada 2012 has generalized loops to foreach loops on any kind of container (array, lists, maps...):
+
+C
+
+The C language does not have collections or a foreach construct.  It does, however, have a number of standard data structures that can be thought of as collections, and foreach can easily be made with a macro.
+However, there are two obvious problems:
+C string as a collection of char
+C int array as a collection of int (array size known at compile-time)
+Most general: string or array as collection (collection size known at run-time)
+
+C#
+
+Assuming that myArray is an array of integers:
+
+C++
+
+C++11 provides a foreach loop. The syntax is similar to that of Java:
+Currently, C++11 range-based for statements have been implemented in GCC (since version 4.6), clang (since version 3.0) and Visual C++ 2012 (version 11 )
+Qt, a C++ framework, offers a macro providing foreach loops using the STL iterator interface:
+Boost, a set of free peer-reviewed portable C++ libraries also provides foreach loops:
+
+CFML
+
+=Script syntax=
+
+=Tag syntax=
+
+Note that CFML incorrectly identifies the value as "index" in this construct; the index variable does receive the actual value of the array element, not its index.
+
+Common Lisp
+
+Common Lisp provides foreach functionality either with the dolist macro:
+or with the mapcar function:
+
+D
+
+Dart
+
+Delphi
+
+Foreach support was added in Delphi 2005, and uses an enumerator variable that must be declared in the var section.
+
+Eiffel
+
+The iteration (foreach) form of the Eiffel loop construct is introduced by the keyword across. 
+In this example, every element of the structure my_list is printed:
+
+            across my_list as ic loop print (ic.item) end
+
+The local entity ic is an instance of the library class ITERATION_CURSOR. The cursor's feature item provides access to each structure element. Descendants of class ITERATION_CURSOR can be created to handle specialized iteration algorithms. The types of objects that can be iterated across (my_list in the example) are based on classes that inherit from the library class ITERABLE.
+The iteration form of the Eiffel loop can also be used as a boolean expression when the keyword loop is replaced by either all (effecting universal quantification) or some (effecting existential quantification). 
+This iteration is a boolean expression which is true if all items in my_list have counts greater than three:
+
+            across my_list as ic all ic.count > 3 end
+
+The following is true if at least one item has a count greater than three:
+
+            across my_list as ic some ic.count > 3 end
+
+Go
+
+Go's foreach loop can be used to loop over an array, slice, string, map, or channel.
+Using the two-value form, we get the index/key (first element) and the value (second element):
+Using the one-value form, we get the index/key (first element):
+
+Groovy
+
+Groovy supports for loops over collections like arrays, lists and ranges:
+Groovy also supports a C-style for loop with an array index:
+Collections in Groovy can also be iterated over using the each keyword
+and a closure.   By default, the loop dummy is named it
+
+Haskell
+
+One can loop over lists with monadic actions using mapM_ and forM_ (mapM_ with its arguments flipped) from Control.Monad:
+It's also possible to generalize those functions to work on applicative functors rather than monads and any data structure that is traversable using traverse (for with its arguments flipped) and mapM (forM with its arguments flipped) from Data.
+
+Haxe
+
+Java
+
+A foreach-construct was introduced in JDK 1.5.0.[ref]
+"Enhanced for Loop - This new language construct..."
+
+[/ref]
+Official sources use several names for the construct. It is referred to as the "Enhanced for Loop", the "For-Each Loop",[ref]
+"The For-Each Loop"
+
+[/ref] and the "foreach statement".[ref]
+"Implementing this interface allows an object to be the target of the "foreach" statement."
+
+[/ref] 
+
+JavaScript
+
+For unordered iteration over the keys in an Object, JavaScript features the for...in loop:
+In order to limit the iteration to the object's own properties, excluding the ones inherited through the prototype chain, it is sometimes useful to add a hasOwnProperty() test, if supported by the JavaScript engine (for WebKit/Safari, this means "in version 3 or later").
+In ECMAScript 5 it's also possible to use the forEach method of a native array.
+Gecko's JavaScript engine also has a for each...
+Also note that it is inadvisable to use either a for..... A regular C-style for loop should be used instead. The EcmaScript 6 proposal has for..
+
+MATLAB
+
+Mint
+
+For each loops are supported in Mint, possessing the following syntax:
+Interestingly enough, the for (;;) or while (true) infinite loop
+in Mint can be written using a for each loop and an infinitely long list.
+
+Objective-C
+
+Foreach loops, called Fast enumeration, are supported starting in Objective-C 2.0. They can be used to iterate over any object that implements the NSFastEnumeration protocol, including NSArray, NSDictionary (iterates over keys), NSSet, etc.
+NSArrays can also broadcast a message to their members:
+Where blocks are available, an NSArray can automatically perform a block on every contained item:
+The type of collection being iterated will dictate the item returned with each iteration.
+For example:
+
+OCaml
+
+Since OCaml is a functional language, the equivalent of a foreach loop can be achieved as a library function over lists and arrays.
+For Lists:
+or in short way:
+For Arrays:
+or in short way:
+
+ParaSail
+
+The ParaSail parallel programming language supports several kinds of iterators, including a general "for each" iterator over a container:
+ParaSail also supports filters on iterators, as well as the ability to refer to both the key and the value of a map. Here is a forward iteration over the elements of "My_Map" selecting only elements where the keys are in "My_Set":
+
+Pascal
+
+The ISO 10206:1990 standard introduced iteration over set types in Pascal:
+
+Perl
+
+In the Perl programming language, foreach (which is equivalent to the shorter for) can be used to traverse elements of a list.  The expression which denotes the collection to loop over is evaluated in list-context and each item of the resulting list is, in turn, aliased to the loop variable.
+List literal example:
+Array examples:
+Hash example:
+Direct modification of collection members:
+
+PHP
+
+It is also possible to extract both keys and values using the alternate syntax:
+Direct modification of collection members:
+
+Python
+
+Python's tuple assignment, fully available in its foreach loop, also makes it trivial to iterate on (key, value) pairs in associative arrays:
+As for ... in is the only kind of for loop in Python, the equivalent to the "counter" loop found in other languages is...
+... though using the enumerate function is considered more "Pythonic":
+
+Racket
+
+or using the conventional Scheme for-each function:
+
+Ruby
+
+or
+You can also use this with a hash.
+
+Scala
+
+Smalltalk
+
+Tcl
+
+Tcl uses foreach to iterate over lists. It is possible to specify more than one iterator variable, in which case they are assigned sequential values from the list. 
+t is also possible to iterate over more than one list simultaneously. In the following i assumes sequential values of the first list, j sequential values of the second list:
+
+Visual Basic .NET
+
+Windows PowerShell
+
+From a pipeline
+
+XSL
+
+
+
+
+
+

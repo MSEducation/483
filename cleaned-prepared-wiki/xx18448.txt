@@ -1,0 +1,52 @@
+[[Grep]]
+
+CATEGORIES: Unix text processing utilities, GNU Project software, Unix SUS2008 utilities, Standard Unix programs
+
+Grep is a command-line utility for searching plain-text data sets for lines matching a regular expression. Grep was originally developed for the Unix operating system, but is available today for all Unix-like systems. Its name comes from the ed command g/re/p (g'''lobally search a'' regular expression'' and p'rint''), which has the same effect: doing a global search with the regular expression and printing all matching lines. 1997, Ch. 9
+
+History
+
+Grep was created  by Ken Thompson as a standalone application adapted from the regular expression parser he had written for ed (which he also created).  In ed, the command g/re/p would print all lines matching a previously defined pattern.plover.html Grep first appeared in the man page for Unix Version 4 in 1973. 
+
+Usage
+
+Grep searches files specified as arguments, or, if missing, the program's standard input. By default, it reports matching lines on standard output, but specific modes of operation may be chosen with command line options.
+A simple example of a common usage of grep is the following, which searches the file fruitlist.txt for lines containing the text string apple:
+ $ grep apple fruitlist.txt
+ 
+Matches occur when the specific sequence of characters is recognized, for example, lines containing pineapple or apples are printed irrespective of word boundaries. However, the search pattern specified as an argument is case sensitive by default, so this example's output does not include lines containing Apple (with a capital A) unless they also contain apple. Case-insensitive matching occurs when the argument option -i (ignore case) is given.
+Multiple file names may be specified in the argument list. For example, all files having the extension .txt in a given directory may be searched if the shell supports globbing by using an asterisk as part of the filename:
+ $ grep apple *.txt
+ 
+Regular expressions can be used to match more complicated text patterns. The following prints all lines in the file that begin with the letter a, followed by any one character, followed by the letter sequence ple.
+ $ grep ^a.txt
+ 
+The name of grep derives from a usage in the Unix text editor ed and related programs. Before grep existed as a separate command, the same effect might have been achieved in an editor:
+where the second line is the command given to ed to print the relevant lines, and the third line is the command to exit from the editor.
+Like most Unix commands, grep accepts options in the form of command-line arguments to change its behavior. For example, the option flag l (lower case L) provides a list of the files which have matching lines, rather than listing the lines explicitly.
+Selecting all lines containing the self-standing word apple, i.e. surrounded by white space or hyphens, may be accomplished with the option flag w.
+Exact line match is performed with the option flag x. Lines only containing exactly and solely apple are selected with a line-regexp instead of word-regexp:
+The v option reverses the sense of the match and prints all lines that do not contain apple, as in this example.
+
+Variations
+
+A variety of grep implementations are available in many operating systems and software development environments. Early variants included egrep and fgrep, introduced in Version 7 Unix. The "egrep" variant applies an extended regular expression syntax that was added to Unix after Ken Thompson's original regular expression implementation. The "fgrep" variant searches for any of a list of fixed strings using the Aho–Corasick string matching algorithm. These variants persist in most modern grep implementations as command-line switches (and standardized as -E and -F in POSIX). In such combined implementations, grep may also behave differently depending on the name by which it is invoked, allowing fgrep, egrep, and grep to be links to the same program file.
+Other commands contain the word "grep" to indicate that they search (usually for regular expression matches). The pgrep utility, for instance, displays the processes whose names match a given regular expression.
+In the Perl programming language, grep is the name of the built-in function that finds elements in a list that satisfy a certain property. This higher-order function is typically named filter in functional programming languages.
+The pcregrep command is an implementation of grep that uses Perl regular expression syntax. This functionality can be invoked in the GNU version of grep with the -P flag.die.net/man/1/grep
+Ports of grep (within Cygwin and GnuWin32, for example) also run under Microsoft Windows. Some versions of Windows feature the similar qgrep or Findstr command.
+
+Usage as a verb
+
+In December 2003, the Oxford English Dictionary Online added draft entries for "grep" as both a noun and a verb.
+A common verb usage is the phrase "You can't grep dead trees"—meaning one can more easily search through digital media, using tools such as grep, than one could with a hard copy (i.e., one made from dead trees, paper).
+
+
+
+Notes
+
+
+
+
+
+

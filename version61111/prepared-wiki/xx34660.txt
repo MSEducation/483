@@ -1,0 +1,90 @@
+[[Parallel port]]
+
+CATEGORIES: Computer buses, Physical layer protocols, Legacy hardware, Computer connectors
+
+A parallel port is a type of interface found on computers (personal and otherwise) for connecting peripherals. In computing, a parallel port is a parallel communication physical interface. It is also known as a printer port or Centronics port. It was an industry de facto standard for many years, and was finally standardized as IEEE 1284 in the late 1990s, which defined a bi-directional version of the port. Today, the parallel port interface is seeing decreasing use because of the rise of Universal Serial Bus (USB) and FireWire (IEEE 1394) devices, along with network printing using Ethernet.[tpl]Citation needed|date=May 2013[/tpl]
+The parallel port interface was originally known as the 
+Parallel Printer Adapter on IBM PC-compatible computers. It was primarily designed to operate a line printer that used IBM's 8-bit extended ASCII character set to print text, but could also be used to adapt other peripherals. Graphical printers, along with a host of other devices, have been designed to communicate with the system.
+
+==History==
+
+===Centronics===
+
+The term "Centronics port" now commonly refers to an IEEE-1284 Type B or 36-pin micro ribbon interface. The first parallel interface for printers was introduced with the Centronics Model 101 printer in 1970.[tpl]cite book |author=Webster, Edward C. |title=Print Unchained: Fifty Years of Digital Printing: A Saga of Invention and Enterprise |publisher=DRA of Vermont |location=West Dover, VT |year=2000 |isbn=0-9702617-0-5[/tpl]  The interface was developed by Dr. An Wang, Robert Howard and Prentice Robinson at Centronics. Wang had a surplus stock of 20,000 Amphenol 36-pin micro ribbon connectors that were originally used for one of their early calculators, which they used to create the Centronics interface on their computers. The connector has become so closely associated with Centronics that it is now popularly known as the “Centronics connector”.
+The Centronics parallel interface quickly became an industry de facto standard; manufacturers of the time tended to use various connectors on the system side, so a variety of cables were required.  For example, early VAX systems used a DC-37 connector, NCR used the 36-pin micro ribbon connector, Texas Instruments used a 25-pin card edge connector and Data General used a 50-pin micro ribbon connector.
+When IBM implemented the parallel interface on the IBM PC, they used the DB-25F connector at the PC-end of the interface, creating the now familiar parallel cable with a DB25M at one end and a 36 pin micro ribbon connector at the other.  HP adopted Centronics parallel on their printer models and introduced a bidirectional version known as Bitronics on the LaserJet 4 in 1992.  The Bitronics and Centronics interfaces were superseded by the IEEE 1284 standard in 1994.
+Centronics parallel is generally compliant with IEEE 1284 compatibility mode.  The original Centronics implementation called for the busy lead to toggle with each received line of data (busy by line), whereas IEEE 1284 calls for busy to toggle with each received character (busy by character).  Some host systems or print servers may use a strobe signal with a relatively low voltage output or a fast toggle.  Any of these issues might cause no or intermittent printing, missing or repeated characters or garbage printing.  Some printer models may have a switch or setting to set busy by character; others may require a handshake adapter.
+
+===Dataproducts===
+
+Dataproducts introduced a very different implementation of the parallel interface for their printers.  It used a DC-37 connector on the host side and a 50 pin connector on the printer side—either a DD-50 (sometimes incorrectly referred to as a "DB50") or the block shaped M-50 connector; the M-50 was also referred to as Winchester.[tpl]cite web |url=http://www.hardwarebook.info/Dataproducts_D-Sub_50_Parallel |title=Dataproducts D-Sub 50 Parallel |accessdate=2008-01-25 |work=Hardware Book[/tpl][tpl]cite web |url=http://www.hardwarebook.info/Dataproducts_M/50_Parallel |title=Dataproducts M/50 Parallel |accessdate=2008-01-25 |work=Hardware Book[/tpl]  Dataproducts parallel was available in a short-line for connections up to [tpl]convert|50|ft|m[/tpl] and a long-line version for connections from [tpl]convert|50|ft|m[/tpl] to [tpl]convert|500|ft|m[/tpl].  The Dataproducts interface was found on many mainframe systems up through the 1990s, and many printer manufacturers offered the Dataproducts interface as an option.
+
+===IBM===
+
+IBM released the IBM Personal Computer in 1981 and included a variant of the Centronics interface— only IBM logo printers (rebranded from Epson) could be used with the IBM PC.[tpl]cite web|url=http://nemesis.lonestar.org/reference/computers/interfaces/centronics.html |title=Centronics and IBM Compatible Parallel Printer Interface Pin Assignment Reference |accessdate=2007-10-05 |last=Durda IV |first=Frank |year=2004 [/tpl]  IBM standardized the parallel cable with a  DB25F connector on the PC side and the Centronics connector on the printer side.  Vendors soon released printers compatible with both standard Centronics and the IBM implementation.
+The original IBM parallel printer adapter for the IBM PC was designed to support 8-bit data bidirectionally in 1981. This feature was removed in later revisions of the hardware, so that the data lines could only be used to output data. Years later in 1987, IBM reintroduced the bidirectional interface with its IBM PS/2 series, where it could be enabled or disabled for compatibility with applications hardwired not to expect a printer port to be bidirectional.  HP introduced their version of bidirectional, known as Bitronics, on the LaserJet 4 in 1992.  The Bitronics and Centronics interfaces were superseded by the IEEE 1284 standard in 1994.
+A wide variety of devices were eventually designed to operate on a parallel port. Most devices were uni-directional (one-way) devices, only meant to respond to information sent from the PC. However, some devices such as Zip drives were able to operate in bi-directional mode. Printers also eventually took up the bi-directional system, allowing various status report information to be sent.
+
+==Historical uses==
+
+Before the advent of USB, the parallel interface was adapted to access a number of peripheral devices other than printers.  Probably one of the earliest devices to use parallel were dongles used as a hardware key form of software copy protection.  Zip drives and scanners were early implementations followed by external modems, sound cards, webcams, gamepads, joysticks, external hard disk drives and CD-ROM drives.  Some of the earliest portable MP3 players required a parallel port connection for transferring songs to the device. Adapters were available to run SCSI devices via parallel.  Other devices such as EPROM programmers and hardware controllers could be connected via the parallel port.
+
+===Interfaces===
+
+Most PC-compatible systems in the 1980s and 1990s had one to three ports, with communication interfaces defined like this:
+If no printer port is present at 0x3BC, the second port in the row (0x378) becomes logical parallel port 1 and 0x278 becomes logical parallel port 2 for the BIOS. Sometimes, printer ports are jumpered to share an interrupt despite having their own IO addresses (i.e. only one can be used interrupt-driven at a time). In some cases, the BIOS supports a fourth printer port as well, but the base address for it differs significantly between vendors. Since the reserved entry for a fourth logical printer port in the BIOS Data Area (BDA) is shared with other uses on PS/2 machines and with S3 compatible graphics cards, it typically requires special drivers in most environments.
+Under DR-DOS 7.02 the BIOS port assignments can be changed and overridden using the LPT1, LPT2, LPT3 (and optionally LPT4) CONFIG.SYS directives.
+
+===Access===
+
+DOS-based system will make the logical parallel ports detected by the BIOS available under device names such as LPT1,  LPT2 or LPT3 (corresponding with logical parallel port 1, 2, and 3, respectively). These names derive from terms like Line Print Terminal, Local Print Terminal, or Line PrinTer. A similar naming convention was used on ITS, DEC systems, as well as in CP/M and 86-DOS (LST).
+In DOS, the parallel printers could be accessed directly on the command line. For example, the command "TYPE C:\AUTOEXEC.BAT > LPT1:" would redirect the contents of the AUTOEXEC.BAT file to the printer port. A PRN device was also available as an alias for LPT1. Some operating systems (like Multiuser DOS) allow to change this fixed assignment by different means. Some DOS versions use resident driver extensions provided by MODE, or the mapping can be changed internally via a CONFIG.SYS PRN=n directive (as under DR-DOS 7.02 and higher). DR-DOS 7.02 also provides optional built-in support for LPT4 if the underlying BIOS supports it.
+PRN, along with CON, AUX and a few others are invalid file and directory names in DOS and Windows, even Windows XP.  There is even an MS-DOS device in path name vulnerability in Windows 95 and 98, which causes the computer to crash if the user types "C:\CON\CON", "C:\PRN\PRN" or "C:\AUX\AUX" in the Windows Explorer address bar.[tpl]citation needed|date=May 2013[/tpl] A patch to fix this bug has been released by Microsoft, but newly installed Windows 95 and 98 operating systems will still have the bug.
+A special "PRINT" command also existed to achieve the same effect. Microsoft Windows still refers to the ports in this manner in many cases, though this is often fairly hidden.
+In the Linux operating system the first LPT port is available via the filesystem as /dev/lp0.
+
+==Notable Consumer Products that used the Parallel Port==
+
+==Current use==
+
+For consumers, the USB interface — and sometimes Ethernet — has replaced the parallel printer port, for connections both to printers and to other devices.
+Many manufacturers of personal computers and laptops consider parallel to be a legacy port and no longer include the parallel interface. Smaller machines have less room for large parallel port connectors.  USB-to-parallel adapters are available that can make  parallel-only printers work with USB-only systems.
+There are PCI (and PCI-express) cards that provide parallel ports. There are also some print servers that provide interface to parallel port through network. USB-to-EPP chips can also allow other non-printer device to continue to work on modern computers without a parallel port.[tpl]cite web |url=http://archive.is/e2uP |title=Parallel port flatbed scanner works under USB on Win9x (Archive)|accessdate=2012-06-30[/tpl]
+For electronics hobbyists the parallel port is still often the easiest way to connect to an external circuit board. It is faster than the other common legacy port (serial port) and requires no serial-to-parallel converter, and requires far less interface logic and software than a USB target interface. However, Microsoft operating systems later than Windows 95/98 prevent user programs from directly writing to or reading from the LPT without additional software (kernel extensions).http://www.logix4u.net/parallel-port/16-inpout32dll-for-windows-982000ntxp
+Current CNC Milling Machines also often make use of the parallel port to directly control the machine's motors and attachments.
+
+==IBM PC Implementation==
+
+===Port addresses===
+
+Traditionally IBM PC systems have allocated their first three parallel ports according to the configuration in the table below (if all three printer ports exist).
+If there is an unused slot, the port addresses of the others are moved up. (For example, if a port at 0x3BC does not exist, the port at 0x378 will then become the first logical parallel port.)Frank Van Gilluwe, The Undocumented PC, 1994, page 703, ISBN 0-201-62277-7 The base address 0x3BC is typically supported by printer ports on MDA and Hercules display adapters, whereas printer ports provided by the mainboard chipset or add-on cards rarely allow to be configured to this base address. Therefore, in absence of a monochrome display adapter, a common assignment for the first logical parallel port (and therefore also for the corresponding LPT1 DOS device driver) today is 0x378, even though the default is still 0x3BC (and would be selected by the BIOS if it detects a printer port at this address). The IRQ lines are typically configurable in the hardware as well. Assigning the same interrupt to more than one printer port should be avoided and will typically cause one of the corresponding ports to work in polled mode only. The port addresses assigned to slot can be determined by reading the BIOS Data Area (BDA) at 0000h:0408h.
+Bit to pin mapping for the Standard Parallel Port (SPP):
+~ indicates a hardware inversion of the bit.
+
+===Program interface===
+
+In versions of Windows that did not use the Windows NT kernel (as well as DOS and some other operating systems), programs could access the parallel port with simple outportb() and inportb() subroutine commands. In operating systems such as Windows NT and Unix (NetBSD, FreeBSD, Solaris, 386BSD, etc.), the microprocessor is operated in a different security ring, and access to the parallel port is inhibited, unless using the required driver. This improves security and arbitration of device contention. On Linux, inb() and outb() can be used when a process is run as root and an ioperm() command is used to allow access to its base address; alternatively, ppdev allows shared access and can be used from userspace if the appropriate permissions are set.
+The cross-platform library for parallel port access, libieee1284, also is available on many Linux distributions and provides an abstract interface to the parallel ports of the system. Access is handled in an open-claim-release-close sequence, which allows for concurrent access in userspace.
+
+==Pinouts==
+
+The older parallel printer ports had an 8-bit data bus and four pins for control output (Strobe, Linefeed, Initialize, and Select In), and five more for control input (ACK, Busy, Select, Error, and Paper Out). Its data transfer speed is at 12,000 kbit/s.
+The newer EPPs (Enhanced Parallel Ports) have an 8-bit data bus, and the same control pins as the normal parallel printer port. Newer ports reach speeds of up to 2 MB/sec.Parallel Port Definition, Techopedia
+Pinouts for parallel port connectors are:
+Inverted lines are true on logic low. If they are not inverted, then logic high is true.
+Pin 25 on the DB25 connector might not be connected to ground on modern computers.
+
+==Nibble mode[tpl]anchor|Nibble[/tpl]==
+
+Except for the very first revision of the parallel port adapter in the original IBM PC, the data lines in early parallel ports were unidirectional (data out only), so it was not easily possible to feed data into the computer.  However, a workaround was possible by using 4 of the 5 status lines.  A circuit could be constructed to split each 8-bit byte into two 4-bit nibbles which were fed in sequentially through the status lines.  Each pair of nibbles was then re-combined into an 8-bit byte. This same method (with the splitting and recombining done in software) was also used to transfer data between PCs using a laplink cable.
+
+==See also==
+
+Hardware IC chips: 
+
+==References==
+
+==External links==
+
+

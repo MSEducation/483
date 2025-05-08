@@ -1,0 +1,63 @@
+[[PANOSE]]
+
+CATEGORIES: Classification systems, Digital typography
+
+The PANOSE System is a method for classifying typefaces solely on their visual characteristics, developed by Benjamin Bauermeister. It can be used to identify an unknown font from a sample image or to match a known font to its closest visual neighbor from a font pool. The word "PANOSE" is composed of letters taken from the six classes in which the creator of the system organized the Latin alphabet. 424. ISBN 0-596-10242-9.
+
+History
+
+The original PANOSE System was developed in 1985 by Benjamin Bauermeister. In 1988, it was published by Van Nostrand Reinhold Company Inc. under the title A Manual of Comparative Typography: The PANOSE System. This initial version of the PANOSE system consisted of seven classification categories and was based on subjective visual parameters.
+In 1990, the Weight category was added, and the Arm Style category was split off from the Stroke Variation category, bringing the number of classification categories to 9. Objective classification criteria were also added at this time.
+In 1991, the Family Kind category was added, completing the PANOSE 1.0 definition. 
+In 1992, there were attempts made to classify Han ideographic typefaces, which allows applications to suggests the most appropriate Latin typeface to match a given Han ideographic typeface. Transliteral mapping could also be used to match between, for example, decorative or script faces and text equivalents.
+In 1993, Mapper Application Interface (MAI) was developed. PANOSE 2.0 was also released in the same year, which is the basis for Hewlett Packard's Infinifont font synthesis technology.
+PANOSE was incorporated into a variety of digital font metadata tags in 1992 by ElseWare Corporation. The classification system, its matching algorithms reference databases, classification parameters, and trademarks were purchased by Hewlett Packard in 1995. A font synthesis engine named Infinifont was also purchased by Hewlett Packard at that time.
+
+Revisions
+
+1.0
+
+It was published in 1988. A PANOSE classification number consists of 10 concatenated values. Each value from a given category was computed from a specific visual metric, such as the weight of the font and the presence or absence of serifs. Special values "Any" (0) and "No Fit" (1) exist for every category, which have specific meanings to the mapper. "Any" means match that digit with any available digit, which allows the mapper to handle distortable typefaces. "No Fit" means that the item being classified does not fit within the present system.
+The standard classifies fonts in following categories in following order:
+
+=Latin Text categories=
+
+=Latin Hand Written categories=
+
+=Latin Decoratives categories=
+
+=Latin Symbol categories=
+
+=Example=
+
+For example, the PANOSE digits for Times New Roman are:
+
+2.0
+
+The system stores actual measurement data under the Rich Font Description (RFD) rather than bucketing it, which allows the matching system to use mathematical distance rather than penalty tables. It is designed for distortable font technologies (e.g.: Multi Master fonts). The system offers multiple methods for distortable fonts.
+The original classification system was changed from a bucket-based system to an arithmetic system (except the Family from PANOSE 1.0 and derivatives), and was expanded to following categories:
+Each PANOSE 2.0 category value is a signed 16-bit number (from −32,768 to 32,767; only ranges between −10,000 and 10,000 are defined), where value zero (0) is considered to be the "normal" for the digit. For example, digit zero for the weight represents medium weight. The "any" value from PANOSE 1.0 is translated to a "don't care" parameter and is replaced by the more comprehensive distortable font descriptions.
+The Family category is replaced by Class and Genre, where Class indicates a font's language and character set, where Genre indicates text faces, display faces, symbol faces, and so on. PANOSE matching software is designed to match fonts with different Class, but same Genre. The same Genre can have different meaning in different Class, so the matching heuristic decides the closeness of fonts based on adjusted values based on Class, rather than raw PANOSE values within the fonts themselves.
+
+PANOSE Classification Procedures
+
+Classification Procedures are objective measurement techniques used to assign a PANOSE number to a font.
+
+PANOSE Mapper software
+
+The PANOSE Mapper software determines the closest possible font match on any given system by comparing the PANOSE numbers of the requested and available fonts. The individual PANOSE digits are compared, weighted by their typographic importance, and summed to provide a numerical visual distance. Typographic importance is derived by assigning weights to each digit; for example, a font's weight (regular, bold, demibold, etc.) is more important than its contrast (difference between thick and thin strokes).
+
+Standardizations
+
+PANOSE 1.0 table is supported in TrueType font format.
+PANOSE 2.0 is used in ElseWare Corporation's Infinifont parametric font generation system.
+In 1996, during the W3C's draft process for CSS1, Hewlett Packard proposed a PANOSE syntax extension for font substitution. It was not included in the final CSS1 recommendation partly because of licensing concerns. Although Hewlett Packard Co. is not interested in profiting from PANOSE, it will negotiate licenses on a time and materials basis.PANOSE: An Ideal Typeface Matching System for the Web
+PANOSE 1.0 is supported in SVG since version 1.0 in the font-face element under panose-1 attribute.20.8.3 The 'font-face' element In CSS2, it is used in the panose-1 property,15.3.6 Descriptors for Matching: 'panose-1', 'stemv', 'stemh', 'slope', 'cap-height', 'x-height', 'ascent', and 'descent' which was removed in CSS2.1, and was reintroduced in CSS3 module: Web Fonts specifications.2.6. Descriptors for Matching: 'panose-1', 'stemv', 'stemh', 'slope', 'cap-height', 'x-height', 'ascent', and 'descent'
+In Office Open XML, it is part of WordProcessingML.WordML and Panose- Yes, Panose!
+PANOSE 1.0 is used in Rich Text Format Specification 1.7.7
+
+
+
+
+
+

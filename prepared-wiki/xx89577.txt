@@ -1,0 +1,58 @@
+[[Kronecker product]]
+
+CATEGORIES: Matrix theory
+
+In mathematics, the Kronecker product, denoted by ⊗, is an operation on two matrices of arbitrary size resulting in a block matrix. It is a generalization of the outer product (which is denoted by the same symbol) from vectors to matrices, and gives the matrix of the tensor product with respect to a standard choice of basis. The Kronecker product should not be confused with the usual matrix multiplication, which is an entirely different operation.
+The Kronecker product is named after Leopold Kronecker, even though there is little evidence that he was the first to define and use it. Indeed, in the past the Kronecker product was sometimes called the Zehfuss matrix, after Johann Georg Zehfuss who described the matrix operation we now know as the Kronecker product in 1858.
+
+==Definition==
+
+If A is an m × n matrix and B is a p × q matrix, then the Kronecker product A ⊗ B is the mp × nq block matrix:
+more explicitly:
+If A and B represent linear transformations V1 → W1 and V2 → W2, respectively, then A ⊗ B represents the tensor product of the two maps, V1 ⊗ V2 → W1 ⊗  W2.
+
+===Examples===
+
+==Properties==
+
+===Relations to other matrix operations===
+
+===Abstract properties===
+
+==Matrix equations==
+
+The Kronecker product can be used to get a convenient representation for some matrix equations. Consider for instance the equation AXB = C, where A, B and C are given matrices and the matrix X is the unknown. We can rewrite this equation as
+Here, vec(X) denotes the vectorization of the matrix X formed by stacking the columns of X into a single column vector.
+It now follows from the properties of the Kronecker product that the equation AXB = C has a unique solution if and only if A and B are nonsingular [tpl]harv|Horn|Johnson|1991|loc=Lemma 4.3.1[/tpl].
+If X is row-ordered into the column vector x then AXB can be also be written as [tpl]harv|Jain|1989|loc=2.8 Block Matrices and Kronecker Products[/tpl] (A ⊗ BT)x.
+
+==Related matrix operations [tpl]Anchor|Tracy-Singh and Khatri-Rao products[/tpl]==
+
+Two related matrix operations are the Tracy-Singh and Khatri-Rao products which operate on partitioned matrices.  Let the m × n matrix A be partitioned into the mi × nj blocks Aij and p × q matrix B into the pk × q[tpl]ell[/tpl] blocks Bkl with of course Σi mi = m, Σj nj = n, Σk pk = p and Σ[tpl]ell[/tpl] q[tpl]ell[/tpl] = q.
+
+===Tracy-Singh product===
+
+The Tracy-Singh productTracy, DS, Singh RP. 1972. A new matrix product and its applications in matrix differentiation. Statistica Neerlandica 26: 143–157.Liu S. 1999. Matrix results on the Khatri-Rao and Tracy-Singh products. Linear Algebra and its Applications 289: 267–277. (pdf)
+is defined as
+which means that the (ij)-th subblock of the mp × nq product A ○ B is the mi p × nj q matrix Aij ○ B, of which the (k[tpl]ell[/tpl])-th subblock equals the mi pk × nj q[tpl]ell[/tpl] matrix Aij ⊗ Bk[tpl]ell[/tpl]. Essentially the Tracy-Singh product is the pairwise Kronecker product for each pair of partitions in the two matrices.
+For example, if A and B both are 2 × 2 partitioned matrices e.g.:
+we get:
+
+===Khatri-Rao product===
+
+The Khatri-Rao product
+is defined as
+in which the ij-th block is the mipi × njqj sized Kronecker product of the corresponding blocks of A and B, assuming the number of row and column partitions of both matrices is equal.  The size of the product is then (Σi mipi) × (Σj njqj).  Proceeding with the same matrices as the previous example we obtain:
+This is a submatrix of the Tracy-Singh product of the two matrices (each partition in this example is a partition in a corner of the Tracy-Singh product).
+A column-wise Kronecker product of two matrices may also be called the Khatri-Rao product. This product assumes the partitions of the matrices are their columns.  In this case m1 = m, p1 = p, n = q and for each j: nj = pj = 1.  The resulting product is a mp × n matrix of which each column is the Kronecker product of the corresponding columns of A and B.  Using the matrices from the previous examples with the columns partitioned:
+so that:
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

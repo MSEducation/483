@@ -1,0 +1,67 @@
+[[Dispersion (optics)]]
+
+CATEGORIES: Optics, Glass physics
+
+In optics, dispersion is the phenomenon in which the phase velocity of a wave depends on its frequency, or equivalently when the group velocity depends on the frequency.
+Media having such a property are termed dispersive media. Dispersion is sometimes called ''chromatic'' dispersion to emphasize its wavelength-dependent nature, or group-velocity dispersion (GVD) to emphasize the role of the group velocity.
+Dispersion is most often described for light waves, but it may occur for any kind of wave that interacts with a medium or passes through an inhomogeneous geometry (e.g., a waveguide), such as sound waves. A material's dispersion for optical wavelengths is measured by its Abbe number, V, with low Abbe numbers corresponding to strong dispersion.
+
+Examples of dispersion
+
+The most familiar example of dispersion is probably a rainbow, in which dispersion causes the spatial separation of a white light into components of different wavelengths (different colors). However, dispersion also has an effect in many other circumstances: for example, GVD causes pulses to spread in optical fibers, degrading signals over long distances; also, a cancellation between group-velocity dispersion and nonlinear effects leads to soliton waves.
+
+Sources of dispersion
+
+There are generally two sources of dispersion: material dispersion and waveguide dispersion. Material dispersion comes from a frequency-dependent response of a material to waves. For example, material dispersion leads to undesired chromatic aberration in a lens or the separation of colors in a prism. Waveguide dispersion occurs when the speed of a wave in a waveguide (such as an optical fiber) depends on its frequency for geometric reasons, independent of any frequency dependence of the materials from which it is constructed. More generally, "waveguide" dispersion can occur for waves propagating through any inhomogeneous structure (e.g., a photonic crystal), whether or not the waves are confined to some region. In general, both types of dispersion may be present, although they are not strictly additive. Their combination leads to signal degradation in optical fibers used for telecommunications, because the varying delay in arrival time between different components of a signal "smears out" the signal in time.
+
+Material dispersion in optics
+
+Material dispersion can be a desirable or undesirable effect in optical applications. The dispersion of light by glass prisms is used to construct spectrometers and spectroradiometers. Holographic gratings are also used, as they allow more accurate discrimination of wavelengths. However, in lenses, dispersion causes chromatic aberration, an undesired effect that may degrade images in microscopes, telescopes and photographic objectives.
+The phase velocity, v, of a wave in a given uniform medium is given by
+where c is the speed of light in a vacuum and n is the refractive index of the medium.
+In general, the refractive index is some function of the frequency f of the light, thus n = n(f), or alternatively, with respect to the wave's wavelength n = n(λ). The wavelength dependence of a material's refractive index is usually quantified by its Abbe number or its coefficients in an empirical formula such as the Cauchy or Sellmeier equations.
+The most commonly seen consequence of dispersion in optics is the separation of white light into a color spectrum by a prism. From Snell's law it can be seen that the angle of refraction of light in a prism depends on the refractive index of the prism material. Since that refractive index varies with wavelength, it follows that the angle that the light is refracted by will also vary with wavelength, causing an angular separation of the colors known as angular dispersion.
+For visible light, refraction indices n of most transparent materials (e.g., air, glasses) decrease with increasing wavelength λ:
+or alternatively:
+In this case, the medium is said to have normal dispersion. Whereas, if the index increases with increasing wavelength (which is typically the case for X-rays), the medium is said to have anomalous dispersion.
+At the interface of such a material with air or vacuum (index of ~1), Snell's law predicts that light incident at an angle θ to the normal will be refracted at an angle arcsin(sin(θ)/n). Thus, blue light, with a higher refractive index, will be bent more strongly than red light, resulting in the well-known rainbow pattern.
+
+Group and phase velocity
+
+Another consequence of dispersion manifests itself as a temporal effect. The formula v = c / n calculates the phase velocity of a wave; this is the velocity at which the phase of any one frequency component of the wave will propagate. This is not the same as the group velocity of the wave, that is the rate at which changes in amplitude (known as the envelope of the wave) will propagate. For a homogeneous medium, the group velocity vg is related to the phase velocity v by (here λ is the wavelength in vacuum, not in the medium):
+The group velocity vg is often thought of as the velocity at which energy or information is conveyed along the wave. In most cases this is true, and the group velocity can be thought of as the signal velocity of the waveform. In some unusual circumstances, called cases of anomalous dispersion, the rate of change of the index of refraction with respect to the wavelength changes sign (becoming positive), in which case it is possible for the group velocity to exceed the speed of light (vg > c). Anomalous dispersion occurs, for instance, where the wavelength of the light is close to an absorption resonance of the medium. When the dispersion is anomalous, however, group velocity is no longer an indicator of signal velocity. Instead, a signal travels at the speed of the wavefront, which is c irrespective of the index of refraction. Wave Propagation and Group Velocity. (Academic Press: San Diego, 1960). See esp. Ch. 2 by A. Sommerfeld. Recently, it has become possible to create gases in which the group velocity is not only larger than the speed of light, but even negative. In these cases, a pulse can appear to exit a medium before it enters.
+The group velocity itself is usually a function of the wave's frequency. This results in group velocity dispersion (GVD), which causes a short pulse of light to spread in time as a result of different frequency components of the pulse travelling at different velocities. GVD is often quantified as the group delay dispersion parameter (again, this formula is for a uniform medium only):
+If D is less than zero, the medium is said to have positive dispersion. If D is greater than zero, the medium has negative dispersion. If a light pulse is propagated through a normally dispersive medium, the result is the higher frequency components travel slower than the lower frequency components. The pulse therefore becomes positively chirped, or up-chirped, increasing in frequency with time. Conversely, if a pulse travels through an anomalously dispersive medium, high frequency components travel faster than the lower ones, and the pulse becomes negatively chirped, or down-chirped, decreasing in frequency with time.
+The result of GVD, whether negative or positive, is ultimately temporal spreading of the pulse. This makes dispersion management extremely important in optical communications systems based on optical fiber, since if dispersion is too high, a group of pulses representing a bit-stream will spread in time and merge, rendering the bit-stream unintelligible. This limits the length of fiber that a signal can be sent down without regeneration. One possible answer to this problem is to send signals down the optical fibre at a wavelength where the GVD is zero (e.g., around 1.3–1.5 μm in silica fibres), so pulses at this wavelength suffer minimal spreading from dispersion—in practice, however, this approach causes more problems than it solves because zero GVD unacceptably amplifies other nonlinear effects (such as four wave mixing). Another possible option is to use soliton pulses in the regime of anomalous dispersion, a form of optical pulse which uses a nonlinear optical effect to self-maintain its shape—solitons have the practical problem, however, that they require a certain power level to be maintained in the pulse for the nonlinear effect to be of the correct strength. Instead, the solution that is currently used in practice is to perform dispersion compensation, typically by matching the fiber with another fiber of opposite-sign dispersion so that the dispersion effects cancel; such compensation is ultimately limited by nonlinear effects such as self-phase modulation, which interact with dispersion to make it very difficult to undo.
+Dispersion control is also important in lasers that produce short pulses. The overall dispersion of the optical resonator is a major factor in determining the duration of the pulses emitted by the laser. A pair of prisms can be arranged to produce net negative dispersion, which can be used to balance the usually positive dispersion of the laser medium. Diffraction gratings can also be used to produce dispersive effects; these are often used in high-power laser amplifier systems. Recently, an alternative to prisms and gratings has been developed: chirped mirrors. These dielectric mirrors are coated so that different wavelengths have different penetration lengths, and therefore different group delays. The coating layers can be tailored to achieve a net negative dispersion.
+
+Dispersion in waveguides
+
+Optical fibers, which are used in telecommunications, are among the most abundant types of waveguides. Dispersion in these fibers is one of the limiting factors that determine how much data can be transported on a single fiber.
+The transverse modes for waves confined laterally within a waveguide generally have different speeds (and field patterns) depending upon their frequency (that is, on the relative size of the wave, the wavelength) compared to the size of the waveguide.
+A similar effect due to a somewhat different phenomenon is modal dispersion, caused by a waveguide having multiple modes at a given frequency, each with a different speed. A special case of this is polarization mode dispersion (PMD), which comes from a superposition of two modes that travel at different speeds due to random imperfections that break the symmetry of the waveguide. Modal dispersion can also be used to generate large, tunable group delay dispersion in a compact footprint using chromo-modal dispersion.E.D. Diebold et al., "Giant tunable optical dispersion using chromo-modal excitation of a multimode waveguide," Optics Express 19 (24) 2011
+
+Higher-order dispersion over broad bandwidths
+
+When a broad range of frequencies (a broad bandwidth) is present in a single wavepacket, such as in an ultrashort pulse or a chirped pulse or other forms of spread spectrum transmission, it may not be accurate to approximate the dispersion by a constant over the entire bandwidth, and more complex calculations are required to compute effects such as pulse spreading.
+
+Dispersion in gemology
+
+In the technical terminology of gemology, dispersion is the difference in the refractive index of a material at the B and G (686.7 nm and 430.8 nm) or C and F (656.3 nm and 486.1 nm) Fraunhofer wavelengths, and is meant to express the degree to which a prism cut from the gemstone shows "fire", or color. Dispersion is a material property. Fire depends on the dispersion, the cut angles, the lighting environment, the refractive index, and the viewer.
+
+Dispersion in imaging
+
+In photographic and microscopic lenses, dispersion causes chromatic aberration, which causes the different colors in the image not to overlap properly. Various techniques have been developed to counteract this, such as the use of achromats, multielement lenses with glasses of different dispersion. They are constructed in such a way that the chromatic aberrations of the different parts cancel out.
+
+Dispersion in pulsar timing
+
+with units of parsecs per cubic centimetre (1pc/cm3 = 30.857×1021 m−2).R., and Kramer, M., Handbook of Pulsar Astronomy, vol. 4 of Cambridge Observing Handbooks for Research Astronomers, (Cambridge University Press, Cambridge, U.K.; New York, U.S.A, 2005), 1st edition.
+Re-writing the above equation in terms of DM allows one to determine the DM by measuring pulse arrival times at multiple frequencies. This in turn can be used to study the interstellar medium, as well as allow for observations of pulsars at different frequencies to be combined.
+
+
+
+
+
+
+
+

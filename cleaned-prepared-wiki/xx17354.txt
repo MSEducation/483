@@ -1,0 +1,132 @@
+[[Lp space]]
+
+CATEGORIES: Normed spaces, Banach spaces, Mathematical series, Function spaces
+
+In mathematics, the L''p'' spaces are function spaces defined using a natural generalization of the p-norm for finite-dimensional vector spaces. They are sometimes called Lebesgue spaces, named after Henri Lebesgue .
+L''p'' spaces form an important class of Banach spaces in functional analysis, and of topological vector spaces.
+Lebesgue spaces have applications in physics, statistics, finance, engineering, and other disciplines.
+
+The -norm in finite dimensions
+
+The length of a vector  is usually given by the Euclidean norm:
+The Euclidean distance between two points -norms generalizes these two examples and has an abundance of applications in many parts of mathematics, physics, and computer science.
+
+Definition
+
+For a real number  is defined by
+The Euclidean norm from above falls into this class and is the 2-norm, and the 1-norm is the norm that corresponds to the Manhattan distance.
+The . It turns out that this limit is equivalent to the following definition:
+For all -norms and maximum norm as defined above indeed satisfy the properties of a "length function" (or norm), which are that:
+Abstractly speaking, this means that .
+
+=Relations between -norms=
+
+The grid distance ("Manhattan distance") between two points is never shorter than the length of the line segment between them (the Euclidean or "as the crow flies" distance). Formally, this means that the Euclidean norm of any vector is bounded by its 1-norm:
+This fact generalizes to :
+For the opposite direction, the following relation between the 1-norm and the 2-norm is known:
+This inequality depends on the dimension  of the underlying vector space and follows directly from the Cauchy–Schwarz inequality.
+In general, for vectors in  where {{math|0 
+When 0 In , the formula
+defines an absolutely homogeneous function of degree 1 for .
+However, the function
+defines a metric. The metric space  is denoted by ℓnp.
+Although the  defined below, is no longer locally convex.
+
+When p = 0
+
+There is one ℓ0 norm and another function called the ℓ0 "norm" (with quotation marks).
+The mathematical definition of the ℓ0 norm was established by Banach's Theory of Linear Operations. The space of sequences has a complete metric topology provided by the F-norm 
+which is discussed by Stefan Rolewicz in Metric Linear Spaces. The ℓ0-normed space is studied in functional analysis, probability theory, and harmonic analysis.
+Another function was called the ℓ0 "norm" by David Donoho — whose quotation marks warn that this function is not a proper norm — is the number of non-zero entries of the vector x. Many authors abuse terminology by omitting the quotation marks. Defining 00 = 0, the zero "norm" of x is equal to 
+This is not a norm (B-norm, with "B" for Banach) because it is not homogeneous. Despite these defects as a mathematical norm, the non-zero counting "norm" has uses in scientific computing, information theory, and statistics – notably in compressed sensing in signal processing and computational harmonic analysis.
+
+The -norm in countably infinite dimensions
+
+The . This contains as special cases:
+The space of sequences has a natural vector space structure by applying addition and scalar multiplication coordinate by coordinate. Explicitly, the vector sum and the scalar action for infinite sequences of real (or complex) numbers are given by:
+Define the -norm:
+Here, a complication arises, namely that the series on the right is not always convergent, so for example, the sequence made up of only ones, -norm is finite.
+One can check that as  grows larger. For example, the sequence
+is not in , as the series
+diverges for .
+One also defines the -norm using the supremum:
+and the corresponding space , page 16
+if the right-hand side is finite, or the left-hand side is infinite. Thus, we will consider .
+The -norm.
+
+ spaces
+
+Let {{math|1 ≤ p The set of such functions forms a vector space, with the following natural operations:
+for every scalar .
+That the sum of two -th power integrable follows from the inequality
+This can be made into a normed vector space in a standard way; one simply takes the quotient space with respect to the kernel of ,
+In the quotient space, two functions  almost everywhere. The resulting normed vector space is, by definition,
+For  in this set, its essential supremum serves as an appropriate norm:
+As before, if there exists , then
+For  is complete is often referred to as the Riesz-Fischer theorem. Completeness can be checked using the convergence theorems for Lebesgue integrals.
+When the underlying measure space . The above definitions generalize to Bochner spaces.
+
+Special cases
+
+Similar to the  is defined by
+The additional inner product structure allows for a richer theory, with applications to, for instance, Fourier series and quantum mechanics. Functions in .
+If we use complex-valued functions, the space  space by multiplication.
+For .
+
+Properties of Lp spaces
+
+Dual spaces
+
+The dual space (the space of all continuous linear functionals) of  defined by
+The fact that .
+For :
+This map coincides with the canonical embedding  is onto, as composition of two onto isometries, and this proves reflexivity.
+If the measure ).
+The dual of  See Sections 14.77 and 27.44--47
+
+Embeddings
+
+Colloquially, if 
+In both cases the embedding is continuous, in that the identity operator is a bounded linear map from
+ in the first case,
+and  in the second.
+(This is a consequence of the closed graph theorem
+and properties of  has finite measure,
+one can make the following explicit calculation via Jensen's inequality:
+The constant appearing in the above inequality is optimal, in the sense that the operator norm of the identity  is precisely
+the case of equality being achieved exactly when -a.e.
+
+Dense subspaces
+
+Throughout this section we assume that: {{math|1 ≤ p Let  is one of the form
+where .
+More can be said when  containing the open sets.
+Suppose  such that
+It follows that there exists  such that
+If .
+This applies in particular when  and more generally of products of bounded intervals.
+Several properties of general functions in , in the following sense: 
+where
+
+Applications
+
+Lp spaces are widely used in mathematics and applications.
+
+Hausdorff–Young inequality
+
+The Fourier transform for the real line (resp. for periodic functions, see Fourier series), maps Lp(R) to Lq(R) (resp. Lp(T) to ℓq), where 1 ≤ p ≤ 2 and 1/p + 1/q = 1. This is a consequence of the Riesz-Thorin interpolation theorem, and is made precise with the Hausdorff–Young inequality.
+By contrast, if p > 2, the Fourier transform does not map into Lq.
+
+Hilbert spaces
+
+Hilbert spaces are central to many applications, from quantum mechanics to stochastic calculus. The spaces L2 and ℓ2 are both Hilbert spaces. In fact, by choosing a Hilbert basis, one sees that all Hilbert spaces are isometric to ℓ2(E), where E is a set with an appropriate cardinality.
+
+Statistics
+
+In statistics, measures of central tendency and statistical dispersion, such as the mean, median, and standard deviation, are defined in terms of Lp metrics, and measures of central tendency can be characterized as solutions to variational problems.
+
+
+
+
+
+

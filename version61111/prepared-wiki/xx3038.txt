@@ -1,0 +1,86 @@
+[[Euler–Maclaurin formula]]
+
+CATEGORIES: Approximation theory, Asymptotic analysis, Hilbert space, Numerical integration (quadrature), Articles containing proofs, Theorems in analysis, Summability methods
+
+In mathematics, the Euler–Maclaurin formula provides a powerful connection between integrals (see calculus) and sums.  It can be used to approximate integrals by finite sums, or conversely to evaluate finite sums and infinite series using integrals and the machinery of calculus. For example, many asymptotic expansions are derived from the formula, and Faulhaber's formula for the sum of powers is an immediate consequence.
+The formula was discovered independently by Leonhard Euler and Colin Maclaurin around 1735 (and later generalized as Darboux's formula).  Euler needed it to compute slowly converging infinite series while Maclaurin used it to calculate integrals.
+
+==The formula==
+
+can be approximated by the sum (or vice versa)
+(see trapezoidal rule). The Euler–Maclaurin formula provides expressions for the difference between the sum and the integral in terms of the higher derivatives ƒ(k) at the end points of the interval m and n.  Explicitly, for any natural number p, we have
+where B1 = −1/2, B2 = 1/6, B3 = 0, B4 = −1/30, B5 = 0, B6 = 1/42, B7 = 0, B8 = −1/30, … are the Bernoulli numbers, and R is an error term which is normally small for suitable values of p and depends on n, m, p and f. (The formula is often written with the subscript taking only even values, since the odd Bernoulli numbers are zero except for B1.)
+Note that
+Hence, we may also write the formula as follows:
+or, more compactly, 
+
+===The remainder term===
+
+The remainder term R is most easily expressed using the periodic Bernoulli polynomials Pn(x). The Bernoulli polynomials Bn(x), n = 0, 1, 2, … are defined recursively as
+Then the periodic Bernoulli functions Pn are defined as
+is not greater than x. Then, in terms of Pn(x), the remainder
+term R can be written as
+or equivalently, integrating by parts, assuming ƒ(2p) is differentiable again and recalling that the odd Bernoulli numbers are zero:
+When n > 0, it can be shown that 
+where ζ denotes the Riemann zeta function (see Lehmer; one approach to prove the inequality is to obtain the Fourier series for the polynomials Bn).  The bound is achieved for even n when x is zero.  Using this inequality, the size of the remainder term can be estimated using
+
+==Applications==
+
+===The Basel problem===
+
+The Basel problem asks to determine the sum
+Euler computed this sum to 20 decimal places with only a few terms of the Euler–Maclaurin formula in 1735. This probably convinced him that the sum equals π2 / 6, which he proved in the same year.David J. Pengelley, "Dances between continuous and discrete: Euler's summation formula", in: Robert Bradley and Ed Sandifer (Eds), Proceedings, Euler 2K+2 Conference (Rumford, Maine, 2002), Euler Society, 2003. Parseval's identity for the Fourier series of f(x) = x gives the same result.
+
+===Sums involving a polynomial===
+
+If f is a polynomial and p is big enough, then the remainder term vanishes.  For instance, if f(x) = x3, we can choose p = 2 to obtain after simplification
+(see Faulhaber's formula).
+
+===Numerical integration===
+
+The Euler–Maclaurin formula is also used for detailed error analysis in numerical quadrature. It explains the superior performance of the trapezoidal rule on smooth periodic functions and is used in certain extrapolation methods.  Clenshaw–Curtis quadrature is essentially a change of variables to cast an arbitrary integral in terms of integrals of periodic functions where the Euler–Maclaurin approach is very accurate (in that particular case the Euler–Maclaurin formula takes the form of a discrete cosine transform). This technique is known as a periodizing transformation.
+
+===Asymptotic expansion of sums===
+
+In the context of computing asymptotic expansions of sums and series, usually the most useful form of the Euler–Maclaurin formula is
+
+===Examples===
+
+==Proofs==
+
+===Derivation by mathematical induction===
+
+We follow the argument given in (Apostol).[tpl]cite doi|10.2307/2589145[/tpl]
+The Bernoulli polynomials Bn(x), n = 0, 1, 2, … may be defined recursively as follows:
+The first several of these are
+The values Bn(0) are the Bernoulli numbers.  Notice that for n ≥ 2 we have 
+For n = 1,
+We define the periodic Bernoulli functions Pn by
+Let k be an integer, and consider the integral
+where
+Integrating by parts, we get
+Summing the above from k = 0 to k = n − 1, we get
+Adding (ƒ(0) + ƒ(n))/2 to both sides and rearranging, we have
+The last two terms therefore give the error when the integral is taken to approximate the sum.
+Next, consider
+where
+Integrating by parts again, we get,
+Then summing from k = 0 to k = n − 1, and then replacing the last integral in (1) with what we have thus shown to be equal to it, we have
+By now the reader will have guessed that this process can be iterated.  In this way we get a proof of the Euler–Maclaurin summation formula by mathematical induction, in which the induction step relies on integration by parts and on the identities for periodic Bernoulli functions.
+
+===Derivation by functional analysis===
+
+The Euler–MacLaurin formula can be understood as a curious application of some ideas from Banach spaces and functional analysis.Pierre Gaspard, "r-adic one-dimensional maps and the Euler summation formula", Journal of Physics A, 25 (letter) L483–L485 (1992). (Describes the eigenfunctions of the transfer operator for the Bernoulli map) 
+where δ is the Dirac delta function. The above is a formal notation for the idea of taking derivatives at a point; thus one has
+and
+The Euler–MacLaurin summation formula then follows as an integral over the latter. One has
+Then setting x = 0 and rearranging terms, one obtains an expression for ƒ(0). Note that the Bernoulli numbers are defined as Bn = Bn(0), and that these vanish for odd n greater than 1.
+The Euler–MacLaurin summation formula can thus be seen to be an outcome of the representation of functions on the unit interval by the direct product of the Bernoulli polynomials and their duals.  Note, however, that the representation is not complete on the set of square-integrable functions. The expansion in terms of the Bernoulli polynomials has a non-trivial kernel.  In particular, sin(2πnx) lies in the kernel; the integral of sin(2πnx) is vanishing on the unit interval, as is the difference of its derivatives at the endpoints.  This is the essentially the reason for the restriction to exponential type of less than 2π: the function sin(2πnz) grows faster than e2π|z| along the imaginary axis!  Essentially, Euler-MacLaurin summation can be applied whenever Carlson's theorem holds; the Euler-MacLaurin formula is essentially a result obtaining from the study of finite differences and Newton series.
+
+==See also==
+
+==Notes==
+
+==References==
+
+

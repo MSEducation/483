@@ -1,0 +1,15 @@
+[[Excess-3]]
+
+CATEGORIES: Binary arithmetic, Numeral systems
+
+Excess-3 binary (XS-3) or Stibitz code, also called biased representation or Excess-''N, is a complementary  BCD code and numeral system. Excess-3 was used on some older computers as well as in cash registers and hand held portable electronic calculators of the 1970's, among other uses. It is a way to represent values with a balanced number of positive and negative numbers using a pre-specified number N'' as a biasing value. It is a nonweighted code. In XS-3, numbers are represented as decimal digits, and each digit is represented by four bits as the digit value plus 3 (the "excess" amount):
+To encode a number such as 127, then, one simply encodes each of the decimal digits as above, giving (0100, 0101, 1010).
+The primary advantage of XS-3 coding over non-biased coding is that a decimal number can be nines' complemented (for subtraction) as easily as a binary number can be ones' complemented; just invert all bits. In addition, when the sum of two XS-3 digits is greater than 9, the carry bit of a four
+bit adder will be set high. This works because, when adding two numbers that are greater or equal to zero, an "excess" value of six results in the sum. Since
+a four bit integer can only hold values 0 to 15, an excess of six means that any sum over nine will overflow.
+Adding Excess-3 works on a different algorithm than non-biased decimal coding or regular binary positional system numbers.  When you add two XS-3 numbers together, the result is not an XS-3 number. For instance, when you add 1 and 0 in XS-3 the answer seems to be 4 instead of 1. In order to correct this problem, when you are finished adding each digit, you have to remove the extra bias by subtracting binary 0011 (decimal 3 in unbiased binary) if the resulting digit is less than decimal 10 and subtracting binary 1101 (decimal 13 in unbiased binary), if an overflow has occurred.  Note that, in 4-bit binary, subtracting binary 1101 is equivalent to adding 0011 and vice-versa.
+BCD to Excess-3 converter example (VHDL code).
+
+==See also==
+
+

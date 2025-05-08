@@ -1,0 +1,53 @@
+[[Computable number]]
+
+CATEGORIES: Computability theory, Theory of computation
+
+In mathematics, computable numbers are the real numbers that can be computed to within any desired precision by a finite, terminating algorithm. They are also known as the recursive numbers or the computable reals.
+Equivalent definitions can be given using μ-recursive functions, Turing machines, or λ-calculus as the formal representation of algorithms. The computable numbers form a real closed field and can be used in the place of real numbers for many, but not all, mathematical purposes.
+
+==Informal definition using a Turing machine as example==
+
+In the following, Marvin Minsky defines the numbers to be computed in a manner similar to those defined by Alan Turing in 1936; i.e., as "sequences of digits interpreted as decimal fractions" between 0 and 1:
+The key notions in the definition are (1) that some n is specified at the start, (2) for any n the computation only takes a finite number of steps, after which the machine produces the desired output and terminates.
+An alternate form of (2) – the machine successively prints all n of the digits on its tape, halting after printing the nth – emphasizes Minsky's observation: (3) That by use of a Turing machine, a finite definition – in the form of the machine's table – is being used to define what is a potentially-infinite string of decimal digits.
+This is however not the modern definition which only requires the result be accurate to within any given accuracy. The informal definition above is subject to a rounding problem called the table-maker's dilemma whereas the modern definition is not.
+
+==Formal definition==
+
+There are two similar definitions that are equivalent:
+A real number is computable if and only if there is a computable Dedekind cut D converging to it. The function D is unique for each irrational computable number (although of course two different programs may provide the same function).
+A complex number is called computable if its real and imaginary parts are computable.
+
+==Properties==
+
+While the set of real numbers is uncountable, the set of computable numbers is only countable and thus almost all real numbers are not computable. The computable numbers can be counted by assigning a Gödel number to each Turing machine definition. This gives a function from the naturals to the computable reals. Although the computable numbers are an ordered field, the set of Gödel numbers corresponding to computable numbers is not itself computably enumerable, because it is not possible to effectively determine which Gödel numbers correspond to Turing machines that produce computable reals. In order to produce a computable real, a Turing machine must compute a total function, but the corresponding decision problem is in Turing degree 0′′. Thus Cantor's diagonal argument cannot be used to produce uncountably many computable reals; at best, the reals formed from this method will be uncomputable.
+The arithmetical operations on computable numbers are themselves computable in the sense that whenever real numbers a and b are computable then the following real numbers are also computable: a + b, a - b, ab, and a/b if b is nonzero.
+The computable real numbers do not share all the properties of the real numbers used in analysis. For example, the least upper bound of a bounded increasing computable sequence of computable real numbers need not be a computable real number (Bridges and Richman, 1987:58). A sequence with this property is known as a Specker sequence, as the first construction is due to E. Specker (1949). Despite the existence of counterexamples such as these, parts of calculus and real analysis can be developed in the field of computable numbers, leading to the study of computable analysis. 
+While the full order relation is not computable, the restriction of it to pairs of unequal numbers is computable. That is, there is a program that takes an input two Turing machines A and B approximating numbers a and b, where a≠b, and outputs whether ab. It is sufficient to use ε-approximations where εb.
+Every computable number is definable, but not vice versa. There are many definable, noncomputable real numbers, including:
+Both of these examples in fact define an infinite set of definable, uncomputable numbers, one for each Universal Turing machine.
+A real number is computable if and only if the set of natural numbers it represents (when written in binary and viewed as a characteristic function) is computable.
+Every computable number is arithmetical.
+The set of computable real numbers (as well as every countable, densely ordered subset of reals without ends) is order-isomorphic to the set of rational numbers.
+
+==Digit strings and the Cantor and Baire spaces==
+
+Turing's original paper defined computable numbers as follows:
+(Note that the decimal expansion of a only refers to the digits following the decimal point.)
+
+==Can computable numbers be used instead of the reals?==
+
+To actually develop analysis over computable numbers, some care must be taken. For example, if one uses the classical definition of a sequence, the set of computable numbers is not closed under the basic operation of taking the supremum of a bounded sequence (for example, consider a Specker sequence). This difficulty is addressed by considering only sequences which have a computable modulus of convergence. The resulting mathematical theory is called computable analysis.
+
+==Implementation==
+
+There are some computer packages that work with computable real numbers,
+representing the real numbers as programs computing approximations.
+One example is the RealLib package (reallib home page).
+
+==See also==
+
+==References==
+
+Computable numbers were defined independently by Turing, Post and Church. See The Undecidable, ed. Martin Davis, for further original papers.
+

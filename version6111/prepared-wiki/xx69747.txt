@@ -1,0 +1,81 @@
+[[Skip list]]
+
+CATEGORIES: 1989 introductions, Linked lists, Probabilistic data structures
+
+In computer science, a skip list is a data structure that allows fast search within an ordered sequence of elements. Fast search is made possible by maintaining a linked hierarchy of subsequences, each skipping over fewer elements. Searching starts in the sparsest subsequence until two consecutive elements have been found, one smaller and one larger than the element searched for. Via the linked hierarchy these two elements link to elements of the next sparsest subsequence where searching is continued until finally we are searching in the full sequence. The elements that are skipped over may be chosen probabilistically.[tpl]cite doi|10.1145/78973.78977[/tpl]Deterministic skip lists
+
+==Description==
+
+===Implementation details===
+
+The elements used for a skip list can contain more than one pointer since they can participate in more than one list.
+Insertions and deletions are implemented much like the corresponding linked-list operations, except that "tall" elements must be inserted into or deleted from more than one linked list.
+Alternatively, we could make the level structure quasi-random in the following way:
+ make all nodes level 1
+ j ← 1
+ '''while''' the number of nodes at level j > 1 '''do'''
+   '''for''' each i'th node at level j '''do'''
+     '''if''' i is odd 
+       '''if''' i is not the last node at level j
+         randomly choose whether to promote it to level j+1
+       '''else'''
+         do not promote
+       '''end if'''
+     '''else if''' i is even and node i-1 was not promoted
+       promote it to level j+1
+     '''end if'''
+   '''repeat'''
+   j ← j + 1
+ '''repeat'''
+The advantage of this quasi-randomness is that it doesn't give away nearly as much level-structure related information to an adversarial user as the de-randomized one.  This is desirable because an adversarial user who is able to tell which nodes are not at the lowest level can pessimize performance by simply deleting higher-level nodes. The search performance is still guaranteed to be logarithmic.
+A skip list does not provide the same absolute worst-case performance guarantees as more traditional balanced tree data structures, because it is always possible (though with very low probability) that the coin-flips used to build the skip list will produce a badly balanced structure.  However, they work well in practice, and the randomized balancing scheme has been argued to be easier to implement than the deterministic balancing schemes used in balanced binary search trees.  Skip lists are also useful in parallel computing, where insertions can be done in different parts of the skip list in parallel without any global rebalancing of the data structure. Such parallelism can be especially advantageous for resource discovery in an ad-hoc Wireless network because a randomized skip list can be made robust to the loss of any single node.[tpl]cite paper | last=Shah | first=Gauri Ph.D. | coauthors=James Aspnes | title=Distributed Data Structures for Peer-to-Peer Systems | date=December 2003 | url=http://www.cs.yale.edu/homes/shah/pubs/thesis.pdf | format=PDF | accessdate=2008-09-23[/tpl]
+There has been some evidence that skip lists have worse real-world performance and space requirements than B trees due to memory locality and other issues.http://resnet.uoregon.edu/~gurney_j/jmpc/skiplist.html
+
+===Indexable skiplist===
+
+For every link, also store the width of the link.  The width is defined as the number of bottom layer links being traversed by each of the higher layer "express lane" links.
+For example, here are the widths of the links in the example at the top of the page:
+    1                               10
+  o---> o---------------------------------------------------------> o    Top level
+    1           3              2                    5
+  o---> o---------------> o---------> o---------------------------> o    Level 3
+    1        2        1        2                    5
+  o---> o---------> o---> o---------> o---------------------------> o    Level 2
+    1     1     1     1     1     1     1     1     1     1     1 
+  o---> o---> o---> o---> o---> o---> o---> o---> o---> o---> o---> o    Bottom level
+                                         ''' '''
+ Head  1st   2nd   3rd   4th   5th   6th   7th   8th   9th   10th  NIL
+       Node  Node  Node  Node  Node  Node  Node  Node  Node  Node
+Notice that the width of a higher level link is the sum of the component links below it (i.e. the width 10 link spans the links of widths 3, 2 and 5 immediately below it).  Consequently, the sum of all widths is the same on every level (10 + 1 = 1 + 3 + 2 + 5 = 1 + 2 + 1 + 2 + 5).
+To index the skiplist and find the i'th value, traverse the skiplist while counting down the widths of each traversed link.  Descend a level whenever the upcoming width would be too large.
+For example, to find the node in the fifth position (Node 5), traverse a link of width 1 at the top level.  Now four more steps are needed but the next width on this level is ten which is too large, so drop one level.  Traverse one link of width 3.  Since another step of width 2 would be too far, drop down to the bottom level.  Now traverse the final link of width 1 to reach the target running total of 5 (1+3+1). 
+  '''function''' lookupByPositionIndex(i)
+      node ← head
+      i ← i + 1                           ''# don't count the head as a step''
+      '''for''' level '''from''' top '''to''' bottom '''do'''
+           '''while''' i ≥ node.width[level] '''do''' ''# if next step is not too far''
+               i ← i - node.width[level]  ''# subtract the current width''
+               node ← node.next[level]    ''# traverse forward at the current level''
+           '''repeat'''
+      '''repeat'''
+      '''return''' node.value
+  '''end function'''
+This method of implementing indexing is detailed in Section 3.4 Linear List Operations in "A skip list cookbook" by William Pugh.
+
+==History==
+
+Skip lists were first described in 1990 by William Pugh.
+To quote the author:
+
+==Usages==
+
+List of applications and frameworks that use skip lists:
+Skip lists are also used in distributed applications (where the nodes represent physical computers, and pointers represent network connections) and for implementing highly scalable concurrent priority queues with less lock contention,[tpl]cite doi|10.1109/IPDPS.2000.845994[/tpl] or even without locking,[tpl]cite doi|10.1109/IPDPS.2003.1213189[/tpl][tpl]cite doi|10.1145/1011767.1011776[/tpl][tpl]cite doi|10.1109/ISPA.2008.90[/tpl] as well lockless concurrent dictionaries.[tpl]cite doi|10.1145/967900.968188[/tpl] There are also several US patents for using skip lists to implement (lockless) priority queues and concurrent dictionaries.[tpl]citation needed|date=October 2011[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

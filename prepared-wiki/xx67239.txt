@@ -1,0 +1,50 @@
+[[Affine space]]
+
+CATEGORIES: Affine geometry, Linear algebra
+
+In mathematics, an affine space is a geometric structure that generalizes the affine properties of Euclidean space. In an affine space, there is no distinguished point that serves as an origin. Hence, no vector has a fixed origin and no vector can be uniquely associated to a point. One can subtract two points to get a vector, or add a vector to a point to get another point, but one cannot add points. 
+The solution set of an inhomogeneous linear equation is either empty or an affine subspace. In particular, a point is a zero-dimensional affine subspace.
+
+==Informal descriptions==
+
+The following characterization may be easier to understand than the usual formal definition: an affine space is what is left of a vector space after you've forgotten which point is the origin (or, in the words of the French mathematician Marcel Berger, "An affine space is nothing more than a vector space whose origin we try to forget about, by adding translations to the linear maps"[tpl]Harvard citation no brackets | Berger | 1987 | p=32[/tpl]).  Imagine that Alice knows that a certain point is the actual origin, but Bob believes that another point — call it [tpl]math|p[/tpl] — is the origin.  Two vectors, [tpl]math|a[/tpl] and [tpl]math|b[/tpl], are to be added.  Bob draws an arrow from point [tpl]math|p[/tpl] to point [tpl]math|a[/tpl] and another arrow from point [tpl]math|p[/tpl] to point [tpl]math|b[/tpl], and completes the parallelogram to find what Bob thinks is [tpl]math|a + b[/tpl], but Alice knows that he has actually computed
+Similarly, Alice and Bob may evaluate any linear combination of [tpl]math|a[/tpl] and [tpl]math|b[/tpl], or of any finite set of vectors, and will generally get different answers. However, if the sum of the coefficients in a linear combination is 1, then Alice and Bob will arrive at the same answer.
+If Alice travels to 
+then Bob can similarly travel to
+Then, for all coefficients [tpl]math|1=λ + (1 − λ) = 1[/tpl], Alice and Bob describe the same point with the same linear combination, starting from different origins.
+While Alice knows the "linear structure", both Alice and Bob know the "affine structure"—i.e. the values of affine combinations, defined as linear combinations in which the sum of the coefficients is 1.  An underlying set with an affine structure is an affine space.
+
+==Definition==
+
+An affine space[tpl]Citation|author=Berger, Marcel|chapter=Affine spaces|year=1984|page=11|url=http://books.google.com/books?id=VXRppKJwpaAC&pg=PA11|title=Problems in Geometry|isbn=9780387909714[/tpl] is a set [tpl]mvar|A[/tpl] together with a vector space [tpl]mvar|V[/tpl] and a faithful and transitive group action of [tpl]mvar|V[/tpl] (with addition of vectors as group action) on [tpl]mvar|A[/tpl]. In particular, [tpl]mvar|V[/tpl] being an abelian group, it turns out that the only vector acting with a fixpoint is 0 (i.e., the action is simply transitive, hence both transitive and free, whence free) and there is a single orbit (the action is transitive).[tpl]Harvard citation no brackets | Berger | 1987 | p=33[/tpl] In other words, an affine space is a principal homogeneous space over the additive group of a vector space.[tpl]Citation|title=Principal Homogeneous Space Over Abelian Varieties|author=S. Lang and J. Tate|journal=American Journal of Mathematics|volume=80|issue=3|year=1958|pages=659–684|doi=10.2307/2372778[/tpl]
+Explicitly, an affine space is a point set [tpl]mvar|A[/tpl] together with a map
+with the following properties:[tpl]citation | last1=Snapper|first1=Ernst|last2=Troyer|first2=Robert J. |title = Metric Affine Geometry| year=1989|page=6[/tpl][tpl]Citation|author=Tarrida, Agusti R.|chapter=Affine spaces|year=2011|pages=1–2|url=http://books.google.com/books?id=UZvxUBzraGAC&pg=PA1|title=Affine Maps, Euclidean Motions and Quadrics|isbn=9780857297105[/tpl]
+The vector space [tpl]mvar|V[/tpl] is said to underlie the affine space [tpl]mvar|A[/tpl] and is also called the difference space.
+By choosing an origin, [tpl]mvar|a[/tpl], one can thus identify [tpl]mvar|A[/tpl] with [tpl]mvar|V[/tpl], hence turn [tpl]mvar|A[/tpl] into a vector space.  Conversely, any vector space, [tpl]mvar|V[/tpl], is an affine space over itself. The uniqueness property ensures that subtraction of any two elements of [tpl]mvar|A[/tpl] is well defined, producing a vector of [tpl]mvar|V[/tpl].
+If [tpl]mvar|o[/tpl], [tpl]mvar|a[/tpl], and [tpl]mvar|b[/tpl] are points in [tpl]mvar|A[/tpl] and [tpl]mvar|λ[/tpl] is a scalar, then
+is independent of [tpl]mvar|o[/tpl]. Instead of arbitrary linear combinations, only such affine combinations of points have meaning.
+By noting that one can define subtraction of points of an affine space as follows:
+[/ref]
+These two properties are called Weyl's axioms.
+
+==Examples==
+
+==Affine subspaces==
+
+An affine subspace (sometimes called a linear manifold, linear variety, or a flat) of a vector space [tpl]mvar|V[/tpl] is a subset closed under affine combinations of vectors in the space.  For example, the set
+This affine subspace can be equivalently described as the coset of the [tpl]mvar|W[/tpl]-action
+where [tpl]mvar|p[/tpl] is any element of [tpl]mvar|A[/tpl], or equivalently as any level set of the quotient map [tpl]math|V → V/W[/tpl]. A choice of [tpl]mvar|p[/tpl] gives a base point of [tpl]mvar|A[/tpl] and an identification of [tpl]mvar|W[/tpl] with [tpl]mvar|A[/tpl], but there is no natural choice, nor a natural identification of [tpl]mvar|W[/tpl] with [tpl]mvar|A[/tpl].
+A linear transformation is a function that preserves all linear combinations; an affine transformation is a function that preserves all affine combinations.  A linear subspace is an affine subspace containing the origin, or, equivalently, a subspace that is closed under linear combinations.
+
+==Affine combinations and affine dependence==
+
+An affine combination is a linear combination in which the sum of the coefficients is 1.  Just as members of a set of vectors are linearly independent if none is a linear combination of the others, so also they are affinely independent if none is an affine combination of the others.  The set of linear combinations of a set of vectors is their "linear span" and is always a linear subspace; the set of all affine combinations is their "affine span" and is always an affine subspace.  For example, the affine span of a set of two points is the line that contains both; the affine span of a set of three non-collinear points is the plane that contains all three.
+Vectors
+are linearly dependent if there exist scalars [tpl]math|a1, a2, … , an[/tpl], not all zero, for which
+[tpl]NumBlk|:|[tpl]math|1=a1v1 + a2v2 + ⋯ + anvn = 0[/tpl]|[tpl]EquationRef|1[/tpl][/tpl]
+Similarly they are affinely dependent if in addition the sum of coefficients is zero:
+
+==Geometric objects as points and vectors==
+
+In an affine space, geometric objects have two different (although related) descriptions on languages of points (elements of [tpl]mvar|A[/tpl]) and vectors (elements of [tpl]mvar|V [/tpl]). A vector description can specify an object only up to translations.
+

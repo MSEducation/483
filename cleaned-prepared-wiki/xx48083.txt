@@ -1,0 +1,145 @@
+[[Description logic]]
+
+CATEGORIES: Knowledge representation languages, Non-classical logic, Information science, Artificial intelligence
+
+Description logic (DL) is a family of formal knowledge representation languages. It is more expressive than propositional logic but has more efficient decision problems than first-order predicate logic.
+DL is used in artificial intelligence for formal reasoning on the concepts of an application domain (known as terminological knowledge). It is of particular importance in providing a logical formalism for ontologies and the Semantic Web. The most notable application outside information science is in biomedical informatics where DL assists in the codification of medical knowledge.
+
+Introduction
+
+A Description Logic (DL) models concepts, roles and individuals, and their relationships.
+The fundamental modeling concept of a DL is the axiom - a logical statement relating roles and/or concepts. This is a key difference from the  frames paradigm where a frame specification declares and completely defines a class.
+
+Nomenclature
+
+Differences from First-Order Logic
+
+The description logic community uses different terminology than the first-order predicate logic community for operationally-equivalent notions; some examples are given here:
+The Web Ontology Language OWL mostly uses FOL terminology, in spite of being an implementation of a description logic.
+
+Naming convention
+
+There are many varieties of Description Logic and there is an informal naming convention, roughly describing the operators allowed. The expressivity is encoded in the label for a logic starting with one of the following basic logics:
+Followed by any of the following extensions: 
+
+=Exceptions=
+
+Some canonical DLs that do not exactly fit this convention are:
+
+=Examples=
+
+History
+
+Description logic (DL) was given its current name in the 1980s. Previous to this it was called (chronologically): terminological systems, and concept languages.
+
+Knowledge representation
+
+Frames and semantic networks lack formal (logic-based) semantics. In Frank van Harmelen, Vladimir Lifschitz, and Bruce Porter, editors, Handbook of Knowledge Representation. Elsevier, 2007. DL was first introduced into Knowledge Representation (KR) systems to overcome this deficiency.
+The first DL-based KR system was KL-ONE (by Ronald J. Brachman and Schmolze, 1985). During the '80s other DL-based systems using structural subsumption algorithms were developed including KRYPTON (1983), LOOM (1987), BACK (1988), K-REP (1991) and CLASSIC (1991). This approach featured DL with limited expressiveness but relatively efficient (polynomial time) reasoning.
+In the early '90s, the introduction of a new tableau based algorithm paradigm allowed efficient reasoning on more expressive DL. DL-based systems using these algorithms - such as KRIS (1991) - show acceptable reasoning performance on typical inference problems even though the worst case complexity is no longer polynomial.
+From the mid '90s, reasoners were created with good practical performance on very expressive DL with high worst case complexity. Examples from this period include FaCT, RACER (2001), CEL (2005), and KAON 2 (2005).
+DL reasoners, such as FaCT, FaCT++, RACER, DLP and Pellet, implement the analytic tableau method.  KAON2 is implemented by algorithms which reduce a SHIQ(D) knowledge base to a disjunctive datalog program.
+
+Semantic Web
+
+The DARPA Agent Markup Language (DAML) and Ontology Inference Layer (OIL) ontology languages for the semantic web can be viewed as
+The W3C OWL Working Group began work in 2007 on a refinement of - and extension to - OWL.[ref]{{cite web |url= |title=OWL 2 Web Ontology Language Primer
+|last1=Hitzler |first1=Pascal | authorlink1=Pascal Hitzler
+|last2=Krötzsch |first2=Markus | authorlink2=Markus Krötzsch
+|last3=Parsia |first3=Bijan | authorlink3=Bijan Parsia
+|last4=Patel-Schneider |first4=Peter F.  | authorlink4=Peter F. Patel-Schneider
+|last5=Rudolph |first5=Sebastian  | authorlink5=Sebastian Rudolph
+
+Modeling
+
+In DL, a distinction is drawn between the so-called TBox (terminological box) and the ABox (assertional box). In general, the TBox contains sentences describing concept hierarchies (i.e., relations between concepts) while the ABox contains ground sentences stating where in the hierarchy individuals belong (i.e., relations between individuals and concepts). For example, the statement:
+(1) Every employee is a person
+belongs in the TBox, while the statement:
+(2) Bob is an employee
+belongs in the ABox.
+Note that the TBox/ABox distinction is not significant, in the same sense that the two "kinds" of sentences are not treated differently in first-order logic (which subsumes most DL). When translated into first-order logic, a subsumption axiom like (1) is simply a conditional restriction to unary predicates (concepts) with only variables appearing in it. Clearly, a sentence of this form is not privileged or special over sentences in which only constants ("grounded" values) appear like (2).
+So why was the distinction introduced? The primary reason is that the separation can be useful when describing and formulating decision-procedures for various DL. For example, a reasoner might process the TBox and ABox separately, in part because certain key inference problems are tied to one but not the other one ('classification' is related to the TBox, 'instance checking' to the ABox). Another example is that the complexity of the TBox can greatly affect the performance of a given decision-procedure for a certain DL, independently of the ABox. Thus, it is useful to have a way to talk about that specific part of the knowledge base.
+The secondary reason is that the distinction can make sense from the knowledge base modeler's perspective. It is plausible to distinguish between our conception of terms/concepts in the world (class axioms in the TBox) and particular manifestations of those terms/concepts (instance assertions in the ABox). In the above example: when the hierarchy within a company is the same in every branch but the assignment to employees is different in every department (because there are other people working there), it makes sense to reuse the TBox for different branches that do not use the same ABox.
+There are two features of Description Logic that are not shared by most other data description formalisms: DL does not make the Unique Name Assumption (UNA) or the Closed World Assumption (CWA). Not having UNA means that two concepts with different names may be allowed by some inference to be shown to be equivalent. Not having CWA, or rather having the Open World Assumption (OWA) means that lack of knowledge of a fact does not immediately imply knowledge of the negation of a fact.
+
+Formal description
+
+Like first order logic (FOL), a syntax defines which collections of symbols are legal expressions in a Description Logic (DL), and semantics determine meaning. Unlike FOL, a DL may have several well known syntactic variants.
+
+Syntax
+
+The syntax of a member of the description logic family is characterized by its recursive definition, in which the constructors that can be used to form concept terms are stated. Some constructors are related to logical constructors in first-order logic (FOL) such as intersection or conjunction of concepts, union or disjunction of concepts, negation or complement of concepts, universal restriction and existential restriction. Other constructors have no corresponding construction in FOL including restrictions on roles for example, inverse, transitivity and functionality.
+
+=Notation=
+
+Let C and D be concepts, a and b be individuals, and R be a role.
+
+=The description logic ALC=
+
+==Concepts==
+
+==Terminological axioms==
+
+==Assertional axioms==
+
+An ABox is a finite set of assertional axioms.
+
+==Knowledge base==
+
+Semantics
+
+The semantics of description logic are defined by interpreting concepts as sets of individuals and roles as sets of ordered pairs of individuals. Those individuals are typically assumed from a given domain. The semantics of non-atomic concepts and roles is then defined in terms of atomic concepts and roles. This is done by using a recursive definition similar to the syntax.
+
+=The description logic ALC=
+
+The following definitions follow the treatment in Baader et al.
+such that
+
+==TBox==
+
+==ABox==
+
+==Knowledge base==
+
+Inference
+
+Decision problems
+
+In addition to the ability to describe concepts formally, one also would like to employ the description of a set of concepts to ask questions about the concepts and instances described. The most common decision problems are basic database-query-like questions like instance checking (is a particular instance (member of an A-box) a member of a given concept) and relation checking (does a relation/role hold between two instances, in other words does a have property b), and the more global-database-questions like subsumption (is a concept a subset of another concept), and concept consistency (is there no contradiction among the definitions or chain of definitions). The more operators one includes in a logic and the more complicated the T-box (having cycles, allowing non-atomic concepts to include each other), usually the higher the computational complexity is for each of these problems (see Navigator on Description Logic Complexity for examples).
+
+Relationship with other logics
+
+First order logic
+
+Many Description Logic models (DLs) are decidable fragments of first order logic (FOL). Some DLs now include operations (for example, transitive closure of roles) that allow efficient inference but cannot be expressed in FOL.
+
+Fuzzy description logic
+
+Fuzzy description logic combines fuzzy logic with DLs. Since many concepts that are needed for intelligent systems lack well defined boundaries, or precisely defined criteria of membership, fuzzy logic is needed to deal with notions of vagueness and imprecision. This offers a motivation for a generalization of description logic towards dealing with imprecise and vague concepts.
+
+Modal logic
+
+Description Logic is related to — but developed independently of — modal logic (ML). Many — but not all — DL are syntactic variants of ML.
+In general, an object corresponds to a possible world, a concept corresponds to a modal proposition, and a role-bounded quantifier to a modal operator with that role as its accessibility relation.
+Operations on roles (such as composition, inversion, etc.) correspond to the modal operations used in dynamic logic.
+
+=Examples=
+
+Temporal description logic
+
+Temporal description logic represents — and allows reasoning about — time dependent concepts and many different approaches to this problem exist. In "Handbook of Temporal Reasoning in Artificial Intelligence", 2005. For example, a description logic might be combined with a modal temporal logic such as Linear temporal logic.
+
+
+
+Notes
+
+
+
+Further reading
+
+
+
+Tools
+
+There are some reasoners that deal with OWL and Description Logic. These are some of the most popular:
+

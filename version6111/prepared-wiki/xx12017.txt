@@ -1,0 +1,72 @@
+[[Web server]]
+
+CATEGORIES: Servers (computing), Web server software, Website management, Web development
+
+The term web server can refer to either the hardware (the computer) or the software (the computer application) that helps to deliver web content that can be accessed through the Internet.[tpl]cite web | url=http://www.webdevelopersnotes.com/basics/what_is_web_server.php | title=What is web server?'|work=webdevelopersnotes | date=2010-11-23 | accessdate=2010-11-23[/tpl]
+The most common use of web servers is to host websites, but there are other uses such as gaming, data storage, running enterprise applications, handling email, FTP, or other web uses.
+
+==Overview==
+
+The  primary function of a web server is to store, process and deliver web pages to clients.  The communication between client and server takes place using the Hypertext Transfer Protocol (HTTP).    Pages delivered are most frequently HTML documents, which may include images, style sheets and scripts in addition to text content.
+A user agent, commonly a web browser or web crawler, initiates communication by making a request for a specific resource using HTTP and the server responds with the content of that resource or an error message if unable to do so. The resource is typically a real file on the server's secondary storage, but this is not necessarily the case and depends on how the web server is implemented.
+While the primary function is to serve content, a full implementation of HTTP also includes  ways of receiving content from clients. This feature is used for submitting web forms, including uploading of files.
+Many generic web servers also support server-side scripting using Active Server Pages (ASP), PHP, or other scripting languages. This means that the behaviour of the web server can be scripted in separate files, while the actual server software remains unchanged. Usually, this function is used to create HTML documents dynamically ("on-the-fly") as opposed to returning static documents. The former is primarily used for retrieving and/or modifying information from databases. The latter is typically much faster and more easily cached but cannot deliver dynamic content.
+Web servers are not always used for serving the World Wide Web. They can also be found embedded in devices such as printers, routers, webcams and serving only a local network. The web server may then be used as a part of a system for monitoring and/or administering the device in question. This usually means that no additional software has to be installed on the client computer, since only a web browser is required (which now is included with most operating systems).
+
+==History==
+
+In 1989 Tim Berners-Lee proposed a new project to his employer CERN, with the goal of easing the exchange of information between scientists by using a hypertext system. The project resulted in Berners-Lee writing two programs in 1990:
+Between 1991 and 1994, the simplicity and effectiveness of early technologies used to surf and exchange data through the World Wide Web helped to port them to many different operating systems and spread their use among scientific organizations and universities, and then to industry.
+In 1994 Tim Berners-Lee decided to constitute the World Wide Web Consortium (W3C) to regulate the further development of the many technologies involved (HTTP, HTML, etc.) through a standardization process.
+
+==Common features==
+
+==Path translation==
+
+Web servers are able to map the path component of a Uniform Resource Locator (URL) into:
+For a static request the URL path specified by the client is relative to the web server's root directory.
+Consider the following URL as it would be requested by a client:
+ <nowiki>http://www.example.com/path/file.html</nowiki>
+The client's user agent will translate it into a connection to  with the following HTTP 1.1 request:
+ GET /path/file.html HTTP/1.1
+ <nowiki>Host: www.example.com</nowiki>
+The web server on  will append the given path to the path of its root directory. On an Apache server, this is commonly /home/www    (On Unix machines, usually /var/www).  The result is the local file system resource:
+ /home/www'''/path/file.html'''
+The web server then reads the file, if it exists and sends a response to the client's web browser. The response will describe the content of the file and contain the file itself or an error message will return saying that the file does not exist or is unavailable.
+
+==Kernel-mode and user-mode web servers==
+
+A web server can be either implemented into the OS kernel, or in user space (like other regular applications).
+An in-kernel web server (like Microsoft IIS on Windows or TUX on GNU/Linux) will usually work faster, because, as part of the system, it can directly use all the hardware resources it needs, such as non-paged memory, CPU time-slices, network adapters, or buffers.
+Web servers that run in user-mode have to ask the system for permission to use more memory or more CPU resources. Not only do these requests to the kernel take time, but they are not always satisfied because the system reserves resources for its own usage and has the responsibility to share hardware resources with all the other running applications. Executing in user mode can also mean useless buffer copies which are another handicap for user-mode web servers.
+
+==Load limits==
+
+A web server (program) has defined load limits, because it can handle only a limited number of concurrent client connections (usually between 2 and 80,000, by default between 500 and 1,000) per IP address (and TCP port) and it can serve only a certain maximum number of requests per second depending on:
+When a web server is near to or over its limit, it becomes unresponsive.
+
+===Causes of overload===
+
+At any time web servers can be overloaded because of:
+
+===Symptoms of overload===
+
+The symptoms of an overloaded web server are:
+
+===Anti-overload techniques===
+
+To partially overcome above average load limits and to prevent overload, most popular web sites use common techniques like:
+
+==Market share==
+
+Below is the latest statistics of the market share of the top web servers on the Internet by Netcraft
+Survey May, June, July 2013.
+Apache, IIS and Nginx are the most used web servers on the Internet. Due to Google's blog-publishing service Blogger, which is served by the Google Web Server, GWS also gains more and more market share. [tpl]cite web|url = http://www.webtechster.com/trends/web-server/|title = Web Server Usage| publisher = WebTechster | accessdate = 2014-03-27[/tpl] [tpl]cite web|url = http://trends.builtwith.com/web-server|title = Web Server Usage Statistics| publisher = Builtwith | accessdate = 2014-03-27[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,72 @@
+ # a := reshape [[2,3], Arr]
+ |5 6 7
+ |8 9 5
+ b := 3 2 reshape Arr
+ |5 6
+ |7 8
+ |9 5
+ a inner[+,*] b
+ |130 113
+ |148 145
+
+===Computing Average===
+
+Definitions are of the form ' is '
+ average is / [sum, tally] 
+ average Arr
+ |7.
+
+===Computing Factorial===
+
+ fact is recur [ 0 =, 1 first, pass, product, -1 +]
+ fact 4
+ |24
+
+===Reversing an array===
+
+ rev is reshape [ shape, across [pass, pass, converse append ] ]
+ rev [1, 2, 3, 4]
+ |4 3 2 1
+
+===Generating Primes===
+
+Contrast with APL
+ primes is sublist [ each (2 = sum eachright (0 = mod) [pass,count]), pass ] rest count
+ primes 10
+ |2 3 5 7
+
+====Explanation====
+
+ Checking the divisibility of A by B
+ is_divisible is 0 = mod [A,B]
+Defining is_prime filter
+ is_prime is 2 = sum eachright is_divisible [pass,count]
+Count generates an array 1..N and pass is N (identity operation).
+eachright applies is_divisible(pass,element) in each element of count-generated array. 
+Thus this transforms the count-generated array into an array where numbers that can divide N are replaced by '1' and others by '0'. Hence if the number N is prime, sum array must be 2 (itself and 1).
+Now all that remains is to generate another array using count N, and filter all that are not prime.
+ primes is sublist [each is_prime, pass] rest count
+
+===QuickSort===
+
+link joins together its argument arrays
+ sublist A,B returns a list of items of B chosen according to the list of booleans given in A, selecting those items of B where the corresponding item of A is true.
+
+In a Fork A,B,C X the first A is a predicate, and if A(X) is true, then B(X) is returned else C(X) is returned.
+
+Pass is an identity operation for arrays.
+ quicksort is fork [ >= [1 first,tally],
+    pass,
+    link [
+        quicksort sublist [ < [pass, first], pass ],
+        sublist [ match [pass,first],pass ],
+        quicksort sublist [ > [pass,first], pass ]
+    ]
+ ]
+Using it.
+ quicksort [5, 8, 7, 4, 3]
+ |3 4 5 7 8
+
+==External links==
+
+

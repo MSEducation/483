@@ -1,0 +1,71 @@
+[[Divergence of the sum of the reciprocals of the primes]]
+
+CATEGORIES: Mathematical series, Articles containing proofs, Theorems about prime numbers
+
+The sum of the reciprocals of all prime numbers diverges; that is:
+This was proved by Leonhard Euler in 1737, and strengthens Euclid's 3rd-century-BC result that there are infinitely many prime numbers.
+There are a variety of proofs of Euler's result, including a lower bound for the partial sums stating that
+for all natural numbers n. The double natural logarithm indicates that the divergence might be very slow, which is indeed the case, see Meissel–Mertens constant.
+
+==The harmonic series==
+
+First, we describe how Euler originally discovered the result. He was considering the harmonic series
+He had already used the following "product formula" to show the existence of infinitely many primes.
+(Here, the product is taken over all primes p; in the following, a sum or product taken over p always represents a sum or product taken over a specified set of primes, unless noted otherwise.)
+Such infinite products are today called Euler products. The product above is a reflection of the fundamental theorem of arithmetic. Of course, the above "equation" is not necessary because the harmonic series is known (by other means) to diverge. This type of formal manipulation was common at the time, when mathematicians were still experimenting with the new tools of calculus.[tpl]Citation needed|date=October 2010[/tpl]
+Euler noted that if there were only a finite number of primes, then the product on the right would clearly converge, contradicting the divergence of the harmonic series. (In modern language, we now say that the existence of infinitely many primes is reflected by the fact that the Riemann zeta function has a simple pole at s = 1.)
+
+==Proofs==
+
+===First===
+
+Euler took the above product formula and proceeded to make a sequence of audacious leaps of logic. First, he took the natural logarithm of each side, then he used the Taylor series expansion for ln(x) as well as the sum of a geometric series:
+for a fixed constant C It is almost certain that Euler meant that the sum of the reciprocals of the primes less than n is asymptotic to ln(ln(n)) as n approaches infinity. It turns out this is indeed the case; Euler had reached a correct result by questionable means.[tpl]Citation needed|date=January 2012[/tpl]
+
+====A variation====
+
+Since
+
+===Second===
+
+The following proof by contradiction is due to Paul Erdős.
+Let pi denote the ith prime number.  Assume that the sum of the reciprocals of the primes converges; i.e.,
+Then there exists a smallest positive integer k such that
+For a positive integer x let Mx denote the set of those n in {1, 2, . . ., x} which are not divisible by any prime greater than pk. We will now derive an upper and a lower estimate for the number |Mx| of elements in Mx. For large x, these bounds will turn out to be contradictory.
+
+====Upper estimate====
+
+Every n in Mx can be written as n = r m2 with positive integers m and r, where r is square-free. Since only the k primes p1, …, pk can show up (with exponent 1) in the prime factorization of r, there are at most 2k different possibilities for r. Furthermore, there are at most √x possible values for m. This gives us the upper estimate
+
+====Lower estimate====
+
+The remaining x − |Mx| numbers in the set difference {1, 2, . . ., x} \ Mx are all divisible by a prime greater than pk. Let Ni,x denote the set of those n in {1, 2, . . ., x} which are divisible by the ith prime pi. Then
+Since the number of integers in Ni,x is at most x/pi (actually zero for pi > x), we get
+Using (1), this implies
+
+====Contradiction====
+
+===Third===
+
+Here is another proof that actually gives a lower estimate for the partial sums; in particular, it shows that these sums grow at least as fast as log(log(n)). The proof is an adaptation of the product expansion idea of Euler.  In the following, a sum or product taken over p always represents a sum or product taken over a specified set of primes.
+The proof rests upon the following four inequalities:
+Combining all these inequalities, we see that
+Dividing through by [tpl]sfrac|5|3[/tpl] and taking the natural logarithm of both sides gives
+as desired. ∎
+Using
+(see Basel problem), the above constant ln ([tpl]sfrac|5|3[/tpl]) = 0.51082… can be improved to ln([tpl]sfrac|π2|6[/tpl]) = 0.4977…; in fact it turns out that
+where M = 0.261497… is the Meissel–Mertens constant (somewhat analogous to the much more famous Euler–Mascheroni constant).
+
+===Fourth===
+
+From Dusart's inequality, we get
+Then
+by the integral test for convergence. This shows that the series on the left diverges.
+
+==See also==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,60 @@
+[[Classless Inter-Domain Routing]]
+
+CATEGORIES: Internet Standards, Internet architecture, Routing, Network addressing
+
+Classless Inter-Domain Routing (CIDR, ) is a method for allocating IP addresses and routing Internet Protocol packets. The Internet Engineering Task Force introduced CIDR in 1993 to replace the previous addressing architecture of classful network design in the Internet. Its goal was to slow the growth of routing tables on routers across the Internet, and to help slow the rapid exhaustion of IPv4 addresses. Rekhter, T. Li (September 1993)RFC 1519, Classless Inter-Domain Routing (CIDR): an Address Assignment and Aggregation Strategy, V. Fuller, T. Li, J. Yu, K. Varadhan (September 1993)
+IP addresses are described as consisting of two groups of bits in the address: the most significant bits are the network address, which identifies a whole network or subnet, and the least significant set forms the host identifier, which specifies a particular interface of a host on that network. This division is used as the basis of traffic routing between IP networks and for address allocation policies. Classful network design for IPv4 sized the network address as one or more 8-bit groups, resulting in the blocks of Class A, B, or C addresses. Classless Inter-Domain Routing allocates address space to Internet service providers and end users on any address bit boundary, instead of on 8-bit segments. In IPv6, however, the interface identifier has a fixed size of 64 bits by convention, and smaller subnets are never allocated to end users.
+CIDR notation is a syntax of specifying IP addresses and their associated routing prefix. It appends a slash character to the address and the decimal number of leading bits of the routing prefix, e.g., 192.168.2.0/24 for IPv4, and 2001:db8::/32 for IPv6.
+
+Background
+
+During the first decade of the Internet after the invention of the Domain Name System (DNS) it became apparent that the devised system based on the classful network scheme of allocating the IP address space and the routing of IP packets was not scalable. Hinden, Ed., (September 1993)
+To alleviate the shortcomings, the Internet Engineering Task Force published in 1993 a new set of standards, RFC 1518 and RFC 1519, to define a new concept of allocation of IP address blocks and new methods of routing IPv4 packets. A new version of the specification was published as RFC 4632 in 2006. Fuller, T. Li (August 2006)
+An IP address is interpreted as composed of two parts: a network-identifying prefix followed by a host identifier within that network. In the previous classful network architecture of Internet Protocol Version 4, IP address allocations were based on the bit boundaries of the four octets of an IP address. An address was considered to be the combination of an 8, 16, or 24-bit network prefix along with a 24, 16, or 8-bit individual or node address. Thus, the smallest allocation and routing block contained only 256 addresses—too small for most enterprises, and the next larger block contained  addresses—too large to be used efficiently by even large organizations. This led to inefficiencies in address use as well as routing because the large number of allocated small (class-C) networks with individual route announcements, being geographically dispersed with little opportunity for route aggregation, created heavy demand on routing equipment.
+As the initial TCP/IP network grew to become the Internet during the 1980s, the need for more flexible addressing schemes became increasingly apparent.  This led to the successive development of subnetting and CIDR.  The network class distinctions were removed, and the new system was described as being classless, with respect to the old system, which became known as classful.
+Classless Inter-Domain Routing is based on variable-length subnet masking (VLSM), which allows a network to be divided into variously sized subnets, providing the opportunity to size a network more appropriately for local needs. Variable-length subnet masks are mentioned in RFC 950. Mogul, J. Postel, Eds. (August 1985), Section 2.1 Accordingly, techniques for grouping addresses for common operations were based on the concept of cluster addressing, first proposed by Carl-Herbert Rokitansky. 9th International Conference on Computer Communication (ICCC' 88), pp. 482-491, Tel Aviv, Israel, Oct./Nov. 1988Cluster Addressing and CIDR in the mail archives of the IEFT
+CIDR encompasses several concepts. It is based on the VLSM technique with effective qualities of specifying arbitrary-length prefixes. CIDR introduced a new method of representation for IP addresses, now commonly known as CIDR notation, in which an address or routing prefix is written with a suffix indicating the number of bits of the prefix, such as 192.168.2.0/24. CIDR introduced an administrative process of allocating address blocks to organizations based on their actual and short-term projected needs. The aggregation of multiple contiguous prefixes resulted in supernets in the larger Internet, which whenever possible are advertised as aggregates, thus reducing the number of entries in the global routing table.
+
+CIDR notation
+
+CIDR notation is a compact representation of an IP address and its associated routing prefix. The notation is constructed from the IP address and the prefix size, the latter being equivalent to the number of leading 1 bits in the routing prefix mask. The IP address is expressed according to the standards of IPv4 or IPv6. It is followed by a separator character, the slash ('/') character, and the prefix size expressed as a decimal number.
+The common routing prefix mask 255.255.255.0 has 24 leading "1" bits hence in CIDR notation an address will use "/24" as a routing prefix size, e.g. 192.168.0.1/24.
+The address may denote a single, distinct interface address or the beginning address of an entire network. The maximum size of the network is given by the number of addresses that are possible with the remaining, least-significant bits below the prefix. This is often called the host identifier.
+For example:
+Before CIDR notation, IPv4 networks were represented using dot-decimal notation for both the address and the subnet mask. Thus, 192.168.100.0/24 would be written as 192.168.100.0/255.255.255.0.
+The number of addresses of a subnet defined by the mask or prefix can be calculated as 2address size - prefix size, in which the address size is 128 for IPv6 and 32 for IPv4. For example, in IPv4, a prefix size of /29 gives: 232-29 = 23 = 8 addresses.
+
+Subnet masks
+
+A subnet mask is a bitmask that encodes the prefix length in quad-dotted notation: 32 bits, starting with a number of 1 bits equal to the prefix length, ending with 0 bits, and encoded in four-part dotted-decimal format.  A subnet mask encodes the same information as a prefix length, but predates the advent of CIDR. However, in CIDR notation, the prefix bits are always contiguous, whereas subnet masks may specify non-contiguous bits. However, this has no practical advantage for increasing efficiency.
+
+CIDR blocks
+
+CIDR is principally a bitwise, prefix-based standard for the representation of IP addresses and their routing properties. It facilitates routing by allowing blocks of addresses to be grouped into single routing table entries. These groups, commonly called CIDR blocks, share an initial sequence of bits in the binary representation of their IP addresses. IPv4 CIDR blocks are identified using a syntax similar to that of IPv4 addresses: a dotted-decimal address, followed by a slash, then a number from 0 to 32, e.g., a.b.c.d/n. The dotted decimal portion is the IPv4 address. The number following the slash is the prefix length, the number of shared initial bits, counting from the most-significant bit of the address. When emphasizing only the size of a network, the address portion of the notation is usually omitted. Thus, a /20 block is a CIDR block with an unspecified 20-bit prefix.
+An IP address is part of a CIDR block, and is said to match the CIDR prefix if the initial n bits of the address and the CIDR prefix are the same. The length of an IPv4 address is 32 bits, an n-bit CIDR prefix leaves 32-n bits unmatched, meaning that 232-n IPv4 addresses match a given n-bit CIDR prefix. Shorter CIDR prefixes match more addresses, while longer prefixes match fewer. An address can match multiple CIDR prefixes of different lengths.
+CIDR is also used for IPv6 addresses and the syntax semantic is identical. The prefix length can range from 0 to 128, due to the larger number of bits in the address. However, by convention a subnet on broadcast MAC layer networks always has 64-bit host identifiers. Larger prefixes are rarely used even on point-to-point links.
+
+Assignment of CIDR blocks
+
+The Internet Assigned Numbers Authority (IANA) issues to regional Internet registries (RIRs) large, short-prefix CIDR blocks. For example, 62.0.0.0/8, with over sixteen million addresses, is administered by RIPE NCC, the European RIR. The RIRs, each responsible for a single, large, geographic area, such as Europe or North America, subdivide these blocks and allocate subnets to local Internet registries (LIRs). Similar subdividing may be repeated several times at lower levels of delegation. End-user networks receive subnets sized according to the size of their network and projected short term need.  Networks served by a single ISP are encouraged by IETF recommendations to obtain IP address space directly from their ISP.  Networks served by multiple ISPs, on the other hand, may obtain provider-independent address space directly from the appropriate RIR.
+For example, in the late 1990s, the IP address 208.130.29.33 (since reassigned) was used by www.org. An analysis of this address identified three CIDR prefixes. 208.128.0.0/11, a large CIDR block containing over 2 million addresses, had been assigned by ARIN (the North American RIR) to MCI. Automation Research Systems, a Virginia VAR, leased an Internet connection from MCI and was assigned the 208.130.28.0/22 block, capable of addressing just over 1000 devices. ARS used a /24 block for its publicly accessible servers, of which 208.130.29.33 was one. All of these CIDR prefixes would be used, at different locations in the network. Outside of MCI's network, the 208.128.0.0/11 prefix would be used to direct to MCI traffic bound not only for 208.130.29.33, but also for any of the roughly two million IP addresses with the same initial 11 bits. Within MCI's network, 208.130.28.0/22 would become visible, directing traffic to the leased line serving ARS. Only within the ARS corporate network would the 208.130.29.0/24 prefix have been used.
+
+IPv4 CIDR blocks
+
+(*) For routed subnets larger than /31 or /32, the number of available host addresses is usually reduced by two, namely the largest address, which is reserved as the broadcast address, and the smallest address, which identifies the network itself. Mogul (Ed.), October 1984, Section 7. Baker (Ed.),  June 1995, Section 4.2.3.1
+
+IPv6 CIDR blocks
+
+The large address size used in IPv6 permitted implementation of world-wide route summarization and guaranteed sufficient address pools at each site. The standard subnet size for IPv6 networks is a /64 block, which is required for the operation of stateless address autoconfiguration. Narten, G. Huston, L. Roberts (March 2011) suggesting a significantly smaller allocation for some sites, such as a /56 block for home networks.
+
+Prefix aggregation
+
+CIDR provides the possibility of fine-grained routing prefix aggregation. For example, sixteen contiguous /24 networks can be aggregated and advertised to a larger network as a single /20 route, if the first 20 bits of their network addresses match. Two aligned contiguous /20 blocks may be aggregated to a /19, and so forth. This results in reduction of the number of routes that have to be advertised.
+
+
+
+
+
+
+
+

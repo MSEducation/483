@@ -1,0 +1,30 @@
+[[UTF-32]]
+
+CATEGORIES: Character encoding, Unicode Transformation Formats
+
+UTF-32 stands for Unicode Transformation Format 32 bits (or UCS-4) is a protocol to encode Unicode characters that uses exactly 32 bits per Unicode code point. All other Unicode transformation formats use variable-length encodings. The UTF-32 form of a character is a direct representation of its codepoint.SIL, Mapping codepoints to Unicode encoding forms, §1: UTF-32
+The main advantage of UTF-32, versus variable length encodings, is that the Unicode code points are directly indexable. Examining the n'th code point is a constant time operation.http://www.ibm.com/developerworks/xml/library/x-utf8/ In contrast, a variable length code requires sequential access to find the n'th code point. This makes UTF-32 a simple replacement in code that uses integers to index characters out of strings, as was commonly done for ASCII.
+The main disadvantage of UTF-32 is that it is space inefficient, using four bytes per character. Non-BMP characters are so rare in most texts, they may as well be considered non-existent for sizing issues, making UTF-32 twice the size of UTF-16 and up to four times the size of UTF-8.
+Though a fixed number of bytes per code point appear convenient, it is not as useful as it appears. In a way, it is more simple-minded and less elegant than its alternatives. It makes truncation easier but not significantly so compared to UTF-8 and UTF-16. It does not make it faster to find a particular offset in the string, as an "offset" can be measured in the fixed-size code units of any encoding. It does not make calculating the displayed width of a string easier except in limited cases, since even with a “fixed width” font there may be more than one code point per character position (combining marks) or more than one character position per code point (for example CJK ideographs). Combining marks mean editors cannot treat one code point as being the same as one unit for editing. Editors that limit themselves to left-to-right languages and precomposed characters can take advantage of fixed-sized code units, but such editors are unlikely to support non-BMP characters and thus can work equally well with 16-bit UTF-16 encoding.
+
+==History==
+
+The original ISO 10646 standard defines a 31-bit encoding form called UCS-4, in which each encoded character in the Universal Character Set (UCS) is represented by a 32-bit friendly code value in the code space of integers between 0 and hexadecimal 7FFFFFFF.
+Because only 17 planes are actually in use, all current code points are between 0 and 0x10FFFF. UTF-32 is a subset of UCS-4 that uses only this range. Since the Principles and Procedures document of JTC1/SC2/WG2 states that all future assignments of characters will be constrained to the BMP or the first 14 supplementary planes, UTF-32 will be able to represent all Unicode characters. Accordingly, UCS-4 and UTF-32 are now identical except that the UTF-32 standard has additional Unicode semantics.[tpl]Clarify|date=February 2010[/tpl]
+
+==Use==
+
+The main use of UTF-32 is in internal APIs where the data is single code points or glyphs, rather than strings of characters. For instance in modern text rendering it is common that the last step is to build a list of structures each containing x,y position, attributes, and a single UTF-32 character identifying the glyph to draw. Often non-Unicode information is stored in the "unused" 11 bits of each word.
+On Unix systems, UTF-32 strings are sometimes used for storage, due to the type wchar_t being defined as 32-bits. Python versions up to 3.2 can be compiled to use them instead of UTF-16; from version 3.3 onward, UTF-16 support is dropped, and a system is used whereby strings are stored in UTF-32 but with leading zero bytes optimized away where unnecessary. Seed7 encodes all characters and strings with UTF-32. Use of UTF-32 strings on Windows (where wchar_t is 16 bits) is almost non-existent.
+
+==Non-use in HTML5==
+
+HTML5 states that "authors should not use UTF-32, as the encoding detection algorithms described in this specification intentionally do not distinguish it from UTF-16."http://dev.w3.org/html5/spec/semantics.html#charset
+
+==See also==
+
+==References==
+
+==External links==
+
+

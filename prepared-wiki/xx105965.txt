@@ -1,0 +1,15 @@
+[[APX]]
+
+CATEGORIES: Complexity classes, Approximation algorithms
+
+In complexity theory the class APX (an abbreviation of "approximable") is the set of NP optimization problems that allow polynomial-time approximation algorithms with approximation ratio bounded by a constant (or constant-factor approximation algorithms for short). In simple terms, problems in this class have efficient algorithms that can find an answer within some fixed percentage of the optimal answer. For example, there is a polynomial-time algorithm which will find a solution to the bin packing problem that uses at most 5% more than the smallest possible number of bins.
+An approximation algorithm is called a c-approximation algorithm for some constant c if it can be proven that the solution that the algorithm finds is at most c times worse than the optimal solution. Here, c is called the approximation ratio. Depending on whether the problem is a minimization or a maximization problem, this can either denote c times larger or c times smaller, respectively. For example, the vertex cover problem and traveling salesman problem with triangle inequality each have simple 2-approximation algorithms. In contrast, it's proven that the traveling salesman problem with arbitrary edge-lengths can not  be approximated with approximation ratio bounded by a constant as long as the Hamiltonian-path problem can not be solved in polynomial time, that is unless P = NP.
+If there is a polynomial-time algorithm to solve a problem within every fixed percentage greater than zero (one algorithm for each percentage), then the problem is said to have a polynomial-time approximation scheme (PTAS). Unless P=NP, it can be shown that there are problems that are in APX but not in PTAS; that is, problems that can be approximated within some constant factor, but not every constant factor. A problem is said to be APX-hard if there is a PTAS reduction from every problem in APX to that problem, and to be APX-complete if the problem is APX-hard and also in APX.  As a consequence of P ≠ NP ⇒ PTAS ≠ APX, P ≠ NP ⇒ no APX-hard problem is in PTAS.
+To say a problem is APX-hard is generally bad news, because if P ≠ NP, it denies the existence of a PTAS, which is the most useful sort of approximation algorithm. One of the simplest APX-complete problems is the maximum satisfiability problem, a variation of the boolean satisfiability problem. In this problem, we have a boolean formula in conjunctive normal form, and we wish to know the maximum number of clauses that can be simultaneously satisfied by a single assignment of true/false values to the variables. Despite the fact that it probably does not have a PTAS, however, the correct answer can still be estimated within 30%, and some simplified variants do have a PTAS.
+
+==Examples==
+
+==References==
+
+
+

@@ -1,0 +1,26 @@
+[[Transmeta Crusoe]]
+
+CATEGORIES: Microprocessors, X86 microprocessors, Embedded microprocessors, Transmeta microprocessors
+
+The Crusoe is a family of x86-compatible microprocessors developed by Transmeta. Crusoe was notable for its method of achieving x86 compatibility. Instead of the instruction set architecture being implemented in hardware, or translated by specialized hardware, the Crusoe runs a software abstraction layer, or a virtual machine, known as the Code Morphing Software (CMS). The CMS translates machine code instructions received from programs into native instructions for the microprocessor. In this way, the Crusoe can emulate other instruction set architectures (ISAs).
+Currently, this is used to allow the microprocessors to emulate the Intel x86 instruction set. In theory, it is possible for the CMS to be modified to emulate other ISAs. Transmeta demonstrated Crusoe executing Java bytecode by translating the bytecodes into instructions in its native instruction set. The addition of an abstraction layer between the x86 instruction stream and the hardware means that the hardware architecture can change without breaking compatibility, just by modifying the CMS. For example, Transmeta Efficeon — a second-generation Transmeta design — has a 256-bit-wide VLIW core versus the 128-bit core of the Crusoe.
+Crusoe performs in software some of the functionality traditionally implemented in hardware (e.g. instruction re-ordering), resulting in simpler hardware with fewer transistors. The relative simplicity of the hardware means that Crusoe consumes less power (and therefore generates less heat) than other x86-compatible microprocessors running at the same frequency.
+Transmeta Crusoe's software emulation of the x86 instruction set caused x86 programs to run very slowly[tpl]cn|date=March 2014[/tpl] compared to a real x86 processor (a 700MHz Crusoe ran x86 programs at the speed of a 500MHz Pentium III x86 processor).[tpl]cite web|url=http://news.cnet.com/Transmeta-Are-the-chips-down/2100-1006_3-275353.html|title=Transmeta: Are the chips down?|first1=Michael|last1=Kanellos|first2=Rachel|last2=Konrad|publisher=CNET|date=November 5, 2001[/tpl]
+
+==Description==
+
+The Crusoe was available in two cores: the TM3200 for embedded applications and the TM5400 for low-power personal computing. Both were based on the same architecture but differed in clock frequency and peripheral support.
+The TM3200 operated at clock frequencies of 333-400 MHz. It has a 64 KB instruction cache, a 32 KB data cache and no L2 cache. The TM3200 has an integrated memory controller supports only SDRAM and a PCI interface. It measures 77 mm² and uses a 1.5 V power supply, dissipating less than 1.5 W of power (typical).
+The TM5400 operated at clock frequencies of 500-800 MHz. Unlike the TM3200, the TM5400 has LongRun power reduction technology. It has a 64 KB instruction cache, a 64 KB data cache and a 256 KB unified L2 cache. The integrated memory controller supports both SDRAM and DDR SDRAM. It also has a PCI interface. It measures 73 mm² and uses a 1.10 V 1.6f V power supply, dissipating 0.5-1.5 W typically and a maximum of 6 W.
+As Transmeta was a fabless semiconductor company, that is, they did not have the facilities to fabricate their designs, both were fabricated by IBM Microelectronics, the semiconductor business of International Business Machines (IBM). IBM fabricated the Crusoe in a 0.18 µm CMOS process with five levels of copper interconnect.
+The Crusoe is a VLIW microprocessor that executes bundles of instructions, termed molecules by Transmeta. Each molecule contains multiple instructions, termed atoms. The Code Morphing Software translates x86 instructions into native instructions. The native instructions are 32 bits long. Instructions that meet a set of conditions can be executed simultaneously and are combined to form a 64- or 128-bit molecule containing two or four atoms, respectively. In the event that there are not enough instructions to fill a molecule, the software inserts NOPs as padding to fill out empty slots. This is required in all VLIW architectures and is criticised for being inefficient, which is why there are molecules of two separate lengths.
+Transmeta Crusoe, new generation processor provide variable operating modes. Due to dynamic core they vary voltage and frequency dynamically under dynamic load.
+Frequency range and dynamic voltage provides for 300 MHz-1.20 V, 400 MHz-1.23 V, 500 MHz-1.35 V,600 MHz-1.53 V,700 MHz-1.75 V, 800 MHz-2.00 V, 900 MHz-2.35, 1000 MHz- 2.80 V. They can vary these ranges depending upon the load. For optimum or minimum load the respective frequencies and voltages get changed.
+
+==Products==
+
+==References==
+
+==External links==
+
+

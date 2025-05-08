@@ -1,0 +1,129 @@
+[[Burrows–Wheeler transform]]
+
+CATEGORIES: Lossless compression algorithms, Transforms, Articles with example pseudocode, Articles with example Python code
+
+Compression techniques work by finding repeated patterns in the data and encoding the duplications more compactly.  The Burrows–Wheeler transform (BWT, also called block-sorting compression) rearranges a character string into runs of similar characters. This is useful for compression, since it tends to be easy to compress a string that has runs of repeated characters by techniques such as move-to-front transform and run-length encoding.  More importantly, the transformation is reversible, without needing to store any additional data.  The BWT is thus a "free" method of improving the efficiency of text compression algorithms, costing only some extra computation.
+
+Description
+
+The Burrows–Wheeler transform is an algorithm used in data compression techniques such as bzip2. It was invented by Michael Burrows and David Wheeler in 1994 while working at DEC Systems Research Center in Palo Alto, California. It is based on a previously unpublished transformation discovered by Wheeler in 1983.
+When a character string is transformed by the BWT, none of its characters change value. The transformation permutes the order of the characters. If the original string had several substrings that occurred often, then the transformed string will have several places where a single character is repeated multiple times in a row. 
+For example:
+The output is easier to compress because it has many repeated characters.
+In fact, in the transformed string, there are a total of six runs of identical characters: 
+XX,
+SS,
+PP,
+..,
+II,
+and 
+III, which together make 13 out of the 44 characters in it.
+
+Example
+
+The transform is done by sorting all rotations of the text in lexicographic order, then taking the last column. For example, the text "^BANANA|" is transformed into "BNN^AA|A" through these steps (the red | character indicates the 'EOF' pointer):
+The following pseudocode gives a simple (though inefficient) way to calculate the BWT and its inverse. It assumes that the input string s contains a special character 'EOF' which is the last character, occurs nowhere else in the text, and is ignored during sorting.
+ '''function''' BWT (''string'' s)
+    create a table, rows are all possible rotations of s
+    sort rows alphabetically
+    return (last column of the table)
+ '''function''' inverseBWT (''string'' s)
+    create empty table 
+    '''repeat''' length(s) '''times'''
+        // first insert creates first column
+        insert s as a column of table before first column of the table
+        sort rows of the table alphabetically
+    return (row that ends with the 'EOF' character)
+
+Explanation
+
+To understand why this creates more-easily-compressible data, consider transforming a long English text frequently containing the word "the". Sorting the rotations of this text will often group rotations starting with "he " together, and the last character of that rotation (which is also the character before the "he ") will usually be "t", so the result of the transform would contain a number of "t" characters along with the perhaps less-common exceptions (such as if it contains "Brahe ") mixed in. So it can be seen that the success of this transform depends upon one value having a high probability of occurring before a sequence, so that in general it needs fairly long samples (a few kilobytes at least) of appropriate data (such as text).
+The remarkable thing about the BWT is not that it generates a more easily encoded output—an ordinary sort would do that—but that it is reversible, allowing the original document to be re-generated from the last column data.
+The inverse can be understood this way. Take the final table in the BWT algorithm, and erase all but the last column.  Given only this information, you can easily reconstruct the first column. The last column tells you all the characters in the text, so just sort these characters alphabetically to get the first column. Then, the first and last columns (of each row) together give you all pairs of successive characters in the document, where pairs are taken cyclically so that the last and first character form a pair. Sorting the list of pairs gives the first and second columns. Continuing in this manner, you can reconstruct the entire list. Then, the row with the "end of file" character at the end is the original text. Reversing the example above is done like this:
+
+Optimization
+
+A number of optimizations can make these algorithms run more efficiently without changing the output. There is no need to represent the table in either the encoder or decoder. In the encoder, each row of the table can be represented by a single pointer into the strings, and the sort performed using the indices. Some care must be taken to ensure that the sort does not exhibit bad worst-case behavior: Standard library sort functions are unlikely to be appropriate. In the decoder, there is also no need to store the table, and in fact no sort is needed at all.  In time proportional to the alphabet size and string length, the decoded string may be generated one character at a time from right to left. A "character" in the algorithm can be a byte, or a bit, or any other convenient size.
+One may also make the observation that mathematically, the encoded string can be computed as a simple modification of the suffix array, and suffix arrays can be computed with linear time and memory.
+There is no need to have an actual 'EOF' character. Instead, a pointer can be used that remembers where in a string the 'EOF' would be if it existed. In this approach, the output of the BWT must include both the transformed string, and the final value of the pointer. That means the BWT does expand its input slightly. The inverse transform then shrinks it back down to the original size: it is given a string and a pointer, and returns just a string.
+A complete description of the algorithms can be found in Burrows and Wheeler's paper, or in a number of online sources.
+
+Bijective variant
+
+When a bijective variant of the Burrows-Wheeler transform is performed on "^BANANA", you get ANNBAA^ without the need for a special character for the end of the string. This forces one to increase character space by one, or to have a separate field with a numerical value for an offset. Either of these features makes data compression more difficult. When dealing with short files, the savings are great percentage-wise.
+The bijective transform is done by sorting all rotations of the Lyndon words. In comparing two strings of unequal length, one can compare the infinite periodic repetitions of each of these in lexicographic order and take the last column of the base-rotated Lyndon word. For example, the text "^BANANA|" is transformed into "ANNBAA^|" through these steps (the red | character indicates the EOF pointer) in the original string. The EOF character is unneeded in the bijective transform, so it is dropped during the transform and re-added to its proper place in the file.
+The string is broken into Lyndon words so the words in the sequence are decreasing using the comparison method above. "^BANANA" becomes (^) (B) (AN) (AN) (A), but Lyndon words are combined into (^) (B) (ANAN) (A).
+The above may be viewed as four cycles
+
+^ = (^)(^)... = ^^^^^...
+
+B = (B)(B)... = BBBB...
+
+ANAN = (ANAN)(ANAN)... = ANANANAN...
+
+A = (A)(A).. = AAAAA..
+
+or 5 cycles WHERE ANAN broken into 2
+
+AN = (AN) (AN) ... = ANANANAN
+
+AN = (AN) (AN) ... = ANANANAN
+If a cycle is N character it will be repeated N times:
+(^)
+
+(B)
+
+(ANAN) 
+
+(A)
+or 
+(^)
+
+(B)
+
+(AN)
+
+(AN)
+
+(A)
+to get the 
+^BANANA
+Since any rotation of the input string will lead to the same transformed string, the BWT cannot be inverted without adding an EOF marker to the input or, augmenting the output with information such as an index, making it possible to identify the input string from all its rotations.
+There is a bijective version of the transform, by which the transformed string uniquely identifies the original. In this version, every string has a unique inverse of the same length.[ref]
+</ref><ref>
+.</ref>
+The fastest versions are linear in time and space.
+The bijective transform is computed by factoring the input into a non-increasing sequence of Lyndon words; such a factorization exists in the Chen–Fox–Lyndon theorem,*. The algorithm sorts the rotations of all the words; as in the Burrows-Wheeler transform, this produces a sorted sequence of n strings. The transformed string is then obtained by picking the final character of each string in this sorted list.
+For example, applying the bijective transform gives: 
+The bijective transform includes eight runs of identical
+characters. These runs are, in order: XX,
+II,
+XX,
+PP,
+..,
+EE,
+..,
+and
+IIII.
+In total, 18 characters are used in these runs.
+
+Dynamic Burrows–Wheeler transform
+
+Instead of reconstructing the Burrows–Wheeler transform of an edited text, Salson et al. propose an algorithm that deduces the new Burrows–Wheeler transform from the original one, doing a limited number of local reorderings in the original Burrows–Wheeler transform.
+
+Sample implementation
+
+This Python implementation sacrifices speed for simplicity: the program is short, but takes more than the linear time that would be desired in a practical implementation.
+Using the null character as the end of file marker, and using si: + s:i to construct the ith rotation of s, the forward transform takes the last character of each of the sorted rows:
+The inverse transform repeatedly inserts r as the left column of the table and sorts the table.  After the whole table is built, it returns the row that ends with null, minus the null.
+Here is another, more efficient method for the inverse transform. Although more complex, it increases the speed greatly when decoding lengthy strings. 
+
+BWT in bioinformatics
+
+The advent of high-throughput sequencing (HTS) techniques at the end of the 2000 decade has led to another application of the Burrows–Wheeler transformation. In HTS, DNA is fragmented into small pieces, of which the first few bases are sequenced, yielding several millions of "reads", each 30 to 500 base pairs ("DNA characters") long. In many experiments, e.g., in ChIP-Seq, the task is now to align these reads to a reference genome, i.e., to the known, nearly complete sequence of the organism in question (which may be up to several billion base pairs long). A number of alignment programs, specialized for this task, were published, which initially relied on hashing (e.g., Eland, SOAP,) that use the Burrows–Wheeler transform.
+
+
+
+
+
+

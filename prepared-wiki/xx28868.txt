@@ -1,0 +1,52 @@
+[[Binary symmetric channel]]
+
+CATEGORIES: Coding theory
+
+A binary symmetric channel (or BSC) is a common communications channel model used in coding theory and information theory. In this model, a transmitter wishes to send a bit (a zero or a one), and the receiver receives a bit. It is assumed that the bit is usually transmitted correctly, but that it will be "flipped" with a small probability (the "crossover probability"). This channel is used frequently in information theory because it is one of the simplest channels to analyze.
+
+==Description==
+
+The BSC is a binary channel; that is, it can transmit only one of two symbols (usually called 0 and 1). (A non-binary channel would be capable of transmitting more than 2 symbols, possibly even an infinite number of choices.) The transmission is not perfect, and occasionally the receiver gets the wrong bit.
+This channel is often used by theorists because it is one of the simplest noisy channels to analyze. Many problems in communication theory can be reduced to a BSC. Conversely, being able to transmit effectively over the BSC can give rise to solutions for more complicated channels.
+
+==Definition==
+
+It is assumed that 0 ≤ p ≤ 1/2. If p > 1/2, then the receiver can swap the output (interpret 1 when it sees 0, and vice versa) and obtain an equivalent channel with crossover probability 1 − p ≤ 1/2.
+
+===Capacity of BSCp===
+
+The capacity of the channel is 1 − H(p), where H(p) is the binary entropy function.
+The converse can be shown by a sphere packing argument. Given a codeword, there are roughly 2n H(p) typical output sequences. There are 2n total possible outputs, and the input chooses from a codebook of size 2nR. Therefore, the receiver would choose to partition the space into "spheres" with 2n / 2nR = 2n(1 − R) potential outputs each. If R > 1 − H(p), then the spheres will be packed too tightly asymptotically and the receiver will not be able to identify the correct codeword with vanishing probability.
+
+==Shannon's channel capacity theorem for BSCp==
+
+Shannon's noisy coding theorem is general for all kinds of  channels. We consider a special case of this theorem for a binary symmetric channel with an error probability p.
+
+===Noisy coding theorem for BSCp===
+
+Theorem 1
+We shall now prove Theorem 1 .
+Proof
+We get the last inequality by our analysis using the Chernoff bound above. Now taking expectation on both sides we have, 
+
+==Converse of Shannon's capacity theorem==
+
+Theorem 2
+
+==Codes for BSCp==
+
+Very recently, a lot of work has been done and is also being done to design explicit error-correcting codes to achieve the capacities of several standard communication channels. The motivation behind designing such codes is to relate the rate of the code with the fraction of errors which it can correct.
+
+==Forney's code for BSCp==
+
+===Decoding error probability for C*===
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

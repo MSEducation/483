@@ -1,0 +1,139 @@
+[[Advanced Audio Coding]]
+
+CATEGORIES: Audio codecs, Computer file formats, Lossy compression algorithms, MPEG, Open standards covered by patents
+
+
+
+Advanced Audio Coding (AAC) is a standardized, lossy compression and encoding scheme for digital audio. Designed to be the successor of the MP3 format, AAC generally achieves better sound quality than MP3 at similar bit rates.
+AAC has been standardized by ISO and IEC, as part of the MPEG-2 and MPEG-4 specifications.
+AAC supports inclusion of 48 full-bandwidth (up to 96 kHz) audio channels in one stream plus 16 low frequency effects (LFE, limited to 120 Hz) channels, up to 16 "coupling" or dialog channels, and up to 16 data streams. The quality for stereo is satisfactory to modest requirements at 96 kbit/s in joint stereo mode; however, hi-fi transparency demands data rates of at least 128 kbit/s (VBR). The MPEG-2 audio tests showed that AAC meets the requirements referred to as "transparent" for the ITU at 128 kbit/s for stereo, and 320 kbit/s for 5.1 audio.
+AAC is the default or standard audio format for YouTube, iPhone, iPod, iPad, Nintendo DSi, Nintendo 3DS, iTunes, DivX Plus Web Player and PlayStation 3. It is supported on PlayStation Vita, Wii (with the Photo Channel 1.1 update installed), Sony Walkman MP3 series and later, Sony Ericsson; Nokia, Android, BlackBerry, and webOS-based mobile phones, with the use of a converter. AAC also continues to enjoy increasing adoption by manufacturers of in-dash car audio systems.
+
+History
+
+AAC was developed with the cooperation and contributions of companies including AT&T Bell Laboratories, Fraunhofer IIS, Dolby Laboratories, Sony Corporation and Nokia. It was officially declared an international standard by the Moving Picture Experts Group in April 1997. It is specified both as Part 7 of the MPEG-2 standard, and Subpart 4 in Part 3 of the MPEG-4 standard.
+
+Standardization
+
+In 1997, AAC was first introduced as MPEG-2 Part 7, formally known as ISO/IEC 13818-7:1997. This part of MPEG-2 was a new part, since MPEG-2 already included MPEG-2 Part 3, formally known as ISO/IEC 13818-3: MPEG-2 BC (Backwards Compatible).
+MPEG-2 Part 7 defined three profiles: Low-Complexity profile (AAC-LC / LC-AAC), Main profile (AAC Main) and Scalable Sampling Rate profile (AAC-SSR). AAC-LC profile consists of a base format very much like AT&T's Perceptual Audio Coding (PAC) coding format,Johnston, J. D. and Ferreira, A. J., "Sum-difference stereo transform coding", ICASSP '92, March 1992, pp. II-569-572. and Johnston, J. D., "Audio compression at low bit rates using a signal adaptive switched filterbank", IEEE ASSP, 1996, pp. 1053-1057. D., Sinha, D., Dorward, S. and Quackenbush, S., "AT&T perceptual audio coder (PAC)" in Collected Papers on Digital Audio Bit-Rate Reduction, Gilchrist, N. and Grewin, C. (Ed.), Audio Engineering Society, 1996. with the addition of temporal noise shaping (TNS),Herre, J. and Johnston, J. D., "Enhancing the performance of perceptual audio coders by using temporal noise shaping", AES 101st Convention, no. preprint 4384, 1996 the Dolby Kaiser Window (described below), a nonuniform quantizer, and a reworking of the bitstream format to handle up to 16 stereo channels, 16 mono channels, 16 low-frequency effect (LFE) channels and 16 commentary channels in one bitstream. The Main profile adds a set of recursive predictors that are calculated on each tap of the filterbank. The SSR uses a 4-band PQMF filterbank, with four shorter filterbanks following, in order to allow for scalable sampling rates.
+In 1999, MPEG-2 Part 7 was updated and included in the MPEG-4 family of standard and became known as MPEG-4 Part 3, MPEG-4 Audio or ISO/IEC 14496-3:1999. This update included several improvements. One of these improvements was the addition of Audio Object Types which are used to allow interoperability with a diverse range of other audio formats such as TwinVQ, CELP, HVXC, Text-To-Speech Interface and MPEG-4 Structured Audio. Another notable addition in this version of the AAC standard is Perceptual Noise Substitution (PNS). In that regard, the AAC profiles (AAC-LC, AAC Main and AAC-SSR profiles) are combined with perceptual noise substitution and are defined in the MPEG-4 audio standard as Audio Object Types.
+The reference software for MPEG-4 Part 3 is specified in MPEG-4 Part 5 and the conformance bit-streams are specified in MPEG-4 Part 4. MPEG-4 Audio remains backward-compatible with MPEG-2 Part 7.
+The MPEG-4 Audio Version 2 (ISO/IEC 14496-3:1999/Amd 1:2000) defined new audio object types: the low delay AAC (AAC-LD) object type, bit-sliced arithmetic coding (BSAC) object type, parametric audio coding using harmonic and individual line plus noise and error resilient (ER) versions of object types.
+The HE-AAC Profile (AAC LC with SBR) and AAC Profile (AAC LC) were first standardized in ISO/IEC 14496-3:2001/Amd 1:2003.
+The current version of the AAC standard is defined in ISO/IEC 14496-3:2009.
+AAC+ v2 is also standardized by ETSI (European Telecommunications Standards Institute) as TS 102005.
+The MPEG-4 Part 3 standard also contains other ways of compressing sound. These include lossless compression formats, synthetic audio and low bit-rate compression formats generally used for speech.
+
+AAC's improvements over MP3
+
+Advanced Audio Coding is designed to be the successor of the  MPEG-1 Audio Layer 3, known as MP3 format, which was specified by ISO/IEC in 11172-3 (MPEG-1 Audio) and 13818-3 (MPEG-2 Audio).
+Blind tests show that AAC demonstrates greater sound quality and transparency than MP3 for files coded at the same bit rate.
+Improvements include:
+Overall, the AAC format allows developers more flexibility to design codecs than MP3 does, and corrects many of the design choices made in the original MPEG-1 audio specification. This increased flexibility often leads to more concurrent encoding strategies and, as a result, to more efficient compression. However, in terms of whether AAC is better than MP3, the advantages of AAC are not entirely decisive, and the MP3 specification, although antiquated, has proven surprisingly robust in spite of considerable flaws. AAC and HE-AAC are better than MP3 at low bit rates (typically less than 128 kilobits per second). This is especially true at very low bit rates where the superior stereo coding, pure MDCT, and better transform window sizes leave MP3 unable to compete.
+While the MP3 format has near-universal hardware and software support, primarily due to MP3 being the format of choice during the crucial first few years of widespread music file-sharing/distribution over the internet, AAC is a strong contender due to some unwavering industry support.
+
+How AAC works
+
+AAC is a wideband audio coding algorithm that exploits two primary coding strategies to dramatically reduce the amount of data needed to represent high-quality digital audio.
+The actual encoding process consists of the following steps:
+The MPEG-4 audio standard does not define a single or small set of highly efficient compression schemes but rather a complex toolbox to perform a wide range of operations from low bitrate speech coding to high-quality audio coding and music synthesis.
+AAC encoders can switch dynamically between a single MDCT block of length 1024 points or 8 blocks of 128 points (or between 960 points and 120 points, respectively).
+
+Modular encoding
+
+AAC takes a modular approach to encoding. Depending on the complexity of the bitstream to be encoded, the desired performance and the acceptable output, implementers may create profiles to define which of a specific set of tools they want to use for a particular application.
+The MPEG-2 Part 7 standard (Advanced Audio Coding) was first published in 1997 and offers three default profiles:
+The MPEG-4 Part 3 standard (MPEG-4 Audio) defined various new compression tools (a.k.a. Audio Object Types) and their usage in brand new profiles. AAC is not used in some of the MPEG-4 Audio profiles. The MPEG-2 Part 7 AAC LC profile, AAC Main profile and AAC SSR profile are combined with Perceptual Noise Substitution and defined in the MPEG-4 Audio standard as Audio Object Types (under the name AAC LC, AAC Main and AAC SSR). These are combined with other Object Types in MPEG-4 Audio profiles. Here is a list of some audio profiles defined in the MPEG-4 standard:
+(One of many improvements in MPEG-4 Audio is the Object Type - Long Term Prediction (LTP), which is an improvement of the Main profile using a forward predictor with lower computational complexity.)
+
+AAC error protection toolkit
+
+Applying error protection enables error correction up to a certain extent. Error correcting codes are usually applied equally to the whole payload. However, since different parts of an AAC payload show different sensitivity to transmission errors, this would not be a very efficient approach.
+The AAC payload can be subdivided into parts with different error sensitivities.
+
+Error Resilient (ER) AAC
+
+Error Resilience (ER) techniques can be used to make the coding scheme itself more robust against errors.
+For AAC, three custom-tailored methods were developed and defined in MPEG-4 Audio
+
+AAC Low Delay
+
+The MPEG-4 Low Delay Audio Coder (AAC-LD) is designed to combine the advantages of perceptual audio coding with the low delay necessary for two-way communication. It is closely derived from the MPEG-2 Advanced Audio Coding (AAC) format.
+
+Licensing and patents
+
+No licenses or payments are required to be able to stream or distribute content in AAC format. This reason alone can make AAC a much more attractive format to distribute content than its predecessor MP3, particularly for streaming content (such as Internet radio) depending on the use case.
+However, a patent license is required for all manufacturers or developers of AAC codecs. For this reason, free and open source software implementations such as FFmpeg and FAAC may be distributed in source form only, in order to avoid patent infringement. (See below under Products that support AAC, Software.)
+
+Extensions and improvements
+
+Some extensions have been added to the first AAC standard (defined in MPEG-2 Part 7 in 1997):
+
+Container formats
+
+In addition to the MP4, 3GP and other ISO base media file format-based container formats for file storage, AAC audio data was first packaged in file based form for the MPEG-2 standard by using a more basic format called Audio Data Interchange Format (ADIF), However, if the data is to be streamed within an MPEG-2 transport stream, a self-synchronizing format called an Audio Data Transport Stream (ADTS) is used, consisting of a series of frames, each frame having a header followed by the AAC audio data. This file and streaming-based format are defined in MPEG-2 Part 7, but are only considered informative by MPEG-4, so an MPEG-4 decoder does not need to support either format. These containers, as well as a raw AAC stream, may bear the . MPEG-4 Part 3 also defines its own self-synchronizing format called a Low Overhead Audio Stream (LOAS) that encapsulates not only AAC, but any MPEG-4 audio compression scheme such as TwinVQ and ALS. This format is what was defined for use in DVB transport streams when encoders use either SBR or parametric stereo AAC extensions. However, it is restricted to only a single non-multiplexed AAC stream. This format is also referred to as a Low Overhead Audio Transport Multiplex (LATM), which just an interleaved multiple stream version of a LOAS.
+
+Products that support AAC
+
+HDTV Standards
+
+=Japanese ISDB-T=
+
+In December 2003, Japan started broadcasting terrestrial DTV ISDB-T standard that implements MPEG-2 video and MPEG-2 AAC audio.
+In April 2006 Japan started broadcasting the ISDB-T mobile sub-program, called 1seg, that was the first implementation of video H.264/AVC with audio HE-AAC in Terrestrial HDTV broadcasting service on the planet.
+
+=International ISDB-Tb=
+
+In December 2007, Brazil started broadcasting terrestrial DTV standard called International ISDB-Tb that implements video coding H.264/AVC with audio AAC-LC on main program (single or multi) and video H.264/AVC with audio HE-AACv2 in the 1seg mobile sub-program.
+
+=DVB=
+
+The ETSI, the standards governing body for the DVB suite, supports AAC, HE-AAC and HE-AAC v2 audio coding in DVB applications since at least 2004.5.1: Specification for the use of Video and Audio Coding in Broadcasting Applications based on the MPEG transport stream DVB broadcasts which use the H.264 compression for video normally use HE-AAC for audio.
+
+Hardware
+
+=iTunes and iPod=
+
+In April 2003, Apple brought mainstream attention to AAC by announcing that its iTunes and iPod products would support songs in MPEG-4 AAC format (via a firmware update for older iPods). Customers could download music in a closed-source Digital Rights Management (DRM)-restricted form of AAC (see FairPlay) via the iTunes Store or create files without DRM from their own CDs using iTunes. In later years, Apple began offering music videos and movies, which also use AAC for audio encoding.
+On May 29, 2007, Apple began selling songs and music videos free of DRM from participating record labels. These files mostly adhere to the AAC standard and are playable on many non-Apple products but they do include custom iTunes information such as album artwork and a purchase receipt, so as to identify the customer in case the file is leaked out onto peer-to-peer networks. It is possible, however, to remove these custom tags to restore interoperability with players that conform strictly to the AAC specification.
+As of January 6, 2009, nearly all music on the USA regioned iTunes Store became DRM-free, with the remainder becoming DRM-free by the end of March 2009.
+iTunes supports a "Variable Bit Rate" (VBR) encoding option which encodes AAC tracks in an "Average Bit Rate" (ABR) scheme. As of September 2009, Apple has added support for HE-AAC (which is fully part of the MP4 standard) only for radio streams, not file playback, and iTunes still lacks support for true VBR encoding. The underlying QuickTime API does offer a true VBR encoding profile however.
+
+=Other portable players=
+
+=Mobile phones=
+
+For a number of years, many mobile phones from manufacturers such as Nokia, Motorola, Samsung, Sony Ericsson, BenQ-Siemens and Philips have supported AAC playback. The first such phone was the Nokia 5510 released in 2002 which also plays MP3s. However, this phone was a commercial failure and such phones with integrated music players did not gain mainstream popularity until 2005 when the trend of having AAC as well as MP3 support continued. Most new smartphones and music-themed phones support playback of these formats.
+
+=Other devices=
+
+Software
+
+Almost all current computer media players include built-in decoders for AAC, or can utilize a library to decode it. On Microsoft Windows, DirectShow can be used this way with the corresponding filters to enable AAC playback in any DirectShow based player. Mac OS X supports AAC via the QuickTime libraries.
+Adobe Flash Player, since version 9 update 3, can also play back AAC streams.adobe.html
+The Rockbox open source firmware (available for multiple portable players) also offers support for AAC to varying degrees, depending on the model of player and the AAC profile.
+Optional iPod support (playback of unprotected AAC files) for the Xbox 360 is available as a free download from Xbox Live.com | System Use - Use an Apple iPod with Xbox 360
+Following, a non-comprehensive list of other software player applications:
+Some of these players (e.g., foobar2000, Winamp, and VLC) also support the decoding of ADTS (Audio Data Transport Stream) using the SHOUTcast protocol. Plug-ins for Winamp and foobar2000 enable the creation of such streams.
+
+=Nero Digital Audio=
+
+In May 2006, Nero AG released an AAC encoding tool free of charge, Nero Digital Audio (Nero AAC Codec), The tool is a Command Line Interface tool only.  A separate utility is also included to decode to PCM WAV.
+Various tools including the foobar2000 audio player, MediaCoder, MeGUI encoding front end and dBpoweramp can provide a GUI for this encoder.
+
+=FAAC and FAAD2=
+
+FAAC and FAAD2 stand for Freeware Advanced Audio Coder and Decoder 2 respectively. FAAC supports audio object types LC, Main and LTP. Although FAAD2 is free software, FAAC is not free software.
+
+=FFmpeg=
+
+FFmpeg's libavcodec library contains free software codecs for both encoding and decoding AAC (encoding is experimental).  See also here for a list of other encoder/decoder libraries available.
+
+
+
+
+
+
+
+

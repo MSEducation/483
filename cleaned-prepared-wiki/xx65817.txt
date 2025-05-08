@@ -1,0 +1,89 @@
+[[Low-noise amplifier]]
+
+CATEGORIES: Electronic amplifiers
+
+Low-noise amplifier (LNA) is an electronic amplifier used to amplify possibly very weak signals (for example, captured by an antenna). It is usually located very close to the detection device to reduce losses in the feedline. This active antenna arrangement is frequently used in microwave systems like GPS, because coaxial cable feedline is very lossy at microwave frequencies, e.g. a loss of 10% coming from few meters of cable would cause a 10% degradation of the signal-to-noise ratio (SNR).
+An LNA is a key component which is placed at the front-end of a radio receiver circuit. Per Friis' formula, the overall noise figure (NF) of the receiver's front-end is dominated by the first few stages (or even the first stage only).
+Using an LNA, the effect of noise from subsequent stages of the receive chain is reduced by the gain of the LNA, while the noise of the LNA itself is injected directly into the received signal. Thus, it is necessary for an LNA to boost the desired signal power while adding as little noise and distortion as possible, so that the retrieval of this signal is possible in the later stages in the system. A good LNA has a low NF (e.g. ) and should have large enough intermodulation and compression point (IP3 and P1dB). Further criteria are operating bandwidth, gain flatness, stability and input and output voltage standing wave ratio (VSWR).
+For low noise, the amplifier needs to have a high amplification in its first stage. Therefore JFETs and HEMTs are often used. They are driven in a high-current regime, which is not energy-efficient, but reduces the relative amount of shot noise. Input and output matching circuits for narrow-band circuits enhance the gain (see Gain-bandwidth product).
+
+LNA design
+
+Low noise amplifiers are the building blocks of any communication system. The four most important parameters in LNA design are: gain, noise figure, and non-linearity and impedance matching. The design for LNA is based mainly  upon the S-parameters of a transistor. The steps required in designing a LNA are as follows:
+
+Design
+
+There are two widely used types of devices the S-parameter and normal device. An S-parameter is a built-in device which does not require any type of external biasing because it has fixed S-parameters. Normal devices are like other transistors to which external bias can be applied. In designing a LNA, the S-parameter design is the most used.
+
+Transducer
+
+One of the crucial stages in designing a Low Noise Amplifier is proper selection of a transducer. The transducer selected should have a maximum gain and minimum noise figure(NF).
+
+Stability check
+
+While designing any amplifier, it is important to check the stability of the device chosen, or the amplifier may function as an oscillator. For determining stability, calculate Rollet's Stability factor, (represented as variable K) using S-parameters at a given frequency. For a transistor to be stable, parameters must satisfy K>1 and  |∆|
+Stability enhancement
+
+Some of the techniques for enhancing the stability are adding a series resistance and adding a Source Inductance. In the former, a small resistance may be added in series with gate of the transistor. This technique is not used in LNA design because the resistance generates thermal noise, increasing the noise figure of the amplifier.
+Alternatively, an inductor may be added in series with the transistor gate. As an ideal inductor has zero resistance, it generates no thermal noise. It improves stability by reducing the gain of the amplifier by a small factor.   
+
+Applications
+
+LNAs are used in various applications like ISM Radios, Cellular/PCS Handsets, GPS Receivers, Cordless Phones, Wireless LANs, Wireless Data, Automotive RKE, and satellite communications.
+
+Satellite
+
+In a satellite communications system, the ground station receiving antenna will connect to a LNA. The LNA is needed because the received signal is weak. The received signal is usually a little above background noise. Satellites have limited power so they use low power transmitters. The satellites are also distant and suffer path loss; low earth orbit satellites might be 
+
+Example parameters
+
+Here some electrical parameters of LNA:
+Parameters of MAX 2640.
+
+Operating supply voltage
+
+Usually LNA require less operating voltage in the range of .
+MAX 2640 operate at .
+
+Operating supply current
+
+LNA require supply current in the range of mA,
+the supply current require for LNA is dependent on the its design and the application for which it has to be used.
+MAX 2640 which is used for satellite application requires a supply current of nearly .
+
+Operating frequency
+
+The Frequency Range of LNA operation is very wide. They can operate from .
+MAX 2640 operates in the frequency range .
+
+Operating temperature range
+
+A LNA, like other semiconductor devices, is specified for operation in a specific temperature range.
+The temperature range where a LNA operates best is usually .
+Some devices, such as the MAX 2640, are specified to operate over a wide temperature range, i.e 
+
+Noise figure
+
+Noise figure is also one of the important factors which determines the efficiency of a particular LNA.
+Hence, we can decide which LNA is suitable for a particular application.
+For example: In satellite communication, an LNA having a very low noise figure is required.
+MAX 2640 which is used for communication purpose have noise figure in the range .
+Noise figure varies according to the operating frequency for a same LNA. E.g.
+MAX 2640,
+Low noise figure results in better reception of signal.
+
+High gain
+
+With the low noise figure LNA must have high gain for the processing of signal into post circuit.
+According to requirement high gain LNA are designed for application by manufacturer.
+If the LNA doesn't have high gain then the signal will be affected in by noise in LNA circuit itself and maybe attenuated so high gain of LNA is the important parameter of LNA.
+Like NF gain of LNA also varies with the operating frequency.
+e.g. for MAX 2640
+
+
+
+
+
+
+
+

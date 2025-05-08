@@ -1,0 +1,49 @@
+[[Duff's device]]
+
+CATEGORIES: C programming language, Articles with example C code, Computer science, Computer folklore
+
+In computer science, Duff's device is an optimized implementation of a serial copy that uses a technique widely applied in assembly language for loop unwinding.  Its discovery is credited to Tom Duff in November 1983, who at the time was working for Lucasfilm.  It is perhaps the most dramatic use of case label fall-through in the C programming language to date.  Duff does not claim credit for discovering the concept of loop unrolling, just this particular expression of it in C.
+
+==Background==
+
+Loop unrolling revolves around lowering the number of branches made, by batching them together. To handle cases where the number of iterations is not divisible by the unrolled-loop increments, a common technique is to jump directly into the middle of the unrolled loop for copying the remainder.
+Duff was looking for a similar optimization for his case, and succeeded in doing so in C, unrolling a loop into a loop which assigns (up to) eight values on each iteration.
+
+==Original version==
+
+Straightforward code to copy items from an array
+to a memory-mapped output register
+might look like this:
+Note that this is not a memory-to-memory copy, in which you would see *to++.
+While optimizing this, Duff realized that an unrolled version of his loop could be implemented by interlacing the structures of a switch and a loop. 
+Notice that Duff's device can just as easily be applied with any other size for the unrolled loop, not just 8.
+
+==Mechanism==
+
+Based on an algorithm used widely by programmers coding in assembly for minimizing the number of tests and branches during a copy, Duff's device appears out of place when implemented in C.  The device is valid C by virtue of two attributes in C:
+Note that, as documented in the comment appearing in Duff's un-optimized version, the code assumes that count is strictly positive.
+
+==Explanation for beginners==
+
+The basic idea of Duff's device is the following: First of all, we can win time when running a loop by reducing the number of loop tests. For example, in case you run a loop with only a single instruction in the block code, the loop test will be done for every iteration of your loop, that is every time you execute your instruction. If, instead, you place eight times the same instruction in your loop, then the test will be done only every eight iterations, and so you will gain time by avoiding seven tests (this method is called loop unrolling). The problem is that for this to work you need your total number of iterations to be a multiple of eight. Duff's device provides a solution by doing first the "extra" number of iterations, after which you obtain a multiple of eight (in fact: the remainder of the integral division by eight), and then iterating as many times as necessary the groups of eight similar instructions. To obtain the number of "extra" iterations, it calculates the value of the total number of iterations modulo eight and then applies the following trick: according to that value, the processor will jump to a case statement placed in such a way that it is followed by exactly the number of iterations you need. Once this is done, everything is straightforward: you continue by doing iterations of groups of eight instructions, this has become possible since the remaining number of iterations is a multiple of eight. What seems weird in the code is that, to be able to do that jump, you need to have case keywords both inside and outside the loop. Indeed, this seems weird because we tend to consider the contents of a case statement as a block of code nested inside the case statement, and hence we expect it to end before the next case statement. According to the specifications of C language, this is not necessary; indeed, case statements can appear anywhere inside the switch code block, and at any depth; the processor will simply jump to the next statement, wherever it may be.
+
+==Performance==
+
+Many compilers will optimize the switch into a jump table just as would be done in an assembly implementation. C's default fall-through in case statements has long been one of its most controversial features; Duff observed that "This code forms some sort of argument in that debate, but I'm not sure whether it's for or against."Duff's device from FOLDOC
+The primary increase in speed versus a simple, straightforward loop comes from loop unwinding, which reduces the number of branches performed (which are computationally expensive due to the need to flush - and hence stall - the pipeline). The switch/case statement is used to handle the remainder of the data not evenly divisible by the number of operations unrolled (in this example, 8 byte moves are unrolled, so the switch/case handles an extra 1–7 bytes automatically).
+This automatic handling of the remainder may not be the best solution on all systems and compilers — in some cases two loops may actually be faster (one loop, unrolled, to do the main copy, and a second loop to handle the remainder). The problem appears to come down to the ability of the compiler to correctly optimize the device; it may also interfere with pipelining and branch prediction on some architectures.James Ralston's USENIX 2003 Journal When numerous instances of Duff's device were removed from the XFree86 Server in version 4.0, there was an improvement in performance.Ted Tso on XFree86 and performance, Linux Kernel Archive ML Therefore, when considering using this code, it may be worth running a few benchmarks to verify that it actually is the fastest code on the target architecture, at the target optimization level, with the target compiler.
+For the purpose of memory-to-memory copies (which was not the original use of Duff's device, although it can be modified to serve this purpose as described in section below), the standard C library provides function memcpy; it will not perform worse than a memory-to-memory copy version of this code, and may contain architecture-specific optimizations that will make it significantly faster.[tpl]cite web |url=http://web.mit.edu/ehliu/Public/ProjectX/Meetings/AMD_block_prefetch_paper.pdf |publisher=mit.edu |first=Mike |last=Wall |title=Using Block Prefetch for Optimized Memory Performance |date=2002-03-19 |accessdate=2012-09-22[/tpl][tpl]cite web|url=http://www.agner.org/optimize/optimizing_assembly.pdf|pages=100 ff|title=Optimizing subroutines in assembly language |first=Agner |last=Fog |date=2012-02-29|accessdate=2012-09-22| publisher=Copenhagen University College of Engineering[/tpl]
+
+==Stroustrup's version==
+
+The original Device was made for copying to a (memory-mapped) register. To instead copy content of the memory from one location to another, an auto-increment must be added to every reference to to, like so:
+
+This modified form of the Device appears as a "what does this code do?" exercise in Bjarne Stroustrup's book The C++ Programming Language.
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

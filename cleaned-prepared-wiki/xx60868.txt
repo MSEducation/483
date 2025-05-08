@@ -1,0 +1,75 @@
+[[Truevision TGA]]
+
+CATEGORIES: Graphics file formats
+
+
+
+Truevision TGA, often referred to as TARGA, is a raster graphics file format created by Truevision Inc. (now part of Avid Technology). It was the native format of TARGA and VISTA boards, which were the first graphic cards for IBM-compatible PCs to support Highcolor/truecolor display. This family of graphic cards was intended for  professional computer image synthesis and video editing with PCs; for this reason, usual resolutions of TGA image files match those of the NTSC and PAL video formats.
+TARGA is an acronym for T'''ruevision '''A'''dvanced '''R'''aster '''G'''raphics '''A'''dapter''; '''TGA''' is an initialism for Truevision Graphics A'dapter.
+TGA files commonly have the extension ". The format can store image data with 8, 15, 16, 24, or 32 bits of precision per pixel – the maximum 24 bits of RGB and an extra 8-bit alpha channel. Color data can be color-mapped, or in direct color or truecolor format.  Image data may be stored raw, or optionally, a lossless RLE compression similar to PackBits can be employed. This type of compression performs poorly for typical photographic images, but works acceptably well for simpler images, such as icons, cartoons and line drawings.
+
+History
+
+The TGA file format was originally defined and specified by AT&T EPICenter with feedback from Island Graphics Inc in 1984.  AT&T EPICenter was an internal spin-off of AT&T created to market new technologies AT&T had developed for color frame buffers. What later became Truevision was the result of a leveraged employee buyout from AT&T in 1987.
+EPICenter's first two cards, the VDA (video display adapter) and ICB (image capture board), used the first incarnations of the TGA file format. The file extensions ".icb" implied information about the board specific data contained.
+It was later determined by Alan Wlasuk (then head of EPICenter), Brad Pillow (EPICenter) and Steven Dompier (Island's president) that a more codified file format was needed. The file format was created and implemented by Brad Pillow (EPICenter) and Bryan Hunt (EPICenter) and was developed in response to this need for a less board specific file format. A very simple extension was made to what was already in use, and contained information on width, height, pixel depth, an associated color map and image origin. A label field (up to 255 characters) was also included in the initial spec, but was rarely used.
+At the time, another technically superior file format called TIFF also appeared, but its use for true color images was very limited as the implementation and sharing of files between applications supporting the TIFF specification was rather difficult and involved. The TGA file format's simplistic nature and portability between platforms is the main reason for its widespread adoption and its continued success in a wide variety of applications worldwide to this day.
+Initially the TGA file format was used in the ICB-PAINT and TARGA-PAINT programs (what later became known as TIPS) and for several projects in online real estate browsing and still-frame video teleconferencing.
+The current version (2.0) includes several enhancements such as "postage stamps" (better known as thumbnails), an alpha channel, gamma value, and textual metadata, and was authored by Truevision Inc.'s Shawn Steiner with direction from Kevin Friedly and David Spoelstra in 1989.
+At the time of its launching, it represented the state-of-the-art in digital image processing. Even today, though its maximum color depth is not well suited for high-end pre-press, intensive image processing systems, TGA is still used extensively throughout the animation and video industry because its primary intended outputs are standard TV screens, not color printed pages.
+Uncompressed 24-bit TGA images are relatively simple compared to several other prominent 24-bit storage formats: A 24-bit TGA contains only an 18-byte header followed by the image data as packed RGB data.  In contrast, BMP requires padding rows to 4-byte boundaries, while TIFF and PNG are metadata containers that do not place the image data or attributes at a fixed location within the file.
+32-bit TGA images contain an alpha channel, or key signal, and are often used in character generator programs such as Avid Deko.
+
+Technical details
+
+All values are little-endian; field and subfield numbers are per Version 2.0 of the specification.
+Version 2 added the extension area and footer. The developer area exists to store application-specific information.
+
+Header
+
+Image ID length (field 1)
+0 - 255
+The number of bytes that the image ID field consists of.
+The image ID field can contain any information, but it is common for it to contain the date and time the image was created or a serial number.
+As of version 2.0 of the TGA spec, the date and time the image was created is catered for in the extension area.
+Color map type (field 2)
+has the value:
+Image type (field 3)
+is enumerated in the lower three bits, with the fourth bit as a flag for RLE.  Some possible values are:
+Image type 1 and 9: Depending on the Pixel Depth value, image data representation is an 8, 15, or 16 bit index into a color map that defines the color of the pixel.
+Image type 2 and 10: The image data is a direct representation of the pixel color. For a Pixel Depth of 15 and 16 bit, each pixel is stored with 5 bits per color. If the pixel depth is 16 bits, the topmost bit is reserved for transparency. For a pixel depth of 24 bits, each pixel is stored with 8 bits per color. A 32 bit pixel depth defines an additional 8 bit alpha channel.
+Image type 3 and 11: The image data is a direct representation of grayscale data. The pixel depth is 8 bits for images of this type.
+Color map specification (field 4)
+has three subfields:
+Image specification (field 5)
+has six subfields:
+
+Image and color map data
+
+Developer area (optional)
+
+Version 1.0 of the TGA specification was very basic, and many developers had a need to store more information, and so opted to add on extra sections to their files, specific to their application only.
+In Version 2.0 of the specification, these application-specific enhancements/extras are supported by the developer area. Only the offset and size of the developer area are relevant to the spec, and developers are free to add whatever they want in the area.
+If a TGA decoder cannot interpret the information in the developer area, it will generally ignore it, since it is assumed to have been created by a different application.  It is recommended that developers build logic into their applications to determine whether the data in the developer area is compatible with the application; one step towards this is to check the software ID in the file footer.
+
+Extension area (optional)
+
+File footer (optional)
+
+If a TGA image contains a footer, the chances are that it is a TGA version 2 file.  The footer is the final 26 bytes of the file, of which the last 18 are constant.
+
+Specification discrepancies
+
+The older version of the TGA file format specification taken from the Appendix C of the Truevision Technical Guide states that run-length encoded (RLE) packets may cross scan lines: "For the run length packet, the header is followed by a single color value, which is assumed to be repeated the number of times specified in the header.  The packet may cross scan lines (begin on one line and end on the next)".
+However, page 24 of the TGA v2.0 specification states the exact opposite: "Run-length Packets should never encode pixels from more than one scan line. Even if the end of one scan line and the beginning of the next contain pixels of the same value, the two should be encoded as separate packets. In other words, Run-length Packets should not wrap from one line to another".
+Consequently TGA readers need to be able to handle RLE data packets that cross scan lines since this was part of the original specification. However, when saving (creating) TGA files it will be necessary to limit RLE data packets to scanline boundaries in order to be compliant with the newer v2.0 TGA specification.
+
+Other media
+
+In the film Earth Girls Are Easy, the aliens are given a makeover at the "Curl up and Dye" Salon. There is a short sequence showing the TARGA video card, and TIPS paint software in action.
+
+
+
+
+
+

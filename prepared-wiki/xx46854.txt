@@ -1,0 +1,41 @@
+[[Knaster–Tarski theorem]]
+
+CATEGORIES: Order theory, Fixed points (mathematics), Fixed-point theorems, Theorems in the foundations of mathematics, Articles containing proofs
+
+In the mathematical areas of order and lattice theory, the Knaster–Tarski theorem, named after Bronisław Knaster and Alfred Tarski, states the following:
+It was Tarski who stated the result in its most general form,[tpl]cite journal | author=Alfred Tarski | url=http://projecteuclid.org/Dienst/UI/1.0/Summarize/euclid.pjm/1103044538 | title=A lattice-theoretical fixpoint theorem and its applications | journal = Pacific Journal of Mathematics | volume=5:2 | year=1955 | pages=285–309[/tpl] and so the theorem is often known as Tarski's fixed point theorem. Some time earlier, Knaster and Tarski established the result for the special case where L is the lattice of subsets of a set, the power set lattice.[tpl]cite journal | author=B. Knaster | title=Un théorème sur les fonctions d'ensembles | journal=Ann. Soc. Polon. Math. | year=1928 | volume=6 | pages=133–134[/tpl] With A. Tarski.
+The theorem has important applications in formal semantics of programming languages and abstract interpretation.
+A kind of converse of this theorem was proved by Anne C. Davis: If every order preserving function f : L → L on a lattice L has a fixed point, then L is a complete lattice.[tpl]cite journal | author=Anne C. Davis | url=http://projecteuclid.org/Dienst/UI/1.0/Summarize/euclid.pjm/1103044539 | title=A characterization of complete lattices | journal=Pacific J. Math. | year=1955 | volume=5 | pages=311–319 | doi=10.2140/pjm.1955.5.311[/tpl]
+
+==Consequences: least and greatest fixed points==
+
+Since complete lattices cannot be empty, the theorem in particular guarantees the existence of at least one fixed point of f, and even the existence of a least (or greatest) fixed point. In many practical cases, this is the most important implication of the theorem.
+The least fixpoint of f is the least element x such that f(x) = x, or, equivalently, such that f(x) ≤ x; the dual holds for the greatest fixpoint, the greatest element x such that f(x) = x.
+If f(lim xn)=lim f(xn) for all ascending sequences xn, then the least fixpoint of f is lim fn(0) where 0 is the least element of L, thus giving a more "constructive" version of the theorem. (See: Kleene fixed-point theorem.) More generally, if f is monotonic, then the least fixpoint of f is the stationary limit of fα(0), taking α over the ordinals, where fα is defined by transfinite induction: fα+1 = f ( fα) and fγ for a limit ordinal γ is the least upper bound of the fβ for all β ordinals less than γ. The dual theorem holds for the greatest fixpoint.
+For example, in theoretical computer science, least fixed points of monotone functions are used to define program semantics. Often a more specialized version of the theorem is used, where L is assumed to be the lattice of all subsets of a certain set ordered by subset inclusion. This reflects the fact that in many applications only such lattices are considered. One then usually is looking for the smallest set that has the property of being a fixed point of the function f. Abstract interpretation makes ample use of the Knaster–Tarski theorem and the formulas giving the least and greatest fixpoints.
+Knaster–Tarski theorem can be used for a simple proof of Cantor–Bernstein–Schroeder theorem.Example 3 in R. Uhl, "Tarski's Fixed Point Theorem", from MathWorld--a Wolfram Web Resource, created by Eric W. Weisstein.
+
+==Weaker versions of the theorem==
+
+Weaker versions of the Knaster–Tarski theorem can be formulated for ordered sets, but involve more complicated assumptions. For example:
+This can be applied to obtain various theorems on invariant sets, e.g. the Ok's theorem:
+In particular, using the Knaster-Tarski principle one can develop the theory of global attractors for noncontractive discontinuous (multivalued) iterated function systems. For weakly contractive iterated function systems Kantorovitch fixpoint theorem suffices.
+Other applications of fixed point principles for ordered sets come from the theory of differential, integral and operator equations.
+
+==Proof==
+
+Let's restate the theorem.
+Proof. We begin by showing that P has least and greatest element. Let D = { x | x ≤ f(x) } and x ∈ D (we know that at least 0L belongs to D). Then because f is monotone we have f(x) ≤ f(f(x)), that is f(x) ∈ D.
+If a ∈ L and b ∈ L, we'll write b for the closed interval with bounds a and b: { x ∈ L | a ≤ x ≤ b }. If a ≤ b, then b is a complete lattice.
+
+==See also==
+
+==Notes==
+
+==References==
+
+===Recent developments===
+
+==External links==
+
+

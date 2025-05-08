@@ -1,0 +1,24 @@
+[[Optimal Flexible Architecture]]
+
+CATEGORIES: Oracle Corporation
+
+Optimal Flexible Architecture (OFA), a standard of Oracle Corporation, encourages consistent layouts when installing and configuring the Oracle Database product on computer systems.
+
+==Overview==
+
+OFA defines where each component will install its files. In many respects it resembles the Filesystem Hierarchy Standard (FHS) on UNIX systems in which, for example, the directory "/bin" always holds the essential system binaries — so when administrators and users use other systems they will already know where to find the standard system binaries. OFA takes FHS standard-style concepts and uses them for Oracle products on UNIX and on Windows. In this way Oracle Database administrators will find familiar structures and locations of the various applications and data installed on any OFA-compliant system.
+OFA covers where to install each part of each product; it addresses the storage of both applications and data. Much like the FHS, OFA imposes no constraints on the locations: it merely makes recommendations.
+Oracle Corporation has structured the OFA system so that system administrators can use multiple disks (for example: applications on one disk and databases on another). OFA also allows for installing multiple versions of the same product on the same host: for example Oracle Database 9 and Oracle Database 10.
+
+==Directory structure==
+
+Each main Oracle-oriented directory on each disk consists of a string ('u'  or 'disk' by default) with a unique identifier (often a 2-digit number) appended,
+for example: /u01 or /disk07. Administrators store data and application-code within these directories, and Oracle products reference these directories. If desired, one can use symbolic links to map the main directories into physical disk storage.
+Within each main directory a number of subdirectories can exist. Commonly used subdirectories include:
+For example: /u01/app/oracle/product/10.2.0/bin/ may contains the binaries for Oracle 10.2.0. If a system has an Oracle Database instance called foo, then /u01/app/oracle/admin/foo/ may contain information about that foo's datafiles: this could point to a collection of datafiles in /u03/oradata/foo, etc.
+
+==External links==
+
+==References==
+
+

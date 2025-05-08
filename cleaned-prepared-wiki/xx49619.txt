@@ -1,0 +1,56 @@
+[[Levinson recursion]]
+
+CATEGORIES: Matrices, Numerical analysis
+
+Levinson recursion or Levinson–Durbin recursion is a procedure in linear algebra to recursively calculate the solution to an equation involving a Toeplitz matrix. The algorithm runs in Θ(n2) time, which is a strong improvement over Gauss–Jordan elimination, which runs in Θ(n3). 
+The Levinson-Durbin algorithm was proposed first by Norman Levinson in 1947, improved by James Durbin in 1960, and subsequently improved to 4n2 and then 3n2 multiplications by W. F. Trench and S. Zohar, respectively.
+Other methods to process data include Schur decomposition and Cholesky decomposition. In comparison to these, Levinson recursion (particularly Split-Levinson recursion) tends to be faster computationally, but more sensitive to computational inaccuracies like round-off errors.
+The Bareiss algorithm for Toeplitz matrices (not to be confused with the general Bareiss algorithm) runs about as fast as Levinson recursion, but it uses O(n2) space, whereas Levinson recursion uses only O(n) space.  The Bareiss algorithm, though, is  numerically stable,Bojanczyk et al. (1995). whereas Levinson recursion is at best only weakly stable (i.e. it exhibits numerical stability for well-conditioned linear systems).
+Newer algorithms, called asymptotically fast or sometimes superfast Toeplitz algorithms, can solve in Θ(n logpn) for various p (e.g. p = 2, p = 3  Levinson recursion remains popular for several reasons; for one, it is relatively easy to understand in comparison; for another, it can be faster than a superfast algorithm for small n (usually n 
+Derivation
+
+Background
+
+Matrix equations follow the form:
+For the sake of this article, êi is a vector made up entirely of zeroes, except for its i'th place, which holds the value one. Its length will be implicitly determined by the surrounding context. The term N refers to the width of the matrix above -- M is an N×N matrix. Finally, in this article, superscripts refer to an inductive index, whereas subscripts denote indices. For example (and definition), in this article, the matrix Tn is an n×n matrix which copies the upper left n×n block from M -- that is, Tnij = Mij. 
+Tn is also a Toeplitz matrix; meaning that it can be written as:
+
+Introductory steps
+
+The algorithm proceeds in two steps. In the first step, two sets of vectors, called the forward and backward vectors, are established. The forward vectors are used to help get the set of backward vectors; then they can be immediately discarded. The backwards vectors are necessary for the second step, where they are used to build the solution desired.
+An important simplification can occur when M is a symmetric matrix; then the two vectors are related by bni = fnn+1-i -- that is, they are row-reversals of each other. This can save some extra computation in that special case.
+
+Obtaining the backward vectors
+
+Even if the matrix is not symmetric, then the nth forward and backward vector may be found from the vectors of length n-1 as follows. First, the forward vector may be extended with a zero to obtain:
+In going from Tn-1 to Tn, the extra column added to the matrix does not perturb the solution when a zero is used to extend the forward vector. However, the extra row added to the matrix has perturbed the solution; and it has created an unwanted error term εf which occurs in the last place. The above equation gives it the value of:
+This error will be returned to shortly and eliminated from the new forward vector; but first, the backwards vector must be extended in a similar (albeit reversed) fashion. For the backwards vector,
+Like before, the extra column added to the matrix does not perturb this new backwards vector; but the extra row does. Here we have another unwanted error εb with value:
+These two error terms can be used to eliminate each other. Using the linearity of matrices,
+If α and β are chosen so that the right hand side yields ê1 or ên, then the quantity in the parentheses will fulfill the definition of the nth forward or backward vector, respectively. With those alpha and beta chosen, the vector sum in the parentheses is simple and yields the desired result. 
+Now, all the zeroes in the middle of the two vectors above being disregarded and collapsed, only the following equation is left:
+With these solved for (by using the Cramer 2x2 matrix inverse formula), the new forward and backward vectors are:
+Performing these vector summations, then, gives the nth forward and backward vectors from the prior ones. All that remains is to find the first of these vectors, and then some quick sums and multiplications give the remaining ones. The first forward and backward vectors are simply:
+
+Using the backward vectors
+
+The above steps give the N backward vectors for M. From there, a more arbitrary equation is:
+The solution is then built recursively by noticing that if:
+Then, extending with a zero again, and defining an error constant where necessary:
+We can then use the nth backward vector to eliminate the error term and replace it with the desired formula as follows:
+In practice, these steps are often done concurrently with the rest of the procedure, but they form a coherent unit and deserve to be treated as their own step.
+
+Block Levinson algorithm
+
+If M is not strictly Toeplitz, but block Toeplitz, the Levinson recursion can be derived in much the same way by regarding the block Toeplitz matrix as a Toeplitz matrix with matrix elements (Musicus 1988). Block Toeplitz matrices arise naturally in signal processing algorithms when dealing with multiple signal streams (e.g., in MIMO systems) or cyclo-stationary signals.
+
+
+
+Notes
+
+
+
+Defining sources
+Further work
+Summaries
+

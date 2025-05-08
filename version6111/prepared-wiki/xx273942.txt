@@ -1,0 +1,46 @@
+[[Prepared statement]]
+
+CATEGORIES: Databases, SQL
+
+In database management systems, a prepared statement or parameterized statement is a feature used to execute the same or similar database statements repeatedly with high efficiency. Typically used with SQL statements such as queries or updates, the prepared statement takes the form of a template into which certain constant values are substituted during each execution.
+The typical workflow of using a prepared statement is as follows:
+As compared to executing SQL statements directly, prepared statements offer two main advantages:[tpl]cite web|last=The PHP Documentation Group|title=Prepared statements and stored procedures|url=http://php.net/manual/en/pdo.prepared-statements.php|work=PHP Manual|accessdate=25 September 2011[/tpl]
+On the other hand, if a query is executed only once, server-side prepared statements can be slower because of the additional round-trip to the server.[tpl]cite web|last=Zaitsev|first=Peter|title=MySQL Prepared Statements|url=http://www.mysqlperformanceblog.com/2006/08/02/mysql-prepared-statements/|work=MySQL Performance Blog|date=2 August 2006|accessdate=25 September 2011[/tpl] Implementation limitations may also lead to performance penalties: some versions of MySQL did not cache results of prepared queries,[tpl]cite web|title=7.6.3.1. How the Query Cache Operates|url=http://dev.mysql.com/doc/refman/5.1/en/query-cache-operation.html|work=MySQL 5.1 Reference Manual|publisher=Oracle|accessdate=26 September 2011[/tpl] and some DBMSs such as PostgreSQL do not perform additional query optimization during execution.[tpl]cite web|title=PREPARE|url=http://www.postgresql.org/docs/9.0/static/sql-prepare.html|work=PostgreSQL 9.0.5 Documentation|publisher=PostgreSQL Global Development Group|accessdate=26 September 2011[/tpl][tpl]cite web|last=Smith|first=Lukas Kahwe|title=Prepared statement gotchas|url=http://pooteeweet.org/blog/1083|work=Poo-tee-weet|date=14 May 2008|accessdate=26 September 2011[/tpl]
+A stored procedure, which is also precompiled and stored on the server for later execution, has similar advantages. Unlike a stored procedure, a prepared statement is not normally written in a procedural language and cannot use or modify variables or use control flow structures, relying instead on the declarative database query language. Due to their simplicity and client-side emulation, prepared statements are more portable across vendors.
+
+==Software support==
+
+Prepared statements are widely supported by major DBMSs, including MySQL,[tpl]cite web|last=Oracle|title=20.9.4. C API Prepared Statements|url=http://dev.mysql.com/doc/refman/5.5/en/c-api-prepared-statements.html|work=MySQL 5.5 Reference Manual|accessdate=27 March 2012[/tpl] Oracle,[tpl]cite web|title=13 Oracle Dynamic SQL|url=http://download.oracle.com/docs/cd/B10501_01/appdev.920/a97269/pc_13dyn.htm|work=Pro*C/C++ Precompiler Programmer's Guide, Release 9.2|publisher=Oracle|accessdate=25 September 2011[/tpl] DB2,[tpl]cite web|title=Using the PREPARE and EXECUTE statements|url=http://publib.boulder.ibm.com/infocenter/iseries/v5r4/index.jsp?topic=%2Fsqlp%2Frbafyplepexc.htm|work=i5/OS Information Center, Version 5 Release 4|publisher=IBM|accessdate=25 September 2011[/tpl]  Microsoft SQL Server,[tpl]cite web|title=SQL Server 2008 R2: Preparing SQL Statements|url=http://msdn.microsoft.com/en-us/library/ms175528.aspx|work=MSDN Library|publisher=Microsoft|accessdate=25 September 2011[/tpl] and PostgreSQL. Prepared statements are normally executed through a non-SQL binary protocol, for efficiency and protection from SQL injection, but with some DBMSs such as MySQL are also available using a SQL syntax for debugging purposes.[tpl]cite web|last=Oracle|title=12.6. SQL Syntax for Prepared Statements|url=http://dev.mysql.com/doc/refman/5.5/en/sql-syntax-prepared-statements.html|work=MySQL 5.5 Reference Manual|accessdate=27 March 2012[/tpl]
+A number of programming languages support prepared statements in their standard libraries and will emulate them on the client side even if the underlying DBMS does not support them, including Java's JDBC,[tpl]cite web|title=Using Prepared Statements|url=http://download.oracle.com/javase/tutorial/jdbc/basics/prepared.html|work=The Java Tutorials|publisher=Oracle|accessdate=25 September 2011[/tpl] Perl's DBI,[tpl]cite web|last=Bunce|first=Tim|title=DBI-1.616 specification|url=https://metacpan.org/module/DBI#prepare|work=CPAN|accessdate=26 September 2011[/tpl] PHP's PDO  and Python's DB-API.[tpl] cite web|title=Python PEP 289: Python Database API Specification v2.0|url=http://www.python.org/dev/peps/pep-0249/ [/tpl] Client-side emulation can be faster for queries which are executed only once, by reducing the number of round trips to the server, but is usually slower for queries executed many times. It resists SQL injection attacks equally effectively.
+Many types of SQL injection attacks can be eliminated by disabling literals, effectively requiring the use of prepared statements; as of 2007 only H2 supports this feature.[tpl]cite web |url=http://thecodist.com/article/sql-injections-how-not-to-get |title=SQL Injections: How Not To Get Stuck |publisher=The Codist |date=8 May 2007 |accessdate=February 1, 2010[/tpl]
+
+==Examples==
+
+===Java JDBC===
+
+This example uses Java and the JDBC API:
+Java PreparedStatement provides "setters" (setInt(int), setString(String), setDouble(double), etc.) for all major built-in data types.
+
+===PHP PDO===
+
+This example uses PHP and PHP Data Objects (PDO):
+
+===PERL DBI===
+
+This example uses Perl and DBI:
+
+===C# ADO.NET===
+
+This example uses C# and ADO.NET:
+ADO.NET SqlCommand will accept any type for the value parameter of AddWithValue, and type conversion occurs automatically. Note the use of "named parameters" (i.e. "@username") rather than "?" - this allows you to use a parameter multiple times and in any arbitrary order within the query command text.
+However, the AddWithValue method should not be used with variable length data types, like varchar and nvarchar. This is because .NET assumes the length of the parameter to be the length of the given value, rather than getting the actual length of from the database via reflection. The consequence of this is that a different query plan is compiled and stored for each different length. In general, the maximum number of 'duplicate' plans is the product of the lengths of the variable length columns as specified in the database. For this reason, it is important to use the standard Add method for variable length columns:
+command.Parameters.Add(ParamName, VarChar, ParamLength).Value = ParamValue, where ParamLength is the length as specified in the database.
+Since the standard Add method needs to be used for variable length data types, it is a good habit to use it for all parameter types.
+
+===Python DB-API===
+
+This example uses Python DB-API with SQLite and paramstyle='qmark':
+
+==References==
+
+

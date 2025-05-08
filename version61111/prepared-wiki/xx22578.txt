@@ -1,0 +1,52 @@
+[[Digital Signature Algorithm]]
+
+CATEGORIES: Digital signature schemes
+
+The Digital Signature Algorithm (DSA) is a Federal Information Processing Standard for digital signatures. It was proposed by the National Institute of Standards and Technology (NIST) in August 1991 for use in their Digital Signature Standard (DSS) and adopted as FIPS 186 in 1993.FIPS PUB 186: Digital Signature Standard (DSS), 1994-05-19 Four revisions to the initial specification have been released: FIPS 186-1 in 1996,FIPS PUB 186-1: Digital Signature Standard (DSS), 1998-12-15 FIPS 186-2 in 2000,FIPS PUB 186-2: Digital Signature Standard (DSS), 2000-01-27 FIPS 186-3 in 2009,FIPS PUB 186-3: Digital Signature Standard (DSS), June 2009 and FIPS 186-4 in 2013.FIPS PUB 186-4: Digital Signature Standard (DSS), July 2013
+DSA is covered by [tpl]US patent|5231668[/tpl], filed July 26, 1991 and attributed to David W. Kravitz,Dr. David W. Kravitz a former NSA employee. This patent was given to "The United States of America as represented by the Secretary of Commerce, Washington, D.C.", and NIST has made this patent available worldwide royalty-free.Werner Koch. DSA and patents Claus P. Schnorr claims that his [tpl]US patent|4995082[/tpl] (expired) covered DSA; this claim is disputed.Minutes of the Sept. 94 meeting of the Computer System Security and Privacy Advisory Board DSA is a variant of the ElGamal Signature Scheme
+
+==Key generation==
+
+Key generation has two phases. The first phase is a choice of algorithm parameters which may be shared between different users of the system, while the second phase computes public and private keys for a single user.
+
+===Parameter generation===
+
+The algorithm parameters (p, q, g) may be shared between different users of the system.
+
+===Per-user keys===
+
+Given a set of parameters, the second phase computes private and public keys for a single user:
+There exist efficient algorithms for computing the modular exponentiations  h(p–1)/q mod p and gx mod p, such as exponentiation by squaring.
+
+==Signing==
+
+The first two steps amount to creating a new per-message key.  The modular exponentiation here is the most computationally expensive part of the signing operation, and it may be computed before the message hash is known.
+
+==Verifying==
+
+DSA is similar to the ElGamal signature scheme.
+
+==Correctness of the algorithm==
+
+The signature scheme is correct in the sense that the verifier will always accept genuine signatures. This can be shown as follows:
+First, if g = h(p − 1)/q mod p it follows that
+gq ≡ hp − 1 ≡ 1 (mod p) by
+Fermat's little theorem. Since g > 1 and q is prime, g must have order q.
+The signer computes
+Thus 
+Since g has order q (mod p) we have
+Finally, the correctness of DSA follows from
+
+==Sensitivity==
+
+With DSA, the entropy, secrecy, and uniqueness of the random signature value k is critical.  It is so critical that violating any one of those three requirements can reveal the entire private key to an attacker.The Debian PGP disaster that almost was  Using the same value twice (even while keeping k secret), using a predictable value, or leaking even a few bits of k in each of several signatures, is enough to break DSA.DSA k-value Requirements
+In December 2010, a group calling itself fail0verflow announced recovery of the ECDSA private key used by Sony to sign software for the PlayStation 3 game console. The attack was made possible because Sony failed to generate a new random k for each signature.[tpl]Cite news|last=Bendel|first=Mike|title=Hackers Describe PS3 Security As Epic Fail, Gain Unrestricted Access|publisher=Exophase.com|date=2010-12-29|url=http://exophase.com/20540/hackers-describe-ps3-security-as-epic-fail-gain-unrestricted-access/|accessdate=2011-01-05[/tpl]
+This issue can be prevented by deriving k deterministically from the private key and the message hash, as described by RFC 6979. This ensures that k is different for each H(m) and unpredictable for attackers who do not know x.
+
+==See also==
+
+==References==
+
+==External links==
+
+

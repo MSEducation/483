@@ -1,0 +1,304 @@
+[[Radio-frequency identification]]
+
+CATEGORIES: Automatic identification and data capture, Emerging technologies, Privacy, Radio-frequency identification, Ubiquitous computing, Wireless
+
+Radio-frequency identification (RFID) is the wireless non-contact use of radio-frequency electromagnetic fields to transfer data, for the purposes of automatically identifying and tracking tags attached to objects. The tags contain electronically stored information. Some tags are powered by and read at short ranges (a few meters) via magnetic fields (electromagnetic induction). Others use a local power source such as a battery, or else have no battery but collect energy from the interrogating EM field, and then act as a passive transponder to emit microwaves or UHF radio waves (i.e., electromagnetic radiation at high frequencies). Battery powered tags may operate at hundreds of meters. Unlike a barcode, the tag does not necessarily need to be within line of sight of the reader, and may be embedded in the tracked object.
+Radio frequency identification (RFID) is part of the family of Automatic Identification and Data Capture (AIDC) technologies that includes 1D and 2D bar codes. RFID uses an electronic chip, usually applied to a substrate to form a label, that is affixed to a product, case, pallet or other package. The information it contains may be read, recorded, or rewritten.packagingdigest.com/rfid
+RFID tags are used in many industries.  An RFID tag attached to an automobile during production can be used to track its progress through the assembly line. Pharmaceuticals can be tracked through warehouses. Livestock and pets may have tags injected, allowing positive identification of the animal. 
+Since RFID tags can be attached to cash, clothing, everyday possessions, or even implanted within people, the possibility of reading personally-linked information without consent has raised serious privacy concerns.
+
+History
+
+In 1945 Léon Theremin invented an espionage tool for the Soviet Union which retransmitted incident radio waves with audio information. Sound waves vibrated a diaphragm which slightly altered the shape of the resonator, which modulated the reflected radio frequency. Even though this device was a covert listening device, not an identification tag, it is considered to be a predecessor of RFID technology, because it was likewise passive, being energized and activated by waves from an outside source.
+Similar technology, such as the IFF transponder, was routinely used by the allies and Germany in World War II to identify aircraft as friend or foe. Transponders are still used by most powered aircraft to this day.
+Another early work exploring RFID is the landmark 1948 paper by Harry Stockman, titled "Communication by Means of Reflected Power" (Proceedings of the IRE, pp 1196–1204, October 1948). Stockman predicted that "... considerable research and development work has to be done before the remaining basic problems in reflected-power communication are solved, and before the field of useful applications is explored."
+Mario Cardullo's device, patented on January 23, 1973, was the first true ancestor  The initial device was passive, powered by the interrogating signal, and was demonstrated in 1971 to the New York Port Authority and other potential users and consisted of a transponder with 16 bit memory for use as a toll device. The basic Cardullo patent covers the use of RF, sound and light as transmission media. The original business plan presented to investors in 1969 showed uses in transportation (automotive vehicle identification, automatic toll system, electronic license plate, electronic manifest, vehicle routing, vehicle performance monitoring), banking (electronic check book, electronic credit card), security (personnel identification, automatic gates, surveillance) and medical (identification, patient history).
+An early demonstration of reflected power (modulated backscatter) RFID tags, both passive and semi-passive, was performed by Steven Depp, Alfred Koelle, and Robert Frayman at the Los Alamos National Laboratory in 1973. The portable system operated at 915 MHz and used 12-bit tags. This technique is used by the majority of today's UHFID and microwave RFID tags.
+The first patent to be associated with the abbreviation RFID was granted to Charles Walton in 1983. Walton "Portable radio frequency emitting identifier"  issue date May 17, 1983
+
+Design
+
+Tags
+
+A radio-frequency identification system uses tags, or labels attached to the objects to be identified. Two-way radio transmitter-receivers called  interrogators or readers send a signal to the tag and read its response.
+RFID tags can be either passive, active or battery-assisted passive. An active tag has an on-board battery and periodically transmits its ID signal. A battery-assisted passive (BAP) has a small battery on board and is activated when in the presence of an RFID reader. A passive tag is cheaper and smaller because it has no battery. However, to start operation of passive tags, they must be illuminated with a power level roughly three magnitudes stronger than for signal transmission. That makes a difference in interference and in exposure to radiation.
+Tags may either be read-only, having a factory-assigned serial number that is used as a key into a database, or may be read/write, where object-specific data can be written into the tag by the system user. Field programmable tags may be write-once, read-multiple; "blank" tags may be written with an electronic product code by the user. A tag with no inherent identity is always threatened to get manipulated.
+RFID tags contain at least two parts: an integrated circuit for storing and processing information, modulating and demodulating a radio-frequency (RF) signal, collecting DC power from the incident reader signal,  and other specialized functions; and an antenna for receiving and transmitting the signal. The tag information is stored in a non-volatile memory. The RFID tag includes either a chip-wired logic or a programmed or programmable data processor for processing the transmission and sensor data, respectively.
+An RFID reader transmits an encoded radio signal to interrogate the tag. The RFID tag receives the message and then responds with its identification and other information. This may be only a unique tag serial number, or may be product-related information such as a stock number, lot or batch number, production date, or other specific information.
+
+Readers
+
+RFID systems can be classified by the type of tag and reader. A Passive Reader Active Tag (PRAT) system has a passive reader which only receives radio signals from active tags (battery operated, transmit only). The reception range of a PRAT system reader can be adjusted from , allowing flexibility in applications such as asset protection and supervision.
+An Active Reader Passive Tag (ARPT) system has an active reader, which transmits interrogator signals and also receives authentication replies from passive tags.
+An Active Reader Active Tag (ARAT) system uses active tags awoken with an interrogator signal from the active reader. A variation of this system could also use a Battery-Assisted Passive (BAP) tag which acts like a passive tag but has a small battery to power the tag's return reporting signal.
+Fixed readers are set up to create a specific interrogation zone which can be tightly controlled. This allows a highly defined reading area for when tags go in and out of the interrogation zone. Mobile readers may be hand-held or mounted on carts or vehicles.
+
+Frequencies
+
+Signaling
+
+Signaling between the reader and the tag is done in several different incompatible ways, depending on the frequency band used by the tag. Tags operating on LF and HF bands are, in terms of radio wavelength, very close to the reader antenna because they are only a small percentage of a wavelength away. In this near field region, the tag is closely coupled electrically with the transmitter in the reader. The tag can modulate the field produced by the reader by changing the electrical loading the tag represents. By switching between lower and higher relative loads, the tag produces a change that the reader can detect. At UHF and higher frequencies, the tag is more than one radio wavelength away from the reader, requiring a different approach. The tag can backscatter a signal. Active tags may contain functionally separated transmitters and receivers, and the tag need not respond on a frequency related to the reader's interrogation signal. Dobkin, The RF in RFID: Passive UHF RFID In Practice, Newnes 2008 ISBN 978-0-7506-8209-1, chapter 8
+An Electronic Product Code (EPC) is one common type of data stored in a tag. When written into the tag by an RFID printer, the tag contains a 96-bit string of data.  The first eight bits are a header which identifies the version of the protocol. The next 28 bits identify the organization that manages the data for this tag; the organization number is assigned by the EPCGlobal consortium. The next 24 bits are an object class, identifying the kind of product; the last 36 bits are a unique serial number for a particular tag. These last two fields are set by the organization that issued the tag. Rather like a URL, the total electronic product code number can be used as a key into a global database to uniquely identify a particular product. Vacca Computer and information security handbook, Morgan Kaufmann, 2009 ISBN 0-12-374354-0, page 208
+Often more than one tag will respond to a tag reader, for example, many individual products with tags may be shipped in a common box or on a common pallet. Collision detection is important to allow reading of data.  Two different types of protocols are used to "singulate" a particular tag, allowing its data to be read in the midst of many similar tags.  In a slotted Aloha system, the reader broadcasts an initialization command and a parameter that the tags individually use to pseudo-randomly delay their responses. When using an "adaptive binary tree" protocol, the reader sends an initialization symbol and then transmits one bit of ID data at a time; only tags with matching bits respond, and eventually only one tag matches the complete ID string., 2006 ISBN 0-596-00944-5, pages 88-89
+Both methods have drawbacks when used with many tags or with multiple overlapping readers. Bulk reading is a strategy for interrogating multiple tags at the same time, but lacks sufficient precision for inventory control.
+
+Miniaturization
+
+RFIDs are easy to conceal or incorporate in other items. For example, in 2009 researchers at Bristol University successfully glued RFID micro-transponders to live ants in order to study their behavior. This trend towards increasingly miniaturized RFIDs is likely to continue as technology advances.
+Hitachi holds the record for the smallest RFID chip, at 0.05mm × 0.05mm. This is 1/64th the size of the previous record holder, the mu-chip. A major challenge is the attachment of antennas, thus limiting read range to only millimeters.
+
+Uses
+
+The RFID tag can be affixed to an object and used to track and manage inventory, assets, people, etc. For example, it can be affixed to cars, computer equipment, books, mobile phones, etc.
+RFID offers advantages over manual systems or use of bar codes.  The tag can be read if passed near a reader, even if it is covered by the object or not visible. The tag can be read inside a case, carton, box or other container, and unlike barcodes, RFID tags can be read hundreds at a time. Bar codes can only be read one at a time using current devices.
+In 2011, the cost of passive tags started at US$0.09 each; special tags, meant to be mounted on metal or withstand gamma sterilization, can go up to US$5. Active tags for tracking containers, medical assets, or monitoring environmental conditions in data centers start at US$50 and can go up over US$100 each. Battery-Assisted Passive (BAP) tags are in the US$3–10 range and also have sensor capability like temperature and humidity.
+RFID can be used in a variety of applications, such as:
+In 2010 three key factors drove a significant increase in RFID usage: decreased cost of equipment and tags, increased performance to a reliability of 99.9% and a stable international standard around UHF passive RFID. The adoption of these standards were driven by EPCglobal, a joint venture between GS1 and GS1 US, which were responsible for driving global adoption of the barcode in the 1970s and 1980s. The EPCglobal Network was developed by the Auto-ID Center, an academic research project headquartered at the Massachusetts Institute of Technology (MIT) with labs at five leading research universities around the globe: Cambridge, Adelaide, Keio, Shanghai, Fudan, St. Gallen. RFID Technology and Applications. London: Cambridge University Press. pp. 6–8 At RFID Journal Live 2010 in Orlando, Airbus detailed 16 active projects, IBM and—most recently added to the team—CSC. The two other areas of significant use are financial services for IT asset tracking and healthcare. RFID is becoming increasingly prevalent as the price of the technology decreases.
+
+Commerce
+
+The value of the RFID market in 2012 will be $7.46 (USD) billion versus $6.37 (USD) billion in 2011.
+
+=Payment by mobile phones=
+
+Since summer 2009, two credit card companies have been working with Dallas, Texas-based DeviceFidelity to develop specialized microSD cards. When inserted into a mobile phone, the microSD card can be both a passive tag and an RFID reader. After inserting the microSD, a user's phone can be linked to bank accounts and used in mobile payment.
+Dairy Queen in conjunction with Vivotech has also begun using RFIDs on mobile phones as part of their new loyalty and rewards program. Patrons can ask to receive an RFID tag to place on their phone. After activation, the phone can receive promotions and coupons, which can be read by ViVOtech's specialized Near Field Communication (NFC) devices.
+Similarly, 7-Eleven has been working alongside MasterCard to promote a new touch-free payment system. Those joining the trial are given a complimentary Nokia 3220 cell phone – after activation, it can be used as an RFID-capable MasterCard credit card at any of 7-Eleven's worldwide chains.
+Nokia's 2008 device, the 6212, has RFID capabilities also. Credit card information can be stored, and bank accounts can be directly accessed using the enabled handset. The phone, if used as a vector for mobile payment, has added security in that users would be required to enter a passcode or PIN before payment is authorized.RFID World
+
+=Asset management=
+
+RFID combined with mobile computing and Web technologies provide a way for organizations to identify and manage their assets. Mobile computers, with integrated RFID readers, can now deliver a complete set of tools that eliminate paperwork, give proof of identification and attendance. This approach eliminates manual data entry.
+Web based management tools allow organizations to monitor their assets and make management decisions from anywhere in the world. Web based applications now mean that third parties, such as manufacturers and contractors can be granted access to update asset data, including for example, inspection history and transfer documentation online ensuring that the end user always has accurate, real-time data.
+Organizations are already using RFID tags combined with a mobile asset management solution to record and monitor the location of their assets, their current status, and whether they have been maintained.
+RFID is being adopted for item-level retail uses. Aside from efficiency and product availability gains, the system offers a superior form of electronic article surveillance (EAS), and a superior self checkout process for consumers.
+2009 witnessed the beginning of wide-scale asset tracking with passive RFID. Wells Fargo and Bank of America made announcements that they would track every item in their data centers using passive RFID. Most of the leading banks have since followed suit. The Financial Services Technology Consortium (FSTC) set a technical standard for tagging IT assets
+
+=Inventory systems=
+
+An advanced automatic identification technology based on RFID technology has significant value for inventory systems. The system can provide accurate knowledge of the current inventory. In an academic study performed at Wal-Mart, RFID reduced Out-of-Stocks by 30 percent for products selling between 0.1 and 15 units a day. The RFID can also help the company to ensure the security of the inventory. With the just in time tracking of inventory through RFID, the computer data can show whether the inventory stored in the warehouse is correct with quantity currently. Other benefits of using RFID include the reduction of labor costs, the simplification of business processes, and the reduction of inventory inaccuracies.
+In 2004, Boeing integrated the use of RFID technology to help reduce maintenance and inventory costs on the Boeing 787 Dreamliner. With the high costs of aircraft parts, RFID technology allowed Boeing to keep track of inventory despite the unique sizes, shapes and environmental concerns. During the first six months after integration, the company was able to save $29,000 in labor.
+In 2007, Recall Corporation integrated the use of RFID to help organizations track and audit their records, to support compliance with regulations such as the Sarbanes-Oxley Act and HIPAA.
+
+=Product tracking=
+
+RFID use in product tracking applications begins with plant-based production processes, and then extends into post-sales configuration management policies for large buyers.
+In 2005, the Wynn Casino, Las Vegas, began placing individual RFID tags on high value chips. These tags allowed casinos the ability to detect counterfeit chips, track betting habits of individual players, speed up chip tallies, and determine counting mistakes of dealers. In 2010, the Bellagio casino was robbed of $1.50 million in chips. The RFID tags of these chips were immediately invalidated, thus making the cash value of these chips $0.
+RFID can also be used for supply chain management in the fashion industry. The RFID label is attached to the garment at production, can be read/traced throughout the entire supply chain and is removed at the point of sale (POS).
+
+=Access control=
+
+RFID tags are widely used in identification badges, replacing earlier magnetic stripe cards. These badges need only be held within a certain distance of the reader to authenticate the holder. Tags can also be placed on vehicles, which can be read at a distance, to allow entrance to controlled areas without having to stop the vehicle and present a card or enter an access code.
+
+=Social media=
+
+In 2010 Vail Resorts began the EpicMix program to allow skiers to earn virtual badges, compete for vertical feet skied and other milestones using UHF Passive RFID tags in ski passes. The EpicMix system not only allowed automated social sharing and capturing of ski data but also streamlined the verification process which used to be performed by using a bar code and line-of-sight scanner. Soon other brands began adopting this method and in 2013 it has become a growing area of use for RFID. Facebook is using RFID cards at most of their live events to allow guests to automatically capture and post photos. The automotive brands have adopted RFID for social media product placement more quickly than other industries. Mercedes was an early adopted in 2011 at the PGA Golf Championships,
+
+=Promotion tracking=
+
+To prevent retailers diverting products,  manufacturers are exploring the use of RFID tags on promoted merchandise so that they can track exactly which product has sold through the supply chain at fully discounted prices.
+
+Transportation and logistics
+
+Logistics and transportation are major areas of implementation for RFID technology. Yard management, shipping and freight and distribution centers use RFID tracking technology. In the railroad industry, RFID tags mounted on locomotives and rolling stock identify the owner, identification number and type of equipment and its characteristics. This can be used with a database to identify the lading, origin, destination, etc. of the commodities being carried.
+In commercial aviation, RFID technology is being incorporated to support maintenance on commercial aircraft. RFID tags are used to identify baggage and cargo at several airports and airlines.
+Some countries are using RFID technology for vehicle registration and enforcement.
+
+=Hose stations and conveyance of fluids=
+
+The RFID antenna in a permanently installed coupling half (fixed part) unmistakably identifies the RFID transponder placed in the other coupling half (free part) after completed coupling. When connected the transponder of the free part transmits all important information contactless to the fixed part. The coupling's location can be clearly identified by the RFID transponder coding. The control is enabled to automatically start subsequent process steps.
+
+Public transport
+
+RFID cards are used for access control to public transport.
+In London travellers use Oyster Cards on the tube, buses and ferries. It identifies the traveller at each turnstile and so the system can calculate the fare.
+
+Infrastructure management and protection
+
+At least one company has introduced RFID technology to identify and locate underground infrastructure assets such as gas pipelines, sewer lines, electrical cables, communication cables, etc.
+
+Passports
+
+The first RFID passports ("E-passport") were issued by Malaysia in 1998. In addition to information also contained on the visual data page of the passport, Malaysian e-passports record the travel history (time, date, and place) of entries and exits from the country.
+Other countries that insert RFID in passports include Norway (2005), Japan (March 1, 2006), most EU countries (around 2006), Australia, Hong Kong, the United States (2007), India (June 2008), Serbia (July 2008), Republic of Korea (August 2008), Taiwan (December 2008), Albania (January 2009), The Philippines (August 2009), Republic of Macedonia (2010), and Canada (2013).
+Standards for RFID passports are determined by the International Civil Aviation Organization (ICAO), and are contained in ICAO Document 9303, Part 1, Volumes 1 and 2 (6th edition, 2006). ICAO refers to the ISO/IEC 14443 RFID chips in e-passports as "contactless integrated circuits". ICAO standards provide for e-passports to be identifiable by a standard e-passport logo on the front cover.
+Since 2006, RFID tags included in new US passports will store the same information that is printed within the passport, and  include a digital picture of the owner.
+
+Transportation payments
+
+In many countries, RFID tags can be used to pay for mass transit fares on bus, trains, or subways, or to collect tolls on highways.
+Some bike lockers are operated with RFID cards assigned to individual users. A prepaid card is required to open or enter a facility or locker and is used to track and charge based on how long the bike is parked.
+The Zipcar car-sharing service uses RFID cards for locking and unlocking cars and for member identification.
+In Singapore, RFID replaces paper Season Parking Ticket (SPT).
+
+Animal identification
+
+RFID tags for animals represent one of the oldest uses of RFID technology. Originally meant for large ranches and rough terrain, since the outbreak of mad-cow disease, RFID has become crucial in animal identification management. An implantable RFID tag or transponder can also be used for animal identification. The transponders are more well-known as passive RFID technology, or "chips" on animals.*USDA Bets the Farm on Animal ID Program The Canadian Cattle Identification Agency began using RFID tags as a replacement for barcode tags. Currently CCIA tags are used in Wisconsin and by US farmers on a voluntary basis. The USDA is currently developing its own program.
+RFID tags are required for all cattle, sheep and goats sold in Australia.
+
+Human identification
+
+Implantable RFID chips designed for animal tagging are now being used in humans. An early experiment with RFID implants was conducted by British professor of cybernetics Kevin Warwick, who implanted a chip in his arm in 1998. In 2004 Conrad Chase offered implanted chips in his night clubs in Barcelona and Rotterdam to identify their VIP customers, who in turn use it to pay for drinks.
+The Food and Drug Administration in the US has approved the use of RFID chips in humans.
+Some business establishments give customers the option of using an RFID-based tab to pay for service, such as the Baja Beach nightclub in Barcelona.
+On July 22, 2006, Reuters reported that two hackers, Newitz and Westhues, at a conference in New York City showed that they could clone the RFID signal from a human implanted RFID chip, showing that the chip is not hack-proof as was previously claimed.
+
+Institutions
+
+=Hospitals and healthcare=
+
+Adoption of RFID in the medical industry has been widespread and very effective. Hospitals are among the first users to combine both active and passive RFID technology. Many successful deployments in the healthcare industry have been cited where active technology tracks high-value, or frequently moved items, where passive technology tracks smaller, lower cost items that only need room-level identification.
+A physical RFID tag may be incorporated with browser-based software to increase its efficacy.  This software allows for different groups or specific hospital staff, nurses, and patients to see real-time data relevant to each piece of tracked equipment or personnel.  Real-time data is stored and archived to make use of historical reporting functionality and to prove compliance with various industry regulations.  This combination of RFID real-time locating system hardware and software provides a powerful data collection tool for facilities seeking to improve operational efficiency and reduce costs.
+The trend is toward using ISO 18000-6c as the tag of choice and combining an active tagging system that relies on existing 802.11X wireless infrastructure for active tags.
+Since 2004 a number of U.S. hospitals have begun implanting patients with RFID tags and using RFID systems, usually for workflow and inventory management. 2006. Indoor Positioning and Digital Management: Emerging Surveillance Regimes in Hospitals. In T. Monahan (Ed), Surveillance and Security: Technological Politics and Power in Everyday Life (pp. 77–88). New York: Routledge.
+The use of RFID to prevent mixups between sperm and ova in IVF clinics is also being considered.
+In October 2004, the FDA approved USA's first RFID chips that can be implanted in humans. The 134 kHz RFID chips, from VeriChip Corp. can incorporate personal medical information and could save lives and limit injuries from errors in medical treatments, according to the company. Anti-RFID activists Katherine Albrecht and Liz McIntyre discovered an FDA Warning Letter that spelled out health risks. According to the FDA, these include "adverse tissue reaction", "migration of the implanted transponder", "failure of implanted transponder", "electrical hazards" and "magnetic resonance imaging MRI incompatibility."
+
+=Libraries=
+
+Libraries have used RFID to replace the barcodes on library items.  The tag can contain identifying information or may just be a key into a database. An RFID system may replace or supplement bar codes and may offer another method of inventory management and self-service checkout by patrons. It can also act as a security device, taking the place of the more traditional electromagnetic security strip.
+It is estimated that over 30 million library items worldwide now contain RFID tags, including some in the Vatican Library in Rome.
+Since RFID tags can be read through an item, there is no need to open a book cover or DVD case to scan an item, and a stack of books can be read simultaneously.  Book tags can be read while books are in motion on a conveyor belt, which reduces staff time. This can all be done by the borrowers themselves, reducing the need for library staff assistance.  With portable readers, inventories could be done on a whole shelf of materials within seconds.
+However, as of 2008 this technology remains too costly for many smaller libraries, and the conversion period has been estimated at 11 months for an average-size library. A 2004 Dutch estimate was that a library which lends 100,000 books per year should plan on a cost of €50,000 (borrow- and return-stations: 12,500 each, detection porches 10,000 each; tags 0.36 each). RFID taking a large burden off staff could also mean that fewer staff will be needed, resulting in some of them getting laid off, but that has so far not happened in North America where recent surveys have not returned a single library that cut staff because of adding RFID. In fact, library budgets are being reduced for personnel and increased for infrastructure, making it necessary for libraries to add automation to compensate for the reduced staff size. Also, the tasks that RFID takes over are largely not the primary tasks of librarians. A finding in the Netherlands is that borrowers are pleased with the fact that staff are now more available for answering questions.
+Privacy concerns have been raised surrounding library use of RFID. Because some RFID tags can be read from up to . Further, another non-library agency could potentially record the RFID tags of every person leaving the library without the library administrator's knowledge or consent. One simple option is to let the book transmit a code that has meaning only in conjunction with the library's database. Another possible enhancement would be to give each book a new code every time it is returned. In future, should readers become ubiquitous (and possibly networked), then stolen books could be traced even outside the library. Tag removal could be made difficult if the tags are so small that they fit invisibly inside a (random) page, possibly put there by the publisher.
+
+=Museums=
+
+RFID technologies are now also implemented in end-user applications in museums. An example was the custom-designed temporary research application, "eXspot," at the Exploratorium, a science museum in San Francisco, California. A visitor entering the museum received an RF Tag that could be carried as a card. The eXspot system enabled the visitor to receive information about specific exhibits. Aside from the exhibit information, the visitor could take photographs of themselves at the exhibit. It was also intended to allow the visitor to take data for later analysis. The collected information could be retrieved at home from a "personalized" website keyed to the RFID tag.
+
+=Schools and universities=
+
+School authorities in the Japanese city of Osaka are now chipping children's clothing, backpacks, and student IDs in a primary school. St Charles Sixth Form College in west London, England, started September, 2008, is using an RFID card system to check in and out of the main gate, to both track attendance and prevent unauthorized entrance. Similarly, Whitcliffe Mount School in Cleckheaton, England uses RFID to track pupils and staff in and out of the building via a specially designed card. In the Philippines, some schools already use RFID in IDs for borrowing books and also gates in those particular schools have RFID ID scanners for buying items at a school shop and canteen, library and also to sign in and sign out for student and teacher's attendance.
+
+Sports
+
+RFID for timing races began in the early 1990s with pigeon racing, introduced by the company Deister Electronics in Germany. RFID can provide race start and end timings for individuals in large races where it is impossible to get accurate stopwatch readings for every entrant.
+In the race, the racers wear tags that are read by antennae placed alongside the track or on mats across the track. UHF tags provide accurate readings with specially designed antennas. Rush error, lap count errors and accidents at start time are avoided since anyone can start and finish any time without being in a batch mode.
+The design of chip+antenna controls the range from which it can be read. Short range compact chips are twist tied to the shoe or velcro strapped the ankle. These need to be about 400mm from the mat and so give very good temporal resolution. Alternatively a chip plus a very large (a 125mm square) antenna can be incorporated into the bib number worn on the athlete's chest at about 1.25m height.
+Passive and active RFID systems are used in off-road events such as Orienteering, Enduro and Hare and Hounds racing. Riders have a transponder on their person, normally on their arm. When they complete a lap they swipe or touch the receiver which is connected to a computer and log their lap time.
+RFID is being adapted by many recruitment agencies which have a PET (Physical Endurance Test) as their qualifying procedure especially in cases where the candidate volumes may run into millions (Indian Railway Recruitment Cells, Police and Power sector).
+A number of ski resorts have adopted RFID tags to provide skiers hands-free access to ski lifts. Skiers do not have to take their passes out of their pockets. Ski jackets have a left pocket into which the chip+card fits. This nearly contacts the sensor unit on the left of the turnstile as the skier pushes through to the lift. These systems were based on high frequency (HF) at 13.56 megahertz. The bulk of ski areas in Europe, from Verbier to Chamonix use these systems. (2010-09-07) Vail shows that Consumer RFID delivers a better experience. Blog.com. Retrieved on 2013-08-16.
+
+Complement to barcode
+
+RFID tags are often a complement, but not a substitute, for UPC or EAN barcodes. They may never completely replace barcodes, due in part to their higher cost and the advantage of multiple data sources on the same object. Also, unlike RFID labels, barcodes can be generated and distributed electronically, e.g. via e-mail or mobile phone, for printing or display by the recipient. An example is airline boarding passes. The new EPC, along with several other schemes, is widely available at reasonable cost.
+The storage of data associated with tracking items will require many terabytes. Filtering and categorizing RFID data is needed to create useful information. It is likely that goods will be tracked by the pallet using RFID tags, and at package level with Universal Product Code (UPC) or EAN from unique barcodes.
+The unique identity is a mandatory requirement for RFID tags, despite special choice of the numbering scheme. RFID tag data capacity is large enough that each individual tag will have a unique code, while current bar codes are limited to a single type code for a particular product. The uniqueness of RFID tags means that a product may be tracked as it moves from location to location, finally ending up in the consumer's hands. This may help to combat theft and other forms of product loss. The tracing of products is an important feature that gets well supported with RFID tags containing a unique identity of the tag and also the serial number of the object. This may help companies cope with quality deficiencies and resulting recall campaigns, but also contributes to concern about tracking and profiling of consumers after the sale.
+It has also been proposed to use RFID for POS store checkout to replace the cashier with an automatic system which needs no barcode scanning. In the past this was not possible due to the higher cost of tags and existing POS process technologies. However, Industry Standard, a couture shop and recording studio in Ohio has successfully implemented a POS procedure that allows faster transaction throughput.
+An FDA-nominated task force concluded, after studying the various technologies currently commercially available, which of those technologies could meet the pedigree requirements. Amongst all technologies studied including bar coding, RFID seemed to be the most promising and the committee felt that the pedigree requirement could be met by easily leveraging something that is readily available.
+
+Telemetry
+
+Active RFID tags also have the potential to function as low-cost remote sensors that broadcast telemetry back to a base station. Applications of tagometry data could include sensing of road conditions by implanted beacons, weather reports, and noise level monitoring.
+Passive RFID tags can also report sensor data. For example, the Wireless Identification and Sensing Platform is a passive tag that reports temperature, acceleration and capacitance to commercial Gen2 RFID readers.
+It is possible that active or battery-assisted passive (BAP) RFID tags, used with or in place of barcodes, could broadcast a signal to an in-store receiver to determine whether the RFID tag (product) is in the store.
+
+Mandates
+
+Wal-Mart and the United States Department of Defense have published requirements that their vendors place RFID tags on all shipments to improve supply chain management. Due to the size of these two organizations, their RFID mandates impact thousands of companies worldwide. The deadlines have been extended several times because many vendors face significant difficulties implementing RFID systems. In practice, the successful read rates currently run only 80%, due to radio wave attenuation caused by the products and packaging. In time it is expected that even small companies will be able to place RFID tags on their outbound shipments.
+
+Wal-Mart
+
+In January 2005, Wal-Mart required its top 100 suppliers to apply RFID labels to all shipments. To meet this requirement, vendors use RFID printer/encoders to label cases and pallets that require EPC tags for Wal-Mart. These smart labels are produced by embedding RFID inlays inside the label material, and then printing bar code and other visible information on the surface of the label.
+In October 2005 the University of Arkansas' Information Technology Research Institute released a report on its preliminary study of the impact of RFID on reducing retail out-of-stocks and concluded that RFID reduced out of stocks (OOS) by 21% over non-RFID based stores.
+Two years later the Wall Street Journal published an article titled "Wal-Mart's Radio-Tracked Inventory Hits Static." The articles stated that the RFID plan set forth by Wal-Mart was "showing signs of fizzling" due to a lack of progress by Wal-Mart executives to introduce the technology to its stores and to the lack of incentives for suppliers.
+
+U.S. Department of Defense
+
+The DoD requirements for RFID tags on packages of military supplies is prescribed in the Defense Federal Acquisition Regulations Supplements (DFARS) 252.211-7006. Positioning of the tag needs to be completed in accordance with the clause and definitions in MIL STD 129 and as of 1 March 2007, EPC Global tags must comply with EPCglobal Class 1 Generation 2 specification.211-7006 clause (a) (2).
+
+Regulation and standardization
+
+A number of organizations have set standards for RFID, including the International Organization for Standardization (ISO), the International Electrotechnical Commission (IEC), ASTM International, the DASH7 Alliance and EPCglobal.
+There are also several specific industries that have set guidelines. These industries include the Financial Services Technology Consortium (FSTC) which has set a standard for tracking IT Assets with RFID, the Computer Technology Industry Association CompTIA which has set a standard for certifying RFID engineers, and the International Airlines Transport Association IATA which has set tagging guidelines for luggage in airports.
+In principle, every country can set its own rules for frequency allocation for RFID tags, and not all radio bands are available in all countries.  These frequencies are known as the ISM bands (Industrial Scientific and Medical bands). The return signal of the tag may still cause interference for other radio users.
+In North America, UHF can be used unlicensed for 902–928 MHz (±13 MHz from the 915 MHz center frequency), but restrictions exist for transmission power. In Europe, RFID and other low-power radio applications are regulated by ETSI recommendations EN 300 220 and EN 302 208, and ERO recommendation 70 03, allowing RFID operation with somewhat complex band restrictions from 865–868 MHz. Readers are required to monitor a channel before transmitting ("Listen Before Talk"); this requirement has led to some restrictions on performance, the resolution of which is a subject of current research. The North American UHF standard is not accepted in France as it interferes with its military bands. On July 25, 2012, Japan changed its UHF band to 920 MHz, more closely matching the United States' 915 MHz band.
+For China, there is no regulation for the use of UHF. Each application for UHF in these countries needs a site license, which needs to be applied for at the local authorities, and can be revoked. For Australia and New Zealand, 918–926 MHz are unlicensed, but restrictions exist for transmission power.
+standards that have been made regarding RFID technology include:
+In order to ensure global interoperability of products, several organizations have set up additional standards for RFID testing. These standards include conformance, performance and interoperability tests.
+Groups concerned with standardization are:
+|last = O'Connor
+|first = Mary Catherine
+|title = Dash7 Alliance Seeks to Promote RFID Hardware Based on ISO 18000-7 Standard
+|publisher = RFID Journal LLC
+|date = March 18, 2009
+|url = 
+|accessdate = 2010-03-23}}[/ref]
+
+EPC Gen2
+
+EPC Gen2 is short for EPCglobal UHF Class 1 Generation 2.
+EPCglobal (a joint venture between GS1 and GS1 US) is working on international standards for the use of mostly passive RFID and the Electronic Product Code (EPC) in the identification of many items in the supply chain for companies worldwide.
+One of the missions of EPCglobal was to simplify the Babel of protocols prevalent in the RFID world in the 1990s. Two tag air interfaces (the protocol for exchanging information between a tag and a reader) were defined (but not ratified) by EPCglobal prior to 2003. These protocols, commonly known as Class 0 and Class 1, saw significant commercial implementation in 2002–2005.
+In 2004, the Hardware Action Group created a new protocol, the Class 1 Generation 2 interface, which addressed a number of problems that had been experienced with Class 0 and Class 1 tags. The EPC Gen2 standard was approved in December 2004. This was approved after a contention from Intermec that the standard may infringe a number of their RFID-related patents. It was decided that the standard itself does not infringe their patents, making the standard royalty free.
+The lowest cost of Gen2 EPC inlay was offered by the now-defunct company SmartCode, at a price of $0.05 apiece in volumes of 100 million or more. Nevertheless, further conversion (including additional label stock or encapsulation processing/insertion and freight costs to a given facility or DC) and of the inlays into usable RFID labels and the design of current Gen 2 protocol standard will increase the total end-cost, especially with the added security feature extensions for RFID Supply Chain item-level tagging.
+
+Problems and concerns
+
+Data flooding
+
+Not every successful reading of a tag (an observation) is useful for business purposes. A large amount of data may be generated that is not useful for managing inventory or other applications. For example, a customer moving a product from one shelf to another, or a pallet load of articles that passes several readers while being moved in a warehouse, are events that do not produce data that is meaningful to an inventory control system., 2006 ISBN 0-596-00944-5 page 43
+Event filtering is required to reduce this data inflow to a meaningful depiction of moving goods passing a threshold. Various concepts have been designed, mainly offered as middleware performing the filtering from noisy and redundant raw data to significant processed data.
+
+Global standardization
+
+The frequencies used for UHF RFID in the USA are currently incompatible with those of Europe or Japan. Furthermore, no emerging standard has yet become as universal as the barcode. To address international trade concerns, it is necessary to use a tag that is operational within all of the international frequency domains.
+
+Security concerns
+
+Retailers such as Walmart, which already heavily use RFID technology for inventory purposes, also use RFID as an anti-employee-theft and anti-shoplifting technology. If a product with an active RFID tag passes the exit-scanners at a Walmart outlet, not only does it set off an alarm, but it also tells security personnel exactly what product to look for in the shopper's cart.
+A primary RFID security concern is the illicit tracking of RFID tags. Tags, which are world-readable, pose a risk to both personal location privacy and corporate/military security. Such concerns have been raised with respect to the United States Department of Defense's recent adoption of RFID tags for supply chain management.
+A second method of prevention is by using cryptography. Rolling codes and challenge-response authentication (CRA) are commonly used to foil monitor-repetition of the messages between the tag and reader; as any messages that have been recorded would prove to be unsuccessful on repeat transmission. Rolling codes rely upon the tag's id being changed after each interrogation, while CRA uses software to ask for a cryptographically coded response from the tag. The protocols used during CRA can be symmetric, or may use public key cryptography.
+Security concerns exist in regard to privacy over the unauthorized reading of RFID tags, as well as security concerns over server security. Unauthorized readers can use the RFID information to track the package, and so the consumer or carrier, as well as identify the contents of a package. Several prototype systems are being developed to combat unauthorized reading, including RFID signal interruption,
+
+Exploitation
+
+Ars Technica reported in March 2006 an RFID buffer overflow bug that could infect airport terminal RFID databases for baggage, and also passport databases to obtain confidential information on the passport holder.
+
+Passports
+
+In an effort to make passports more secure, several countries have implemented RFID in passports.
+
+Shielding
+
+In an effort to prevent the passive "skimming" of RFID-enabled cards or passports, the U.S. General Services Administration (GSA) issued a set of test procedures for evaluating electromagnetically opaque sleeves.
+There are contradicting opinions as to whether aluminum can prevent reading of RFID chips. Some people claim that aluminum shielding, essentially creating a Faraday cage, does work.
+Shielding effectiveness depends on the frequency being used. Low-frequency LowFID tags, like those used in implantable devices for humans and pets, are relatively resistant to shielding,
+
+Temperature exposure
+
+Currently, RFID tags are created by gluing an integrated circuit (IC) to an inlay. This poses a problem as vibration and high temperatures will loosen the connection. If the IC loses connection with the inlay, the RFID tag will no longer transmit. A new design was filed for patent (currently pending approval) where the IC is soldered to a circuit board and the circuit board is then soldered to the inlay. This process replaces the adhesive with solder which is much more durable and temperature resistant.
+
+Controversies
+
+Privacy
+
+
+The use of RFID technology has engendered considerable controversy and even product boycotts by consumer privacy advocates. Consumer privacy experts Katherine Albrecht and Liz McIntyre are two prominent critics of the "spychip" technology. The two main privacy concerns regarding RFID are:
+Most concerns revolve around the fact that RFID tags affixed to products remain functional even after the products have been purchased and taken home and thus can be used for surveillance and other purposes unrelated to their supply chain inventory functions.
+The RFID Network proved these fears to be unfounded in the premier episode of their syndicated cable TV series by having RF engineers show how RFID technology really works. RF engineers drove an RFID-enabled van around a building and tried to take an inventory of items inside. They also explored if a passive RFID tag can be tracked from satellite.
+The concerns raised by the above may be addressed in part by use of the Clipped Tag. The Clipped Tag is an RFID tag designed to increase consumer privacy. The Clipped Tag has been suggested by IBM researchers Paul Moskowitz and Guenter Karjoth. After the point of sale, a consumer may tear off a portion of the tag. This allows the transformation of a long-range tag into a proximity tag that still may be read, but only at short range – less than a few inches or centimeters. The modification of the tag may be confirmed visually. The tag may still be used later for returns, recalls, or recycling.
+However, read range is both a function of the reader and the tag itself. Improvements in technology may increase read ranges for tags. Having readers very close to the tags makes short range tags readable. Generally, the read range of a tag is limited to the distance from the reader over which the tag can draw enough energy from the reader field to power the tag. Tags may be read at longer ranges than they are designed for by increasing reader power. The limit on read distance then becomes the signal-to-noise ratio of the signal reflected from the tag back to the reader. Researchers at two security conferences have demonstrated that passive Ultra-HighFID tags normally read at ranges of up to 30 feet, can be read at ranges of 50 to 69 feet using suitable equipment.pcworld.html 
+In January 2004 privacy advocates from CASPIAN and the German privacy group FoeBuD were invited to the METRO Future Store in Germany, where an RFID pilot project was implemented. It was uncovered by accident that METRO "Payback" customer loyalty cards contained RFID tags with customer IDs, a fact that was disclosed neither to customers receiving the cards, nor to this group of privacy advocates. This happened despite assurances by METRO that no customer identification data was tracked and all RFID usage was clearly disclosed.
+During the UN World Summit on the Information Society (WSIS) between the 16th to 18 November 2005, founder of the free software movement, Richard Stallman, protested the use of RFID security cards by covering his card with aluminum foil.
+In 2004–2005 the Federal Trade Commission Staff conducted a workshop and review of RFID privacy concerns and issued a report recommending best practices.
+RFID was one of the main topics of 2006 Chaos Communication Congress (organized by the Chaos Computer Club in Berlin) and triggered a big press debate. Topics included: electronic passports, Mifare cryptography and the tickets for the FIFA World Cup 2006. Talks showed how the first real world mass application of RFID technology at the 2006 FIFA Soccer World Cup worked. Group monochrom staged a special 'Hack RFID' song.
+Zeitgeist The Movie presented RFID chips as a negative technology, theorizing that they will one day be used to track the world population and keep them under control.
+
+Government control
+
+With the rise of technology, some individuals have grown to fear the loss of rights due to RFID human implantation.
+By early 2007, Chris Paget of San Francisco, California, showed that RFID information can be pulled from individuals by using only $250 worth of equipment. This supports the claim that with the information captured, it would be relatively simple to make counterfeit passports.
+According to ZDNet, critics believe that this technology will lead to tracking individuals every movement and will be an invasion of privacy. Some conceptualize a future where every movement is tracked by the government. In the book SpyChips: How Major Corporations and Government Plan to Track Your Every Move by Katherine Albrecht and Liz McIntyre, one is encouraged to "imagine a world of no privacy. Where your every purchase is monitored and recorded in a database and your every belonging is numbered. Where someone many states away or perhaps in another country has a record of everything you have ever bought. What's more, they can be tracked and monitored remotely".
+
+Deliberate destruction in clothing and other items
+
+According to an RSA laboratories FAQ, RFID tags can be destroyed by a standard microwave oven;
+
+
+
+
+
+
+
+

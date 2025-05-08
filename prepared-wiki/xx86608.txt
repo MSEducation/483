@@ -1,0 +1,232 @@
+[[Air mass (astronomy)]]
+
+CATEGORIES: Astronomical imaging, Observational astronomy
+
+In astronomy, air mass (or airmass) is the optical path length through Earth’s atmosphere for light from a celestial source. As it passes through the atmosphere, light is attenuated by scattering and absorption; the more atmosphere through which it passes, the greater the attenuation. Consequently, celestial bodies at the horizon appear less bright than when at the zenith. The attenuation, known as atmospheric extinction, is described quantitatively by the Beer–Lambert–Bouguer law.
+“Air mass” normally indicates relative air mass, the path length relative to that at the zenith at sea level, so by definition, the sea-level air mass at the zenith is 1. Air mass increases as the angle between the source and the zenith increases, reaching a value of approximately 38 at the horizon. Air mass can be less than one at an elevation greater than sea level; however, most closed-form expressions for air mass do not include the effects of elevation, so adjustment must usually be accomplished by other means.
+In some fields, such as solar energy and photovoltaics, air mass is indicated by the acronym AM; additionally, the value of the air mass is often given by appending its value to AM, so that AM1 indicates an air mass of 1, AM2 indicates an air mass of 2, and so on. The region above Earth’s atmosphere, where there is no atmospheric attenuation of solar radiation, is considered to have
+“air mass zero” (AM0).
+Tables of air mass have been published by numerous authors, including Bemporad (1904), Allen (1976),[ref]
+Allen’s air mass table was an abbreviated compilation of values from earlier sources, primarily
+Bemporad (1904).
+[/ref]
+and Kasten and Young (1989).
+
+==Calculating air mass==
+
+===Zenith angle and altitude===
+
+===Atmospheric Refraction===
+
+Atmospheric refraction causes light to follow an approximately circular
+path that is slightly longer than the geometric path, and the air mass must
+take into account the longer path (Young 1994).
+Additionally, refraction causes a celestial body to appear higher above the
+horizon than it actually is; at the horizon, the difference between the
+true zenith angle and the apparent zenith angle is approximately 34 minutes
+of arc. Most air mass formulas are based on the apparent zenith angle, but
+some are based on the true zenith angle, so it is important to ensure that
+the correct value is used, especially near the horizon.[ref]
+At very high zenith angles, air mass is strongly dependent on local atmospheric
+conditions, including temperature, pressure, and especially the temperature gradient near the ground. In addition low-altitude extinction is strongly affected by the aerosol concentration and its vertical distribution. Many
+authors have cautioned that accurate calculation of air mass near the horizon
+is all but impossible.[/ref]
+
+===Plane-parallel atmosphere===
+
+When the zenith angle is small to moderate, a
+good approximation is given by assuming a homogeneous plane-parallel
+atmosphere (i.e., one in which density is constant and Earth’s curvature is
+At a zenith angle of 60°, the air mass is approximately 2.
+The Earth is not flat, however, and, depending on accuracy requirements,
+this formula is usable for zenith angles up to about 60° to 75°.
+becoming infinite at
+the horizon; the horizon air mass in the more-realistic spherical atmosphere is usually less than 40.
+
+===Interpolative formulas===
+
+Many formulas have been developed to fit tabular values of air mass; one by
+Young and Irvine (1967) included a simple
+corrective term:
+results up to approximately 80°, but the accuracy degrades rapidly at
+greater zenith angles. The calculated air mass reaches a maximum of 11.13
+at 86.6°, becomes zero at 88°, and approaches negative infinity at
+the horizon. The plot of this formula on the accompanying graph includes a
+correction for atmospheric refraction so that the calculated air mass is for
+apparent rather than true zenith angle.
+which gives usable results for zenith angles of up to perhaps 85°. As
+with the previous formula, the calculated air mass reaches a maximum, and
+then approaches negative infinity at the horizon.
+Rozenberg (1966) suggested
+which gives reasonable results for high zenith angles, with a horizon air mass of 40.
+Kasten and Young (1989) developed[ref]
+in this article, it is given in terms of zenith angle for consistency with the other formulas.
+[/ref]
+which gives reasonable results for zenith angles of up to 90°, with an
+term is in degrees.
+Young (1994) developed
+claimed a maximum error (at the horizon) of 0.0037 air mass.
+Pickering (2002) developed
+Pickering (2002) uses Garfinkel (1967) as the reference for accuracy.
+[/ref]
+
+===Atmospheric models===
+
+Interpolative formulas attempt to provide a good fit to tabular values of
+air mass using minimal computational overhead. The tabular
+values, however, must be determined from measurements or atmospheric
+models that derive from geometrical and physical considerations of Earth and
+its atmosphere.
+
+====Nonrefracting radially symmetrical atmosphere====
+
+If refraction is ignored, it can be shown from simple geometrical
+considerations (Schoenberg 1929, 173)
+or alternatively,
+
+====Homogeneous atmosphere====
+
+If the atmosphere is homogeneous (i.e., density is constant), the
+If density is constant, hydrostatic considerations give the atmospheric height as
+same as the pressure scale height of an isothermal atmosphere, the
+implication is slightly different. In an isothermal atmosphere, 37% of the
+atmosphere is above the pressure scale height; in a homogeneous atmosphere,
+there is no atmosphere above the atmospheric height.
+Earth’s mean radius of 6371 km, the sea-level air mass at the horizon is
+The homogeneous spherical model slightly underestimates the rate of increase in air mass near the horizon; a reasonable overall
+fit to values determined from more rigorous models can be had by setting the
+air mass to match a value at a zenith angle less than 90°. The air mass equation can be rearranged to give
+While a homogeneous atmosphere isn’t a physically realistic model, the approximation is reasonable
+as long as the scale height of the atmosphere is small compared to the radius of the planet.
+The model is usable (i.e., it does not diverge or go to zero) at all zenith angles, including those greater than 90° (see Homogeneous spherical atmosphere with elevated observer below). The model
+requires comparatively little computational overhead, and if high accuracy is
+not required, it gives reasonable results.[ref]
+Although acknowledging that an isothermal or polytropic
+atmosphere would have been more realistic,
+Janiczek and DeYoung (1987) used the
+homogeneous spherical model in calculating illumination from the Sun and
+Moon, with the implication that the slightly reduced accuracy was more than
+offset by the considerable reduction in computational overhead.
+[/ref]
+However, for zenith angles less than 90°, a better fit to accepted values of air mass can be had with several
+of the interpolative formulas.
+
+====Variable-density atmosphere====
+
+In a real atmosphere, density decreases with elevation above
+mean sea level. The absolute air mass
+For the geometrical light path discussed above, this becomes, for a sea-level observer,
+The relative air mass then is
+the column density.
+
+====Isothermal atmosphere====
+
+Several basic models for density variation with elevation are commonly used. The simplest, an
+isothermal atmosphere, gives
+the pressure scale height. When the limits of integration are zero and
+infinity, and some high-order terms are dropped, this model yields
+(Young 1974, 147),
+An approximate correction for refraction can be made by taking
+(Young 1974, 147)
+horizon, the approximate equation becomes
+Using a scale height of 8435 m, Earth’s mean radius of 6371 km,
+and including the correction for refraction,
+
+====Polytropic atmosphere====
+
+The assumption of constant temperature is simplistic; a more realistic
+model is the polytropic atmosphere, for which
+is the temperature lapse rate. The density as a function of elevation
+is
+The air mass integral for the polytropic model does not lend itself to a
+closed-form solution except at the zenith, so
+the integration usually is performed numerically.
+
+====Compound atmosphere====
+
+Earth’s atmosphere consists of multiple layers with different
+temperature and density characteristics; common atmospheric models
+include the International Standard Atmosphere and the
+US Standard Atmosphere. A good approximation for many purposes is a
+polytropic troposphere of 11 km height with a lapse rate of
+6.5 K/km and an isothermal stratosphere of infinite height
+(Garfinkel 1967), which corresponds very closely
+to the first two layers of the International Standard Atmosphere. More
+layers can be used if greater accuracy is required.[ref]The notes for Reed
+Meyer’s
+describe an atmospheric model using eight layers and using polynomials
+rather than simple linear relations for temperature lapse rates.[/ref]
+
+====Refracting radially symmetrical atmosphere====
+
+When atmospheric refraction is considered, the absolute air mass integral becomes[ref]
+See Thomason, Herman, and Reagan (1983) for
+a derivation of the integral for a refracting atmosphere.
+[/ref]
+= R_\mathrm{E} + y_\mathrm{atm} is distance to the upper limit of
+refraction in terms of density is usually given to sufficient accuracy
+(Garfinkel 1967) by the Gladstone–Dale relation
+Rearrangement and substitution into the absolute air mass integral
+gives
+first term in parentheses, rearranging several times, and ignoring terms in
+(Kasten and Young 1989)
+
+====Homogeneous spherical atmosphere with elevated observer====
+
+expanding the left- and right-hand sides, eliminating the common terms, and rearranging gives
+Solving the quadratic for the path length s, factoring, and rearranging,
+When the observer’s elevation is zero, the air mass equation simplifies to
+
+Maximum zenith angle
+
+When the observer is at an elevation greater than that of the horizon, the zenith angle can be greater than 90°. The maximum possible zenith angle occurs when the ray is tangent to Earth’s surface; from triangle OCG in the figure at right,
+so that
+Then
+
+===Nonuniform distribution of attenuating species===
+
+Atmospheric models that derive from hydrostatic considerations
+assume an atmosphere of constant composition and a single mechanism
+of extinction, which isn’t quite correct. There are three main sources of
+attenuation (Hayes and Latham 1975):
+Rayleigh scattering by air molecules, Mie scattering by
+aerosols, and molecular absorption (primarily by
+ozone). The relative contribution of each source varies with elevation
+above sea level, and the concentrations of aerosols and ozone cannot be
+derived simply from hydrostatic considerations.
+Rigorously, when the extinction coefficient depends on elevation, it
+must be determined as part of the air mass integral, as described by
+Thomason, Herman, and Reagan (1983). A
+compromise approach often is possible, however. Methods for separately
+calculating the extinction from each species using
+closed-form expressions are described in
+Schaefer (1993) and
+Schaefer (1998). The latter reference includes
+source code for a BASIC program to perform the calculations.
+Reasonably accurate calculation of extinction can sometimes
+be done by using one of the simple air mass formulas and separately
+determining extinction coefficients for each of the attenuating species
+(Green 1992, Pickering 2002).
+
+==Air mass and astronomy==
+
+In optical astronomy the air mass provides an indication of the deterioration of the observed image, not only as regards direct effects of spectral absorption, scattering and reduced brightness, but also an aggregation of visual aberrations, e.g. resulting from atmospheric turbulence, collectively referred to as the quality of the seeing.Observing tips: air mass and differential refraction retrieved 15 May 2011. On bigger telescopes, such as the WHT (Wynne and Warsick 1988) and VLT (Avila, Rupprecht, and Becker 1997), the atmospheric dispersion can be so severe that it affects the pointing of the telescope to the target. In such cases an atmospheric dispersion compensator is used, which usually consists of two 
+The Greenwood frequency and Fried parameter, both relevant for adaptive optics depend on the air mass above them (or more specifically, on the zenith angle).
+In radio astronomy the air mass (which influences the optical path length) is not relevant.  The lower layers of the atmosphere, modeled by the air mass, do not significantly impede radio waves, which are of much lower frequency than optical waves.  Instead, some radio waves are affected by the ionosphere in the upper atmosphere. Newer aperture synthesis radio telescopes are especially affected by this as they “see” a much larger portion of the sky and thus the ionosphere. In fact, LOFAR needs to explicitly calibrate for these distorting effects (van der Tol and van der Veen 2007; de Vos, Gunst, and Nijboer 2009), but on the other hand can also study the ionosphere by instead measuring these distortions (Thidé 2007).
+
+==Air mass and solar energy==
+
+Atmospheric attenuation of solar radiation is not the same for all wavelengths; consequently, passage through the atmosphere not only reduces intensity but also alters the spectral irradiance. Photovoltaic modules are commonly rated using spectral irradiance for an air mass of 1.5 (AM1.5); tables of these standard spectra are given in ASTM G 173-03. The extraterrestrial spectral irradiance (i.e., that for AM0) is given in ASTM E 490-00a.[ref]
+ASTM E 490-00a was reapproved without change in 2006.
+[/ref]
+For many solar energy applications when high accuracy near the horizon is not required, air mass is commonly determined using the simple secant formula described in the section Plane-parallel atmosphere.
+
+==Notes==
+
+==See also==
+
+==References==
+
+==External links==
+
+

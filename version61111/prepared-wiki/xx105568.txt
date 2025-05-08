@@ -1,0 +1,25 @@
+[[Poly1305-AES]]
+
+CATEGORIES: Message authentication codes, Advanced Encryption Standard
+
+Poly1305-AES is a cryptographic message authentication code (MAC) written by Daniel J. Bernstein. It can be used to verify the data integrity and the authenticity of a message.
+
+==Description==
+
+Poly1305-AES computes a 128-bit (16 bytes) authenticator of a variable-length message, using a 128-bit AES key, a 106-bit additional key, and a 128-bit nonce.  The name is derived from the use of the prime number 2130−5 and the Advanced Encryption Standard.
+
+==Security==
+
+The security of Poly1305-AES is very close to the underlying AES block cipher algorithm. As a result, the only way for an attacker to break Poly1305-AES is to break AES.
+Poly1305-AES offers also cipher replaceability. If anything does go wrong with AES, it can be substituted with identical security guarantee.
+
+==Speed==
+
+Poly1305-AES can be computed at high speed in various CPUs: for an n-byte message, no more than 3.1n+780 Athlon cycles are needed, for example.
+The author has released optimized implementations for Athlon, Pentium Pro/II/III/M, PowerPC, and UltraSPARC, in addition to non-optimized reference implementations in C and C++.
+
+==References==
+
+==External links==
+
+

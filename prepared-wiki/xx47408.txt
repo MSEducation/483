@@ -1,0 +1,26 @@
+[[MIDlet]]
+
+CATEGORIES: Java device platform, Mobile software programming tools
+
+A MIDlet is an application that uses the Mobile Information Device Profile (MIDP) of the Connected Limited Device Configuration (CLDC) for the Java ME environment. Typical applications include games running on mobile devices and cell phones which have small graphical displays, simple numeric keypad interfaces and limited network access over HTTP.[tpl]cite book |last=Topley |first=Kim |title=J2ME in a Nutshell |year=2002 |publisher=O'Reilly Media |isbn=978-0-596-00253-4 |url=http://books.google.com/books?id=ieBA3-Q-V6sC&pg=PA49 |accessdate=3 March 2010 |pages=46–47[/tpl]
+The .jad file describing a MIDlet suite is used to deploy the applications in one of two ways. Over the air (OTA) deployment involves uploading the .jad and .jar files to a Web server which is accessible by the device over HTTP. The user downloads the .jad file and installs the MIDlets they require.Introduction to OTA Application Provisioning http://developers.sun.com/mobility/midp/articles/ota/ Local deployment requires that the MIDlet files be transferred to the device over a non-network connection (such as through Bluetooth or IrDa, and may involve device-specific software).Deploying Wireless Java Applications http://developers.sun.com/mobility/midp/articles/deploy/ Phones that support microSD cards can sometimes install .jar or .jad files that have been transferred to the memory card.
+
+==MIDlet security==
+
+MIDP 2.0 (JSR 118) includes a comprehensive security model based on protection domains. MIDlet suites are installed into a protection domain that determines access to protected functions. The MIDP 2.0 specification also includes a recommended practice for using public key cryptography to verify and authenticate MIDlet suites.
+For definitive information, consult the MIDP 2.0 specification. For an overview of MIDlet signing using the Sun JavaTM Wireless Toolkit for CLDC, read the article Understanding MIDP 2.0's Security Architecture, which is available at
+http://developers.sun.com/techtopics/mobility/midp/articles/permissions/
+If you need more background on public key cryptography, try the article MIDP Application Security 1: Design Concerns and Cryptography, which is available at
+http://developers.sun.com/techtopics/mobility/midp/articles/security1/ 
+The MIDP 1.0 specification constrained each MIDlet suite to operate in a sandbox wherein all of the APIs available to the MIDlets would prevent access to sensitive APIs or functions of the device. That sandbox concept is used in this specification and all untrusted MIDlet suites are subject to its limitations. Every implementation of this specification MUST support running untrusted MIDlet suites.
+MIDP 2.0 introduces the concept of trusted applications that may be permitted to use APIs that are considered sensitive and are restricted. If and when a device determines that a MIDlet suite can be trusted then access is allowed as indicated by the domain policy. The Trusted MIDlet Suite Security section below describes the concepts. Any MIDlet suite that is not trusted by the device MUST be run as untrusted. If errors occur in the process of verifying that a MIDlet suite is trusted then the MIDlet suite MUST be rejected.
+
+==Restrictions==
+
+Unlike a Java applet, a MIDlet is limited to use of the LCDUI rather than the more familiar widgets of AWT and Swing. There are also restrictions on the size of .jar files and the number of concurrent HTTP connections based on the MIDP specification.
+
+==See also==
+
+==References==
+
+

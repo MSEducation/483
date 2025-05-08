@@ -1,0 +1,130 @@
+[[Keystroke logging]]
+
+CATEGORIES: Cryptographic attacks, Spyware, Surveillance, Cybercrime
+
+Keystroke logging, often referred to as keylogging or keyboard capturing, is the action of recording (or logging) the keys struck on a keyboard, typically in a covert manner so that the person using the keyboard is unaware that their actions are being monitored. It also has very legitimate uses in studies of human-computer interaction.  There are numerous keylogging methods, ranging from hardware and software-based approaches to  acoustic analysis.
+
+Application
+
+Software-based keyloggers
+
+These are computer programs designed to work on the target computer's software. From a technical perspective there are several categories:
+Most of these aren't stopped by  HTTPS encryption because that only protects data in transit between computers; this is a threat in your own computer - the one connected to the keyboard.
+
+=Keystroke logging in Writing Process Research=
+
+Keystroke logging has become an established research method to study writing processes.K.P.H. Sullivan & E. Lindgren (Eds., 2006), Studies in Writing: Vol. 18. Computer Key-Stroke Logging and Writing: Methods and Applications. Oxford: Elsevier.V. W. Berninger (Ed., 2012), Past, present, and future contributions of cognitive writing research to cognitive psychology. New York/Sussex: Taylor & Francis. 9781848729636 Different programs have been developed to collect online process data of writing activities. are: Inputlog,inputlog.no and Translog.dk  Most of these programs have overlapping capabilities, but all of them have also very specific characteristics making them complementary in their use.
+Keystroke logging can be a suitable research instrument in a number of writing contexts. Research areas include for instance the following: studies on cognitive writing processes in general, description of writing strategies in professional writing or creative writing, the writing development of children with and without writing difficulties, spelling, first and second language writing, and the writing of expert and novice writers in professional contexts and in specialist skill areas such as translation and subtitling. Not only can keystroke logging be used in research specifically on writing, it can also be integrated in educational domains for second language learning, programming skills, and typing skills.
+
+=Related features=
+
+Software keyloggers may be augmented with features that capture user information without relying on keyboard key presses as the sole input. Some of these features include:
+
+Hardware-based keyloggers
+
+Hardware-based keyloggers do not depend upon any software being installed as they exist at a hardware level in a computer system.
+
+History
+
+An early keylogger was written by Perry Kivolowitz and posted to the Usenet news group net.sources on November 17, 1983. The posting seems to be a motivating factor in restricting access to /dev/kmem on Unix systems. The user-mode program operated by locating and dumping character lists (clists) as they were assembled in the Unix kernel.
+In the 1970s, spies installed keystroke loggers in the US Embassy and Consulate buildings in Moscow and St Petersburg."Soviet Spies Bugged World's First Electronic Typewriters"[ref]
+Geoffrey Ingersoll.
+"Russia Turns To Typewriters To Protect Against Cyber Espionage".
+2013.
+[/ref]
+They installed the bugs in Selectric II and Selectric III electric typewriters.[ref]
+Sharon A. Maneki.
+"Learning from the Enemy: The GUNMAN Project".
+2012.
+[/ref]
+Soviet embassies used manual typewriters, rather than electric typewriters, for classified information—apparently because they are immune to such bugs.
+As of 2013, Russian special services still use typewriters."Wanted: 20 electric typewriters for Russia to avoid leaks"[ref]
+Anna Arutunyan.
+"Russian security agency to buy typewriters to avoid surveillance".
+[/ref]
+
+Cracking
+
+Writing simple software applications for keylogging can be trivial, and like any nefarious computer program, can be distributed as a trojan horse or as part of a virus. What is not trivial for an attacker, however, is installing a covert keystroke logger without getting caught and downloading data that has been logged without being traced. An attacker that manually connects to a host machine to download logged keystrokes risks being traced. A trojan that sends keylogged data to a fixed e-mail address or IP address risks exposing the attacker.
+
+Trojan
+
+Young and Yung devised several methods for solving this problem and presented them in their 1997 IEEE Security & Privacy paperA. Young, M. Yung, "Deniable Password Snatching: On the Possibility of Evasive Electronic Espionage," IEEE Symposium on Security & Privacy, pages 224–235, May 4–7, 1997. (their paper from 1996 touches on it as well).
+
+Use by police
+
+In 2000, the FBI used FlashCrest iSpy to obtain the PGP passphrase of Nicodemo Scarfo, Jr., son of mob boss Nicodemo Scarfo.
+Also in 2000, the FBI lured two suspected Russian cyber criminals to the US in an elaborate ruse, and captured their usernames and passwords with a keylogger that was covertly installed on a machine that they used to access their computers in Russia.  The FBI then used these credentials to hack into the suspects' computers in Russia in order to obtain evidence to prosecute them.
+
+Countermeasures
+
+The effectiveness of countermeasures varies, because keyloggers use a variety of techniques to capture data and the countermeasure needs to be effective against the particular data capture technique.  For example, an on-screen keyboard will be effective against hardware keyloggers, transparency will defeat some—but not all—screenloggers and an anti-spyware application that can only disable hook-based keyloggers will be ineffective against kernel-based keyloggers.
+Also, keylogger program authors may be able to update the code to adapt to countermeasures that may have proven to be effective against them.
+
+Anti keyloggers
+
+An anti keylogger is a piece of software specifically designed to detect keyloggers on a computer, typically comparing all files in the computer against a database of keyloggers looking for similarities which might signal the presence of a hidden keylogger. As anti keyloggers have been designed specifically to detect keyloggers, they have the potential to be more effective than conventional anti virus software; some anti virus software do not consider certain keyloggers a virus, as under some circumstances a keylogger can be considered a legitimate piece of software.
+
+Live CD/USB
+
+Rebooting the computer using a Live CD or write-protected Live USB is a possible countermeasure against software keyloggers if the CD is clean of malware and the operating system contained on it is secured and fully patched so that it cannot be infected as soon as it is started.  Booting a different operating system does not impact the use of a hardware or BIOS based keylogger.
+
+Anti-spyware / Anti-virus programs
+
+Many anti-spyware applications are able to detect some software based keyloggers and quarantine, disable or cleanse them.  However, because many keylogging programs are legitimate pieces of software under some circumstances, anti spyware often neglects to label keylogging programs as spyware or a virus. These applications are able to detect software-based keyloggers based on patterns in executable code, heuristics and keylogger behaviours (such as the use of hooks and certain APIs).
+No software-based anti-spyware application can be 100% effective against all keyloggers.
+Also, software-based anti-spyware cannot defeat non-software keyloggers (for example, hardware keyloggers attached to keyboards will always receive keystrokes before any software-based anti-spyware application).
+However, the particular technique that the anti-spyware application uses will influence its potential effectiveness against software keyloggers.  As a general rule, anti-spyware applications with higher privileges will defeat keyloggers with lower privileges.  For example, a hook-based anti-spyware application cannot defeat a kernel-based keylogger (as the keylogger will receive the keystroke messages before the anti-spyware application), but it could potentially defeat hook- and API-based keyloggers.
+
+Network monitors
+
+Network monitors (also known as reverse-firewalls) can be used to alert the user whenever an application attempts to make a network connection. This gives the user the chance to prevent the keylogger from "phoning home" with his or her typed information.
+
+Automatic form filler programs
+
+Automatic form-filling programs may prevent keylogging by removing the requirement for a user to type personal details and passwords using the keyboard. Form fillers are primarily designed for web browsers to fill in checkout pages and log users into their accounts. Once the user's account and credit card information has been entered into the program, it will be automatically entered into forms without ever using the keyboard or clipboard, thereby reducing the possibility that private data is being recorded. However someone with physical access to the machine may still be able to install software that is able to intercept this information elsewhere in the operating system or while in transit on the network. (Transport Layer Security (TLS) prevents the interception of data in transit by network sniffers and proxy tools.)
+
+One-time passwords (OTP)
+
+Using one-time passwords may be keylogger-safe, as each password is invalidated as soon as it's used. This solution may be useful for someone using a public computer. However, an attacker who has remote control over such a computer can simply wait for the victim to enter his/her credentials before performing unauthorised transactions on their behalf while their session is active.
+
+Security tokens
+
+Use of smart cards or other security tokens may improve security against replay attacks in the face of a successful keylogging attack, as accessing protected information would require both the (hardware) security token as well as the appropriate password/passphrase. Knowing the keystrokes, mouse actions, display, clipboard etc. used on one computer will not subsequently help an attacker gain access to the protected resource.  Some security tokens work as a type of hardware-assisted one-time password system, and others implement a cryptographic challenge-response authentication, which can improve security in a manner conceptually similar to one time passwords.  Smartcard readers and their associated keypads for PIN entry may be vulnerable to keystoke logging through a so-called supply chain attack where an attacker substitutes the card reader/PIN entry hardware for one which records the user's PIN.
+
+On-screen keyboards
+
+Most on screen keyboards (such as the onscreen keyboard that comes with Windows XP) send normal keyboard event messages to the external target program to type text.  Every software keylogger can log these typed characters sent from one program to another.
+Additionally, keylogging software can take screenshots of what is displayed on the screen (periodically, and/or upon each mouse click), which means that although certainly a useful security measure, an on-screen keyboard will not protect from all keyloggers.
+
+Keystroke interference software
+
+Keystroke interference software is also available.
+These programs attempt to trick keyloggers by introducing random keystrokes, although this simply results in the keylogger recording more information than it needs to.  An attacker has the task of extracting the keystrokes of interest—the security of this mechanism, specifically how well it stands up to cryptanalysis, is unclear.
+
+Speech recognition
+
+Similar to on-screen keyboards, speech-to-text conversion software can also be used against keyloggers, since there are no typing or mouse movements involved. The weakest point of using voice-recognition software may be how the software sends the recognized text to target software after the recognition took place.
+
+Handwriting recognition and mouse gestures
+
+Also, many PDAs and lately tablet PCs can already convert pen (also called stylus) movements on their touchscreens to computer understandable text successfully. Mouse gestures use this principle by using mouse movements instead of a stylus. Mouse gesture programs convert these strokes to user-definable actions, such as typing text. Similarly, graphics tablets and light pens can be used to input these gestures, however these are less common everyday.
+The same potential weakness of speech recognition applies to this technique as well.
+
+Macro expanders/recorders
+
+With the help of many programs, a seemingly meaningless text can be expanded to a meaningful text and most of the time context-sensitively, e.g. "en.org" can be expanded when a web browser window has the focus. The biggest weakness of this technique is that these programs send their keystrokes directly to the target program. However, this can be overcome by using the 'alternating' technique described below, i.e. sending mouse clicks to non-responsive areas of the target program, sending meaningless keys, sending another mouse click to target area (e.g. password field) and switching back-and-forth.
+
+Non-technological methods
+
+Alternating between typing the login credentials and typing characters somewhere else in the focus window can cause a keylogger to record more information than they need to, although this could easily be filtered out by an attacker. Similarly, a user can move their cursor using the mouse during typing, causing the logged keystrokes to be in the wrong order e.g., by typing a password beginning with the last letter and then using the mouse to move the cursor for each subsequent letter. Lastly, someone can also use context menus to remove, cut, copy, and paste parts of the typed text without using the keyboard.  An attacker who is able to capture only parts of a password will have a smaller key space to attack if he chose to execute a brute-force attack.
+Another very similar technique uses the fact that any selected text portion is replaced by the next key typed. e.g., if the password is "secret", one could type "s", then some dummy keys "asdfsd". Then, these dummies could be selected with the mouse, and the next character from the password "e" is typed, which replaces the dummies "asdfsd".
+These techniques assume incorrectly that keystroke logging software cannot directly monitor the clipboard, the selected text in a form, or take a screenshot every time a keystroke or mouse click occurs. They may however be effective against some hardware keyloggers.
+
+
+
+
+
+
+
+

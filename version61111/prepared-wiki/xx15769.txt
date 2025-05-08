@@ -1,0 +1,120 @@
+[[Cauchy–Schwarz inequality]]
+
+CATEGORIES: Inequalities, Linear algebra, Operator theory, Articles containing proofs, Probability theory, Mathematical analysis
+
+In mathematics, the Cauchy–Schwarz inequality is a useful inequality encountered in many different settings, such as linear algebra, analysis, probability theory, and other areas. It is considered to be one of the most important inequalities in all of mathematics.The Cauchy–Schwarz Master Class: an Introduction to the Art of Mathematical Inequalities, Ch. 1 by J. Michael Steele. It has a number of generalizations, among them Hölder's inequality.
+The inequality for sums was published by [tpl]harvs|first=Augustin-Louis|last=Cauchy|authorlink=Augustin-Louis Cauchy|year=1821|txt=yes[/tpl], while the corresponding inequality for integrals was first proved by
+[tpl]harvs|txt=yes|authorlink=Viktor Bunyakovsky|year=1859|first=Viktor|last=Bunyakovsky[/tpl]. The modern proof of the integral inequality was given by [tpl]harvs|txt=yes|authorlink=Hermann Amandus Schwarz|first=Hermann Amandus|last=Schwarz|year=1888[/tpl].
+
+==Statement of the inequality==
+
+The Cauchy–Schwarz inequality states that for all vectors x and y of an inner product space it is true that
+Moreover, the two sides are equal if and only if x and y are linearly dependent (or, in a geometrical sense, they are parallel or one of the vectors' magnitude is zero).
+When viewed in this way the numbers x1, ..., xn, and y1, ..., yn are the components of x and y with respect to an orthonormal basis of V.
+Even more compactly written:
+Equality holds if and only if x and y are linearly dependent, that is, one is a scalar multiple of the other (which includes the case when one or both are zero).
+The finite-dimensional case of this inequality for real vectors was proven by Cauchy in 1821, and in 1859 Cauchy's student Bunyakovsky noted that by taking limits one can obtain an integral form of Cauchy's inequality. The general result for an inner product space was obtained by Schwarz in the year 1888.
+
+==Proof==
+
+Let u, v be arbitrary vectors in a vector space V over F  with an inner product, where F is the field of real or complex numbers.  We prove the inequality
+and the fact that equality holds only when u and v are linearly dependent (the fact that conversely one has equality if u and v are linearly dependent is immediate from the properties of the inner product).
+If [tpl]nowrap|v [tpl]=[/tpl] 0[/tpl] it is clear that we have equality, and in this case u and v are also linearly dependent (regardless of u). We henceforth assume that v is nonzero. Let
+Then, by linearity of the inner product in its first argument, one has
+i.e., z is a vector orthogonal to the vector v (Indeed, z is the projection of u onto the plane orthogonal to v.) We can thus apply the Pythagorean theorem to
+which gives
+and, after multiplication by ||v||2, the Cauchy–Schwarz inequality.
+Moreover, if the relation '≥' in the above expression is actually an equality, then [tpl]nowrap|[tpl]!![/tpl]z[tpl]!![/tpl]2 [tpl]=[/tpl] 0[/tpl] and hence [tpl]nowrap|z [tpl]=[/tpl] 0[/tpl]; the definition of z then establishes a relation of linear dependence between u and v. This establishes the theorem.
+
+==Special cases==
+
+===Rn===
+
+To prove this form of the inequality, consider the following quadratic polynomial in z.
+Since it is nonnegative it has at most one real root in z, whence its discriminant is less than or equal to zero, that is,
+which yields the Cauchy–Schwarz inequality.
+Expanding the brackets we have:
+collecting together identical terms (albeit with different summation indices) we find:
+Because the left-hand side of the equation is a sum of the squares of real numbers it is greater than or equal to zero, thus:
+When n = 3 the Cauchy–Schwarz inequality can also be deduced from Lagrange's identity, which takes the form
+from which readily follows the Cauchy–Schwarz inequality.
+Another proof of the general case for n can be done by using the technique used to prove Inequality of arithmetic and geometric means.
+
+===L2===
+
+For the inner product space of square-integrable complex-valued functions, one has
+A generalization of this is the Hölder inequality.
+
+==Applications==
+
+The triangle inequality for the inner product is often shown as a consequence of the Cauchy–Schwarz inequality, as follows: given vectors x and y:
+Taking square roots gives the triangle inequality.
+The Cauchy–Schwarz inequality allows one to extend the notion of "angle between two vectors" to any real inner product space, by defining:
+The Cauchy–Schwarz inequality proves that this definition is sensible, by showing that the right-hand side lies in the interval −1, 1, and justifies the notion that (real) Hilbert spaces are simply generalizations of the Euclidean space.
+It can also be used to define an angle in complex inner product spaces, by taking the absolute value of the right-hand side, as is done when extracting a metric from quantum fidelity.
+The Cauchy–Schwarz is used to prove that the inner product is a continuous function with respect to the topology induced by the inner product itself.
+The Cauchy–Schwarz inequality is usually used to show Bessel's inequality.
+
+===Probability theory===
+
+Let X, Y be random variables, then:
+In fact we can define an inner product on the set of random variables using the expectation of their product:
+and so, by the Cauchy–Schwarz inequality,
+Moreover, if μ = E(X) and ν = E(Y), then
+where Var denotes variance and Cov denotes covariance.
+
+==Generalizations==
+
+Various generalizations of the Cauchy–Schwarz inequality exist in the context of operator theory, e.g. for operator-convex functions, and operator algebras, where the domain and/or range of φ are replaced by a C*-algebra or W*-algebra.
+This section lists a few of such inequalities from the operator algebra setting, to give a flavor of results of this type.
+
+===Positive functionals on C*- and W*-algebras===
+
+One can discuss inner products as positive functionals. Given a Hilbert space L2(m), m being a finite measure, the inner product  gives rise to a positive functional φ by
+Since  ≥ 0, φ(f*f) ≥ 0 for all f in L2(m), where f* is pointwise conjugate of f. So φ is positive. Conversely every positive functional φ gives a corresponding inner product φ = φ(g*f). In this language, the Cauchy–Schwarz inequality becomes
+which extends verbatim to positive functionals on C*-algebras.
+We now give an operator theoretic proof for the Cauchy–Schwarz inequality which passes to the C*-algebra setting. One can see from the proof that the Cauchy–Schwarz inequality is a consequence of the positivity and anti-symmetry inner-product axioms.
+Consider the positive matrix
+Since φ is a positive linear map whose range, the complex numbers C, is a commutative C*-algebra, φ is completely positive. Therefore
+is a positive 2 × 2 scalar matrix, which implies it has positive determinant:
+This is precisely the Cauchy–Schwarz inequality. If f and g are elements of a C*-algebra, f* and g* denote their respective adjoints.
+We can also deduce from above that every positive linear functional is bounded, corresponding to the fact that the inner product is jointly continuous.
+
+===Positive maps===
+
+Positive functionals are special cases of positive maps. A linear map Φ between C*-algebras is said to be a positive map if a ≥ 0 implies Φ(a) ≥ 0. It is natural to ask whether inequalities of Schwarz-type exist for positive maps. In this more general setting, usually additional assumptions are needed to obtain such results.
+
+====Kadison–Schwarz inequality====
+
+The following theorem is named after Richard Kadison.
+Theorem. If Φ is a unital positive map, then for every normal element a in its domain, we have Φ(a*a) ≥ Φ(a*)Φ(a) and Φ(a*a) ≥ Φ(a)Φ(a*).
+This extends the fact φ(a*a) · 1 ≥ φ(a)*φ(a) = |φ(a)|2, when φ is a linear functional.
+The case when a is self-adjoint, i.e. a = a*, is sometimes known as Kadison's inequality.
+
+====2-positive maps====
+
+When Φ is 2-positive, a stronger assumption than merely positive, one has something that looks very similar to the original Cauchy–Schwarz inequality:
+Theorem (Modified Schwarz inequality for 2-positive maps).[tpl]Citation| last1=Paulsen| url=http://books.google.com/books?id=VtSFHDABxMIC&pg=PA40|title=Completely Bounded Maps and Operator Algebras |isbn=9780521816694 |year=2002[/tpl] page 40. For a 2-positive map Φ between C*-algebras, for all a, b in its domain,
+A simple argument for (2) is as follows. Consider the positive matrix
+By 2-positivity of Φ,
+is positive. The desired inequality then follows from the properties of positive 2 × 2 (operator) matrices.
+
+==Reforming Cauchy-Schwarz Inequality for cross product==
+
+Theorem. Let u and v be non-zero vectors, then:
+To prove this inequality we first write the outer product magnitude as 
+Dividing both sides by the product of the magnitudes we arrive at:
+
+==Physics==
+
+The general formulation of the Heisenberg uncertainty principle is derived using the Cauchy–Schwarz inequality in the Hilbert space of quantum observables.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

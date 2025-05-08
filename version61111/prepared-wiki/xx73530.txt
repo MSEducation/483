@@ -1,0 +1,72 @@
+[[COCOMO]]
+
+CATEGORIES: Software engineering costs
+
+The Constructive Cost Model (COCOMO) is an algorithmic software cost estimation model developed by Barry W. Boehm. The model uses a basic regression formula with parameters that are derived from historical project data and current as well as future project characteristics.
+COCOMO was first published in Boehm's 1981 book Software Engineering EconomicsBarry Boehm. Software Engineering Economics. Englewood Cliffs, NJ:Prentice-Hall, 1981. ISBN 0-13-822122-7 as a model for estimating effort, cost, and schedule for software projects. It drew on a study of 63 projects at TRW Aerospace where Boehm was Director of Software Research and Technology. The study examined projects ranging in size from 2,000 to 100,000 lines of code, and programming languages ranging from assembly to PL/I. These projects were based on the waterfall model of software development which was the prevalent software development process in 1981.
+References to this model typically call it COCOMO 81. In 1995 COCOMO II was developed and finally published in 2000 in the book Software Cost Estimation with COCOMO II.Barry Boehm,  Chris Abts, A. Winsor Brown, Sunita Chulani, Bradford K. Clark, Ellis Horowitz, Ray Madachy, Donald J. Reifer, and Bert Steece. Software Cost Estimation with COCOMO II  (with CD-ROM). Englewood Cliffs, NJ:Prentice-Hall, 2000. ISBN 0-13-026692-2 COCOMO II is the successor of COCOMO 81 and is better suited for estimating modern software development projects. It provides more support for modern software development processes and an updated project database. The need for the new model came as software development technology moved from mainframe and overnight batch processing to desktop development, code reusability, and the use of off-the-shelf software components. This article refers to COCOMO 81.
+COCOMO consists of a hierarchy of three increasingly detailed and accurate forms. The first level, Basic COCOMO is good for quick, early, rough order of magnitude estimates of software costs, but its accuracy is limited due to its lack of factors to account for difference in project attributes (Cost Drivers). Intermediate COCOMO takes these Cost Drivers into account and Detailed COCOMO additionally accounts for the influence of individual project phases.
+
+==Basic COCOMO==
+
+Basic COCOMO computes software development effort (and cost) as a function of program size. Program size is expressed in estimated thousands of source lines of code (SLOC), (KLOC). 
+COCOMO applies to three classes of software projects: 
+The basic COCOMO equations take the form
+where,
+KLOC is the estimated number of delivered lines (expressed in thousands ) of code for project. The coefficients ab, bb, cb and db are given in the following table:
+Basic COCOMO is good for quick estimate of software costs. However it does not account for differences in hardware constraints, personnel quality and experience, use of modern tools and techniques, and so on.
+
+==Intermediate COCOMOs==
+
+Intermediate COCOMO computes software development effort as function of program size and a set of "cost drivers" that include subjective assessment of product, hardware, personnel and project attributes. This extension considers a set of four "cost drivers",each with a number of subsidiary attributes:-
+Each of the 15 attributes receives a rating on a six-point scale that ranges from "very low" to "extra high" (in importance or value). An effort multiplier from the table below applies to the rating. The product of all effort multipliers results in an ''effort adjustment factor (EAF)''. Typical values for EAF range from 0.9 to 1.4.
+The Intermediate Cocomo formula now takes the form:
+where E is the effort applied in person-months, KLoC is the estimated number of thousands of delivered lines of code for the project, and EAF is the factor calculated above. The coefficient ai and the exponent bi are given in the next table.
+!Software project
+!width="20%"|ai
+!width="20%"|bi
+|-
+|Organic
+|align="center"|3.2
+|align="center"|1.05
+|-
+|Semi-detached
+|align="center"|3.0
+|align="center"|1.12
+|-
+|Embedded
+|align="center"|2.8
+|align="center"|1.20
+|}
+The Development time D calculation uses E in the same way as in the Basic COCOMO.
+
+==Detailed COCOMO==
+
+Detailed COCOMO incorporates all characteristics of the intermediate version with an assessment of the cost driver's impact on each step (analysis, design, etc.) of the software engineering process.
+The detailed model uses different effort multipliers for each cost driver attribute. These Phase Sensitive effort multipliers are each to determine the amount of effort required to complete each phase.
+In detailed cocomo,the whole software is divided in different modules and then we apply COCOMO in different modules to estimate effort and then sum the effort
+In detailed COCOMO, the effort is calculated as function of program size and a set of cost drivers given according to each phase of software life cycle. 
+A Detailed project schedule is never static.
+The five phases of detailed COCOMO are:-
+
+==See also==
+
+==References==
+
+==Further reading==
+
+  | last = Kemerer
+  | first = Chris F.
+  | title = An Empirical Validation of Software Cost Estimation Models
+  | journal = Communications of the ACM
+  |date=May 1987
+  | volume=30
+  | issue=5
+  | pages=416–42
+  | url = http://www.pitt.edu/~ckemerer/CK%20research%20papers/EmpiricalValidationSwCost_Kemerer87.pdf
+  | doi=10.1145/22899.22906}}
+
+==External links==
+
+ 
+

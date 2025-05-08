@@ -1,0 +1,49 @@
+[[File:Abstract syntax tree for Euclidean algorithm.svg|thumb|400px|An abstract syntax tree for the following code for the Euclidean algorithm:
+
+ 
+  while b ≠ 0 
+   if a > b 
+   a := a − b 
+ else 
+   b := b − a 
+ return a 
+
+]]
+In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming language. Each node of the tree denotes a construct occurring in the source code. The syntax is "abstract" in not representing every detail appearing in the real syntax. For instance, grouping parentheses are implicit in the tree structure, and a syntactic construct like an if-condition-then expression may be denoted by means of a single node with two branches.
+This distinguishes abstract syntax trees from concrete syntax trees, traditionally designated parse trees, which are often built by a parser during the source code translation and compiling process. Once built, additional information is added to the AST by means of subsequent processing, e.g., contextual analysis.
+Abstract syntax trees are also used in program analysis and program transformation systems.
+
+==Application in compilers==
+
+Abstract syntax trees are data structures widely used in compilers, due to their property of representing the structure of program code. An AST is usually the result of the syntax analysis phase of a compiler. It often serves as an intermediate representation of the program through several stages that the compiler requires, and has a strong impact on the final output of the compiler.
+
+===Motivation===
+
+Being the product of the syntax analysis phase of a compiler, the AST has a few properties that are invaluable to the further steps of the compilation process. When compared to the source code, an AST does not include certain elements, such as inessential punctuation and delimiters (braces, semicolons, parentheses, etc.). A more important difference is that the AST can be edited and enhanced with properties and annotations for every element it contains. Such editing and annotation is impossible with the source code of a program, since it would imply changing it. At the same time, an AST usually contains extra information about the program, due to the consecutive stages of analysis by the compiler. A simple example of the additional information present in an AST is the position of an element in the source code. This information is used in case of an error in the code, to notify the user of the location of the error.
+The need for ASTs comes from the inherent nature of programming languages and their documentation. Languages are often ambiguous by nature. In order to avoid this ambiguity, programming languages are often specified as a context free grammar (CFG). However, there are often aspects of programming languages that a CFG can't express, but are part of the language and are documented in its specification. These are details that require a context to determine their validity and behaviour. For example, if a language allows new types to be declared, a CFG cannot predict the names of such types nor the way in which they should be used. Even if a language has a predefined set of types, enforcing proper usage usually requires some context. Another example is duck typing, where the type of an element can change depending on context. Operator overloading is yet another case where correct usage and final function are determined based on the context. Java provides an excellent example, where the '+' operator is both numerical addition and concatenation of strings.
+Although there are other data structures involved in the inner workings of a compiler, the AST performs a unique function. During the first stage, the syntax analysis stage, a compiler produces a parse tree. This parse tree can be used to perform almost all functions of a compiler by means of syntax-directed translation. Although this method can lead to a more efficient compiler, it goes against the software engineering principles of writing and maintaining programs. Another advantage that the AST has over a parse tree is the size, particularly the smaller height of the AST and the smaller number of elements.
+
+===Design===
+
+When designing an AST we (we?) must be aware of the functionality that the compiler will expect. As mentioned before, we can't store the program declarations in source form. At the same time, declarations need to preserve types and their respective location. The order of executable statements has to be explicitly represented and well defined. Binary operations need to remember their left and right components. Assignment statements need to store the identifier that will retain the assigned value. These requirements can be used to design the data structure to use.
+It is known that some operations will always be constituted of 2 elements, such as the 2 terms for addition. However, some language constructs require an arbitrarily large number of children, such as argument lists passed to programs. As a result, an AST has to also be flexible and quick enough to allow for quick addition of arbitrary amounts of children.
+Another major design requirement for an AST is that it should be possible to unparse an AST into source code form, that is sufficiently similar to the original and whose execution is sufficiently similar to the execution of the program represented by the AST.
+
+===Design patterns===
+
+Due to the complexity of the requirements for an AST and the overall complexity of a compiler, it is beneficial to apply sound software development principles. One of these, is to use proven design patterns to enhance the modularity and ease of development.
+Due to the fact that different operations don't necessarily have different types, it is important to have a sound node class hierarchy. This is crucial in the creation and the modification of the AST as the compiler progresses.
+Because the compiler does a few traversals of the tree to determine syntactic correctness, it is important to make traversing the tree a simple operation. Since when reaching each node, the compiler executes a specific set of operations depending on the type of the node, it makes sense to use the Visitor pattern.
+
+===Usage===
+
+The AST is used intensively during semantic analysis, where the compiler checks for correct usage of the elements of the program and the language. Also, during semantic analysis the compiler generates the symbol tables based on the AST. A complete traversal of the tree allows to verify the correctness of the program.
+After verifying the correctness, the AST serves as the base for the code generation step. It is often the case that the AST is used to generate the 'intermediate representation' '(IR)' for the code generation sometimes called an intermediate language.
+
+==See also==
+
+==References==
+
+==External links==
+
+

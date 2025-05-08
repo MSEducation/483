@@ -1,0 +1,115 @@
+[[Hierarchical matrix]]
+
+CATEGORIES: Matrices
+
+In numerical mathematics, hierarchical matrices (H-matrices)
+[ref]W. Hackbusch,
+A sparse matrix arithmetic based on H-matrices. Part I: Introduction to H-matrices,
+Computing (1999), 62:89–108[/ref]
+[ref]M. Bebendorf,
+Hierarchical matrices: A means to efficiently solve elliptic boundary value problems,
+Springer (2008)[/ref]
+[ref]W. Hackbusch,
+Hierarchische Matrizen. Algorithmen und Analysis,
+Springer (2009)[/ref]
+are used as data-sparse approximations of non-sparse matrices.
+of matrices for large problems would therefore be prohibitively expensive in terms of storage and computing time.
+parameter controlling the accuracy of the approximation.
+In typical applications, e.g., when discretizing integral equations
+[ref]W. Hackbusch and B. N. Khoromskij,
+A sparse H-Matrix Arithmetic. Part II: Application to Multi-Dimensional Problems,
+Computing (2000), 64:21–47[/ref]
+[ref]M. Bebendorf,
+Approximation of boundary element matrices,
+Num. Math. (2000), 86:565--589[/ref]
+[ref]M. Bebendorf and S. Rjasanow,
+Adaptive low-rank approximation of collocation matrices,
+Computing (2003), 70:1–24[/ref]
+[ref]S. Börm and L. Grasedyck,
+Hybrid cross approximation of integral operators,
+Num. Math. (2005), 101:221–249[/ref]
+or solving elliptic partial differential equations
+[ref]M. Bebendorf and W. Hackbusch,
+Num. Math. (2003), 95:1–28[/ref]
+,[ref]S. Börm,
+Approximation of solution operators of elliptic partial differential equations by H- and H2-matrices,
+Num. Math. (2010), 115:165–193[/ref]
+Compared to many other data-sparse representations of non-sparse matrices, hierarchical matrices offer a major advantage:
+the results of matrix arithmetic operations like matrix multiplication, factorization or inversion can be approximated
+Construction and Arithmetics of H-Matrices,
+Computing (2003), 70:295–334[/ref]
+
+Basic idea
+
+Hierarchical matrices rely on local low-rank approximations:
+Large submatrices are stored in factorized representation, while small submatrices are stored in standard representation
+in order to improve the efficiency.
+Low-rank matrices are closely related to degenerate expansions used in panel clustering and the fast multipole method
+to approximate integral operators.
+In this sense, hierarchical matrices can be considered the algebraic counterparts of these techniques.
+
+Application to integral operators
+
+Hierarchical matrices are successfully used to treat integral equations, e.g., the single and double layer potential operators
+appearing in the boundary element method.
+A typical operator has the form
+The Galerkin method leads to matrix entries of the form
+is the corresponding family of Lagrange polynomials.
+with the coefficients
+would also allow us to split the double integral into two single integrals and thus arrive at a similar factorized low-rank matrix.
+Of particular interest are cross approximation techniques
+
+[ref]E. Tyrtyshnikov,
+Incomplete cross approximation in the mosaic-skeleton method,
+Computing (2000), 64:367–380[/ref]
+
+Application to elliptic partial differential equations
+
+Since the solution operator of an elliptic partial differential equation can be expressed as an integral operator involving
+can be approximated by a hierarchical matrix.
+Green's function depends on the shape of the computational domain, therefore it is usually not known.
+Nevertheless, approximate arithmetic operations can be employed to compute an approximate inverse without knowing the
+function explicitly.
+Surprisingly, it is possible to prove that the inverse can be approximated even if
+the differential operator involves non-smooth coefficients and Green's function is therefore not smooth.
+
+Arithmetic operations
+
+The most important innovation of the hierarchical matrix method is the development of efficient algorithms for performing
+(approximate) matrix arithmetic operations on non-sparse matrices, e.g., to compute approximate inverses, LU decompositions
+and solutions to matrix equations.
+The algorithm requires the submatrices of the hierarchical matrices to be organized in a block tree structure and takes
+Taking advantage of the block structure, the inverse can be computed by using recursion to compute inverses and
+Schur complements of diagonal blocks and combining both using the matrix-matrix multiplication.
+In a similar way, the LU decomposition
+[ref]M. Bebendorf,
+Why finite element discretizations can be factored by triangular hierarchical matrices,
+SIAM J. Num. Anal. (2007), 45:1472–1494[/ref]
+[ref]L. Grasedyck, R. Kriemann and S. Le Borne,
+Domain decomposition based H-LU preconditioning,
+Num. Math. (2009), 112:565–600[/ref]
+can be constructed using only recursion and multiplication.
+
+H2-matrices
+
+In order to treat very large problems, the structure of hierarchical matrices can be improved:
+H2-matrices
+[ref]W. Hackbusch, B. N. Khoromskij and S. A. Sauter,
+On H2-matrices,
+Lectures on Applied Mathematics (2002), 9–29[/ref]
+[ref]S. Börm,
+Efficient Numerical Methods for Non-local Operators: H2-Matrix Compression, Algorithms and Analysis,
+EMS Tracts in Mathematics 14 (2010)[/ref]
+replace the general low-rank structure of the blocks by a hierarchical representation closely related to the
+leads to approximations that preserve the rate of convergence of the underlying boundary element method
+Variable order panel clustering,
+Computing (2000), 64:223–261[/ref][ref]S. Börm and S. A. Sauter,
+BEM with linear complexity for the classical boundary integral operators,
+Math. Comp. (2005), 74:1139–1177[/ref]
+
+Literature
+
+Software
+
+AHMED is a C++ software library that can be downloaded for educational purposes.
+HLIBpro is an implementation of the core hierarchical matrix algorithms for commercial applications.

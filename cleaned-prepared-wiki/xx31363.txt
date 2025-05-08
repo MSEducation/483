@@ -1,0 +1,146 @@
+[[HyperTalk]]
+
+CATEGORIES: Domain-specific programming languages, Educational programming languages, Scripting languages, HyperCard products, Programming languages created in 1987, XTalk
+
+HyperTalk is a high-level, procedural programming language created in 1987 by Dan Winkler and used in conjunction with Apple Computer's HyperCard hypermedia program by Bill Atkinson. The main target audience of HyperTalk was beginning programmers, hence HyperTalk programmers were usually called authors, and the process of writing programs was called "scripting". HyperTalk scripts are fairly similar to written English, and use a logic structure similar to the Pascal programming language.
+The case-insensitive language was interpreted at first, but gained just-in-time compilation with HyperCard 2.0.0!", MacTech, Vol. 7 No. 9 It supports the basic control structures of procedural languages: repeat for/while/until, if/then/else, as well as function and message "handler" calls (a handler is a subroutine, a message handler is a procedure). Data types are transparent to the user, conversion happens transparently in the background between strings and numbers. There are no classes or data structures in the traditional sense; their place was taken by special string literals, or rather "lists" of "items" delimited by commas (in later versions the "itemDelimiter" property allowed choosing an arbitrary character).
+
+Description
+
+Fundamental operations
+
+For most basic operations and mathematics, HyperTalk tended to reverse the ordering of predicates in the statement. For instance, HyperTalk used the put assignment operator that placed the variable at the end:
+  put 5 * 4 into theResult
+whereas in the more traditional BASIC programming language, the result of a basic multiplication would be saved in a variable by writing let theresult = 5 * 4 or in the shorter form: theresult = 5 * 4.
+The HyperTalk code has the side-effect of creating the variable theResult on the fly. Scripts could assign any type or value to a variable using put - HyperTalk was very weakly typed. Conversions between variable types were invisible and automatic; one can multiply the string "3" and the number 5 to produce the number 15, or concatenate the number 5 onto the string "3" to produce the string "35"; HyperTalk will not complain unless the types cannot be automatically converted.
+HyperTalk's flow control and logic was generally similar to other common languages, using if ... then ... else ... end if for conditionals and supporting a variety loops based on a flexible repeat ... end repeat syntax. Comments were prefaced with two minus signs; -- this is a comment.
+
+Objects, containers and scripts
+
+HyperCard's primary user interface concept was the card, a display system that emulated an index card. Cards were normally used to store information, similar to a record in a conventional flat-file database. The graphical layout of the card was created by placing various elements like text fields and buttons on it using the mouse. A master layout "card" known as the background was shown behind the transparent areas of each card, which could be shared as a layout among several cards, but with card-specific content. The collection of cards, backgrounds and the associated data stored in them were stored in a single file known as the stack (of cards). Collectively, these data-containing objects are referred to as containers.
+HyperTalk functions, or scripts, were normally stored within the script property available in many of the stack's containers. Scripts could access the properties of a container, corresponding to instance variables, using the get and set instructions. The script property held plain text, and had no special properties; scripts could be placed in and run from any text container, including string variables (and thus indirectly text files), imported from other stacks using the start using command, or even user-typed text in an on-screen text field. Arbitrary text could be "run" using the do command, in a fashion not unlike Dynamic SQL.Erland Sommarskog and Frank Kalis, "The Curse and Blessings of Dynamic SQL", 23 June 2011
+
+Referring to containers
+
+A key concept within the HyperTalk language was the way it referred to containers through a navigational system based on the visual hierarchy of the stack. Every container in the stack was given a unique ID number when it was created, and could also be given a name. Scripts could refer to objects by using either of these identifiers, along with an object type addressed using the of operator. The of operator used a natural language syntax that made for easily readable, self-documenting code. For instance, a script stored in a button on a card might wish to read the content of text field the user had typed into, in which case the field might be referred to in this fashion:
+
+  put card field "typehere" into theValue</code>
+This script is running in the context of a button on a card, so "which card" is "the card the user is currently interacting with". In this case the code uses the put operator to assign the value of the text field into a new variable called theValue. HyperTalk tried its best to determine additional context and allow the programmer to "leave out" redundant code. In the case of text fields, for instance, "the value", the text typed into the field, was assumed to be the main property and was assumed to be the target if not otherwise specified. Likewise, "card fields" were assumed to be the target of commands, as opposed to "background field", so it could be left off as well. Even container types had short forms to save typing. The code above is equivalent to the short form put fld "typehere" into theValue.
+Objects within a given context, the card or background for instance, were also given a runtime number based on their z-order on the screen. To assist in using their position for navigation, HyperTalk also included a variety of ordinal and cardinal referencing systems to simplify the syntax further. Assuming the field "typehere" is the only field on the card, the code above could also be written in this fashion:
+
+  put the first card field into theValue</code>
+or alternately:
+
+  put card field 1 into theValue</code>
+The choice of addressing style was left to the programmer and any one would work in any situation. However, as is the case in most human languages, certain styles of addressing were more natural given the context of the surrounding text, and the programmer would often change styles to make the code more readable.
+HyperTalk included the me container which acted in the same fashion as the self qualifier found in most OO languages, allowing simple access to the current container object. Less common was the it variable, which held the value of the last operation for certain built-in operators. For instance:
+
+  ask "What is the value?"
+  put it into card field "display"</code>
+uses the ask command to display a dialog box with a text field the user can type into, and when the dialog is completed by hitting , the value is assigned to the it pseudo-variable. The code then copies the value into a card field using the put assignment operator.
+
+Collections
+
+Containers of a given type were also available as collections with a pluralized version of that container type as its name - the collection of the fields on a card was card fields. These collections were themselves containers with their own properties. Key among these was the number property which was widely used during iterations and similar tasks. For instance, if one wanted to hide all the fields on a card, this could be accomplished with this code:
+
+    repeat with i = 1 to the number of card fields
+      hide field i
+    end repeat</code>
+This code exposes another common feature of HyperTalk, that a property might have several names and operators. In this case the hide command, and the associated show, act by setting the value of the container's visible property. hide field i is exactly equivalent to set the visible of field i to false. A similar example was the lock screen command that stopped visual updating, which was a short form for set the lockscreen to true, where lockscreen is a property of HyperCard itself -- also a container. Many examples of this sort of syntactic sugar were found in HyperTalk, in order to simplify the syntax and improve readability of common code.
+In HyperCard 2.2 and later, the collection of collections was also available as a container's parts. This allowed a script to address all of the objects in a container with a single iterator.
+
+Handling text
+
+A notable feature of the HyperTalk container model was its handling of text. Every collection of text, whether a literal string in a program or text typed into a text field, was itself considered a container with multiple collections of containers within it. This allowed scripts to parse text using the same navigational commands as any other container. For instance, while parsing a space-delimited data file, one might want to extract the third column, like this:
+
+  put the third word of theFilesText into colThree</code>
+This syntax allowed the script to "walk" down the text to find particular data, as in this example:
+
+  put the first character of the third word of line 5 of card field "sometext" into theChar</code>
+This process of treating text as a container was known as "chunking", and the functions as "chunk expressions". These same sorts of expressions were used to handle file manipulation, along with a set of file management functions. The following code opens a known file, reads from it, extracts data, and then closes the file:
+
+  on mouseDown
+    answer file "Please select a text file to open."
+    if it is empty then exit mouseDown
+    put it into filePath
+    if there is a file filePath then
+      open file filePath
+      read from file filePath until return
+      put it into cd fld "some field"
+      close file filePath
+      set the textStyle of character 1 to 10 of card field "some field" to bold
+    end if
+  end mouseDown</code>
+HyperTalk also included functions for chunking strings using a substring find operation using the in operator. The following code finds all examples of a given pattern using the in as part of the repeat loop, while offset finds the location of that pattern within the string:
+
+  function replaceStr pattern,newStr,inStr
+    repeat while pattern is in inStr
+      put offset(pattern,inStr) into pos
+      put newStr into character pos to (pos +the length of pattern)-1 of inStr
+    end repeat
+    return inStr
+  end replaceStr
+
+Lists and other collections
+
+HyperTalk used the same chunking system to produce a structure like the array or list simply by placing data items in a variable, separated by commas. API that would use a custom type in other languages would accept strings in HyperTalk, parsing them out as required. For instance, the position of objects on the screen was defined by a pair of numbers representing the X and Y coordinates of the upper left corner. The following code creates a variable called pos that holds a coordinate pair, and then manipulates this to re-position all of the buttons on a card in a diagonal from top left to bottom right:
+
+  on mouseUp
+    put "100,100" into pos
+    repeat with x = 1 to the number of card buttons
+      set the location of card button x to pos
+      add 15 to item 1 of pos
+    end repeat
+  end mouseUp
+
+The item chunking expression was originally based on the comma, but later versions of HyperCard allowed this to be changed using the itemDelimiter which offered the ability to parse arbitrary lists and structures.
+
+Messages and events
+
+HyperTalk used an object-oriented concept for calling scripts, with objects in the stack sending "events" that would be processed by "handlers" that declared their interest in receiving the events using the on syntax. For instance, most GUI containers could send the mouseUp event when the mouse button was clicked down and then released on top of that container, and a script could capture these events like this:
+
+ on mouseUp
+    -- place additional code here
+ end mouseUp</code>
+The events were first sent to the script in the object that created the event, for instance, if the user clicked on a button the mouseUp event was first sent to that button. If the button's script object did not have a mouseUp handler (or no script at all), it was then passed to the card, the background, the stack, any stacks whose scripts had been explicitly imported using the start using command, the "home stack" (a user-selected always-open HyperCard stack), and finally to the HyperCard application itself.
+For many simple events like mouse clicks on buttons the script would be placed directly within the object in question, the button itself. For instance, one might use the example code above within a button handler in this fashion:
+
+ on mouseUp
+    repeat with i = 1 to the number of card fields
+      hide field i
+    end repeat
+ end mouseUp</code>
+In the case where code was being called from multiple locations, or it was being used as a global handler for an event, the script could determine the original sender of the event using the target function. Likewise, scripts could send events to other containers using the send command and then using the navigational code to refer to the container holding that handlers code:
+
+    send "mouseUp" to card button "OK" of card "Veracity"</code>
+Combining HyperTalk's string processing with the do command allowed for the construction of  interactive interpreters by placing a text field on a card and then placing this code in the field's script:
+
+  on mouseUp 
+    select the clickLine
+    put word 2 of the clickLine into linenum
+    do line linenum of cd fld 1
+  end mouseUp</code>
+clickLine is a global property that returns the name and line number of the last field clicked, in a form like "line 10 of card field 4". This code first selects all of the text on the clicked line, then extracts the line number into a local variable, then uses do to run the text as a HyperCard script.
+The mouseDown message was sent to a button when the user clicked it, and mouseUp was sent when the user released the mouse inside it to trigger its action. Similarly, HyperCard sent periodic idle message, mouseEnter, mouseLeave, ... and various other messages related to navigation between different cards in a HyperCard stack, as well as user input (keyDown, functionKey, ...), and system events. As far as the scripters were concerned, there were no main event loops like in other procedural programming languages.
+
+Controlling HyperCard
+
+Unlike general rapid application development platforms, HyperCard stacks always looked like stacks - the menu bar was HyperCard's and not the programmer's (by default -- scripting could add, delete and modify menus), the single window was a fixed size (in early versions), and in certain cases, commands that were central to the operation were part of the application itself, and not directly available in HyperTalk itself. A good example of this was the creation of new cards, which was part of the application, and had to be invoked using doMenu "New Card". While HyperTalk called into menu commands, menu commands also invoked handlers in HyperTalk. To run custom code when the Copy menu item was selected, one would place a script in the stack using the on doMenu itemName handler, and then examine itemName to see if it was "Copy".
+HyperTalk also provided script control over the built-in drawing tools, simply by scripting the needed changes in paint tools and simulating mouse movements using the drag from start to end and the click at position commands.
+
+Extending HyperTalk
+
+Although the HyperTalk language languished just like HyperCard itself, it received a second lease on life through its plugin protocol, so-called External Commands (XCMDs) and External Functions (XFCNs), which were native code containers attached to stacks (as Macintosh-specific resources) with a single entry point and return value. XCMDs and XFCNs could be called just like regular message and function handlers from HyperTalk scripts, and were also able to send messages back to the HyperCard application. Some enterprising XCMD authors added advanced features like full color support (ColorizeHC, HyperTint, AddColor), multiple special-purpose windows (Prompt, Tabloid, Textoid, Listoid, ShowDialog, MegaWindows), drag and drop support and various hardware interfaces to the language.
+
+Descendants of HyperTalk
+
+Various scripting languages have taken their cues from HyperTalk. They are commonly regrouped in a loosely defined family named xTalk.
+As well as second-level clones like:
+Many method names first popularized by HyperTalk made it into later languages, such as the onmouseup event handler in JavaScript. Although Asymetrix ToolBook is often also considered a HyperCard clone, its scripting language apparently bears little resemblance to HyperTalk.
+These clones and dialects (commonly referred to under the moniker of xTalk-languages) added various features to the language that are expected from a modern programming language, like exception handling, user-defined object properties, timers, multi-threading and even user-defined objects.
+
+
+
+
+
+

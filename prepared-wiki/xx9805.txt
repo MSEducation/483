@@ -1,0 +1,87 @@
+[[Post Office Protocol]]
+
+CATEGORIES: Internet mail protocols
+
+In computing, the Post Office Protocol (POP) is an application-layer Internet standard protocol used by local e-mail clients to retrieve e-mail from a remote server over a TCP/IP connection.[tpl]cite book | last = Dean | first = Tamara | title = Network+ Guide to Networks | publisher = Delmar | year = 2010 | location = | page = 519 | url = http://books.google.com/books?id=UD0h_GqgbHgC&printsec=frontcover&dq=network%2B+guide+to+networks&hl=en&src=bmrr&ei=hMnATfmmA8j00gGMsOC2Cg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CE8Q6AEwAA#v=onepage&q&f=false[/tpl] POP has been developed through several versions, with version 3 (POP3) being the current standard. 
+Virtually all modern e-mail clients and servers support POP3, and it along with IMAP (Internet Message Access Protocol) are the two most prevalent Internet standard protocols for e-mail retrieval,[tpl]cite book | last = Komarinski | first = Mark | title = Red Hat Linux System Administration Handbook | publisher = Prentice Hall | year = 2000 | location = | page =179 | url = http://books.google.com/books?id=UD0h_GqgbHgC&printsec=frontcover&dq=network%2B+guide+to+networks&hl=en&src=bmrr&ei=hMnATfmmA8j00gGMsOC2Cg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CE8Q6AEwAA#v=onepage&q&f=false[/tpl] with many webmail service providers such as Google Mail, Microsoft Mail and Yahoo! Mail also providing support for either IMAP or POP3 to allow mail to be downloaded.
+
+==Overview==
+
+POP supports simple download-and-delete requirements for access to remote mailboxes (termed maildrop in the POP RFC's).[tpl]cite book | last = Allen | first = David | title = Windows to Linux | publisher = Prentice Hall | year = 2004 | location = | page =192 | url = http://books.google.com/books?id=UD0h_GqgbHgC&printsec=frontcover&dq=network%2B+guide+to+networks&hl=en&src=bmrr&ei=hMnATfmmA8j00gGMsOC2Cg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CE8Q6AEwAA#v=onepage&q&f=false[/tpl] Although most POP clients have an option to leave mail on server after download, e-mail clients using POP generally connect, retrieve all messages, store them on the user's PC as new messages, delete them from the server, and then disconnect. Other protocols, notably IMAP, (Internet Message Access Protocol) provide more complete and complex remote access to typical mailbox operations. Many e-mail clients support POP as well as IMAP to retrieve messages; however, fewer Internet Service Providers (ISPs) support IMAP.[tpl]dubious|Fewer Internet Service Providers support IMAP?|reason=Probably no longer true, especially now that a few years have passed since this statement was written.|date=September 2013[/tpl]
+A POP3 server listens on well-known port 110. Encrypted communication for POP3 is either requested after protocol initiation, using the STLS command, if supported, or by POP3S, which connects to the server using Transport Layer Security (TLS) or Secure Sockets Layer (SSL) on well-known TCP port 995.
+Available messages to the client are fixed when a POP session opens the maildrop, and are identified by message-number local to that session or, optionally, by a unique identifier assigned to the message by the POP server. This unique identifier is permanent and unique to the maildrop and allows a client to access the same message in different POP sessions. Mail is retrieved and marked for deletion by message-number. When the client exits the session, the mail marked for deletion is removed from the maildrop.
+
+==History==
+
+POP1 was specified in RFC 918 (1984), POP2 by RFC 937 (1985)
+POP3 originated with RFC 1081 (1988). Its current specification is RFC 1939, updated with an extension mechanism, RFC 2449 and an authentication mechanism in RFC 1734.
+The original POP3 specification supported only an unencrypted USER/PASS login mechanism or Berkeley .rhosts access control. POP3 currently supports several authentication methods to provide varying levels of protection against illegitimate access to a user's e-mail. Most are provided by the POP3 extension mechanisms. POP3 clients support SASL authentication methods via the AUTH extension. MIT Project Athena also produced a Kerberized version. RFC 1460 introduced APOP into the core protocol. APOP is a challenge/response protocol which uses the MD5 hash function in an attempt to avoid replay attacks and disclosure of the shared secret. Clients implementing APOP include Mozilla Thunderbird, Opera Mail, Eudora, KMail, Novell Evolution, RimArts' Becky!,[tpl]ja icon[/tpl], (Becky! tutorial), 2001/04/26 Windows Live Mail, PowerMail, Apple Mail, and Mutt.
+"POP4" exists only as an informal proposal adding basic folder management, multipart message support, as well as message flag management to compete with IMAP; but has not progressed since 2003.
+
+==Extensions==
+
+An extension mechanism was proposed in RFC 2449 to accommodate general extensions as well as announce in an organized manner support for optional commands, such as TOP and UIDL. The RFC did not intend to encourage extensions, and reaffirmed that the role of POP3 is to provide simple support for mainly download-and-delete requirements of mailbox handling.
+The extensions are termed capabilities and are listed by the CAPA command. Except for APOP, the optional commands were included in the initial set of capabilities. Following the lead of ESMTP (RFC 5321), capabilities beginning with an X signify local capabilities.
+
+===STARTTLS===
+
+The STARTTLS extension allows the use of Transport Layer Security (TLS) or Secure Sockets Layer (SSL) to be negotiated using the STLS command, on the standard POP3 port, rather than an alternate. Some clients and servers instead use the alternate-port method, which uses TCP port 995 (POP3S).
+
+===SDPS===
+
+Demon Internet introduced extensions to POP3 that allow multiple accounts per domain, and has become known as Standard Dial-up POP3 Service (SDPS).Demon Online Help Centre. E.demon.net (2013-01-23). Retrieved on 2013-07-17. To access each account, the username includes the hostname, as john@hostname or john+hostname.
+Google Apps uses the same method.
+
+==Comparison with IMAP==
+
+==Dialog example==
+
+The APOP usage is a direct example from RFC 1939 page 18.
+RFC 1939 APOP support indicated by <1896.697170952@dbc.mtview.ca.us> here:
+ <span style="color:red;">S: <wait for connection on TCP port 110></span>
+ C: <open connection></span>
+ <span style="color:blue;">S:    +OK POP3 server ready <1896.697170952@dbc.mtview.ca.us></span>
+ C:    APOP mrose c4c9334bac560ecc979e58001b3e22fb</span>
+ <span style="color:blue;">S:    +OK mrose's maildrop has 2 messages (320 octets)</span>
+ C:    STAT</span>
+ <span style="color:blue;">S:    +OK 2 320</span>
+ C:    LIST</span>
+ <span style="color:blue;">S:    +OK 2 messages (320 octets)</span>
+ <span style="color:blue;">S:    1 120</span>
+ <span style="color:blue;">S:    2 200</span>
+ <span style="color:blue;">S:    .</span>
+ C:    RETR 1</span>
+ <span style="color:blue;">S:    +OK 120 octets</span>
+ <span style="color:blue;">S:    <the POP3 server sends message 1></span>
+ <span style="color:blue;">S:    .</span>
+ C:    DELE 1</span>
+ <span style="color:blue;">S:    +OK message 1 deleted</span>
+ C:    RETR 2</span>
+ <span style="color:blue;">S:    +OK 200 octets</span>
+ <span style="color:blue;">S:    <the POP3 server sends message 2></span>
+ <span style="color:blue;">S:    .</span>
+ C:    DELE 2</span>
+ <span style="color:blue;">S:    +OK message 2 deleted</span>
+ C:    QUIT</span>
+ <span style="color:blue;">S:    +OK dewey POP3 server signing off (maildrop empty)</span>
+ C: <close connection></span>
+ <span style="color:red;">S: <wait for next connection></span>
+POP3 servers without the optional APOP command expect the client to log in with the USER and PASS commands:
+ C:    USER mrose
+ <span style="color:blue;">S:    +OK User accepted</span>
+ C:    PASS tanstaaf
+ <span style="color:blue;">S:    +OK Pass accepted</span>
+
+==Server implementations==
+
+==Related requests for comments (RFCs)==
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

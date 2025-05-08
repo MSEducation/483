@@ -1,0 +1,68 @@
+[[Frame bundle]]
+
+CATEGORIES: Fiber bundles, Vector bundles
+
+In mathematics, a frame bundle is a principal fiber bundle F(E) associated to any vector bundle E. The fiber of F(E) over a point x is the set of all ordered bases, or frames, for Ex. The general linear group acts naturally on F(E) via a change of basis, giving the frame bundle the structure of a principal GL(k, R)-bundle (where k is the rank of E).
+The frame bundle of a smooth manifold is the one associated to its tangent bundle. For this reason it is sometimes called the tangent frame bundle.
+
+Definition and construction
+
+Let E → X be a real vector bundle of rank k over a topological space X. A frame at a point x ∈ X is an ordered basis for the vector space Ex. Equivalently, a frame can be viewed as a linear isomorphism
+The set of all frames at x, denoted Fx, has a natural right action by the general linear group GL(k, R) of invertible k × k matrices: a group element g ∈ GL(k, R) acts on the frame p via composition to give a new frame
+This action of GL(k, R) on Fx is both free and transitive (This follows from the standard linear algebra result that there is a unique invertible linear transformation sending one basis onto another). As a topological space, Fx is homeomorphic to GL(k, R) although it lacks a group structure, since there is no "preferred frame". The space Fx is said to be a GL(k, R)-torsor.
+The frame bundle of E, denoted by F(E) or FGL(E), is the disjoint union of all the Fx:
+Each point in F(E) is a pair (x, p) where x is a point in X and p is a frame at x. There is a natural projection π : F(E) → X which sends (x, p) to x. The group GL(k, R) acts on F(E) on the right as above. This action is clearly free and the orbits are just the fibers of π.
+The frame bundle F(E) can be given a natural topology and bundle structure determined by that of E. Let (Ui, φi) be a local trivialization of E. Then for each x ∈ Ui one has a linear isomorphism φi,x : Ex → Rk. This data determines a bijection
+given by
+With these bijections, each π−1(Ui) can be given the topology of Ui × GL(k, R). The topology on F(E) is the final topology coinduced by the inclusion maps π−1(Ui) → F(E).
+With all of the above data the frame bundle F(E) becomes a principal fiber bundle over X with structure group GL(k, R) and local trivializations ({Ui}, {ψi}). One can check that the transition functions of F(E) are the same as those of E.
+The above all works in the smooth category as well: if E is a smooth vector bundle over a smooth manifold M then the frame bundle of E can be given the structure of a smooth principal bundle over M.
+
+Associated vector bundles
+
+A vector bundle E and its frame bundle F(E) are associated bundles. Each one determines the other. The frame bundle F(E) can be constructed from E as above, or more abstractly using the fiber bundle construction theorem. With the latter method, F(E) is the fiber bundle with same base, structure group, trivializing neighborhoods, and transition functions as E but with abstract fiber GL(k, R), where the action of structure group GL(k, R) on the fiber GL(k, R) is that of left multiplication.
+Given any linear representation ρ : GL(k, R) → GL(V,F) there is a vector bundle
+associated to F(E) which is given by product F(E) × V modulo the equivalence relation (pg, v) ~ (p, ρ(g)v) for all g in GL(k, R). Denote the equivalence classes by v.
+The vector bundle E is naturally isomorphic to the bundle F(E) ×ρ Rk where ρ is the fundamental representation of GL(k, R) on Rk. The isomorphism is given by
+where v is a vector in Rk and p : Rk → Ex is a frame at x. One can easily check that this map is well-defined.
+Any vector bundle associated to E can be given by the above construction. For example, the dual bundle of E is given by F(E) ×ρ* (Rk)* where ρ* is the dual of the fundamental representation. Tensor bundles of E can be constructed in a similar manner.
+
+Tangent frame bundle
+
+The tangent frame bundle (or simply the frame bundle) of a smooth manifold M is the frame bundle associated to the tangent bundle of M. The frame bundle of M is often denoted FM or GL(M) rather than F(TM). If M is n-dimensional then the tangent bundle has rank n, so the frame bundle of M is a principal GL(n, R) bundle over M.
+
+Smooth frames
+
+Local sections of the frame bundle of M are called smooth frames on M. The cross-section theorem for principal bundles states that the frame bundle is trivial over any open set in U in M which admits a smooth frame. Given a smooth frame s : U → FU, the trivialization ψ : FU → U × GL(n, R) is given by
+where p is a frame at x. It follows that a manifold is parallelizable if and only if the frame bundle of M admits a global section.
+Since the tangent bundle of M is trivializable over coordinate neighborhoods of M so is the frame bundle. In fact, given any coordinate neighborhood U with coordinates (x1,…,xn) the coordinate vector fields
+define a smooth frame on U. One of the advantages of working with frame bundles is that they allow one to work with frames other than coordinates frames; one can choose a frame adapted to the problem at hand. This is sometimes called the method of moving frames.
+
+Solder form
+
+The frame bundle of a manifold M is a special type of principal bundle in the sense that its geometry is fundamentally tied to the geometry of M. This relationship can be expressed by means of a vector-valued 1-form on FM called the solder form (also known as the fundamental or tautological 1-form).  Let x be a point of the manifold M and p a frame at x, so that
+is a linear isomorphism of Rn with the tangent space of M at x.  The solder form of FM is the Rn-valued 1-form θ defined by
+where ξ is a tangent vector to FM at the point (x,p), p−1 : TxM → Rn is the inverse of the frame map, and dπ is the differential of the projection map π : FM → M. The solder form is horizontal in the sense that it vanishes on vectors tangent to the fibers of π and right equivariant in the sense that
+where Rg is right translation by g ∈ GL(n, R). A form with these properties is called a basic or tensorial form on FM. Such forms are in 1-1 correspondence with TM-valued 1-forms on M which are, in turn, in 1-1 correspondence with smooth bundle maps TM → TM over M. Viewed in this light θ is just the identity map on TM.
+
+Orthonormal frame bundle
+
+If a vector bundle E is equipped with a Riemannian bundle metric then each fiber Ex is not only a vector space but an inner product space. It is then possible to talk about the set of all of orthonormal frames for Ex. An orthonormal frame for Ex is an ordered orthonormal basis for Ex, or, equivalently, a linear isometry
+where Rk is equipped with the standard Euclidean metric. The orthogonal group O(k) acts freely and transitively on the set of all orthonormal frames via right composition. In other words, the set of all orthonormal frames is a right O(k)-torsor.
+The orthonormal frame bundle of E, denoted FO(E), is the set of all orthonormal frames at each point x in the base space X. It can be constructed by a method entirely analogous to that of the ordinary frame bundle. The orthonormal frame bundle of a rank k Riemannian vector bundle E → X is a principal O(k)-bundle over X. Again, the construction works just as well in the smooth category.
+If the vector bundle E is orientable then one can define the oriented orthonormal frame bundle of E, denoted FSO(E), as the principal SO(k)-bundle of all positively-oriented orthonormal frames.
+If M is an n-dimensional Riemannian manifold, then the orthonormal frame bundle of M, denoted FOM or O(M), is the orthonormal frame bundle associated to the tangent bundle of M (which is equipped with a Riemannian metric by definition). If M is orientable, then one also has the oriented orthonormal frame bundle FSOM.
+Given a Riemannian vector bundle E, the orthonormal frame bundle is a principal O(k)-subbundle of the general linear frame bundle. In other words, the inclusion map
+is principal bundle map. One says that FO(E) is a reduction of the structure group of FGL(E) from GL(k, R) to O(k).
+
+G-structures
+
+If a smooth manifold M comes with additional structure it is often natural to consider a subbundle of the full frame bundle of M which is adapted to the given structure. For example, if M is a Riemannian manifold we saw above that it is natural to consider the orthonormal frame bundle of M. The orthonormal frame bundle is just a reduction of the structure group of FGL(M) to the orthogonal group O(n).
+In general, if M is a smooth n-manifold and G is a Lie subgroup of GL(n, R) we define a ''G''-structure on M to be a reduction of the structure group of FGL(M) to G. Explicitly, this is a principal G-bundle FG(M) over M together with a G-equivariant bundle map
+over M.
+In this language, a Riemannian metric on M gives rise to an O(n)-structure on M. The following are some other examples.
+In many of these instances, a G-structure on M uniquely determines the corresponding structure on M. For example, a SL(n, R)-structure on M determines a volume form on M. However, in some cases, such as for symplectic and complex manifolds, an added integrability condition is needed. A Sp(2n, R)-structure on M uniquely determines a nondegenerate 2-form on M, but for M to be symplectic, this 2-form must also be closed.
+
+
+
+

@@ -1,0 +1,21 @@
+[[Ephemeral port]]
+
+CATEGORIES: Internet Standards, Internet protocols
+
+An ephemeral port is a short-lived transport protocol port for Internet Protocol (IP) communications allocated automatically from a predefined range by the IP software. It is used by the Transmission Control Protocol (TCP), User Datagram Protocol (UDP), or the Stream Control Transmission Protocol (SCTP) as the port assignment for the client end of a client–server communication to a well known port on a server.
+On servers, ephemeral ports may also be used as the port assignment on the server end of a communication. This is done to continue communications with a client that initially connected to one of the server's well-known service listening ports. File Transfer Protocol (FTP) and Remote Procedure Call (RPC) applications are two protocols that can behave in this manner.  Note that the term "server" here includes workstations running services that receive connections initiatied from other clients (such as Remote Desktop Protocol or RDP).
+The allocations are temporary and only valid for the duration of the communication session. After completion of the communication session, the ports become available for reuse.Most implementations may simply increment the last used port number until the ephemeral port range is exhausted. Since the ports are used on a per request basis they are also called dynamic ports.
+The Internet Assigned Numbers Authority (IANA) suggests the range 49152 to 65535 (215+214 to 216−1) for dynamic or private ports.IANA port number assignments
+Many Linux kernels use the port range 32768 to 61000.The effective range is accessible via the /proc file system at node /proc/sys/net/ipv4/ip_local_port_range. FreeBSD has used the IANA port range since release 4.6. Previous versions, including the Berkeley Software Distribution (BSD), use ports 1024 through 5000 as ephemeral ports.[tpl]cite book|title=UNIX Network Programming, Volume 1, Second Edition: Networking APIs: Sockets and XTI|publisher= Prentice Hall|year= 1998|ISBN= 0-13-490012-X|pages=42–43[/tpl]
+Microsoft Windows operating systems through XP use the range 1024 to 5000 as ephemeral ports by default.Microsoft Windows Technet Library  Windows Vista, Windows 7, and Server 2008 use the IANA range by default.Microsoft KB Article 929851 Windows Server 2003 uses the range 1024 to 5000 by default, until Microsoft security update MS08-037 from 2008 is installed, after which it uses the IANA range by default.Microsoft KB Article 956188 Few Microsoft articles other than KB Article 956188 reference the new port range used by Windows Server 2003, leading to confusion.  Of specific note, Windows Server 2008 with Exchange Server 2007 installed has a default port range of 1024 through 60000. Microsoft KB Article 929851
+In addition to the default range, all versions of Windows since Windows 2000 also allow the option to use a non-default port range with a maximum of 1024 to 65535.Microsoft KB Article 929851Microsoft KB Article 196271 Some Microsoft articles misleadingly list only this non-default range,Microsoft KB Article 832017 leading to a popular misconception that 1024 to 65535 is the default or required port range used.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

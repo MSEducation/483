@@ -1,0 +1,86 @@
+[[Root of unity]]
+
+CATEGORIES: Algebraic numbers, Cyclotomic fields, Polynomials, One, Complex numbers
+
+In mathematics, a root of unity, occasionally called a de Moivre number, is any  complex number that gives 1 when raised to some integer power [tpl]mvar|n[/tpl]. Roots of unity are used in many branches of mathematics, and are especially important in number theory, the theory of group characters, and the discrete Fourier transform.
+In field theory and ring theory the notion of root of unity also applies to any ring with a multiplicative identity element. Any algebraically closed field has exactly [tpl]mvar|n[/tpl] [tpl]mvar|n[/tpl]th roots of unity, if [tpl]mvar|n[/tpl] is not divisible by the characteristic of the field.
+
+==General definition==
+
+An [tpl]mvar|n[/tpl]th root of unity, where [tpl]mvar|n[/tpl] is a positive integer (i.e. [tpl]math|1=n = 1, 2, 3, …[/tpl]), is a number [tpl]mvar|z[/tpl] satisfying the equation[tpl]Cite book|author=Hadlock, Charles R.|title=Field Theory and Its Classical Problems, Volume 14|publisher=Cambridge University Press|year=2000|isbn=978-0-88385-032-9|pages=84–86|url=http://books.google.com/books?id=5s1p0CyafnEC&pg=PA84[/tpl][tpl]cite book|author=Lang, Serge|chapter=Roots of unity|title=Algebra|publisher=Springer|year=2002|isbn=978-0-387-95385-4|pages=276–277|url=http://books.google.com/books?id=Fge-BwqhqIYC&pg=PA276[/tpl]
+Traditionally, [tpl]mvar|z[/tpl] is assumed to be a complex number, and subsequent sections of this article will comply with this usage. Generally, [tpl]math|z ∈ R[/tpl] can be considered for any field [tpl]mvar|R[/tpl], or even for a unital ring. In this general formulation, an [tpl]mvar|n[/tpl]th root of unity is just an element of the group of units of order [tpl]mvar|n[/tpl]. Interesting cases are finite fields and modular arithmetics, for which the article root of unity modulo n contains some information.
+An [tpl]mvar|n[/tpl]th root of unity is [tpl]visible anchor|primitive[/tpl] if it is not a [tpl]mvar|k[/tpl]th root of unity for some smaller [tpl]mvar|k[/tpl]:
+
+==Elementary facts==
+
+Every [tpl]mvar|n[/tpl]th root of unity [tpl]mvar|z[/tpl] is a primitive [tpl]mvar|a[/tpl]th root of unity for some [tpl]mvar|a[/tpl] where [tpl]math|1 ≤ a ≤ n[/tpl]: if [tpl]math|1=z1 = 1[/tpl] then [tpl]mvar|z[/tpl] is a primitive first root of unity, otherwise if [tpl]math|1=z2 = 1[/tpl] then [tpl]mvar|z[/tpl] is a primitive second (square) root of unity, otherwise, ...,  and by assumption there must be a "1" at or before the [tpl]mvar|n[/tpl]th term in the sequence.
+If [tpl]mvar|z[/tpl] is an [tpl]mvar|n[/tpl]th root of unity and [tpl]math|a ≡ b (mod n)[/tpl] then [tpl]math|1=za = zb[/tpl]. By the definition of congruence, [tpl]math|1=a = b + kn[/tpl] for some integer [tpl]mvar|k[/tpl]. But then,
+Therefore, given a power [tpl]math|za[/tpl] of [tpl]mvar|z[/tpl], it can be assumed that [tpl]math|1 ≤ a ≤ n[/tpl]. This is often convenient.
+Any integer power of an [tpl]mvar|n[/tpl]th root of unity is also an [tpl]mvar|n[/tpl]th root of unity:
+Here [tpl]mvar|k[/tpl] may be negative. In particular, the reciprocal of an [tpl]mvar|n[/tpl]th root of unity is its complex conjugate, and is also an [tpl]mvar|n[/tpl]th root of unity:
+Let [tpl]mvar|z[/tpl] be a primitive [tpl]mvar|n[/tpl]th root of unity. Then the powers [tpl]mvar|z[/tpl], [tpl]math|z2[/tpl], … , [tpl]math|zn −1[/tpl], [tpl]math|1=zn = z0 = 1[/tpl] are all distinct. Assume the contrary, that [tpl]math|1=za = zb[/tpl] where [tpl]math|1 ≤ a b − a = 1[/tpl]. But {{math|0 Since an [tpl]mvar|n[/tpl]th degree polynomial equation can only have [tpl]mvar|n[/tpl] distinct roots, this implies that the powers of a primitive root [tpl]mvar|z[/tpl], [tpl]math|z2[/tpl], … , [tpl]math|zn − 1[/tpl], [tpl]math|1=zn = z0 = 1[/tpl] are in fact all of the [tpl]mvar|n[/tpl]th roots of unity.
+From the preceding facts it follows that if [tpl]mvar|z[/tpl] is a primitive [tpl]mvar|n[/tpl]th root of unity:
+If [tpl]mvar|z[/tpl] is not primitive there is only one implication:
+An example showing that the converse implication is false is given by:
+Let [tpl]mvar|z[/tpl] be a primitive [tpl]mvar|n[/tpl]th root of unity and let [tpl]mvar|k[/tpl] be a positive integer. From the above discussion, [tpl]math|zk[/tpl] is a primitive root of unity for some [tpl]mvar|a[/tpl]. Now if [tpl]math|1=zka = 1[/tpl], [tpl]math|ka[/tpl] must be a multiple of [tpl]mvar|n[/tpl]. The smallest number that is divisible by both [tpl]mvar|n[/tpl] and [tpl]mvar|k[/tpl] is their least common multiple, denoted by [tpl]math|lcm(n, k)[/tpl]. It is related to their greatest common divisor, [tpl]math|gcd(n, k)[/tpl], by the formula:
+i.e.
+Therefore, [tpl]math|zk[/tpl] is a primitive [tpl]mvar|a[/tpl]th root of unity where
+Thus, if [tpl]mvar|k[/tpl] and [tpl]mvar|n[/tpl] are coprime, [tpl]math|zk[/tpl] is also a primitive [tpl]mvar|n[/tpl]th root of unity, and therefore there are [tpl]math|φ(n)[/tpl] (where [tpl]math|φ[/tpl] is Euler's totient function) distinct primitive [tpl]mvar|n[/tpl]th roots of unity. (This implies that if [tpl]mvar|n[/tpl] is a prime number, all the roots except +1 are primitive).
+In other words, if [tpl]math|R(n)[/tpl] is the set of all [tpl]mvar|n[/tpl]th roots of unity and [tpl]math|P(n)[/tpl] is the set of primitive ones, [tpl]math|R(n)[/tpl] is a disjoint union of the [tpl]math|P(n)[/tpl]:
+where the notation means that [tpl]mvar|d[/tpl] goes through all the divisors of [tpl]mvar|n[/tpl], including 1 and [tpl]mvar|n[/tpl].
+Since the cardinality of [tpl]math|R(n)[/tpl] is [tpl]mvar|n[/tpl], and that of [tpl]math|P(n)[/tpl] is [tpl]math|φ(n)[/tpl], this  demonstrates the classical formula
+
+==Examples==
+
+De Moivre's formula, which is valid for all real [tpl]mvar|x[/tpl] and integers [tpl]mvar|n[/tpl], is
+Setting [tpl]math|1=x = 2π/n[/tpl] gives a primitive [tpl]mvar|n[/tpl]th root of unity:
+but for [tpl]math|1=k = 1, 2, ⋯ , n − 1[/tpl],
+This formula shows that on the complex plane the [tpl]mvar|n[/tpl]th roots of unity are at the vertices of a  regular [tpl]mvar|n[/tpl]-sided polygon inscribed in the unit circle, with one vertex at 1. (See the plots for [tpl]math|1=n = 3[/tpl] and [tpl]math|1=n = 5[/tpl] on the right.) This geometric fact accounts for the term "cyclotomic" in such phrases as cyclotomic field and cyclotomic polynomial; it is from the Greek roots "cyclo" (circle) plus "tomos" (cut, divide).
+which is valid for all real [tpl]mvar|x[/tpl], can be used to put the formula for the [tpl]mvar|n[/tpl]th roots of unity into the form
+It follows from the discussion in the previous section that this is a primitive [tpl]mvar|n[/tpl]th-root if and only if the fraction [tpl]math|k/n[/tpl] is in lowest terms, i.e. that [tpl]mvar|k[/tpl] and [tpl]mvar|n[/tpl] are coprime.
+The roots of unity are, by definition, the roots of a polynomial equation and are thus algebraic numbers. In fact, Galois theory can be used to show that they may be expressed as expressions involving integers and the operations of addition, subtraction, multiplication, division, and the extraction of roots. (There are more details later in this article at Cyclotomic fields.)
+The equation [tpl]math|1=z1 = 1[/tpl] obviously has only one solution, +1, which is therefore the only primitive first root of unity. It is a nonprimitive 2nd, 3rd, 4th, ... root of unity.
+The equation [tpl]math|1=z2 = 1[/tpl] has two solutions, +1 and −1. +1 is the primitive first root of unity, leaving −1 as the only primitive second (square) root of unity. It is a nonprimitive 4th, 6th, 8th, ...root of unity.
+The only real roots of unity are ±1; all the others are non-real complex numbers, as can be seen from de Moivre's formula or the figures.
+The third (cube) roots satisfy the equation [tpl]math|1=z3 − 1 = 0[/tpl]; the non-principal root +1 may be factored out, giving [tpl]math|1=(z − 1)(z2 + z + 1) = 0[/tpl]. Therefore, the primitive cube roots of unity are the roots of a quadratic equation. (See Cyclotomic polynomial, below.)
+The two primitive fourth roots of unity are the two square roots of the primitive square root of unity, −1
+The four primitive fifth roots of unity are
+The two primitive sixth roots of unity are the negatives (and also the square roots) of the two primitive cube roots:
+Gauss observed that if a primitive [tpl]mvar|n[/tpl]th root of unity can be expressed using only square roots, then it is possible to construct the regular [tpl]mvar|n[/tpl]-gon using only ruler and compass, and that if the root of unity requires third or fourth or higher radicals the regular polygon cannot be constructed. The 7th roots of unity are the first that require cube roots. Note that the real part and imaginary part are both real numbers, but complex numbers are buried in the expressions. They cannot be removed. See casus irreducibilis for details.
+One of the primitive seventh roots of unity is[tpl]citation needed|date=May 2011[/tpl]
+where [tpl]mvar|ω[/tpl] and [tpl]math|ω2[/tpl] are the primitive cube roots of unity [tpl]math|exp(2πi/3)[/tpl] and [tpl]math|exp(4πi/3)[/tpl].
+The four primitive eighth roots of unity are ± the square roots of the primitive fourth roots, [tpl]math|±i[/tpl]. One of them is:
+See heptadecagon for the real part of a 17th root of unity.
+
+==Periodicity==
+
+If [tpl]mvar|z[/tpl] is a primitive [tpl]mvar|n[/tpl]th root of unity, then the sequence of powers
+is [tpl]mvar|n[/tpl]-periodic (because [tpl]math|1=z j + n = z j⋅z n = z j⋅1 = z j[/tpl] for all values of [tpl]mvar|j[/tpl]), and the [tpl]mvar|n[/tpl] sequences of powers
+for [tpl]math|1=k = 1, … , n[/tpl] are all [tpl]mvar|n[/tpl]-periodic (because [tpl]math|1=z k⋅(j + n) = z k⋅j[/tpl]). Furthermore, the set [tpl]math|{s1, … , sn[/tpl]} of these sequences is a basis of the linear space of all [tpl]mvar|n[/tpl]-periodic sequences. This means that any [tpl]mvar|n[/tpl]-periodic sequence of complex numbers
+can be expressed as a linear combination of powers of a primitive [tpl]mvar|n[/tpl]th root of unity:
+for some complex numbers [tpl]math|1=X1, … , Xn[/tpl] and every integer [tpl]mvar|j[/tpl].
+This is a form of Fourier analysis. If [tpl]mvar|j[/tpl] is a (discrete) time variable, then [tpl]mvar|k[/tpl] is a frequency and [tpl]math|Xk[/tpl] is a complex amplitude.
+Choosing for the primitive [tpl]mvar|n[/tpl]th root of unity
+allows [tpl]math|xj[/tpl] to be expressed as a linear combination of [tpl]math|cos[/tpl] and [tpl]math|sin[/tpl]:
+This is a discrete Fourier transform.
+
+==Summation==
+
+Let [tpl]math|SR(n)[/tpl] be the sum of all the [tpl]mvar|n[/tpl]th roots of unity, primitive or not. Then
+For [tpl]math|1=n = 1[/tpl] there is nothing to prove. For [tpl]math|1=n > 1[/tpl], it is "intuitively obvious" from the symmetry of the roots in the complex plane. For a rigorous proof, let [tpl]mvar|z[/tpl] be a primitive [tpl]mvar|n[/tpl]th root of unity. Then the set of all roots is given by [tpl]math|1=zk, k = 0, 1, … , n − 1[/tpl], and their sum is given by the formula for a geometric series:
+Let [tpl]math|SP(n)[/tpl] be the sum of all the primitive [tpl]mvar|n[/tpl]th roots of unity. Then
+where [tpl]math|μ(n)[/tpl] is the Möbius function.
+In the section Elementary facts, it was shown that if [tpl]math|R(n)[/tpl] is the set of all [tpl]mvar|n[/tpl]th roots of unity and [tpl]math|P(n)[/tpl] is the set of primitive ones, [tpl]math|R(n)[/tpl] is a disjoint union of the [tpl]math|P(n)[/tpl]:
+This implies
+Applying the Möbius inversion formula gives
+In this formula, if 
+ ([tpl]math|1=D = 5[/tpl]). For two pairs of non-real 5th roots of unity these sums are inverse golden ratio and minus golden ratio.
+For [tpl]math|1=n = 8[/tpl], for any root: [tpl]math|z + [tpl]overline|z[/tpl][/tpl] equals to either ±2, 0, or ±[tpl]sqrt|2[/tpl] ([tpl]math|1=D = 2[/tpl]).
+
+==See also==
+
+==Notes==
+
+==References==
+
+

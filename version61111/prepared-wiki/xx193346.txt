@@ -1,0 +1,51 @@
+[[Visual Studio Extensibility]]
+
+CATEGORIES: Integrated development environments, Microsoft Visual Studio, .NET programming tools
+
+Visual Studio eXtensibility (VSX) is the ability to develop extensions to Microsoft Visual Studio, an Integrated Development Environment from Microsoft. Microsoft Visual Studio itself is a tool can be used to develop applications for the .NET Framework and for the Win32 platform. The Visual Studio Software Development Kit, first released with Visual Studio 2005, included documentation, samples, and code to help develop products that integrate with the Visual Studio product family.Microsoft Developer Network Library (MSDN) Visual Studio SDK 2005
+Generally, VSX represents the whole community which is a virtual and growing ecosystem that includes the Visual Studio SDK (VS SDK), all aspects of extending Visual Studio (packages, add-ins, macros, visualizers), .NET developers who extend Visual Studio, Visual Studio Industry Partner (VSIP) companies, and the VS SDK team (also known as the VS Tools Ecosystem team).
+
+==Visual Studio as an Extensible Platform==
+
+When running the Visual Studio IDE  the devenv.exe file is started. However, the IDE is not just a simple monolithic .exe file or an executable divided into a few .dll files. It is a shell that provides a graphical environment to host functional units, called packages. What is perceived by users of Visual Studio is a cooperation of the shell and hosted packages. The core functions of the IDE are also implemented in packages including the C# or VB project types, testing features and many more. Majority of third-party extensions loaded into Visual Studio are also implemented in packages. After installing Visual Studio, about a hundred packages are installed with the shell, depending on the version of VS.
+
+===Methods to extend Visual Studio===
+
+Visual Studio can be extended in many ways. Books, articles and references generally mix the different aspects and just mention them as extensibility options. Here the different aspects of extensibility are treated separately.
+
+====Extension by configuration====
+
+The simplest method of extending Visual Studio or third-party packages is customizing it with the configuration features built in. In this case you do not have to write “traditional” code and build it. You actually extend Visual Studio behavior with changing the existing configuration or adding a new set of files.
+
+====Automation====
+
+Many developers use macros since those were introduced in Microsoft Office. Macros make a developer's life easier by automating repetitive tasks. Macros are available also in Visual Studio. They have their own UI within VS called Macros IDE. VS provides an automation interface where a great number of core services features are accessible through properties and methods of COM objects. These automation objects form a hierarchy where we can navigate from one objects to another, for example from the object representing a project to its project items.
+
+====Extension by contract implementation====
+
+For developers the most common extension point is an interface representing a contract. To comply with that a service object implementing the contract must be created. It is the case also for Visual Studio. The Integrated development environment and the underlying packages define hundreds of extension points in form of contract interfaces.
+
+===Extension Artifacts===
+
+When extending Visual Studio by creating code developers have the following options to create development artifacts:
+
+====Macros====
+
+Macros provide the easiest way to extend Visual Studio there is even no need for VS SDK. Visual Studio has got functions to record macros and so we can automate repetitive tasks in a few minutes. Macros access the Visual Studio automation object model and easily combine VS commands with useful automation property values to get the desired behavior. To become a professional macro developers have to know the object model behind the macros and a few dozen of patterns about using those objects. Visual Studio 2008 comes with a few macro samples to get started. The best way to learn macro programming is to record macros and view recording results. Although macros are useful for task automation, they are not the right tools to create totally new functionality. When using macros, anyone can see the source code of them. Macros use a VB-like script language; C#-like syntax cannot be used.
+
+====Visual Studio Add-ins====
+
+Add-ins are much more powerful to develop Visual Studio extensions, since they can access the Visual Studio object model and add new user interface elements to the IDE just like tool windows, option pages, menu and toolbar commands, etc. Functions added with an add-in look like if they were a part of the IDE. Add-ins can access services provided by not only the IDE itself but also by other add-ins or packages. Branding is also available, add-in product information can be displayed in the About dialog. Add-ins are compiled .NET binaries, so the same intellectual property guarding techniques can be used as for any other .NET binaries.
+
+====VSPackages====
+
+There is no doubt developing VS Packages is the most powerful way to add functionality to Visual Studio. The clear evidence for this is the fact that the whole Visual Studio functionality is built from packages integrated into the shell. All the languages, editors, the debugger, the project system and many more components are packages. 
+From developers point of view it actually means that adding a new package to VS is just like adding core functionality to the VS IDE as if it were developed by Microsoft. The IDE does not make any distinction between Microsoft-created and third-party components; developers see all packages as part of VS IDE. Packages are binaries developed with the preferred language (C#, VB,.NET or C++), so from intellectual property guarding aspect they can be as safe as other .NET binaries.
+For deployment point of view, installing packages is a more complex task than setting up add-ins. Registration of packages affects a broader part of the Visual Studio registry entries and is helped by a utility called RegPkg.exe. Visual Studio checks if it can trust in a package by a signing mechanism that uses a so-called Package Load Key. This PLK can be obtained from Microsoft and is a kind of digital hash for your package. When your package is installed into a production environment, its PLK is verified.
+Visual Studio SDK ships a few extensibility project templates that make the creation of package frames as easy as an add-in.
+
+==References==
+
+==External links==
+
+

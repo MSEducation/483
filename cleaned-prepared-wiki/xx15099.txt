@@ -1,0 +1,60 @@
+[[Spectrum of a ring]]
+
+CATEGORIES: Commutative algebra, Scheme theory, Prime ideals
+
+In abstract algebra and algebraic geometry, the spectrum of a commutative ring R, denoted by Spec(R), is the set of all prime ideals of R. It is commonly augmented with the Zariski topology and with a structure sheaf, turning it into a locally ringed space.
+
+Zariski topology
+
+This topology is called the Zariski topology.
+Spec(R) is a compact space, but almost never Hausdorff: in fact, the maximal ideals in R are precisely the closed points in this topology. However, Spec(R) is always a Kolmogorov space. It is also a spectral space.
+
+Sheaves and schemes
+
+Given the space X=Spec(R) with the Zariski topology, the structure sheaf OX is defined on the Df by setting Γ(Df, OX) = Rf, the localization of R at the multiplicative system {1,f,f2,f3,...}.  It can be shown that this satisfies the necessary axioms to be a B-Sheaf.  Next, if U is the union of {Dfi}i∈I, we let Γ(U,OX) = limi∈I Rfi, and this produces a sheaf; see the Gluing axiom article for more detail.
+If R is an integral domain, with field of fractions K, then we can describe the ring Γ(U,OX) more concretely as follows.  We say that an element f in K is regular at a point P in X if it can be represented as a fraction f = a/b with b not in P.  Note that this agrees with the notion of a regular function in algebraic geometry.  Using this definition, we can describe Γ(U,OX) as precisely the set of elements of K which are regular at every point P in U.
+If P is a point in Spec(R), that is, a prime ideal, then the stalk at P equals the localization of R at P, and this is a local ring.  Consequently, Spec(R) is a locally ringed space.
+Every locally ringed space isomorphic to one of this form is called an affine scheme.
+General schemes are obtained by "gluing together" several affine schemes.
+
+Functoriality
+
+It is useful to use the language of category theory and observe that Spec is a functor.
+Every ring homomorphism f : R → S induces a continuous map Spec(f) : Spec(S) → Spec(R) (since the preimage of any prime ideal in S is a prime ideal in R). In this way, Spec can be seen as a contravariant functor from the category of commutative rings to the category of topological spaces. Moreover for every prime P the homomorphism f descends to homomorphisms
+of local rings. Thus Spec even defines a contravariant functor from the category of commutative rings to the category of locally ringed spaces. In fact it is the universal such functor and this can be used to define the functor Spec up to natural isomorphism.
+The functor Spec yields a contravariant equivalence between the category of commutative rings and the category of affine schemes; each of these categories is often thought of as the opposite category of the other.
+
+Motivation from algebraic geometry
+
+Following on from the example, in algebraic geometry one studies algebraic sets, i.e. subsets of Kn (where K is an algebraically closed field) that are defined as the common zeros of a set of polynomials in n variables. If A is such an algebraic set, one considers the commutative ring R of all polynomial functions A → K. The maximal ideals of R correspond to the points of A (because K is algebraically closed), and the prime ideals of R correspond to the subvarieties of A (an algebraic set is called irreducible or a variety if it cannot be written as the union of two proper algebraic subsets).
+The spectrum of R therefore consists of the points of A together with elements for all subvarieties of A. The points of A are closed in the spectrum, while the elements corresponding to subvarieties have a closure consisting of all their points and subvarieties. If one only considers the points of A, i.e. the maximal ideals in R, then the Zariski topology defined above coincides with the Zariski topology defined on algebraic sets (which has precisely the algebraic subsets as closed sets).
+One can thus view the topological space Spec(R) as an "enrichment" of the topological space A (with Zariski topology): for every subvariety of A, one additional non-closed point has been introduced, and this point "keeps track" of the corresponding subvariety. One thinks of this point as the generic point for the subvariety. Furthermore, the sheaf on Spec(R) and the sheaf of polynomial functions on A are essentially identical. By studying spectra of polynomial rings instead of algebraic sets with Zariski topology, one can generalize the concepts of algebraic geometry to non-algebraically closed fields and beyond, eventually arriving at the language of schemes.
+
+Global Spec
+
+Representation theory perspective
+
+From the perspective of representation theory, a prime ideal I corresponds to a module R/I, and the spectrum of a ring corresponds to irreducible cyclic representations of R, while more general subvarieties correspond to possibly reducible representations that need not be cyclic. Recall that abstractly, the representation theory of a group is the study of modules over its group algebra.
+
+Functional analysis perspective
+
+The term "spectrum" comes from the use in operator theory.
+Given a linear operator T on a finite-dimensional vector space V, one can consider the vector space with operator as a module over the polynomial ring in one variable R=KT, as in the structure theorem for finitely generated modules over a principal ideal domain. Then the spectrum of KT (as a ring) equals the spectrum of T (as an operator).
+Further, the geometric structure of the spectrum of the ring (equivalently, the algebraic structure of the module) captures the behavior of the spectrum of the operator, such as algebraic multiplicity and geometric multiplicity. For instance, for the 2×2 identity matrix has corresponding module:
+the 2×2 zero matrix has module
+showing geometric multiplicity 2 for the zero eigenvalue,
+while a non-trivial 2×2 nilpotent matrix has module
+showing algebraic multiplicity 2 but geometric multiplicity 1.
+In more detail:
+
+Generalizations
+
+The spectrum can be generalized from rings to C*-algebras in operator theory, yielding the notion of the spectrum of a C*-algebra. Notably, for a Hausdorff space, the algebra of scalars (the bounded continuous functions on the space, being analogous to regular functions) are a commutative C*-algebra, with the space being recovered as a topological space from MSpec of the algebra of scalars, indeed functorially so; this is the content of the Banach–Stone theorem. Indeed, any commutative C*-algebra can be realized as the algebra of scalars of a Hausdorff space in this way, yielding the same correspondence as between a ring and its spectrum. Generalizing to non-commutative C*-algebras yields noncommutative topology.
+
+
+
+
+
+
+
+

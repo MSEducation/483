@@ -1,0 +1,50 @@
+[[Code Red (computer worm)]]
+
+CATEGORIES: Exploit-based worms
+
+Code Red was a computer worm observed on the Internet on July 13, 2001. It attacked computers running Microsoft's IIS web server.
+The Code Red worm was first discovered and researched by eEye Digital Security employees Marc Maiffret and Ryan Permeh. They named it "Code Red" because Code Red Mountain Dew was what they were drinking at the time.ANALYSIS: .ida "Code Red" Worm, Code Red advisory, eEye Digital Security, 17 July 2001
+Although the worm had been released on July 13, the largest group of infected computers was seen on July 19, 2001. On this day, the number of infected hosts reached 359,000.
+
+==How it worked==
+
+===Exploited vulnerability===
+
+The worm exploited a vulnerability in the indexing software distributed with IIS, described in Microsoft Security Bulletin MS01-033,MS01-033 "Microsoft Security Bulletin MS01-033: Unchecked Buffer in Index Server ISAPI Extension Could Enable Web Server Compromise", Microsoft Corporation, 18 June 2001 for which a patch had been available a month earlier.
+The worm spread itself using a common type of vulnerability known as a buffer overflow. It did this by using a long string of the repeated character 'N' to overflow a buffer, allowing the worm to execute arbitrary code and infect the machine. Kenneth D. Eichman was the first to discover how to block it, and was invited to the White House for his discovery.[tpl]cite web|last=Lemos|first=Rob|title=Virulent worm calls into doubt our ability to protect the Net|url=http://news.cnet.com/2009-1001-270471.html|work=Tracking Code Red|publisher=CNET News|accessdate=14 March 2011[/tpl]
+
+===Worm payload===
+
+The payload of the worm included:
+ HELLO! Welcome to <nowiki>http://www.worm.com</nowiki>! Hacked By Chinese!  
+| url = http://www.cert.org/advisories/CA-2001-19.html
+| title = CERT Advisory CA-2001-19: 'Code Red' Worm Exploiting Buffer Overflow In IIS Indexing Service DLL
+| accessdate = 2010-06-29
+| date = 17 July 2001
+| work = CERT/CC
+}}[/ref]
+When scanning for vulnerable machines, the worm did not test to see if the server running on a remote machine was running a vulnerable version of IIS, or even to see if it was running IIS at all. Apache access logs from this time frequently had entries such as these:
+ GET /default.ida?NNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+ NNNNNNNNNNNNNNNNNNN
+ %u9090%u6858%ucbd3%u7801%u9090%u6858%ucbd3%u7801
+ %u9090%u6858%ucbd3%u7801%u9090%u9090%u8190%u00c3
+ %u0003%u8b00%u531b%u53ff%u0078%u0000%u00=a  HTTP/1.0
+The worm's payload is the string following the last 'N'. Due to a buffer overflow, a vulnerable host interprets this string as computer instructions, propagating the worm.
+
+==Similar worms==
+
+On August 4, 2001 Code Red II appeared. Code Red II is a variant of the original Code Red worm.  Although it uses the same injection vector it has a completely different payload.  It pseudo-randomly chose targets on the same or different subnets as the infected machines according to a fixed probability distribution, favoring targets on its own subnet more often than not. Additionally, it used the pattern of repeating 'X' characters instead of 'N' characters to overflow the buffer.
+eEye believed that the worm originated in Makati City, Philippines, the same origin as the VBS/Loveletter (aka "ILOVEYOU") worm.
+
+==See also==
+
+==References==
+
+==External links==
+
+

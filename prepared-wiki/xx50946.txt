@@ -1,0 +1,20 @@
+[[Transaction log]]
+
+CATEGORIES: Database management systems, Transaction processing
+
+In the field of databases in computer science, a transaction log (also transaction journal, database log, binary log or audit trail) is a history of actions executed by a database management system to guarantee ACID properties over crashes or hardware failures.  Physically, a log is a file of updates done to the database, stored in stable storage.
+If, after a start, the database is found in an inconsistent state or not been shut down properly, the database management system reviews the database logs for uncommitted transactions and rolls back the changes made by these transactions.  Additionally, all transactions that are already committed but whose changes were not yet materialized in the database are re-applied.  Both are done to ensure atomicity and durability of transactions.
+This term is not to be confused with other, human-readable logs that a database management system usually provides.
+
+==Anatomy of a general database log==
+
+A database log record is made up of: 
+
+==Types of database log records==
+
+All log records include the general log attributes above, and also other attributes depending on their type (which is recorded in the Type attribute, as above).
+
+==Tables==
+
+These tables are maintained in memory, and can be efficiently reconstructed (if not exactly, to an equivalent state) from the log and the database:
+

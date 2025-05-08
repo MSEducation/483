@@ -1,0 +1,187 @@
+[[Variance]]
+
+CATEGORIES: Theory of probability distributions, Statistical deviation and dispersion, Articles containing proofs, Data analysis
+
+In probability theory and statistics, variance measures how far a set of numbers is spread out. (A variance of zero indicates that all the values are identical.) Variance is always non-negative: A small variance indicates that the data points tend to be very close to the mean (expected value) and hence to each other, while a high variance indicates that the data points are very spread out from the mean and from each other.
+The square root of variance is called the standard deviation.
+The variance is one of several descriptors of a probability distribution. In particular, the variance is one of the moments of a distribution. In that context, it forms part of a systematic approach to distinguishing between probability distributions. While other such approaches have been developed, those based on moments are advantageous in terms of mathematical and computational simplicity. 
+The variance is a parameter that describes, in part, either the actual probability distribution of an observed population of numbers, or the theoretical probability distribution of a sample (a not-fully-observed population) of numbers. In the latter case, a sample of data from such a distribution can be used to construct an estimate of its variance: in the simplest cases this estimate can be the sample variance.
+
+Definition
+
+The variance of a random variable N is its second central moment, the expected value of the squared deviation from the mean :
+This definition encompasses random variables that are discrete, continuous, neither, or mixed. The variance can also be thought of as the covariance of a random variable with itself:
+A mnemonic for the above expression is "mean of square minus square of mean".
+
+Continuous random variable
+
+If the random variable X is continuous with probability density function f(x), then the variance is given by
+and where the integrals are definite integrals taken for x ranging over the range of X.
+If a continuous distribution does not have an expected value, as is the case for the Cauchy distribution, it does not have a variance either. Many other distributions for which the expected value does exist also do not have a finite variance because the integral in the variance definition diverges. An example is a Pareto distribution whose index k satisfies {{nowrap|1 
+Discrete random variable
+
+If the random variable X is discrete with probability mass function x1 ↦ p1, ..., xn ↦ pn, then
+(When such a discrete weighted variance is specified by weights whose sum is not 1, then one divides by the sum of the weights.)
+The variance of a set of n equally likely values can be written as 
+The variance of a set of n equally likely values can be equivalently expressed, without directly referring to the mean, in terms of squared deviations of all points from each other: 
+
+Examples
+
+Normal distribution
+
+The normal distribution with parameters μ and σ is a continuous distribution whose probability density function is given by:
+It has mean μ and variance equal to:
+The role of the normal distribution in the central limit theorem is in part responsible for the prevalence of the variance in probability and statistics.
+
+Exponential distribution
+
+The exponential distribution with parameter λ is a continuous distribution whose support is the semi-infinite interval [0,∞). Its probability density function is given by:
+and it has expected value μ = λ−1. The variance is equal to:
+So for an exponentially distributed random variable σ2 = μ2.
+
+Poisson distribution
+
+The Poisson distribution with parameter λ is a discrete distribution for k = 0, 1, 2, ... Its probability mass function is given by:
+and it has expected value μ = λ. The variance is equal to:
+So for a Poisson-distributed random variable σ2 = μ.
+
+Binomial distribution
+
+The binomial distribution with parameters n and p is a discrete distribution for k = 0, 1, 2, ..., n. Its probability mass function is given by:
+and it has expected value μ = np. The variance is equal to:
+
+=Coin toss=
+
+Fair die
+
+The general formula for the variance of the outcome X of a die of n sides is:
+
+Properties
+
+Basic properties
+
+Variance is non-negative because the squares are positive or zero.
+The variance of a constant random variable is zero, and if the variance of a variable in a data set is 0, then all the entries have the same value.
+Variance is invariant with respect to changes in a location parameter.  That is, if a constant is added to all values of the variable, the variance is unchanged.  
+If all values are scaled by a constant, the variance is scaled by the square of that constant.  
+The variance of a sum of two random variables is given by:
+where Cov(., .) is the covariance.
+These results lead to the variance of a linear combination as:
+
+Sum of uncorrelated variables (Bienaymé formula)
+
+One reason for the use of the variance in preference to other measures of dispersion is that the variance of the sum (or the difference) of uncorrelated random variables is the sum of their variances:
+This statement is called the Bienaymé formulaLoeve, M. (1977) "Probability Theory", Graduate Texts in Mathematics, Volume 45, 4th edition, Springer-Verlag, p. 12. and was discovered in 1853. It is often made with the stronger condition that the variables are independent, but uncorrelatedness suffices. So if all the variables have the same variance σ2, then, since division by n is a linear transformation, this formula immediately implies that the variance of their mean is
+That is, the variance of the mean decreases when n increases. This formula for the variance of the mean is used in the definition of the standard error of the sample mean, which is used in the central limit theorem.
+
+Product of independent variables
+
+If two variables X and Y are independent, the variance of their product is given byGoodman, Leo A., "On the exact variance of products," Journal of the American Statistical Association, December 1960, 708–713., "The variance of the product of K random variables," Journal of the American Statistical Association, March 1962, 54ff.
+
+Sum of correlated variables
+
+In general, if the variables are correlated, then the variance of their sum is the sum of their covariances:
+(Note: The second equality comes from the fact that Cov(Xi,Xi) = Var(Xi).)
+Here Cov is the covariance, which is zero for independent random variables (if it exists). The formula states that the variance of a sum is equal to the sum of all elements in the covariance matrix of the components. This formula is used in the theory of Cronbach's alpha in classical test theory.
+So if the variables have equal variance σ2 and the average correlation of distinct variables is ρ, then the variance of their mean is
+This implies that the variance of the mean increases with the average of the correlations. Moreover, if the variables have unit variance, for example if they are standardized, then this simplifies to
+This formula is used in the Spearman–Brown prediction formula of classical test theory. This converges to ρ if n goes to infinity, provided that the average correlation remains constant or converges too. So for the variance of the mean of standardized variables with equal correlations or converging average correlation we have
+Therefore, the variance of the mean of a large number of standardized variables is approximately equal to their average correlation. This makes clear that the sample mean of correlated variables does generally not converge to the population mean, even though the Law of large numbers states that the sample mean will converge for independent variables.
+
+Weighted sum of variables
+
+The scaling property and the Bienaymé formula, along with this property from the covariance page: Cov(aX, bY) = ab Cov(X, Y)  jointly imply that
+This implies that in a weighted sum of variables, the variable with the largest weight will have a disproportionally large weight in the variance of the total. For example, if X and Y are uncorrelated and the weight of X is two times the weight of Y, then the weight of the variance of X will be four times the weight of the variance of Y.
+The expression above can be extended to a weighted sum of multiple variables:
+
+Decomposition
+
+This can also be derived from the additivity of variances, since the total (observed) score is the sum of the predicted score and the error score, where the latter two are uncorrelated.
+
+Formulae for the variance
+
+A formula often used for deriving the variance of a theoretical distribution is as follows:
+This will be useful when it is possible to derive formulae for the expected value and for the expected value of the square.
+This formula is also sometimes used in connection with the sample variance. While useful for hand calculations, it is not advised for computer calculations as it suffers from catastrophic cancellation if the two components of the equation are similar in magnitude and floating point arithmetic is used. This is discussed in the article Algorithms for calculating variance.
+
+Calculation from the CDF
+
+The population variance for a non-negative random variable can be expressed in terms of the cumulative distribution function F using
+This expression can be used to calculate the variance in situations where the CDF, but not the density, can be conveniently expressed.
+
+Characteristic property
+
+Matrix notation for the variance of a linear combination
+
+Units of measurement
+
+Unlike expected  absolute deviation, the variance of a variable has units that are the square of the units of the variable itself.  For example, a variable measured in meters will have a variance measured in square meters.  For this reason, describing data sets via their standard deviation or root mean square deviation is often preferred over using the variance.  In the dice example the standard deviation is √2.9 ≈ 1.7, slightly larger than the expected absolute deviation of 1.5.
+The standard deviation and the expected absolute deviation can both be used as an indicator of the "spread" of a distribution.  The standard deviation is more amenable to algebraic manipulation than the expected absolute deviation, and, together with variance and its generalization covariance, is used frequently in theoretical statistics; however the expected absolute deviation tends to be more robust as it is less sensitive to outliers arising from measurement anomalies or an unduly heavy-tailed distribution.
+
+Approximating the variance of a function
+
+The delta method uses second-order Taylor expansions to approximate the variance of a function of one or more random variables: see Taylor expansions for the moments of functions of random variables. For example, the approximate variance of a function of one variable is given by
+provided that f is twice differentiable and that the mean and variance of X are finite.
+
+Population variance and sample variance
+
+Real-world distributions such as the distribution of yesterday's rain throughout the day are typically not fully known, unlike the behavior of perfect dice or an ideal distribution such as the normal distribution, because it is impractical to account for every raindrop. Instead one estimates the mean and variance of the whole distribution by using an estimator, a function of the sample of n observations drawn suitably randomly from the whole sample space, in this example the set of all measurements of yesterday's rainfall in all available rain gauges. The simplest estimators for population mean and population variance are simply the mean and variance of the sample, the sample mean and (uncorrected) sample variance – these are consistent estimators (they converge to the correct value as the number of samples increases), but can be improved. Estimating the population variance as the variance of the sample is close to optimal in general, but can be improved in two incompatible ways. The sample variance is computed as an average of squared deviations about the (sample) mean, most simply dividing by n. However, using other values than n improves the estimator in various ways. Four common values for the denominator are n, n − 1, n + 1, and n − 1.5: n is the simplest (population variance of the sample), n − 1 eliminates bias, n + 1 minimizes mean squared error for the normal distribution, and n − 1.5 mostly eliminates bias in unbiased estimation of standard deviation for the normal distribution.
+Firstly, if the mean is unknown (and is computed as the sample mean), then the sample variance is a biased estimator: it underestimates the variance by a factor of (n − 1) / n; correcting by this factor (dividing by n − 1 instead of n) is called Bessel's correction. The resulting estimator is unbiased, and is called the (corrected) sample variance or unbiased sample variance. For example, when n = 1 the variance of a single observation about the sample mean (itself) is obviously zero regardless of the true variance. If the mean is determined in some other way than from the same samples used to estimate the variance then this bias does not arise and the variance can safely be estimated as that of the samples about the (already known) mean.
+Secondly, the sample variance does not generally minimize mean squared error, and correcting for bias often makes this worse: one can always choose a scale factor that performs better than the corrected sample variance, though the optimal scale factor depends on the excess kurtosis of the population (see mean squared error: variance), and introduces bias. This always consists of scaling down the unbiased estimator (dividing by a number larger than n − 1), and is a simple example of a shrinkage estimator: one "shrinks" the unbiased estimator towards zero. For the normal distribution, dividing by n + 1 (instead of n − 1 or n) minimizes mean squared error. The resulting estimator is biased, however, and is known as the biased sample variation.
+
+Population variance
+
+In general, the population variance of a finite population of size N with values xi is given by
+where
+is the population mean. The population variance therefore is the variance of the underlying probability distribution. In this sense, the concept of population can be extended to continuous random variables with infinite populations.
+
+Sample variance
+
+In many practical situations, the true variance of a population is not known a priori and must be computed somehow.  When dealing with extremely large populations, it is not possible to count every object in the population, so the computation must be performed on a sample of the population. Sample variance can also be applied to the estimation of the variance of a continuous distribution from a sample of that distribution.
+We take a  sample with replacement of n values y1, ..., yn from the population, where n Either estimator may be simply referred to as the sample variance when the version can be determined by context. The same proof is also applicable for samples taken from a continuous probability distribution.
+The use of the term n − 1 is called Bessel's correction, and it is also used in sample covariance and the sample standard deviation (the square root of variance). The square root is a concave function and thus introduces negative bias (by Jensen's inequality), which depends on the distribution, and thus the corrected sample standard deviation (using Bessel's correction) is biased. The unbiased estimation of standard deviation is a technically involved problem, though for the normal distribution using the term n − 1.5 yields an almost unbiased estimator.
+The unbiased sample variance is a U-statistic for the function ƒ(y1, y2) = (y1 − y2)2/2, meaning that it is obtained by averaging a 2-sample statistic over 2-element subsets of the population.
+
+Distribution of the sample variance
+
+Being a function of random variables, the sample variance is itself a random variable, and it is natural to study its distribution. In the case that yi are independent observations from a normal distribution, Cochran's theorem shows that s2 follows a scaled chi-squared distribution:Knight K. (2000), Mathematical Statistics, Chapman and Hall, New York.  (proposition 2.11)
+As a direct consequence, it follows that 
+andCasella and Berger (2002) Statistical Inference, Example 7.3.3, p. 331 
+If the yi are independent and identically distributed, but not necessarily normally distributed, thenNeter, Wasserman, and Kutner (1990) Applied Linear Statistical Models, 3rd edition, pp. 622-623 
+where κ is the excess kurtosis of the distribution and μ4 is the fourth moment about the mean.
+If the conditions of the law of large numbers hold for the squared observations, s2 is a consistent estimator of σ2.. One can see indeed that the variance of the estimator tends asymptotically to zero.
+
+Samuelson's inequality
+
+Relations with the harmonic and arithmetic means
+
+It has been shownA. McD. Mercer. Bounds for A-G, A-H, G-H, and a family of inequalities of Ky Fan's type, using a general method. J. Math. Anal. Appl. 243, 163–173 (2000) that for a sample {yi} of real numbers,
+This bound has been improved, and it is known that variance is bounded by
+where ymin is the minimum of the sample.R. Sharma. Some more inequalities for arithmetic mean, harmonic mean and variance. J. Math. Inequalities, 2(1), 109–114 (2008).
+
+Generalizations
+
+Tests of equality of variances
+
+Testing for the equality of two or more variances is difficult. The F test and chi square tests are both adversely affected by non-normality and are not recommended for this purpose.
+Several non parametric tests have been proposed: these include the Barton-David-Ansari-Fruend-Siegel-Tukey test, the Capon test, Mood test, the Klotz test and the Sukhatme test. The Sukhatme test applies to two variances and requires that both medians be known and equal to zero. The Mood, Klotz, Capon and Barton-David-Ansari-Fruend-Siegel-Tukey tests also apply to two variances. They allow the median to be unknown but do require that the two medians are equal.
+The Lehman test is a parametric test of two variances. Of this test there are several variants known. Other tests of the equality of variances include the Box test, the Box-Anderson test and the Moses test.
+Resampling methods, which include the bootstrap and the jackknife, may be used to test the equality of variances.
+
+History
+
+The term variance was first introduced by Ronald Fisher in his 1918 paper The Correlation Between Relatives on the Supposition of Mendelian Inheritance:Ronald Fisher (1918) The correlation between relatives on the supposition of Mendelian Inheritance
+
+Moment of inertia
+
+This difference between moment of inertia in physics and in statistics is clear for points that are gathered along a line. Suppose many points are close to the x axis and distributed along it. The covariance matrix might look like
+That is, there is the most variance in the x direction. However, physicists would consider this to have a low moment about the x axis so the moment-of-inertia tensor is
+
+
+
+ 
+ 
+
+Notes
+
+

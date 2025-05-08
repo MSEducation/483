@@ -1,0 +1,77 @@
+[[Ring of symmetric functions]]
+
+CATEGORIES: Polynomials, Invariant theory, Algebraic combinatorics, Symmetric functions, Permutations, Types of functions
+
+In algebra and in particular in algebraic combinatorics, the ring of symmetric functions, is a specific limit of the rings of symmetric polynomials in n indeterminates, as n goes to infinity. This ring serves as universal structure in which relations between symmetric polynomials can be expressed in a way independent of the number n of indeterminates (but its elements are neither polynomials nor functions). Among other things, this ring plays an important role in the representation theory of the symmetric groups.
+The ring of symmetric functions can be given a coproduct and a bilinear form making it into a positive selfadjoint graded Hopf algebra that is both commutative and cocommutative.
+
+Symmetric polynomials
+
+The study of symmetric functions is based on that of symmetric polynomials. In a polynomial ring in some finite set of indeterminates, there is an action by ring automorphisms of the symmetric group on (the indices of) the indeterminates (simultaneously substituting each of them for another according to the permutation used). The invariants for this action form the subring of symmetric polynomials. If the indeterminates are X1,…,Xn, then examples of such symmetric polynomials are
+and 
+A somewhat more complicated example is
+X13X2X3 +X1X23X3 +X1X2X33 +X13X2X4 +X1X23X4 +X1X2X43 +…
+where the summation goes on to include all products of the third power of some variable and two other variables. There are many specific kinds of symmetric polynomials, such as elementary symmetric polynomials, power sum symmetric polynomials, monomial symmetric polynomials, complete homogeneous symmetric polynomials, and Schur polynomials.
+
+The ring of symmetric functions
+
+Most relations between symmetric polynomials do not depend on the number n of indeterminates, other than that some polynomials in the relation might require n to be large enough in order to be defined. For instance the Newton's identity for the third power sum polynomial leads to
+
+Definitions
+
+A ring of symmetric polynomials can be defined over any commutative ring R, and will be denoted ΛR; the basic case is for R = Z. The ring ΛR is in fact a graded R-algebra. There are two main constructions for it; the first one given below can be found in (Stanley, 1999), and the second is essentially the one given in (Macdonald, 1979).
+
+=As a ring of formal power series=
+
+The easiest (though somewhat heavy) construction starts with the ring of formal power series RX1,X2,… over R in infinitely many indeterminates; one defines ΛR as its subring consisting of power series S that satisfy 
+Note that because of the second condition, power series are used here only to allow infinitely many terms of a fixed degree, rather than to sum terms of all possible degrees. Allowing this is necessary because an element that contains for instance a term X1 should also contain a term Xi for every i > 1 in order to be symmetric. Unlike the whole power series ring, the subring ΛR is graded by the total degree of monomials: due to condition 2, every element of ΛR is a finite sum of homogeneous elements of ΛR (which are themselves infinite sums of terms of equal degree). For every k ≥ 0, the element ek ∈ ΛR is defined as the formal sum of all products of k distinct indeterminates, which is clearly homogeneous of degree k.
+
+=As an algebraic limit=
+
+This construction differs slightly from the one in (Macdonald, 1979). That construction only uses the surjective morphisms ρn without mentioning the injective morphisms φn: it constructs the homogeneous components of ΛR separately, and equips their direct sum with a ring structure using the ρn. It is also observed that the result can be described as an inverse limit in the category of graded rings. That description however somewhat obscures an important property typical for a direct limit of injective morphisms, namely that every individual element (symmetric function) is already faithfully represented in some object used in the limit construction, here a ring RX1,…,XdSd. It suffices to take for d the degree of the symmetric function, since the part in degree d of that ring is mapped isomorphically to rings with more indeterminates by φn for all n ≥ d. This implies that for studying relations between individual elements, there is no fundamental difference between symmetric polynomials and symmetric functions.
+
+Defining individual symmetric functions
+
+It should be noted that the name "symmetric function" for elements of ΛR is a misnomer: in neither construction the elements are functions, and in fact, unlike symmetric polynomials, no function of independent variables can be associated to such elements (for instance e1 would be the sum of all infinitely many variables, which is not defined unless restrictions are imposed on the variables). However the name is traditional and well established; it can be found both in (Macdonald, 1979), which says (footnote on p. 12)
+ The elements of Λ (unlike those of Λn) are no longer polynomials: they are formal infinite sums of monomials. We have therefore reverted to the older terminology of symmetric functions. 
+(here Λn denotes the ring of symmetric polynomials in n indeterminates), and also in (Stanley, 1999).
+To define a symmetric function one must either indicate directly a power series as in the first construction, or give a symmetric polynomial in n indeterminates for every natural number n in a way compatible with the second construction. An expression in an unspecified number of indeterminates may do both, for instance
+The following are fundamental examples of symmetric functions.
+
+A principle relating symmetric polynomials and symmetric functions
+
+For any symmetric function P, the corresponding symmetric polynomials in n indeterminates for any natural number n may be designated by P(X1,…,Xn). The second definition of the ring of symmetric functions implies the following fundamental principle:
+This is because one can always reduce the number of variables by substituting zero for some variables, and one can increase the number of variables by applying the homomorphisms φn; the definition of those homomorphisms assures that φn(P(X1,…,Xn)) = P(X1,…,Xn+1) (and similarly for Q) whenever n ≥ d. See a proof of Newton's identities for an effective application of this principle.
+
+Properties of the ring of symmetric functions
+
+Identities
+
+The ring of symmetric functions is a convenient tool for writing identities between symmetric polynomials that are independent of the number of indeterminates: in ΛR there is no such number, yet by the above principle any identity in ΛR automatically gives identities the rings of symmetric polynomials over R in any number of indeterminates. Some fundamental identities are
+which shows a symmetry between elementary and complete homogeneous symmetric functions; these relations are explained under complete homogeneous symmetric polynomial.
+the Newton identities, which also have a variant for complete homogeneous symmetric functions:
+
+Structural properties of ΛR
+
+Important properties of ΛR include the following.
+Property 2 is the essence of the fundamental theorem of symmetric polynomials. It immediately implies some other properties:
+This final point applies in particular to the family (hi)i>0 of complete homogeneous symmetric functions. 
+If R contains the field Q of rational numbers, it applies also to the family (pi)i>0 of power sum symmetric functions. This explains why the first n elements of each of these families define sets of symmetric polynomials in n variables that are free polynomial generators of that ring of symmetric polynomials.
+The fact that the complete homogeneous symmetric functions form a set of free polynomial generators of ΛR already shows the existence of an automorphism ω sending the elementary symmetric functions to the complete homogeneous ones, as mentioned in property 3. The fact that ω is an involution of ΛR follows from the symmetry between elementary and complete homogeneous symmetric functions expressed by the first set of relations given above.
+
+Generating functions
+
+The first definition of ΛR as a subring of RX1,X2,… allows the generating functions of several sequences of symmetric functions to be elegantly expressed. Contrary to the relations mentioned earlier, which are internal to ΛR, these expressions involve operations taking place in RX1,X2,…;t but outside its subring ΛRt, so they are meaningful only if symmetric functions are viewed as formal power series in indeterminates Xi. We shall write "(X)" after the symmetric functions to stress this interpretation.
+The generating function for the elementary symmetric functions is
+Similarly one has for complete homogeneous symmetric functions
+The generating function for the power sum symmetric functions can be expressed as
+((Macdonald, 1979) defines P(t) as Σk>0 pk(X)tk−1, and its expressions therefore lack a factor t with respect to those given here). The two final expressions, involving the formal derivatives of the generating functions E(t) and H(t), imply Newton's identities and their variants for the complete homogeneous symmetric functions. These expressions are sometimes written as
+
+
+
+
+
+ 
+ 
+
+

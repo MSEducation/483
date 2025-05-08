@@ -1,0 +1,27 @@
+[[Virtual Control Program Interface]]
+
+CATEGORIES: DOS technology, DOS memory management
+
+In computing, the Virtual Control Program Interface (VCPI) is a specification published in 1989 by Phar Lap Software that allows a DOS program to run in protected mode, granting access to many features of the processor not available in real mode.  It was supplanted by DOS Protected Mode Interface (DPMI) shortly after being introduced, due in large part to VCPI's inability to work in Windows 3.0's protected mode.
+
+==Overview==
+
+Developed since 1987 in cooperation with Quarterdeck Office Systems and with support by A.I. Architects, Lotus Development Corp., Quadram, Qualitas and Rational Systems, VCPI is provided by an expanded memory manager in DOS (e.g. CEMM, QEMM, later EMM386). It was eclipsed by DPMI, most notably because it was not supported for DOS programs run in Windows 3.0's native protected mode (called 386 enhanced mode) and because VCPI runs programs in Ring 0, which defeated the purpose of x86 protection. It also did not work with OS/2 2.0 and later. VCPI was only supported in Windows 3.0 real mode, some programs could run in Windows 3.x standard mode. Standard mode (286 mode) Windows 3.1 (but not 3.0) itself was VCPI compliant (it was a VCPI client). Earlier Windows/386 2.1 was not compatible with DOS extenders at all. Windows NT DOS box did not support VCPI either.
+VCPI also had a comparatively limited scope in that it allowed a protected mode DOS program to run only when the program was started from DOS already running inside a virtual 8086 mode task. (This was typically accomplished through a memory manager operating as a virtual mode control program for the processor.) Because the virtual 8086 mode isolates programs from the hardware, it is not possible for a program to switch to protected mode without some support from the control program.
+
+==Extended VCPI[tpl]anchor|XVCPI[/tpl]==
+
+Between 1989 and February 1990 an alternative specification was proposed under the name Extended VCPI (XVCPI) by a number of companies including Intel's Software Focus Group, Lotus, Digital Research, Interactive Systems and others to address some of the shortcomings of VCPI and better exploit the memory management and multitasking capabilities of the 386 processor. It was used by a small number of products including operating systems like Interactive Unix, Concurrent DOS 386 and Multiuser DOS. Since February 1990 these efforts ultimately succumbed to the (parallel) development and publication of the DPMI specification in May 1990, which addressed similar problems, but was compatible with the implementation of Microsoft Windows 3.0 to be released the same year.
+
+==See also==
+
+==Notes==
+
+[ref]
+NB. Like VCPI, the XVCPI API sits on top of INT 67h, AH=DEh, but has a different set of function numbers. XVCPI install check: Input: AX=DE40h; INT 67h; Return: AH=00h (installed); BH=main-version, BL=sub-version. Another known function is defined as: Input: AX=DE43h; INT 67h; Return: DX=number of free 4 KB pages.
+
+==References==
+
+[ref]
+
+

@@ -1,0 +1,49 @@
+[[Enterprise Objects Framework]]
+
+CATEGORIES: Data management, NeXT, Apple Inc. software
+
+The Enterprise Objects Framework, or more commonly simply EOF, was introduced by NeXT in 1994 as a pioneering object-relational mapping product for its NeXTSTEP and OpenStep development platforms. EOF abstracts the process of interacting with a relational database, mapping database rows to Java or Objective-C objects. This largely relieves developers from writing low-level SQL code. EOF enjoyed some niche success in the mid-1990s among financial institutions who were attracted to the rapid application development advantages of NeXT's object-oriented platform. Since Apple Inc's merger with NeXT in 1996, EOF has evolved into a fully integrated part of WebObjects, an application server also originally from NeXT.
+
+History
+
+In the early 1990s NeXT Computer recognized that connecting to databases was essential to most businesses and yet also potentially complex.  Every data source has a different data-access language (or API), driving up the costs to learn and use each vendor's product. The NeXT engineers wanted to apply the advantages of object-oriented programming, by getting objects to "talk" to relational databases. As the two technologies are very different, the solution was to create an abstraction layer, insulating developers from writing the low-level procedural code (SQL) specific to each data source.
+The first attempt came in 1992 with the release of Database Kit (DBKit), which wrapped an object-oriented framework around any database. Unfortunately, NEXTSTEP at the time was not powerful enough and DBKit had serious design flaws.
+NeXT's second attempt came in 1994 with the Enterprise Objects Framework (EOF) version 1, a complete rewrite that was far more modular and OpenStep compatible. EOF 1.0 was the first product released by NeXT using the Foundation Kit and introduced autoreleased objects to the developer community. The development team at the time was only four people: Jack Greenfield, Rich Williamson, Linus Upson and Dan Willhite. EOF 2.0, released in late 1995, further refined the architecture, introducing the editing context. At that point, the development team consisted of Dan Willhite, Craig Federighi, Eric Noyau and Charly Kleissner.
+EOF achieved a modest level of popularity in the financial programming community in the mid-1990s, but it would come into its own with the emergence of the World Wide Web and the concept of web applications. It was clear that EOF could help companies plug their legacy databases into the Web without any rewriting of that data. With the addition of frameworks to do state management, load balancing and dynamic HTML generation, NeXT was able to launch the first object-oriented Web application server, WebObjects, in 1996, with EOF at its core.
+In 2000, Apple Inc. (which had merged with NeXT) officially dropped EOF as a standalone product, meaning that developers would be unable to use it to create desktop applications for the forthcoming Mac OS X.  It would, however, continue to be an integral part of a major new release of WebObjects.  WebObjects 5, released in 2001, was significant for the fact that its frameworks had been ported from their native Objective-C programming language to the Java language.  Critics of this change argue that most of the power of EOF was a side effect of its Objective-C roots, and that EOF lost the beauty or simplicity it once had.  Third-party tools, such as EOGenerator, help fill the deficiencies introduced by Java (mainly due to the loss of categories).
+The Objective-C code base was re-introduced with some modifications to desktop application developers as Core Data, part of Apple's Cocoa API, with the release of Mac OS X Tiger in April 2005.
+
+How EOF works
+
+Enterprise Objects provides tools and frameworks for object-relational mapping. The technology specializes in providing mechanisms to retrieve data from various data sources, such as relational databases via JDBC and JNDI directories, and mechanisms to commit data back to those data sources. These mechanisms are designed in a layered, abstract approach that allows developers to think about data retrieval and commitment at a higher level than a specific data source or data source vendor.
+Central to this mapping is a model file (an "EOModel") that you build with a visual tool — either EOModeler, or the EOModeler plug-in to Xcode. The mapping works as follows:
+You can build data models based on existing data sources or you can build data models from scratch, which you then use to create data structures (tables, columns, joins) in a data source. The result is that database records can be transposed into Java objects.
+The advantage of using data models is that applications are isolated from the idiosyncrasies of the data sources they access. This separation of an application's business logic from database logic allows developers to change the database an application accesses without needing to change the application.
+EOF provides a level of database transparency not seen in other tools and allows the same model to be used to access different vendor databases and even allows relationships across different vendor databases without changing source code.  
+Its power comes from exposing the underlying data sources as managed graphs of persistent objects.  In simple terms, this means that it organizes the application's model layer into a set of defined in-memory data objects.  It then tracks changes to these objects and can reverse those changes on demand, such as when a user performs an undo command.  Then, when it is time to save changes to the application's data, it archives the objects to the underlying data sources.
+
+Using Inheritance
+
+In designing Enterprise Objects developers can leverage the object-oriented feature known as inheritance. A Customer object and an Employee object, for example, might both inherit certain characteristics from a more generic Person object, such as name, address, and phone number. While this kind of thinking is inherent in object-oriented design, relational databases have no explicit support for inheritance. However, using Enterprise Objects, you can build data models that reflect object hierarchies. That is, you can design database tables to support inheritance by also designing enterprise objects that map to multiple tables or particular views of a database table.
+
+What is an Enterprise Object (EO)?
+
+An Enterprise Object is analogous to what is often known in object-oriented programming as a business object — a class which models a physical or conceptual object in the business domain (e.g. a customer, an order, an item, etc.). What makes an EO different from other objects is that its instance data maps to a data store. Typically, an enterprise object contains key-value pairs that represent a row in a relational database. The key is basically the column name, and the value is what was in that row in the database. So it can be said that an EO's properties persist beyond the life of any particular running application.
+More precisely, an Enterprise Object is an instance of a class that implements the com.eocontrol.
+An Enterprise Object has a corresponding model (called an EOModel) that defines the mapping between the class's object model and the database schema. However, an enterprise object doesn't explicitly know about its model. This level of abstraction means that database vendors can be switched without it affecting the developer's code. This gives Enterprise Objects a high degree of reusability.
+
+EOF and Core Data
+
+Despite their common origins, the two technologies diverged, with each technology retaining a subset of the features of the original Objective-C code base, while adding some new features.
+
+Features Supported Only by EOF
+
+EOF supports custom SQL; shared editing contexts; nested editing contexts; and pre-fetching and batch faulting of relationships, all features of the original Objective-C implementation not supported by Core Data.  Core Data also does not provide the equivalent of an EOModelGroup—the NSManagedObjectModel class provides methods for merging models from existing models, and for retrieving merged models from bundles.
+
+Features Supported Only by Core Data
+
+Core Data supports fetched properties; multiple configurations within a managed object model; local stores; and store aggregation (the data for a given entity may be spread across multiple stores); customization and localization of property names and validation warnings; and the use of predicates for property validation.  These features of the original Objective-C implementation are not supported by the Java implementation.
+
+
+
+

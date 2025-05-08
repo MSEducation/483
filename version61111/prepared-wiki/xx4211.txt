@@ -1,0 +1,40 @@
+[[Heapsort]]
+
+CATEGORIES: Sorting algorithms, Comparison sorts, Heaps (data structures), Articles with example pseudocode
+
+Heapsort is a comparison-based sorting algorithm. Heapsort is part of the selection sort family; it improves on the basic selection sort by using a logarithmic-time priority queue rather than a linear-time search. Although somewhat slower in practice on most machines than a well-implemented quicksort, it has the advantage of a more favorable worst-case O(n log n) runtime.  Heapsort is an in-place algorithm, but it is not a stable sort. It was invented by J. W. J. Williams in 1964.[tpl]harvnb|Williams|1964[/tpl] 
+
+==Overview==
+
+The heapsort algorithm can be divided into two parts.
+In the first step, a heap is built out of the data. The heap is often placed in an array with the layout of a complete binary tree. The complete binary tree maps the binary tree structure into the array indices; each array index represents a node; the index of the node's parent, left child branch, or right child branch are simple expressions.  For a zero-based array, the root node is stored at index 0; if i is the index of the current node, then
+ 
+   iParent     = floor((i-1) / 2)
+  iLeftChild  = 2*i + 1
+  iRightChild = 2*i + 2
+
+In the second step, a sorted array is created by repeatedly removing the largest element from the heap (the root of the heap), and inserting it into the array. The heap is updated after each removal to maintain the heap. Once all objects have been removed from the heap, the result is a sorted array.
+Heapsort can be performed in place. The array can be split into two parts, the sorted array and the heap. The storage of heaps as arrays is diagrammed here.  The heap's invariant is preserved after each extraction, so the only cost is that of extraction.
+
+==Variations==
+
+ | last1 = Suchenek | first1 = Marek A.
+ | title = Elementary Yet Precise Worst-Case Analysis of Floyd's Heap-Construction Program
+ | doi = 10.3233/FI-2012-751
+ | pages = 75–92
+ | publisher = IOS Press
+ | journal = Fundamenta Informaticae
+ | volume = 120
+ | issue = 1
+ | year = 2012
+ | url = http://www.deepdyve.com/lp/ios-press/elementary-yet-precise-worst-case-analysis-of-floyd-s-heap-50NW30HMxU}}.</ref>
+ | last1 = Levcopoulos | first1 = Christos
+ | last2 = Petersson | first2 = Ola
+ | contribution = Heapsort - Adapted for Presorted Files
+ | doi = 10.1007/3-540-51542-9_41
+ | location = London, UK
+ | pages = 499–509
+ | publisher = Springer-Verlag
+ | series = Lecture Notes in Computer Science
+ | title = WADS '89: Proceedings of the Workshop on Algorithms and Data Structures
+ | volume = 382

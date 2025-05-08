@@ -1,0 +1,50 @@
+[[FLAC]]
+
+CATEGORIES: 2001 software, Cross-platform software, Free audio codecs, Lossless audio codecs, Xiph.Org projects
+
+FLAC ([tpl]IPAc-en|ˈ|f|l|æ|k[/tpl]; Free Lossless Audio Codec) is a codec for lossless compression of digital audio. Digital audio compressed by FLAC's algorithm can typically be reduced to 50–60% of its original size[tpl]cite web |url=https://xiph.org/flac/comparison.html |title=Comparison |accessdate=15 October 2013|publisher=FLAC[/tpl] and decompressed to an identical copy of the original audio data.
+FLAC is an open format with royalty-free licensing and a reference implementation which is free software. FLAC has support for metadata tagging, album cover art, and fast seeking.
+Though FLAC cannot store floating-point data, and playback support in portable audio devices and dedicated audio systems is limited compared to lossy formats such as MP3 or uncompressed PCM, FLAC is supported by more hardware devices than competing lossless compressed formats such as WavPack.
+
+==History==
+
+Development was started in 2000 by Josh Coalson.[tpl]cite web |url=https://xiph.org/flac/news.html |title=News |accessdate=31 August 2009|publisher=FLAC[/tpl] The bit-stream format was frozen when FLAC entered beta stage with the release of version 0.5 of the reference implementation on 15 January 2001. Version 1.0 was released on 20 July 2001.
+On 29 January 2003, the Xiph.Org Foundation and the FLAC project announced the incorporation of FLAC under the Xiph.org banner. Xiph.org is behind other free compression formats such as Vorbis, Theora and Speex.[tpl]cite web |author=Xiph.Org Foundation |publisher=Xiph.org Foundation |url=https://www.xiph.org/press/2003/flac/ |title=FLAC Joins Xiph.org |date=29 January 2003 |accessdate=31 August 2009[/tpl][tpl]cite web |author=Emmett Plant |publisher=Xiph.org Foundation |url=http://xiph.org/ogg/flac.html |title=FLAC Joins Xiph! |accessdate=31 August 2009|archiveurl = http://web.archive.org/web/20080529055542/xiph.org/ogg/flac.html |archivedate = 29 May 2008|deadurl=yes[/tpl]
+Version 1.3.0 was released on 26 May 2013. Development was moved to the Xiph.org git repository.[tpl]cite web |author=Xiph.Org Foundation |publisher=Xiph.org Foundation  |url=https://xiph.org/flac/changelog.html |title=FLAC – changelog |accessdate=15 October 2013[/tpl]
+
+==Composition==
+
+The FLAC project consists of:
+The specification of the stream format can be implemented by anyone without prior permission (Xiph.org reserves the right to set the FLAC specification and certify compliance), and neither the FLAC format nor any of the implemented encoding / decoding methods are covered by any patent. The reference implementation is free software. The source code for libFLAC and libFLAC++ is available under the BSD license, and the sources for flac, metaflac, and the plugins are available under the GNU General Public License.
+In its stated goals, the FLAC project encourages its developers not to implement copy prevention features (DRM) of any kind.[tpl]cite web|url=https://xiph.org/flac/developers.html |title=Developers|publisher=FLAC |accessdate=15 October 2013[/tpl]
+
+==Design==
+
+Audio sources encoded to FLAC are typically reduced to 50–60% of their original size.  FLAC supports only fixed-point samples, not floating-point. It can handle any PCM bit resolution from 4 to 32 bits per sample, any sampling rate from 1 Hz to 655,350 Hz in 1 Hz increments,[tpl]cite web |url=https://xiph.org/flac/faq.html#general__samples |title=FAQ|publisher=FLAC |accessdate=15 October 2013[/tpl] and any number of channels from 1 to 8.[tpl]cite web|url=https://xiph.org/flac/format.html#frame_header|title=Format|publisher=FLAC|accessdate=15 October 2013[/tpl] Channels can be grouped in cases, for example stereo and 5.1 channel surround, to take advantage of interchannel correlations to increase compression. FLAC uses CRC checksums for identifying corrupted frames when used in a streaming protocol, and also has a complete MD5 hash of the raw PCM audio stored in its STREAMINFO metadata header. FLAC allows for a Rice parameter between 0 and 16. FLAC supports ReplayGain.
+FLAC uses linear prediction to convert the audio samples to a series of small, uncorrelated numbers (known as the residual), which are stored efficiently using Golomb-Rice coding. It also uses run-length encoding for blocks of identical samples, such as silent passages. For tagging, FLAC uses the same system as Vorbis comments. The libFLAC API is organized into streams, seekable streams, and files (listed in the order of increasing abstraction from the base FLAC bitstream). Most FLAC applications will generally restrict themselves to encoding/decoding using libFLAC at the file level interface.
+
+===Compression levels===
+
+libFLAC uses a compression level parameter that varies from 0 (fastest) to 8 (smallest). The compressed files are always perfect "lossless" representations of the original data. Although the compression process involves a tradeoff between speed and size, the decoding process is always quite fast, and not very dependent on the level of compression.CUETools FLAC encoders comparison. CUETools Wiki. Retrieved 27 May 2013.Encoding Settings. JRiver Media Centre. Retrieved 27 May 2013.
+
+==Comparison to other formats==
+
+FLAC is specifically designed for efficient packing of audio data, unlike general purpose lossless algorithms such as DEFLATE which is used in ZIP and gzip. While ZIP may compress a CD-quality audio file by 10–20%, FLAC achieves compression rates of 30–50% for most music.[tpl]citation needed|date=March 2013[/tpl]
+The technical strengths of FLAC compared to other lossless formats lie in its ability to be streamed and decoded quickly, independently of compression level.  In a comparison of compressed audio formats, FFmpeg's FLAC implementation was noted to have the fastest and most efficient embedded decoder of any modern lossless audio format.[tpl]cite web|url=http://www.hydrogenaudio.org/forums/index.php?showtopic=82125 |title=Codec performance comparison |publisher=Hydrogenaudio Forums |accessdate=12 March 2011[/tpl][tpl]Self-published inline|date=August 2011[/tpl]
+Since FLAC is a lossless scheme, it is suitable as an archive format for owners of CDs and other media who wish to preserve their audio collections.  If the original media is lost, damaged, or worn out, a FLAC copy of the audio tracks ensures that an exact duplicate of the original data can be recovered at any time. An exact restoration from a lossy archive (e.g., MP3) of the same data is impossible. FLAC being lossless means it is highly suitable for transcode e.g. to MP3, without the normally associated transcoding quality loss. A CUE file can optionally be created when ripping a CD.  If a CD is read and ripped perfectly to FLAC files, the CUE file allows later burning of an audio CD that is identical in audio data to the original CD, including track order, pregaps, and CD-Text.  However, additional data present on some audio CDs such as lyrics and CD+G graphics are beyond the scope of a CUE file and most ripping software, and that data will not be archived.[tpl]Citation needed|date=November 2011[/tpl]
+
+==Adoption and implementations==
+
+The reference implementation of FLAC is implemented as the libFLAC core encoder & decoder library, with the main distributable program flac being the reference implementation of the libFLAC API. This codec API is also available in C++ as libFLAC++. The reference implementation of FLAC compiles on many platforms, including most Unix (such as Solaris and Mac OS X) and Unix-like (including GNU/Linux, BSD), Microsoft Windows, BeOS, and OS/2 operating systems. There are build systems for autoconf/automake, MSVC, Watcom C, and Xcode. There is currently no multicore support in libFLAC.
+Though FLAC playback support in portable audio devices and dedicated audio systems is limited compared to formats such as MP3[tpl]cite web|url=https://xiph.org/flac/links.html#hardware |title=Links |publisher=FLAC |accessdate=24 March 2009[/tpl] or uncompressed PCM, FLAC is supported by more hardware devices than competing lossless compressed formats such as WavPack. FLAC support is included by default in Android devices.
+In 2014, several aftermarket mobile electronics companies have introduced multimedia solutions that include support for FLAC. These include the NEX series from Pioneer Electronics and the VX404 and NX404 from Clarion.
+The European Broadcasting Union (EBU) has adopted the FLAC format for the distribution of high quality audio over its Euroradio network.EBU: What is the EBU Musipop system?  The Android operating system has supported native FLAC playback since version 3.1.[tpl]cite web |url=https://developer.android.com/guide/appendix/media-formats.html |title=Android Supported Media Formats |date=4 August 2011 |work=Andro Med Formats |accessdate=27 February 2012[/tpl][tpl]cite web |url=https://code.google.com/p/android/issues/detail?id=1461 |title=Issue 1461 – android – FLAC file support enhancement request. |publisher=Google |accessdate=5 August 2011[/tpl]
+The Pono music player and music service uses the FLAC format.[tpl]cite web |url=http://www.ponomusic.com/#faq |title=ponomusic.com FAQ |date=14 March 2014 |accessdate=14 March 2014[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

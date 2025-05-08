@@ -1,0 +1,146 @@
+[[Delaunay triangulation]]
+
+CATEGORIES: Triangulation (geometry)
+
+In mathematics and computational geometry,  a Delaunay triangulation for a set P of points in a plane is a triangulation DT(P) such that no point in P is inside the circumcircle of any triangle in DT(P). Delaunay triangulations maximize the minimum angle of all the angles of the triangles in the triangulation; they tend to avoid skinny triangles. The triangulation is named after Boris Delaunay for his work on this topic from 1934.B. Delaunay: Sur la sphère vide, Izvestia Akademii Nauk SSSR, Otdelenie Matematicheskikh i Estestvennykh Nauk, 7:793–800, 1934
+For a set of points on the same line there is no Delaunay triangulation (the notion of  triangulation is degenerate for this case).  For four or more points on the same circle (e.g., the vertices of a rectangle) the Delaunay triangulation is not unique: each of the two possible triangulations that split the quadrangle into two triangles satisfies the "Delaunay condition", i.e., the requirement that the circumcircles of all triangles have empty interiors.
+By considering circumscribed spheres, the notion of Delaunay triangulation extends to three and higher dimensions.  Generalizations are possible to metrics other than Euclidean. However in these cases a Delaunay triangulation is not guaranteed to exist or be unique.
+
+==Relationship with the Voronoi diagram==
+
+The Delaunay triangulation of a discrete point set P in general position corresponds to the dual graph of the Voronoi diagram for P. Special cases include the existence of three points on a line and four points on circle.
+
+File:Delaunay_circumcircles_centers.svg|The Delaunay triangulation with all the circumcircles and their centers (in red).
+Image:Delaunay_Voronoi.svg|Connecting the centers of the circumcircles produces the Voronoi diagram (in red).
+
+==d-dimensional Delaunay==
+
+For a set P of points in the (d-dimensional) Euclidean space, a Delaunay triangulation is a triangulation DT(P) such that no point in P is inside the circum-hypersphere of any simplex in DT(P).  It is known that there exists a unique Delaunay triangulation for P, if P is a set of points in general position; that is, there exists no k-flat containing k + 2 points nor a k-sphere containing k + 3 points, for 1 ≤ k ≤ d − 1 (e.g., for a set of points in ℝ3; no three points are on a line, no four on a plane, no four are on a circle, and no five on a sphere).
+The problem of finding the Delaunay triangulation of a set of points in d-dimensional Euclidean space can be converted to the problem of finding the convex hull of a set of points in (d + 1)-dimensional space, by giving each point p an extra coordinate equal to |p|2, taking the bottom side of the convex hull, and mapping back to d-dimensional space by deleting the last coordinate. As the convex hull is unique, so is the triangulation, assuming all facets of the convex hull are simplices. Nonsimplicial facets only occur when d + 2 of the original points lie on the same d-hypersphere, i.e., the points are not in general position.
+
+==Properties==
+
+Let n be the number of points and d the number of dimensions.
+  | last = Seidel
+  | first = R.
+  | title = The upper bound theorem for polytopes: an easy proof of its asymptotic version
+  | journal = Computational Geometry
+  | volume = 5
+  | pages = 115–116
+  | year = 1995
+  | url = http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6TYS-3YVD096-C&_user=108429&_coverDate=09%2F30%2F1995&_rdoc=1&_fmt=high&_orig=search&_origin=search&_sort=d&_docanchor=&view=c&_acct=C000059713&_version=1&_urlVersion=0&_userid=108429&md5=70a4159a39ed8ab2c6709025aa77d5de&searchtype=a
+  | doi = 10.1016/0925-7721(95)00013-Y
+  | issue = 2 }}</ref>
+ | last1 = Edelsbrunner | first1 = Herbert | author1-link = Herbert Edelsbrunner
+ | last2 = Tan | first2 = Tiow Seng
+ | last3 = Waupotitsch | first3 = Roman
+ | doi = 10.1137/0913058
+ | issue = 4
+ | journal = SIAM Journal on Scientific and Statistical Computing
+ | mr = 1166172
+ | pages = 994–1008
+ | title = An ''O''(''n''<sup>2</sup>&nbsp;log&nbsp;''n'') time algorithm for the minmax angle triangulation
+ | volume = 13
+ | year = 1992}}.</ref> The Delaunay triangulation also does not necessarily minimize the length of the edges. 
+
+==Visual Delaunay definition: Flipping==
+
+From the above properties an important feature arises: Looking at two triangles ABD and BCD with the common edge BD (see figures), if the sum of the angles α and γ is less than or equal to 180°, the triangles meet the Delaunay condition.
+This is an important property because it allows the use of a flipping technique. If two triangles do not meet the Delaunay condition, switching the common edge BD for the common edge AC produces two triangles that do meet the Delaunay condition:
+
+  Image:Delaunay_geometry.png|This triangulation does not meet the Delaunay condition (the sum of α and γ is bigger than 180°).
+  Image:Delaunay_before_flip.png|This triangulation does not meet the Delaunay condition (the circumcircles contain more than three points).
+  Image:Delaunay_after_flip.png|''Flipping'' the common edge produces a Delaunay triangulation for the four points.
+
+==Algorithms==
+
+Many algorithms for computing Delaunay triangulations rely on fast operations for detecting when a point is within a triangle's circumcircle and an efficient data structure for storing triangles and edges.  In two dimensions, one way to detect if point D lies in the circumcircle of A, B, C is to evaluate the determinant:[tpl]cite web| author=Guibas, Lenoidas | coauthors= Stolfi, Jorge |url = http://portal.acm.org/citation.cfm?id=282923 | title = Primitives for the manipulation of general subdivisions and the computation of Voronoi| publisher = ACM | page=107 | date = 1985-04-01| accessdate = 2009-08-01[/tpl] 
+When A, B and C are sorted in a counterclockwise order, this determinant is positive if and only if D lies inside the circumcircle.
+
+===Flip algorithms===
+
+As mentioned above, if a triangle is non-Delaunay, we can flip one of its edges.  This leads to a straightforward algorithm: construct any triangulation of the points, and then flip edges until no triangle is non-Delaunay. Unfortunately, this can take O(n2) edge flips, and does not extend to three dimensions or higher.[ref]
+</ref>
+
+===Incremental===
+
+The most straightforward way of efficiently computing the Delaunay triangulation is to repeatedly add one vertex at a time, retriangulating the affected parts of the graph.  When a vertex v is added, we split in three the triangle that contains v, then we apply the flip algorithm.  Done naively, this will take O(n) time: we search through all the triangles to find the one that contains v, then we potentially flip away every triangle.  Then the overall runtime is O(n2).
+If we insert vertices in random order, it turns out (by a somewhat intricate proof) that each insertion will flip, on average, only O(1) triangles – although sometimes it will flip many more.[ref]
+</ref>
+This still leaves the point location time to improve.  We can store the history of the splits and flips performed: each triangle stores a pointer to the two or three triangles that replaced it.  To find the triangle that contains v, we start at a root triangle, and follow the pointer that points to a triangle that contains v, until we find a triangle that has not yet been replaced.  On average, this will also take O(log n) time.  Over all vertices, then, this takes O(n log n) time.  While the technique extends to higher dimension (as proved by Edelsbrunner and Shah[ref]
+</ref>), the runtime can be exponential in the dimension even if the final Delaunay triangulation is small.
+The Bowyer–Watson algorithm provides another approach for incremental construction.  It gives an alternative to edge flipping for computing the Delaunay triangles containing a newly inserted vertex.
+
+===Divide and conquer===
+
+A divide and conquer algorithm for triangulations in two dimensions is due to Lee and Schachter which was improved by Guibas and StolfiComputing Constrained Delaunay Triangulations and later by Dwyer.  In this algorithm, one recursively draws a line to split the vertices into two sets. The Delaunay triangulation is computed for each set, and then the two sets are merged along the splitting line.  Using some clever tricks, the merge operation can be done in time O(n), so the total running time is O(n log n).[tpl]cite paper | first = G. | last = Leach | title = Improving Worst-Case Optimal Delaunay Triangulation Algorithms. | id = [tpl]citeseerx|10.1.1.56.2323[/tpl] | month = June | year = 1992 [/tpl]
+For certain types of point sets, such as a uniform random distribution, by intelligently picking the splitting lines the expected time can be reduced to O(n log log n) while still maintaining worst-case performance.
+A divide and conquer paradigm to performing a triangulation in d dimensions is presented in "DeWall: A fast divide and conquer Delaunay triangulation algorithm in Ed" by P. Cignoni, C. Montani, R. Scopigno.[tpl]cite journal | last = Cignoni | first = P. | coauthors = C. Montani; R. Scopigno | year = 1998 | title = DeWall: A fast divide and conquer Delaunay triangulation algorithm in Ed | journal = Computer-Aided Design | volume = 30 | issue = 5 | pages = 333–341 | doi = 10.1016/S0010-4485(97)00082-1 [/tpl]
+Divide and conquer has been shown to be the fastest DT generation technique.A Comparison of Sequential Delaunay Triangulation Algorithms http://www.cs.berkeley.edu/~jrs/meshpapers/SuDrysdale.pdfhttp://www.cs.cmu.edu/~quake/tripaper/triangle2.html
+
+===Sweepline===
+
+Fortune's Algorithm uses a sweepline technique to achieve O(n log n) runtime in the planar case.
+
+===Sweephull===
+
+SweephullS-hull is a hybrid technique for 2D Delaunay triangulation that uses a radially propagating sweep-hull (sequentially created from 
+the radially sorted set of 2D points, giving a non-overlapping triangulation), paired with a ﬁnal iterative triangle ﬂipping step.
+An accurate integer arithmetic variant of the algorithm is also presented.
+
+==Applications==
+
+The Euclidean minimum spanning tree of a set of points is a subset of the Delaunay triangulation of the same points, and this can be exploited to compute it efficiently.
+For modelling terrain or other objects given a set of sample points, the Delaunay triangulation gives a nice set of triangles to use as polygons in the model.  In particular, the Delaunay triangulation avoids narrow triangles (as they have large circumcircles compared to their area). See triangulated irregular network.
+Delaunay triangulations can be used to determine the density or intensity of points samplings by means of the DTFE.
+Delaunay triangulations are often used to build meshes for space-discretised solvers such as the finite element method and the finite volume method of physics simulation, because of the angle guarantee and because fast triangulation algorithms have been developed.  Typically, the domain to be meshed is specified as a coarse simplicial complex; for the mesh to be numerically stable, it must be refined, for instance by using Ruppert's algorithm.
+The increasing popularity of finite element method and boundary element method techniques increases the incentive to improve automatic meshing algorithms. However, all of these algorithms can create distorted and even unusable grid elements. Fortunately, several techniques exist which can take an existing mesh and improve its quality. For example, smoothing (also referred to as mesh refinement) is one such method, which repositions nodal locations so as to minimize element distortion. The stretched grid method allows the generation of pseudo-regular meshes that meet the Delaunay criteria easily and quickly in a one-step solution.
+
+==See also==
+
+==References==
+
+==External links==
+
+ | last = Yvinec | first = Mariette
+ | title = 2D Triangulation
+ | url = http://www.cgal.org/Pkg/Triangulation2
+ | accessdate = April 2010
+}}
+ | last1 = Pion | first1 = Sylvain
+ | last2 = Teillaud | first2 = Monique
+ | title = 3D Triangulations
+ | url = http://www.cgal.org/Pkg/Triangulation3
+ | accessdate = April 2010
+}}
+ | last1 = Hert | first = Susan
+ | last2 = Seel | first2 = Michael
+ | title = dD Convex Hulls and Delaunay Triangulations
+ | url = http://www.cgal.org/Pkg/ConvexHullD
+ | accessdate = April 2010
+}}
+ | title = Delaunay triangulation
+ | publisher = Wolfram MathWorld
+ | url = http://mathworld.wolfram.com/DelaunayTriangulation.html
+ | accessdate = April 2010
+}}
+ | title = Qhull
+ | url = http://www.qhull.org
+ | accessdate = April 2010
+}} — Code for Convex Hull, Delaunay Triangulation, Voronoi Diagram, and Halfspace Intersection
+ | last = Shewchuk | first = Jonathan Richard
+ | title = Triangle
+ | url = http://www.cs.cmu.edu/~quake/triangle.html
+ | accessdate = April 2010
+}} – A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator
+ | last1 = Kumar | first1 = Piyush
+ | last2 = Mohanty | first2 = Somya
+ | title = Triangle++
+ | url = http://www.compgeom.com/~piyush/scripts/triangle/
+}} – A C++ wrapper on Triangle
+ | title = Poly2Tri
+ | url = http://code.google.com/p/poly2tri/
+ | publisher = Google Code
+ | accessdate = April 2010
+}} – A sweepline Constrained Delaunay Triangulation (CDT) library, available in ActionScript 3, C, C++, C#, Go, Haxe, Java, Javascript, Python and Ruby 
+

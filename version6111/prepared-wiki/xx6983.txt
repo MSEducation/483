@@ -1,0 +1,84 @@
+[[L'Hôpital's rule]]
+
+CATEGORIES: Articles containing proofs, Theorems in calculus, Theorems in real analysis, Limits (mathematics)
+
+In calculus, l'Hôpital's rule ([tpl]IPA-fr|lopiˈtal|pron[/tpl]) uses derivatives to help evaluate limits involving indeterminate forms.  Application (or repeated application) of the rule often converts an indeterminate form to a determinate form, allowing easy evaluation of the limit. The rule is named after the 17th-century French mathematician Guillaume de l'Hôpital (also written L'HospitalIn the 17th and 18th centuries, the name was commonly spelled "l'Hospital", and he himself spelled his name that way. However, French spellings have been altered: the silent 's' has been removed and replaced with the circumflex over the preceding vowel. The former spelling is still used in English where there is no circumflex.), who published the rule in his book Analyse des Infiniment Petits pour l'Intelligence des Lignes Courbes (literal translation: Analysis of the Infinitely Small for the Understanding of Curved Lines) (1696), the first textbook on differential calculus.[tpl]Cite web | url=http://www-history.mcs.st-andrews.ac.uk/Biographies/De_L'Hopital.html|title=De L'Hopital biography|first=John J.|last=O'Connor|coauthors=Robertson, Edmund F|work=The MacTutor History of Mathematics archive|publisher=School of Mathematics and Statistics, University of St Andrews|location=Scotland|accessdate=21 December 2008[/tpl]l’Hospital, Analyse des infiniment petits... , pages 145–146:  “Proposition I.  Problême.  Soit une ligne courbe AMD (AP = x, PM = y, AB = a Figure 130 ) telle que la valeur de l’appliquée y soit exprimée par une fraction, dont le numérateur & le dénominateur deviennent chacun zero lorsque x = a, c’est à dire lorsque le point P tombe sur le point donné B.  On demande quelle doit être alors la valeur de l’appliquée BD.  ...si l’on prend la difference du numérateur, & qu’on la divise par la difference du denominateur, apres avoir fait x = a = Ab ou AB, l’on aura la valeur cherchée de l’appliquée bd ou BD.”  Translation :  “Let there be a curve AMD (where AP = X, PM = y, AB = a) such that the value of the ordinate y is expressed by a fraction whose numerator and denominator each become zero when x = a; that is, when the point P falls on the given point B.  One asks what shall then be the value of the ordinate BD.  ... if one takes the differential of the numerator and if one divides it by the differential of the denominator, after having set x = a = Ab or AB, one will have the value was sought of the ordinate bd or BD.” However, it is believed that the rule was discovered by the Swiss mathematician Johann Bernoulli.[tpl]MathWorld | urlname= LHospitalsRule | title=L'Hospital's Rule[/tpl]
+The Stolz–Cesàro theorem is a similar result involving limits of sequences, but it uses finite difference operators rather than derivatives.
+In its simplest form, l'Hôpital's rule states that for functions [tpl]math|f[/tpl] and [tpl]math|g[/tpl] which are differentiable on [tpl]math|I ∖ {c} [/tpl], where [tpl]math|I[/tpl] is an open interval containing [tpl]math|c[/tpl]:
+If
+then
+The differentiation of the numerator and denominator often simplifies the quotient and/or converts it to a determinate form, allowing the limit to be evaluated more easily.
+
+==General form==
+
+If either
+or
+then
+
+==Requirement that the limit exists==
+
+The requirement that the limit
+
+==Examples==
+
+===Complications===
+
+Sometimes l'Hôpital's rule does not lead to an answer in a finite number of steps unless a transformation of variables is applied. Examples include the following:
+A common pitfall is using l'Hôpital's rule with some circular reasoning to compute a derivative via a difference quotient. For example, consider the task of proving the derivative formula for powers of x:
+Applying l'Hôpital's rule and finding the derivatives with respect to h of the numerator and the denominator yields [tpl]math|n xn - 1[/tpl] as expected. However, differentiating the numerator required the use of the very fact that is being proven.  This is an example of begging the question, since one may not assume the fact to be proven during the course of the proof.
+
+==Other indeterminate forms==
+
+Other indeterminate forms, such as [tpl]math|1∞[/tpl], [tpl]math|00[/tpl], [tpl]math|∞0[/tpl], [tpl]math|0 × ∞[/tpl], and [tpl]math|∞ − ∞[/tpl], can sometimes be evaluated using l'Hôpital's rule. For example, to evaluate a limit involving [tpl]math|∞ − ∞[/tpl], convert the difference of two functions to a quotient:
+where l'Hôpital's rule was applied in going from (1) to (2) and then again in going from (3) to (4).
+l'Hôpital's rule can be used on indeterminate forms involving exponents by using logarithms to "move the exponent down". Here is an example involving the indeterminate form [tpl]math|00[/tpl]:
+Thus
+
+==Other methods of evaluating limits==
+
+Although l'Hôpital's rule is a powerful way of evaluating otherwise hard-to-evaluate limits, it is not always the easiest way. Consider
+This limit may be evaluated using l'Hôpital's rule:
+It is valid to move the limit inside the cosine function because the cosine function is continuous.
+But a simpler way to evaluate this limit is to use a substitution. [tpl]math|y [tpl]=[/tpl] 1/x[/tpl]. As [tpl]math||x|[/tpl] approaches infinity, [tpl]math|y[/tpl] approaches zero. So,
+The final limit may be evaluated using l'Hôpital's rule or by noting that it is the definition of the derivative of the sine function at zero.
+Still another way to evaluate this limit is to use a Taylor series expansion:
+For [tpl]math||x| ≥ 1[/tpl], the expression in parentheses is bounded, so the limit in the last line is zero.
+
+==Geometric interpretation==
+
+Consider the curve in the plane whose [tpl]math|x[/tpl]-coordinate is given by [tpl]math|g(t)[/tpl] and whose [tpl]math|y[/tpl]-coordinate is given by [tpl]math|f(t)[/tpl], i.e.
+Suppose [tpl]math|f(c) [tpl]=[/tpl] g(c) [tpl]=[/tpl] 0[/tpl]. The limit of the ratio [tpl]math|f(t)/g(t)[/tpl] as [tpl]math|t → c[/tpl] is the slope of tangent to the curve at the point [tpl]math|0[/tpl]. The tangent to the curve at the point [tpl]math|t[/tpl] is given by [tpl]math|f ′(t)[/tpl].   L'Hôpital's rule then states that the slope of the tangent at [tpl]math|c[/tpl] is the limit of the slopes of tangents at the points approaching zero.
+
+==Proof of l'Hôpital's rule==
+
+===Special case===
+
+The proof of l'Hôpital's rule is simple in the case where [tpl]math|f[/tpl] and [tpl]math|g[/tpl] are continuously differentiable at the point [tpl]math|c[/tpl] and where a finite limit is found after the first round of differentiation. It is not a proof of the general l'Hôpital's rule because it is stricter in its definition, requiring both differentiability and that c be a real number. Since many common functions have continuous derivatives (e.g. polynomials, sine and cosine, exponential functions), it is a special case worthy of attention.
+The proof of a more general version of L'Hôpital's rule is given below.
+
+===General proof===
+
+The following proof is due to [tpl]harv|Taylor|1952[/tpl], where a unified proof for the 0/0 and ±∞/±∞ indeterminate forms is given. Taylor notes that different proofs may be found in [tpl]harv|Lettenmeyer|1936[/tpl] and [tpl]harv|Wazewski|1949[/tpl].
+The definition of m(x) and M(x) will result in an extended real number, and so it is possible for them to take on the values ±∞.  In the following two cases, m(x) and M(x) will establish bounds on the ratio f/g.
+The limit superior and limit inferior are necessary since the existence of the limit of f/g has not yet been established.
+We need the facts that
+
+and
+Note: In case 2 we did not use the assumption that f(x) diverges to infinity within the proof. This means that if |g(x)| diverges to infinity as x approaches c and both f and g satisfy the hypotheses of l'Hôpital's rule, then no additional assumption is needed about the limit of f(x): It could even be the case that the limit of f(x) does not exist. In this case, L'Hopital's theorem is actually a consequence of Cesàro–Stolz (see proof at http://www.imomath.com/index.php?options=686).
+In the case when |g(x)| diverges to infinity as x approaches c and f(x) converges to a finite limit at c, then l'Hôpital's rule would be applicable, but not absolutely necessary, since basic limit calculus will show that the limit of f(x)/g(x) as x approaches c must be zero.
+
+==Corollary==
+
+A simple but very useful consequence of l'Hopital's rule is a well-known criterion for differentiability. It states the following:
+
+===Proof===
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

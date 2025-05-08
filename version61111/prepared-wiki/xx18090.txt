@@ -1,0 +1,74 @@
+--[[ This is because we are calling the returned function from `addto(4)' with the argument `3' directly.
+     This also helps to reduce data cost and up performance if being called iteratively.
+]]
+
+A new closure for the variable x is created every time addto is called, so that each new anonymous function returned will always access its own x parameter. The closure is managed by Lua's garbage collector, just like any other object.
+
+===Tables===
+
+Tables are the most important data structure (and, by design, the only built-in composite data type) in Lua, and are the foundation of all user-created types. They are conceptually similar to associative arrays in PHP, dictionaries in Python and Hashes in Ruby or Perl.
+A table is a collection of key and data pairs, where the data is referenced by key; in other words, it's a hashed heterogeneous associative array. A key (index) can be any value but nil and NaN.  A numeric key of 1 is considered distinct from a string key of "1".
+Tables are created using the {} constructor syntax:
+
+a_table = {} -- Creates a new, empty table
+
+Tables are always passed by reference:
+
+a_table = {x = 10}  -- Creates a new table, with one entry mapping "x" to the number 10.
+print(a_table"x") -- Prints the value associated with the string key, in this case 10.
+b_table = a_table
+b_table"x" = 20   -- The value in the table has been changed to 20.
+print(b_table"x") -- Prints 20.
+print(a_table"x") -- Also prints 20, because a_table and b_table both refer to the same table.
+
+====As record====
+
+A table is often used as structure (or record) by using strings as keys. Because such use is very common, Lua features a special syntax for accessing such fields.
+Example:
+
+point = { x = 10, y = 20 }   -- Create new table
+print(point"x")            -- Prints 10
+print(point.x)               -- Has exactly the same meaning as line above. The easier-to-read dot notation is just syntactic sugar.
+
+Quoting the Lua 5.1 Reference Manual:[tpl]cite web|url=http://www.lua.org/manual/5.1/manual.html#2.3|title=Lua 5.1 Reference Manual|accessdate=2014-02-27|year=2014[/tpl]
+"The syntax var.Name is just syntactic sugar for var'Name';"
+
+====As namespace====
+
+By using a table to store related functions, it can act as a namespace.
+
+Point = {}
+Point.new = function(x, y)
+  return {x = x, y = y}  --  return {["x"] = x, ["y"] = y}
+end
+Point.set_x = function(point, x)
+  point.x = x  --  point["x"] = x;
+end
+
+====As array====
+
+By using a numerical key, the table resembles an array data type. Lua arrays are 1-based: the first index is 1 rather than 0 as it is for many other programming languages (though an explicit index of 0 is allowed).
+A simple array of strings:
+
+array = { "a", "b", "c", "d" }   -- Indices are assigned automatically.
+print(array2)                  -- Prints "b". Automatic indexing in Lua starts at 1.
+print(#array)                    -- Prints 4.  # is the length operator for tables and strings.
+array0 = "z"                   -- Zero is a legal index.
+print(#array)                    -- Still prints 4, as Lua arrays are 1-based.
+
+The length of a table t is defined to be any integer index n such that tn is not nil and tn+1 is nil; moreover, if t1 is nil, n can be zero. For a regular array, with non-nil values from 1 to a given n, its length is exactly that n, the index of its last value. If the array has "holes" (that is, nil values between other non-nil values), then #t can be any of the indices that directly precedes a nil value (that is, it may consider any such nil value as the end of the array).[tpl]cite web|url=http://www.lua.org/manual/5.1/manual.html#2.5.5|title=Lua 5.1 Reference Manual|accessdate=2012-10-16|year=2012[/tpl]
+An array of objects:
+
+function Point(x, y)        -- "Point" object constructor
+  return { x = x, y = y }   -- Creates and returns a new object (table)
+end
+array = { Point(10, 20), Point(30, 40), Point(50, 60) }   -- Creates array of points
+                        -- array = { { x = 10, y = 20 }, { x = 30, y = 40 }, { x = 50, y = 60 } };
+print(array2.y)                                         -- Prints 40
+
+Using a hash map to emulate an array normally is slower than using an actual array; however, Lua tables are optimized for use as arrays[tpl]cite web|url=http://www.lua.org/source/5.1/lobject.h.html#array|title=Lua 5.1 Source Code|accessdate=2011-03-24|year=2006[/tpl] to help avoid this issue.
+
+===Metatables===
+
+fibs = { 1, 1 }                                -- Initial values for fibs1 and fibs2.
+setmetatable(fibs, {

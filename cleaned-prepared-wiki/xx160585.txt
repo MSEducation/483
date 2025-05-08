@@ -1,0 +1,81 @@
+[[ATSC-M/H]]
+
+CATEGORIES: Broadcast engineering, Mobile telephone broadcasting, ATSC
+
+ATSC-M/H (Advanced Television Systems Committee - Mobile/Handheld) is a standard in the USA for mobile digital TV, that allows TV broadcasts to be received by mobile devices.A/153: ATSC Mobile DTV Standard, Parts 1 - 9  
+Just as the DVB-H and 1seg are mobile TV extensions to the DVB-T and ISDB-T terrestrial digital TV standards respectively, ATSC-M/H is an extension to the available digital TV broadcasting standard ATSC A/53. ATSC is optimized for a fixed reception in the typical North American environment and uses 8VSB modulation. The ATSC transmission scheme is not robust enough against doppler shift and multipath radio interference in mobile environments, and is designed for highly directional fixed antennas. To overcome these issues, additional channel coding mechanisms are introduced in ATSC-M/H to protect the signal.
+
+Evolution of mobile TV standard
+
+Requirements
+
+Several requirements of the new standard were fixed right from the beginning:
+
+Proposals
+
+Ten systems from different companies were proposed, and two remaining systems were presented with transmitter and receiver prototypes:
+To find the best solution, the Advanced Television Systems Committee assigned the Open Mobile Video Coalition (OMVC) to test both systems. The test report was presented on May 15, 2008.
+As a result of this detailed work by the OMVC, a final standard draft was designed by the Advanced Television Systems Committee, specialist group S-4. ATSC-M/H will be a hybrid. Basically the following components of the proposed systems are used:Syncword
+
+Standard milestones
+
+On December 1, 2008, the Advanced Television Systems Committee elevated its specification for Mobile Digital Television to Candidate Standard status. In the following six months, the industry tested the standard. Before it became an official standard, additional improvements were proposed. 
+
+Structure of mobile DTV standard
+
+The ATSC Mobile DTV standard ATSC-M/H (A/153) is modular in concept, with the specifications for each of the modules contained separate Parts. The individual Parts of A/153 are as follows:
+
+Principle
+
+ATSC-M/H is a service for mobile TV receivers and partly uses the 19.39 Mbit/s ATSC 8VSB stream.  The mobile data is carried in an unreferenced Packet ID, so legacy receivers ignore the mobile data. 
+
+Technology
+
+ATSC-M/H bandwidth consumes fixed chunks of 917kbit/s out of the total ATSC Bandwidth. Each such chunk is called an M/H Group. A data pipe called a parade is a collection of one to eight M/H groups. A parade conveys one or two ensembles which are logical pipes of IP datagrams. Those datagrams in turn carry TV services, System Signaling tables, OMA DRM key streams and the Electronic Service Guide.
+ATSC-M/H has an improved design based on detailed analyses of experiences with other mobile DTV standards.
+
+Protocol stack
+
+ATSC-M/H protocol stack is mainly an umbrella protocol that uses OMA ESG, OMA DRM, MPEG-4 in addition to many IETF RFCs.
+
+Transport stream data structure
+
+The ATSC-M/H standard defines a fixed transport stream structure, based on M/H Frames, which establishes the location of M/H content within the VSB Frames and allows for easier processing by an M/H receiver.  This is contrary to the legacy ATSC transport stream, defined in A/53, in which there is no fixed structure to establish the phase of the data relative to VSB Frames.  
+One M/H Frame is equivalent in size to 20 VSB Frames and has an offset of 37 transport stream (TS) packets relative to the beginning of the VSB Frame.  Each M/H Frame, which has a fixed duration of 968 ms, is divided into five M/H sub-frames and each sub-frame is further subdivided into sixteen M/H Slots.  Each slot is the equivalent amount of time needed to transmit 156 TS packets.  A slot may either carry all main ATSC data (A/53) or 118 packets of M/H data and 38 packets of main data.  The collection of 118 M/H packets transmitted within a slot is called an M/H Group.  Each of the 118 M/H packets within an M/H Group are encapsulated inside a special TS packet, known as an MHE packet.
+ 
+An M/H Parade is a collection of M/H Groups and can carry one or two M/H Ensembles. These Ensembles are logical pipes for IP datagrams. Those datagrams in turn carry TV services and the signaling of mobile content.  The M/H Groups from a single Parade are placed within M/H Slots according to an algorithm defined in A/153 Part 2.  The Number of Groups per M/H Sub-Frame (NoG) for an M/H Parade ranges from 1 to 8 and therefore the number of Groups per an M/H Frame for a Parade ranges from 5 to 40 with a step of 5. The data of a Parade are channel coded  and distributed by an interleaver during an M/H Frame.
+ 
+Mobile Data are protected by an additional FEC, as Interleaving and Convolutional codes. To improve the reception in the receiver, training sequences are introduced into the ATSC-M/H signal to allow channel estimation on the receiver side.
+Time slicing is a technique used by ATSC-M/H to provide power savings on receivers. It is based on the time-multiplexed transmission of different services.
+
+Error protection
+
+ATSC-M/H combines multiple error protection mechanisms for added robustness. One is an outer Reed–Solomon error correction code which corrects defective bytes after decoding the outer convolutional code in the receiver. The correction is improved by an additional CRC checksum since bytes can be marked as defective before they are decoded (erasure decoding).
+The number of RS parity symbols can represent 24, 36 or 48. The symbols and the additional checksum  form the outer elements of a data matrix which is allocated by the payload of the M/H Ensemble. The number of lines is fixed and the number of columns is variable according to how many slots per Subframe are occupied.
+The RS Frame is then partitioned into several segments of different sizes and assigned to specified regions. The M/H data in these regions are protected by an SCCC (Series Concatenated Convolutional Code), incorporating a code rate of 1/2 or 1/4, and is specific to each region in a group.  A 1/4 rate PCCC (Parallel Concatenated Convolutional Code) is also employed as an inner code for the M/H signaling channel, which includes FIC (Fast Information Channel) and TPC (Transmission Parameter Channel).  The TPC carries various FEC modes and M/H Frame information.  Once the TPC is extracted, the receiver then knows the code rates being employed and can decode each region at its specified rate.
+A modified trellis encoder is also employed for backwards compatibility with legacy A/53 receivers.
+The time interleaving of ATSC-M/H is 1 second.
+
+Signaling
+
+ATSC M/H Signaling and Announcement defines three different layers of signalling. The layers are organized hierarchically and optimized to characteristics of the transmission layer.
+
+Signaling of video- and audio coding
+
+Each video- or audio decoder needs information about the used coding parameters, for instance resolution, frame rate and IDR (Random Access Point) repetition rate. 
+In MPEG-4/AVC, mobile TV systems the receiver uses information from the Session Description Protocol File (SDP-File). 
+The SDP-file is a format which describes streaming media initialization parameters. In ATSC-M/H, the SDP-File is transmitted within the SMT-Table. Most of the information is coded in binary, but some is coded in the original ASCII text format. The SMT-Table combines information that is typically in different tables and reduces the complexity for the network and the receivers. In case of signaling with ESG, the complete SDP-File is transmitted.
+
+Single-frequency network (SFN)
+
+In an SFN, two or more transmitters with an overlapping coverage send the same program content simultaneously on the same frequency. The 8VSB modulation used by ATSC allows SFN transmissions. To allow regular channel approximation, ATSC-M/H provides additional training sequences. ATSC A/110 defines a method to synchronize the ATSC modulator as part of the transmitter. The A/110 standard sets up the Trellis coder in a pre-calculated way to all transmitters of the SFN. In such an SFN, the ATSC-M/H multiplexer and the ATSC-M/H transmitter are synchronized by a GPS reference. The ATSC-M/H multiplexer operates as a network adapter and inserts time stamps in the MPEG transport stream. The transmitter analyzes the time stamp, delays the transport stream before it is modulated and transmitted. Eventually, all SFN transmitters generate a synchronized signal.
+
+Other mobile standards
+
+Until its shutdown, MediaFLO had been available in parts of the U.S..  It was a premium service that required subscription. ATSC-M/H would be free to air, as are regular broadcast signals.
+
+
+
+
+
+

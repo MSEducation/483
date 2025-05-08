@@ -1,0 +1,129 @@
+[[Quantum circuit]]
+
+CATEGORIES: Quantum information science, Models of computation
+
+In quantum information theory, a quantum circuit is a model for quantum computation in which a computation is a sequence of quantum gates, which are reversible transformations on a quantum mechanical analog of an n-bit register. This analogous structure is referred to as an n-qubit register.
+
+Reversible logic gates
+
+Ordinarily, in  a classical computer, the logic gates other than the NOT gate are not reversible. Thus, for instance, for an AND gate one cannot recover the two input bits from the output bit; for example, if the output bit is 0, we cannot tell from this whether the input bits are 0,1 or 1,0  or 0,0.  However, it is instructive to observe that reversible gates in classical computers are theoretically possible for input strings of any length; moreover, these are actually of practical interest, since they do not increase entropy. A reversible gate is a reversible function on  n-bit data that returns  n-bit data,  where an n-bit data is a string of bits x1,x2, ...,xn  of length  n.   The set of n-bit data is the space {0,1}n, which consists of 2n strings of 0's and 1's.  More precisely,
+An example of such a reversible gate f is a mapping that changes the first digit of each string.
+We are only interested in maps f which are different from the identity, and for reasons of practical engineering we are only interested in gates for small values of n, e.g. n=1, n=2 or n=3.  These gates can be easily described by tables.  Examples of these logic gates which have been studied are the controlled NOT gate (also called CNOT gate), the Toffoli gate and the Fredkin gate.
+To consider quantum gates, we first need to specify the quantum replacement of an n-bit datum.
+  The quantized version of classical n-bit space {0,1}n is 
+ This is by definition the space of complex-valued functions on {0,1}n and is naturally an inner product space.   This space can also be regarded as consisting of linear superpositions of classical bit strings. Note that  HQB(n) is a vector space over the complex numbers of dimension 2n.  The elements of this space are called n-qubits.
+
+Using Dirac ket notation, if x1,x2, ...,xn is a classical bit string, then 
+is a special  n-qubit corresponding to the function which maps this classical bit string to 1 and maps all other bit strings to 0; these 2n special n-qubits are called computational basis states. All n-qubits are complex linear combinations of these computational basis states.  
+For a quantum computer gate, we require a very special kind of reversible function, namely a unitary mapping, that is, a mapping on HQB(n) that preserves the inner product. 
+Again we are only interested in unitary operators U which are different from the identity and we are only interested in gates for small values of n. In fact, reversible classical n-bit logic gates give rise to reversible n-bit quantum gates as follows:  to each reversible n-bit logic gate f  corresponds a quantum gate Wf defined as follows:
+Note that Wf permutes the computational basis states. 
+Of particular importance is the quantized 2 qubit CNOT gate WCNOT.  Of course there are many other properly quantum gates.  For example, a relative phase shift is a 1 qubit gate given by multiplication by the unitary matrix:
+so 
+
+Reversible circuits
+
+Again we consider first reversible classical computation.  Conceptually there is no difference between a reversible n bit  circuit and a reversible n bit logical gate: it is just an invertible function on the space of n bit data. However, as we mentioned in the previous section, for engineering reasons we would like to have a small number of reversible gates, that can be put together to assemble any reversible circuit. To explain this assembly process, suppose we have a reversible n bit gate f and  a reversible  m bit gate g.  Putting them together means producing a new circuit by connecting some set k 
+
+We will refer to this scheme as a classical assemblage. (Remark: this concept corresponds to a technical definition in Kitaev's pioneering paper cited below.) In composing these reversible machines, it is important to ensure that the intermediate machines are also reversible.  This condition assures that  intermediate garbage is not created (the net physical effect would be to increase entropy, which is one of the motivations for going through  this exercise). Now it is possible to show that the Toffoli gate is a universal gate. This means that given any reversible classical n bit circuit h, we can construct a classical assemblage of Toffoli gates in the above manner to produce an  n+m bit circuit f such that
+where there are m underbraced zeroed inputs and 
+Notice that the end result always has a string of m zeros as the ancilla bits! No rubbish is ever produced, and so this computation is indeed one that, in a physical sense, generates no entropy.  This issue is carefully discussed in Kitaev's article.
+It follows immediately from this result that any function f (bijective or not) can be simulated by a circuit of Toffoli gates. Obviously, if the mapping fails to be injective, at some point in the simulation (for example as the last step) some garbage has to be produced.
+For quantum circuits a similar composition of qubit gates can be defined.  That is, associated to any classical assemblage as above, we can produce a reversible quantum circuit when in place of f we have an n qubit gate U and in place of g we have an m qubit gate W. See illustration below:
+
+The fact that connecting gates this way gives rise to a unitary mapping on n+m−k qubit space is an easy check, which should not concern the non-expert reader . It should also be noted that in a real quantum computer the physical connection between the gates is a major engineering challenge, since it is one of the places where decoherence may actually occur. 
+There is also a universality theorem for sets of well known gates; such a universality theorem exists for instance, for the pair consisting of the single qubit phase gate Uθ mentioned above for some reasonable value of θ together with the 2 qubit CNOT gate WCNOT). However the universality theorem is  somewhat weaker in the case of quantum computation, namely that any reversible n qubit circuit can be approximated arbitrarily well by circuits assembled from these two elementary gates. Note that there are uncountably many possible single qubit phase gates, one for every possible angle θ, so uncountably many of these gates cannot be represented by any finite circuit constructed from {Uθ, WCNOT)}.
+
+Quantum computations
+
+So far we have not shown how quantum circuits are used to perform computations.  Since many important numerical problems reduce to computing a unitary transformation U on a finite-dimensional space (the celebrated discrete Fourier transform 
+being a prime example), one might expect that some quantum circuit could be designed to carry out the transformation U. In principle, one needs only to prepare an n qubit state ψ as an appropriate superposition of computational basis states for the input and measure the output Uψ.  Unfortunately, there are two problems with this:
+This does not prevent quantum circuits for the discrete Fourier transform from being used as intermediate steps in other quantum circuits, but the use is more subtle.  In fact quantum computations are probabilistic.
+We now provide a mathematical model for how quantum circuits can simulate
+probabilistic but classical computations.  Consider an r-qubit circuit U with
+register space HQB(r). U is thus a unitary map
+In order to associate this circuit to a classical mapping on bitstrings, we specify
+The contents x = x1, ..., xm of
+the classical input register are used to initialize the qubit
+register in some way.  Ideally, this would be done with the computational basis
+state 
+where there are r-m underbraced zeroed inputs.  Nevertheless,
+this perfect initialization is completely unrealistic.  Let us assume
+therefore that the initialization is a mixed state given by some density operator S which is near the idealized input in some appropriate metric, e.g.
+Similarly, the output register space is related to the qubit register, by a Y
+valued observable A. Note that observables in quantum mechanics are usually defined in
+terms of projection valued measures on R; if the variable
+happens to be discrete, the projection valued measure reduces to a
+family {Eλ} indexed on some parameter λ
+ranging over a countable set.  Similarly, a Y valued observable,
+can be associated with a family of pairwise orthogonal projections
+{Ey} indexed by elements of Y.  such that
+Given a mixed state S, there corresponds a probability measure on Y
+given by 
+The function F:X → Y is computed by a circuit
+U:HQB(r) → HQB(r) to within ε if and only if
+for all bitstrings x of length m
+Now 
+so that
+Theorem.  If  ε+ δ on Y can be used to determine F(x) with an arbitrarily  small probability of error by majority sampling, for a sufficiently large sample size.  Specifically, take k independent samples from the probability distribution Pr on Y and choose a value on which more than half of the samples agree. The probability that the value F(x) is sampled more than k/2 times is at least
+where γ = 1/2 -ε - δ.  
+This follows by applying the Chernoff bound.
+
+
+
+ | last1 = Biham | first1 = Eli | author1-link = Eli Biham
+ | last2 = Brassard | first2 = Gilles | author2-link = Gilles Brassard
+ | last3 = Kenigsberg | first3 = Dan
+ | last4 = Mor | first4 = Tal
+ | arxiv = quant-ph/0306182
+ | doi = 10.1016/j.2004.03.041
+ | issue = 1
+ | journal = Theoretical Computer Science
+ | mr = 2060181
+ | pages = 15–33
+ | title = Quantum computing without entanglement
+ | volume = 320
+ | year = 2004}}.
+ | last1 = Freedman | first1 = Michael H. | author1-link = Michael Freedman
+ | last2 = Kitaev | first2 = Alexei | author2-link = Alexei Kitaev
+ | last3 = Larsen | first3 = Michael J. | author3-link = Michael J. Larsen
+ | last4 = Wang | first4 = Zhenghan
+ | arxiv = quant-ph/0101025
+ | doi = 10.1090/S0273-0979-02-00964-3
+ | issue = 1
+ | journal = Bulletin of the American Mathematical Society
+ | mr = 1943131
+ | pages = 31–38
+ | title = Topological quantum computation
+ | volume = 40
+ | year = 2003}}.
+ | last = Hirvensalo | first = Mika
+ | isbn = 3-540-66783-0
+ | location = Berlin
+ | mr = 1931238
+ | publisher = Springer-Verlag
+ | series = Natural Computing Series
+ | title = Quantum Computing
+ | year = 2001}}.
+ | last = Kitaev | first = A. Yu. | authorlink = Alexei Kitaev
+ | doi = 10.1070/RM1997v052n06ABEH002155
+ | issue = 6(318)
+ | journal = Uspekhi Mat. Nauk
+ | language = Russian
+ | mr = 1611329
+ | pages = 53–112
+ | title = Quantum computations: algorithms and error correction
+ | volume = 52
+ | year = 1997|bibcode = 1997RuMaS..52.1191K }}.
+ | last1 = Nielsen | first1 = Michael A. | author1-link = Michael Nielsen
+ | last2 = Chuang | first2 = Isaac L.
+ | isbn = 0-521-63235-8
+ | location = Cambridge
+ | mr = 1796805
+ | publisher = Cambridge University Press
+ | title = Quantum Computation and Quantum Information
+ | year = 2000}}.
+
+
+
+

@@ -1,0 +1,27 @@
+[[Log-structured file system]]
+
+CATEGORIES: Computer file systems, Bell Labs, Fault-tolerant computer systems
+
+A log-structured filesystem is a file system in which data and metadata are written sequentially to a circular buffer, called a log.[tpl]citation|title=Log-structured File Systems|url=http://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf|publisher= Arpaci-Dusseau Books|year = 2014|first1 = Remzi H.|last1 =Arpaci-Dusseau|first2=Andrea C.|last2 = Arpaci-Dusseau[/tpl]  The design was first proposed in 1988 by John K. Ousterhout and Fred Douglis and first implemented in 1992 by John K. Ousterhout and Mendel Rosenblum.
+
+==Rationale==
+
+Conventional file systems tend to lay out files with great care for spatial locality and make in-place changes to their data structures in order to perform well on optical and magnetic disks, which tend to seek relatively slowly.
+The design of log-structured file systems is based on the hypothesis that this will no longer be effective because ever-increasing memory sizes on modern computers would lead to I/O becoming write-heavy because reads would be almost always satisfied from memory cache.  A log-structured file system thus treats its storage as a circular log and writes sequentially to the head of the log.
+This has several important side effects:
+Log-structured file systems, however, must reclaim free space from the tail of the log to prevent the file system from becoming full when the head of the log wraps around to meet it.  The tail can release space and move forward by skipping over data for which newer versions exist farther ahead in the log.  If there are no newer versions, then the data is moved and appended to the head.
+To reduce the overhead incurred by this garbage collection, most implementations avoid purely circular logs and divide up their storage into segments.  The head of the log simply advances into non-adjacent segments which are already free.  If space is needed, the least-full segments are reclaimed first.  This decreases the I/O load of the garbage collector, but becomes increasingly ineffective as the file system fills up and nears capacity.
+
+==Implementations==
+
+Some kinds of storage media, such as flash memory and CD-RW, slowly degrade as they are written to and have a limited number of erase/write cycles at any one location.  Log-structured file systems are sometimes used on these media because they make fewer in-place writes and thus prolong the life of the device by wear leveling. The more common such file systems include:
+
+==Disadvantages==
+
+The design rationale for log-structured file systems assumes that most reads will be optimized away by ever-enlarging memory caches.  This assumption does not always hold:
+
+==See also==
+
+==References==
+
+

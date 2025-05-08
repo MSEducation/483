@@ -1,0 +1,44 @@
+[[Self-service password reset]]
+
+CATEGORIES: Identity management systems, Cryptographic attacks, Password authentication
+
+Self-service password reset (SSPR) is defined as any process or technology that allows users who have either forgotten their password or triggered an intruder lockout to authenticate with an alternate factor, and repair their own problem, without calling the help desk. It is a common feature in identity management software and often bundled in the same software package as a password synchronization capability.
+Typically users who have forgotten their password launch a self-service application from an extension to their workstation login prompt, using their own or another user's web browser, or through a telephone call. Users establish their identity, without using their forgotten or disabled password, by answering a series of personal questions, using a hardware authentication token, responding to a password notification e-mail or, less often, by providing a biometric sample. Users can then either specify a new, unlocked password, or ask that a randomly generated one be provided.
+Self-service password reset expedites problem resolution for users "after the fact," and thus reduces help desk call volume. It can also be used to ensure that password problems are only resolved after adequate user authentication, eliminating an important weakness of many help desks: social engineering attacks, where an intruder calls the help desk, pretends to be the intended victim user, claims that he has forgotten his password, and asks for a new password.
+
+Multi-factor authentication
+
+Rather than merely asking users to answer security questions, modern password reset systems may also leverage a sequence of authentication steps:
+
+Security of authenticating users purely by asking security questions
+
+Despite the benefits, a self-service password reset that relies solely on answers to personal questions can introduce new
+vulnerabilities, since the answers to such questions can often be obtained by social engineering, phishing techniques or simple research. While users are frequently reminded never to reveal their password, they are less likely to treat as sensitive the answers to many commonly used security questions, such as pet names, place of birth or favorite movie. Much of this information may be publicly available on some users' personal home pages. Other answers can be elicited by someone pretending to conduct an opinion survey or offering a free dating service. Since many organizations have standard ways of determining login names from real names, an attacker who knows the names of several employees at such an organization can choose one whose security answers are most readily obtained.
+This vulnerability is not strictly due to self-service password reset—it often exists in the help desk prior to deployment of automation. Self-service password reset technology is often used to reduce this type of vulnerability, by introducing stronger caller authentication factors than the human-operated help desk had been using prior to deployment of automation.
+In September 2008, the Yahoo e-mail account of Governor of Alaska and Vice President of the United States nominee Sarah Palin was accessed without authorization by someone who was able to research answers to two of her security questions, her zip code and date of birth and was able to guess the third, where she met her husband.yahoo.
+
+Preference-based authentication
+
+Jakobsson, Stolterman, Wetzel, and Yang proposed to use preferences to authenticate users for 
+password reset. and are not publicly recorded. Their approach includes two phases---setup and authentication. During the setup, a user is asked to select items that they either like or dislike from several categories of items which are dynamically selected from a big candidate set and are presented to the user in a random order. During the authentication phase, a user is asked to classify his preferences (like or dislike) for the selected items displayed to him in a random order. They evaluated the security of their approach by user experiments, user emulations, and attacker simulations.
+
+Two-factor authentication
+
+Two-factor authentication is a 'strong authentication' method as it adds another layer of security to the password reset process. In most cases this consists of Preference Based Authentication plus a second form of physical authentication (using something the user possesses -i.e. Smartcards, USB tokens, etc.). One popular method is through SMS and email. Advanced SSPR software requires the user to provide a mobile phone number or personal e-mail address during set -up. In the event of a password reset a PIN code will be sent to the user's phone or email and they will need to enter this code during the password reset process.
+
+Accessibility
+
+A major problem with self-service password reset inside corporations and similar organizations is enabling users to access the system if they forgot their primary password. Since SSPR systems are typically web-based, a user must launch a web browser to fix his problem—but the user cannot log into his workstation until the problem is solved. There are various approaches to addressing this Catch-22, most of which are compromises (e.g., desktop software deployment, domain-wide password reset account, telephone access, visiting a neighbour, continuing to call the help desk, etc.).  Some companies have created software which presents a restricted web browser at the login screen with the sole ability to access the password reset page without logging into the system; an example of this is Novell's Client Login Extension technology.  Because these technologies effectively give the user access to computer resources, specifically a web browser, to reset passwords without authenticating to the computer, security is a high priority and capabilities are very limited so that the user cannot do more than is expected in this mode.
+There are two additional problems related to the one of locked out users:
+
+The vouching option
+
+In conjunction with preference-based authentication, self-service password reset procedures could also rely on the network of existing human relations among users. In this scenario, the user who forgot his password asks a colleague for assistance. The "helper" colleague authenticates with the password reset application and vouches for user's identity.
+In this scenario, the problem changes from one of authenticating the user who forgot his password to one of understanding which users should have the ability to vouch for which other users.
+
+
+
+
+
+
+

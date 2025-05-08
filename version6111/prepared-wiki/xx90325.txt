@@ -1,0 +1,38 @@
+[[Named pipe]]
+
+CATEGORIES: Inter-process communication
+
+In computing, a named pipe (also known as a FIFO for its behavior) is an extension to the traditional pipe concept on Unix and Unix-like systems, and is one of the methods of inter-process communication (IPC). The concept is also found in Microsoft Windows, although the semantics differ substantially. A traditional pipe is "unnamed" because it exists anonymously and persists only for as long as the process is running. A named pipe is system-persistent and exists beyond the life of the process and must be deleted once it is no longer being used. Processes generally attach to the named pipes (usually appearing as a file) to perform inter-process communication.
+
+==In Unix==
+
+Instead of a conventional, unnamed, shell pipeline, a named pipeline makes use of the filesystem. It is explicitly created using mkfifo() or mknod(), and two separate processes can access the pipe by name — one process can open it as a reader, and the other as a writer.
+For example, one can create a pipe and set up gzip to compress things piped to it:
+In a separate process shell, independently, one could send the data to be compressed:
+ cat file > my_pipe
+The named pipe can be deleted just like any file:
+ rm my_pipe
+A named pipe can be used to transfer information from one application to another without the use of an intermediate temporary file. For example, you can pipe the output of gzip into a named pipe like so:
+Then load the uncompressed data into a MySQL tableMySQL 5.1 Reference Manual :: 12.2.6 LOAD DATA INFILE Syntax like so:
+Without this named pipe one would need to write out the entire uncompressed version of file.gz before loading it into MySQL. Writing the temporary file is both time consuming and results in more I/O and less free space on the hard drive.
+PostgreSQL's command line terminal, psql, also supports loading data from named pipes.http://postgresql.1045698.n5.nabble.com/psql-and-named-pipes-td1981226.html
+
+==In Windows==
+
+In Windows, the design of named pipes is based towards client-server communication, and they work much like sockets, other than the usual read and write operations. Windows named pipes also support an explicit "passive" mode for server applications (compare: Unix domain sockets). Windows 95 supports named pipe clients. The Windows NT family of operating systems support named pipe clients and servers.
+A named pipe can be accessed much like a file. Win32 SDK functions CreateFile, ReadFile, WriteFile and CloseHandle open, read from, write to, and close a pipe, respectively. Unlike Unix, there is no command line interface.
+Named pipes cannot be mounted within a normal filesystem, unlike in Unix.  Also unlike their Unix counterparts, named pipes are volatile (removed after the last reference to them is closed).  Every pipe is placed in the root directory of the named pipe filesystem (NPFS), mounted under the special path \\.\pipe\ (that is, a pipe named "foo" would have a full path name of \\.\pipe\foo). Anonymous pipes used in pipelining are actually named pipes with a random name.
+They are very rarely seen by users, but there are notable exceptions. The VMware Workstation PC hardware virtualization tool, for instance, can expose emulated serial ports to the host system as named pipes, and the WinDbg kernel mode debugger from Microsoft supports named pipes as a transport for debugging sessions (in fact, VMware and WinDbg can be coupled together - since WinDbg normally requires a serial connection to the target computer - letting driver developers do their development and testing on a single computer). Both programs require the user to enter names in the \\.\pipe\name form.
+Windows NT named pipes can inherit a security context.
+Summary of named pipes on Microsoft Windows:
+The .NET Framework 3.5 has added named pipe support.http://msdn.microsoft.com/en-us/library/system.io.pipes.aspx
+Named pipes can also be used as an endpoint in Microsoft SQL Server.How to connect to a named instance of SQL Server 2005 or SQL Server 2000 by using the client tools in the earlier version of SQL Server
+Named pipes is also a networking protocol in the Server Message Block (SMB) suite, based on the use of a special inter-process communication (IPC) share.  SMB's IPC can seamlessly and transparently pass the authentication context of the user across to Named Pipes.  Windows NT's entire NT Domain protocol suite of services are implemented as DCE/RPC service over Named Pipes, as are the Exchange 5.5 Administrative applications.
+
+==See also==
+
+==References==
+
+==External links==
+
+

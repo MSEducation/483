@@ -1,0 +1,90 @@
+[[Skew-symmetric matrix]]
+
+CATEGORIES: Matrices
+
+In mathematics, and in particular linear algebra, a skew-symmetric (or antisymmetric or antimetric For example, the following matrix is skew-symmetric:
+
+Properties
+
+We assume that the underlying field is not of characteristic 2: that is, that  where 1 denotes the multiplicative identity and 0 the additive identity of the given field. Otherwise, a skew-symmetric matrix is just the same thing as a symmetric matrix.
+Sums and scalar multiples of skew-symmetric matrices are again skew-symmetric. Hence, the skew-symmetric matrices form a vector space. Its dimension is n(n−1)/2.
+Let Matn denote the space of }, i.e.
+where ⊕ denotes the direct sum. Let  then
+Notice that  This is true for every square matrix A with entries from any field whose characteristic is different from 2. 
+Since this definition is independent of the choice of basis, skew-symmetry is a property that depends only on the linear operator A and a choice of inner product.
+All main diagonal entries of a skew-symmetric matrix must be zero, so the trace is zero. If 
+3x3 skew symmetric matrices can be used to represent cross products as matrix multiplications.
+
+Determinant
+
+Let A be a n×n skew-symmetric matrix. The determinant of A satisfies
+In particular, if n is odd, and since the underlying field is not of characteristic 2, the determinant vanishes. This result is called Jacobi's theorem, after Carl Gustav Jacobi (Eves, 1980).
+The even-dimensional case is more interesting. It turns out that the determinant of A for n even can be written as the square of a polynomial in the entries of A, which was first proved by Cayley:
+This polynomial is called the Pfaffian of A and is denoted Pf(A).  Thus the determinant of a real skew-symmetric matrix is always non-negative. However this last fact can be proved in an elementary way as follows: the eigenvalues of a real skew-symmetric matrix are purely imaginary (see below) and to every eigenvalue there corresponds the conjugate eigenvalue with the same multiplicity; therefore, as the determinant is the product of the eigenvalues, each one repeated according to its multiplicity, it follows at once that the determinant, if it is not 0, is a positive real number.
+The number of distinct terms s(n) in the expansion of the determinant of a skew-symmetric matrix of order n has been considered already by Cayley, Sylvester, and  Pfaff.  Due to cancellations, this number is  quite small as compared the number of terms of a generic matrix of order n, which is n!. The sequence s(n)  is 
+and it is encoded in the exponential generating function
+The latter yields to the asymptotics (for n even)
+The number of positive and negative terms are approximatively a half of the total, although their difference takes larger and larger positive and negative values as n increases .
+
+Spectral theory
+
+Since a matrix is similar to its own transpose, they must have the same eigenvalues. It follows that the eigenvalues of a skew-symmetric matrix always come in pairs ±λ (except in the odd-dimensional case where there is an additional unpaired 0 eigenvalue). From the spectral theorem, for a real skew-symmetric matrix the nonzero eigenvalues are all pure imaginary and thus are of the form iλ1, −iλ1, iλ2, −iλ2, … where each of the λk are real.
+Real skew-symmetric matrices are normal matrices (they commute with their adjoints) and are thus subject to the spectral theorem, which states that any real skew-symmetric matrix can be diagonalized by a unitary matrix. Since the eigenvalues of a real skew-symmetric matrix are imaginary it is not possible to diagonalize one by a real matrix. However, it is possible to bring every skew-symmetric matrix to a block diagonal form by an orthogonal transformation. Specifically, every 2n × 2n real skew-symmetric matrix can be written in the form A = Q Σ QT where Q is orthogonal and
+for real λk. The nonzero eigenvalues of this matrix are ±iλk. In the odd-dimensional case Σ always has at least one row and column of zeros.
+More generally, every complex skew-symmetric matrix can be written in the form A = U Σ UT where U is unitary and Σ has the block-diagonal form given above with complex λk. This is an example of the Youla decomposition of a complex square matrix.
+
+Alternating forms
+
+We begin with a special case of the definition.  An alternating form φ on a vector space V over a field K, not of characteristic 2, is defined to be a bilinear form
+such that
+This defines a form with desirable properties for vector spaces over fields of characteristic not equal to 2, but in a vector space over a field of characteristic 2, the definition fails, as every element is its own additive inverse.  That is, symmetric and alternating forms are equivalent, which is clearly false in the case above.  However, we may extend the definition to vector spaces over fields of characteristic 2 as follows:
+In the case where the vector space V is over a field of arbitrary characteristic including characteristic 2, we may state that for all vectors v in V
+This reduces to the above case when the field is not of characteristic 2 as seen below
+Whence,
+Thus, we have a definition that now holds for vector spaces over fields of all characteristics.
+Such a φ will be represented by a skew-symmetric matrix A, φ(v, w) = vTAw, once a basis of V is chosen; and conversely an n×n skew-symmetric matrix A on Kn gives rise to an alternating form sending (v, w) to vTAw.
+
+Infinitesimal rotations
+
+Skew-symmetric matrices over the field of real numbers form the tangent space to the real orthogonal group O(n) at the identity matrix; formally, the special orthogonal Lie algebra. In this sense, then, skew-symmetric matrices can be thought of as infinitesimal rotations.
+Another way of saying this is that the space of skew-symmetric matrices forms the Lie algebra o(n) of the Lie group O(n).
+The Lie bracket on this space is given by the commutator:
+It is easy to check that the commutator of two skew-symmetric matrices is again skew-symmetric: 
+The matrix exponential of a skew-symmetric matrix A is then an orthogonal matrix R:
+The image of the exponential map of a Lie algebra always lies in the connected component of the Lie group that contains the identity element. In the case of the Lie group O(n), this connected component is the special orthogonal group SO(n), consisting of all orthogonal matrices with determinant 1. So R = exp(A) will have determinant +1. Moreover, since the exponential map of a connected compact Lie group is always surjective, it turns out that every orthogonal matrix with unit determinant can be written as the exponential of some skew-symmetric matrix. In the particular important case of dimension n=2, the exponential representation for an orthogonal matrix reduces to  the well-known polar form of a complex number of unit modulus. Indeed, if n=2, a special orthogonal matrix has the form 
+with a2+b2=1. Therefore, putting a=cosθ and b=sinθ, it can be written 
+which corresponds exactly to the polar form cosθ + isinθ = eiθ of a complex number of unit modulus.
+
+Coordinate-free
+
+Skew-symmetrizable matrix
+
+An n-by-n matrix A is said to be skew-symmetrizable if there exist an invertible diagonal matrix D and skew-symmetric matrix S such that 
+
+
+
+
+
+Further reading
+
+ |last=Eves
+ |first=Howard
+ |authorlink=Howard Eves
+ |title=Elementary Matrix Theory
+ |publisher=Dover Publications
+ |year=1980
+ |isbn=978-0-486-63946-8}}
+ |urlname=S/s085720
+ |title=Skew-symmetric matrix
+ |last=Suprunenko|first=D. A.}}
+|title=On the number of distinct terms in the expansion of symmetric and skew determinants. 
+|last=Aitken|first=A. C.
+|year=1944
+|journal=Edinburgh Math. Notes }}
+
+
+
+first1=Peter |last1=Benner|
+first2=Daniel |last2=Kressner
+}}
+

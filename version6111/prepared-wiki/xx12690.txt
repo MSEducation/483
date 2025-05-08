@@ -1,0 +1,25 @@
+[[Zombie process]]
+
+CATEGORIES: Process (computing)
+
+On Unix and Unix-like computer operating systems, a zombie process or defunct process is a process that has completed execution (via the exit system call) but still has an entry in the process table: it is a process in the "Terminated state". This occurs for child processes, where the entry is still needed to allow the parent process to read its child's exit status: once the exit status is read via the  wait system call, the zombie's entry is removed from the process table and it is said to be "reaped". A child process always first becomes a zombie before being removed from the resource table. In most cases, under normal system operation zombies are immediately waited on by their parent and then reaped by the system – processes that stay zombies for a long time are generally an error and cause a resource leak.
+The term zombie process derives from the common definition of zombie — an undead person. In the term's metaphor, the child process has "died" but has not yet been "reaped". Also, unlike normal processes, the kill command has no effect on a zombie process. Zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not become zombie processes; instead, they are adopted by init (process ID 1), which waits on its children.
+
+==Overview==
+
+When a process ends via exit, all of the memory and resources associated with it are deallocated so they can be used by other processes. However, the process's entry in the process table remains. The parent can read the child's exit status by executing the wait system call, whereupon the zombie is removed.  The wait call may be executed in sequential code, but it is commonly executed in a handler for the SIGCHLD signal, which the parent receives whenever a child has died.
+After the zombie is removed, its process identifier (PID) and entry in the process table can then be reused. However, if a parent fails to call wait, the zombie will be left in the process table, causing a resource leak. In some situations this may be desirable – the parent process wishes to continue holding this resource – for example if the parent creates another child process it ensures that it will not be allocated the same PID.  On modern UNIX-like systems (that comply with SUSv3 specification in this respect), the following special case applies: if the parent explicitly ignores SIGCHLD by setting its handler to SIG_IGN (rather than simply ignoring the signal by default) or has the SA_NOCLDWAIT flag set, all child exit status information will be discarded and no zombie processes will be left.
+Zombies can be identified in the output from the Unix ps command by the presence of a "Z" in the "STAT" column.[tpl]cite web|url=http://www-cdf.fnal.gov/offline/UNIX_Concepts/concepts.zombies.txt|title=Zombies(5) - UNIX System V (Concepts)|work=The Collider Detector at Fermilab[/tpl] Zombies that exist for more than a short period of time typically indicate a bug in the parent program, or just an uncommon decision to not reap children (see example). If the parent program is no longer running, zombie processes typically indicate a bug in the operating system.  As with other resource leaks, the presence of a few zombies is not worrisome in itself, but may indicate a problem that would grow serious under heavier loads. Since there is no memory allocated to zombie processes – the only system memory usage is for the process table entry itself – the primary concern with many zombies is not running out of memory, but rather running out of process table entries, concretely process ID numbers.
+To remove zombies from a system, the SIGCHLD signal can be sent to the parent manually, using the kill command. If the parent process still refuses to reap the zombie, the next step would be to remove the parent process. When a process loses its parent, init becomes its new parent. init periodically executes the wait system call to reap any zombies with init as parent.
+
+==Examples==
+
+Synchronously waiting for the specific child processes in a (specific) order may leave zombies present longer than the above-mentioned "short period of time". It is not necessarily a program bug.
+
+==See also==
+
+==References==
+
+==External links==
+
+

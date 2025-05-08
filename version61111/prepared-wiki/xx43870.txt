@@ -1,0 +1,85 @@
+[[Ray transfer matrix analysis]]
+
+CATEGORIES: Geometrical optics, Accelerator physics
+
+Ray transfer matrix analysis (also known as ABCD matrix analysis) is a type of ray tracing technique used in the design of some optical systems, particularly lasers. It involves the construction of a ray transfer matrix which describes the optical system; tracing of a light path through the system can then be performed by multiplying this matrix with a vector representing the light ray. The same analysis is also used in accelerator physics to track particles through the magnet installations of a particle accelerator, see Beam optics. 
+The technique that is described below uses the paraxial approximation of ray optics, which means that all rays are assumed to be at a small angle (θ) and a small distance (x) relative to the optical axis of the system.An exact method for tracing meridional rays is available here.
+
+==Definition of the ray transfer matrix==
+
+The ray tracing technique is based on two reference planes, called the input and output planes, each perpendicular to the optical axis of the system.  Without loss of generality, we will define the optical axis so that it coincides with the z-axis of a fixed coordinate system.  A light ray enters the system when the ray crosses the input plane at a distance x1 from the optical axis while traveling in a direction that makes an angle θ1 with the optical axis. Some distance further along, the ray crosses the output plane, this time at a distance x2 from the optical axis and making an angle θ2.  n1 and n2 are the indices of refraction of the medium in the input and output plane, respectively.
+These quantities are related by the expression
+where
+and
+This relates the ray vectors at the input and output planes by the ray transfer matrix (RTM) M, which represents the optical system between the two reference planes.  A thermodynamics argument based on the blackbody radiation can be used to show that the determinant of a RTM is the ratio of the indices of refraction:
+As a result, if the input and output planes are located within the same medium, or within two different media which happen to have identical indices of refraction, then the determinant of M is simply equal to 1.
+A similar technique can be used to analyze electrical circuits.  See Two-port networks.
+
+==Some examples==
+
+where d is the separation distance (measured along the optical axis) between the two reference planes. The ray transfer equation thus becomes:
+and this relates the parameters of the two rays as:
+where f is the focal length of the lens. To describe combinations of optical components, ray transfer matrices may be multiplied together to obtain an overall RTM for the compound optical system. For the example of free space of length d followed by a lens of focal length f:
+Note that, since the multiplication of matrices is non-commutative, this is not the same RTM as that for a lens followed by free space:
+Thus the matrices must be ordered appropriately, with the last matrix premultiplying the second last, and so on until the first matrix is premultiplied by the second. Other matrices can be constructed to represent interfaces with media of different refractive indices, reflection from mirrors, etc.
+
+==Table of ray transfer matrices==
+
+for simple optical components
+
+==Resonator stability==
+
+RTM analysis is particularly useful when modeling the behaviour of light in optical resonators, such as those used in lasers. At its simplest, an optical resonator consists of two identical facing mirrors of 100% reflectivity and radius of curvature R, separated by some distance d. For the purposes of ray tracing, this is equivalent to a series of identical thin lenses of focal length f=R/2, each separated from the next by length d. This construction is known as a lens equivalent duct or lens equivalent waveguide. The RTM of each section of the waveguide is, as above,
+RTM analysis can now be used to determine the stability of the waveguide (and equivalently, the resonator). That is, it can be determined under what conditions light travelling down the waveguide will be periodically refocussed and stay within the waveguide. To do so, we can find all the "eigenrays" of the system: the input ray vector at each of the mentioned sections of the waveguide times a real or complex factor λ is equal to the output one. This gives:
+which is an eigenvalue equation:
+where I is the 2x2 identity matrix.
+We proceed to calculate the eigenvalues of the transfer matrix:
+leading to the characteristic equation
+where
+is the trace of the RTM, and
+is the determinant of the RTM.  After one common substitution we have:
+where
+is the stability parameter. The eigenvalues are the solutions of the characteristic equation. From the quadratic formula we find
+Now, consider a ray after N passes through the system:
+with the substitution g = cos(ϕ).
+After N waveguide sectors, the output reads
+what represents a periodic function.
+
+==Ray transfer matrices for Gaussian beams==
+
+This beam can be propagated through an optical system with a given ray transfer matrix by using the equation:
+where k is a normalisation constant chosen to keep the second component of the ray vector equal to 1.  Using matrix multiplication, this equation expands as
+and
+Dividing the first equation by the second eliminates the normalisation constant:
+It is often convenient to express this last equation in reciprocal form:
+
+===Example: Free space===
+
+Consider a beam traveling a distance d through free space, the ray transfer matrix is
+and so 
+That is, traveling through free space increases the radius by d, as we would expect.
+
+===Example: Thin lens===
+
+Consider a beam traveling through a thin lens with focal length f. The ray transfer matrix is
+and so 
+Again, only the real part of q is affected: the radius of curvature is reduced by 1/f.
+
+==See also==
+
+==References==
+
+ |title= Introduction to matrix methods in optics
+ |last1= Gerrard |first1= Anthony
+ |last2= Burch |first2 = James M.
+ |year=1994
+ |publisher=Courier Dover
+ |location=
+ |isbn= 9780486680446
+ |pages=
+ |url=http://books.google.de/books?id=naUSNojPwOgC
+}}
+
+==External links==
+
+

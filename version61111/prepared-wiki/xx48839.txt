@@ -1,0 +1,44 @@
+[[Polymorphic code]]
+
+CATEGORIES: Types of malware
+
+In computer terminology, polymorphic code is code that uses a polymorphic engine to mutate while keeping the original algorithm intact. That is, the code changes itself each time it runs, but the function of the code (its semantics) will not change at all. For example, 1+3 and 6-2 both achieve the same result while using different code. This technique is sometimes used by computer viruses, shellcodes and computer worms to hide their presence.Raghunathan, Srinivasan (2007). Protecting anti-virus software under viral attacks. M.Sc. Thesis, Arizona State University.http://www.public.asu.edu/~rsriniv8/Documents/Raghunathan_MS_thesis.pdf
+Encryption is the most common method to hide code. With encryption, the main body of the code (also called its payload) is encrypted and will appear meaningless. For the code to function as before, a decryption function is added to the code. When the code is executed this function reads the payload and decrypts it before executing it in turn.
+Encryption alone is not polymorphism. To gain polymorphic behavior, the encryptor/decryptor pair are mutated with each copy of the code. This allows different versions of some code while all function the same.Wong, Wing; Stamp, M. (2006). Hunting for Metamorphic Engines.  Journal in Computer Virology. Department of Computer Science, San Jose State University. http://www.truststc.org/pubs/237/hunting.pdf
+
+==Malicious code==
+
+Most anti-virus software and intrusion detection systems (IDS) attempt to locate malicious code by searching through computer files and data packets sent over a computer network. If the security software finds patterns that correspond to known computer viruses or worms, it takes appropriate steps to neutralize the threat. Polymorphic algorithms make it difficult for such software to recognize the offending code because it constantly mutates.
+Malicious programmers have sought to protect their encrypted code from this virus-scanning strategy by rewriting the unencrypted decryption engine (and the resulting encrypted payload) each time the virus or worm is propagated. Anti-virus software uses sophisticated pattern analysis to find underlying patterns within the different mutations of the decryption engine, in hopes of reliably detecting such malware.
+Emulation may be used to defeat polymorphic obfuscation by letting the malware demangle itself in a virtual environment before utilising other methods, such as traditional signature scanning. Such virtual environment is sometimes called a sandbox. Polymorphism does not protect the virus against such emulation, if the decrypted payload remains the same regardless of variation in the decryption algorithm. Metamorphic code techniques may be used to complicate detection further, as the virus may execute without ever having identifiable code blocks in memory that remain constant from infection to infection.
+The first known polymorphic virus was written by Mark Washburn. The virus, called 1260, was written in 1990. A more well-known polymorphic virus was created in 1992 by the hacker Dark Avenger (a pseudonym) as a means of avoiding pattern recognition from antivirus software. A common and very virulent polymorphic virus is the file infecter Virut.
+
+==Example==
+
+This example is not a really polymorphic code but will serve as an introduction to the world of encryption via the XOR operator.
+For example, in an algorithm using the variables A and B but not the variable C, there could be a large amount of code that changes C, and it would have no effect on the algorithm itself, allowing it to be changed endlessly and without heed as to what the final product will be.
+     lots of encrypted code
+     ...
+ Decryption_Code:
+     C = C + 1
+     A = Encrypted
+ Loop:
+     B = *A
+     C = 3214 * A
+     B = B XOR CryptoKey
+     *A = B
+     C = 1
+     C = A + B
+     A = A + 1
+     GOTO Loop IF NOT A = Decryption_Code
+     C = C^2
+     GOTO Encrypted
+  CryptoKey:
+     some_random_number
+The encrypted code is the payload. To make different versions of the code, in each copy the garbage lines which manipulate C will change. The code inside "Encrypted" ("lots of encrypted code") can search the code between Decryption_Code and CryptoKey and each algorithm for new code that does the same thing. Usually the coder uses a zero key (for example; A xor 0 = A) for the first generation of the virus, making it easier for the coder because with this key the code is not encrypted. The coder then implements an incremental key algorithm or a random one.
+
+==See also==
+
+==References==
+
+

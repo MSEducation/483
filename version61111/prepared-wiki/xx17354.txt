@@ -1,0 +1,132 @@
+[[Lp space]]
+
+CATEGORIES: Normed spaces, Banach spaces, Mathematical series, Function spaces
+
+In mathematics, the L''p'' spaces are function spaces defined using a natural generalization of the p-norm for finite-dimensional vector spaces. They are sometimes called Lebesgue spaces, named after Henri Lebesgue [tpl]harv|Dunford|Schwartz|1958|loc=III.3[/tpl], although according to the Bourbaki group [tpl]harv|Bourbaki|1987[/tpl] they were first introduced by Frigyes Riesz [tpl]harv|Riesz|1910[/tpl].
+L''p'' spaces form an important class of Banach spaces in functional analysis, and of topological vector spaces.
+Lebesgue spaces have applications in physics, statistics, finance, engineering, and other disciplines.
+
+==The [tpl]mvar|p[/tpl]-norm in finite dimensions==
+
+The length of a vector [tpl]math|x [tpl]=[/tpl] (x1, x2, ..., xn)[/tpl] in the [tpl]mvar|n[/tpl]-dimensional real vector space [tpl]math|Rn[/tpl] is usually given by the Euclidean norm:
+The Euclidean distance between two points [tpl]mvar|x[/tpl] and [tpl]mvar|y[/tpl] is the length [tpl]math|[tpl]!![/tpl]x − y[tpl]!![/tpl]2[/tpl] of the straight line between the two points. In many situations, the Euclidean distance is insufficient for capturing the actual distances in a given space. For example, taxi drivers in Manhattan should measure distance not in terms of the length of the straight line to their destination, but in terms of the Manhattan distance, which takes into account that streets are either orthogonal or parallel to each other. The class of [tpl]mvar|p[/tpl]-norms generalizes these two examples and has an abundance of applications in many parts of mathematics, physics, and computer science.
+
+===Definition===
+
+For a real number [tpl]math|p ≥ 1[/tpl], the [tpl]mvar|p[/tpl]-norm or [tpl]math|''Lp''[/tpl]-norm of [tpl]mvar|x[/tpl] is defined by
+The Euclidean norm from above falls into this class and is the 2-norm, and the 1-norm is the norm that corresponds to the Manhattan distance.
+The [tpl]math|''L''∞[/tpl]-norm or maximum norm (or uniform norm) is the limit of the [tpl]math|Lp[/tpl]-norms for [tpl]math|p → ∞[/tpl]. It turns out that this limit is equivalent to the following definition:
+For all [tpl]math|p ≥ 1[/tpl], the [tpl]mvar|p[/tpl]-norms and maximum norm as defined above indeed satisfy the properties of a "length function" (or norm), which are that:
+Abstractly speaking, this means that [tpl]math|Rn[/tpl] together with the [tpl]mvar|p[/tpl]-norm is a Banach space. This Banach space is the [tpl]math|''Lp''[/tpl]-space over [tpl]math|Rn[/tpl].
+
+====Relations between [tpl]mvar|p[/tpl]-norms====
+
+The grid distance ("Manhattan distance") between two points is never shorter than the length of the line segment between them (the Euclidean or "as the crow flies" distance). Formally, this means that the Euclidean norm of any vector is bounded by its 1-norm:
+This fact generalizes to [tpl]mvar|p[/tpl]-norms in that the [tpl]mvar|p[/tpl]-norm [tpl]math|[tpl]!![/tpl]x[tpl]!![/tpl]p[/tpl] of any given vector [tpl]mvar|x[/tpl] does not grow with [tpl]mvar|p[/tpl]:
+For the opposite direction, the following relation between the 1-norm and the 2-norm is known:
+This inequality depends on the dimension [tpl]mvar|n[/tpl] of the underlying vector space and follows directly from the Cauchy–Schwarz inequality.
+In general, for vectors in [tpl]math|Cn[/tpl] where {{math|0 
+===When 0 In [tpl]math|Rn[/tpl] for [tpl]math|n > 1[/tpl], the formula
+defines an absolutely homogeneous function of degree 1 for [tpl]math|0 n[/tpl] for [tpl]math|n > 1[/tpl], the formula for {{math|0 defines a subadditive function, which does define an F-norm. This F-norm is homogeneous of degree [tpl]mvar|p[/tpl].
+However, the function
+defines a metric. The metric space [tpl]math|(Rn, dp)[/tpl] is denoted by ℓnp.
+Although the [tpl]mvar|p[/tpl]-unit ball Bnp around the origin in this metric is "concave", the topology defined on [tpl]math|Rn[/tpl] by the metric [tpl]math|dp[/tpl] is the usual vector space topology of [tpl]math|Rn[/tpl], hence ℓnp is a locally convex topological vector space. Beyond this qualitative statement, a quantitative way to measure the lack of convexity of ℓnp is to denote by [tpl]math|Cp(n)[/tpl] the smallest constant [tpl]mvar|C[/tpl] such that the multiple C Bnp of the [tpl]mvar|p[/tpl]-unit ball contains the convex hull of Bnp, equal to Bn1. The fact that for fixed {{math|p shows that the infinite-dimensional sequence space [tpl]math|ℓp[/tpl] defined below, is no longer locally convex.
+
+===When p = 0===
+
+There is one ℓ0 norm and another function called the ℓ0 "norm" (with quotation marks).
+The mathematical definition of the ℓ0 norm was established by Banach's Theory of Linear Operations. The space of sequences has a complete metric topology provided by the F-norm 
+which is discussed by Stefan Rolewicz in Metric Linear Spaces.[tpl]Citation|title=Functional analysis and control theory: Linear systems|last=Rolewicz |first=Stefan|year=1987| isbn=90-277-2186-6| publisher=D. Reidel Publishing Co.; PWN—Polish Scientific Publishers|oclc=13064804|edition=Translated from the Polish by Ewa Bednarczuk| series=Mathematics and its Applications (East European Series)|location=Dordrecht; Warsaw|volume=29|pages=xvi+524| mr=920371[/tpl] The ℓ0-normed space is studied in functional analysis, probability theory, and harmonic analysis.
+Another function was called the ℓ0 "norm" by David Donoho — whose quotation marks warn that this function is not a proper norm — is the number of non-zero entries of the vector x. Many authors abuse terminology by omitting the quotation marks. Defining 00 = 0, the zero "norm" of x is equal to 
+This is not a norm (B-norm, with "B" for Banach) because it is not homogeneous. Despite these defects as a mathematical norm, the non-zero counting "norm" has uses in scientific computing, information theory, and statistics – notably in compressed sensing in signal processing and computational harmonic analysis.
+
+==The [tpl]mvar|p[/tpl]-norm in countably infinite dimensions==
+
+The [tpl]mvar|p[/tpl]-norm can be extended to vectors that have an infinite number of components, which yields the space [tpl]math|ℓ p[/tpl]. This contains as special cases:
+The space of sequences has a natural vector space structure by applying addition and scalar multiplication coordinate by coordinate. Explicitly, the vector sum and the scalar action for infinite sequences of real (or complex) numbers are given by:
+Define the [tpl]mvar|p[/tpl]-norm:
+Here, a complication arises, namely that the series on the right is not always convergent, so for example, the sequence made up of only ones, [tpl]math|(1, 1, 1, ...)[/tpl], will have an infinite [tpl]mvar|p[/tpl]-norm for [tpl]math|1 ≤ p  p[/tpl] is then defined as the set of all infinite sequences of real (or complex) numbers such that the [tpl]mvar|p[/tpl]-norm is finite.
+One can check that as [tpl]mvar|p[/tpl] increases, the set [tpl]math|ℓ p[/tpl] grows larger. For example, the sequence
+is not in [tpl]math|ℓ 1[/tpl], but it is in [tpl]math|ℓ p[/tpl] for [tpl]math|p > 1[/tpl], as the series
+diverges for [tpl]math|p [tpl]=[/tpl] 1[/tpl] (the harmonic series), but is convergent for [tpl]math|p > 1[/tpl].
+One also defines the [tpl]math|∞[/tpl]-norm using the supremum:
+and the corresponding space [tpl]math|ℓ ∞[/tpl] of all bounded sequences. It turns out that[tpl]Citation | last1=Maddox | first1=I.J. | author1-link=I.J. Maddox | title=Elements of Functional Analysis | publisher=CUP | location=Cambridge | edition=2nd | year=1988[/tpl], page 16
+if the right-hand side is finite, or the left-hand side is infinite. Thus, we will consider [tpl]math|ℓ p[/tpl] spaces for [tpl]math|1 ≤ p ≤ ∞[/tpl].
+The [tpl]mvar|p[/tpl]-norm thus defined on [tpl]math|ℓ p[/tpl] is indeed a norm, and [tpl]math|ℓ p[/tpl] together with this norm is a Banach space. The fully general [tpl]math|Lp[/tpl] space is obtained — as seen below — by considering vectors, not only with finitely or countably-infinitely many components, but with "arbitrarily many components"; in other words, functions. An integral instead of a sum is used to define the [tpl]mvar|p[/tpl]-norm.
+
+==[tpl]math|Lp[/tpl] spaces==
+
+Let {{math|1 ≤ p The set of such functions forms a vector space, with the following natural operations:
+for every scalar [tpl]mvar|λ[/tpl].
+That the sum of two [tpl]mvar|p[/tpl]-th power integrable functions is again [tpl]mvar|p[/tpl]-th power integrable follows from the inequality
+This can be made into a normed vector space in a standard way; one simply takes the quotient space with respect to the kernel of [tpl]math|[tpl]!![/tpl] · [tpl]!![/tpl]p[/tpl]. Since for any measurable function [tpl]math| f [/tpl], we have that [tpl]math|[tpl]!![/tpl] f [tpl]!![/tpl]p [tpl]=[/tpl] 0[/tpl] if and only if [tpl]math| f  [tpl]=[/tpl] 0[/tpl] almost everywhere, the kernel of [tpl]math|[tpl]!![/tpl] · [tpl]!![/tpl]p[/tpl] does not depend upon [tpl]mvar|p[/tpl],
+In the quotient space, two functions [tpl]math| f [/tpl] and [tpl]mvar|g[/tpl] are identified if [tpl]math| f  [tpl]=[/tpl] g[/tpl] almost everywhere. The resulting normed vector space is, by definition,
+For [tpl]math|p [tpl]=[/tpl] ∞[/tpl], the space [tpl]math|L∞(S, μ)[/tpl] is defined as follows. We start with the set of all measurable functions from [tpl]mvar|S[/tpl] to [tpl]math|C[/tpl] or [tpl]math|R[/tpl] which are essentially bounded, i.e. bounded up to a set of measure zero. Again two such functions are identified if they are equal almost everywhere. Denote this set by [tpl]math|L∞(S, μ)[/tpl], for a function [tpl]math| f [/tpl] in this set, its essential supremum serves as an appropriate norm:
+As before, if there exists [tpl]math|q ∞(S, μ) ∩ Lq(S, μ)[/tpl], then
+For [tpl]math|1 ≤ p ≤ ∞, Lp(S, μ)[/tpl] is a Banach space. The fact that [tpl]math|Lp[/tpl] is complete is often referred to as the Riesz-Fischer theorem. Completeness can be checked using the convergence theorems for Lebesgue integrals.
+When the underlying measure space [tpl]mvar|S[/tpl] is understood, [tpl]math|Lp(S, μ)[/tpl] is often abbreviated [tpl]math|Lp(μ)[/tpl], or just [tpl]math|Lp[/tpl]. The above definitions generalize to Bochner spaces.
+
+===Special cases===
+
+Similar to the [tpl]math|ℓp[/tpl] spaces, [tpl]math|L2[/tpl] is the only Hilbert space among [tpl]math|Lp[/tpl] spaces. In the complex case, the inner product on [tpl]math|L2[/tpl] is defined by
+The additional inner product structure allows for a richer theory, with applications to, for instance, Fourier series and quantum mechanics. Functions in [tpl]math|L2[/tpl] are sometimes called quadratically integrable functions, square-integrable functions or square-summable functions, but sometimes these terms are reserved for functions that are square-integrable in some other sense, such as in the sense of a Riemann integral [tpl]harv|Titchmarsh|1976[/tpl].
+If we use complex-valued functions, the space [tpl]math|L∞[/tpl] is a commutative C*-algebra with pointwise multiplication and conjugation. For many measure spaces, including all sigma-finite ones, it is in fact a commutative von Neumann algebra. An element of [tpl]math|L∞[/tpl] defines a bounded operator on any [tpl]math|Lp[/tpl] space by multiplication.
+For [tpl]math|1 ≤ p ≤ ∞[/tpl] the [tpl]math|ℓp[/tpl] spaces are a special case of [tpl]math|Lp[/tpl] spaces, when [tpl]math|S [tpl]=[/tpl] N[/tpl], and [tpl]mvar|μ[/tpl] is the counting measure on [tpl]math|N[/tpl]. More generally, if one considers any set [tpl]mvar|S[/tpl] with the counting measure, the resulting [tpl]math|Lp[/tpl] space is denoted [tpl]math|ℓp(S)[/tpl]. For example, the space [tpl]math|ℓp(Z)[/tpl] is the space of all sequences indexed by the integers, and when defining the [tpl]mvar|p[/tpl]-norm on such a space, one sums over all the integers. The space [tpl]math|ℓp(n)[/tpl], where [tpl]mvar|n[/tpl] is the set with [tpl]mvar|n[/tpl] elements, is [tpl]math|Rn[/tpl] with its [tpl]mvar|p[/tpl]-norm as defined above. As any Hilbert space, every space [tpl]math|L2[/tpl] is linearly isometric to a suitable [tpl]math|ℓ2(I)[/tpl], where the cardinality of the set [tpl]mvar|I[/tpl] is the cardinality of an arbitrary Hilbertian basis for this particular [tpl]math|L2[/tpl].
+
+==Properties of Lp spaces==
+
+===Dual spaces===
+
+The dual space (the space of all continuous linear functionals) of [tpl]math|Lp(μ)[/tpl] for [tpl]math|1 q(μ)[/tpl], where [tpl]mvar|q[/tpl] is such that [tpl]math| [tpl]sfrac|1|p[/tpl] + [tpl]sfrac|1|q[/tpl] [tpl]=[/tpl] 1[/tpl]. This isomorphism associates [tpl]math|g ∈ Lq(μ)[/tpl] with the functional [tpl]math|κp(g) ∈ Lp(μ)∗[/tpl] defined by
+The fact that [tpl]math|κp(g)[/tpl] is well defined and continuous follows from Hölder's inequality. [tpl]math|κp : Lq(μ) → Lp(μ)∗[/tpl] is a linear mapping which is an isometry by the extremal case of Hölder's inequality. It is also possible to show (for example with the Radon–Nikodym theorem, see[tpl]Citation | last1=Rudin | first1=Walter | author1-link=Walter Rudin | title=Real and Complex Analysis | publisher=Tata McGraw-Hill | location=New Delhi | edition=2nd | year=1980 |isbn=9780070542341[/tpl], Theorem 6.16) that any [tpl]math|G ∈ Lp(μ)∗[/tpl] can be expressed this way: i.e., that [tpl]math|κp[/tpl] is onto. Since [tpl]math|κp[/tpl] is onto and isometric, it is an isomorphism of Banach spaces. With this (isometric) isomorphism in mind, it is usual to say simply that [tpl]math|Lq[/tpl] "is" the dual of [tpl]math|Lp[/tpl].
+For [tpl]math|1 p(μ)[/tpl] is reflexive. Let [tpl]math|κp[/tpl] be as above and let [tpl]math|κq : Lp(μ) → Lq(μ)∗[/tpl] be the corresponding linear isometry. Consider the map from [tpl]math|Lp(μ)[/tpl] to [tpl]math|Lp(μ)∗∗[/tpl], obtained by composing [tpl]math|κq[/tpl] with the transpose (or adjoint) of the inverse of [tpl]math|κp[/tpl]:
+This map coincides with the canonical embedding [tpl]mvar|J[/tpl] of [tpl]math|Lp(μ)[/tpl] into its bidual. Moreover, the map [tpl]math|jp[/tpl] is onto, as composition of two onto isometries, and this proves reflexivity.
+If the measure [tpl]mvar|μ[/tpl] on [tpl]mvar|S[/tpl] is sigma-finite, then the dual of [tpl]math|L1(μ)[/tpl] is isometrically isomorphic to [tpl]math|L∞(μ)[/tpl] (more precisely, the map [tpl]math|κ1[/tpl] corresponding to [tpl]math|p [tpl]=[/tpl] 1[/tpl] is an isometry from [tpl]math|L∞(μ)[/tpl] onto [tpl]math|L1(μ)∗[/tpl]).
+The dual of [tpl]math|L∞[/tpl] is subtler. Elements of [tpl]math|L∞(μ)∗[/tpl] can be identified with bounded signed finitely additive measures on [tpl]mvar|S[/tpl] that are absolutely continuous with respect to [tpl]mvar|μ[/tpl]. See ba space for more details. If we assume the axiom of choice, this space is much bigger than [tpl]math|L1(μ)[/tpl] except in some trivial cases. However, Saharon Shelah proved that there are relatively consistent extensions of Zermelo-Fraenkel set theory (ZF + DC + "Every subset of the real numbers has the Baire property") in which the dual of [tpl]math|ℓ∞[/tpl] is [tpl]math|ℓ1[/tpl].[tpl]Citation|title=Handbook of Analysis and its Foundations|last=Schechter |first=Eric|year=1997| publisher=Academic Press Inc.|location=London[/tpl] See Sections 14.77 and 27.44--47
+
+===Embeddings===
+
+Colloquially, if [tpl]math|1 ≤ p p(S, μ)[/tpl] contains functions that are more locally singular, while elements of [tpl]math|Lq(S, μ)[/tpl] can be more spread out. Consider the Lebesgue measure on the half line [tpl]math|(0, ∞)[/tpl]. A continuous function in [tpl]math|L1[/tpl] might blow up near 0 but must decay sufficiently fast toward infinity. On the other hand, continuous functions in [tpl]math|L∞[/tpl] need not decay at all but no blow-up is allowed. The precise technical result is the following:[tpl]Citation|title=Another note on the inclusion [tpl]math|Lp(μ) ⊂ Lq(μ)[/tpl]|last=Villani |first=Alfonso|year=1985| journal=Amer. Math. Monthly|volume=92 |number=7 |pages=485–487 |doi=10.2307/2322503 |mr=801221[/tpl]
+In both cases the embedding is continuous, in that the identity operator is a bounded linear map from
+[tpl]math|Lq[/tpl] to [tpl]math|Lp[/tpl] in the first case,
+and [tpl]math|Lp[/tpl] to [tpl]math|Lq[/tpl] in the second.
+(This is a consequence of the closed graph theorem
+and properties of [tpl]math|Lp[/tpl] spaces.) Indeed, if the domain [tpl]mvar|S[/tpl] has finite measure,
+one can make the following explicit calculation via Jensen's inequality:
+The constant appearing in the above inequality is optimal, in the sense that the operator norm of the identity [tpl]math|I : Lq(S, μ) → Lp(S, μ)[/tpl] is precisely
+the case of equality being achieved exactly when [tpl]math| f  [tpl]=[/tpl] 1[/tpl] [tpl]mvar|μ[/tpl]-a.e.
+
+===Dense subspaces===
+
+Throughout this section we assume that: {{math|1 ≤ p Let [tpl]math|(S, Σ, μ)[/tpl] be a measure space. An integrable simple function [tpl]math| f [/tpl] on [tpl]mvar|S[/tpl] is one of the form
+where [tpl]math|aj[/tpl] is scalar and [tpl]math|Aj ∈ Σ[/tpl] has finite measure, for [tpl]math|j [tpl]=[/tpl] 1, ..., n[/tpl]. By construction of the integral, the vector space of integrable simple functions is dense in [tpl]math|Lp(S, Σ, μ)[/tpl].
+More can be said when [tpl]mvar|S[/tpl] is a metrizable topological space and [tpl]math|Σ[/tpl] its Borel [tpl]mvar|σ[/tpl]–algebra, i.e., the smallest [tpl]mvar|σ[/tpl]–algebra of subsets of [tpl]mvar|S[/tpl] containing the open sets.
+Suppose [tpl]math|V ⊂ S[/tpl] is an open set with [tpl]math|μ(V)  0[/tpl], there exist a closed set [tpl]mvar|F[/tpl] and an open set [tpl]mvar|U[/tpl] such that
+It follows that there exists [tpl]mvar|φ[/tpl] continuous on [tpl]mvar|S[/tpl] such that
+If [tpl]mvar|S[/tpl] can be covered by an increasing sequence [tpl]math|(Vn)[/tpl] of open sets that have finite measure, then the space of [tpl]mvar|p[/tpl]–integrable continuous functions is dense in [tpl]math|Lp(S, Σ, μ)[/tpl]. More precisely, one can use bounded continuous functions that vanish outside one of the open sets [tpl]math|Vn[/tpl].
+This applies in particular when [tpl]math|S [tpl]=[/tpl] Rd[/tpl] and when [tpl]mvar|μ[/tpl] is the Lebesgue measure. The space of continuous and compactly supported functions is dense in [tpl]math|Lp(Rd)[/tpl]. Similarly, the space of integrable step functions is dense in [tpl]math|Lp(Rd)[/tpl]; this space is the linear span of indicator functions of bounded intervals when [tpl]math|d [tpl]=[/tpl] 1[/tpl], of bounded rectangles when [tpl]math|d [tpl]=[/tpl] 2[/tpl] and more generally of products of bounded intervals.
+Several properties of general functions in [tpl]math|Lp(Rd)[/tpl] are first proved for continuous and compactly supported functions (sometimes for step functions), then extended by density to all functions. For example, it is proved this way that translations are continuous on [tpl]math|Lp(Rd)[/tpl], in the following sense: 
+where
+
+==Applications==
+
+Lp spaces are widely used in mathematics and applications.
+
+===Hausdorff–Young inequality===
+
+The Fourier transform for the real line (resp. for periodic functions, see Fourier series), maps Lp(R) to Lq(R) (resp. Lp(T) to ℓq), where 1 ≤ p ≤ 2 and 1/p + 1/q = 1. This is a consequence of the Riesz-Thorin interpolation theorem, and is made precise with the Hausdorff–Young inequality.
+By contrast, if p > 2, the Fourier transform does not map into Lq.
+
+===Hilbert spaces===
+
+Hilbert spaces are central to many applications, from quantum mechanics to stochastic calculus. The spaces L2 and ℓ2 are both Hilbert spaces. In fact, by choosing a Hilbert basis, one sees that all Hilbert spaces are isometric to ℓ2(E), where E is a set with an appropriate cardinality.
+
+===Statistics===
+
+In statistics, measures of central tendency and statistical dispersion, such as the mean, median, and standard deviation, are defined in terms of Lp metrics, and measures of central tendency can be characterized as solutions to variational problems.
+
+==
+
+==External links==
+
+

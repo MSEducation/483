@@ -1,0 +1,77 @@
+Direct methods compute the solution to a problem in a finite number of steps. These methods would give the precise answer if they were performed in infinite precision arithmetic. Examples include Gaussian elimination, the QR factorization method for solving [[system of linear equations|systems
+of linear equations]], and the simplex method of linear programming. In practice, finite precision is used and the result is an approximation of the true solution (assuming stability).
+In contrast to direct methods, iterative methods are not expected to terminate in a finite number of steps. Starting from an initial guess, iterative methods form successive approximations that converge to the exact solution only in the limit. A convergence test, often involving the residual, is specified in order to decide when a sufficiently accurate solution has (hopefully) been found. Even using infinite precision arithmetic these methods would not reach the solution within a finite number of steps (in general). Examples include Newton's method, the bisection method, and Jacobi iteration. In computational matrix algebra, iterative methods are generally needed for large problems.
+Iterative methods are more common than direct methods in numerical analysis. Some methods are direct in principle but are usually used as though they were not, e.g. GMRES and the conjugate gradient method. For these methods the number of steps needed to obtain the exact solution is so large that an approximation is accepted in the same manner as for an iterative method.
+
+===Discretization===
+
+Furthermore, continuous problems must sometimes be replaced by a discrete problem whose solution is known to approximate that of the continuous problem; this process is called discretization. For example, the solution of a differential equation is a function. This function must be represented by a finite amount of data, for instance by its value at a finite number of points at its domain, even though this domain is a continuum.
+
+==Generation and propagation of errors==
+
+The study of errors forms an important part of numerical analysis. There are several ways in which error can be introduced in the solution of the problem.
+
+===Round-off===
+
+Round-off errors arise because it is impossible to represent all real numbers exactly on a machine with finite memory (which is what all practical digital computers are).
+
+===Truncation and discretization error===
+
+Once an error is generated, it will generally propagate through the calculation. For instance, we have already noted that the operation + on a calculator (or a computer) is inexact. It follows that a calculation of the type a+b+c+d+e is even more inexact.
+What does it mean when we say that the truncation error is created when we approximate a mathematical procedure?  We know that to integrate a function exactly requires one to find the sum of infinite trapezoids.  But numerically one can find the sum of only finite trapezoids, and hence the approximation of the mathematical procedure.  Similarly, to differentiate a function, the differential element approaches to zero but numerically we can only choose a finite value of the differential element.
+
+===Numerical stability and well-posed problems===
+
+Numerical stability is an important notion in numerical analysis. An algorithm is called numerically stable if an error, whatever its cause, does not grow to be much larger during the calculation. This happens if the problem is well-conditioned, meaning that the solution changes by only a small amount if the problem data are changed by a small amount. To the contrary, if a problem is ill-conditioned, then any small error in the data will grow to be a large error.
+Both the original problem and the algorithm used to solve that problem can be well-conditioned and/or ill-conditioned, and any combination is possible.
+One of the simplest problems is the evaluation of a function at a given point. The most straightforward approach, of just plugging in the number in the formula is sometimes not very efficient. For polynomials, a better approach is using the Horner scheme, since it reduces the necessary number of multiplications and additions. Generally, it is important to estimate and control round-off errors arising from the use of floating point arithmetic.
+
+===Interpolation, extrapolation, and regression===
+
+Interpolation solves the following problem: given the value of some unknown function at a number of points, what value does that function have at some other point between the given points?
+Extrapolation is very similar to interpolation, except that now we want to find the value of the unknown function at a point which is outside the given points.
+Regression is also similar, but it takes into account that the data is imprecise. Given some points, and a measurement of the value of some function at these points (with an error), we want to determine the unknown function. The least squares-method is one popular way to achieve this.
+
+===Solving equations and systems of equations===
+
+Much effort has been put in the development of methods for solving systems of linear equations. Standard direct methods, i.e., methods that use some matrix decomposition are Gaussian elimination, LU decomposition, Cholesky decomposition for symmetric (or hermitian) and positive-definite matrix, and QR decomposition for non-square matrices. Iterative methods such as the Jacobi method, Gauss–Seidel method, successive over-relaxation and conjugate gradient method are usually preferred for large systems. General iterative methods can be developed using a matrix splitting.
+Root-finding algorithms are used to solve nonlinear equations (they are so named since a root of a function is an argument for which the function yields zero). If the function is differentiable and the derivative is known, then Newton's method is a popular choice. Linearization is another technique for solving nonlinear equations.
+
+===Solving eigenvalue or singular value problems===
+
+Several important problems can be phrased in terms of eigenvalue decompositions or singular value decompositions. For instance, the spectral image compression algorithmThe Singular Value Decomposition and Its Applications in Image Compression is based on the singular value decomposition. The corresponding tool in statistics is called principal component analysis.
+
+===Optimization===
+
+Optimization problems ask for the point at which a given function is maximized (or minimized). Often, the point also has to satisfy some constraints.
+The field of optimization is further split in several subfields, depending on the form of the objective function and the constraint. For instance, linear programming deals with the case that both the objective function and the constraints are linear. A famous method in linear programming is the simplex method.
+The method of Lagrange multipliers can be used to reduce optimization problems with constraints to unconstrained optimization problems.
+
+===Evaluating integrals===
+
+Numerical integration, in some instances also known as numerical quadrature, asks for the value of a definite integral. Popular methods use one of the Newton–Cotes formulas (like the midpoint rule or Simpson's rule) or Gaussian quadrature. These methods rely on a "divide and conquer" strategy, whereby an integral on a relatively large set is broken down into integrals on smaller sets. In higher dimensions, where these methods become prohibitively expensive in terms of computational effort, one may use Monte Carlo or quasi-Monte Carlo methods (see Monte Carlo integration), or, in modestly large dimensions, the method of sparse grids.
+
+===Differential equations===
+
+Numerical analysis is also concerned with computing (in an approximate way) the solution of differential equations, both ordinary differential equations and partial differential equations.
+Partial differential equations are solved by first discretizing the equation, bringing it into a finite-dimensional subspace. This can be done by a finite element method, a finite difference method, or (particularly in engineering) a finite volume method. The theoretical justification of these methods often involves theorems from functional analysis. This reduces the problem to the solution of an algebraic equation.
+
+==Software==
+
+Since the late twentieth century, most algorithms are implemented in a variety of programming languages. The Netlib repository contains various collections of software routines for numerical problems, mostly in Fortran and C. Commercial products implementing many different numerical algorithms include the IMSL and NAG libraries; a free alternative is the GNU Scientific Library.
+There are several popular numerical computing applications such as MATLAB, S-PLUS, LabVIEW, and IDL as well as free and open source alternatives such as FreeMat, Scilab, GNU Octave (similar to Matlab), IT++ (a C++ library), R (similar to S-PLUS) and certain variants of Python. Performance varies widely: while vector and matrix operations are usually fast, scalar loops may vary in speed by more than an order of magnitude.Speed comparison of various number crunching packagesComparison of mathematical programs for data analysis Stefan Steinhaus, ScientificWeb.com
+Many computer algebra systems such as Mathematica also benefit from the availability of arbitrary precision arithmetic which can provide more accurate results.
+Also, any spreadsheet software can be used to solve simple problems relating to numerical analysis.
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+Journals
+Online Texts
+Online Course Material
+

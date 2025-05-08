@@ -1,0 +1,32 @@
+[[Program counter]]
+
+CATEGORIES: Control flow, Central processing unit, Digital registers
+
+The program counter (PC), commonly called the instruction pointer (IP) in Intel x86 and Itanium microprocessors, and sometimes called the instruction address register (IAR),[tpl]cite book|last1=Mead|first1=Carver|authorlink1=Carver Mead|last2=Conway|first2=Lynn|authorlink2=Lynn Conway|year=1980|title=Introduction to VLSI Systems|publisher=Addison-Wesley|location=Reading, USA|isbn=0201043580[/tpl] the instruction counter,[tpl]cite book|url=http://bitsavers.org/pdf/ibm/701/24-6042-1_701_PrincOps.pdf|title=Principles of Operation, Type 701 and Associated Equipment|publisher=IBM|year=1953[/tpl] or just part of the instruction sequencer,Harry Katzan (1971), Computer Organization and the System/370, Van Nostrand Reinhold Company, New York, USA, LCCCN 72-153191 is a processor register that indicates where a computer is in its program sequence.
+In most processors, the PC is incremented after fetching an instruction, and holds the memory address of (“points to”) the next instruction that would be executed.  (In a processor where the incrementation precedes the fetch, the PC points to the current instruction being executed.)
+Instructions are usually fetched sequentially from memory, but control transfer instructions change the sequence by placing a new value in the PC.  These include branches (sometimes called jumps), subroutine calls, and returns.  A transfer that is conditional on the truth of some assertion lets the computer follow a different sequence under different conditions.
+A branch provides that the next instruction is fetched from somewhere else in memory.  A subroutine call not only branches but saves the preceding contents of the PC somewhere.  A return retrieves the saved contents of the PC and places it back in the PC, resuming sequential execution with the instruction following the subroutine call.
+
+==Hardware implementation==
+
+In a typical central processing unit (CPU), the PC is a binary counter (which is the origin of the term program counter) that may be one of many registers in the CPU hardware.  The instruction cycleJohn L. Hennessy and David A. Patterson (1990), Computer Architecture: a quantitative approach, Morgan Kaufmann Publishers, Palo Alto, USA, ISBN 1-55860-069-8 begins with a fetch, in which the CPU places the value of the PC on the address bus to send it to the memory.  The memory responds by sending the contents of that memory location on the data bus. (This is the stored-program computer model, in which executable instructions are stored alongside ordinary data in memory, and handled identically by itB. Randall (1982), The Origins of Digital Computers, Springer-Verlag, Berlin, D).  Following the fetch, the CPU proceeds to execution, taking some action based on the memory contents that it obtained.  At some point in this cycle, the PC will be modified so that the next instruction executed is a different one (typically, incremented so that the next instruction is the one starting at the memory address immediately following the last memory location of the current instruction).
+Like other processor registers, the PC may be a bank of binary latches, each one representing one bit of the value of the PC.C. Gordon Bell and Allen Newell (1971), Computer Structures: Readings and Examples, McGraw-Hill Book Company, New York, USA The number of bits (the width of the PC) relates to the processor architecture.  For instance, a “32-bit” CPU may use 32 bits to be able to address 232 units of memory.  If the PC is a binary counter, it may increment when a pulse is applied to its COUNT UP input, or the CPU may compute some other value and load it into the PC by a pulse to its LOAD input.[tpl]cite book|author=B.S.Walker|year=1967|title=Introduction to Computer Engineering|publisher=University of London Press|location=London, UK|isbn=0 340 06831 0[/tpl]
+To identify the current instruction, the PC may be combined with other registers that identify a segment or page.  This approach permits a PC with fewer bits by assuming that most memory units of interest are within the current vicinity.
+
+==Consequences in machine architecture==
+
+Use of a PC that normally increments assumes that what a computer does is execute a usually linear sequence of instructions.  Such a PC (or equivalent hardware that serves the same purposeExample of an alternative, somewhat blunt, but otherwise equivalent, arrangement (The Story of Mel)) is central to the von Neumann architecture. Thus programmers write a sequential control flow even for algorithms that do not have to be sequential.  The resulting “von Neumann bottleneck” led to research into parallel computing,F.B. Chambers, D.A. Duce and G.P. Jones (1984), Distributed Computing, Academic Press, Orlando, USA, ISBN 0-12-167350-2 including non-von Neumann or dataflow models that did not use a PC;  for example, rather than specifying sequential steps, the high-level programmer might specify desired function and the low-level programmer might specify this using combinatory logic.
+This research also led to ways to making conventional, PC-based, CPUs run faster, including:
+
+==Consequences in high-level programming==
+
+Modern high-level programming languages still follow the sequential-execution model and, indeed, a common way of identifying programming errors is with a “procedure execution” in which the programmer's finger identifies the point of execution as a PC would.  The high-level language is essentially the machine language of a virtual machine,Douglas Hofstadter (1980), Gödel, Escher, Bach: an eternal golden braid, Penguin Books, Harmondsworth, UK, ISBN 0-14-005579-7 too complex to be built as hardware but instead emulated or interpreted by software.
+However, new programming models transcend sequential-execution programming:
+
+==See also==
+
+==References==
+
+==External links==
+
+

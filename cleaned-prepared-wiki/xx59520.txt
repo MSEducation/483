@@ -1,0 +1,44 @@
+[[MESI protocol]]
+
+CATEGORIES: Cache coherency
+
+The MESI protocol (known also as Illinois protocol due to its development at the University of Illinois at Urbana-Champaign) is a widely used cache coherency and memory coherence protocol.  It is the most common protocol which supports write-back cache.
+
+States
+
+Every cache line is marked with one of the four following states (coded in two additional bits):
+For any given pair of caches, the permitted states of a given cache line are as follows:
+
+Operation
+
+In a typical system, several caches share a common bus to main memory.  Each also has an attached CPU which issues read and write requests.  The caches' collective goal is to minimize the use of the shared main memory.
+A cache may satisfy a read from any state except Invalid.  An Invalid line must be fetched (to the Shared or Exclusive states) to satisfy a read.
+A write may only be performed if the cache line is in the Modified or Exclusive state.  If it is in the Shared state, all other cached copies must be invalidated first.  This is typically done by a broadcast operation known as Request For Ownership (RFO).
+A cache may discard a non-Modified line at any time, changing to the Invalid state.  A Modified line must be written back first.
+A cache that holds a line in the Modified state must snoop (intercept) all attempted reads (from all of the other caches in the system) of the corresponding main memory location and insert the data that it holds.  This is typically done by forcing the read to back off (i.e. retry later), then writing the data to main memory and changing the cache line to the Shared state.
+A cache that holds a line in the Shared state must listen for invalidate or request-for-ownership broadcasts from other caches, and discard the line (by moving it into Invalid state) on a match.
+A cache that holds a line in the Exclusive state must also snoop all read transactions from all other caches, and move the line to Shared state on a match.
+The Modified and Exclusive states are always precise: i.e. they match the true cache line ownership situation in the system. The Shared state may be imprecise: if another cache discards a Shared line, this cache may become the sole owner of that cache line, but it will not be promoted to Exclusive state.  Other caches do not broadcast notices when they discard cache lines, and this cache could not use such notifications without maintaining a count of the number of shared copies.
+In that sense the Exclusive state is an opportunistic optimization: If the CPU wants to modify a cache line that is in state S, a bus transaction is necessary to invalidate all other cached copies.  State E enables modifying a cache line with no bus transaction.
+
+Read For Ownership
+
+A Read For Ownership (RFO) is an operation in cache coherency protocols that combines a read and an invalidate broadcast.  The operation is issued by a processor trying to write into a cache line that is in the shared (S) or invalid (I) states of the MESI protocol. The operation causes all other processors to set the state of such line to I. A read for ownership transaction is a read operation with intent to write to that memory address. Therefore this operation is exclusive. It brings data to the cache and invalidates all other processor caches which hold this memory line.
+
+Memory Barriers
+
+MESI in its naive, straightforward implementation exhibits two particular low-performance behaviours; firstly, when writing to an invalid cache line, there is a long delay while the line is fetched from another CPU, secondly, moving cache lines to the invalid state is time consuming.
+Consequently, CPUs implement store buffers and invalidate queues.
+A store buffer is used when writing to an invalid cache line.  Since the write will proceed anyway, the CPU issues a read-invalid message (hence the cache line in question and all other CPU's cache lines which store that address of memory are invalidated) and then pushes the write into the store-buffer, to be executed when the cache line finally arrives.  (A CPU will when trying to read cache lines scan its own store buffer, in case it has something ready to write to the cache).
+Consequently, a CPU can from its point of view have written something, but it isn't yet in the cache and so other CPUs *cannot see this* - they cannot scan the store buffer of other CPUs.
+With regard to invalidation, CPUs implement invalidate queues, whereby incoming invalidate requests are instantly acknowledged but not in fact acted upon - they instead simply enter an invalidation queue, their processing occurs as soon as possible (but not necessarily instantly).  As such a CPU can have in its cache a line which is invalid, but where it doesn't yet know that line is invalid - the invalidation queue contains the invalidation which hasn't yet been acted upon.  (The invalidation queue is on the other "side" of the cache; the CPU can't scan it, as it can the store buffer).
+As a result, memory barriers are required.  A store barrier will flush the store-buffer (ensuring all writes have entered that CPUs cache).  A read barrier will flush the invalidation queue (ensuring all writes by other CPUs become visible to the flushing CPU).
+So MESI in practice doesn't quite work - not a problem if you're single threaded, but definitely a problem if not.
+
+
+
+
+
+
+
+

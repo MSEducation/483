@@ -1,0 +1,27 @@
+[[Inverse transform sampling]]
+
+CATEGORIES: Monte Carlo methods, Non-uniform random numbers
+
+Inverse transform sampling (also known as inversion sampling, the inverse probability integral transform, the inverse transformation method, Smirnov transform, golden rule,Aalto University, N. Hyvönen, Computational methods in inverse problems. Twelfth lecture https://noppa.tkk.fi/noppa/kurssi/mat-1.3626/luennot/Mat-1_3626_lecture12.pdf etc.) is a basic method for pseudo-random number sampling, i.e. for generating sample numbers at random from any probability distribution given its cumulative distribution function (cdf).
+Computationally, this method involves computing the quantile function of the distribution — in other words, computing the cumulative distribution function (CDF) of the distribution (which maps a number in the domain to a probability between 0 and 1) and then inverting that function.  This is the source of the term "inverse" or "inversion" in most of the names for this method.  Note that for a discrete distribution, computing the CDF is not in general too difficult: We simply add up the individual probabilities for the various points of the distribution.  For a continuous distribution, however, we need to integrate the probability density function (PDF) of the distribution, which is impossible to do analytically for most distributions (including the normal distribution).  As a result, this method may be computationally inefficient for many distributions and other methods are preferred; however, it is a useful method for building more generally applicable samplers such as those based on rejection sampling.
+For the normal distribution, the lack of an analytical expression for the corresponding quantile function means that other methods (e.g. the Box–Muller transform) may be preferred computationally. It is often the case that, even for simple distributions, the inverse transform sampling method can be improved on:[tpl]cite book |author=Luc Devroye |url=http://www.eirene.de/Devroye.pdf |title=Non-Uniform Random Variate Generation |publisher=Springer-Verlag |place=New York |year=1986[/tpl] see, for example, the ziggurat algorithm and rejection sampling. On the other hand, it is possible to approximate the quantile function of the normal distribution extremely accurately using moderate-degree polynomials, and in fact the method of doing this is fast enough that inversion sampling is now the default method for sampling from a normal distribution in the statistical package R.
+
+==Definition==
+
+==The method==
+
+The problem that the inverse transform sampling method solves is as follows:
+The inverse transform sampling method works as follows:
+Expressed differently, given a continuous uniform variable U in 1 and an invertible cumulative distribution function F, the random variable X = F −1(U) has distribution F (or, X is distributed F).
+A treatment of such inverse functions as objects satisfying differential equations can be given.Steinbrecher, G., Shaw, W.T. (2008). Quantile mechanics. European Journal of Applied Mathematics 19 (2): 87–112. Some such differential equations admit explicit power series solutions, despite their non-linearity.
+
+==Proof of correctness==
+
+Let F be a continuous cumulative distribution function, and let F−1 be its inverse function (using the infimum because CDFs are weakly monotonic and right-continuous):[tpl]cite book |author=Luc Devroye |title=Non-Uniform Random Variate Generation |publisher=Springer-Verlag |place=New York |year=1986 |chapter=Section 2.2. Inversion by numerical solution of F(X) = U |url=http://luc.devroye.org/chapter_two.pdf[/tpl]
+Proof:
+
+==See also==
+
+==References==
+
+

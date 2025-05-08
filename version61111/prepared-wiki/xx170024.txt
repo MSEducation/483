@@ -1,0 +1,93 @@
+[[Neural cryptography]]
+
+CATEGORIES: Theory of cryptography, Neural networks
+
+Neural cryptography is a branch of cryptography dedicated to analyzing the application of stochastic algorithms, especially neural network algorithms, for use in encryption and cryptanalysis.
+
+==Definition==
+
+Neural Networks are well known for their ability to selectively explore the solution space of a given problem.  This feature finds a natural niche of application in the field of cryptanalysis. At the same time, Neural Networks offer a new approach to attack ciphering algorithms based on the principle that any function could be reproduced by a neural network, which is a powerful proven computational tool that can be used to find the inverse-function of any cryptographic algorithm.
+The ideas of mutual learning, self learning, and stochastic behavior of neural networks and similar algorithms can be used for different aspects of cryptography, like public-key cryptography, solving the key distribution problem using neural network mutual synchronization, hashing or generation of pseudo-random numbers.
+Another idea is the ability of a neural network to separate space in non-linear pieces using "bias". It gives different probabilities of activating or not the neural network. This is very useful in the case of Cryptanalysis.
+Two names are used to design the same domain of researches : Neuro-Cryptography and Neural Cryptography.
+The first work that it is known on this topic can be traced back to 1995 in an IT Master Thesis.
+
+==Applications==
+
+There are currently no practical applications due to the recent development of the field, but it could be used specifically where the keys are continually generated and the system (both pairs and the insecure media) is in a continuously evolving mode.
+
+In 1995, Sebastien Dourlens applied neural networks cryptanalyze DES by allowing the networks to learn how to invert the S-tables of the DES. The bias in DES studied through Differential Cryptanalysis by Adi Shamir is highlighted. The experiment shows about 50% of the key bits can be found, allowing the complete key to be found in a short time. Hardware application with multi micro-controllers have been proposed due to the easy implementation of multilayer neural networks in hardware.
+
+One example of public-key protocol is given by Khalil Shihab. He describes the decryption scheme and the public key creation that are based on a backpropagation neural network. The encryption scheme and the private key creation process are based on Boolean algebra. This technique has the advantage of small time and memory complexities. A disadvantage is the property of backpropagation algorithm: By huge training sets lasts the learning of neural network very long. Therefore the use of this protocol is only theoretical so far.
+
+==Neural key exchange protocol==
+
+The most used protocol for key exchange between two parties A and B in the practice is Diffie-Hellman protocol. Neural key exchange, which is based on the synchronization of two tree parity machines, should be a secure replacement for this method.
+Synchronizing these two machines is similar to synchronizing two chaotic oscillators in chaos communications.
+
+===Tree parity machine===
+
+The tree parity machine is a special type of multi-layer feed-forward neural network.
+It consists of one output neuron, K hidden neurons and K*N input neurons. Inputs to the network are binary: 
+The weights between input and hidden neurons take the values: 
+Output value of each hidden neuron is calculated as a sum of all multiplications of input neurons and these weights: 
+Signum is a simple function, which returns -1,0 or 1:  
+If the scalar product is 0, the output of the hidden neuron is mapped to -1 in order to ensure a binary output value. The output of neural network is then computed as the multiplication of all values produced by hidden elements:  
+Output of the tree parity machine is binary.
+
+===Protocol===
+
+Each party (A and B) uses its own tree parity machine. Synchronization of the tree parity machines is achieved in these steps
+After the full synchronization is achieved (the weights wij of both tree parity machines are same), A and B can use their weights as keys. 
+This method is known as a bidirectional learning.  
+One of the following learning rules can be used for the synchronization:
+
+===Attacks and security of this protocol===
+
+In every attack it is considered, that the attacker E can eavesdrop messages between the parties A and B, but does not have an opportunity to change them.
+
+====Brute force====
+
+To provide a brute force attack, an attacker has to test all possible keys (all possible values of weights wij). By K hidden neurons, K*N input neurons and boundary of weights L, this gives (2L+1)KN possibilities. For example, the configuration K = 3, L = 3 and N = 100 gives us 3*10253 key possibilities, making the attack impossible with today’s computer power.
+
+====Learning with own tree parity machine====
+
+One of the basic attacks can be provided by an attacker, who owns the same tree parity machine as the parties A and B. He wants to synchronize his tree parity machine with these two parties. In each step there are three situations possible:
+It has been proven, that the synchronization of two parties is faster than learning of an attacker. It can be improved by increasing of the synaptic depth L of the neural network. That gives this protocol enough security and an attacker can find out the key only with small probability.
+
+====Other attacks====
+
+For conventional cryptographic systems, we can improve the security of the protocol by increasing of the key length. In the case of neural cryptography, we improve it by increasing of the synaptic depth L of the neural networks. Changing this parameter increases the cost of a successful attack exponentially, while the effort for the users grows polynomially. Therefore, breaking the security of neural key exchange belongs to the complexity class NP.
+Alexander Klimov, Anton Mityaguine, and Adi Shamir say that the original neural synchronization scheme can be broken by at least three different attacks—geometric, probabilistic analysis, and using genetic algorithms.
+Even though this particular implementation is insecure, the ideas behind chaotic synchronization could potentially lead to a secure implementation.
+[ref]
+by Alexander Klimov, Anton Mityaguine, and Adi Shamir
+[/ref]
+
+===Permutation parity machine===
+
+The permutation parity machine is a binary variant of the tree parity machine.[tpl]cite web |url=http://iopscience.iop.org/1751-8121/42/19/195002 |title=Permutation Parity Machines for Neural Synchronization |author=Oscar Mauricio Reyes, Ingo Kopitzke, and Karl-Heinz Zimmermann[/tpl]
+ 
+It consists of one input layer, one hidden layer and one output layer. The number of neurons in the output layer depends on the number of hidden units K. Each hidden neuron has N binary input neurons: 
+The weights between input and hidden neurons are also binary: 
+Output value of each hidden neuron is calculated as a sum of all exclusive disjunctions (exclusive or) of input neurons and these weights:
+(⊕ means XOR).
+The output of neural network with two or more hidden neurons can be computed as the exclusive or of the values produced by hidden elements:  
+Other configurations of the output layer for K>2 are also possible.
+This machine has proven to be robust enough against some attacks[tpl]cite web |url=http://pre.aps.org/abstract/PRE/v81/i6/e066117 |title=Permutation Parity Machines for Neural Cryptography |author=Oscar Mauricio Reyes and Karl-Heinz Zimmermann[/tpl] so it could work as a cryptographic mean, but a recent implementation of a probabilistic attack has shown that a key-exchange protocol based on PPM can be violated.[tpl]cite web |url=http://pre.aps.org/abstract/PRE/v85/i2/e025101 |title=Successful attack on permutation-parity-machine-based neural cryptography |author=Luís F. Seoane and Andreas Ruttor[/tpl]
+
+===Security against quantum computers===
+
+A quantum computer is a device that uses quantum mechanisms for computation. In this device the data are stored as qubits (quantum binary digits). That gives a quantum computer in comparison with a conventional computer the opportunity to solve complicated problems in a short time, e.g. discrete logarithm problem or factorization. Algorithms that are not based on any of these number theory problems, are being searched because of this property.
+Neural key exchange protocol is not based on any number theory.
+It is based on the difference between unidirectional and bidirectional synchronization of neural networks.
+Therefore, something like the neural key exchange protocol could give rise to potentially faster key exchange schemes.
+
+==See also==
+
+==References==
+
+  
+title=Genetic attack on neural cryptography | journal=Physical Review E | url=http://link.aps.org/abstract/PRE/v73/e036121}}
+title=A backpropagation neural network for computer network security | journal=Journal of Computer Science 2 | pages=710–715 | url=http://www.scipub.org/fulltext/jcs/jcs29710-715.pdf}}
+

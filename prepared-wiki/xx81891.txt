@@ -1,0 +1,41 @@
+[[Inverse iteration]]
+
+CATEGORIES: Numerical linear algebra
+
+In numerical analysis, inverse iteration is an iterative eigenvalue algorithm. It allows one to find an approximate
+eigenvector when an approximation to a corresponding eigenvalue is already known.
+The method is conceptually similar to  the power method and is also known as the inverse power method.
+It appears to have originally been developed to compute resonance frequencies in the field of structural mechanics.
+[ref]Ernst Pohlhausen, Berechnung der Eigenschwingungen statisch-bestimmter Fachwerke, ZAMM - Zeitschrift für Angewandte
+Mathematik und Mechanik 1, 28-42 (1921).[/ref] 
+and  vector b0, which is an approximation to the  eigenvector or a random vector. The method is described by the iteration
+It is exactly the same formula as in the power method
+
+==Theory and convergence==
+
+converges to the eigenvector corresponding the smallest in absolute value eigenvalue of A.
+
+===Speed of  convergence===
+
+Let us analyze the rate of convergence of the method.
+The power method is known to converge linearly to the limit, more precisely:
+hence for the inverse iteration method similar result sounds as:
+
+===Complexity===
+
+The inverse iteration algorithm requires solving a linear system or calculation of the inverse matrix.
+
+==Implementation options==
+
+The method is defined by the formula:
+There are several details in its implementation.
+We can rewrite the formula in the following way:
+we need to solve a system of linear equations. 
+There are two options:  one may choose an algorithm that solves a linear 
+system, or to calculate an inverse matrix 
+Both options have complexity O(n3), the exact number depends on the chosen method. Typically, solutions of linear equation have slightly less complexity. The choice between the options depends on the number of iterations. If one solves the linear system the complexity will be  k*O(n3), where k is number of iterations.  Calculating the inverse matrix first and then applying it to the vectors bk is of complexity O(n3) + k* n2. The second option is clearly preferable for large numbers of iterations. As inverse iterations are typically used when only a small number of iterations is needed one usually solves a linear system of equations.
+If it is necessary to perform many iterations (or few iterations, but for many eigenvectors), then it might be wise to bring the matrix to the 
+ | last = Demmel | first = James W. | authorlink = James Demmel
+ | mr = 1463942
+ | isbn = 0-89871-389-7
+ | location = Philadelphia, PA

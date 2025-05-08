@@ -1,0 +1,76 @@
+[[OTPW]]
+
+CATEGORIES: Cryptographic software, Password authentication
+
+OTPW is a one-time password system developed for authentication in Unix-like operating systems by Markus Kuhn. A user's real password is not directly transmitted across the network. Rather, the real password is combined with a short set of characters (constant secret) and a set of one-time tokens to form a single-use password. As the single-use password is only used once, passwords intercepted by a password sniffer or key logger are not useful to an attacker.
+OTPW is supported in Unix and Linux (via Pluggable authentication modules), OpenBSD, NetBSD, and FreeBSD, and a generic open source implementation can be used to enable its use on other systems.
+OTPW, like the other one-time password systems, is sensitive to a man in the middle attack if used by itself. This could for example be solved by putting SSL, SPKM or similar security protocol "under it" which authenticates the server and gives point-to-point security between the client and server.
+
+Design and differences from other implementations
+
+Unlike S/KEY, OTPW is not based on the Lamport's scheme in which every one-time password is the one-way hash value of its successor. Password lists based on the Lamport's scheme have the problem that if the attacker can see one of the last passwords on the list, then all previous passwords can be calculated from it. It also does not stores the encrypted passwords as suggested by Aviel D. Rubin in Independent One-Time Passwords, in order to keep the host free of files with secrets.
+
+Storing passwords
+
+In OTPW one-way hash value of every single password is stored in a potentially widely readable file in the user's home directory. For instance, hash values of 300 passwords (a typical A4 page) require only a four kilobyte long .
+
+Generating passwords
+
+The passwords are carefully generated random numbers. The random number generator is based on the RIPEMD-160 secure hash function, and it is seeded by hashing together the output of various shell commands. These provide unpredictability in the form of a system random number seed, access times of important system files, usage history of the host, and more. The random state is the 160-bit output of the hash function. The random state is iterated after each use by concatenating the old state with the current high-resolution timer output and hashing the result again. The first 72 bits of the hash output are encoded with a modified base64 scheme to produce readable passwords, while the remaining 88 bits represent the undisclosed internal state of the random number generator.
+
+Form of a password
+
+In many fonts, the characters 0 and O or 1 and l and I are difficult to distinguish, therefore the modified base64 encoding replaces the three characters 01l by corresponding :, = and %. If for instance a zero is confused with a capital O by the user, the password verification routine will automatically correct for this.
+S/KEY uses sequences of short English words as passwords. OTPW uses by default a base64 encoding instead, because that allows more passwords to be printed on a single page, with the same password entropy. In addition, an average human spy needs over 30 seconds to write a 12-character random string into short-term memory, which provides a good protection against brief looks that an attacker might have on a password list. Lists of short words on the other hand are much faster to memorize. OTPW can handle arbitrary password generation algorithms, as long as the length of the password is fixed. In the current version, the otpw-gen program can generate both base-64 encoded (option -p) and 4-letter-word encoded (option -p1) passwords with a user-specified entropy (option -e).
+
+The prefix password
+
+The prefix password ensures that neither stealing the password list nor eavesdropping the line alone can provide unauthorized access. Admittedly, the security obtained by OTPW is not comparable with that of a challenge-response system in which the user has a PIN protected special calculator that generates the response. On the other hand, a piece of paper is much more portable, much more robust, and much cheaper than a special calculator. OTPW was designed for the large user base, for which an extra battery-powered device is inconvenient or not cost effective and who therefore still use normal Unix passwords everywhere.
+
+Passwords locking
+
+In contrast to the suggestion made in , OTPW does not lock more than one one-time password at a time. If it did this, an attacker could easily exhaust its list of unlocked passwords and force it to either not login at all or use the normal Unix login password. Therefore, OTPW locks only one single password and for all further logins a triple-challenge is issued. If more than 100 unused passwords remain available, then there are over a million different challenges and an attacker has very little chance to perform a successful race attack while the authorized user finishes password entry.
+
+Usage
+
+One-time password authentication with the OTPW package is accomplished via a file . No state is kept in any system-wide files, therefore OTPW does not introduce any new setuid root programs. As long as a user does not have .
+
+Setting up passwords
+
+A user who wants to set up the one-time-password capability just executes the otpw-gen program. The program will ask for a prefix password and it will then write a password list to standard output. The chosen prefix password should be memorized and the password list can be formatted and printed.
+
+Logging in
+
+Where one-time-password authentication is used, the password prompt will be followed by a 3-digit password number. Enter first the prefix password that was given to otpw-gen, followed directly (without hitting return between) by the password with the requested number from the printed password list:
+ 
+   login: kuhn
+  Password 019: geHeimOdAkH62c
+
+In this example, geHeim was the prefix password.
+A clever attacker might observe the password being entered and might try to use the fact that computers can send data much faster than users can finish entering passwords. In the several hundred milliseconds that the user needs to press the return key after the last character, an attacker could on a parallel connection to the same machine send the code of the return key faster than the user.
+To prevent such a race-for-the-last-key attack, any login attempt that is taking place concurrently with another attempt will require three one-time passwords to be entered:
+ 
+   login: kuhn
+  Password 022/000/004: geHeimQ=XK4I7wIZdBbqyHA5z9japt
+
+
+
+
+
+| title       = A One-Time Password System
+| rfc         = 2289
+| std         = 61
+| last1       = Haller
+| first1      = Neil
+| last2       = Metz
+| first2      = Craig
+| last3       = Nesser
+| first3      = Philip J.
+| last4       = Straw
+| first4      = Mike
+| year        = 1998
+| month       = February
+| publisher   = IETF
+| accessdate  = 2009-10-24
+}}
+

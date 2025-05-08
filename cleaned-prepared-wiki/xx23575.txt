@@ -1,0 +1,116 @@
+[[File:Arithmetic coding example. Probability of "A" is 50%, probability of "B" is 33% and probability of "C" is 17%. Furthermore we assume that the recursion depth is known in each step. In step one we code "B" which is inside the interval (0.5,0.83): The binary number "0.10x" is the shortest code that represents an Interval that is entirely inside [0.5,0.83). "x" means an arbitrary bit sequence. There are two extreme cases: the smallest x stands for an infinite number of zeros which represents the left side of the represented Interval. Then the left side of the Interval is dec(0.10)=0.5. The greatest x stands for an infinite number of ones which gives a number that converges towards dec(0.11)=0.75 Therefore "0.10x" represents the Interval [0.5,0.75) which is inside [0.5,0.83)
+Now we can leave out the "0." part since all Intervals begin with "0." and we can ignore the "x" part because no matter what Bit-sequence it represents, we will stay inside 0.5,0.75 ]]
+
+Implementation details and examples
+
+Equal probabilities
+
+In the simplest case, the probability of each symbol occurring is equal. For example, consider a set of three symbols, A, B, and C, each equally likely to occur. Simple block encoding would require 2 bits per symbol, which is wasteful: one of the bit variations is never used. That is to say, A=00, B=01, and C=10, but 11 is unused.
+A more efficient solution is to represent a sequence of these three symbols as a rational number in base 3 where each digit represents a symbol. For example, the sequence "ABBCAB" could become 0.0112013 (in arithmetic coding the numbers are between 0 and 1). The next step is to encode this ternary number using a fixed-point binary number of sufficient precision to recover it, such as 0.00101100012 — this is only 10 bits; 2 bits are saved in comparison with naïve block encoding. This is feasible for long sequences because there are efficient, in-place algorithms for converting the base of arbitrarily precise numbers.
+To decode the value, knowing the original string had length 6, one can simply convert back to base 3, round to 6 digits, and recover the string.
+
+Defining a model
+
+In general, arithmetic coders can produce near-optimal output for any given set of symbols and probabilities (the optimal value is −log2P bits for each symbol of probability P, see source coding theorem). Compression algorithms that use arithmetic coding start by determining a model of the data – basically a prediction of what patterns will be found in the symbols of the message. The more accurate this prediction is, the closer to optimal the output will be.
+Example: a simple, static model for describing the output of a particular monitoring instrument over time might be:
+Models can also handle alphabets other than the simple four-symbol set chosen for this example. More sophisticated models are also possible: higher-order modelling changes its estimation of the current probability of a symbol based on the symbols that precede it (the context), so that in a model for English text, for example, the percentage chance of "u" would be much higher when it follows a "Q" or a "q". Models can even be adaptive, so that they continually change their prediction of the data based on what the stream actually contains. The decoder must have the same model as the encoder.
+
+Encoding and decoding: overview
+
+In general, each step of the encoding process, except for the very last, is the same; the encoder has basically just three pieces of data to consider:
+The encoder divides the current interval into sub-intervals, each representing a fraction of the current interval proportional to the probability of that symbol in the current context.  Whichever interval corresponds to the actual symbol that is next to be encoded becomes the interval used in the next step.
+Example: for the four-symbol model above:
+When all symbols have been encoded, the resulting interval unambiguously identifies the sequence of symbols that produced it. Anyone who has the same final interval and model that is being used can reconstruct the symbol sequence that must have entered the encoder to result in that final interval.
+It is not necessary to transmit the final interval, however; it is only necessary to transmit one fraction that lies within that interval. In particular, it is only necessary to transmit enough digits (in whatever base) of the fraction so that all fractions that begin with those digits fall into the final interval.
+
+Encoding and decoding: example
+
+Consider the process for decoding a message encoded with the given four-symbol model. The message is encoded in the fraction 0.538 (using decimal for clarity, instead of binary; also assuming that there are only as many digits as needed to decode the message.)
+The process starts with the same interval used by the encoder: , and using the same model, dividing it into the same four sub-intervals that the encoder must have. The fraction 0.538 falls into the sub-interval for NEUTRAL, ; this indicates that the first symbol the encoder read must have been NEUTRAL, so this is the first symbol of the message.
+Next divide the interval  into sub-intervals:
+Since .538 is within the interval , the second symbol of the message must have been NEGATIVE.
+Again divide our current interval into sub-intervals:
+Now 0.538 falls within the interval of the END-OF-DATA symbol; therefore, this must be the next symbol. Since it is also the internal termination symbol, it means the decoding is complete. If the stream is not internally terminated, there needs to be some other way to indicate where the stream stops. Otherwise, the decoding process could continue forever, mistakenly reading more symbols from the fraction than were in fact encoded into it.
+
+Sources of inefficiency
+
+The message 0.538 in the previous example could have been encoded by the equally short fractions 0.534, 0.535, 0.536, 0.537 or 0.539. This suggests that the use of decimal instead of binary introduced some inefficiency.  This is correct; the information content of a three-digit decimal is approximately 9.966 bits; the same message could have been encoded in the binary fraction 0.10001010 (equivalent to 0.5390625 decimal) at a cost of only 8 bits. (The final zero must be specified in the binary fraction, or else the message would be ambiguous without external information such as compressed stream size.)
+This 8 bit output is larger than the information content, or entropy of the message, which is 1.57 × 3 or 4.71 bits. The large difference between the example's 8 (or 7 with external compressed data size information) bits of output and the entropy of 4.71 bits is caused by the short example message not being able to exercise the coder effectively. The claimed symbol probabilities were , but the actual frequencies in this example are . If the intervals are readjusted for these frequencies, the entropy of the message would be 1.58 bits and the same NEUTRAL NEGATIVE ENDOFDATA message could be encoded as intervals  and a binary interval of . This could yield an output message of 0011, or just 4 bits. This is also an example of how statistical coding methods like arithmetic encoding can produce an output message that is larger than the input message, especially if the probability model is off.
+
+Adaptive arithmetic coding
+
+One advantage of arithmetic coding over other similar methods of data compression is the convenience of adaptation. Adaptation is the changing of the frequency (or probability) tables while processing the data. The decoded data matches the original data as long as the frequency table in decoding is replaced in the same way and in the same step as in encoding. The synchronization is, usually, based on a combination of symbols occurring during the encoding and decoding process. Adaptive arithmetic coding significantly improves the compression ratio compared to static methods; it may be 2 to 3 times as effective.
+
+Precision and renormalization
+
+The above explanations of arithmetic coding contain some simplification. In particular, they are written as if the encoder first calculated the fractions representing the endpoints of the interval in full, using infinite precision, and only converted the fraction to its final form at the end of encoding. Rather than try to simulate infinite precision, most arithmetic coders instead operate at a fixed limit of precision which they know the decoder will be able to match, and round the calculated fractions to their nearest equivalents at that precision. An example shows how this would work if the model called for the interval  to be divided into thirds, and this was approximated with 8 bit precision. Note that since now the precision is known, so are the binary ranges we'll be able to use.
+A process called renormalization keeps the finite precision from becoming a limit on the total number of symbols that can be encoded. Whenever the range is reduced to the point where all values in the range share certain beginning digits, those digits are sent to the output.  For however many digits of precision the computer can handle, it is now handling fewer than that, so the existing digits are shifted left, and at the right, new digits are added to expand the range as widely as possible. Note that this result occurs in two of the three cases from our previous example.
+
+Arithmetic coding as a generalized change of radix
+
+Recall that in the case where the symbols had equal probabilities, arithmetic coding could be implemented by a simple change of base, or radix. In general, arithmetic (and range) coding may be interpreted as a generalized change of radix. For example, we may look at any sequence of symbols:
+as a number in a certain base presuming that the involved symbols form an ordered set and each symbol in the ordered set denotes a sequential integer A = 0, B = 1, C = 2, D = 3, and so on. This results in the following frequencies and cumulative frequencies:
+The cumulative frequency is the total of all frequencies below it in a frequency distribution (a running total of frequencies).
+In a positional numeral system the radix, or base, is numerically equal to a number of different symbols used to express the number. For example, in the decimal system the number of symbols is 10, namely 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. The radix is used to express any finite integer in a presumed multiplier in polynomial form. For example, the number 457 is actually 4×102 + 5×101 + 7×100, where base 10 is presumed but not shown explicitly.
+Initially, we will convert DABDDB into a base-6 numeral, because 6 is the length of the string. The string is first mapped into the digit string 301331, which then maps to an integer by the polynomial:
+The result 23671 has a length of 15 bits, which is not very close to the theoretical limit (the entropy of the message), which is approximately 9 bits.
+To encode a message with a length closer to the theoretical limit imposed by information theory we need to slightly generalize the classic formula for changing the radix. We will compute lower and upper bounds L and U and choose a number between them. For the computation of L we multiply each term in the above expression by the product of the frequencies of all previously occurred symbols:
+The difference between this polynomial and the polynomial above is that each term is multiplied by the product of the frequencies of all previously occurring symbols. More generally, L may be computed as:
+The upper bound U will be L plus the product of all frequencies; in this case U = L + (3 × 1 × 2 × 3 × 3 × 2) = 25002 + 108 = 25110. In general, U is given by:
+Now we can choose any number from the interval [L, U) to represent the message; one convenient choice is the value with the longest possible trail of zeroes, 25100, since it allows us to achieve compression by representing the result as 251×102. The zeroes can also be truncated, giving 251, if the length of the message is stored separately. Longer messages will tend to have longer trails of zeroes.
+To decode the integer 25100, the polynomial computation can be reversed as shown in the table below. At each stage the current symbol is identified, then the corresponding term is subtracted from the result.
+During decoding we take the floor after dividing by the corresponding power of 6. The result is then matched against the cumulative intervals and the appropriate symbol is selected from look up table. When the symbol is identified the result is corrected. The process is continued for the known length of the message or while the remaining result is positive. The only difference compared to the classical change-of-base is that there may be a range of values associated with each symbol. In this example,  A is always 0, B is either 1 or 2, and D is any of 3, 4, 5. This is in exact accordance with our intervals that are determined by the frequencies. When all intervals are equal to 1 we have a special case of the classic base change.
+
+Theoretical limit of compressed message
+
+Applying log2 for the estimated number of bits in the message, the final message (not counting a logarithmic overhead for the message length and frequency tables) will match the number of bits given by entropy, which for long messages is very close to optimal:
+
+p-adic interpretation of arithmetic coding algorithm
+
+Arithmetic coding being expressed in terms of real numbers looks very natural and is easy to understand. It is nothing but a sequence of semi intervals each lies inside the previous one. But here is a problem – one has to use infinite precision real numbers to implement this algorithm and there is no such a thing like effective infinite precision real arithmetic. This problem was always considered as a technical one. Solution is simple - just use integers instead. There is a canonical implementation, first written in C Witten, which was later reproduced in other languages, but no analysis of what happens to the algorithm after moving it from the real numbers to integer numbers was published. In fact, the integer variant of the algorithm looks very artificial and contains some magic rules: E1, E2 and E3. Though these rules work quite well the question remains – do they have natural mathematical explanation?
+The p-adic numbers provides clear interpretation of the algorithm. In fact, all the intermediate data and the result can be seen as p-adic integers with p=2. The modified algorithm operates on p-adic semi intervals in the same way, as the original works with real semi intervals. For example the magic rules E1, E2 mean that the current p-adic semi interval lies completely in a p-adic ball. In this case the p-adic ball can be pushed out and p-adic semi interval rescaled. From this point of view Huffman algorithm is just a specific variant of arithmetic coding when semi intervals are always p-adic balls.
+The algorithm can be extended to arbitrary p. All E1, E2, and E3 rules work in this case too. More information on p-adic variant of arithmetic coding can be found in Volkov 2007, 2010.
+
+Connections with other compression methods
+
+Huffman coding
+
+There is great similarity between arithmetic coding and Huffman coding – in fact, it has been shown that Huffman is just a specialized case of arithmetic coding – but because arithmetic coding translates the entire message into one number represented in base b, rather than translating each symbol of the message into a series of digits in base b, it will sometimes approach optimal entropy encoding much more closely than Huffman can.
+In fact, a Huffman code corresponds closely to an arithmetic code where each of the frequencies is rounded to a nearby power of ½ — for this reason Huffman deals relatively poorly with distributions where symbols have frequencies far from a power of ½, such as 0.75 or 0.375. This includes most distributions where there are either a small numbers of symbols (such as just the bits 0 and 1) or where one or two symbols dominate the rest.
+For an alphabet {a, b, c} with equal probabilities of 1/3, Huffman coding may produce the following code:
+This code has an expected (2 + 2 + 1)/3 ≈ 1.667 bits per symbol for Huffman coding,
+an inefficiency of 5 percent compared to log23 ≈ 1.585 bits per symbol for arithmetic coding.
+For an alphabet {0, 1} with probabilities 0.625 and 0.375, Huffman encoding treats them as though they had 0.5 probability each, assigning 1 bit to each value, which does not achieve any compression over naive block encoding. Arithmetic coding approaches the optimal compression ratio of
+When the symbol 0 has a high probability of 0.95, the difference is much greater:
+One simple way to address this weakness is to concatenate symbols to form a new alphabet in which each symbol represents a sequence of symbols in the original alphabet. In the above example, grouping sequences of three symbols before encoding would produce new "super-symbols" with the following frequencies:
+With this grouping, Huffman coding averages 1.3 bits for every three symbols, or 0.433 bits per symbol, compared with one bit per symbol in the original encoding.
+
+US patents
+
+A variety of specific techniques for arithmetic coding have historically been covered by US patents, although various well-known methods have since passed into the public domain as the patents have expired. Techniques covered by patents may be essential for implementing the algorithms for arithmetic coding that are specified in some formal international standards. When this is the case, such patents are generally available for licensing under what is called "reasonable and non-discriminatory" (RAND) licensing terms (at least as a matter of standards-committee policy). In some well-known instances (including some involving IBM patents that have since expired) such licenses were available free, and in other instances, licensing fees have been required. The availability of licenses under RAND terms does not necessarily satisfy everyone who might want to use the technology, as what may seem "reasonable" for a company preparing a proprietary software product may seem much less reasonable for a free software or open source project.
+At least one significant compression software program, bzip2, deliberately discontinued the use of arithmetic coding in favor of Huffman coding due to the perceived patent situation at the time. Also, encoders and decoders of the JPEG file format, which has options for both Huffman encoding and arithmetic coding, typically only support the Huffman encoding option, which was originally because of patent concerns; the result is that nearly all JPEG images in use today use Huffman encoding Frequently Asked Questions (part 1/3) although JPEG's arithmetic coding patents have expired due to the age of the JPEG standard (the design of which was approximately completed by 1990). B. Pennebaker and J. L. Mitchell, Kluwer Academic Press, 1992. ISBN 0-442-01272-1 There are some archivers like PackJPG, that can losslessly convert Huffman encoded jpegs to jpegs with arithmetic coding (with custom file name .
+Some US patents relating to arithmetic coding are listed below.
+Note: This list is not exhaustive. See the following link for a list of more patents.faqs.compression Frequently Asked Questions (part 1/3) The Dirac codec uses arithmetic coding and is not patent pending.net/Articles/272520/ Dirac video codec 1.0 released
+Patents on arithmetic coding may exist in other jurisdictions, see software patents for a discussion of the patentability of software around the world.
+
+Benchmarks and other technical characteristics
+
+Every programmatic implementation of arithmetic encoding has a different compression ratio and performance. While compression ratios vary only a little (usually under 1%),[ref]For instance,  discuss versions of arithmetic coding based on real-number ranges, integer approximations to those ranges, and an even more restricted type of approximation that they call binary quasi-arithmetic coding. They state that the difference between real and integer versions is negligible, prove that the compression loss for their quasi-arithmetic method can be made arbitrarily small, and bound the compression loss incurred by one of their approximations as less than 0.06%. See: 
+.</ref> the code execution time can vary by a factor of 10. Choosing the right encoder from a list of publicly available encoders is not a simple task because performance and compression ratio depend also on the type of data, particularly on the size of the alphabet (number of different symbols). One of two particular encoders may have better performance for small alphabets while the other may show better performance for large alphabets. Most encoders have limitations on the size of the alphabet and many of them are specialised for alphabets of exactly two symbols (0 and 1).
+
+Teaching aid
+
+An interactive visualization tool for teaching arithmetic coding, dasher.
+
+
+
+Notes
+
+
+
+  | last = MacKay
+  | first = David J.C.
+  | authorlink = David MacKay (scientist)
+  | title = Information Theory, Inference, and Learning Algorithms
+  | chapter = Chapter 6: Stream Codes
+  | url = 

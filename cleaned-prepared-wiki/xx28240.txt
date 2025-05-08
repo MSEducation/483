@@ -1,0 +1,94 @@
+[[RT-11]]
+
+CATEGORIES: DEC operating systems, Real-time operating systems, PDP-11, Software written in assembly language, Elektronika BK operating systems
+
+RT-11 ('RT' for Real Time) was a small, single-user real-time operating system for the Digital Equipment Corporation PDP-11 family of 16-bit computers.  RT-11 was first implemented in 1970 and was widely used for real-time systems, process control, and data acquisition across the full line of PDP-11 computers.
+
+Features
+
+Multitasking
+
+RT-11 systems did not support preemptive multitasking, but most versions could run multiple simultaneous applications.  All variants of the monitors provided a background job.  The FB, XM and ZM monitors also provided a foreground job, as well as six system jobs if selected via the SYSGEN system generation program. These tasks had fixed priorities, with the background job lowest and the foreground job highest. It was possible to switch between jobs from the system console user interface, and SYSGEN could generate a monitor that provided a single background job (the SB, XB and ZB variants).
+
+Source code
+
+RT-11 was written in assembly language. Heavy use of the conditional assembly and macro programming features of the MACRO-11 assembler allowed a significant degree of configurability and allowed programmers to specify high-level instructions otherwise unprovided for in machine code. RT-11 distributions included the source code of the operating system and its device drivers with all the comments removed and a program named "SYSGEN" which would build the operating system and drivers according to a user-specified configuration.  Developer's documentation included a kernel listing that included comments.
+
+Device drivers
+
+In early versions of RT-11, device drivers were built into the kernel at configuration time, but in later versions the device drivers were loadable.  Because RT-11 was commonly used for device control and data acquisition, it was common for developers to write or enhance device drivers.  DEC encouraged such driver development by making their hardware subsystems (from bus structure to code) open, documenting the internals of the operating system, encouraging third-party hardware and software vendors, and by fostering the development of the Digital Equipment Computer Users Society.
+
+Human interface
+
+Users generally operated RT-11 via a printing terminal or a video terminal, originally via a strap-selectable current-loop (for conventional teletypes) or RS-232 (later RS-422 as well) interface on one of the CPU cards; DEC also supported the VT11 and VS60 graphics display devices (vector graphics terminals with a graphic character generator for displaying text, and a light pen for graphical input). A third-party favorite was the Tektronix 4010 family.
+The Keyboard Monitor (KMON) interpreted commands issued by the user and would invoke various utilities with Command String Interpreter (CSI) forms of the commands. 
+RT-11 command language had many features (such as commands and device names) that can be found later in DOS line of operating systems which heavily borrowed from RT-11. The CSI form expected input and output filenames and options ('switches' on RT-11) in a precise order and syntax. The command-line switches were separated by "/" sign rather than "-" used in Unix-like operating systems. All commands had full form and a short one to which it could be contracted. For example, RENAME command could be contracted to REN.
+Batch files and the batch processor could be used to issue a series of commands with some rudimentary control flow. Batch files had the extension .
+In later releases of RT-11, it was possible to invoke a series of commands using a .  Even later, it was possible to execute a series of commands with great control through use of the Indirect Command File Processor (IND), which took .
+Files with the extension .  They were known as "save files" because the RT-11 SAVE command could be used to save the contents of memory to a disk file which could be loaded and executed at a later time, allowing any session to be saved.
+The SAVE command, along with GET, START, REENTER, EXAMINE and DEPOSIT are basic commands implemented in the KMON. Some commands and utilities were later borrowed in DOS-line of operating systems. These commands include DIR, COPY, RENAME, ASSIGN, CLS, DELETE, TYPE, HELP and others. FORMAT command was used for physical disk formatting, although it was not capable of creating file system, for which purpose INIT command was used (analogue of DOS command FORMAT /Q). Most commands supported use of wildcards in file names.
+Physical device names were specified in the form 'dd{n}:' where 'dd' was a two-character alphabetic device name and the optional 'n' was the unit number (0–7). When the unit number is omitted, unit 0 is assumed. For example, TT: referred to the console terminal, LP: (or LP0:) referred to the parallel line printer, and DX0:, DY1:, DL4: referred to disk volumes (RX01 unit 0, RX02 unit 1, RL01 or RL02 unit 4, respectively). Logical device names consisted of 1–3 alphanumeric characters and were used in the place of a physical device name.  This was accomplished using the ASSIGN command.  For example, one might issue ASSIGN DL0 ABC which would cause all future references to 'ABC:' to map to 'DL0:'.  Reserved logical name DK: referred to the current default device.  If a device was not included in a file specification, DK: was assumed.  Reserved logical name SY: referred to the system device (the device from which the system had been booted).
+Later versions of RT-11 allowed specification of up to 64 units (0–77 octal) for certain devices, but the device name was still limited to three alphanumeric characters.  This feature was enabled through a SYSGEN selection, and only applied to the DU and LD device handlers.  In these two cases, the device name form became 'dnn:' where 'd' was 'D' for the DU device and 'L' for the LD device, and 'nn' was 00–77(octal).
+
+Software
+
+RT-11 was distributed with utilities which allowed a user to perform many actions.  The utilities DIR, DUP, PIP and FORMAT allowed a user to manage their disk volumes.  TECO, EDIT, and the visual editors KED (for the DEC VT100) and K52 (for the DEC VT52) allowed a user to create and edit source and data files. MACRO, LINK, and LIBR allowed a user to build their own executables.  ODT, VDT and the SD device allowed a user to debug programs.  DEC's version of Runoff allowed a user to produce documents.  Finally, VTCOM allowed a user to connect with and use (or transfer files to and from) another computer system over the phone using a modem.
+The system was complete enough to handle many modern personal computing tasks. Large amounts of free, user-contributed software for RT-11 were available from the Digital Equipment Computer Users Society including an implementation of C. Although the tools to develop and debug assembly-language programs were provided, other languages including C, Fortran, Pascal, and several versions of BASIC were available from DEC as "layered products" at extra cost. Versions of these and other programming languages were also available from other, third-party, sources.  It is even possible to network RT-11 machines using DECNET, the Internet and protocols developed by other, third-party sources.
+
+Distributions and minimal system configuration
+
+The RT-11 operating system could be booted from, and perform useful work on, a machine consisting of two 8-inch 250KB floppy disks and 56KB of memory, and could support 8 terminals.  Other boot options include a 2.5MB removable hard disk platter (RK05), or magnetic tape.  Distributions were available pre-installed or on punched tape, magnetic tape, cartridge tape, or floppy disk. A minimal but complete system supporting a single real-time user could run on a single floppy disk and in 8K 16-bit words (16KB) of RAM, including user programs. This was facilitated by support for swapping and overlaying. To realize operation on such small memory system, the keyboard command user interface would be swapped out during the execution of a user's program and then swapped into memory upon program termination. The system supported a real-time clock, printing terminal, VT11 vector graphic unit, 16 channel 100 kHz A/D converter with 2 channel D/A, 9600 baud serial port, 16 bit bidirectional boards, etc.
+
+File system
+
+RT-11 implemented a simple and fast file system employing filenames with six characters and three-character extensions ("6.3") encoded in RADIX-50, which packed those 9 characters into only six bytes (three 16-bit words).  All files were contiguous, meaning that each file occupied consecutive blocks (the minimally addressable unit of disk storage, 512 bytes) on the disk.  This meant that an entire file could be read (or written) very quickly.  A side effect of this file system structure was that as files were created and deleted on a volume over time, the unused disk space became fragmented and a disk would need to be periodically 'squeezed' to consolidate the unused portions (also called defragmentation).
+Each volume has only one directory which was preallocated at the beginning of the volume.  The directory consists of an array of entries, one per file or unallocated space.  Each directory entry is 8 (or more) 16-bit words, though a sysgen option allowed extra application-specific storage.
+
+Compatibility with other DEC operating systems
+
+Many RT11 programs (those that did not need specialized peripherals or direct access to the hardware) could be directly executed using the RT11 RTS (Run-time system) of the RSTS/E timesharing system or under RTEM (RT Emulator) on various releases of both RSX-11 and VMS.
+The implementation of DCL for RT-11 increased its compatibility with the other DEC operating systems. Although each operating system had commands and options which were unique to that operating system, there were a number of commands and command options which were common.
+
+Other PDP-11 operating systems
+
+DEC also sold RSX-11, a multiuser, multitasking operating system with realtime features, and RSTS-11 a multiuser time-sharing system, but RT-11 remained the operating system of choice for data acquisition systems where real time response was required.  The Unix operating system also became popular, but lacked the real-time features and extremely small size of RT-11.
+
+Hardware
+
+RT-11 ran on all members of the DEC PDP-11 family, both Q-Bus- and Unibus-based, from the PDP-11/05 (its first target, in 1970), to the final PDP-11 implementations (PDP-11/93 and /94). In addition, it ran on the Professional Series and the PDT-11 "Programmed Data Terminal" systems, also from DEC.  Since the PDP-11 architecture was implemented in replacement products by other companies (E.g., the M100 and family from Mentec), or as reverse-engineered clones in other countries (E.g., the DVK from the Soviet Union), RT-11 runs on these machines as well.
+
+Compatible operating systems
+
+Fuzzball
+
+Fuzzball, routing software for Internet Protocols, was capable of running RT-11 programs.
+
+SHAREplus
+
+HAMMONDsoftware distributed a number of RT-11 compatible operating systems including STAReleven, an early multi-computer system and SHAREplus, a multi-process/multi-user implementation of RT-11 which borrowed some architectural concepts from the VAX/VMS operating system. RT-11 device drivers were required for operation. Transparent device access to other PDP-11s and VAX/VMS were supported with a network option. Limited RSX-11 application compatibility was also available. SHAREplus had its strongest user base in Europe.
+
+TSX-11
+
+S&H Computing developed and distributed TSX-Plus, a multi-user, multi-processing implementation of RT-11.  The only thing it didn't do was handle the boot process, so any TSX-Plus machine was required to boot RT-11 first before running TSX-Plus as a user program.  Once TSX-Plus was running, it would take over complete control of the machine from RT-11.  It provided true memory protection for users from other users, provided user accounts and maintained account separation on disk volumes and implemented a superset of the RT-11 EMT programmed requests.  RT-11 programs generally ran, unmodified, under TSX-Plus and, in fact, most of the RT-11 utilities were used as-is under TSX-Plus.  Device drivers generally required only slight modifications.
+
+Versions
+
+Release history
+
+Variants
+
+Users could choose from four variants with differing levels of support for multitasking:
+
+Specialized versions
+
+Several specialized PDP-11 systems were sold based on RT-11:
+
+Clones in the USSR
+
+Several clones of RT-11 were made in the USSR:
+
+Notes
+
+
+
+

@@ -1,0 +1,77 @@
+     (: The following loop maintains the [[Loop invariant|invariants]] that a[0:end] is a heap and every element
+      : beyond end is greater than everything before it (so a[end:count] is in sorted order).
+      :)
+     end ← count - 1
+     '''while''' end > 0 '''do'''
+         (: a[0] is the root and largest value. The swap moves it in front of the sorted elements.:)
+         swap(a[end], a[0])
+         (: the heap size is reduced by one :)
+         end ← end - 1
+         (: the swap ruined the heap property, so restore it :)
+         siftDown(a, 0, end)          
+ (: Put elements of a in heap order, in-place :)
+ '''function''' heapify(a, count) '''is'''
+     ''(start is assigned the index in a of the last parent node)''
+     ''(the last element in a 0-based array is at index count-1; find the root of that element )''
+     start ← floor ((count - 2 ) / 2)
+     '''while''' start ≥ 0 '''do'''
+         ''(sift down the node at index start to the proper place such that all nodes below''
+         '' the start index are in heap order)''
+         siftDown(a, start, count-1)
+         ''(go to the next parent node)''
+         start ← start - 1
+     ''(after sifting down the root all nodes/elements are in heap order)''
+ '''function''' siftDown(a, start, end) '''is'''
+     root ← start
+     '''while''' root * 2 + 1 ≤ end '''do'''    (: While the root has at least one child :)
+         child ← root * 2 + 1       (: left child :)
+         swap ← root                (: keeps track of child to swap with :)
+         '''if''' a[swap] < a[child]
+             swap ← child
+         (: if there is a right child and that child is greater :)
+         '''if''' child+1 ≤ end '''and''' a[swap] < a[child+1]
+             swap ← child + 1
+         '''if''' swap ≠ root
+             swap(a[root], a[swap])
+             root ← swap            (: repeat to continue sifting down the child now :)
+         '''else'''
+             '''return'''
+The heapify function can be thought of as building a heap from the bottom up, successively shifting downward to establish the heap property. An alternative version (shown below) that builds the heap top-down and sifts upward may be conceptually simpler to grasp. This "siftUp" version can be visualized as starting with an empty heap and successively inserting elements, whereas the "siftDown" version given above treats the entire input array as a full, "broken" heap and "repairs" it starting from the last non-trivial sub-heap (that is, the last parent node).
+Also, the "siftDown" version of heapify has [tpl]math|O(n)[/tpl] time complexity, while the "siftUp" version given below has [tpl]math|O(n log n)[/tpl] time complexity due to its equivalence with inserting each element, one at a time, into an empty heap.[tpl]cite web|title=Priority Queues|url=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L10-PQueues.htm|accessdate=24 May 2011[/tpl]
+This may seem counter-intuitive since, at a glance, it is apparent that the former only makes half as many calls to its logarithmic-time sifting function as the latter; i.e., they seem to differ only by a constant factor, which never has an impact on asymptotic analysis.
+To grasp the intuition behind this difference in complexity, note that the number of swaps that may occur during any one siftUp call increases with the depth of the node on which the call is made. The crux is that there are many (exponentially many) more "deep" nodes than there are "shallow" nodes in a heap, so that siftUp may have its full logarithmic running-time on the approximately linear number of calls made on the nodes at or near the "bottom" of the heap. On the other hand, the number of swaps that may occur during any one siftDown call decreases as the depth of the node on which the call is made increases. Thus, when the "siftDown" heapify begins and is calling siftDown on the bottom and most numerous node-layers, each sifting call will incur, at most, a number of swaps equal to the "height" (from the bottom of the heap) of the node on which the sifting call is made. In other words, about half the calls to siftDown will have at most only one swap, then about a quarter of the calls will have at most two swaps, etc.
+The heapsort algorithm itself has [tpl]math|O(n log n)[/tpl] time complexity using either version of heapify.
+  '''function''' heapify(a,count) is
+      ''(end is assigned the index of the first (left) child of the root)''
+      end := 1
+      '''while''' end < count
+          ''(sift up the node at index end to the proper place such that all nodes above''
+          '' the end index are in heap order)''
+          siftUp(a, 0, end)
+          end := end + 1
+      ''(after sifting up the last node all nodes are in heap order)''
+  '''function''' siftUp(a, start, end) '''is'''
+      '''input: ''' ''start represents the limit of how far up the heap to sift.''
+                    ''end is the node to sift up.''
+      child := end 
+      '''while''' child > start
+          parent := floor((child - 1) / 2)
+          '''if''' a[parent] < a[child] '''then''' ''(out of max-heap order)''
+              swap(a[parent], a[child])
+              child := parent ''(repeat to continue sifting up the parent now)''
+          '''else'''
+              '''return'''
+
+==Example==
+
+Let { 6, 5, 3, 1, 8, 7, 2, 4 } be the list that we want to sort from the smallest to the largest. (NOTE, for 'Building the Heap' step: Larger nodes don't stay below smaller node parents. They are swapped with parents, and then recursively checked if another swap is needed, to keep larger numbers above smaller numbers on the heap binary tree.)
+1. Build the heap
+2. Sorting.
+
+==Notes==
+
+==References==
+
+==External links==
+
+

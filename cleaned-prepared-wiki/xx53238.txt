@@ -1,0 +1,52 @@
+[[Binary logarithm]]
+
+CATEGORIES: Binary arithmetic, Calculus, Logarithms, Articles with example Perl code, Articles with example Python code
+
+In mathematics, the binary logarithm (log2 n) is the logarithm to the base 2. It is the inverse function of n ↦ 2n. The binary logarithm of n is the power to which the number 2 must be raised to obtain the value n.  This makes the binary logarithm useful for anything involving powers of 2, i.e. doubling. For example, the binary logarithm of 1 is 0, the binary logarithm of 2 is 1, the binary logarithm of 4 is 2, the binary logarithm of 8 is 3, the binary logarithm of 16 is 4 and the binary logarithm of 32 is 5.
+
+Applications
+
+Information theory
+
+The binary logarithm is often used in computer science and information theory because it is closely connected to the binary numeral system. It is frequently written ld ''n, from Latin logarithmus duālis, or 'lg n, although the ISO specification is that it should be lb (n)', lg (n) being reserved for log10 n. The number of digits (bits) in the binary representation of a positive integer n is the integral part of 1 + lb n'', i.e.
+In information theory, the definition of the amount of self-information and information entropy involves the binary logarithm; this is needed because the unit of information, the bit, refers to information resulting from an occurrence of one of two equally probable alternatives.
+
+Computational complexity
+
+The binary logarithm also frequently appears in the analysis of algorithms. If a number n greater than 1 is divided by 2 repeatedly, the number of iterations needed to get a value at most 1 is again the integral part of lb n. This idea is used in the analysis of several algorithms and data structures. For example, in binary search, the size of the problem to be solved is halved with each iteration, and therefore roughly lb n iterations are needed to obtain a problem of size 1, which is solved easily in constant time. Similarly, a perfectly balanced binary search tree containing n elements has height lb n + 1.
+However, the running time of an algorithm is usually expressed in big O notation, ignoring constant factors.  Since log2 n = (1/logk 2)logk n, where k can be any number greater than 1, algorithms that run in O(log2 n) time can also be said to run in, say, O(log13 n) time. The base of the logarithm in expressions such as O(log n) or O(n log n) is therefore not important.
+In other contexts, though, the base of the logarithm needs to be specified. For example O(2lb n) is not the same as O(2ln n) because the former is equal to O(n) and the latter to O(n0.6931...).
+Algorithms with running time n lb n are sometimes called linearithmic. Some examples of algorithms with running time O(lb n) or O(n lb n) are:
+
+Single-elimination tournaments
+
+In competitive games and sports involving two players/teams in each game/match, the binary logarithm indicates the number of rounds necessary in a single-elimination tournament in order to determine a winner. For example, a tournament of 4 players requires lb (4) or 2 rounds to determine the winner, a tournament of 32 teams requires lb (32) rounds, which is 5 rounds, etc. In this case, for n players/teams where n is not a power of 2, lb (n) is rounded up since it will be necessary to have at least one round in which not all remaining competitors play. For example, lb (6) is approximately 2.585, rounded up, indicates that a tournament of 6 requires 3 rounds (either 2 teams will sit out the first round, or one team will sit out the second round).
+
+Using calculators
+
+An easy way to calculate the log2(n) on calculators that do not have a log2-function is to use the natural logarithm "ln" or the common logarithm "log" functions, which are found on most "scientific calculators". The specific change of logarithm base formulae for this are:
+so
+and this produces the curiosity that log2(n) is within 0.6% of loge(n) + log10(n). loge(n)+log10(n) is actually log2.0081359...(n) where the base is e1/(1+log10e) = 101/(1 + loge10) ≈ 2.00813 59293 46243 95422 87563 25191 0 to (32 significant figures). Of course, log1010 = logee = 1.
+
+Algorithm
+
+Integer
+
+For integer domain and range, the binary logarithm can be computed rounding up or down.  These two forms of integer binary logarithm are related by this formula:
+The integer binary logarithm can be interpreted as the zero-based index of the most significant 1 bit in the input. In this sense it is the complement of the find first set operation, which finds the index of the least significant 1 bit. The article find first set contains more information on algorithms, architecture support, and applications for the integer binary logarithm.
+
+Real number
+
+For a general positive real number, the binary logarithm may be computed in two parts:
+Computing the integral part is straightforward.  For any x > 0, there exists a unique integer n such that 2n ≤ x n+1, or equivalently 1 ≤ 2−nx −nx).  In other words:
+Fortunately, in practice we can do the computation and know the error margin without doing any algebra or any infinite series truncation. Suppose we want to compute the binary log of 1.65 with four binary digits. Repeat these steps four times:
+The numbers we wrote are the logarithm written in binary.
+That will work when we start with any number between 1 and 2.
+So:
+We wrote 1011 so far, so the binary logarithm of 1.65 written in binary is 0.1011 (or, written as a fraction, 11/16), and the error is less than 1/16. Adding 1/32, we get 23/32 which has error less than 1/32.  In general, to get error less than 0.5 raised to the 1+N, we need N squarings and N or less halvings.
+
+
+
+
+
+

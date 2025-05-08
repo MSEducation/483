@@ -1,0 +1,147 @@
+[[Classical orthogonal polynomials]]
+
+CATEGORIES: Articles containing proofs, Orthogonal polynomials, Special hypergeometric functions
+
+In mathematics, the classical orthogonal polynomials are the most widely used orthogonal polynomials: the Hermite polynomials, Laguerre polynomials, Jacobi polynomials (including as a special case the Gegenbauer polynomials), Chebyshev polynomials, and Legendre polynomials.See [tpl]harvtxt|Suetin|2001[/tpl]
+They have many important applications in such areas as mathematical physics (in particular, the theory of random matrices), approximation theory, numerical analysis, and many others.
+Classical orthogonal polynomials appeared in the early 19th century in the works of Adrien-Marie Legendre,  who introduced the Legendre polynomials. In the late 19th century, the study of continued fractions by P. L. Chebyshev and then A.A. Markov and T.J. Stieltjes led to the general notion of orthogonal polynomials.
+There are several more general definitions of orthogonal classical polynomials; for example, [tpl]harvtxt|Andrews|Askey|1985[/tpl] use the term for all polynomials in the Askey scheme.
+
+==Definition==
+
+The classical orthogonal polynomials correspond to the three families of weights:
+The standard normalisation (also called standardization) is detailed below.
+
+===Jacobi polynomials===
+
+They are normalised (standardized) by
+and satisfy the orthogonality condition
+The Jacobi polynomials are solutions to the differential equation
+
+====Important special cases====
+
+===Hermite polynomials===
+
+The Hermite polynomials are defined byother conventions are also used; see Hermite polynomials.
+They satisfy the orthogonality condition
+and the differential equation
+
+===Laguerre polynomials===
+
+The generalised Laguerre polynomials are defined by
+They satisfy the orthogonality relation
+and the differential equation
+
+==Differential equation==
+
+The classical orthogonal polynomials arise from a differential equation of the form
+where Q is a given quadratic (at most) polynomial, and L is a given linear polynomial.  The function f, and the constant λ, are to be found.
+corresponding eigenvalues λ, such that f does not have singularities and D(f) = λf.
+The solutions of this differential equation have singularities unless λ takes on
+specific values.  There is a series of numbers λ0, λ1, λ2, ... that lead to a series of polynomial solutions P0, P1, P2, ... if one of the following sets of conditions are met:
+These three cases lead to the Jacobi-like, Laguerre-like, and Hermite-like polynomials, respectively.
+In each of these three cases, we have the following:
+Because of the constant of integration, the quantity R(x) is determined only up to an arbitrary positive multiplicative constant.  It will be used only in homogeneous differential equations
+(where this doesn't matter) and in the definition of the weight function (which can also be
+indeterminate.)  The tables below will give the "official" values of R(x) and W(x).
+
+===Rodrigues' formula===
+
+Under the assumptions of the preceding section,
+This is known as Rodrigues' formula, after Olinde Rodrigues.  It is often written
+where the numbers en depend on the standardization.  The standard values of en will be given in the tables below.
+
+===The numbers λn===
+
+Under the assumptions of the preceding section, we have
+
+===Second form for the differential equation===
+
+Let
+Then
+Now multiply the differential equation
+by R/Q, getting
+or
+This is the standard Sturm-Liouville form for the equation.
+
+===Third form for the differential equation===
+
+Then
+Now multiply the differential equation
+by S/Q, getting
+or
+or, letting u = Sy,
+
+===Formulas involving derivatives===
+
+Under the assumptions of the preceding section, let P[tpl]su|b=n|p=r[/tpl] denote the r-th derivative of Pn.
+(We put the "r" in brackets to avoid confusion with an exponent.)
+P[tpl]su|b=n|p=r[/tpl] is a polynomial of degree n − r.  Then we have the following:
+There are also some mixed recurrences.  In each of these, the numbers a, b, and c depend on n
+and r, and are unrelated in the various formulas.
+There are an enormous number of other formulas involving orthogonal polynomials
+in various ways.  Here is a tiny sample of them, relating to the Chebyshev,
+associated Laguerre, and Hermite polynomials:
+
+===Orthogonality===
+
+The differential equation for a particular λ may be written (omitting explicit dependence on x)
+and reversing the subscripts yields
+subtracting and integrating:
+but it can be seen that
+so that:
+
+==Derivation from differential equation==
+
+All of the polynomial sequences arising from the differential equation above are equivalent, under scaling and/or shifting of the domain, and standardizing of the polynomials, to more restricted classes.  Those restricted classes are exactly "classical orthogonal polynomials".
+Because all polynomial sequences arising from a differential equation in the manner
+described above are trivially equivalent to the classical polynomials, the actual classical
+polynomials are always used.
+
+===Jacobi polynomial===
+
+The Jacobi-like polynomials, once they have had their domain shifted and scaled so that
+the interval of orthogonality is −1, 1, still have two parameters to be determined.
+(This puts the root of L inside the interval of orthogonality.)
+are not symmetrical about x = 0.
+The differential equation
+is Jacobi's equation.
+For further details, see Jacobi polynomials.
+
+===Gegenbauer polynomials===
+
+in the Jacobi polynomials equal to each other, one obtains the
+Gegenbauer or ultraspherical polynomials.  They are
+or, more generally:
+All the other classical Jacobi-like polynomials (Legendre, etc.) are
+and choosing a standardization.
+For further details, see Gegenbauer polynomials.
+
+===Legendre polynomials===
+
+The differential equation is
+This is Legendre's equation.
+The second form of the differential equation is:
+The recurrence relation is
+A mixed recurrence is
+Rodrigues' formula is
+For further details, see Legendre polynomials.
+
+====Associated Legendre polynomials====
+
+The Associated Legendre polynomials, denoted
+The m in parentheses (to avoid confusion with an exponent) is a parameter.  The m
+in brackets denotes the m-th derivative of the Legendre polynomial.
+These "polynomials" are misnamed—they are not polynomials when m is odd.
+They have a recurrence relation:
+
+===Chebyshev polynomials===
+
+The differential equation is
+This is Chebyshev's equation.
+The recurrence relation is
+Rodrigues' formula is
+These polynomials have the property that, in the interval of orthogonality,
+(To prove it, use the recurrence formula.)
+This means that all their local minima and maxima have values of −1 and +1,
+that is, the polynomials are "level".  Because of this, expansion of functions

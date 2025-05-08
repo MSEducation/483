@@ -1,0 +1,36 @@
+[[Formal verification]]
+
+CATEGORIES: Electronic circuit verification, Formal methods, Logic in computer science, Theoretical computer science
+
+In the context of hardware and software systems, formal verification is the act of proving or disproving the correctness of intended algorithms underlying a system with respect to a certain formal specification or property, using formal methods of mathematics.
+Formal verification can be helpful in proving the correctness of systems such as: cryptographic protocols, combinational circuits, digital circuits with internal memory, and software expressed as source code.
+The verification of these systems is done by providing a formal proof on an abstract mathematical model of the system, the correspondence between the mathematical model and the nature of the system being otherwise known by construction.  Examples of mathematical objects often used to model systems are: finite state machines, labelled transition systems, Petri nets, timed automata, hybrid automata, process algebra, formal semantics of programming languages such as operational semantics, denotational semantics, axiomatic semantics and Hoare logic.Introduction to Formal Verification, Berkeley University of California, Retrieved November 6, 2013
+
+Approaches to formal verification
+
+One approach and formation is model checking, which consists of a systematically exhaustive exploration of the mathematical model (this is possible for finite models, but also for some infinite models where infinite sets of states can be effectively represented finitely by using abstraction or taking advantage of symmetry).  Usually this consists of exploring all states and transitions in the model, by using smart and domain-specific abstraction techniques to consider whole groups of states in a single operation and reduce computing time. Implementation techniques include state space enumeration, symbolic state space enumeration, abstract interpretation, symbolic simulation, abstraction refinement.  The properties to be verified are often described in temporal logics, such as linear temporal logic (LTL) or computational tree logic (CTL). The great advantage of model checking is that it is often fully automatic; its primary disadvantage is that it does not in general scale to large systems; symbolic models are typically limited to a few hundred bits of state, while explicit state enumeration requires the state space being explored to be relatively small.
+Another approach is deductive verification.  It consists of generating from the system and its specifications (and possibly other annotations) a collection of mathematical proof obligations, the truth of which imply conformance of the system to its specification, and discharging these obligations using either interactive theorem provers (such as HOL, ACL2, Isabelle, or Coq), automatic theorem provers, or satisfiability modulo theories (SMT) solvers. This approach has the disadvantage that it typically requires the user to understand in detail why the system works correctly, and to convey this information to the verification system, either in the form of a sequence of theorems to be proved or in the form of specifications of system components (e.g. functions or procedures) and perhaps subcomponents (such as loops or data structures).
+
+Formal verification for software
+
+Logical inference for the formal verification of software can be further divided into:
+A slightly different (and complementary) approach is program derivation, in which efficient code is produced from functional specifications by a series of correctness-preserving steps. An example of this approach is the Bird-Meertens Formalism, and this approach can be seen as another form of correctness by construction.
+
+Verification and validation
+
+Verification is one aspect of testing a product's fitness for purpose. Validation is the complementary aspect. Often one refers to the overall checking process as V & V.
+The verification process consists of static/structural and dynamic/behavioral aspects. E.g., for a software product one can inspect the source code (static) and run against specific test cases (dynamic). Validation usually can be done only dynamically, i.e., the product is tested by putting it through typical and atypical usages ("Does it satisfactorily meet all use cases?").
+
+Industry use
+
+The growth in complexity of designs increases the importance of formal verification techniques in the hardware industry.
+, several operating systems have been formally verified:
+NICTA's Secure Embedded L4 microkernel, sold commercially as seL4 by OK Labs; and SYSGO's PikeOS.Christoph Baumann, Bernhard Beckert, Holger Blasum, and Thorsten Bormer Ingredients of Operating System Correctness? Lessons Learned in the Formal Verification of PikeOS[ref]
+"Getting it Right" by Jack Ganssle[/ref]
+The   CompCert C compiler is a formally verified C compiler implementing the majority of ISO C.
+
+
+
+
+
+

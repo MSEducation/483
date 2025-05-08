@@ -1,0 +1,94 @@
+[[Simultaneous equations model]]
+
+CATEGORIES: Multivariate statistics, Econometrics
+
+Simultaneous equation models are a form of statistical model in the form of a set of linear simultaneous equations. They are often used in econometrics.
+
+Structural and reduced form
+
+Suppose there are m regression equations of the form
+where i is the equation number, and  is the observation index. In these equations xit is the ki×1 vector of exogenous variables, yit is the dependent variable, y−i,t is the ni×1 vector of all other endogenous variables which enter the ith equation on the right-hand side, and uit are the error terms. The "−i" notation indicates that the vector y−i,t may contain any of the y's except for yit (since it is already present on the left-hand side). The regression coefficients βi and γi are of dimensions ki×1 and ni×1 correspondingly. Vertically stacking the T observations corresponding to the ith equation, we can write each equation in vector form as
+where yi and ui are T×1 vectors, Xi is a T×ki matrix of exogenous regressors, and Y−i is a T×ni matrix of endogenous regressors on the right-hand side of the ith equation. Finally, we can move all endogenous variables to the left-hand side and write the m equations jointly in vector form as
+This representation is known as the structural form. In this equation  is a T×m matrix of the error terms.
+Postmultiplying the structural equation by , the system can be written in the reduced form as
+
+Assumptions
+
+Secondly, error terms are assumed to be serially independent and identically distributed. That is, if the tth row of matrix U is denoted by u(t), then the sequence of vectors {u(t)} should be iid, with zero mean and some covariance matrix Σ (which is unknown). In particular, this implies that .
+Lastly, the identification conditions require that the number of unknowns in this system of equations should not exceed the number of equations. More specifically, the order condition requires that for each equation  matrix which is obtained from Π by crossing out those columns which correspond to the excluded endogenous variables, and those rows which correspond to the included exogenous variables.
+
+Estimation
+
+Two-stages least squares (2SLS)
+
+The simplest and the most common
+If the ith equation in the model is written as
+where Zi is a T×(ni + ki) matrix of both endogenous and exogenous regressors in the ith equation, and δi is an (ni + ki)-dimensional vector of regression coefficients, then the 2SLS estimator of δi will be given by
+where  is the projection matrix onto the linear space spanned by the exogenous regressors X.
+
+Indirect least squares
+
+Indirect least squares is an approach in econometrics where the coefficients in a simultaneous equations model are estimated from the reduced form model using ordinary least squares. (1974) "On Indirect Least Squares Estimation of a Simultaneous Equation System", The Canadian Journal of Statistics / La Revue Canadienne de Statistique, 2 (1), 75–82   For this, the structural system of equations is transformed into the reduced form first. Once the coefficients are estimated the model is put back into the structural form.
+
+Limited information maximum likelihood (LIML)
+
+The "limited information" maximum likelihood method was suggested by . It is used when one is interested in estimating a single structural equation at a time (hence its name of limited information), say for variable i:
+The structural equations for the remaining endogeneous variables Y−1 are not specified, and they are given in their reduced form:
+Notation in this context is different than for the simple IV case. One has:
+The explicit formula for the LIML is:
+where , and λ is the smallest characteristic root of the matrix:
+where, in a similar way,  .
+In other words, λ is the smallest solution of the generalized eigenvalue problem, see :
+
+=K class estimators=
+
+The LIML is a special case of the K-class estimators:
+with:
+Several estimators belong to this class:
+
+Three-stage least squares (3SLS)
+
+The three-stage least squares estimator was introduced by .  It combines two-stage least squares (2SLS) with seemingly unrelated regressions (SUR).
+
+
+
+Notes
+
+
+
+  | last = Amemiya | first = Takeshi
+  | title = Advanced econometrics
+  | year = 1985
+  | publisher = Harvard University Press
+  | location = Cambridge, Massachusetts
+  | isbn = 0-674-00560-0
+  | ref = harv
+  }}
+  | last1 = Anderson | first1 = T.W.
+  | last2 = Rubin    | first2 = H.
+  | title = Estimator of the parameters of a single equation in a complete system of stochastic equations
+  | year = 1949
+  | journal = Annals of Mathematical Statistics
+  | volume = 20 | issue = 1
+  | pages = 46–63
+  | jstor = 2236803
+  | ref = harv
+  | doi=10.1214/aoms/1177730090
+  }}
+  | last = Basmann | first = R.L.
+  | title = A generalized classical method of linear estimation of coefficients in a structural equation
+  | year = 1957
+  | journal = Econometrica
+  | volume = 25 | issue = 1
+  | pages = 77–83
+  | jstor = 1907743
+  | ref = harv
+  }}
+  | last1 = Davidson | first1 = Russell
+  | last2 = MacKinnon | first2 = James G.
+  | title = Estimation and inference in econometrics
+  | year = 1993
+  | publisher = Oxford University Press
+  | isbn = 978-0-19-506011-9
+  | ref = harv
+  }}

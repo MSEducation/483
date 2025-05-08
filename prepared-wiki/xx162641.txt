@@ -1,0 +1,25 @@
+[[Local volatility]]
+
+CATEGORIES: Derivatives (finance)
+
+==Formulation==
+
+In mathematical finance, the asset St which underlies financial derivatives, is typically assumed to follow stochastic differential equations of the type 
+When such volatility has a randomness of its own—often described by a different equation driven by a different W—the model above is called a stochastic volatility model. And when such volatility is merely a function of the current asset level St and of time t, we have a local volatility model. The local volatility model is a useful simplification of the stochastic volatility model.
+
+==Development==
+
+The concept of a local volatility was developed when Bruno Dupire [tpl]cite journal | author=Bruno Dupire | title=Pricing with a Smile | publisher=Risk |  year= 1994 [/tpl]http://www.risk.net/data/risk/pdf/technical/2007/risk20_0707_technical_volatility.pdf  and Emanuel Derman and Iraj Kani[tpl]cite journal | author=Derman, E., Iraj Kani | title="Riding on a Smile." RISK, 7(2) Feb.1994, pp. 139-145, pp. 32-39. | publisher=Risk | format=PDF | year= 1994 | url=http://www.ederman.com/new/docs/gs-volatility_smile.pdf | accessdate=2007-06-01[/tpl] 
+noted that there is a unique diffusion process consistent with the risk neutral densities derived from the market prices of European options.
+Derman and Kani described and implemented a local volatility function to model instantaneous volatility. They used this function at each node in a binomial options pricing model. The tree successfully produced option valuations consistent with all market prices across strikes and expirations. The Derman-Kani model was thus formulated with discrete time and stock-price steps. The key continuous-time equations used in local volatility models were developed by Bruno Dupire in 1994.  Dupire's equation states
+There exist few known parametrisation of the volatility surface based on the heston model (Schonbusher, SVI and gSVI) as well as their de-arbitraging methodologies.[tpl]cite journal | author=Babak Mahdavi Damghani and Andrew Kos| title=De-arbitraging with a weak smile |  publisher=Wilmott | year = 2013[/tpl]http://www.readcube.com/articles/10.1002/wilm.10201?locale=en
+
+==Use==
+
+Local volatility models are useful in any options market in which the underlying's volatility is predominantly a function of the level of the underlying, interest-rate derivatives for example. Time-invariant local volatilities are supposedly inconsistent with the dynamics of the equity index implied volatility surface,[tpl]cite journal | author=Dumas, B., J. Fleming, R. E. Whaley | title=Implied volatility functions: Empirical tests | journal=The Journal of Finance | volume=53 | year=1998[/tpl] but see [tpl]cite journal | author=Crepey, S | title=Delta-hedging Vega Risk | journal=Quantitative Finance | volume=4 | year=2004[/tpl], who claims that such models provide the best average hedge for equity index options. Local volatility models are nonetheless useful in the formulation of stochastic volatility models.[tpl]cite book | author=Gatheral, J. | title=The Volatility Surface: A Practitioners's Guide | publisher = Wiley Finance | year=2006 | isbn= 978-0-471-79251-2 [/tpl]
+Local volatility models have a number of attractive features.[tpl]cite journal | author=Derman, E. I Kani & J. Z. Zou | title=The Local Volatility Surface: Unlocking the Information in Index Options Prices | journal = Financial Analysts Journal  | volume=(July-Aug 1996) | year=1996[/tpl]  Because the only source of randomness is the stock price, local volatility models are easy to calibrate. Also, they lead to complete markets where hedging can be based only on the underlying asset. The general non-parametric approach by Dupire is however problematic, as one needs to arbitrarily pre-interpolate the input implied volatility surface before applying the method. Alternative parametric approaches have been proposed, notably the highly tractable mixture dynamical local volatility models by Damiano Brigo and Fabio Mercurio.[tpl]cite conference | author=Damiano Brigo and Fabio Mercurio|title=Displaced and Mixture Diffusions for Analytically-Tractable Smile Models| booktitle=  Mathematical Finance - Bachelier Congress 2000. Proceedings | year=2001|publisher=Springer Verlag [/tpl][tpl]cite journal | author=Damiano Brigo and Fabio Mercurio|title=Lognormal-mixture dynamics and calibration to market volatility smiles| journal=  International Journal of Theoretical and Applied Finance|volume = 5|issue =  4| year=2002 | format=PDF | url=http://www.damianobrigo.it/lognsmile.pdf | accessdate=2011-03-07[/tpl]    
+Since in local volatility models the volatility is a deterministic function of the random stock price, local volatility models are not very well used to price cliquet options or forward start options, whose values depend specifically on the random nature of volatility itself.
+
+==References==
+
+

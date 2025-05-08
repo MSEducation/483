@@ -1,0 +1,44 @@
+[[Checksum]]
+
+CATEGORIES: Checksum algorithms
+
+A checksum or hash sum is a small-size datum computed from an arbitrary block of digital data for the purpose of detecting errors which may have been introduced during its transmission or storage.
+The actual procedure which yields the checksum, given a data input is called a checksum function or checksum algorithm.
+Depending on its design goals, a good checksum algorithm will usually output a significantly different value, even for small changes made to the input.
+This is especially true of cryptographic hash functions, which may be used to detect many data corruption errors and verify overall data integrity; if the computed checksum for the current data input matches the stored value of a previously computed checksum, there is a very high probability the data has not been accidentally altered or corrupted.
+Checksum functions are related to hash functions, fingerprints, randomization functions, and cryptographic hash functions.  However, each of those concepts has different applications and therefore different design goals.
+By themselves, checksums are often used to verify data integrity, but should not be relied upon to also verify data authentication. However they are used as cryptographic primitives in larger authentication algorithms. For cryptographic systems with these two specific design goals, see HMAC.
+Check digits and parity bits are special cases of checksums, appropriate for small blocks of data (such as Social Security numbers, bank account numbers, computer words, single bytes, etc.).  Some error-correcting codes are based on special checksums which not only detect common errors but also allow the original data to be recovered in certain cases.
+
+==Checksum algorithms==
+
+===Parity byte or parity word===
+
+The simplest checksum algorithm is the so-called longitudinal parity check, which breaks the data into "words" with a fixed number n of bits, and then computes the exclusive or of all those words.  The result is appended to the message as an extra word. To check the integrity of a message, the receiver computes the exclusive or (XOR) of all its words, including the checksum; if the result is not a word with n zeros, the receiver knows a transmission error occurred.
+With this checksum, any transmission error which flips a single bit of the message, or an odd number of bits, will be detected as an incorrect checksum.  However, an error which affects two bits will not be detected if those bits lie at the same position in two distinct words.  If the affected bits are independently chosen at random, the probability of a two-bit error being undetected is 1/n.
+
+===Modular sum===
+
+A variant of the previous algorithm is to add all the "words" as unsigned binary numbers, discarding any overflow bits, and append the two's complement of the total as the checksum.  To validate a message, the receiver adds all the words in the same manner, including the checksum; if the result is not a word full of zeros, an error must have occurred.  This variant too detects any single-bit error, but the promodular sum is used in SAE J1708.[tpl]cite web|url=http://www.kvaser.com/zh/about-can/related-protocols-and-standards/50.html |title=SAE J1708 |publisher=Kvaser.com |date= |accessdate=2012-08-13[/tpl][tpl]dead link|date=April 2014[/tpl]
+
+===Position-dependent checksums===
+
+The simple checksums described above fail to detect some common errors which affect many bits at once, such as changing the order of data words, or inserting or deleting words with all bits set to zero.  The checksum algorithms most used in practice, such as Fletcher's checksum, Adler-32, and cyclic redundancy checks (CRCs), address these weaknesses by considering not only the value of each word but also its position in the sequence. This feature generally increases the cost of computing the checksum.
+
+===General considerations===
+
+A single-bit transmission error then corresponds to a displacement from a valid corner (the correct message and checksum) to one of the m adjacent corners.  An error which affects k bits moves the message to a corner which is k steps removed from its correct corner.  The goal of a good checksum algorithm is to spread the valid corners as far from each other as possible, so as to increase the likelihood "typical" transmission errors will end up in an invalid corner.
+
+==Checksum tools==
+
+==See also==
+
+General topic
+Error correction
+Hash functions
+
+==References==
+
+==External links==
+
+

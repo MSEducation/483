@@ -1,0 +1,170 @@
+     j := (j + S[i] + key[i [[modulo operation|mod]] keylength]) mod 256
+     swap values of S[i] and S[j]
+ '''endfor'''
+
+===Pseudo-random generation algorithm (PRGA)===
+
+right|thumbnail|320px|The lookup stage of RC4. The output byte is selected by looking up the values of S(i) and S(j), adding them together modulo 256, and then using the sum as an index into S; S(S(i) + S(j)) is used as a byte of the key stream, K. For as many iterations as are needed, the PRGA modifies the state and outputs a byte of the keystream.  In each iteration, the PRGA increments i, looks up the ith element of S, Si, and adds that to j, exchanges the values of Si and Sj, and then uses the sum Si + Sj (modulo 256) as an index to fetch a third element of S, (the keystream value K below) which is XORed with the next byte of the message to produce the next byte of either ciphertext or plaintext.  Each element of S is swapped with another element at least once every 256 iterations.
+ i := 0
+ j := 0
+ '''while''' GeneratingOutput:
+     i := (i + 1) mod 256
+     j := (j + S[i]) mod 256
+     swap values of S[i] and S[j]
+     K := S[(S[i] + S[j]) mod 256]
+     output K
+ '''endwhile'''
+
+===RC4-based random number generators===
+
+Several operating systems including OpenBSD include arc4random, a random number generator based on RC4.
+ISAAC, one of the fastest known cryptographically secure pseudorandom number generators,
+can be seen as a variant of RC4.
+Proposed new random number generators are often compared to the RC4 random number generator.[ref]
+Bartosz Zoltak.
+2010?
+[/ref][ref]
+Chefranov, A.G.
+"Pseudo-Random Number Generator RC4 Period Improvement".
+2006.
+[/ref]
+Unfortunately, several attacks on RC4 are able to distinguish its output from a random sequence.
+
+===Implementation===
+
+Many stream ciphers are based on linear feedback shift registers (LFSRs), which, while efficient in hardware, are less so in software. The design of RC4 avoids the use of LFSRs, and is ideal for software implementation, as it requires only byte manipulations. It uses 256 bytes of memory for the state array, S0 through S255, k bytes of memory for the key, key0 through keyk-1, and integer variables, i, j, and K. Performing a modular reduction of some value modulo 256 can be done with a bitwise AND with 255 (which is equivalent to taking the low-order byte of the value in question).
+
+===Test vectors===
+
+These test vectors are not official, but convenient for anyone testing their own RC4 program. The keys and plaintext are ASCII, the keystream and ciphertext are in hexadecimal.
+
+==Security==
+
+Unlike a modern stream cipher (such as those in eSTREAM), RC4 does not take a separate nonce alongside the key.  This means that if a single long-term key is to be used to securely encrypt multiple streams, the cryptosystem must specify how to combine the nonce and the long-term key to generate the stream key for RC4.  One approach to addressing this is to generate a "fresh" RC4 key by hashing a long-term key with a nonce. However, many applications that use RC4 simply concatenate key and nonce; RC4's weak key schedule then gives rise to related key attacks, like the Fluhrer, Mantin and Shamir attack (which is famous for breaking the WEP standard).[tpl]cite web |date=[tpl]date|2001-09-091[/tpl] |title=RSA Security Response to Weaknesses in Key Scheduling Algorithm of RC4 |publisher=RSA Laboratories |url=http://www.emc.com/emc-plus/rsa-labs/historical/rsa-security-response-weaknesses-algorithm-rc4.htm [/tpl]
+Because RC4 is a stream cipher, it is more malleable than common block ciphers. If not used together with a strong message authentication code (MAC), then encryption is vulnerable to a bit-flipping attack. The cipher is also vulnerable to a stream cipher attack if not implemented correctly.[tpl]cite book|url=http://books.google.com/books?id=dQE6LGep6wEC|pages=92-93|title=Hidden Keys to Software Break-Ins and Unauthorized Entry|first=Dmitry|last=Sklyarov|publisher=A-List Publishing|year=2004|isbn=1931769303[/tpl]  Furthermore, inadvertent double encryption of a message with the same key may accidentally output plaintext rather than ciphertext because the involutary nature of the XOR function would result in the second operation reversing the first.
+It is noteworthy, however, that RC4, being a stream cipher, was for a period of time the only common cipher that was immunehttp://serverfault.com/questions/315042/ to the 2011 BEAST attack on TLS 1.0.  The attack exploits a known weakness in the way cipher block chaining mode is used with all of the other ciphers supported by TLS 1.0, which are all block ciphers.
+In 2013 there was a new attack scenario proposed by AlFardan, Bernstein, Paterson, Poettering and Schuldt that uses new statistical biases in RC4 key table[tpl]cite journal | url=http://link.springer.com/chapter/10.1007%2F978-3-642-19574-7_5 | title=Discovery and Exploitation of New Biases in RC4 | author=Pouyan Sepehrdad, Serge Vaudenay, Martin Vuagnoux | journal=Lecture Notes in Computer Science | year=2011 | volume=6544 | pages=74–91 | doi=10.1007/978-3-642-19574-7_5[/tpl] to recover plaintext with large number of TLS encryptions[tpl]cite web | url=http://blog.cryptographyengineering.com/2013/03/attack-of-week-rc4-is-kind-of-broken-in.html | title=Attack of the week: RC4 is kind of broken in TLS | work=Cryptography Engineering | accessdate=March 12, 2013 | author=Green, Matthew[/tpl][tpl]cite web | title=On the Security of RC4 in TLS | url=http://www.isg.rhul.ac.uk/tls/ | publisher=Royal Holloway University of London | accessdate=March 13, 2013 | author=Nadhem AlFardan, Dan Bernstein, Kenny Paterson, Bertram Poettering and Jacob Schuldt[/tpl]
+
+===Roos' biases and key reconstruction from permutation===
+
+In 1995, Andrew Roos experimentally observed that the first byte of the keystream is correlated to the first three bytes of the key and the first few bytes of the permutation after the KSA are correlated to some linear combination of the key bytes.Andrew Roos. A Class of Weak Keys in the RC4 Stream Cipher. Two posts in sci.crypt, message-id 43u1eh$1j3@hermes.is.co.za and 44ebge$llf@hermes.is.co.za, 1995. These biases remained unproven until 2007, when Goutam Paul, Siddheshwar Rathi and Subhamoy MaitraGoutam Paul, Siddheshwar Rathi and Subhamoy Maitra. On Non-negligible Bias of the First Output Byte of RC4 towards the First Three Bytes of the Secret Key. Proceedings of the International Workshop on Coding and Cryptography (WCC) 2007, pages 285-294 and Designs, Codes and Cryptography Journal, pages 123-134, vol. 49, no. 1-3, December 2008. proved the keystream-key correlation and in another work Goutam Paul and Subhamoy MaitraGoutam Paul and Subhamoy Maitra. Permutation after RC4 Key Scheduling Reveals the Secret Key. SAC 2007, pages 360-377, vol. 4876, Lecture Notes in Computer Science, Springer. proved the permutation-key correlations. The latter work also used the permutation-key correlations to design the first algorithm for complete key reconstruction from the final permutation after the KSA, without any assumption on the key or IV. This algorithm has a constant probability of success in a time which is the square root of the exhaustive key search complexity. Subsequently, many other works have been performed on key reconstruction from RC4 internal states.Eli Biham and Yaniv Carmeli. Efficient Reconstruction of RC4 Keys from Internal States. FSE 2008, pages 270-288, vol. 5086, Lecture Notes in Computer Science, Springer.Mete Akgun, Pinar Kavak, Huseyin Demirci. New Results on the Key Scheduling Algorithm of RC4. INDOCRYPT 2008, pages 40-52, vol. 5365, Lecture Notes in Computer Science, Springer.Riddhipratim Basu, Subhamoy Maitra, Goutam Paul and Tanmoy Talukdar. On Some Sequences of the Secret Pseudo-random Index j in RC4 Key Scheduling. Proceedings of the 18th International Symposium on Applied Algebra, Algebraic Algorithms and Error Correcting Codes (AAECC), June 8–12, 2009, Tarragona, Spain, pages 137-148, vol. 5527, Lecture Notes in Computer Science, Springer. Subhamoy Maitra and Goutam PaulSubhamoy Maitra and Goutam Paul. New Form of Permutation Bias and Secret Key Leakage in Keystream Bytes of RC4. Proceedings of the 15th Fast Software Encryption (FSE) Workshop, February 10–13, 2008, Lausanne, Switzerland, pages 253-269, vol. 5086, Lecture Notes in Computer Science, Springer. also showed that the Roos type biases still persist even when one considers nested permutation indices, like SSi or SSSi. These types of biases are used in some of the later key reconstruction methods for increasing the success probability.
+
+===Biased outputs of the RC4===
+
+The keystream generated by the RC4 is biased in varying degrees towards certain sequences making it vulnerable to distinguishing attacks. The best such attack is due to Itsik Mantin and Adi Shamir who showed that the second output byte of the cipher was biased toward zero with probability 1/128 (instead of 1/256). This is due to the fact that if the third byte of the original state is zero, and the second byte is not equal to 2, then the second output byte is always zero. Such bias can be detected by observing only 256 bytes.Itsik Mantin and Adi Shamir, A Practical Attack on Broadcast RC4. FSE 2001, pp152 – 164 (PS).
+Souradyuti Paul and Bart Preneel of COSIC showed that the first and the second bytes of the RC4 were also biased. The number of required samples to detect this bias is 225 bytes.Souradyuti Paul and Bart Preneel, Analysis of Non-fortuitous Predictive States of the RC4 Keystream Generator. INDOCRYPT 2003, pp52 – 67 (PDF).
+Scott Fluhrer and David McGrew also showed such attacks which distinguished the keystream of the RC4 from a random stream given a gigabyte of output.Scott R. Fluhrer and David A. McGrew, Statistical Analysis of the Alleged RC4 Keystream Generator. FSE 2000, pp19 – 30 (PDF)
+The complete characterization of a single step of RC4 PRGA was performed by Riddhipratim Basu, Shirshendu Ganguly, Subhamoy Maitra, and Goutam Paul.[tpl]cite journal |first=Riddhipratim |last=Basu |first2=Shirshendu |last2=Ganguly |first3=Subhamoy |last3=Maitra |first4=Goutam |last4=Paul |title=A Complete Characterization of the Evolution of RC4 Pseudo Random Generation Algorithm |journal=Journal of Mathematical Cryptology |pages=257–289 |volume=2 |issue=3 |year=2008 |doi=10.1515/JMC.2008.012 [/tpl] Considering all the permutations, they prove that the distribution of the output is not uniform given i and j, and as a consequence, information about j is always leaked into the output.
+
+===Fluhrer, Mantin and Shamir attack===
+
+In 2001, a new and surprising discovery was made by Fluhrer, Mantin and Shamir: over all possible RC4 keys, the statistics for the first few bytes of output keystream are strongly non-random, leaking information about the key. If the long-term key and nonce are simply concatenated to generate the RC4 key, this long-term key can be discovered by analysing a large number of messages encrypted with this key.Scott R. Fluhrer, Itsik Mantin and Adi Shamir, Weaknesses in the Key Scheduling Algorithm of RC4. Selected Areas in Cryptography 2001, pp1 – 24 (PS). This and related effects were then used to break the WEP ("wired equivalent privacy") encryption used with 802.11 wireless networks. This caused a scramble for a standards-based replacement for WEP in the 802.11 market, and led to the IEEE 802.11i effort and WPA.Interim technology for wireless LAN security: WPA to replace WEP while industry develops new security standard
+Cryptosystems can defend against this attack by discarding the initial portion of the keystream.  Such a modified algorithm is traditionally called "RC4-dropn", where n is the number of initial keystream bytes that are dropped.  The SCAN default is n = 768 bytes, but a conservative value would be n = 3072 bytes."RC4-drop(nbytes)" in the "Standard Cryptographic Algorithm Naming" database
+The Fluhrer, Mantin and Shamir attack does not apply to RC4-based SSL, since SSL generates the encryption keys it uses for RC4 by hashing, meaning that different SSL sessions have unrelated keys.Ron Rivest. RSA Security Response to Weaknesses in Key Scheduling Algorithm of RC4.
+
+===Klein's attack===
+
+In 2005, Andreas Klein presented an analysis of the RC4 stream cipher showing more correlations between the RC4 keystream and the key.A. Klein, Attacks on the RC4 stream cipher, Designs, Codes and Cryptography (2008) 48:269-286  Erik Tews, Ralf-Philipp Weinmann, and Andrei Pychkine used this analysis to create aircrack-ptw, a tool which cracks 104-bit RC4 used in 128-bit WEP in under a minute.Erik Tews, Ralf-Philipp Weinmann, Andrei Pyshkin.  Breaking 104-bit WEP in under a minute.  Whereas the Fluhrer, Mantin, and Shamir attack used around 10 million messages, aircrack-ptw can break 104-bit keys in 40,000 frames with 50% probability, or in 85,000 frames with 95% probability.
+
+===Combinatorial problem===
+
+A combinatorial problem related to the number of inputs and outputs of the RC4 cipher was first posed by Itsik Mantin and Adi Shamir in 2001, whereby, of the total 256 elements in the typical state of RC4, if x number of elements (x ≤ 256) are only known (all other elements can be assumed empty), then the maximum number of elements that can be produced deterministically is also x in the next 256 rounds. This conjecture was put to rest in 2004 with a formal proof given by Souradyuti Paul and Bart Preneel.Souradyuti Paul and Bart Preneel, A New Weakness in the RC4 Keystream Generator and an Approach to Improve the Security of the Cipher. Fast Software Encryption - FSE 2004, pp245 – 259 (PDF).
+
+===Royal Holloway attack===
+
+In 2013, a group of security researchers at the Information Security Group at Royal Holloway, University of London reported an attack that can become effective using only 224 connections.[tpl]cite web|url=http://www.theregister.co.uk/2013/03/15/tls_broken/|title=HTTPS cookie crypto CRUMBLES AGAIN in hands of stats boffins|author=John Leyden|publisher=The Register|date=2013-03-15[/tpl][tpl]cite web|url=http://www.isg.rhul.ac.uk/tls/RC4biases.pdf|title=On the Security of RC4 in TLS and WPA|author=AlFardan et al.|publisher=Information Security Group, Royal Holloway, University of London|date=2013-07-08[/tpl][tpl]cite web|title=On the Security of RC4 in TLS and WPA|url=http://www.isg.rhul.ac.uk/tls/|publisher=Information Security Group, Royal Holloway, University of London|accessdate=2013-09-06[/tpl] (website)  While yet not a practical attack for most purposes, this result is sufficiently close to one that it has led to speculation that it is plausible that some state cryptologic agencies may already have better attacks that render RC4 insecure.[tpl]cite web|url=http://www.theregister.co.uk/2013/09/06/nsa_cryptobreaking_bullrun_analysis/|title=That earth-shattering NSA crypto-cracking: Have spooks smashed RC4?|author=John Leyden|date=2013-09-06|publisher=The Register[/tpl] Given that as of 2013 a large amount of TLS traffic uses RC4 to avoid recent attacks on block ciphers that use cipher block chaining, if these hypothetical better attacks exist, then  this would make the TLS-with-RC4 combination insecure against such attackers in a large number of practical scenarios.
+
+==RC4 variants==
+
+As mentioned above, the most important weakness of RC4 comes from the insufficient key schedule; the first bytes of output reveal information about the key.  This can be corrected by simply discarding some initial portion of the output stream.[tpl]Citation |chapter-url=http://eprint.iacr.org/2002/067 |chapter=(Not So) Random Shuffles of RC4 |author=Ilya Mironov |date=2002-06-01 |title=Advances in Cryptology – CRYPTO 2002 |pages=304–319 |series=Lecture Notes in Computer Science |volume=2442 |publisher=Springer-Verlag |isbn=3-540-44050-X |doi=10.1007/3-540-45708-9_20 |id=Cryptology ePrint Archive: Report 2002/067 |accessdate=2011-11-04[/tpl]  This is known as RC4-dropN, where N is typically a multiple of 256, such as 768 or 1024.
+A number of attempts have been made to strengthen RC4, notably RC4A, VMPC, and RC4+.
+
+===RC4A===
+
+Souradyuti Paul and Bart Preneel have proposed an RC4 variant, which they call RC4A.[tpl]Citation |chapter=A New Weakness in the RC4 Keystream Generator and an Approach to Improve the Security of the Cipher |author1=Souradyuti Paul |authorlink1=Souradyuti Paul |author2=Bart Preneel |authorlink2=Bart Preneel |chapter-url=http://homes.esat.kuleuven.be/~psourady/publication-info/PP04-bias_rc4.htm |year=2004 |title=Fast Software Encryption, FSE 2004 |series=Lecture Notes in Computer Science |volume=3017 |publisher=Springer-Verlag |isbn=3-540-22171-9 |pages=245–259 |doi=10.1007/978-3-540-25937-4_16 |accessdate=2011-11-04[/tpl]
+RC4A uses two state arrays S1 and S2, and two indexes j1 and j2.  Each time i is incremented, two bytes are generated:
+Thus, the algorithm is:
+ <span style="color: green;">''All arithmetic is performed modulo 256''</span>
+ i := 0
+ j1 := 0
+ j2 := 0
+ '''while''' GeneratingOutput:
+     i := i + 1
+     j1 := j1 + S1[i]
+     swap values of S1[i] and S1[j1]
+     '''output''' S2[S1[i] + S1[j1]<nowiki>]</nowiki>
+     j2 := j2 + S2[i]
+     swap values of S2[i] and S2[j2]
+     '''output''' S1[S2[i] + S2[j2]<nowiki>]</nowiki>
+ '''endwhile'''
+Although the algorithm required the same number of operations per output byte, there is greater parallelism than RC4, providing a possible speed improvement.
+Although stronger than RC4, this algorithm has also been attacked,CryptoLounge: RC4A with Alexander Maximov[tpl]Citation |title=Two Linear Distinguishing Attacks on VMPC and RC4A and Weakness of RC4 Family of Stream Ciphers |author=Alexander Maximov |url=http://eprint.iacr.org/2007/070 |date=2007-02-22 |id=Cryptology ePrint Archive: Report 2007/070 |accessdate=2011-11-04[/tpl] and a team from NEC[tpl]Citation |title=The Most Efficient Distinguishing Attack on VMPC and RC4A |url=http://www.ecrypt.eu.org/stream/papersdir/037.pdf |year=2005 |author1=Yukiyasu Tsunoo |author2=Teruo Saito |author3=Hiroyasu Kubo |author4=Maki Shigeri |author5=Tomoyasu Suzaki |author6=Takeshi Kawabata[/tpl] developing ways to distinguish its output from a truly random sequence.
+
+===VMPC===
+
+"Variably Modified Permutation Composition" is another RC4 variant.[tpl]Citation |chapter=VMPC One-Way Function and Stream Cipher |chapter-url=http://www.vmpcfunction.com/vmpc.pdf |author=Bartosz Zoltak |year=2004 |title=Fast Software Encryption, FSE 2004 |series=Lecture Notes in Computer Science |volume=3017 |publisher=Springer-Verlag |doi=10.1007/978-3-540-25937-4_14 |isbn=3-540-22171-9 |pages=210–225 |accessdate=2011-11-04[/tpl]  It uses the same key schedule as RC4, but iterating 768 times rather than 256 (it is not the same as RC4-drop512 because all iterations incorporate key material), and with an optional additional 768 iterations to incorporate an initial vector.  Written to highlight the similarity to RC4 as much as possible, the output generation function operates as follows:
+ <span style="color: green;">''All arithmetic is performed modulo 256.''</span>
+ i := 0
+ '''while''' GeneratingOutput:
+     a := S[i]
+     j := S[j + a]
+     b := S[j]
+     '''output''' S[S[b] + 1]
+     S[i] := b     <span style="color: green;">''(Swap S[i] and S[j])''</span>
+     S[j] := a
+     i := i + 1
+ '''endwhile'''
+This was attacked in the same papers as RC4A.
+
+===RC4+===
+
+RC4+ is a modified version of RC4 with a more complex three-phase key schedule (taking about 3× as long as RC4, or the same as RC4-drop512), and a more complex output function which performs four additional lookups in the S array for each byte output, taking approximately 1.7× as long as basic RC4.[tpl]Citation |chapter=Analysis of RC4 and Proposal of Additional Layers for Better Security Margin |chapter-url=http://eprint.iacr.org/2008/396 |author1=Subhamoy Maitra |author2=Goutam Paul |date=2008-09-19 |title=Progress in Cryptology – INDOCRYPT 2008 |pages=27–39 |series=Lecture Notes in Computer Science |volume=5365 |publisher=Springer-Verlag |isbn=3-540-89753-4 |doi=10.1007/978-3-540-89754-5_3 |id=Cryptology ePrint Archive: Report 2008/396 |accessdate=2011-11-04[/tpl]
+ <span style="color: green;">''All arithmetic modulo 256.  << and >> are left and right shift, ⊕ is exclusive OR''</span>
+ '''while''' GeneratingOutput:
+     i := i + 1
+     a := S[i]
+     j := j + a
+     b := S[j]
+     S[i] := b     <span style="color: green;">''(Swap S[i] and S[j])''</span>
+     S[j] := a
+     c := S[i<<5 ⊕ j>>3] + S[j<<5 ⊕ i>>3]
+     '''output''' (S[a+b] + S[c⊕0xAA]) ⊕ S[j+b]
+ '''endwhile'''
+This algorithm has not been analyzed significantly.
+
+==RC4-based cryptosystems==
+
+| url=http://www.h-online.com/security/news/item/Skype-s-encryption-procedure-partly-exposed-1034577.html
+| archiveurl=http://web.archive.org/web/20100711062958/http://www.h-online.com/security/news/item/Skype-s-encryption-procedure-partly-exposed-1034577.html
+| archivedate=11 July 2010
+| title=Skype's encryption procedure partly exposed
+| publisher=www.h-online.com
+| accessdate=2010-07-08}}[/ref]
+Where a cryptosystem is marked with "(optionally)", RC4 is one of several ciphers the system can be configured to use.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+ |title=Applied Cryptography: Protocols, Algorithms, and Source Code in C
+ |last1=Schneier |first1=Bruce |authorlink1=Bruce Schneier
+ |coauthors=
+ |editor1-last= |editor1-first= |editor1-link=
+ |year=1995
+ |publisher=Wiley
+ |location=
+ |isbn=978-0471117094
+ |url=https://www.schneier.com/book-applied.html
+ |page=
+ |pages=
+ |ref=
+ |chapter=Chapter 17 - Other Stream Ciphers and Real Random-Sequence Generators
+ |edition=2nd
+}}
+
+==External links==
+
+RC4 in WEP
+

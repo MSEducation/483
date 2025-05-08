@@ -1,0 +1,57 @@
+[[Feature-oriented programming]]
+
+CATEGORIES: Programming paradigms
+
+Feature Oriented Programming (FOP) or Feature Oriented Software Development (FOSD) is a general paradigm for program synthesis in software product lines.
+FOSD arose out of layer-based designs and levels of abstraction in network protocols and extensible database systems in the late-1980s.  A program was a stack of layers. Each layer added functionality to previously composed layers and different compositions of layers produced different programs.   Not surprisingly, there was a need for a compact language to express such designs.  Elementary algebra fit the bill: each layer was function (program transformation) that added new code to an existing program to produce a new program, and a program's design was modeled by an expression, i.e., a composition of transformations (layers).  The figure below illustrates the stacking of layers h, j, and i (where h is on the bottom and i is on the top). The algebraic notations i(j(h))and i•j•h express these designs.
+Over time, the idea of layers was generalized to features, where a feature is an increment in program development or functionality.   The paradigm for program design and synthesis was recognized to be a generalization of relational query optimization, where query evaluation programs were defined as relational algebra expressions, and query optimization was expression evaluation. A software product line (SPL) is a family of programs where each program is defined by a unique composition of features, and no two programs have the same combination. FOSD has since evolved into the study of feature modularity, tools, analyses, and design techniques to support feature-based program synthesis.
+Further advances in FOSD arose from recognizing the following facts: Every program has multiple representations (e.g., source, makefiles,
+documentation, etc.) and adding a feature to a program should elaborate each of its representations so that all representations are consistent.  Additionally, some of these representations could be generated (or derived) from other representations. In this article, the mathematics of the three most recent generations of FOSD, namely GenVoca, AHEAD, and FOMDD are 
+described, and links to product lines that have been developed using FOSD tools are provided.
+Also, four additional results that apply to all generations of FOSD are presented elsewhere: MetaModels, Program Cubes, Feature Algebras, and Feature Interactions.
+
+GenVoca
+
+GenVoca (a meld of the names Genesis and Avoca) is a compositional paradigm for defining programs of a product lines. Base programs are 0-ary functions or transformations called values:
+   f      -- base program with feature f
+   h      -- base program with feature h
+and features are unary functions/transformations that elaborate (modify, extend, refine) a program: 
+   i • x  -- adds feature i to program x
+   j • x  -- adds feature j to program x
+where • denotes function composition. The design of a program is a named expression, e.g.:
+   p<sub>1</sub> = j • f       -- program p<sub>1</sub> has features j and f
+   p<sub>2</sub> = j • h       -- program p<sub>2</sub> has features j and h
+   p<sub>3</sub> = i • j • h   -- program p<sub>3</sub> has features i, j, and h
+A GenVoca model of a domain or software product line is a collection of base programs and features (see MetaModels and Program Cubes).
+The programs (expressions) that can be created defines a product line. Expression optimization is program design optimization, and expression evaluation is program synthesis.
+GenVoca features were originally implemented using C preprocessor (#ifdef feature ... #endif) techniques.  A more advanced technique, called mixin layers, showed the connection of features to object-oriented collaboration-based designs.
+
+AHEAD
+
+Algebraic Hierarchical Equations for Application Design (AHEAD)  generalized GenVoca in two ways. First it revealed the internal structure of GenVoca values as tuples. Every program has multiple representations, such as source, documentation, bytecode, and makefiles. A GenVoca value is a tuple of program representations. In a product line of parsers, for example, a base parser f is defined by its grammar gf, Java source sf, and documentation df. Program f is modeled by the tuple f=sf, df. Each program representation may have subrepresentations, and they too may have subrepresentations, recursively. In general, a GenVoca value is a tuple of nested tuples that define a hierarchy of representations for a particular program.
+Second, AHEAD expresses features as nested tuples of unary functions called deltas. Deltas can be 
+program refinements (semantics-preserving transformations), extensions (semantics-extending transformations), 
+or interactions (semantics-altering transformations). We use the neutral term "delta" to represent all of these possibilities, as each occurs in FOSD.
+The representations of a program are computed recursively by composing tuples element-wise. The representations for parser p (whose GenVoca expression is j•f) are:
+   p<sub>2</sub> = j • f                            -- GenVoca expression
+Summarizing, GenVoca values are nested tuples of program artifacts, and features are nested delta tuples, where • recursively composes them. This is the essence of AHEAD.
+The ideas presented above concretely expose two FOSD principles.  The Principle of Uniformity states that all program artifacts are treated and refined in the same way. (This is evidenced by deltas for different artifact types above). The Principle of Scalability states all levels of abstractions are treated uniformly.  (This gives rise to the hierarchical nesting of tuples above).
+The original implementation of AHEAD is the AHEAD Tool Suite and Jak language, which exhibits both the Principles of Uniformity and Scalability.  Next-generation tools include CIDE
+
+and FeatureHouse.
+
+FOMDD
+
+thumb|Derivational and Refinement Relationships among Program Artifacts Feature Oriented Model Driven Design (FOMDD)  combines the ideas of AHEAD with Model Driven Design (MDD) (a.k.a. Model-Driven Architecture (MDA)). AHEAD functions capture the lockstep update of program artifacts when a feature is added to a program. But there are other functional relationships among program artifacts that express derivations. For example, the relationship between a grammar gf and its parser source sf is defined by a compiler-compiler tool, e.g., javacc. Similarly, the relationship between Java source sf and its bytecode bf is defined by the javac compiler. A commuting diagram expresses these relationships. Objects are program representations, downward arrows are derivations, and horizontal arrows are deltas. The figure to the right shows the commuting diagram for program p3 = i•j•h = g3,s3,b3.
+A fundamental property of a commuting diagram is that all paths between two objects are equivalent. For example, one way to derive the bytecode b3 of parser p3 (lower right object in the above figure) from 
+grammar gf of parser f (upper left object) is to derive the bytecode bf and refine to b3, while another way refines gf to g3, and then derive b3:
+There is a potential optimization: traversing each arrow of a commuting diagram has a cost. The cheapest (i.e., shortest) path between two objects in a commuting diagram is a geodesic, which represents the most efficient metaprogram that produces the target object from a given object.
+Commuting diagrams are important for at least two reasons: (1) there is the possibility of optimizing the synthesis of artifacts (e.g., geodesics) and (2) they specify different ways of constructing a target object from a starting object. A path through a diagram corresponds to a tool chain: for an FOMDD model to be consistent, it should be proven (or demonstrated through testing) that all tool chains that map one object to another in fact yield equivalent results. (If different paths/tool chains yield different results, then either there is a bug in one or more of the tools or the FOMDD model is wrong). 
+
+Applications
+
+
+
+
+
+

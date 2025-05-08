@@ -1,0 +1,138 @@
+[[Mathematical induction]]
+
+CATEGORIES: Mathematical induction, Mathematical logic, Proof theory, Mathematical proofs, Deductive reasoning, Articles containing proofs
+
+Mathematical induction is a method of mathematical proof typically used to establish a given statement for all natural numbers. It is done in two steps. The first step, known as the base case, is to prove the given statement for the first natural number. The second step, known as the inductive step, is to prove that the given statement for any one natural number implies the given statement for the next natural number. From these two steps, mathematical induction is the rule from which we infer that the given statement is established for all natural numbers.
+The method can be extended to prove statements about more general well-founded structures, such as trees; this generalization, known as structural induction, is used in mathematical logic and computer science.  Mathematical induction in this extended sense is closely related to recursion. Mathematical induction, in some form, is the foundation of all correctness proofs for computer programs.[ref]
+
+</ref>
+Although its namesake may suggest otherwise, mathematical induction should not be misconstrued as a form of inductive reasoning (also see Problem of induction). Mathematical induction is an inference rule used in proofs. In mathematics, proofs are examples of deductive reasoning and inductive reasoning is excluded from proofs.
+
+History
+
+In 370 BC, Plato's Parmenides may have contained an early example of an implicit inductive proof.utm.html  proof that the number of primes is infinite and in Bhaskara's "cyclic method". 197 "The process of reasoning called "Mathematical Induction" has had several independent origins. It has been traced back to the Swiss Jakob (James) Bernoulli, the Frenchman B. Pascal and P. Fermat, and the Italian F. Maurolycus. ... By reading a little between the lines one can find traces of mathematical induction still earlier, in the writings of the Hindus and the Greeks, as, for instance, in the "cyclic method" of Bhaskara, and in Euclid's proof that the number of primes is infinite."  An opposite iterated technique, counting down rather than up, is found in the Sorites paradox, where one argued that if 1,000,000 grains of sand formed a heap, and removing one grain from a heap left it a heap, then a single grain of sand (or even no grains) forms a heap.
+An implicit proof by mathematical induction for arithmetic sequences was introduced in the al-Fakhri written by al-Karaji around 1000 AD, who used it to prove the binomial theorem and properties of Pascal's triangle.
+None of these ancient mathematicians, however, explicitly stated the inductive hypothesis. Another similar case (contrary to what Vacca has written, as Freudenthal carefully showed) was that of Francesco Maurolico in his Arithmeticorum libri duo (1575), who used the technique to prove that the sum of the first n odd integers is n2. The first explicit formulation of the principle of induction was given by Pascal in his Traité du triangle arithmétique (1665). Another Frenchman, Fermat, made ample use of a related principle, indirect proof by infinite descent. The inductive hypothesis was also employed by the Swiss Jakob Bernoulli, and from then on it became more or less well known. The modern rigorous and systematic treatment of the principle came only in the 19th century, with George Boole,"It is sometimes required to prove a theorem which shall be true whenever a certain quantity n which it involves shall be an integer or whole number and the method of proof is usually of the following kind. 1st. The theorem is proved to be true when n = 1. 2ndly. It is proved that if the theorem is true when n is a given whole number, it will be true if n is the next greater integer. Hence the theorem is true universally. . .. This species of argument may be termed a continued sorites" (Boole circa 1849 Elementary Treatise on Logic not mathematical pages 40–41 reprinted in Grattan-Guinness, Ivor and Bornet, Gérard (1997), George Boole: Selected Manuscripts on Logic and its Philosophy, Birkhäuser Verlag, Berlin, ISBN 3-7643-5456-9) Augustus de Morgan, Charles Sanders Peirce,[ref]
+|number=1–4|pages=85–95|doi=10.2307/2369151|mr=1507856 |jstor=2369151}} Reprinted (CP 3.252-88), (W 4:299-309). 
+[/ref] Giuseppe Peano, and Richard Dedekind.
+
+Description
+
+The simplest and most common form of mathematical induction infers that a statement involving a natural number n holds for all values of n. The proof consists of two steps:
+The hypothesis in the inductive step that the statement holds for some n is called the induction hypothesis (or inductive hypothesis). To perform the inductive step, one assumes the induction hypothesis and then uses this assumption to prove the statement for n + 1.
+Whether n = 0 or n = 1 depends on the definition of the natural numbers. If 0 is considered a natural number, as is common in the fields of combinatorics and mathematical logic, the base case is given by n = 0. If, on the other hand, 1 is taken as the first natural number, then the base case is given by n = 1.
+
+Example
+
+Mathematical induction can be used to prove that the following statement, which we will call P(n), holds for all natural numbers n.
+P(n) gives a formula for the sum of the natural numbers less than or equal to number n. The proof that P(n) is true for each natural number n proceeds as follows.
+Basis: Show that the statement holds for n = 0.  
+P(0) amounts to the statement:
+In the left-hand side of the equation, the only term is 0, and so the left-hand side is simply equal to 0.  
+In the right-hand side of the equation, 0·(0 + 1)/2 = 0.  
+The two sides are equal, so the statement is true for n = 0. Thus it has been shown that P(0) holds.
+Inductive step: Show that if P(k) holds, then also  holds. This can be done as follows.
+Assume P(k) holds (for some unspecified value of k). It must then be shown that  holds, that is:
+Using the induction hypothesis that P(k) holds, the left-hand side can be rewritten to:
+Algebraically:
+thereby showing that indeed   holds.
+Since both the basis and the inductive step have been performed, by mathematical induction, the statement P(n) holds for all natural n. Q.E.D.
+
+Axiom of induction
+
+Mathematical induction as an inference rule can be formalized as a second-order axiom. The axiom of induction is, in logical symbols,
+where P is any predicate and k and n are both natural numbers.
+In words, the basis P(0) and the inductive step (namely, that the inductive hypothesis P(k) implies P(k + 1)) together imply that P(n) for any natural number n. The axiom of induction asserts that the validity of inferring that P(n) holds for any natural number n from the basis and the inductive step.
+Note that the first quantifier in the axiom ranges over predicates rather than over individual numbers.  This is a second-order quantifier, which means that this axiom is stated in second-order logic.  Axiomatizing arithmetic induction in first-order logic requires an axiom schema containing a separate axiom for each possible predicate.  The article Peano axioms contains further discussion of this issue.
+
+Heuristic justification
+
+As an inference rule, mathematical induction can be justified as follows. Having proven the base case and the inductive step, then any value can be obtained by performing the inductive step repeatedly. It may be helpful to think of the domino effect. Consider a half line of dominoes each standing on end, and extending infinitely to the right. Suppose that:
+With these assumptions one can conclude (using mathematical induction) that all of the dominoes will fall right.
+Mathematical induction, as formalized in the second-order axiom above, works because k is used to represent an arbitrary natural number. Then, using the inductive hypothesis, i.e. that P(k) is true, show P(k + 1) is also true. This allows us to "carry" the fact that P(0) is true to the fact that P(1) is also true, and carry P(1) to P(2), etc., thus proving P(n) holds for every natural number n.
+
+Variants
+
+In practice, proofs by induction are often structured differently, depending on the exact nature of the property to be proved.
+
+Starting at some other number
+
+If we want to prove a statement not for all natural numbers but only for all numbers greater than or equal to a certain number b then:
+This can be used, for example, to show that n2 ≥ 3n for n ≥ 3.  A more substantial example is a proof that
+In this way we can prove that P(n) holds for all n ≥1, or even n ≥−5.  This form of mathematical induction is actually a special case of the previous form because if the statement that we intend to prove is P(n) then proving it with these two rules is equivalent with proving P(n + b) for all natural numbers n with the first two steps.
+
+Building on n = 2
+
+In mathematics, many standard functions, including operations such as "+" and relations such as "=", are binary, meaning that they take two arguments. Often these functions possess properties that implicitly extend them to more than two arguments. For example, once addition a + b is defined and is known to satisfy the associativity property (a + b) + c = a + (b + c), then the ternary addition a + b + c makes sense, either as (a + b) + c or as a + (b + c). Similarly, many axioms and theorems in mathematics are stated only for the binary versions of mathematical operations and relations, and implicitly extend to higher-arity versions.
+Suppose that we wish to prove a statement about an n-ary operation implicitly defined from a binary operation, using mathematical induction on n. Then it should come as no surprise that the n = 2 case carries special weight. Here are some examples.
+
+=Example: product rule for the derivative=
+
+In this example, the binary operation in question is multiplication (of functions). The usual product rule for the derivative taught in calculus states:
+or in logarithmic derivative form
+This can be generalized to a product of n functions. One has
+or in logarithmic derivative form
+In each of the n terms of the usual form, just one of the factors is a derivative; the others are not.
+
+=Example: Cohen's proof that there is no "horse of a different color"=
+
+In this example, the binary relation in question is an equivalence relation applied to horses, such that two horses are equivalent if they are the same color. The argument is essentially identical to the one above, but the crucial n = 1 case fails, causing the entire argument to be invalid.
+Joel E. Cohen proposed the following argument, which purports to prove by mathematical induction that all horses are of the same color:. Reprinted in A Random Walk in Science (R. L. Weber, ed.), Crane, Russak & Co., 1973.
+The basis case n = 1 is trivial (as any horse is the same color as itself), and the inductive step is correct in all cases n > 1. However, the logic of the inductive step is incorrect for n = 1, because the statement that "the two sets overlap" is false (there are only n + 1 = 2 horses prior to either removal, and after removal the sets of one horse each do not overlap). Indeed, going from the n = 1 case to the n = 2 case is clearly the crux of the matter; if one could prove the n = 2 case directly without having to infer it from the n = 1 case, then all higher cases would follow from the inductive hypothesis.
+
+Induction on more than one counter
+
+It is sometimes desirable to prove a statement involving two natural numbers, n and m, by iterating the induction process. That is, one performs a basis step and an inductive step for n, and in each of those performs a basis step and an inductive step for m. See, for example, the proof of commutativity accompanying addition of natural numbers. More complicated arguments involving three or more counters are also possible.
+
+Infinite descent
+
+The method of infinite descent was one of Pierre de Fermat's favorites. This method of proof can assume several slightly different forms. For example, it might begin by showing that if a statement is true for a natural number n it must also be true for some smaller natural number m (m < n). Using mathematical induction (implicitly) with the inductive hypothesis being that the statement is false for all natural numbers less than or equal to m, we can conclude that the statement cannot be true for any natural number n.
+Although this particular form of infinite-descent proof is clearly a mathematical induction, whether one holds all proofs "by infinite descent" to be mathematical inductions depends on how one defines the term "proof by infinite descent." One might, for example, use the term to apply to proofs in which the well-ordering of the natural numbers is assumed, but not the principle of induction. Such, for example, is the usual proof that 2 has no rational square root (see Infinite descent).
+
+Prefix induction
+
+The most common form of induction requires proving that 
+ (∀k) (P(k) → P(k+1))
+or equivalently
+ (∀k) (P(k-1) → P(k))
+whereupon the induction principle "automates" n applications of this inference in getting from P(0) to P(n).  This could be called "predecessor induction" because each step proves something about a number from something about that number's predecessor.
+A variant of interest in computational complexity is "prefix induction", in which one needs to prove
+ (∀k) (P(k) → P(2k) ∧ P(2k+1)) 
+or equivalently 
+ (∀k) (P(floor()) → P(k))
+The induction principle then "automates" log(n) applications of this inference in getting from P(0) to P(n).  (It's called "prefix induction" because each step proves something about a number from something about the "prefix" of that number formed by truncating the low bit of its binary representation.)
+If traditional predecessor induction is interpreted computationally as an n-step loop, prefix induction corresponds to a log(n)-step loop, and thus proofs using prefix induction are "more feasibly constructive" than proofs using predecessor induction.
+Predecessor induction can trivially simulate prefix induction on the same statement.  Prefix induction can simulate predecessor induction, but only at the cost of making the statement more syntactically complex (adding a bounded universal quantifier), so the interesting results relating prefix induction to polynomial-time computation depend on excluding unbounded quantifiers entirely, and limiting the alternation of bounded universal and existential quantifiers allowed in the statement.  See  
+One could take it a step farther to "prefix of prefix induction": one must prove
+ (∀k) (P(floor(√k)) → P(k))
+whereupon the induction principle "automates" log(log(n)) applications of this inference in getting from P(0) to P(n).  This form of induction has been used, analogously, to study log-time parallel computation.
+
+Complete induction
+
+Another variant, called complete induction (or strong induction or course of values induction), says that in the second step we may assume not only that the statement holds for n = m but also that it is true for all n less than or equal to m.
+Complete induction is most useful when several instances of the inductive hypothesis are required for each inductive step.  For example, complete induction can be used to show that
+where Fn is the nth Fibonacci number, φ = (1 + √5)/2 (the golden ratio) and ψ = (1 − √5)/2 are the roots of the polynomial x2 − x − 1. By using the fact that Fn + 2 = Fn + 1 + Fn for each n ∈ N, the identity above can be verified by direct calculation for Fn + 2 if we assume that it already holds for both Fn + 1 and Fn. To complete the proof, the identity must be verified in the two base cases n = 0 and n = 1.
+Another proof by complete induction uses the hypothesis that the statement holds for all smaller n more thoroughly.  Consider the statement that "every natural number greater than 1 is a product of prime numbers", and assume that for a given m > 1 it holds for all smaller n > 1.  If m is prime then it is certainly a product of primes, and if not, then by definition it is a product: m = n1 n2, where neither of the factors is equal to 1; hence neither is equal to m, and so both are smaller than m.  The induction hypothesis now applies to n1 and n2, so each one is a product of primes.  Then m is a product of products of primes; i.e. a product of primes.
+This generalization, complete induction, is equivalent to the ordinary mathematical induction described above. Suppose P(n) is the statement that we intend to prove by complete induction. Let Q(n) mean P(m) holds for all m such that 0 ≤ m ≤ n.  Then Q(n) is true for all n if and only if P(n) is true for all n, and a proof of P(n) by complete induction is just the same thing as a proof of Q(n) by (ordinary) induction.
+
+Transfinite induction
+
+The last two steps can be reformulated as one step:
+This form of mathematical induction is not only valid for statements about natural numbers, but for statements about elements of any well-founded set, that is, a set with an irreflexive relation This form of induction, when applied to ordinals (which form a well-ordered and hence well-founded class), is called transfinite induction. It is an important proof technique in set theory, topology and other fields.
+Proofs by transfinite induction typically distinguish three cases:
+Strictly speaking, it is not necessary in transfinite induction to prove the basis, because it is a vacuous special case of the proposition that if P is true of all n 
+Equivalence with the well-ordering principle
+
+The principle of mathematical induction is usually stated as an axiom of the natural numbers; see Peano axioms.  However, it can be proved from the well-ordering principle.  Indeed, suppose the following:
+To derive simple induction from these axioms, we must show that if P(n) is some proposition predicated of n, and if:
+then P(n) holds for all n.
+Proof. Let S be the set of all natural numbers for which P(n) is false.  Let us see what happens if we assert that S is nonempty.  Well-ordering tells us that S has a least element, say t.  Moreover, since P(0) is true, t is not 0.  Since every natural number is either zero or some n+1, there is some natural number n such that n+1=t.  Now n is less than t, and t is the least element of S.  It follows that n is not in S, and so P(n) is true.  This means that P(n+1) is true, and so P(t) is true.  This is a contradiction, since t was in S.  Therefore, S is empty.
+It can also be proved that induction, given the other axioms, implies the well-ordering principle.
+
+
+
+Notes
+
+
+
+

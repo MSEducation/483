@@ -1,0 +1,85 @@
+[[Ulteo Open Virtual Desktop]]
+
+CATEGORIES: Linux distributions, Linux windowing system-related software, Free virtualization software, Unix software, Remote administration software, Remote desktop
+
+Ulteo Open Virtual Desktop (OVD) is an open source Application Delivery and Virtual Desktop infrastructure project that can deliver applications or a desktop hosted on a Linux or Windows server to end users. It is an open source alternative to Citrix and VMware solutions and, as of June 2012, the only presentation virtualization solution supporting both Linux and Windows applications. It was created by Gaël Duval, who previously created Mandriva Linux.
+
+Features
+
+Ulteo OVD provides access to applications or an entire desktop session hosted on a Linux or Windows (2003 or later) server. These are executed in a virtual session on the server (as opposed to simple display mirroring). Version 3 introduced RDP as the protocol used for both Linux and Windows applications. Sessions can be accessed through a web portal, using any Java or HTML5-capable browser, or integrated into the local desktop environment and launched like local applications. Remote applications can access local file systems (including network and USB), print to local printers, play sound locally and copy to or paste from the local clipboard. Starting with OVD 4, local PC/SC smartcard readers can also be accessed from a remote application, though this feature is supported only in the Premium edition and only for applications running on Windows servers.
+Users can authenticate through Microsoft Active Directory or any LDAP or CAS server. Support for additional authentication mechanisms, including single sign-on, can be implemented using an open API. Ulteo includes a dedicated file server into which other file servers (such as CIFS/Samba/Windows file servers) can be integrated as backends.
+The environment can be configured and monitored through a web-based administration interface. A farm can include multiple application servers, running a mix of Linux, Windows and Web servers, and the administrator can configure load balancing between them based on criteria such as processor load, memory usage, number of open sessions or random distribution. Ulteo states that a single farm can serve up to 50,000 users and more.
+An SSL gateway is available to deploy applications over the Internet.
+Besides the classic application delivery scenario, OVD can also be integrated into web-based document management platforms such as Microsoft SharePoint. Clicking a file in the portal will then open it with an application published on the OVD farm rather than downloading it and opening it with a locally installed application.
+Ulteo is distributed as a set of application packages which can be installed on a standard Linux distribution (Ubuntu, Debian, SUSE Linux Enterprise Server, Redhat Enterprise Linux), with Windows installers also available for some components.
+A live DVD (Demo) and a virtual appliance image are available for testing purposes. They contain a full Linux distribution (based on Ubuntu), all Ulteo components and some applications, allowing an Ulteo OVD farm to be quickly installed on a single server. The DVD additionally contains the full documentation and installation sources for all supported operating systems.
+
+Modules
+
+Ulteo OVD uses several modules with different roles. The Session Manager, at least one Application Server and the client component are required, while the others are optional. Each module comes with a binary installation package for Linux and, in most cases, also for Windows.
+
+Session Manager
+
+This server is the central piece of an Ulteo OVD architecture. It manages the session launching and hosts the administration console. It is the first module to install. Servers controlled by the Session Manager are known as slave servers.
+A binary installation package is only available for Linux at the moment, although it can be installed from source on Windows. The Session Manager may be installed on an Application Server, but this setup is not recommended for production environments.
+
+High Availability
+
+This add-on in Ulteo OVD 3 allowed setting up two physical Session Managers and databases in a cold-standby cluster. Data was replicated between the two databases using DRBD, and failover was handled by the Heartbeat cluster manager. High Availability was a Gold module. It is no longer included in the source code for OVD 4, nor available from the Premium repository.
+
+Application Server
+
+These are slave servers that run the published applications or desktops. They can be running Linux or Windows, depending on the type of applications or desktop to be delivered. Mixing Linux and Windows servers in an Ulteo OVD farm is supported.
+Linux Application servers can be set up in two modes: either as regular Linux installations with desktop environment, applications and the Application Server package, or using the Ulteo Subsystem. The Ulteo Subsystem can be installed on a Linux server with no desktop environment and no applications. It consists of a chroot jail with a modified Xfce desktop environment and some standard applications, including LibreOffice, Adobe Reader, Mozilla Firefox and Thunderbird. Additional applications can be installed within the chroot jail.
+
+Web Gateway
+
+This slave server module, introduced in OVD 4, allows publishing of Web applications alongside Linux and Windows application.
+
+Hypervisor
+
+The OVD 4 source code incudes code for another new type of slave server called Hypervisor, allowing Ulteo to act as a front end for a VDI. No installation package is provided as of April 2014.
+
+Client
+
+In order to start an Ulteo OVD session, an Ulteo OVD Client is required. Clients generally support two modes, application mode (or portal mode) and desktop mode. In application mode, the user can launch individual applications. In desktop mode the user is presented a full desktop, which can be either Linux or Windows and may contain applications from the respective other platform.
+
+=Web Client=
+
+All editions of OVD include a Java client. In desktop mode, the desktop is displayed inside the browser. The portal mode includes a web-based file browser based on AjaXplorer, from which users can download files, upload files or launch files in a published application. The Web Client can be installed on the Session Manager or, beginning with OVD 4, on a dedicated server.
+
+=HTML5 Client=
+
+OVD 4 introduced an HTML5 client, which is based on Guacamole and available in both editions of OVD. It does not require Java but can run in any browser which supports HTML5 (which most modern browsers do, the only notable exception being Internet Explorer). It does not support some features of the other clients, such as client drive mapping and sound. Apart from this, the look-and-feel is similar to the Java client, including the file browser in portal mode.
+The HTML5 client can be installed on the Session Manager or a separate web server. The server translates all RDP traffic into HTML5 and vice versa, effectively acting as a gateway. This makes it a suitable solution for deployment across firewalls, as the only traffic channel between the client and the HTML5 gateway is a HTTP or HTTPS connection.
+
+=Native Client=
+
+Native clients are available as Premium modules for Linux, Windows, Android and iOS.
+The desktop OS clients support desktop mode or application mode. In application mode, users can either launch remote applications from the client's main window, or configure the client to place icons into their start menu, from where they can be launched like local applications.
+The tablet clients support only desktop mode. They are available from the respective app stores.
+
+File Server
+
+Ulteo OVD includes an optional file server to host user profiles or shared folders, ensuring user access to the same files when using applications from different servers. As of version 4.0, only a Linux version is available. The File Server may be installed on an Application Server. Without a file server, shares can still be mounted using the mechanisms of the operating system, but these shares may not be available on all application servers or application server platforms, and cannot be accessed from the Web Client's AjaXplorer component.
+
+Gateway
+
+This slave server module facilitates deployment of Ulteo OVD applications over the Internet by tunneling connections to application servers through an SSL (443) connection. This eliminates the requirement to expose individual application servers with a public IP address. It also eases access for clients which are behind firewalls, as many firewall environments allow outgoing SSL traffic on port 443 with no further restrictions. The Gateway is a Premium module.
+
+Licensing
+
+Until version 3, some of the additional modules were Gold modules. Source code for Gold modules was freely available under the GPL, but binary installation files were provided only to users who purchased a subscription. 
+Version 4 introduced some changes: There is now a Community edition and a Premium edition. The former Gold modules are now part of the Premium edition and may contain proprietary code starting with version 4. Users of the Premium edition need to install an additional license management package on the Session Manager and import a license, which comes in the form of a certificate. Binary installation packages for the Premium modules are now freely available from the download server but will not work unless the Session Manager is running the Premium module with a valid license installed.
+
+Reception
+
+A review of Ulteo OVD 3 by The Virtualization Practice advises organizations that have an open-source policy, are cost-sensitive or need a simple solution to consider Ulteo OVD. It considers version 3 a viable alternative to competing solutions, having overcome many critical limitations of its predecessor. The switch from VNC to RDP as the transport protocol brought about significant improvements in performance, desktop integration (e.g. printing and audio) and client device support. Other improvements include support for application silos, firewall traversal and better LDAP support. It criticized a lack of high availability support for the Session Manager, making it a single point of failure as of version 3. (The High Availability module for the Session Manager was not mentioned.) In addition, Ulteo OVD was found to suffer from the traditional issues of remote application delivery – poor video performance and limited interaction with devices connected locally to the client.
+
+Further reading
+
+
+
+
+
+

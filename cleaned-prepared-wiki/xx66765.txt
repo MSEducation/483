@@ -1,0 +1,146 @@
+[[Bin packing problem]]
+
+CATEGORIES: Optimization algorithms and methods, Packing problem, Strongly NP-complete problems
+
+In the bin packing problem, objects of different volumes must be packed into a finite number of bins or containers each of volume V in a way that minimizes the number of bins used. In computational complexity theory, it is a combinatorial NP-hard problem. 
+There are many variations of this problem, such as 2D packing, linear packing, packing by weight, packing by cost, and so on. They have many applications, such as filling up containers, loading trucks with weight capacity constraints, creating file backups in  media and technology mapping in Field-programmable gate array semiconductor chip design.
+The bin packing problem can also be seen as a special case of the cutting stock problem. When the number of bins is restricted to 1 and each item is characterised by both a volume and a value, the problem of maximising the value of items that can fit in the bin is known as the knapsack problem.
+Despite the fact that the bin packing problem has an NP-hard computational complexity, optimal solutions to very large instances of the problem can be produced with sophisticated algorithms. In addition, many heuristics have been developed: for example, the first fit algorithm provides a fast but often non-optimal solution, involving placing each item into the first bin in which it will fit. It requires Θ(n log n) time, where n is the number of elements to be packed. The algorithm can be made much more effective by first sorting the list of elements into decreasing order (sometimes known as the first-fit decreasing algorithm), although this still does not guarantee an optimal solution, and for longer lists may increase the running time of the algorithm. It is known, however, that there always exists at least one ordering of items that allows first-fit to produce an optimal solution.
+A variant of bin packing that occurs in practice is when items can share space when packed into a bin. Specifically,  a set of items could occupy less space when packed together than the sum of their individual sizes. This variant is known as VM packing since when virtual machines (VMs) are packed in a server, their total memory requirement could decrease due to pages shared by the VMs that need only be stored once. If items can share space in arbitrary ways, the bin packing problem is hard to even approximate. However, if the space sharing fits into a hierarchy, as is the case with memory sharing in virtual machines, the bin packing problem can be efficiently approximated.
+
+Formal statement
+
+First-fit algorithm
+
+This is a very straightforward greedy approximation algorithm. The algorithm processes the items in arbitrary order. For each item, it attempts to place the item in the first bin that can accommodate the item. If no bin is found, it opens a new bin and puts the item within the new bin.
+It is rather simple to show this algorithm achieves an approximation factor of 2, that is, the number of bins used by this algorithm is no more than twice the optimal number of bins. This is due to the observation that at any given time, it is impossible for 2 bins to be at most half full. The reason is that if it would be possible, it would mean that at some point exactly one bin was at most half full and a new one has been opened to accommodate an item of size at most V/2. But since the first one has at least a space of V / 2, the algorithm will not open a new bin for any item whose size is at most V / 2. Only after the bin fills with more than V / 2 or if an item with a size larger than V / 2 arrives, the algorithm may open a new bin.
+
+Analysis of approximate algorithms
+
+The best fit decreasing and first fit decreasing strategies are among the simplest heuristic algorithms for solving the bin packing problem.  They have been shown to use no more than 11/9 OPT + 1 bins (where OPT is the number of bins given by the optimal solution).. (i.e. bounded by about 1.18 OPT, compared to about 1.22 OPT for FFD). In 2013, Sgall and Dósa gave a tight upper bound for the first-fit (FF) strategy, showing that it never needs more than 17/10 OPT bins for any input.
+It is NP-hard to distinguish whether OPT is 2 or 3, thus for all ε > 0, bin packing is hard to approximate within 3/2 − ε. (If such an approximation exists, one could determine whether n non-negative integers can be partitioned into two sets with the same sum in polynomial time. However, this problem is known to be NP-hard.) Consequently, the bin packing problem does not have a polynomial-time approximation scheme (PTAS) unless  On the other hand, for any 0 
+Exact algorithm
+
+Martello and Toth. developed an exact algorithm for the 1-D bin-packing problem, called MTP.
+
+Software
+
+
+
+Notes
+
+
+
+  | last = Vazirani
+  | first = Vijay V.
+  | authorlink = Vijay Vazirani
+  | title = Approximation Algorithms
+  | publisher = Springer
+  | year = 2003
+  | location = Berlin
+  | isbn = 3-540-65367-8 }}
+  | last = Yue
+  | first = Minyi
+  | contribution = A simple proof of the inequality FFD(L) ≤ (11/9)OPT(L) + 1, for all L, for the FFD bin-packing algorithm
+  | journal = Acta Mathematicae Applicatae Sinica
+  | volume = 7
+  |date=October 1991
+  | pages = 321–331
+  | doi = 10.1007/BF02009683
+  | issn = 0168-9673
+  | issue = 4
+  | title = A simple proof of the inequality FFD (L) ≤ 11/9 OPT (L) + 1, ∀L for the FFD bin-packing algorithm }}
+  | last = Dósa
+  | first = György
+  | contribution = The Tight Bound of First Fit Decreasing Bin-Packing Algorithm Is FFD(I)≤(11/9)OPT(I)+6/9
+  | title = Combinatorics, Algorithms, Probabilistic and Experimental Methodologies
+  | publisher = Springer Berlin / Heidelberg
+  | volume = 4614/2007
+  | year = 2007
+  | pages = 1–11
+  | isbn = 978-3-540-74449-8
+  | doi = 10.1007/978-3-540-74450-4
+  | issn = 0302-9743
+  | editor1-last = Chen
+  | editor1-first = Bo
+  | editor2-last = Paterson
+  | editor2-first = Mike
+  | editor3-last = Zhang
+  | editor3-first = Guochuan }}
+  | last1 = Xia
+  | first1 = Binzhou
+  | last2 = Tan
+  | first2 = Zhiyi
+  | contribution = Tighter bounds of the First Fit algorithm for the bin-packing problem
+  | journal = Discrete Applied Mathematics
+  | volume = 158
+  | year = 2010
+  | pages = 1668–1675
+  | doi = 10.1016/j.2010.05.026
+  | issn = 0166-218X
+  | issue = 15
+  | title = Tighter bounds of the First Fit algorithm for the bin-packing problem}}
+  | last1 = Garey
+  | first1 = Michael R.
+  | authorlink1 = Michael R. Garey
+  | last2 = Johnson
+  | first2 = David S.
+  | authorlink2 = David S. Johnson
+  | contribution = A 71/60 theorem for bin packing
+  | journal = Journal of Complexity
+  | volume = 1
+  | year = 1985
+  | pages = 65–106
+  | doi = 10.1016/0885-064X(85)90022-6
+  | title = A 71/60 theorem for bin packing*1 }}
+  | last1 = Yue
+  | first1 = Minyi
+  | last2 = Zhang
+  | first2 = Lei
+  | contribution = A simple proof of the inequality MFFD(L)≤71/60 OPT(L) + 1,L for the MFFD bin-packing algorithm
+  | journal = Acta Mathematicae Applicatae Sinica
+  | volume = 11
+  |date=July 1995
+  | pages = 318–330
+  | doi = 10.1007/BF02011198
+  | issn = 0168-9673
+  | issue = 3
+  | title = A simple proof of the inequality MFFD(L)≤71/60 OPT(L) + 1,L for the MFFD bin-packing algorithm }}
+  | last1 = Fernandez de la Vega
+  | first1 = W.
+  | last2 = Lueker
+  | first2 = G. S.
+  | contribution = Bin packing can be solved within 1 + ε in linear time
+  | journal = Combinatorica
+  | publisher = Springer Berlin / Heidelberg
+  | volume = 1
+  |date=December 1981
+  | pages = 349–355
+  | doi = 10.1007/BF02579456
+  | issn = 0209-9683
+  | issue = 4
+  | title = Bin packing can be solved within 1 + ε in linear time }}
+  | last = Lewis
+  | first = R.
+  | journal = Computers and Operations Research
+  | volume = 36
+  | year = 2009
+  | pages = 2295–2310
+  | doi = 10.1016/j.2008.09.004
+  | issue = 7
+  | title = A General-Purpose Hill-Climbing Method for Order Independent Minimum Grouping Problems: A Case Study in Graph Colouring and Bin Packing }}
+  | last1 = Sindelar
+  | first1 = Michael
+  | last2 = Sitaraman
+  | first2 = Ramesh
+  | authorlink2 = Ramesh Sitaraman
+| last3 = Shenoy
+ | first3 = Prashant
+  | journal = Proceedings of 23rd ACM Symposium on Parallelism in Algorithms and Architectures (SPAA), San Jose, CA, June 2011
+|pages = 367–378
+  | year = 2011
+  | title = Sharing-Aware Algorithms for Virtual Machine Colocation}}
+
+
+
+

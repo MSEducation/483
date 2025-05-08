@@ -1,0 +1,124 @@
+[[XFS]]
+
+CATEGORIES: 1994 software, Disk file systems, Linux kernel-supported file systems, Formerly proprietary software
+
+XFS is a high-performance 64-bit journaling file system created by Silicon Graphics, Inc.  It was the default file system in the IRIX operating system starting with its release 5.3, and was later ported to the Linux kernel.  XFS is especially proficient at parallel I/O due to its design, which is based on allocation groups.  Because of this, XFS enables extreme scalability of the I/O threads, filesystem bandwidth, and file and filesystem sizes when spanning multiple storage devices.
+XFS ensures the consistency of data by employing metadata journaling and supporting write barriers.  Space allocation is performed via extents with data structures stored in B+ trees, improving the overall file system performance, in particular when handling large files.  Delayed allocation assists in the prevention of file system fragmentation; online defragmentation is also supported.  A feature unique to XFS is the pre-allocation of I/O bandwidth for a guaranteed rate, which is suitable for many real-time applications; though, this feature was supported only on IRIX and with specialized hardware.
+A notable XFS user site, NASA Advanced Supercomputing Division, takes advantage of these capabilities, deploying two 300+ terabyte XFS filesystems on two SGI Altix archival storage servers, each of which is directly attached to multiple Fibre Channel disk arrays.
+
+History
+
+Silicon Graphics began development of XFS in 1993, first including it in IRIX 5.3 in 1994. The filesystem was released under the GNU General Public License in May 2000, and ported (by a team led by Steve Lord at SGI) to Linux, with the first Linux distribution support becoming available in 2001. This support gradually became available in almost all Linux distributions.
+XFS was first merged into the mainline Linux kernel in version 2.4 (around 2002), making it almost universally available on Linux systems.[ref]
+[/ref]
+Gentoo Linux introduced possibility for XFS to be used as the default filesystem by mid-2002.[ref]
+[/ref]
+Installation programs for the Arch, Debian, Fedora, openSUSE, Kate OS, Mandriva, Slackware, Ubuntu, VectorLinux and Zenwalk Linux distributions all offer XFS as a choice of filesystem, but few of these let the user create XFS for the /boot filesystems due to deficiencies and unpredictable behavior in GRUB, often the default bootloader.[ref]
+[/ref]
+FreeBSD added read-only support for XFS in December 2005 and in June 2006 introduced experimental write support; however this was supposed to be used only as an aid in migration from Linux, not to be used as a "main" filesystem. Support for XFS was removed starting with FreeBSD 10.
+The 64-bit Red Hat Enterprise Linux (RHEL) 5.4 distribution in 2009 had all the necessary kernel support, but did not include command-line tools for creating and using XFS filesystems.  The tools from CentOS worked, or were provided to customers on request.  The 2010 release of RHEL 6.0 included support for XFS, while RHEL 7.0 (in its beta stage as of December 2013) is announced to have XFS as the default filesystem.  Oracle Linux 6 (released in 2011) includes an option for using XFS.
+
+Specifications
+
+Capacity
+
+XFS is a 64-bit file system. It supports a maximum file system size of 8 exbibytes minus one (i.e. 263-1 bytes), though this is subject to block limits imposed by the host operating system. 32-bit Linux systems limit both the size of the file and file system to 16 tebibytes.
+
+Journaling
+
+In modern computing, journaling is an approach to guaranteeing file system consistency even in spite of power failures or system crashes. XFS provides journaling for file system metadata, where file system updates are first written to a serial journal before the actual disk blocks are updated. The journal is a circular buffer of disk blocks that is never read in normal filesystem operation.
+The XFS journal is limited to a maximum size of both 64 KB blocks and 128 MB with the minimum size dependent upon a calculation of the filesystem block size and directory block size.  Placing the journal on an external device larger than the maximum journal size will cause the extra space to be unused. It can be stored within the data section of the filesystem (an internal log), or on a separate device to minimize disk contention.
+On XFS the journal contains "logical" entries that describe at a high level what operations are being performed (as opposed to a "physical" journal that stores a copy of the blocks modified during each transaction). Journal updates are performed asynchronously to avoid incurring a performance penalty.
+In the event of a system crash, file system operations which occurred immediately prior to the crash can be reapplied and completed according to data in the journal, which is how XFS retains consistency in the file system. Recovery is performed automatically first time the file system is mounted after the crash. The speed of recovery is independent of the size of the file system, while it depends on the amount of filesystem operations to be reapplied.
+
+Allocation groups
+
+XFS filesystems are internally partitioned into allocation groups, which are equally sized linear regions within the file system. Files and directories can span allocation groups. Each allocation group manages its own inodes and free space separately, providing scalability and parallelism — multiple threads and processes can perform I/O operations on the same filesystem simultaneously.
+This architecture helps to optimize parallel I/O performance on multiprocessor or multicore systems, as metadata updates are also parallelizable. The internal partitioning provided by allocation groups can be especially beneficial when the file system spans multiple physical devices, allowing for optimal usage of throughput of the underlying storage components.
+
+Striped allocation
+
+If an XFS filesystem is to be created on a striped RAID array, a stripe unit can be specified when the file system is created. This maximises throughput by ensuring that data allocations, inode allocations and the internal log (journal) are aligned with the stripe unit.
+
+Extent based allocation
+
+Blocks used in files stored on XFS filesystems are managed with variable length extents where one extent describes one or more contiguous blocks. This can shorten the list considerably compared to file systems that list all blocks used by a file individually.
+Also many file systems manage space allocation with one or more block oriented bitmaps — in XFS these structures are replaced with an extent oriented structure consisting of a pair of B+ trees for each filesystem allocation group (AG). One of the B+ trees is indexed by the length of the free extents, while the other is indexed by the starting block of the free extents. This dual indexing scheme allows for highly efficient location of free extents for file system operations.
+
+Variable block sizes
+
+The file system block size represents the minimum allocation unit. XFS allows file systems to be created with block sizes ranging between 512 bytes and 64 KB, allowing the file system to be tuned for the expected use. When many small files are expected a small block size would typically maximize capacity, but for a system dealing mainly with large files, a larger block size can provide a performance advantage.
+
+Delayed allocation
+
+XFS makes use of lazy evaluation techniques for file allocation. When a file is written to the buffer cache, rather than allocating extents for the data, XFS simply reserves the appropriate number of file system blocks for the data held in memory. The actual block allocation occurs only when the data is finally flushed to disk. This improves the chance that the file will be written in a contiguous group of blocks, reducing fragmentation problems and increasing performance.
+
+Sparse files
+
+XFS provides a 64-bit sparse address space for each file, which allows both for very large file sizes, and for holes within files for which no disk space is allocated.  As the file system uses an extent map for each file, the file allocation map size is kept small.  Where the size of the allocation map is too large for it to be stored within the inode, the map is moved into a B+ tree which allows for rapid access to data anywhere in the 64-bit address space provided for the file.
+
+Extended attributes
+
+XFS provides multiple data streams for files through its implementation of extended attributes. These allow the storage of a number of name/value pairs attached to a file. Names are null-terminated printable character strings of up to 256 bytes in length, while their associated values can contain up to 64 KB of binary data.
+They are further subdivided into two namespaces, root and user. Extended attributes stored in the root namespace can be modified only by the superuser, while attributes in the user namespace can be modified by any user with permission to write to the file.
+Extended attributes can be attached to any kind of XFS inode, including symbolic links, device nodes, directories, etc. The attr program can be used to manipulate extended attributes from the command line, and the xfsdump and xfsrestore utilities are aware of them and will back up and restore their contents. Most other backup systems are not aware of extended attributes.
+
+Direct I/O
+
+For applications requiring high throughput to disk, XFS provides a direct I/O implementation that allows non-cached I/O directly to userspace. Data is transferred between the application's buffer and the disk using DMA, which allows access to the full I/O bandwidth of the underlying disk devices.
+
+Guaranteed-rate I/O
+
+The XFS guaranteed-rate I/O system provides an API that allows applications to reserve bandwidth to the filesystem. XFS will dynamically calculate the performance available from the underlying storage devices, and will reserve bandwidth sufficient to meet the requested performance for a specified time. This feature is unique to the XFS file system. Guarantees can be hard or soft, representing a trade off between reliability and performance, though XFS will only allow hard guarantees if the underlying storage subsystem supports it. This facility is most used by real-time applications, such as video streaming.
+Guaranteed-rate I/O was supported only under IRIX, and required special hardware for that purpose.
+
+DMAPI
+
+XFS implemented the DMAPI interface to support Hierarchical Storage Management in IRIX. As of October 2010, the Linux implementation of XFS supported the required on-disk metadata for DMAPI implementation, but the kernel support was reportedly not  usable. For some time, SGI hosted a kernel tree which included the DMAPI hooks, but this support has not been adequately maintained, though kernel developers stated an intention to bring it up to date.
+
+Snapshots
+
+XFS does not provide direct support for snapshots, as it expects the snapshot process to be implemented by the volume manager. Taking a snapshot of an XFS filesystem involves freezing I/O to the filesystem using the xfs_freeze utility, having the volume manager perform the actual snapshot, and then unfreezing I/O to resume normal operations.  The snapshot can then be mounted read-only for backup purposes.
+XFS releases on IRIX incorporated an integrated volume manager called XLV. This volume manager has not been ported to Linux and XFS works with standard LVM instead.
+In recent Linux kernels, the xfs_freeze functionality is implemented in the VFS layer, and happens automatically when the Volume Manager's snapshot functionality is invoked. This was once a valuable advantage as ext3 file system could not be suspendedLinux questions about freezing Ext3 and volume manager was unable to create a consistent "hot" snapshot to back up a heavily busy database. Since Linux 2.6.29 ext3, ext4, GFS2 and JFS have the freeze feature as well.Freeze Feature Commit to Linux kernel
+
+Online defragmentation
+
+Although the extent-based nature of XFS and the delayed allocation strategy it uses significantly improves the file system's resistance to fragmentation problems, XFS provides a filesystem defragmentation utility (xfs_fsr, short for XFS filesystem reorganizer) that can defragment the files on a mounted and active XFS filesystem.com
+
+Online resizing
+
+XFS provides the xfs_growfs utility to perform online resizing of XFS file systems. XFS filesystems can be grown provided there is remaining unallocated space on the device holding the filesystem. This feature is typically used in conjunction with volume management, as otherwise the partition holding the filesystem will need enlarging separately.  XFS partitions cannot (as of August 2010) be shrunk in place,XFS.SGI.com
+
+Native backup/restore utilities
+
+XFS provides the xfsdump and xfsrestore utilities to aid in backup of data held on XFS file systems. The xfsdump utility backs up an XFS filesystem in inode order, and in contrast to traditional UNIX file systems which must be unmounted before dumping to guarantee a consistent dump image, XFS file systems can be dumped while the file system is in use.  This is not the same as a snapshot since files are not frozen during the dump.
+XFS dumps and restores are also resumable, and can be interrupted without difficulty. The multi-threaded operation of xfsdump provides high performance of backup operations by splitting the dump into multiple streams, which can be sent to different dump destinations. The multi stream capabilities have not been fully ported to Linux yet, however.
+
+Atomic disk quotas
+
+Quotas for XFS filesystems are turned on when initially mounted; this fixes a race window that is present with most other filesystems that first require to be mounted and where no quotas are enforced until quotaon(8) is called.
+
+Performance considerations
+
+Write barriers
+
+XFS filesystems mount by default with "write barriers" enabled.  This feature will cause the write back cache of the underlying storage device to be flushed at appropriate times, particularly on write operations to the XFS log. This feature is intended to assure filesystem consistency, and its implementation is device specific — not all underlying hardware will support cache flush requests.
+When an XFS filesystem is used on a logical device provided by a hardware RAID controller with battery backed cache, this feature can cause significant performance degradation, as the filesystem code is not aware that the cache is nonvolatile, and if the controller honors the flush requests, data will be written to physical disk more often than necessary.  To avoid this problem, where the data in the device cache is protected from power failure or other host problems, the filesystem should be mounted with the "nobarrier" option.
+
+Journal placement
+
+By default, XFS filesystems are created with an "internal" log, which places the filesystem journal on the same block device as the filesystem data. Filesystem writes are preceded by metadata updates to the journal, which can be a cause of disk contention. Under most workloads, the level of contention caused is too low to impact performance, but random-write heavy workloads, such as those seen on busy database servers, can suffer from sub-optimal performance as a result of this I/O contention. An additional factor which can increase the severity of this problem is that writes to the journal are committed synchronously — they must complete successfully before the associated write operation can begin.
+Where optimum filesystem performance is required, XFS provides the option of placing the log on a separate physical device, with its own I/O path. This requires little physical space, and if a low-latency path can be provided for synchronous writes, it can provide significant performance enhancements to the operation of the filesystem. The required performance characteristics make this a suitable candidate for the use of a solid-state drive (SSD) device, or a RAID system with write-back cache, though the latter can reduce data safety in the event of power problems. The use of an external log simply requires the filesystem to be mounted with the logdev option, indicating a suitable journal device.
+
+Comparison
+
+
+
+
+
+Further reading
+
+
+
+

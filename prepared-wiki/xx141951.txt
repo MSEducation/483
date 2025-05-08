@@ -1,0 +1,41 @@
+[[Skype protocol]]
+
+CATEGORIES: VoIP protocols, Instant messaging protocols, Skype
+
+The Skype protocol is a proprietary Internet telephony network based on peer-to-peer architecture, used by Skype. The protocol's specifications have not been made publicly available by Skype and official applications using the protocol are closed-source.
+The Skype network is not interoperable with most other VoIP networks without proper licensing from Skype. Digium, the main sponsor of Asterisk PBX released a driver licensed by Skype dubbed 'Skype for Asterisk' to interface as a client to the Skype network, however this still remains closed source.Skype for Asterisk – Production Released!, By pengler, August 31st, 2009, Digium - The Asterisk Company Numerous attempts to study and/or reverse engineer the protocol have been undertaken to reveal the protocol, investigate security or to allow unofficial clients.
+
+==Peer-to-peer architecture==
+
+Skype was the first peer-to-peer IP telephony network.Page 11 in [tpl]cite arXiv |eprint=cs/0412017v1 |title= An analysis of the Skype peer-to-peer Internet telephony protocol |class= cs.NI |year= 2004 |version= |accessdate= |author1= Salman A. Baset |author2= Henning Schulzrinne [/tpl] The network contains three types of entities: supernodes, ordinary nodes, and the login server. Each client maintains a host cache with the IP address and port numbers of reachable supernodes. The Skype user directory is decentralized and distributed among the supernodes in the network.
+Previously any client with good bandwidth, no restrictions due to firewall or NAT, and adequate processing power could become a supernode. This placed an extra burden on those who connected to the Internet without NAT, as Skype used their computers and Internet connections as third parties for UDP hole punching (to directly connect two clients both behind NAT) or to completely relay other users' calls. In 2012, Microsoft altered the design of the network, and brought all supernodes under their control as hosted servers in data centres.[tpl]cite news|last=Branscombe|first=Mary|title=Forget the conspiracy theories: Skype's supernodes belong in the cloud|url=http://www.zdnet.com/forget-the-conspiracy-theories-skypes-supernodes-belong-in-the-cloud-7000001720/|accessdate=17 June 2013|newspaper=500 words into the future (ZDNet)|date=27 July 2012[/tpl]  Microsoft at the time defended the move, saying they "believe this approach has immediate performance, scalability and availability benefits for the hundreds of millions of users that make up the Skype community."[tpl]cite news|title=Skype replaces P2P supernodes with Linux boxes hosted by Microsoft (updated)|url=http://arstechnica.com/business/2012/05/skype-replaces-p2p-supernodes-with-linux-boxes-hosted-by-microsoft/|accessdate=17 June 2013|newspaper=Ars Technica|date=2 May 2012[/tpl] At the time there was some concern regarding the privacy implications of the change,[tpl]cite news|last=Kosner|first=Anthony|title=Will Microsoft's Changes To The Architecture Of Skype Make It Easier To Snoop?|url=http://www.forbes.com/sites/anthonykosner/2012/07/18/did-microsoft-change-the-architecture-of-skype-to-make-it-easier-to-snoop/|accessdate=17 June 2013|newspaper=Forbes blog|date=18 July 2012[/tpl] which appear to have been vindicated with the revelation of the PRISM surveillance program in June 2013.[tpl]cite news|last=Gallagher|first=Ryan|title=Newly Revealed PRISM Snooping Makes Verizon Surveillance Look Like Kids' Stuff|url=http://www.slate.com/blogs/future_tense/2013/06/06/nsa_prism_surveillance_private_data_from_google_microsoft_skype_apple_yahoo.html|accessdate=17 June 2013|newspaper=Slate blog|date=6 June 2013[/tpl][tpl]cite news|last=Greenwald|first=Glenn|title=NSA Prism program taps in to user data of Apple, Google and others|url=http://www.guardian.co.uk/world/2013/jun/06/us-tech-giants-nsa-data|accessdate=17 June 2013|newspaper=The Guardian|date=7 June 2013[/tpl]
+Skype does not support the use of the IPv6 protocol,[tpl]cite web|url=https://twitter.com/SkypeTalks/status/264057558262747136|title=Skype does not support IPv6.|publisher=Skype official Twitter account|date=1 Nov 2012|accessdate=4 Nov 2012[/tpl] which would greatly reduce the complexity associated with the aforementioned IPv4 communication structure.
+Supernodes relay communications on behalf of two other  clients, both of which are behind firewalls or "one-to-many" Network address translation.
+Without relaying by the Supernodes, two clients with firewall or NAT difficulties would be unable to make or receive calls from one another. Skype tries to get the two ends to negotiate the connection details directly, but sometimes the sum of problems at both ends can prevent direct conversation being established.
+The problems with firewalls and NAT can be:
+Supernodes are grouped into slots (9–10 supernodes), and slots are grouped into blocks (8 slots).
+
+==Protocol==
+
+Signaling is encrypted using RC4; however, the method only obfuscates the traffic as the key can be recovered from the packet. Voice data is encrypted with AES.Introduction Skype analysis Enforcing anti-Skype policies, Skype uncovered Security study of Skype, Desclaux Fabrice, 7/11/2005, EADS CCR/STI/C
+The Skype client's application programming interface (API) opens the network to software developers. The Skype API allows other programs to use the Skype network to get "white pages" information and manage calls.
+The Skype code is closed source, and the protocol is not standardized.http://support.skype.com/en_US/faq/FA153/Which-protocols-does-Skype-use [tpl]Dead link|date=September 2010[/tpl] Parts of the client use Internet Direct (Indy), an open source socket communication library.[tpl]Citation needed|date=December 2008[/tpl]
+On July 8, 2012, a researcher from Benin, Ouanilo Medegan, released articles and proof of concept code, results of his reverse engineering the Skype client.http://www.oklabs.net/category/skype-reverse/ http://www.oklabs.net/skype-reverse-engineering-the-long-journey/
+
+===Protocol detection===
+
+Many networking and security companies claim to detect and control Skype's protocol for enterprise and carrier applications. While the specific detection methods used by these companies are often proprietary, Pearson's chi-squared test and stochastic characterization with Naive Bayes classifiers are two approaches that were published in 2007.Dario Bonfiglio et al. “Revealing Skype Traffic: When Randomness Plays with You,” ACM SIGCOMM Computer Communication Review, Volume 37:4 (SIGCOMM 2007), p. 37–48
+
+====Preliminaries====
+
+Abbreviations that are used:
+
+====Skype client====
+
+The main functions of a Skype client are:
+
+===Login===
+
+A Skype client authenticates the user with the login server, advertises its presence to other peers, determines the type of NAT and firewall it is behind and discovers nodes that have public IP addresses.
+To connect to the Skype network, the host cache must contain a valid entry. A TCP connection must be established (i.e. to a supernode) otherwise the login will fail.
+  1.  start

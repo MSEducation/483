@@ -1,0 +1,30 @@
+[[Content Scramble System]]
+
+CATEGORIES: History of cryptography, Digital rights management, Compact Disc and DVD copy protection, Broken stream ciphers, DVD, History of television, Digital rights management standards
+
+Content Scramble System (CSS) is a digital rights management (DRM) and encryption system employed on almost all commercially produced DVD-Video discs. CSS utilizes a proprietary 40-bit stream cipher algorithm. The system was introduced around 1996 and was first compromised in 1999.
+The purpose of CSS is twofold:
+While most CSS-decrypting software is used to play DVD videos, other pieces of software (such as DVD Decrypter, AnyDVD, DVD43, Smartripper, and DVD Shrink) can copy a DVD to a hard drive and remove Macrovision, CSS encryption, region codes, and user operation prohibition.
+CSS has been superseded by newer DRM schemes such as Content Protection for Recordable Media (CPRM), or by Advanced Encryption Standard (AES) in the Advanced Access Content System (AACS) DRM scheme used by HD DVD and Blu-ray Disc, which have 56-bit and 128-bit key sizes, respectively, providing a much higher level of security than the weak 40-bit key size of CSS.
+
+==Terminology==
+
+==Method==
+
+The generic term CSS key may refer to an authentication key used in the CSS secure handshake with a descrambler, a disc key, a player key, a title key, a secured disk key set, or an encrypted title key.
+The CSS key sets are licensed by the DVD Copy Control Association to manufacturers who incorporate them into products such as DVD movie releases, drives, and players; most DVD players are equipped with a CSS Decryption module.
+Disc keys are stored on the lead-in area of the disc, an area that a compliant drive is only supposed to read in a special way; the sectors of the DVD are encrypted, preventing the copying of VOB (Video Object) content, which can only be retrieved with authentication keys.CSS - A butt of all the jokes Furthermore, the key area on a DVD-R disc is immutable, thus preventing the trivial copying of a CSS-encrypted DVD to a DVD-R. However, the key area on a DVD+R disc is mutable, but standard drives have refused to write to it (with the exception of the Book type field, which is used for bitsetting). Keys can be passed from a DVD drive to a descrambler over a data bus using a secure (but now compromised) handshake protocol.IEEE - Copy Protection for DVD Video p.2
+
+==Cryptanalysis==
+
+In October 1999, Jon Lech Johansen and two people who have remained anonymous reverse engineered CSS and created DeCSS to share the exploit with others, in a striking example of the trusted client problem. Not long after, CSS was further revealed to be easily susceptible to a brute force attack, which is implemented by the widely used libdvdcss; the brute-force attack works even if the keys cannot be retrieved from the lead-in area, as is the case when the DVD's region code is different from that of the drive. This allows region-free DVD player software to work with region-locked drives.
+CSS's weakness is primarily due to the regulations placed on the export of cryptographic systems from the United States.Export of cryptography in the United States At the time that CSS was introduced, it was forbidden in the United States for manufacturers to export cryptographic systems employing keys in excess of 40 bits, a key length that had already been shown to be wholly inadequate in the face of increasing computer processing power (see Data Encryption Standard). In addition, structural flaws in CSS reduce the effective key length to only around 16 bits, allowing for CSS to be compromised in less than a minute by brute-force with a 450 MHz processor.[tpl]cite journal | url=http://www.dvd-copy.com/news/cryptanalysis_of_contents_scrambling_system.htm | title=Cryptanalysis of Contents Scrambling System | date=November 8, 1999 | author=Frank A. Stevenson | archiveurl=http://web.archive.org/web/20000302000206/www.dvd-copy.com/news/cryptanalysis_of_contents_scrambling_system.htm | archivedate=March 2, 2000[/tpl]
+In Geeks Bearing Gifts, author Ted Nelson states "DVD encryption was intentionally made light by the DVD encryption committee, based on arguments in a libertarian book Computer Lib.", a claim cited as originating from personal communication with an anonymous source; Nelson is the author of Computer Lib.[tpl]cite book|last=Nelson|first=Ted|title=Geeks bearing gifts : how the computer world got this way|year=2008|publisher=Mindful Press|location=Sausalito, CA|isbn=978-0-578-00438-9|pages=199|edition=Ed. 1.0.[/tpl]
+
+==See also==
+
+==References==
+
+==External links==
+
+

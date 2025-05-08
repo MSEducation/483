@@ -1,0 +1,181 @@
+[[Linear regression]]
+
+CATEGORIES: Articles with inconsistent citation formats, Regression analysis, Estimation theory, Parametric statistics, Econometrics
+
+In statistics, linear regression is an approach for modeling the relationship between a scalar dependent variable y and one or more explanatory variables denoted X. The case of one explanatory variable is called simple linear regression.  For more than one explanatory variable, the process is called multiple linear regression. (This term should be distinguished from multivariate linear regression, where multiple correlated dependent variables are predicted,[tpl]Citation needed|date=April 2012[/tpl] rather than a single scalar variable.)
+In linear regression, data are modeled using linear predictor functions, and unknown model parameters are estimated from the data. Such models are called linear models. Most commonly, linear regression refers to a model in which the conditional mean of y given the value of X is an affine function of X. Less commonly, linear regression could refer to a model in which the median, or some other quantile of the conditional distribution of y given X is expressed as a linear function of X. Like all forms of regression analysis, linear regression focuses on the conditional probability distribution of y given X, rather than on the joint probability distribution of y and X, which is the domain of multivariate analysis.
+Linear regression was the first type of regression analysis to be studied rigorously, and to be used extensively in practical applications.[tpl]Citation needed|date=March 2014[/tpl] This is because models which depend linearly on their unknown parameters are easier to fit than models which are non-linearly related to their parameters and because the statistical properties of the resulting estimators are easier to determine.
+Linear regression has many practical uses. Most applications fall into one of the following two broad categories:
+Linear regression models are often fitted using the least squares approach, but they may also be fitted in other ways, such as by minimizing the "lack of fit" in some other norm (as with least absolute deviations regression), or by minimizing a penalized version of the least squares loss function as in ridge regression. Conversely, the least squares approach can be used to fit models that are not linear models. Thus, although the terms "least squares" and "linear model" are closely linked, they are not synonymous.
+
+==Introduction to linear regression==
+
+where T denotes the transpose, so that x'''i''Tβ is the inner product between vectors xi'' and β'''.
+Often these n equations are stacked together and written in vector form as
+where
+Some remarks on terminology and general use:
+Example. Consider a situation where a small ball is being tossed up in the air and then we measure its heights of ascent hi at various moments in time ti. Physics tells us that, ignoring the drag, the relationship can be modelled as
+where β1 determines the initial velocity of the ball, β2 is proportional to the standard gravity, and εi is due to measurement errors. Linear regression can be used to estimate the values of β1 and β2 from the measured data. This model is non-linear in the time variable, but it is linear in the parameters β1 and β2; if we take regressors xi = (xi1, xi2)  = (ti, ti2), the model takes on the standard form
+
+===Assumptions===
+
+Standard linear regression models with standard estimation techniques make a number of assumptions about the predictor variables, the response variables and their relationship.  Numerous extensions have been developed that allow each of these assumptions to be relaxed (i.e. reduced to a weaker form), and in some cases eliminated entirely.  Some methods are general enough that they can relax multiple assumptions at once, and in other cases this can be achieved by combining different extensions.  Generally these extensions make the estimation procedure more complex and time-consuming, and may also require more data in order to produce an equally precise model.
+The following are the major assumptions made by standard linear regression models with standard estimation techniques (e.g. ordinary least squares):
+Beyond these assumptions, several other statistical properties of the data strongly influence the performance of different estimation methods:
+
+===Interpretation===
+
+A fitted linear regression model can be used to identify the relationship between a single predictor variable xj and the response variable y when all the other predictor variables in the model are "held fixed". Specifically, the interpretation of βj is the expected change in y for a one-unit change in xj when the other covariates are held fixed—that is, the expected value of the partial derivative of y with respect to xj. This is sometimes called the unique effect of xj on y. In contrast, the marginal effect of xj on y can be assessed using a correlation coefficient or simple linear regression model relating xj to y; this effect is the total derivative of y with respect to xj.
+Care must be taken when interpreting regression results, as some of the regressors may not allow for marginal changes (such as dummy variables, or the intercept term), while others cannot be held fixed (recall the example from the introduction: it would be impossible to "hold ti fixed" and at the same time change the value of ti2).
+It is possible that the unique effect can be nearly zero even when the marginal effect is large. This may imply that some other covariate captures all the information in xj, so that once that variable is in the model, there is no contribution of xj to the variation in y. Conversely, the unique effect of xj can be large while its marginal effect is nearly zero. This would happen if the other covariates explained a great deal of the variation of y, but they mainly explain variation in a way that is complementary to what is captured by xj. In this case, including the other variables in the model reduces the part of the variability of y that is unrelated to xj, thereby strengthening the apparent relationship with xj.
+The meaning of the expression "held fixed" may depend on how the values of the predictor variables arise. If the experimenter directly sets the values of the predictor variables according to a study design, the comparisons of interest may literally correspond to comparisons among units whose predictor variables have been "held fixed" by the experimenter. Alternatively, the expression "held fixed" can refer to a selection that takes place in the context of data analysis. In this case, we "hold a variable fixed" by restricting our attention to the subsets of the data that happen to have a common value for the given predictor variable. This is the only interpretation of "held fixed" that can be used in an observational study.
+The notion of a "unique effect" is appealing when studying a complex system where multiple interrelated components influence the response variable. In some cases, it can literally be interpreted as the causal effect of an intervention that is linked to the value of a predictor variable. However, it has been argued that in many cases multiple regression analysis fails to clarify the relationships between the predictor variables and the response variable when the predictors are correlated with each other and are not assigned following a study design.[tpl]cite book | title=Regression Analysis: A Constructive Critique | author=Berk, Richard A. | publisher=Sage | doi=10.1177/0734016807304871[/tpl]
+
+==Extensions==
+
+Numerous extensions of linear regression have been developed, which allow some or all of the assumptions underlying the basic model to be relaxed.
+
+===Simple and multiple regression===
+
+The very simplest case of a single scalar predictor variable x and a single scalar response variable y is known as simple linear regression.  The extension to multiple and/or vector-valued predictor variables (denoted with a capital X) is known as multiple linear regression.  Nearly all real-world regression models involve multiple predictors, and basic descriptions of linear regression are often phrased in terms of the multiple regression model.  Note, however, that in these cases the response variable y is still a scalar.
+
+===General linear models===
+
+The general linear model considers the situation when the response variable Y is not a scalar but a vector. Conditional linearity of E(y|x) = Bx is still assumed, with a matrix B replacing the vector β of the classical linear regression model. Multivariate analogues of OLS and GLS have been developed.
+
+===Heteroscedastic models===
+
+Various models have been created that allow for heteroscedasticity, i.e. the errors for different response variables may have different variances.  For example, weighted least squares is a method for estimating linear regression models when the response variables may have different error variances, possibly with correlated errors. (See also Linear least squares (mathematics)#Weighted linear least squares, and generalized least squares.) Heteroscedasticity-consistent standard errors is an improved method for use with uncorrelated but potentially heteroscedastic errors.
+
+===Generalized linear models===
+
+Generalized linear models (GLMs) are a framework for modeling a response variable y that is bounded or discrete.  This is used, for example:
+Some common examples of GLMs are:
+Single index models[tpl]Clarify|date=March 2012[/tpl] allow some degree of nonlinearity in the relationship between x and y, while preserving the central role of the linear predictor β′x as in the classical linear regression model. Under certain conditions, simply applying OLS to data from a single-index model will consistently estimate β up to a proportionality constant.[tpl]cite journal | title=The Identification of a Particular Nonlinear Time Series System | last=Brillinger | first=David R. | journal=Biometrika | volume=64 | year=1977 | pages=509–515 | doi=10.1093/biomet/64.3.509 | issue=3 | jstor=2345326[/tpl]
+
+===Hierarchical linear models===
+
+Hierarchical linear models (or multilevel regression) organizes the data into a hierarchy of regressions, for example where A is regressed on B, and B is regressed on C. It is often used where the data have a natural hierarchical structure such as in educational statistics, where students are nested in classrooms, classrooms are nested in schools, and schools are nested in some administrative grouping, such as a school district. The response variable might be a measure of student achievement such as a test score, and different covariates would be collected at the classroom, school, and school district levels.
+
+===Errors-in-variables===
+
+Errors-in-variables models (or "measurement error models") extend the traditional linear regression model to allow the predictor variables X to be observed with error. This error causes standard estimators of β to become biased. Generally, the form of bias is an attenuation, meaning that the effects are biased toward zero.
+
+===Others===
+
+==Estimation methods==
+
+A large number of procedures have been developed for parameter estimation and inference in linear regression. These methods differ in computational simplicity of algorithms, presence of a closed-form solution, robustness with respect to heavy-tailed distributions, and theoretical assumptions needed to validate desirable statistical properties such as consistency and asymptotic efficiency.
+Some of the more common estimation techniques for linear regression are summarized below.
+
+===Least-squares estimation and related techniques===
+
+===Maximum-likelihood estimation and related techniques===
+
+===Other estimation techniques===
+
+ | last = Theil | first = H. | authorlink = Henri Theil
+ | journal = Nederl. Akad. Wetensch., Proc.
+ | mr = 0036489
+ | pages = 386–392, 521–525, 1397–1412
+ | title = A rank-invariant method of linear and polynomial regression analysis. I, II, III
+ | volume = 53
+ | year = 1950
+ | postscript = [tpl]inconsistent citations[/tpl]}}; 
+.</ref>
+
+===Further discussion===
+
+In statistics and numerical analysis, the problem of numerical methods for linear least squares is an important one because linear regression models are one of the most important types of model, both as formal statistical models and for exploration of data sets. The majority of statistical computer packages contain facilities for regression analysis that make use of linear least squares computations. Hence it is appropriate that considerable effort has been devoted to the task of ensuring that these computations are undertaken efficiently and with due regard to numerical precision.
+Individual statistical analyses are seldom undertaken in isolation, but rather are part of a sequence of investigatory steps. Some of the topics involved in considering numerical methods for linear least squares relate to this point. Thus important topics can be
+Fitting of linear models by least squares often, but not always, arises in the context of statistical analysis. It can therefore be important that considerations of computational efficiency for such problems extend to all of the auxiliary quantities required for such analyses, and are not restricted to the formal solution of the linear least squares problem.
+Matrix calculations, like any others, are affected by rounding errors. An early summary of these effects, regarding the choice of computational methods for matrix inversion, was provided by Wilkinson.Wilkinson, J.H. (1963) "Chapter 3: Matrix Computations", Rounding Errors in Algebraic Processes, London: Her Majesty's Stationery Office (National Physical Laboratory, Notes in Applied Science, No.32)
+
+==Applications of linear regression==
+
+Linear regression is widely used in biological, behavioral and social sciences to describe possible relationships between variables. It ranks as one of the most important tools used in these disciplines.
+
+===Trend line===
+
+A trend line represents a trend, the long-term movement in time series data after other components have been accounted for. It tells whether a particular data set (say GDP, oil prices or stock prices) have increased or decreased over the period of time. A trend line could simply be drawn by eye through a set of data points, but more properly their position and slope is calculated using statistical techniques like linear regression. Trend lines typically are straight lines, although some variations use higher degree polynomials depending on the degree of curvature desired in the line.
+Trend lines are sometimes used in business analytics to show changes in data over time. This has the advantage of being simple. Trend lines are often used to argue that a particular action or event (such as training, or an advertising campaign) caused observed changes at a point in time. This is a simple technique, and does not require a control group, experimental design, or a sophisticated analysis technique. However, it suffers from a lack of scientific validity in cases where other potential changes can affect the data.
+
+===Epidemiology===
+
+Early evidence relating tobacco smoking to mortality and morbidity came from observational studies employing regression analysis. In order to reduce spurious correlations when analyzing observational data, researchers usually include several variables in their regression models in addition to the variable of primary interest. For example, suppose we have a regression model in which cigarette smoking is the independent variable of interest, and the dependent variable is lifespan measured in years. Researchers might include socio-economic status as an additional independent variable, to ensure that any observed effect of smoking on lifespan is not due to some effect of education or income. However, it is never possible to include all possible confounding variables in an empirical analysis. For example, a hypothetical gene might increase mortality and also cause people to smoke more. For this reason, randomized controlled trials are often able to generate more compelling evidence of causal relationships than can be obtained using regression analyses of observational data. When controlled experiments are not feasible, variants of regression analysis such as instrumental variables regression may be used to attempt to estimate causal relationships from observational data.
+
+===Finance===
+
+The capital asset pricing model uses linear regression as well as the concept of beta for analyzing and quantifying the systematic risk of an investment. This comes directly from the beta coefficient of the linear regression model that relates the return on the investment to the return on all risky assets.
+
+===Economics===
+
+Linear regression is the predominant empirical tool in economics.  For example, it is used to predict consumption spending,[tpl]cite book |last=Deaton |first=Angus |year=1992 |title=Understanding Consumption |publisher=Oxford University Press |isbn=0-19-828824-7 [/tpl] fixed investment spending, inventory investment, purchases of a country's exports, spending on imports,[tpl]cite book |last=Krugman |first=Paul R. |authorlink=Paul Krugman |first2=M. |last2=Obstfeld |authorlink2=Maurice Obstfeld |first3=Marc J. |last3=Melitz |authorlink3=Marc Melitz |year=2012 |title=International Economics: Theory and Policy |edition=9th global |location=Harlow |publisher=Pearson |isbn=9780273754091 [/tpl] the demand to hold liquid assets,[tpl]cite journal |last=Laidler |first=David E. W. |year=1993 |title=The Demand for Money: Theories, Evidence, and Problems |edition=4th |location=New York |publisher=Harper Collins |isbn=0065010981 [/tpl] labor demand, and labor supply.[tpl]cite book |last=Ehrenberg |last2=Smith |title=Modern Labor Economics |publisher=Addison-Wesley |location=London |edition=10th international |year=2008 |isbn=9780321538963 [/tpl]
+
+===Environmental science===
+
+Linear regression finds application in a wide range of environmental science applications. In Canada, the Environmental Effects Monitoring Program uses statistical analyses on fish and benthic surveys to measure the effects of pulp mill or metal mine effluent on the aquatic ecosystem.EEMP webpage
+
+==See also==
+
+==Notes==
+
+==References==
+
+|title = Applied Regression Analysis
+|edition = 3rd
+|last1= Draper |first1=N.R. |last2=Smith |first2=H.
+|publisher = John Wiley
+|year = 1998
+|isbn = 0-471-17082-8}}
+
+==Further reading==
+
+ | last=Barlow
+ | first=Jesse L.
+ | author-link=
+ | chapter=Chapter 9: Numerical aspects of Solving Linear Least Squares Problems
+ | editor-last=Rao  | editor-first=C.R.
+ | title=Computational Statistics  |  series=Handbook of Statistics  | volume=9
+ | publisher=North-Holland
+ | publication-date=1993
+ | isbn=0-444-88096-8
+ | postscript=[tpl]inconsistent citations[/tpl]
+ }}
+ | last=Goodall
+ | first=Colin R.
+ | author-link=
+ | chapter=Chapter 13: Computation using the QR decomposition
+ | editor-last=Rao  | editor-first=C.R.
+ | title=Computational Statistics  |  series=Handbook of Statistics  | volume=9
+ | publisher=North-Holland
+ | publication-date=1993
+ | isbn=0-444-88096-8
+ | postscript=[tpl]inconsistent citations[/tpl]
+ }}
+ | last=National Physical Laboratory
+ | first=
+ | chapter=Chapter 1: Linear Equations and Matrices: Direct Methods
+ | title=Modern Computing Methods
+ |edition =2nd
+ |series= Notes on Applied Science
+ | volume=16
+ | publisher=Her Majesty's Stationery Office
+ | publication-date=1961
+ | postscript=[tpl]inconsistent citations[/tpl]
+ }}
+ | last=National Physical Laboratory
+ | first=
+ | chapter=Chapter 2: Linear Equations and Matrices: Direct Methods on Automatic Computers
+ | title=Modern Computing Methods
+ |edition =2nd
+ |series= Notes on Applied Science
+ | volume=16
+ | publisher=Her Majesty's Stationery Office
+ | publication-date=1961
+ | postscript=[tpl]inconsistent citations[/tpl]
+}}
+
+==External links==
+
+

@@ -1,0 +1,83 @@
+[[Latin square]]
+
+CATEGORIES: Latin squares, Statistical terminology, Design of experiments, Non-associative algebra, Error detection and correction
+
+In combinatorics and in experimental design, a Latin square is an n × n array filled with n different symbols, each occurring exactly once in each row and exactly once in each column.  Here is an example:
+The name "Latin square" was inspired by mathematical papers by Leonhard Euler, who used Latin characters as symbols.[tpl]citation|title=Introduction to Combinatorics|first1=W. D.|last1=Wallis|first2=J. C.|last2=George|publisher=CRC Press|year=2011|isbn=978-1-4398-0623-4|page=212|url=http://books.google.com/books?id=PTbb7x-mI5gC&pg=PA212[/tpl]. Other symbols can be used instead of Latin letters: in the above example, the alphabetic sequence A, B, C can be replaced by the integer sequence 1, 2, 3.
+
+==Reduced form==
+
+A Latin square is said to be reduced (also, normalized or in standard form) if both its first row and its first column are in their natural order.  For example, the above Latin square is not reduced because its first column is A, C, B rather than  A, B, C.
+We can make any Latin square reduced by permuting (reordering) the rows and columns. Here switching the above matrix's second and third rows yields
+which is reduced: Both its first row and its first column are alphabetically ordered A, B, C.
+
+==Properties==
+
+===Orthogonal array representation===
+
+If each entry of an n × n Latin square is written as a triple (r,c,s), where r is the row, c is the column, and s is the symbol, we obtain a set of n2 triples called the orthogonal array representation of the square.  For example, the orthogonal array representation of the following Latin square is:
+where for example the triple (2,3,1) means that in row 2 and column 3 there is the symbol 1.  The definition of a Latin square can be written in terms of orthogonal arrays: 
+For any Latin square, there are n2 triples since choosing any two uniquely determines the third. (Otherwise, an ordered pair would appear more than once in the Latin square.)
+The orthogonal array representation shows that rows, columns and symbols play rather similar roles, as will be made clear below.
+
+===Equivalence classes of Latin squares===
+
+Many operations on a Latin square produce another Latin square (for example, turning it upside down).
+If we permute the rows, permute the columns, and permute the names of the symbols of a Latin square, we obtain a new Latin square said to be isotopic to the first.  Isotopism is an equivalence relation, so the set of all Latin squares is divided into subsets, called isotopy classes, such that two squares in the same class are isotopic and two squares in different classes are not isotopic.
+Another type of operation is easiest to explain using the orthogonal array representation of the Latin square.  If we systematically and consistently reorder the three items in each triple, another orthogonal array (and, thus, another Latin square) is obtained.  For example, we can replace each triple (r,c,s) by (c,r,s) which corresponds to transposing the square (reflecting about its main diagonal), or we could replace each triple (r,c,s) by (c,s,r), which is a more complicated operation.  Altogether there are 6 possibilities including "do nothing", giving us 6 Latin squares called the conjugates (also parastrophes) of the original square.
+Finally, we can combine these two equivalence operations: two Latin squares are said to be paratopic, also main class isotopic, if one of them is isotopic to a conjugate of the other.  This is again an equivalence relation, with the equivalence classes called main classes, species, or paratopy classes.   Each main class contains up to 6 isotopy classes.
+
+===Number===
+
+There is no known easily computable formula for the number L(n) of n × n Latin squares with symbols 1,2,...,n. The most accurate upper and lower bounds known for large n are far apart.  One classic result is 
+(this given by van Lint and Wilson).
+Here we will give all the known exact values.  It can be seen that the numbers grow exceedingly quickly.  For each n, the number of Latin squares altogether [tpl]OEIS|id=A002860[/tpl] is n! (n-1)! times the number of reduced Latin squares [tpl]OEIS|id=A000315[/tpl].
+For each n, each isotopy class [tpl]OEIS|id=A040082[/tpl] contains up to (n!)3 Latin squares (the exact number varies), while each main class [tpl]OEIS|id=A003090[/tpl] contains either 1, 2, 3 or 6 isotopy classes.
+
+===Examples===
+
+We give one example of a Latin square from each main class up to order 5.
+They present, respectively, the multiplication tables of the following groups:
+
+==Applications==
+
+===Statistics and mathematics===
+
+|year=2008|title=Design and Analysis of Experiments|volume=I and II |edition=Second|publisher=Wiley|isbn=978-0-470-38551-7}}
+[/ref] Many row-column designs are constructed by concatenating Latin squares. 
+
+===Error correcting codes===
+
+Sets of Latin squares that are orthogonal to each other have found an application as error correcting codes in situations where communication is disturbed by more types of noise than simple white noise, such as when attempting to transmit broadband Internet over powerlines.[ref]C.J. Colbourn, T. Kløve, and A.C.H. Ling, Permutation arrays for powerline communication,
+IEEE Trans. Inform. Theory, vol. 50, pp. 1289–1291, 2004.[/ref][ref]Euler's revolution,
+New Scientist, 24th of March 2007, pp 48–51[/ref][ref]Sophie Huczynska, Powerline communication and the 36 officers problem,
+Philosophical Transactions of the Royal Society A, vol 364, p 3199.[/ref]
+Firstly, the message is sent by using several frequencies, or channels, a common method that makes the signal less vulnerable to noise at any one specific frequency. A letter in the message to be sent is encoded by sending a series of signals at different frequencies at successive time intervals. In the example below, the letters A to L are encoded by sending signals at four different frequencies, in four time slots. The letter C, for instance, is encoded by first sending at frequency 3, then 4, 1 and 2.
+The encoding of the twelve letters are formed from three Latin squares that are orthogonal to each other. Now imagine that there's added noise in channels 1 and 2 during the whole transmission. The letter A would then be picked up as:
+In other words, in the first slot we receive signals from both frequency 1 and frequency 2; while the third slot has signals from frequencies 1, 2 and 3.  Because of the noise, we can no longer tell if the first two slots were 1,1 or  1,2 or  2,1  or  2,2.  But the 1,2 case is the only one that yields a sequence matching a letter in the above table, the letter A. 
+Similarly, we may imagine a burst of static over all frequencies in the third slot:
+Again, we are able to infer from the table of encodings that it must have been the letter A being transmitted. The number of errors this code can spot is one less than the number of time slots. It has also been proved that if the number of frequencies is a prime or a power of a prime, the orthogonal Latin squares produce error detecting codes that are as efficient as possible.
+
+===Mathematical puzzles===
+
+The problem of determining if a partially filled square can be completed to form a Latin square is NP-complete.[tpl]cite journal | author = C. Colbourn | authorlink = Charles Colbourn | title = The complexity of completing partial latin squares | journal = Discrete Applied Mathematics | volume = 8 | pages = 25–30 | year = 1984 | doi = 10.1016/0166-218X(84)90075-1[/tpl]
+The popular Sudoku puzzles are a special case of Latin squares; any solution to a Sudoku puzzle is a Latin square.
+Sudoku imposes the additional restriction that nine particular 3×3 adjacent subsquares must also contain the digits 1–9 (in the standard version).  The more recent KenKen puzzles are also examples of Latin squares.
+
+===Boardgames===
+
+Latin squares have been used as the basis for several board games, notably the popular abstract strategy game Kamisado.
+
+==Heraldry==
+
+The Latin square also figures in the arms of the Statistical Society of Canada,Letters Patent Confering the SSC Arms being specifically mentioned in its blazon. Also, it appears in the logo of the International Biometric Society.The International Biometric Society
+
+==See also==
+
+==Notes==
+
+==References==
+
+==External links==
+
+

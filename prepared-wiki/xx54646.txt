@@ -1,0 +1,45 @@
+[[PEEK and POKE]]
+
+CATEGORIES: Microcomputer software, BASIC commands, Video game cheating
+
+In computing, PEEK is a BASIC programming language extension used for reading the contents of a memory cell at a specified address.[tpl]cite web|url = http://www.qbasicnews.com/qboho/qckpeek.shtml|title = PEEK |work = Microsoft QuickBasic 4.5 Advisor|accessdate = 2007-12-28|year = 1990|publisher = Microsoft[/tpl] The corresponding command to set the contents of a memory cell is POKE.[tpl]cite web|url = http://www.qbasicnews.com/qboho/qckpoke.shtml|title = POKE |work = Microsoft QuickBasic 4.5 Advisor|accessdate = 2007-12-28|year = 1990|publisher = Microsoft[/tpl]
+
+==Statement syntax==
+
+The PEEK function and POKE command are usually invoked as follows, either in direct mode (entered and executed at the BASIC prompt) or in indirect mode (as part of a program):
+The address and value parameters may contain complex expressions, as long as the evaluated expressions correspond to valid memory addresses or values, respectively. A valid address in this context is an address within the computer's address space, while a valid value is (typically) an unsigned value between zero and the maximum unsigned number that the minimum addressable unit (memory cell) may hold.
+
+==Memory cells and hardware registers==
+
+The address locations that are POKEd or PEEKed at may refer either to ordinary memory cells or to memory-mapped hardware registers of I/O units or support chips such as sound chips and video graphics chips, or even to memory-mapped registers of the CPU itself (which makes software implementations of powerful machine code monitors and debugging/simulation tools possible). As an example of a POKE-driven support chip control scheme, the following POKE command is directed at a specific register of the Commodore 64's built-in VIC-II graphics chip, which will make the screen border turn black:
+A similar example from the Atari 8-bit family told the ANTIC display driver to turn all text upside-down:
+The difference between machines, and the importance and utility of the hard-wired memory locations, meant that "memory maps" of various machines were important documents. A canonical example is Mapping the Atari, which started at location zero and mapped out the entire 64 kB memory of the Atari systems location by location.
+Pre and non-PC computers usually differ in the memory address areas designated for user programs, user data, operating system code and data, and memory-mapped hardware units. For these reasons, PEEK functions and POKE commands are inherently non-portable, meaning that a given sequence of those statements will almost certainly not work on any system other than the one for which the program was written.
+
+==POKEs as cheats==
+
+In the context of games for many 8-bit computers, it was a common practice to load games into memory and, before launching them, modify specific memory addresses in order to cheat, getting an unlimited number of lives, immunity, invisibility, etc.  Such modifications were performed using POKE statements. The Commodore 64, ZX Spectrum and Amstrad CPC also allowed players with the relevant cartridges or Multiface add-on to freeze the running program, enter POKEs, and resume.
+For example, in Knight Lore for the ZX Spectrum, immunity can be achieved with the following command:
+In this case, the value 201 corresponds to a RET instruction, so that the game returns from a subroutine early before triggering collision detection.
+Magazines such as Microhobby published lists of such POKEs for games. Such codes were generally identified by reverse-engineering the machine code to locate the memory address containing the desired value that related to, for example, the number of lives, detection of collisions, etc.
+Using a 'POKE' cheat is more difficult in modern games, as many include anti-cheat or copy-protection measures that inhibit modification of the game's memory space. Modern operating systems may also enforce virtual memory protection schemes to deny external program access to non-shared memory (for example, separate page tables for each application, hence inaccessible memory spaces).
+
+==Peek and Poke in other BASICs==
+
+North Star Computers, a major vendor from the early 1980s, offered their own dialect of BASIC with their NSDOS operating system. Concerned about possible legal issues, they renamed the commands EXAM and FILL.
+As most early home computers running BASIC used 8-bit processors, values were normally between 0 and 255. As 16-bit machines became more common, especially with the introduction of the IBM PC, PEEK and POKE normally required two operations and some math in order to read or set the value of a single computer word. This led to the common additional commands DPEEK and DPOKE, which read and set a 16-bit value in a single operation.Dave and Laura Yearke, "Turbo BASIC Command Set", Western New York Atari Users Group
+BBC BASIC, used on the BBC Micro and other Acorn Computers machines, did not feature the keywords PEEK and POKE but used the question mark symbol (?), known as query in BBC BASIC, for both operations, as a function and command.  For example:
+32-bit values could be POKEd and PEEKed using the exclamation mark symbol (!), known as pling, with the least significant byte first (little-endian).  In addition, the address could be offset by specifying either query or pling after the address and following it with the offset:
+Strings of text could be PEEKed and POKEd in a similar way using the Dollar sign ($).  The end of the string is marked with the Carriage return character (&0D in ASCII); when read back, this terminating character is not returned.  Offsets cannot be used with the dollar sign.
+
+==Generic usage of "POKE"==
+
+"POKE" is sometimes used as a generic term to refer to any direct manipulation of the contents of memory, rather than just via BASIC, particularly among people who learned computing on the 8-bit microcomputers of the late 1970s and early 1980s. BASIC was often the only language available on those machines (on home computers, usually present in ROM), and therefore the obvious, and simplest, way to program in machine language was to use BASIC to POKE the opcode values into memory. Doing much low-level coding like this usually came from lack of access to an assembler.
+An example of the generic usage of POKE and PEEK is in traditional Visual Basic for Windows, where DDE can be achieved with the LinkPoke keyword.
+Cheats for 8-bit video games were sometimes referred to as pokes (see "POKEs as cheats" above).
+
+==See also==
+
+==References==
+
+

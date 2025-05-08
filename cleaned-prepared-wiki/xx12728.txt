@@ -1,0 +1,68 @@
+[[Zero-based numbering]]
+
+CATEGORIES: Ordinal numbers, Zero
+
+Zero-based numbering is numbering in which the initial element of a sequence is assigned the index 0, rather than the index 1 as is typical in everyday circumstances. Under zero-based numbering, the initial element is sometimes termed the zeroth element, rather than the first element; zeroth is a coined ordinal number corresponding to the number zero. In some cases, an object or value that does not (originally) belong to a given sequence, but which could be naturally placed before its initial element, may be termed the zeroth element. There is not wide agreement regarding the correctness of using zero as an ordinal (nor regarding use of the term zeroth) as it creates ambiguity for all subsequent elements of the sequence when lacking context.
+Numbering sequences starting at 0 is quite common in mathematics, in particular in combinatorics. In computer science, array indices also often start at 0, so computer programmers might use zeroth in situations where others might use first, and so forth. In some mathematical contexts, zero-based numbering can be used without confusion, when ordinal forms have well established meaning with an obvious candidate to come before first; for instance a zeroth derivative of a function is the function itself, obtained by differentiating zero times. Such usage corresponds to naming an element not properly belonging to the sequence but preceding it: the zeroth derivative is not really a derivative at all. However, just as the first derivative precedes the second derivative, so also does the zeroth derivative (or the original function itself) precede the first derivative.
+
+In computer programming
+
+Origin
+
+Martin Richards, creator of BCPL language (precursor of C), designed arrays initiating at 0 as the natural position to start accessing the array contents in the language, since the value of a pointer p used as an address accesses the position p+0 in memory. 
+E. Dijkstra later wrote a note Why numbering should start at zero in 1982, analyzing the possible designs of array indices as representing open, half-open and closed intervals, finding that zeroth-based arrays best represent non-overlapping right-open intervals, which can cover the full range of natural numbers without overlapping.
+
+Usage in programming languages
+
+This usage follows from design choices embedded in many influential programming languages, including C, Java, and Lisp. In these three, sequence types (C arrays, Java arrays and lists, and Lisp lists and vectors) are indexed beginning with the zero subscript. Particularly in C, where arrays are closely tied to pointer arithmetic, this makes for a simpler implementation: the subscript refers to an offset from the starting position of an array, so the first element has an offset of zero. 
+Referencing memory by an address and an offset is represented directly in computer hardware on virtually all computer architectures, so this design detail in C makes compilation easier, at the cost of some human factors. In this context using "zeroth" as an ordinal is not strictly correct, but professional shorthand. Other programming languages, such as Fortran or COBOL have array subscripts starting with one, because they were meant as high-level programming languages, and as such they had to have a  correspondence to the usual ordinal numbers. Some recent languages, such as Lua, have adopted the same convention for the same reason.
+Zero is the lowest unsigned integer value, one of the most fundamental types in programming and hardware design. In computer science, zero is thus often used as the base case for many kinds of numerical recursion. Proofs and other sorts of mathematical reasoning in computer science often begin with zero. For these reasons, in computer science it is not unusual to number from zero rather than one.
+Hackers and computer scientists often like to call the first chapter of a publication "Chapter 0", especially if it is of an introductory nature. One of the classic instances was in the First Edition of K&R. In recent years this trait has also been observed among many pure mathematicians, where many constructions are defined to be numbered from 0.
+If an array is used to represent a cycle, it is convenient to obtain the index with a modulo operator, which can result in zero.
+
+Advantages
+
+Zero-based indexing may have an advantage to one-based indexing in reducing off-by-one or fencepost errors.
+Another advantage of this convention is in the use of modular arithmetic as implemented in modern computers. Usually, the modulo function maps any integer modulo N to one of the numbers 0, 1, 2, ..., . Because of this, many formulas in algorithms (such as that for calculating hash table indices) can be elegantly expressed in code using the modulo operation when array indices start at zero.
+A second advantage of zero-based array indexes is that this can improve efficiency under certain circumstances. To illustrate, suppose a is the memory address of the first element of an array, and i is the index of the desired element. To compute the address of the desired element, if the index numbers count from 1, the desired address is computed by this expression:
+where s is the size of each element. In contrast, if the index numbers count from 0, the expression becomes:
+This simpler expression is more efficient to compute at run time in a simple context.
+Note, however, that a language wishing to index arrays from 1 could simply adopt the convention that every "array address" is represented by a′ = a – s; that is, rather than using the address of the first array element, such a language would use the address of an "imaginary" element located immediately before the first actual element. The indexing expression for a 1-based index would be the following:
+Hence, the efficiency benefit at run time of zero-based indexing is not inherent, but is an artifact of the decision to represent an array with the address of its first element rather than the address of the "imaginary" element preceding the array.  However, the address of that "imaginary" element located immediately before the first actual element of the array could very well be the address of some other item in memory not related to the array.
+A third property is that a range is more elegantly expressed as the half-open interval, [0,n), as opposed to the closed interval, 1,n. Empty ranges, which often occur in algorithms, are tricky to express with a closed interval without resorting to obtuse conventions like 1,0.  This half-open convention may  avoid off-by-one errors or fencepost errors. On the other hand, often the repeat count n is calculated in advance, making the use of counting from 0 to n−1 (inclusive) less intuitive.
+This situation can lead to some confusion in terminology. In a zero-based indexing scheme, the first element is "element number zero"; likewise, the twelfth element is "element number eleven". Therefore, an analogy from the ordinal numbers to the quantity of objects numbered appears; the highest index of n objects will be  and referred to the nth element. For this reason, the first element is often referred to as the zeroth element to avoid confusion.
+
+Disadvantages
+
+Some believe that zero-based indexing actually causes more off-by-one errors than it eliminates, especially among new programmers. Programming Microsoft® Visual C#® 2005 by Donis Marshall
+
+In science
+
+In mathematics, many sequences of numbers or of polynomials are indexed by nonnegative integers, for example the Bernoulli numbers and the Bell numbers.
+The zeroth law of thermodynamics was formulated after the first, second, and third laws, but considered more fundamental, thus its name.
+In biology, an organism is said to have zero order intentionality if it shows "no intention of anything at all". This would include a situation where the organism's genetically predetermined phenotype results in a fitness benefit to itself, because it did not "intend" to express its genes.
+In biological or medical experiments, initial measurements made before any experimental time has passed are said to be on the 0 day of the experiment.
+In genomics, both 0-based and 1-based systems are used for genome coordinates.
+Patient zero (or index case) is the initial patient in the population sample of an epidemiological investigation.
+
+In other fields
+
+In the realm of fiction, Isaac Asimov eventually added a Zeroth Law to his Three Laws of Robotics, essentially making them four laws.
+The year zero does not exist in the widely used Gregorian calendar or in its predecessor, the Julian calendar. Under those systems, the year 1 BC is followed by AD 1.  However, there is a year zero in astronomical year numbering (where it coincides with the Julian year 1 BC)  and in ISO 8601:2004 (where it coincides with the Gregorian year 1 BC) as well as in all Buddhist and Hindu calendars.
+In many European countries the "1st floor" is not at ground level but at the next level above it.  In countries that use this system, the floor at ground level is usually referred to by a special name, usually translating as "Ground Floor" or equivalent. Some buildings even refer to the ground floor as floor number 0. This makes a consistent set with underground floors marked with negative numbers. Notice that, for buildings with subterranean stories, this labeling scheme can be seen as asymmetric. The asymmetry is apparent when the building has the same number of stories both above and below the street surface; it can be resolved by viewing the index as the number of flights of stairs which must be traversed to reach that floor from ground level.
+While the ordinal of 0 is rarely used outside of communities closely connected to mathematics, physics, and computer science, there are a few instances in classical music. The composer Anton Bruckner regarded his early Symphony in D minor to be unworthy of including in the canon of his works, and he wrote 'gilt nicht' on the score and a circle with a crossbar, intending it to mean "invalid". But posthumously, this work came to be known as Symphony No. 0 in D minor, even though it was actually written after Symphony No. 1 in C minor. There is an even earlier Symphony in F minor of Bruckner's that is sometimes called No. 00. The Russian composer Alfred Schnittke also wrote a Symphony No. 0.
+In some universities, including Oxford and Cambridge, "week 0" or occasionally "noughth week" refers to the week before the first week of lectures in a term. In Australia, some universities refer to this as "O Week", which serves as a pun on "orientation week". As a parallel, the introductory weeks at university educations in Sweden are generally called "nollning" (zeroing).
+The United States Air Force starts basic training each Wednesday, and the first week (of eight) is considered to begin with the following Sunday.  The four days before that Sunday are often referred to as "Zero Week."
+Note also the use of 00 hours in the 24-hour clock as beginning of the day.
+In London King's Cross, Uppsala, Yonago, Edinburgh Haymarket, Stockport and Cardiff the train stations have a platform 0.
+Robert Crumb's drawings for the first issue of Zap Comix were stolen, so he drew a whole new issue which was published as issue 1.  Later he re-inked his photocopies of the stolen artwork and published it as issue 0.
+The ring road around Brussels is called R0. It was built after the ring road around Antwerp, but Brussels (being the capital city) was deemed deserving of a more basic number.
+In Formula One, when a defending world champion does not compete in the following season, the number 1 is not assigned to any driver, but one driver of the world champion team will carry the number 0, and the other, number 2. This did happen both in 1993 and 1994 with Damon Hill carrying the number 0 in both seasons, as defending champion Nigel Mansell quit after 1992, and defending champion Alain Prost quit after 1993.
+A chronological prequel of a series may be numbered as 0, such as Ring 0: Birthday or Zork Zero.
+The Swiss Federal Railways number certain classes of rolling stock from zero, for example, Re 460 000 to 118.
+
+
+
+
+
+

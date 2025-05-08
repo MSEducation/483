@@ -1,0 +1,91 @@
+[[JAR (file format)]]
+
+CATEGORIES: Archive formats, Java platform
+
+In software, JAR (Java ARchive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file to distribute application software or libraries on the Java platform.Java Archive (JAR) Files
+JAR files are fundamental archive files, built on the ZIP file format and have the .jar file extension. Computer users can create or extract JAR files using the jar command that comes with a JDK. They can also use zip tools to do so; however, the order of entries in the zip file headers is important when compressing, as the manifest often needs to be first. Inside a JAR, file names are unicode text.[ref]
+http://download.java.net/jdk8/docs/technotes/guides/jar/jar.html#JAR_Index[/ref]
+
+==Design==
+
+A JAR file allows Java runtimes to efficiently deploy a set of classes and their associated resources. The elements in a JAR file can be compressed, which, together with the ability to download an entire application in a single request, makes downloading a JAR file much more convenient than separately downloading the many uncompressed files which would form a single Java Application. The package java.util.zip contains classes that read and write JAR files. 
+A JAR file has an optional manifest file located in the path META-INF/MANIFEST.MF. The entries in the manifest file determine how one can use the JAR file. For instance, a Classpath entry can be used to specify other JAR files for loading with the JAR. This entry consists of a list of absolute or relative paths to other JAR files. Although intended to simplify JAR use, in practice it turns out to be notoriously brittle, as it depends on all the relevant JARs being in the exact locations specified when the entry-point JAR was built. To change versions or locations of libraries, a new manifest is needed.
+To extract the contents of a JAR file users can use any standard unzip software, or the jar command which comes with every Java Virtual Machine: "jar -xf foo.jar".
+Developers can digitally sign JAR files. In that case, the signature information becomes part of the embedded manifest file. The JAR itself is not signed, but instead every file inside the archive is listed along with its checksum; it is these checksums that are signed. Multiple entities may sign the JAR file, changing the JAR file itself with each signing, although the signed files themselves remain valid. When the Java runtime loads signed JAR files, it can validate the signatures and refuse to load classes that do not match the signature. It can also support 'sealed' packages, in which the Classloader will only permit Java classes to be loaded into the same package if they are all signed by the same entities. This prevents malicious code from being inserted into an existing package, and so gaining access to package-scoped classes and data.
+Developers can obfuscate JAR files so that a user of the JAR file doesn't get much information regarding the code it contains, or to reduce its size, which is useful in Embedded system development, where space may be limited.
+
+===Executable JAR files===
+
+An executable Java program can be packaged in a JAR file, along with any libraries the program uses. Executable JAR files have the manifest  specifying the entry point class with Main-Class: myPrograms.MyClass and an explicit Class-Path (and the -cp argument is ignored).  Some operating systems can run these directly when clicked.   The typical invocation is "java -jar foo.jar" from a command line.
+Native launchers can be created on most platforms.  For instance 
+Microsoft Windows users who prefer having Windows EXE files can use tools such as JSmooth, Launch4J, WinRun4J or Nullsoft Scriptable Install System to wrap single JAR files into executables..
+
+==Manifest==
+
+On the Java platform, a Manifest file is a specific file contained within a JAR archive.[tpl]cite web|url=http://java.sun.com/developer/Books/javaprogramming/JAR/basics/manifest.html |title=Understanding the Manifest |publisher=Java.sun.com |date=2003-03-21 |accessdate=2012-07-31[/tpl][tpl]cite web|url=http://download.oracle.com/javase/6/docs/technotes/guides/jar/jar.html#JAR%20Manifest |title=JAR File Specification |publisher=Download.oracle.com |date= |accessdate=2012-07-31[/tpl] It is used to define extension and package-related data. It is a metadata file that contains name-value pairs organized in different sections. If a JAR file is intended to be used as an executable file, the manifest file specifies the main class of the application. The manifest file is named MANIFEST.MF.
+It is not uncommon to find a computer file described as a manifest in situations unrelated to Java.
+
+===Specifications===
+
+A JAR file includes a manifest at the canonical location META-INF/MANIFEST.MF.[tpl]cite web|url=http://download.oracle.com/javase/6/docs/technotes/guides/jar/jar.html |title=JAR File Specification |publisher=Download.oracle.com |date= |accessdate=2012-07-31[/tpl] There can be only one manifest file in an archive, and it must be in the META-INF directory.
+The content of the Manifest file in a JAR file created with version 1.0 of the Java Development Kit is the following.
+ Manifest-Version: 1.0
+All the entries are as name-value pairs. The name of a header is separated from its value by a colon. The default manifest shows that it conforms to version 1.0 of the manifest specification.
+The manifest can also contain information about the other files that are packaged in the archive. Exactly what file information is recorded in the manifest will depend on the intended use for the JAR file. The default manifest file makes no assumptions about what information it should record about other files, so its single line contains data only about itself.
+
+====Special-Purpose Manifest Headers====
+
+Depending on the intended role of the JAR file, the default manifest may have to be modified. If the JAR file is created only for the purpose of archival, then the MANIFEST.MF file is of no purpose.
+Most uses of JAR files go beyond simple archiving and compression and require special information to be in the manifest file. Summarized below are brief descriptions of the headers that are required for some special-purpose JAR-file functions
+
+====Applications Bundled as JAR Files====
+
+If an application is bundled in a JAR file, the Java Virtual Machine needs to be told what the entry point to the application is. An entry point is any class with a public static void main(String args) method. This information is provided in the Main-Class header, which has the general form:
+ Main-Class: com.example.MyClassName
+In this example, com.example.MyClassName.main() will be executed.
+
+====Download Extensions====
+
+Download extensions are JAR files that are referenced by the manifest files of other JAR files. In a typical situation, an applet will be bundled in a JAR file whose manifest references a JAR file (or several JAR files) that will serve as an extension for the purposes of that applet. Extensions may reference each other in the same way.
+Download extensions are specified in the Class-Path header field in the manifest file of an applet, application, or another extension. A Class-Path header might look like this, for example:
+ Class-Path: servlet.jar infobus.jar acme/beans.jar
+With this header, the classes in the files servlet.jar, infobus.jar, and acme/beans.jar will serve as extensions for purposes of the applet or application. The URLs in the Class-Path header are given relative to the URL of the JAR file of the applet or application.
+
+====Package Sealing====
+
+A package within a JAR file can be optionally sealed, which means that all classes defined in that package must be archived in the same JAR file. A package might be sealed to ensure version consistency among the classes in the software or as a security measure.
+To seal a package, a Name header needs to be added for the package, followed by a Sealed header, similar to this:
+ Name: myCompany/myPackage/
+ Sealed: true
+The Name header's value is the package's relative pathname. Note that it ends with a '/' to distinguish it from a filename. Any headers following a Name header, without any intervening blank lines, apply to the file or package specified in the Name header. In the above example, because the Sealed header occurs after the Name: myCompany/myPackage header, with no blank lines between, the Sealed header will be interpreted as applying (only) to the package myCompany/myPackage.
+
+===Package Versioning===
+
+The Package Versioning specification defines several manifest headers to hold versioning information. One set of such headers can be assigned to each package. The versioning headers should appear directly beneath the Name header for the package. This example shows all the versioning headers:
+ Name: java/util/
+ Specification-Title: "Java Utility Classes" <br />
+ Specification-Version: "1.2"<br />
+ Specification-Vendor: "Sun Microsystems, Inc.".<br />
+ Implementation-Title: "java.util" <br />
+ Implementation-Version: "build57"<br />
+ Implementation-Vendor: "Sun Microsystems, Inc."
+
+====Specify Dependencies====
+
+The MANIFEST.MF file can be used to specify all the classes that must be loaded for an application to be able to run. Source: the sun servlet specification, page 72 (servlet-2_4-fr-spec.pdf)
+
+==Apache Ant Zip/JAR support==
+
+The Apache Ant build tool has its own package to read and write Zip and JAR archives, including support for the Unix filesystem extensions. The org.apache.tools.zip package is released under the Apache Software Foundation license and is designed to be usable outside Ant.
+
+==Related formats==
+
+Several related file formats build on the JAR format:
+
+==See also==
+
+==References==
+
+==External links==
+
+

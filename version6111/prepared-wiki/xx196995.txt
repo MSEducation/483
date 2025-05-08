@@ -1,0 +1,79 @@
+[[SGI Origin 2000]]
+
+CATEGORIES: SGI servers
+
+The SGI Origin 2000 was a family of mid-range and high-end server computers developed and manufactured by Silicon Graphics (SGI). They were introduced in 1996 to succeed the SGI Challenge and POWER Challenge. At the time of introduction, these ran the IRIX operating system, originally version 6.4 and later, 6.5. A variant of the Origin 2000 with graphics capability is known as the Onyx2. An entry-level variant based on the same architecture but with a different hardware implementation is known as the Origin 200. The Origin 2000 was succeeded by the Origin 3000 in July 2000, and was discontinued on June 30, 2002.
+
+==Models==
+
+The family was announced on October 7, 1996.[tpl]Cite news |title= Silicon Graphics and Cray Research Unveil Modular Origin Server Family: High-Bandwidth Systems Revolutionize Computer Buying Economics With Seamless Scalability |date= October 7, 1996 |work= Press release |url= http://www.sgi.com/Headlines/1996/October/originserver_release.html |deadurl= yes |archiveurl= http://web.archive.org/web/19970707174608/http://www.sgi.com/Headlines/1996/October/originserver_release.html |archivedate= July 7, 1997 |accessdate= September 21, 2013 [/tpl]
+The project was code named Lego, and also known as SN0, to indicate the first in a series of scalable node architectures, contrasting with previous symmetric multiprocessor architectures in the SGI Challenge series.[tpl]Cite news |title= Silicon Graphics Completely Renews its Stations, Servers |date= October 7, 1996 |work= Computer Business Review |url=  [/tpl]
+The Origin 2100 is mostly the same as the other models except that it is not upgradeable to other models. (unless the router cards, etc. were replaced)
+The highest CPU count that SGI marketed for the Origin 2000 was 128 CPUs; above 64 CPUs the product was originally branded "CRAY Origin 2000" since Cray Research has just been merged with SGI.  Three Origin 2000 models were made that were capable of using 512 CPUs and 512 GB of memory but these were never marketed as a system to customers.  One of the 512-CPU Origin 2000 series was installed at SGI's facility in Eagan, Minnesota for test purposes and the other two were sold to NASA Ames Research Center in Mountain View, California for specialized scientific computing. The 512-CPU Origin 2800s cost roughly $40 million each and the delivery of the Origin 3000 systems, scalable up to 512 or 1024 CPUs at a lower price per performance, made the 512-CPU Origin 2800 obsolete. 
+Several customers also bought 256-CPU Origin 2000 series systems, although they were never marketed as a product by SGI either.
+The largest installation of SGI Origin 2000 series was Accelerated Strategic Computing Initiative (ASCI) Blue Mountain at Los Alamos National Labs. It included 48 Origin 2000 series 128-CPU systems all connected via High Performance Parallel Interface (HIPPI) for a total of 6144 processors. At the time it was tested, it placed second on the TOP500 list of fastest computers in the world. That test was completed with only 40 nodes of 128 CPUs each and recorded a sustained 1.6 teraflops.  With all nodes connected, it was able to sustain 2.1 teraflops and peak of over 2.5 teraflops.
+Los Alamos National Laboratory also had another 12 Origin 128-CPU system (for a total of 1536 CPUs) as part of the same testing. 
+The climate simulation laboratory at the National Center for Atmospheric Research (NCAR) had an Origin 2000 system named "Ute" with 128 CPUs. It was delivered on May 18, 1998, and decommissioned on July 15, 2002.[tpl]Cite web |title= SGI Origin 2000 (ute): 1998–2002 |work= SCD Supercomputer Gallery |publisher= National Center for Atmospheric Research  |url= http://www.cisl.ucar.edu/computers/gallery/sgi/ute.jsp |accessdate= September 21, 2013 [/tpl] 
+A smaller system at NCAR was named dataproc, delivered on March 29, with 16 CPUs.[tpl]Cite web |title= SGI Origin 2000 (dataproc): 1999–2004 |work= SCD Supercomputer Gallery |publisher= National Center for Atmospheric Research  |url= http://www.cisl.ucar.edu/computers/gallery/sgi/dataproc.jsp |accessdate= September 21, 2013 [/tpl]
+The systems at NASA Ames included the one named for Harvard Lomax with 512 CPUs, one named for Joseph Steger with 128 CPUs, one named for Grace Hopper with 64CPUs, and one named for Alan Turing with 24 CPUs.[tpl]Cite news |title= NASA to Name Supercomputer  after Columbia Astronaut |work= Press release |publisher= NASA |date=  May 10, 2004 |url= http://www.nasa.gov/centers/ames/news/releases/2004/04_39AR.html |accessdate= September 21, 2013 [/tpl][tpl]Cite web |title= Comparison of 250 MHz R10K Origin 2000 and 400 MHz Origin 2000 Using NAS Parallel Benchmarks |author= Raymond D. Turney |work= NAS Technical Report 01-007 |date= October 22, 2004 |url= http://www.nas.nasa.gov/assets/pdf/techreports/2001/nas-01-007.pdf |accessdate= September 21, 2013 [/tpl]
+
+==Hardware==
+
+Each Origin 2000 module was based on nodes that are plugged into a backplane. Each module can contain up to four node boards, two router boards and twelve XIO options. The modules are then mounted inside a deskside enclosure or a rack. Deskside enclosures can only contain one module, while racks can contain two. In configurations with more than two modules, multiple racks are used.
+[tpl]note|1|1[/tpl] Figures specified are for maximum configurations.
+The Origin 200 used some of the architectural components, but in a very different physical realization that was not scalable.[tpl]Cite journal |title= System Overview of the SGI Origin 200/2000 Product Line |authors= James Laudon and Daniel Lenoski |work= Proceedings of the 42nd IEEE International Computer Conference |date= February 23, 1997 |publisher= IEEE |doi= 10.1109/CMPCON.1997.584688  [/tpl]
+
+===Architecture===
+
+An Origin 2000 system is composed of nodes linked together by an interconnection network. It uses the distributed shared memory sometimes called Scalable Shared-Memory Multiprocessing (S2MP) architecture. The Origin 2000 used NUMAlink (originally named CrayLink) for its system interconnect. The nodes are connected to router boards, which use NUMAlink cables to connect to other nodes through their routers. The NUMAlink's network topology  is a bristled fat hypercube. In configurations with more than 64 processors, a hierarchical fat hypercube network topology is used instead. Additional NUMAlink cables, called Xpress links can be installed between unused Standard Router ports to reduce latency and increase bandwidth. Xpress links can only be used in systems that have 16 or 32 processors, as these are the only configurations with a network topology that enables unused ports to be used in such a way.
+The architecture had its roots in the DASH project at Stanford University, led by John L. Hennessy, which included two of the Origin designers.[tpl]Cite journal |title= The DASH prototype: implementation and performance |authors=  Daniel Lenoski , James Laudon, Truman Joe, David Nakahira, Luis Stevens, Anoop Gupta and John L. Hennessy  |work= Proceedings of the 19th annual international symposium on Computer |volume= 2 |number= 2 |pages= 92-103 |date= May 1992 |doi= 10.1145/146628.139706 [/tpl][tpl]Cite journal |title= The SGI Origin: A ccNUMA Highly Scalable Server |authors= James Laudon and Daniel Lenoski |work= Proceedings of the 24th annual international symposium on Computer architecture |volume= 25 |number= 2 |pages= 241-251 |date= May 1997 |doi= 10.1145/384286.264206 |url= http://courses.cs.washington.edu/courses/cse549/07wi/files/sgiorigin.pdf [/tpl]
+
+====Router boards====
+
+There are four different router boards used by the Origin 2000. Each successive router board allows a larger amount of nodes to be connected.
+
+=====Null Router=====
+
+The Null Router connects two nodes in the same module. A system using the Null Router cannot be expanded as there are no external connectors.
+
+=====Star Router=====
+
+The Star Router can connect up to four nodes. It is always used in conjunction with a Standard Router to function correctly.
+
+=====Standard Router (Rack Router)=====
+
+The Standard Router can connect up to 32 nodes. It contains an application specific integrated circuit (ASIC) known as the scalable pipelined interconnect for distributed endpoint routing (SPIDER), which serves as a router for the NUMAlink network. The SPIDER ASIC has six ports, each with a pair of unidirectional links, connected to a crossbar which enables the ports to communicate with each other.[tpl]Cite journal |title= Scalable pipelined interconnect for distributed endpoint routing: The SGI SPIDER chip |author= Mike Galles |pages= 141–146 |work= Proceedings of Hot Interconnects Symposium |year= 1996 |publisher= Stanford University [/tpl]
+
+=====Meta Router (Cray Router)=====
+
+The Meta Router is used in conjunction with Standard Routers to connect more than 32 nodes. It can connect up to 64 nodes.
+
+===Nodes===
+
+Each Origin 2000 node fit on a single 16" by 11"  printed circuit board that contains one or two processors, the main memory, the directory memory and the Hub ASIC. The node board plugs into the backplane through a 300-pad CPOP (Compression Pad-on-Pad) connector. The connector actually combines two connections, one to the NUMAlink router network and another to the XIO I/O subsystem.
+
+====Processor====
+
+Each processor and their secondary cache is contained on a HIMM (Horizontal Inline Memory Module) daughter card that plugs into the node board. At the time of introduction, the Origin 2000 used the IP27 board, featuring one or two R10000 processors clocked at 180 MHz with 1 MB secondary cache(s). A high-end model with two 195 MHz R10000 processors with 4 MB secondary caches was also available. In February 1998, the IP31 board was introduced with two 250 MHz R10000 processors with 4 MB secondary caches. Later, the IP31 board was upgraded to support two 300, 350 or 400 MHz R12000 processors. The 300 and 400 MHz models had 8 MB L2 caches, while the 350 MHz model had 4 MB L2 caches. Near the end of its life, a variant of the IP31 board that could utilize the 500 MHz R14000 with 8 MB L2 caches was made available.
+
+====Main memory and directory memory====
+
+Each node board can support a maximum of 4 GB of memory through 16 DIMM slots by using proprietary ECC SDRAM DIMMs with capacities of 16, 32, 64 and 256 MB. Because the memory bus is 144 bits wide (128 bits for data and 16 bits for ECC), memory modules are inserted in pairs. Directory memory, which contains information on the contents of remote caches for maintaining cache coherency, must be used in configurations with more than 32 processors as the Origin 2000 uses a distributed shared memory model. The directory memory is contained on proprietary DIMMs that are inserted into eight DIMM slots set aside for its use. In configurations where there are fewer than 32 processors, the directory memory is contained within the main memory.
+
+====Hub ASIC====
+
+The Hub ASIC interfaces the processors, memory and XIO to the NUMAlink 2 system interconnect.  The ASIC contains five major sections: the crossbar (referred to as the "XB"), the I/O interface (referred to as the "II"), the network interface (referred to as the "NI"), the processor interface (referred to as the "PI") and the memory and directory interface (referred to as the  "DM"), which also serves as the memory controller. The interfaces communicate with each other via FIFO buffers that are connected to the crossbar. When two processors are connected to the Hub ASIC, the node does not behave in a SMP fashion. Instead, the two processors operate separately and their buses are multiplexed over the single processor interface. This was done to save pins on the Hub ASIC. The Hub ASIC is clocked at 100 MHz and contains 900,000 gates fabricated in a five-layer metal process.
+
+===I/O subsystem===
+
+The I/O subsystem is based around the Crossbow (Xbow) ASIC, which shares many similarities with the SPIDER ASIC. Since the Xbow ASIC is intended for use with the simpler XIO protocol, its hardware is also simpler, allowing the ASIC to feature eight ports, compared with the SPIDER ASIC's six ports. Two of the ports connect to the node boards, and the remaining six to XIO cards. While the I/O subsystem's native bus is XIO, PCI-X and VME64 buses can also be used, provided by XIO bridges.
+A IO6 base I/O board is present in every system. It is a XIO card that provides:
+The IO6G (G for Graphics) had 2 additional serial ports and keyboard/mouse ports plus the above ports.  The IO6G was required on systems with the Onyx Graphics pipes(cards) to connect keyboard/mouse.
+
+==See also==
+
+==Notes==
+
+==References==
+
+

@@ -1,0 +1,116 @@
+[[Cayley–Hamilton theorem]]
+
+CATEGORIES: Theorems in linear algebra, Articles containing proofs, Matrix theory
+
+In linear algebra, the Cayley–Hamilton theorem (named after the mathematicians Arthur Cayley and William Rowan Hamilton) states that every square matrix over a commutative ring (such as the real or complex field) satisfies its own characteristic equation.
+More precisely,A proof from PlanetMath.The Cayley–Hamilton Theorem at MathPages[tpl]springer|title=Cayley–Hamilton theorem|id=p/c120080[/tpl] if [tpl]mvar|A[/tpl] is a given [tpl]math|n×n[/tpl] matrix and [tpl]math|In [/tpl] is the  [tpl]math|n×n[/tpl] identity matrix, then the  characteristic polynomial of [tpl]mvar|A[/tpl] is defined as
+where "det" is the determinant operation. Since the entries of the matrix are (linear or constant) polynomials in [tpl]mvar|λ[/tpl], the determinant is also an [tpl]mvar|n[/tpl]-th order polynomial in [tpl]mvar|λ[/tpl]. 
+The Cayley–Hamilton theorem states that "substituting" the matrix [tpl]mvar|A[/tpl] for [tpl]mvar|λ[/tpl] in this polynomial results in the zero matrix,
+The powers of [tpl]mvar|A[/tpl], obtained by substitution from powers of [tpl]mvar|λ[/tpl], are defined by repeated matrix multiplication; the constant term of [tpl]math| p(λ)[/tpl] gives a multiple of the power [tpl]mvar|A[/tpl]0, which power is defined as the identity matrix.
+The theorem allows [tpl]mvar|A[/tpl][tpl]mvar|n[/tpl] to be expressed as a linear combination of the lower matrix powers of [tpl]mvar|A[/tpl].
+When the ring is a field, the Cayley–Hamilton theorem is equivalent to the statement that the minimal polynomial of a square matrix divides its characteristic polynomial.
+
+==Example==
+
+As a concrete example, let
+Its characteristic polynomial is given by
+The Cayley–Hamilton theorem claims that, if we define
+then
+which one can verify easily.
+
+==Illustration for specific dimensions and practical applications==
+
+For a 1×1 matrix [tpl]math|A [tpl]=[/tpl] (a)[/tpl], the characteristic polynomial is given by p(λ) = λ − a, and so p(A) = (a) − a(1) = 0 is obvious.
+For a 2×2 matrix,
+the characteristic polynomial is given by [tpl]math| p(λ) [tpl]=[/tpl] λ2 − (a + d)λ + (ad − bc)[/tpl], so the Cayley–Hamilton theorem states that
+which is indeed always the case, evident by working out the entries of [tpl]mvar|A[/tpl]2.
+For a general [tpl]math|n×n[/tpl] invertible matrix [tpl]mvar|A[/tpl], i.e., one with nonzero determinant, [tpl]mvar|A[/tpl]−1 can thus be written as an (n − 1)-th order  polynomial expression in [tpl]mvar|A[/tpl]:   As indicated,  the Cayley–Hamilton theorem amounts to  the identity
+
+with [tpl]math|cn−1 [tpl]=[/tpl] −tr(A)[/tpl], etc., where tr([tpl]mvar|A[/tpl]) is the trace of the matrix [tpl]mvar|A[/tpl].  
+This can then be written as
+For larger matrices, the expressions for the coefficients [tpl]math|ck[/tpl] of the characteristic polynomial in terms of the matrix components become increasingly complicated; but they can also be expressed in terms of traces of powers of the matrix [tpl]mvar|A[/tpl], using Newton's identities (at least when the ring contains the rational numbers), thus resulting in the expression for the adjugate matrix of [tpl]mvar|A[/tpl] as a trace identity,
+where the sum is taken over [tpl]mvar|s[/tpl] and the sets of all integer partitions [tpl]math|kl ≥ 0[/tpl] satisfying the equation
+For instance, in the above 2×2 matrix example, the coefficient [tpl]math|−c1 [tpl]=[/tpl] a + d[/tpl] of λ above is just the trace of [tpl]mvar|A[/tpl], tr[tpl]mvar|A[/tpl], while the constant coefficient [tpl]math|c0 [tpl]=[/tpl] ad − bc[/tpl] can be written as [tpl]math|½((trA)2 − tr(A2))[/tpl]. (Of course, it is also the determinant of [tpl]mvar|A[/tpl], in this case.)
+In fact, this expression, [tpl]math|½((trA)2 − tr(A2))[/tpl], always gives the coefficient cn−2 of λn−2 in the characteristic polynomial of any n×n matrix; so, for a 3×3 matrix [tpl]mvar|A[/tpl], the statement of the Cayley–Hamilton theorem can also be written as
+where the right-hand side designates a 3×3 matrix with all entries reduced to zero. Likewise, this determinant in the n = 3 case, is  now 
+minus the coefficient cn−3 of λn−3 in the general case, as seen below.
+Similarly, one can write for a 4×4 matrix [tpl]mvar|A[/tpl], 
+where, now,  the determinant is 
+and so on for larger matrices, with the increasingly complex expressions for the coefficients deducible from Newton's identities.
+A practical method for obtaining these coefficients  [tpl]math|ck[/tpl] for a general [tpl]math|n×n[/tpl] matrix, yielding the above ones virtually by inspection,  provided no root be zero, relies on an alternate expression for the determinant,
+Hence,
+where the exponential only needs be expanded to order  λ−n, since [tpl]math|p(λ)[/tpl] is of order n, the net negative powers of λ automatically vanishing by the C–H theorem. (Again, this requires a ring containing the rational numbers.)
+The generic coefficients of the characteristic polynomial for general [tpl]mvar|n[/tpl] are given (Le Verrier) by determinants of [tpl]math|m×m[/tpl] matrices,
+The Cayley–Hamilton theorem always provides a relationship between the powers of [tpl]mvar|A[/tpl] (though not always the simplest one), which allows one to simplify expressions involving such powers, and evaluate them without having to compute the power [tpl]mvar|A[/tpl]n or any higher powers of [tpl]mvar|A[/tpl].
+For instance, the concrete 2×2 Example above can be written as
+Then, for example, to calculate A4, observe
+
+==Proving the theorem in general==
+
+and then these coefficients are used in a linear combination of powers of A that is equated to the n×n null matrix:
+
+===Preliminaries===
+
+If a vector v of size n happens to be an eigenvector of A with eigenvalue λ, in other words if A⋅v = λv, then
+which is the null vector since p(λ) = 0 (the eigenvalues of A are precisely the roots of p(t)). This holds for all possible eigenvalues λ, so the two matrices equated by the theorem certainly give the same (null) result when applied to any eigenvector. Now if A admits a basis of eigenvectors, in other words if A is diagonalizable, then the Cayley–Hamilton theorem must hold for A, since two matrices that give the same values when applied to each element of a basis must be equal. Not all matrices are diagonalizable, but for matrices with complex coefficients many of them are: the set of diagonalizable complex square matrices of a given size is dense in the set of all such square matrices[tpl]cite book|author=R. Bhatia|year=1997|title=Matrix Analysis|publisher=Springer|page=7[/tpl] (for a matrix to be diagonalizable it suffices for instance that its characteristic polynomial not have any multiple roots). Now if any of the n2 expressions that the theorem equates to 0 would not reduce to a null expression, in other words if it would be a nonzero polynomial in the coefficients of the matrix, then the set of complex matrices for which this expression happens to give 0 would not be dense in the set of all matrices, which would contradict the fact that the theorem holds for all diagonalizable matrices. Thus one can see that the Cayley–Hamilton theorem must be true.
+While this provides a valid proof (for matrices over the complex numbers), the argument is not very satisfactory, since the identities represented by the theorem do not in any way depend on the nature of the matrix (diagonalizable or not), nor on the kind of entries allowed (for matrices with real entries the diagonizable ones do not form a dense set, and it seems strange one would have to consider complex matrices to see that the Cayley–Hamilton theorem holds for them). We shall therefore now consider only arguments that prove the theorem directly for any matrix using algebraic manipulations only; these also have the benefit of working for matrices with entries in any commutative ring.
+There is a great variety of such proofs of the Cayley–Hamilton theorem, of which several will be given here. They vary in the amount of abstract algebraic notions required to understand the proof. The simplest proofs use just those notions needed to formulate the theorem (matrices, polynomials with numeric entries, determinants), but involve technical computations that render somewhat mysterious the fact that they lead precisely to the correct conclusion. It is possible to avoid such details, but at the price of involving more subtle algebraic notions: polynomials with coefficients in a non-commutative ring, or matrices with unusual kinds of entries.
+
+====Adjugate matrices====
+
+All proofs below use the notion of the adjugate matrix adj(M) of an n×n matrix M. This is a matrix whose coefficients are given  by polynomial expressions in the coefficients of M (in fact by certain (n − 1)×(n − 1) determinants), in such a way that one has the following fundamental relations
+These relations are a direct consequence of the basic properties of determinants: evaluation of the (i,j) entry of the matrix product on the left gives the expansion by column j of the determinant of the matrix obtained from M by replacing column i by a copy of column j, which is det(M) if i = j and zero otherwise; the matrix product on the right is similar, but for expansions by rows. Being a consequence of just algebraic expression manipulation, these relations are valid for matrices with entries in any commutative ring (commutativity must be assumed for determinants to be defined in the first place). This is important to note here, because these relations will be applied for matrices with non-numeric entries such as polynomials.
+
+===A direct algebraic proof===
+
+This proof uses just the kind of objects needed to formulate the Cayley–Hamilton theorem: matrices with polynomials as entries. The matrix [tpl]math|t In −A[/tpl] whose determinant is the characteristic polynomial of [tpl]mvar|A[/tpl] is such a matrix, and since polynomials form a commutative ring, it has an adjugate
+Then according to the right hand fundamental relation of the adjugate one has
+Since B is also a matrix with polynomials in t as entries, one can for each i collect the coefficients of ti in each entry to form a matrix B i of numbers, such that one has
+(the way the entries of B are defined makes clear that no powers higher than tn−1 occur). While this looks like a polynomial with matrices as coefficients, we shall not consider such a notion; it is just a way to write a matrix with polynomial entries as linear combination of constant matrices, and the coefficient t i has been written to the left of the matrix to stress this point of view. Now one can expand the matrix product in our equation by bilinearity
+Writing 
+one obtains an equality of two matrices with polynomial entries, written as linear combinations of constant matrices with powers of t as coefficients. Such an equality can hold only if in any matrix position the entry that is multiplied by a given power ti is the same on both sides; it follows that the constant matrices with coefficient ti in both expressions must be equal. Writing these equations for i from n down to 0 one finds
+We multiply the equation of the coefficients of ti from the left by Ai, and sum up; the left-hand sides form a telescoping sum and cancel completely, which results in the equation
+This completes the proof.
+
+===A proof using polynomials with matrix coefficients===
+
+This proof is similar to the first one, but tries to give meaning to the notion of polynomial with matrix coefficients that was suggested by the expressions occurring in that proof. This requires considerable care, since it is somewhat unusual to consider polynomials with coefficients in a non-commutative ring, and not all reasoning that is valid for commutative polynomials can be applied in this setting. Notably, while arithmetic of polynomials over a commutative ring models the arithmetic of polynomial functions, this is not the case over a non-commutative ring (in fact there is no obvious notion of polynomial function in this case that is closed under multiplication). So when considering polynomials in t with matrix coefficients, the variable t must not be thought of as an "unknown", but as a formal symbol that is to be manipulated according to given rules; in particular one cannot just set t to a specific value.
+respecting the order of the coefficient matrices from the two operands; obviously this gives a non-commutative multiplication. Thus the identity 
+from the first proof can be viewed as one involving a multiplication of elements in M(n, R)t.
+Equating the coefficients shows that for each i, we have A Bi = Bi A as desired. Having found the proper setting in which evA is indeed a homomorphism of rings, one can complete the proof as suggested above:
+This completes the proof.
+
+===A synthesis of the first two  proofs===
+
+which is a ring homomorphism, giving
+just like in the second proof, as desired.
+valid for all n×n matrices, where 
+is the characteristic polynomial of A. Note that this identity implies the statement of the Cayley–Hamilton theorem: one may move adj(−A) to the right hand side, multiply the resulting equation (on the left or on the right) by A, and use the fact that
+
+===A proof using matrices of endomorphisms===
+
+In this form, the following proof can be obtained from that of [tpl]Harvard citations|last1 = Atiyah|last2 = MacDonald|year = 1969|loc = Prop. 2.4[/tpl] (which in fact is the more general statement related to the Nakayama lemma; one takes for the ideal in that proposition the whole ring R). The fact that A is the matrix of φ in the basis e1, ..., en means that
+the associativity of matrix-matrix and matrix-vector multiplication used in the first step is a purely formal property of those operations, independent of the nature of the entries. Now component i of this equation says that p(φ)(ei) = 0 ∈ V; thus p(φ) vanishes on all ei, and since these elements generate V it follows that p(φ) = 0 ∈ End(V), completing the proof.
+One additional fact that follows from this proof is that the matrix A whose characteristic polynomial is taken need not be identical to the value φ substituted into that polynomial; it suffices that φ be an endomorphism of V satisfying the initial equations 
+for some sequence of elements e1,...,en that generate V (which space might have smaller dimension than n, or in case the ring R is not a field it might not be a free module at all).
+
+===A bogus "proof": p(A) = det(AIn − A) = det(A − A) = 0===
+
+One elementary but incorrect argument for the theorem is to "simply" take the definition
+and substitute A for λ, obtaining
+If one substitutes the entire matrix A for λ in those positions, one obtains
+in which the "matrix" expression is simply not a valid one.  Note, however, that if scalar multiples of identity matrices
+instead of scalars are subtracted in the above, i.e. if the substitution is performed as
+So, for the matrix A in the previous example,
+Yet one can verify that 
+
+==Abstraction and generalizations==
+
+The above proofs show that the Cayley–Hamilton theorem holds for matrices with entries in any commutative ring R, and that p(φ) = 0 will hold whenever φ is an endomorphism of an R module generated by elements e1,...,en that satisfies 
+This more general version of the theorem is the source of the celebrated Nakayama lemma in commutative algebra and algebraic geometry.
+
+==See also==
+
+==References==
+
+

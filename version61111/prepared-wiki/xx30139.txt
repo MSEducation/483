@@ -1,0 +1,48 @@
+[[Maximum power transfer theorem]]
+
+CATEGORIES: Circuit theorems, Electrical engineering
+
+In electrical engineering, the maximum power transfer theorem states that, to obtain maximum external power from a source with a finite internal resistance, the resistance of the load must equal the resistance of the source as viewed from its output terminals. Moritz von Jacobi published the maximum power (transfer) theorem around 1840; it is also referred to as "Jacobi's law".[tpl]citation |url=http://books.google.com/?id=dKVbT-ZmdDwC&pg=PA406 |title=Dynamo-Electric Machinery; A Manual for Students of Electrotechnics |author=Thompson Phillips |publisher=BiblioBazaar, LLC |isbn=978-1-110-35104-6 |date=2009-05-30[/tpl]
+The theorem results in maximum power transfer, and not maximum efficiency. If the resistance of the load is made larger than the resistance of the source, then efficiency is higher, since a higher percentage of the source power is transferred to the load, but the magnitude of the load power is lower since the total circuit resistance goes up.
+If the load resistance is smaller than the source resistance, then most of the power ends up being dissipated in the source, and although the total power dissipated is higher, due to a lower total resistance, it turns out that the amount dissipated in the load is reduced.
+The theorem states how to choose (so as to maximize power transfer) the load resistance, once the source resistance is given. It is a common misconception to apply the theorem in the opposite scenario.  It does not say how to choose the source resistance for a given load resistance. In fact, the source resistance that maximizes power transfer is always zero, regardless of the value of the load resistance.
+The theorem can be extended to AC circuits that include reactance, and states that maximum power transfer occurs when the load impedance is equal to the complex conjugate of the source impedance.
+
+==Maximizing power transfer versus power efficiency==
+
+The theorem was originally misunderstood (notably by Joule) to imply that a system consisting of an electric motor driven by a battery could not be more than 50% efficient since, when the impedances were matched, the power lost as heat in the battery would always be equal to the power delivered to the motor. In 1880 this assumption was shown to be false by either Edison or his colleague Francis Robbins Upton, who realized that maximum efficiency was not the same as maximum power transfer.  To achieve maximum efficiency, the resistance of the source (whether a battery or a dynamo) could be made close to zero.  Using this new understanding, they obtained an efficiency of about 90%, and proved that the electric motor was a practical alternative to the heat engine.
+Consider three particular cases:
+The efficiency is only 50% when maximum power transfer is achieved, but approaches 100% as the load resistance approaches infinity, though the total power level tends towards zero. Efficiency also approaches 100% if the source resistance approaches zero, and 0% if the load resistance approaches zero. In the latter case, all the power is consumed inside the source (unless the source also has no resistance), so the power dissipated in a short circuit is zero.
+
+==Impedance matching==
+
+A related concept is reflectionless impedance matching.  In radio, transmission lines, and other electronics, there is often a requirement to match the source impedance (such as a transmitter) to the load impedance (such as an antenna) to avoid reflections in the transmission line.
+
+==Calculus-based proof for purely resistive circuits==
+
+(See Cartwright for a non-calculus-based proof)
+For a maximum or minimum, the first derivative is zero, so
+or
+A note of caution is in order here.  This last statement, as written, implies to many people that for a given load, the source resistance must be set equal to the load resistance for maximum power transfer.  However, this equation only applies if the source resistance cannot be adjusted, e.g., with antennas (see the first line in the proof stating "fixed source resistance").  For any given load resistance a source resistance of zero is the way to transfer maximum power to the load. As an example, a 100 volt source with an internal resistance of 10 ohms connected to a 10 ohm load will deliver 250 watts to that load. Make the source resistance zero ohms and the load power jumps to 1000 watts.
+
+==In reactive circuits==
+
+The theorem also applies where the source and/or load are not totally resistive. This invokes a refinement of the maximum power theorem, which says that any reactive components of source and load should be of equal magnitude but opposite phase.  (See below for a derivation.)  This means that the source and load impedances should be complex conjugates of each other.  In the case of purely resistive circuits, the two concepts are identical.  However, physically realizable sources and loads are not usually totally resistive, having some inductive or capacitive components, and so practical applications of this theorem, under the name of complex conjugate impedance matching, do, in fact, exist.
+If the source is totally inductive (capacitive), then a totally capacitive (inductive) load, in the absence of resistive losses, would receive 100% of the energy from the source but send it back after a quarter cycle.  The resultant circuit is nothing other than a resonant LC circuit in which the energy continues to oscillate to and fro.  This is called reactive power. Power factor correction (where an inductive reactance is used to "balance out" a capacitive one), is essentially the same  idea as complex conjugate impedance matching although it is done for entirely different reasons.
+For a fixed reactive source, the maximum power theorem maximizes the real power (P) delivered to the load by complex conjugate matching the load to the source.
+For a fixed reactive load, power factor correction minimizes the apparent power (S) (and unnecessary current) conducted by the transmission lines, while maintaining the same amount of real power transfer.  This is done by adding a reactance to the load to balance out the load's own reactance, changing the reactive load impedance into a resistive load impedance.
+
+===Proof===
+
+is a minimum. Since reactances can be negative, this denominator is easily minimized by making
+The power equation is now reduced to:
+The combination of conditions
+can be concisely written with a complex conjugate (the *) as:
+
+==Notes==
+
+==References==
+
+==External links==
+
+

@@ -1,0 +1,45 @@
+[[Interquartile mean]]
+
+CATEGORIES: Means
+
+The interquartile mean (IQM) (or midmean) is a statistical measure of central tendency, much like the mean (in more popular terms called the average), the median, and the mode.
+The IQM is a truncated mean and so is very similar to the scoring method used in sports that are evaluated by a panel of judges: discard the lowest and the highest scores; calculate the mean value of the remaining scores.
+
+==Calculation==
+
+In calculation of the IQM, only the data in the second and third quantiles is used (as in the interquartile range), and the lowest 25% and the highest 25% of the scores are discarded. These points are called the first and third quartiles,  hence the name of the IQM. (Note that the second quartile is also called the median).
+assuming the values have been ordered.
+
+==Examples==
+
+===Dataset divisible by four===
+
+The method is best explained with an example. Consider the following dataset:
+First sort the list from lowest-to-highest:
+There are 12 observations (datapoints) in the dataset, thus we have 4 quartiles of 3 numbers. Discard the lowest and the highest 3 values:
+We now have 6 of the 12 observations remaining; next, we calculate the arithmetic mean of these numbers:
+For comparison, the arithmetic mean of the original dataset is
+due to the strong influence of the outlier, 38.
+
+===Dataset not divisible by four===
+
+The above example consisted of 12 observations in the dataset, which made the determination of the quartiles very easy. Of course, not all datasets have a number of observations that is divisible by 4. We can adjust the method of calculating the IQM to accommodate this. So ideally we want to have the IQM equal to the mean for symmetric distributions, e.g.:
+has a mean value xmean = 3, and since it is a symmetric distribution, xIQM = 3 would be desired.
+We can solve this by using a weighted average of the quartiles and the interquartile dataset:
+Consider the following dataset of 9 observations:
+There are 9/4 = 2.25 observations in each quartile, and 4.5 observations in the interquartile range. Truncate the fractional quartile size, and remove this number from the 1st and 3rd quartiles (2.25 observations in each quartile, thus the lowest 2 and the highest 2 are removed).
+Thus, there are 3 full observations in the interquartile range, and 2 fractional observations. Since we have a total of 4.5 observations in the interquartile range, the two fractional observations each count for 0.75 (and thus 3×1 + 2×0.75 = 4.5 observations).
+The IQM is now calculated as follows:
+In the above example, the mean has a value xmean = 9. The same as the IQM, as was expected. The method of calculating the IQM for any number of observations is analogous; the fractional contributions to the IQM can be either 0, 0.25, 0.50, or 0.75.
+
+==Comparison with mean and median==
+
+The Interquartile Mean shares some properties from both the mean as well as the median:
+
+==See also==
+
+===Related statistics===
+
+===Applications===
+
+

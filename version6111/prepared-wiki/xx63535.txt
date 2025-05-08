@@ -1,0 +1,95 @@
+[[Vector bundle]]
+
+CATEGORIES: Differential topology, Algebraic topology, Vector bundles, Vectors
+
+In mathematics, a vector bundle is a topological construction that makes precise the idea of a family of vector spaces parameterized by another space X (for example X could be a topological space, a manifold, or an algebraic variety): to every point x of the space X we associate (or "attach") a vector space V(x) in such a way that these vector spaces fit together to form another space of the same kind as X (e.g. a topological space, manifold, or algebraic variety), which is then called a vector bundle over ''X''.
+The simplest example is the case that the family of vector spaces is constant, i.e., there is a fixed vector space V such that V(x) = V for all x in X: in this case there is a copy of V for each x in X and these copies fit together to form the vector bundle X × V over X. Such vector bundles are said to be trivial. A more complicated (and prototypical) class of examples are the tangent bundles of smooth (or differentiable) manifolds: to every point of such a manifold we attach the tangent space to the manifold at that point. Tangent bundles are not, in general, trivial bundles: for example, the tangent bundle of the sphere is non-trivial by the hairy ball theorem. In general, a manifold is said to be parallelizable if and only if its tangent bundle is trivial.
+Vector bundles are almost always required to be locally trivial, however, which means they are examples of fiber bundles. Also, the vector spaces are usually required to be over the real or complex numbers, in which case the vector bundle is said to be a real or complex vector bundle (respectively). Complex vector bundles can be viewed as real vector bundles with additional structure. In the following, we focus on real vector bundles in the category of topological spaces.
+
+==Definition and first consequences==
+
+A real vector bundle consists of:
+where the following compatibility condition is satisfied: for every point in X, there is an open neighborhood U, a natural number k, and a homeomorphism
+such that for all x ∈ U,
+The open neighborhood U together with the homeomorphism φ is called a local trivialization of the vector bundle. The local trivialization shows that locally the map π "looks like" the projection of U × Rk on U.
+Every fiber π−1({x}) is a finite-dimensional real vector space and hence has a dimension kx. The local trivializations show that the function x [tpl]mapsto[/tpl] kx is locally constant, and is therefore constant on each connected component of X. If kx is equal to a constant k on all of X, then k is called the rank of the vector bundle, and E is said to be a vector bundle of rank ''k.  Often the definition of a vector bundle includes that the rank is well defined, so that kx'' is constant. Vector bundles of rank 1 are called line bundles, while those of rank 2 are less commonly called plane bundles.
+The Cartesian product X × Rk , equipped with the projection X × Rk → X, is called the trivial bundle of rank k over X.
+
+===Transition functions===
+
+Given a vector bundle E → X of rank k, and a pair of neighborhoods U and V over which the bundle trivializes via
+the composite function
+is well-defined on the overlap, and satisfies
+for some GL(k)-valued function
+These are called the transition functions (or the coordinate transformations) of the vector bundle.
+The set of transition functions forms a Čech cocycle in the sense that
+for all U, V, W over which the bundle trivializes.  Thus the data (E, X, π, Rk) defines a fiber bundle; the additional data of the gUV specifies a GL(k) structure group in which the action on the fiber is the standard action of GL(k).
+Conversely, given a fiber bundle (E, X, π, Rk) with a GL(k) cocycle acting in the standard way on the fiber Rk, there is associated a vector bundle.  This is sometimes taken as the definition of a vector bundle.
+
+==Vector bundle morphisms==
+
+A morphism from the vector bundle π1 : E1 → X1 to the vector bundle π2 : E2 → X2 is given by a pair of continuous maps f : E1 → E2 and g : X1 → X2 such that
+ Image:BundleMorphism-01.png 
+Note that g is determined by f (because π1 is surjective), and f is then said to cover ''g''.
+The class of all vector bundles together with bundle morphisms forms a category. Restricting to vector bundles for which the spaces are manifolds (and the bundle projections are smooth maps) and smooth bundle morphisms we obtain the category of smooth vector bundles. Vector bundle morphisms are a special case of the notion of a bundle map between fiber bundles, and are also often called (vector) bundle homomorphisms.
+A bundle homomorphism from E1 to E2 with an inverse which is also a bundle homomorphism (from E2 to E1) is called a (vector) bundle isomorphism, and then E1 and E2 are said to be isomorphic vector bundles. An isomorphism of a (rank k) vector bundle E over X with the trivial bundle (of rank k over X) is called a trivialization of E, and E is then said to be trivial (or trivializable). The definition of a vector bundle shows that any vector bundle is locally trivial.
+We can also consider the category of all vector bundles over a fixed base space X. As morphisms in this category we take those morphisms of vector bundles whose map on the base space is the identity map on X. That is, bundle morphisms for which the following diagram commutes:
+ Image:BundleMorphism-02.png 
+(Note that this category is not abelian; the kernel of a morphism of vector bundles is in general not a vector bundle in any natural way.)
+A vector bundle morphism between vector bundles π1 : E1 → X1 and π2 : E2 → X2 covering a map g from X1 to X2 can also be viewed as a vector bundle morphism over X1 from E1 to the pullback bundle g*E2.
+
+==Sections and locally free sheaves==
+
+Given a vector bundle π : E → X and an open subset U of X, we can consider sections of π on U, i.e. continuous functions s : U → E where the composite π∘s is such that [tpl]nowrap|1=(π∘s)(u) = u[/tpl] for all u in U. Essentially, a section assigns to every point of U a vector from the attached vector space, in a continuous manner. As an example, sections of the tangent bundle of a differential manifold are nothing but vector fields on that manifold.
+Let F(U) be the set of all sections on U. F(U) always contains at least one element, namely the zero section: the function s that maps every element x of U to the zero element of the vector space π−1({x}). With the pointwise addition and scalar multiplication of sections, F(U) becomes itself a real vector space. The collection of these vector spaces is a sheaf of vector spaces on X.
+If s is an element of F(U) and α : U → R is a continuous map, then αs (pointwise scalar multiplication) is in F(U). We see that F(U) is a module over the ring of continuous real-valued functions on U. Furthermore, if OX denotes the structure sheaf of continuous real-valued functions on X, then F becomes a sheaf of OX-modules.
+Not every sheaf of OX-modules arises in this fashion from a vector bundle: only the locally free ones do. (The reason: locally we are looking for sections of a projection U × Rk → U; these are precisely the continuous functions U → Rk, and such a function is an k-tuple of continuous functions U → R.)
+Even more: the category of real vector bundles on X is equivalent to the category of locally free and finitely generated sheaves of OX-modules.
+So we can think of the category of real vector bundles on X as sitting inside the category of sheaves of OX-modules; this latter category is abelian, so this is where we can compute kernels and cokernels of morphisms of vector bundles.
+Note that a rank n vector bundle is trivial if and only if it has n linearly independent global sections.
+
+== Operations on vector bundles==
+
+Most operations on vector spaces can be extended to vector bundles by performing the vector space operation fiberwise.
+For example, if E is a vector bundle over X, then the there is a bundle E* over X, called the dual bundle, whose fiber at x∈X is the dual vector space (Ex)*. Formally E* can be defined as the set of pairs (x, φ), where x ∈ X and φ ∈ (Ex)*. The dual bundle is locally trivial because the dual space of the inverse of a local trivialization of E is a local trivialization of E*: the key point here is that the operation of taking the dual vector space is functorial.
+There are many functorial operations which can be performed on pairs of vector spaces (over the same field), and these extend straightforwardly to pairs of vector bundles E, F on X (over the given field). A few examples follow.
+Each of these operations is a particular example of a general feature of bundles: that many operations that can be performed on the category of vector spaces can also be performed on the category of vector bundles in a functorial manner.  This is made precise in the language of smooth functors.  An operation of a different nature is the pullback bundle construction. Given a vector bundle E → Y and a continuous map f : X → Y one can "pull back" E to a vector bundle f*E over X. The fiber over a point x ∈ X is essentially just the fiber over f(x) ∈ Y. Hence, Whitney summing E ⊕ F can be defined as the pullback bundle of the diagonal map from X to X x X where the bundle over X x X is E x F.
+
+==Additional structures and generalizations==
+
+Vector bundles are often given more structure. For instance, vector bundles may be equipped with a vector bundle metric. Usually this metric is required to be positive definite, in which case each fibre of E becomes a Euclidean space. A vector bundle with a complex structure corresponds to a complex vector bundle, which may also be obtained by replacing real vector spaces in the definition with complex ones and requiring that all mappings be complex-linear in the fibers. More generally, one can typically understand the additional structure imposed on a vector bundle in terms of the resulting reduction of the structure group of a bundle. Vector bundles over more general topological fields may also be used.
+If instead of a finite-dimensional vector space, if the fiber F is taken to be a Banach space then a Banach bundle is obtained.[tpl]Citation | last1=Lang | first1=Serge | author1-link=Serge Lang | title=Differential and Riemannian manifolds | publisher=Springer-Verlag | location=Berlin, New York | isbn=978-0-387-94338-1 | year=1995[/tpl]  Specifically, one must require that the local trivializations are Banach space isomorphisms (rather than just linear isomorphisms) on each of the fibers and that, furthermore, the transitions
+are continuous mappings of Banach manifolds.  In the corresponding theory for Cp bundles, all mappings are required to be Cp.
+Vector bundles are special fiber bundles, those whose fibers are vector spaces and whose cocycle respects the vector space structure.  More general fiber bundles can be constructed in which the fiber may have other structures; for example sphere bundles are fibered by spheres.
+
+==Smooth vector bundles==
+
+A vector bundle (E, p, M) is smooth, if E and M are smooth manifolds, p : E → M is a smooth map, and the local trivializations are diffeomorphisms. Depending on the required degree of smoothness, there are different corresponding notions of Cp bundles, infinitely differentiable C∞-bundles and real analytic Cω-bundles. In this section we will concentrate on C∞-bundles. The most important example of a C∞-vector bundle is the tangent bundle (TM,πTM,M) of a C∞-manifold M.
+The C∞-vector bundles (E, p, M) have a very important property not shared by more general C∞-fibre bundles. Namely, the tangent space Tv(Ex) at any v ∈ Ex can be naturally identified with the fibre Ex itself. This identification is obtained through the vertical lift vlv: Ex → Tv(Ex), defined as
+The vertical lift can also be seen as a natural C∞-vector bundle isomorphism p*E → VE, where (p*E, p*p, E) is the pull-back bundle of (E, p, M) over E through p : E → M, and VE := Ker(p*) ⊂ TE is the vertical tangent bundle, a natural vector subbundle of the tangent bundle (TE, πTE, E) of the total space E.
+The slit vector bundle E/0, obtained from (E, p, M) by removing the zero section 0 ⊂ E, carries a natural vector field Vv := vlvv, known as the canonical vector field. More formally, V is a smooth section of (TE, πTE, E), and it can also be defined as the infinitesimal generator of the Lie-group action
+For any smooth vector bundle (E, p, M) the total space TE of its tangent bundle (TE, πTE, E) has a natural secondary vector bundle structure (TE, p*,TM), where p* is the push-forward of the canonical projection p:E→M. The vector bundle operations in this secondary vector bundle structure are the push-forwards +*:T(E × E) → TE and λ* : TE → TE of the original addition + : E × E → E and scalar multiplication λ:E→E.
+
+==K-theory==
+
+The K-theory group, K(X), of a manifold is defined as the abelian group generated by isomorphism classes E of (complex) vector bundles modulo the relation that whenever we have an exact sequence
+then
+in topological K-theory. KO-theory is a version of this construction which considers real vector bundles. K-theory with compact supports can also be defined, as well as higher K-theory groups.
+The famous periodicity theorem of Raoul Bott asserts that the K-theory of any space X is isomorphic to that of the Cartesian product X × S2.
+In algebraic geometry, one considers the K-theory groups consisting of coherent sheaves on a scheme X, as well as the K-theory groups of vector bundles on the scheme with the above equivalence relation. The two constructs are the same provided that the underlying scheme is smooth.
+
+==See also==
+
+===General notions===
+
+===Topology and differential geometry===
+
+===Algebraic and analytic geometry===
+
+==Notes==
+
+==References==
+
+==External links==
+
+

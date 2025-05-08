@@ -1,0 +1,70 @@
+[[Knoppix]]
+
+CATEGORIES: Knoppix, Operating system distributions bootable from read-only media, Live USB, Live CD, LiveDistro, Debian-based distributions
+
+Knoppix, or KNOPPIX ([tpl]IPAc-en|k|n|ɒ|p|ɪ|k|s[/tpl] [tpl]respell|KNOP|iks[/tpl]),Two Weughty Questions on Debian newsgroup post is an operating system based on Debian designed to be run directly from a CD / DVD (Live CD) or a USB flash drive (Live USB), one of the first of its kind for any operating system. Knoppix was developed by Linux consultant Klaus Knopper. When starting a program, it is loaded from the removable medium and decompressed into a RAM drive. The decompression is transparent and on-the-fly.
+Although Knoppix is primarily designed to be used as a Live CD, it can also be installed on a hard disk like a typical operating system. Computers that support booting from USB devices can load Knoppix from a live USB flash drive or memory card.
+There are two main editions of Knoppix: the traditional Compact Disc (700 megabytes) edition and the DVD (4.7 gigabytes) "Maxi" edition. Each of these main editions have two language-specific editions: English and German.
+Knoppix mostly consists of free and open source software, but also includes some proprietary software, so long as it fulfils certain conditions.Knoppix FAQ-Wiki pages
+Knoppix can be used to copy files easily from hard drives with inaccessible operating systems. To quickly and more safely use Linux software, the Live CD can be used instead of installing another OS.
+
+==Contents==
+
+More than 1000 software packages are included on the CD edition and more than 2600 are included on the DVD edition. Up to 9 gigabytes can be stored on the DVD in compressed form.
+These packages include:
+== Hardware requirements == 
+Knoppix System Requirements
+
+==Saving changes in the environment==
+
+Prior to Knoppix 3.8.2, any documents or settings a user created would disappear upon reboot. This lack of permanence then made it necessary to save documents directly to a hard drive partition, over the network, or to some removable media, such as a USB flash drive.
+It was also possible to set up a "persistent home directory", where any documents or settings written to the user's home directory would automatically be redirected to a hard drive or removable media, which could be automatically mounted on bootup. A single file, knoppix.img, was cached on the rewritable media and used to simulate a file system into which files were written for later use. This allowed the user to transparently write to their home directory.
+Union mount support was added in version 3.8.1 through UnionFS. This was later replaced by Aufs in 5.1.0 to improve stability.Knoppix 5.1 Changelog The union mount allowed virtual updates to the data on the read-only CD/DVD media by storing changes on separate writable media and then representing the combination of the two as single storage device. The writable media could be memory (ramdisk), a hard disk, USB flash drive, etc. This means that the user could modify the software installed on the Knoppix system, such as by using APT to install or update software. The storage device containing the changes needed to be present whenever Knoppix is started, else only the original data from the disc would be used. While Knoppix would scan available storage devices for a persistent home directory by default, a user could dictate a specific location with a boot option (see below) such as:
+home=/dev/hda1/knoppix.img 
+Knoppix Documentation Wiki:Cheat codes
+By carrying a Knoppix CD and a USB flash drive, a user could have the same environment, programs, settings, and data available on any computer that could run Knoppix.
+This functionality was only available through Knoppix 5.1.1 (CD release) or 5.3.1 (DVD release). Subsequently, the Live CD paradigm has transformed into portable operating systems that run on external storage.
+
+==Boot options==
+
+When using Knoppix as a Live CD, one can use boot options, also known as 'cheatcodes', to override a default setting or automatic hardware detection when it fails. For example, the user may wish to boot into a plain console, or proceed without SCSI support. For this, Knoppix allows the user to enter one or more cheat codes at the prompt before booting. If the user does not enter a cheat code, or does not press any key before the timeout, Knoppix will boot with its default options. For example, to set the language to French rather than the default, one would type:
+knoppix lang=fr
+
+==Popularity==
+
+Knoppix was one of the first Live CD Linux distributions to gain popularity.polishlinux.org – Live CD There are several factors that contribute to the popularity of Knoppix:
+Knoppix works on a fairly large number of PCs or laptops, but not all. The automatic hardware detection cannot cope with all hardware, and sometimes the drivers used will not be optimal. Knoppix has difficulty recognizing some cards made before 1998, or motherboards with a BIOS made before 2002. (In some cases, manual configuration with codes entered at boot time can overcome problems with automatic detection.)[tpl]Citation needed|date=December 2012[/tpl]
+If a PC does not have enough RAM to run KDE and other included programs, the legacy Knoppix (earlier than 6.0) boots up a very limited twm session instead. The only window running in the twm session by default is xterm.[tpl]Citation needed|date=December 2012[/tpl]
+
+==Versions==
+
+As of April 2008, from version 4 up until 5.1.1, Knoppix has been split into a DVD "maxi" edition (with over 9 GB of software), and a CD "light" edition, both developed in parallel.[tpl]cite web |last=Knopper |first=Klaus |title=KNOPPIX 4.0 in issue 8/05 with DVD of “com! Das Computer-Magazin” |work=KNOPPER.NET News |publisher=Knopper.Net |date=2005-07-06 |url=http://www.knopper.net/knoppix/index-en.html |archiveurl=http://web.archive.org/web/20050708005508/http://www.knopper.net/knoppix/index-en.html |archivedate=2005-07-08 |accessdate=2009-06-10[/tpl][tpl]de icon[/tpl] [tpl]cite press release |title=Knoppix 4.0 auf DVD erscheint zum LinuxTag 2005 |publisher=Knopper.Net |date=2005-07-29 |url=http://www.knopper.net/knoppix/knoppix40-pe.txt |accessdate=2009-06-10[/tpl] 
+The following is the version history of major releases. 
+The KNOPPIX 6.0.1 / ADRIANE 1.1 is a CD-edition again, and a complete rebuild from scratch. LXDE as default desktop and a very reduced software collection in order to easily fit on CD.[tpl]cite web |last=Knopper |first=Klaus |title=Microknoppix |work=KNOPPIX 6.0 / ADRIANE 1.1 – Live CD |publisher=Knopper.Net |date=2009-02-11 |url=http://www.knopper.net/knoppix/knoppix60-en.html |accessdate=2009-06-10[/tpl]
+No further development is being done of the traditional 5.x versions.
+The KNOPPIX 6.2.1 release has both CD and DVD editions, and the ADRIANE 1.2 only has a CD-edition.[tpl]cite web |title=Microknoppix |work=KNOPPIX 6.2 / ADRIANE 1.2 – Live CD / DVD |publisher=Knopper.Net |url=http://www.knopper.net/knoppix/knoppix62-en.html |accessdate=2009-11-18[/tpl]
+
+==Derivatives==
+
+===Adriane Knoppix===
+
+Adriane Knoppix, ADRIANE, being an Acronym of "Audio Desktop Reference Implementation and Networking Environment" is a variation that is intended for blind and visually impaired people, which can be used entirely without vision oriented output devices. It was released in the third quarter of 2007 as a Live CD. Adriane Knoppix is named after Adriane Knopper, the wife of Klaus Knopper, the developer of Knoppix. Adriane has a visual impairment, and has been assisting Klaus with the development of the software.Swapnil Bhartiya, EFY News, Free Operating System For Blind: Adriane Knoppix accessed 2 February 2007 The name Adriane is also a backronym for "Audio Desktop Reference Implementation And Networking Environment".
+Adriane Knoppix is intended not only for the blind but also for beginners who don’t know much about computers. It uses the SUSE Blinux screen reader with a phoneme generator and speech engine for normal output.
+
+===Other variations===
+
+====Unmaintained projects====
+
+==See also==
+
+==Notes==
+
+===Books===
+
+===News article===
+
+==References==
+
+==External links==
+
+

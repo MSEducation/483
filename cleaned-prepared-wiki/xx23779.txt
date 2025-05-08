@@ -1,0 +1,78 @@
+[[Density matrix]]
+
+CATEGORIES: Quantum mechanics, Functional analysis, Quantum information science, Statistical mechanics
+
+A density matrix is a matrix that describes a quantum system in a mixed state, a statistical ensemble of several quantum states. This should be contrasted with a single state vector that describes a quantum system in a pure state. The density matrix is the quantum-mechanical analogue to a phase-space probability measure (probability distribution of position and momentum) in classical statistical mechanics. 
+Mixed states arise in situations where the experimenter does not know which particular states are being manipulated. Examples include a system in thermal equilibrium (or additionally chemical equilibrium) or a system with an uncertain or randomly varying preparation history (so one does not know which pure state the system is in). Also, if a quantum system has two or more subsystems that are entangled, then each subsystem must be treated as a mixed state even if the complete system is in a pure state. The density matrix is also a crucial tool in quantum decoherence theory.
+The density matrix is a representation of a linear operator called the density operator. The close relationship between matrices and operators is a basic concept in linear algebra. In practice, the terms density matrix and density operator are often used interchangeably. Both matrix and operator are self-adjoint (or Hermitian),  positive semi-definite, of trace one, and  may
+be infinite-dimensional. in 1927 and 1946 respectively.
+
+Pure and mixed states
+
+Example: Light polarization
+
+ 1 & 0  \\
+ 0 & 0  \\
+\end{bmatrix}
+ 。]]
+Therefore, unpolarized light cannot be described by any pure state, but can be described as a statistical ensemble of pure states in at least two ways (the ensemble of half left and half right circularly polarized, or the ensemble of half vertically and half horizontally linearly polarized). These two ensembles are completely indistinguishable experimentally, and therefore they are considered the same mixed state. One of the advantages of the density matrix is that there is just one density matrix for each mixed state, whereas there are many statistical ensembles of pure states for each mixed state. Nevertheless, the density matrix contains all the information necessary to calculate any measurable property of the mixed state.
+More generally, mixed states commonly arise from a statistical mixture of the starting state (such as in thermal equilibrium), from uncertainty in the preparation procedure (such as slightly different paths that a photon can travel), or from looking at a subsystem entangled with something else.
+
+Mathematical description
+
+Nevertheless, there is a unique operator ρ such that the expectation value of F(A) can be written as
+where the operator ρ is the density operator of the mixed system.  A simple calculation shows that the operator ρ for the above discussion is given by
+For the above example of unpolarized light, the density operator is
+
+Formulation
+
+For a finite-dimensional function space, the most general density operator is of the form
+i.e., U is unitary and such that
+This is simply a restatement of the following fact from linear algebra: for two square matrices M and N, M M* = N N* if and only if M = NU for some unitary U. (See square root of a matrix for more details.) Thus there is a unitary freedom in the ket mixture or ensemble that gives the same density operator.  However if the kets in the mixture are orthonormal then the original probabilities pj are recoverable as the eigenvalues of the density matrix.
+In operator language, a density operator is a positive semidefinite, hermitian operator  of trace 1 acting on the state space. A density operator describes a pure state if it is a rank one projection. Equivalently, a density operator ρ is a pure state if and only if
+i.e. the state is idempotent. This is true regardless of whether H is finite-dimensional or not.
+Geometrically, when the state is not expressible as a convex combination of other states, it is a pure state.  The family of mixed states is a convex set and a state is pure if it is an extremal point of that set.
+It follows from the spectral theorem for compact self-adjoint operators that every mixed state is an infinite convex combination of pure states.  This representation is not unique. Furthermore, a theorem of Andrew Gleason states that certain functions defined on the family of projections and taking values in 0,1 (which can be regarded as quantum analogues of probability measures) are determined by unique mixed states. See quantum logic for more details.
+
+Measurement
+
+The expectation value of the measurement can be calculated by extending from the case of pure states (see Measurement in quantum mechanics):
+Note that the above density operator describes the full ensemble after measurement. The sub-ensemble for which the measurement result was the particular value ai is described by the different density operator
+
+Entropy
+
+Also it can be shown that
+This entropy can increase but never decrease with a projective measurement, however generalised measurements can decrease entropy.
+[/ref]  The entropy of a pure state is zero, while that of a proper mixture always greater than zero.  Therefore a pure state may be converted into a mixture by a measurement, but a proper mixture can never be converted into a pure state.  Thus the act of measurement induces a fundamental irreversible change on the density matrix; this is analogous to the "collapse" of the state vector, or wavefunction collapse. Perhaps counterintuitively, the measurement actually decreases information by erasing quantum interference in the composite system—cf. quantum entanglement, einselection,  and quantum decoherence.
+(A subsystem of a larger system can be turned from a mixed to a pure state, but only by increasing the von Neumann entropy elsewhere in the system. This is analogous to how the entropy of an object can be lowered by putting it in a refrigerator: The air outside the refrigerator's heat-exchanger warms up, gaining even more entropy than was lost by the object in the refrigerator. See second law of thermodynamics. See Entropy in thermodynamics and information theory.)
+
+The Von Neumann equation for time evolution
+
+Just as the Schrödinger equation describes how pure states evolve in time, the von Neumann equation (also known as the Liouville-von Neumann equation) describes how a density operator evolves in time (in fact, the two equations are equivalent, in the sense that either can be derived from the other.) The von Neumann equation dictates that
+where the brackets denote a commutator.
+Note that this equation only holds when the density operator is taken to be in the Schrödinger picture, even though this equation seems at first look to emulate the Heisenberg equation of motion in the Heisenberg picture, with a crucial sign difference:
+Taking the density operator to be in the Schrödinger picture makes sense, since it is composed of 'Schrödinger' kets and bras evolved in time, as per the Schrödinger picture.
+If the Hamiltonian is time-independent, this differential equation can be easily solved to yield
+
+"Quantum Liouville", Moyal's equation
+
+The density matrix operator may also be realized in phase space. Under the Wigner map, the density matrix  transforms into the equivalent Wigner function,
+The equation for the time-evolution of the Wigner function is then the Wigner-transform of the above von Neumann equation,
+where H(q,p) is the Hamiltonian, and  { { •,• } } is  the Moyal bracket, the transform of the quantum commutator.
+The evolution equation for the Wigner function is then analogous to that of its classical limit, the Liouville equation of classical physics.  In the limit of vanishing Planck's constant ħ, W(q,p,t) reduces to the classical Liouville probability density function in phase space.
+The classical Liouville equation can be solved using the method of characteristics for partial differential equations, the characteristic equations being  Hamilton's equations. The Moyal equation in quantum mechanics similarly admits formal solutions in terms of  quantum characteristics,  predicated on the ∗−product of phase space, although, in actual practice, solution-seeking follows different methods.
+
+Composite Systems
+
+C*-algebraic formulation of states
+
+It is now generally accepted that the description of quantum mechanics in which all self-adjoint operators represent observables is untenable. However, by using the GNS construction, we can recover Hilbert spaces which realize A as a subalgebra of operators.
+Geometrically, a pure state on a C*-algebra A  is a state which is an extreme point of the set of all states on A.  By properties of the GNS construction these states correspond to irreducible representations of A.
+The states of the C*-algebra of compact operators K(H) correspond exactly to the density operators, and therefore the pure states  of K(H) are exactly the pure states in the sense of quantum mechanics.
+The C*-algebraic formulation can be seen to include both classical and quantum systems. When the system is classical, the algebra of observables become an abelian C*-algebra.  In that case the states become probability measures, as noted in the introduction.
+
+
+
+Notes and references
+
+

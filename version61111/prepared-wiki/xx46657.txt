@@ -1,0 +1,61 @@
+[[Riemann sum]]
+
+CATEGORIES: Integral calculus
+
+In mathematics, a Riemann sum is an approximation of the area of a region, often the region underneath a curve. It is named after German mathematician Bernhard Riemann.
+The sum is calculated by dividing the region up into shapes (rectangles or trapezoids) that together form a region that is similar to the region being measured, then calculating the area for each of these shapes, and finally adding all of these small areas together. This approach can be used to find a numerical approximation for a definite integral even if the fundamental theorem of calculus does not make it easy to find a closed-form solution.
+Because the region filled by the small shapes is usually not exactly the same shape as the region being measured, the Riemann sum will differ from the area being measured. This error can be reduced by dividing up the region more finely, using smaller and smaller shapes. As the shapes get smaller and smaller, the sum approaches the Riemann integral.
+
+==Definition==
+
+Let f : D → R be a function defined on a subset, D, of the real line, R. Let I = b be a closed interval contained in D, and let 
+be a partition of I, where 
+The Riemann sum of f over I with partition P is defined as 
+
+==Methods==
+
+The four methods of Riemann summation are usually best approached with partitions of equal size. The interval b is therefore divided into n subintervals, each of length 
+The points in the partition will then be 
+
+===Left Riemann Sum===
+
+For the left Riemann sum, approximating the function by its value at the left-end point gives multiple rectangles with base Δx and height f(a + iΔx). Doing this for i = 0, 1, ..., n − 1, and adding up the resulting areas gives
+The left Riemann sum amounts to an overestimation if f is monotonically decreasing on this interval, and an underestimation if it is monotonically increasing.
+
+===Right Riemann Sum===
+
+f is here approximated by the value at the right endpoint. This gives multiple rectangles with base Δx and height f(a + iΔx). Doing this for i = 1, ..., n, and adding up the resulting areas produces 
+The right Riemann sum amounts to an underestimation if f is monotonically decreasing, and an overestimation if it is monotonically increasing.
+The error of this formula will be 
+
+===Middle sum===
+
+Approximating f at the midpoint of intervals gives f(a + Q/2) for the first interval, for the next one f(a + 3Q/2), and so on until f(b − Q/2). Summing up the areas gives
+The error of this formula will be 
+
+===Trapezoidal Rule===
+
+In this case, the values of the function f on an interval are approximated by the average of the values at the left and right endpoints. In the same manner as above, a simple calculation using the area formula 
+for a trapezium  with parallel sides b1, b2  and height h produces
+The error of this formula will be 
+The approximation obtained with the trapezoid rule for a function is the same as the average of the left hand and right hand sums of that function.
+
+==Example==
+
+Taking an example, the area under the curve of y = x2 between 0 and 2 can be procedurally computed using Riemann's method. 
+If the limit is viewed as n → ∞, it can be concluded that the approximation approaches the actual value of the area under the curve as the number of boxes increases. Hence:
+This method agrees with the definite integral as calculated in more mechanical ways:
+
+==Animations==
+
+Image:Riemann sum (leftbox).gif|Left sum
+Image:Riemann sum (rightbox).gif|Right sum
+Image:Riemann sum (middlebox).gif|Middle sum
+
+==See also==
+
+==References==
+
+==External links==
+
+

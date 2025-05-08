@@ -1,0 +1,159 @@
+[[Tagged Image File Format]]
+
+CATEGORIES: High dynamic range file formats, Graphics file formats, Adobe Systems
+
+TIFF is a computer file format for storing raster graphics images, popular among graphic artists, the publishing industry,[tpl]cite web |title=Encyclopedia of Graphics File Formats |edition=Second |date=1996-04 |first=James D. |last=Murray |first2=William |last2=vanRyper |isbn=1-56592-161-5 |publisher=O'Reilly |url=http://www.fileformat.info/format/tiff/egff.htm|accessdate=2014-03-07[/tpl] and both amateur and professional photographers in general. The format was originally created by the company Aldus for use in desktop publishing.  The specification originally had the name TIFF as the acronym for "Tagged Image File Format".Versions 4 and 5 of the TIFF specification included the sentence "This memorandum has been prepared jointly by Aldus and Microsoft in conjunction with leading scanner and printer manufacturers"; there was a TIFF co-marketing and developer support effort with Microsoft during this time, though Microsoft was not a technical contributor to the specification. TIFF Revision 5.0[tpl]dead link|date=January 2014[/tpl]  When Adobe Systems acquired Aldus, they published Version 6 (1993) of the TIFF specification which dropped the Microsoft reference as well as all references to TIFF being an acronym. TIFF remains a published specification under the control of Adobe Systems.
+The TIFF format is widely supported by image-manipulation applications, by publishing and page layout applications, and by scanning, faxing, word processing, optical character recognition and other applications.TIFF was chosen as the native format for raster graphics in the NeXTstep operating system; this TIFF support carried over into Mac OS X. Adobe Systems, which acquired Aldus, now holds the copyright to the TIFF specification. TIFF has not had a major update since 1992, though several Aldus/Adobe technical notes have been published with minor extensions to the format, and several specifications, including TIFF/EP (ISO 12234-2), TIFF/IT (ISO 12639),[tpl]cite web |url=http://www.prepressure.com/library/file-formats/tiffit |title=The TIFF/IT file format |accessdate=2011-02-19[/tpl] TIFF-F (RFC 2306) and TIFF-FX (RFC 3949)[tpl]cite web |url=http://tools.ietf.org/html/rfc3949 |title=File Format for Internet Fax |year=2005 |quote=This file format specification is commonly known as TIFF for Fax eXtended (TIFF-FX). |accessdate=2011-02-19[/tpl] have been based on the TIFF 6.0 specification.
+
+==[tpl]anchor|1.0|2.0|3.0|4.0|5.0|6.0[/tpl]History==
+
+The phrases Tagged Image File Format and Tag Image File Format were used as the subtitle to some early versions of the TIFF specification; the 1992 specification, TIFF 6.0, does not use either subtitle phrase, simply using TIFF as the title.
+TIFF was originally created as an attempt to get desktop scanner vendors of the mid-1980s to agree on a common scanned image file format, in favor of many proprietary formats. In the beginning, TIFF was only a binary image format (only two possible values for each pixel), because that was all that desktop scanners could handle. As scanners became more powerful, and as desktop computer disk space became more plentiful, TIFF grew to accommodate grayscale images, then color images. Today, TIFF is a popular format for high color-depth images, along with JPEG and PNG.
+The first version of the TIFF specification was published by Aldus Corporation in the autumn of 1986 after two major earlier draft releases. It can be labeled as Revision 3.0. It was published after a series of meetings with various scanner manufacturers and software developers. In April 1987 Revision 4.0 was released and it contained mostly minor enhancements. In October 1988 Revision 5.0 was released and it added support for palette color images and LZW compression.TIFF Revision 6.0 Final — June 3, 1992, Retrieved on 2009-07-10
+
+==Flexible options==
+
+TIFF is a flexible, adaptable file format for handling images and data within a single file, by including the header tags (size, definition, image-data arrangement, applied image compression) defining the image's geometry. A TIFF file, for example, can be a container holding compressed (lossy) JPEG and (lossless) PackBits compressed images. A TIFF file also can include a vector-based clipping path (outlines, croppings, image frames). The ability to store image data in a lossless format makes a TIFF file a useful image archive, because, unlike standard JPEG files, a TIFF file using lossless compression (or none) may be edited and re-saved without losing image quality. This is not the case when using the TIFF as a container holding compressed JPEG. Other TIFF options are layers and pages.
+TIFF offers the option of using LZW compression, a lossless data-compression technique for reducing a file's size. Use of this option was limited by patents on the LZW technique until their expiration in 2004.
+The TIFF 6.0 specification consists of the following parts:
+
+===[tpl]anchor|Baseline TIFF[/tpl]Part 1: Baseline TIFF===
+
+When TIFF was introduced its extensibility provoked compatibility problems. The flexibility in encoding gave rise to the joke that TIFF stands for Thousands of Incompatible File Formats. To avoid these problems, every TIFF reader was required to read Baseline TIFF. The Baseline TIFF does not include layers, or compression with JPEG or LZW.
+The Baseline TIFF is formally known as TIFF 6.0, Part 1: Baseline TIFF. The following is an incomplete list of required Baseline TIFF features:
+
+====Multiple subfiles====
+
+TIFF readers must be prepared for multiple/multi-page images (subfiles) per TIFF file although they are not required to do anything with images after the first one.
+There may be more than one Image File Directory (IFD) in a TIFF file. Each IFD defines a subfile. One use of subfiles is to describe related images, such as the pages of a facsimile document. A Baseline TIFF reader is not required to read any IFD beyond the first one.
+
+====Strips====
+
+A baseline TIFF image may be composed of one or more strips. A strip or band is a subsection of the image composed of one or more rows. Each strip is compressed independently and begins on a byte boundary. If the image height is not evenly divisible by the number of rows in the strip the last strip may contain fewer rows. If the strip definition tags are missing then the image is assumed to contain a single strip.
+
+====Tiles====
+
+A TIFF image may also be composed of a number of tiles. All tiles in the same image have the same dimensions and are - similar to strips - compressed independently. Tiled Images are part of TIFF 6.0, Part 2: TIFF Extensions, so the support for Tiled Images is not required in Baseline TIFF readers.
+
+====Compression====
+
+Baseline TIFF readers must handle the following three compression schemes:
+
+====Image types====
+
+Baseline TIFF image types are: bilevel, grayscale, palette-color, and RGB full-color images.
+
+====Byte order====
+
+Every TIFF file begins with a two-byte indicator of byte order: "II" for little-endian (a.k.a. "Intel byte ordering", circa 1980)David Beecher, author of dozens of image processing engines over the last 30 years. Any TIFF file can be viewed with a HEX editor to confirm this. and "MM" for big-endian (a.k.a. "Motorola byte ordering", circa 1980) byte ordering. The next two-byte word represents the number 42 which happens to be the ASCII character "*", also represented by hexadecimal 2A[tpl]sub|16[/tpl], selected because of its binary pattern (101010[tpl]sub|2[/tpl]) and "for its deep philosophical significance".[ref]
+[tpl]dead link|date=January 2014[/tpl]</ref>
+All words, double words, etc., in the TIFF file are assumed to be in the indicated byte order. The TIFF 6.0 specification states that compliant TIFF readers must support both byte orders (II and MM); writers may use either.[ref]
+</ref>
+
+====Other TIFF fields====
+
+TIFF readers must be prepared to encounter and ignore private fields not described in the TIFF specification. TIFF readers must not refuse to read a TIFF file if some optional fields do not exist.
+
+===[tpl]anchor|TIFF Extensions[/tpl]Part 2: TIFF Extensions===
+
+Many TIFF readers support tags additional to those in Baseline TIFF, but not every reader supports every extension.[tpl]cite web |url=http://support.microsoft.com/kb/319196/en-us |title=You cannot preview scanned TIFF file in Windows Picture and Fax Viewer |author=Microsoft |accessdate=2011-02-28[/tpl][tpl]cite web |url=http://support.microsoft.com/kb/329270 |title=You Cannot View TIFF Images Using Windows Picture and Fax Viewer |author=Microsoft |accessdate=2011-02-28[/tpl][tpl]cite web |url=http://suppressingfire.org/~burner/evil-mods-tiff/ |title=Handling Microsoft Office Document Scanning TNEF and TIFFs in Linux |author=Microsoft |accessdate=2011-02-28[/tpl][tpl]cite web |url=http://office.microsoft.com/en-us/help/about-tagged-image-file-format-tiff-HP003081257.aspx |title=About Tagged Image File Format (TIFF) |accessdate=2011-03-04[/tpl] As a consequence, Baseline TIFF features became the lowest common denominator for TIFF format. Baseline TIFF features are extended in TIFF Extensions (defined in the TIFF 6.0 Part 2 specification) but extensions can also be defined in private tags.
+The TIFF Extensions are formally known as TIFF 6.0, Part 2: TIFF Extensions. Here are some examples of TIFF extensions defined in TIFF 6.0 specification:
+
+====Compression====
+
+====Image types====
+
+Many used TIFF images contain only uncompressed 32-bit CMYK or 24-bit RGB images.[tpl]Citation needed|date=April 2010[/tpl]
+
+====Image Trees====
+
+A baseline TIFF file can contain a sequence of images (IFD). Typically, all the images are related but represent different data, such as the pages of a document. In order to explicitly support multiple views of the same data, the SubIFD tag was introduced.TIFF Specification Supplement 1, Retrieved 2013-08-04 This allows the images to be defined along a tree structure. Each image can have a sequence of children, each child being itself an image. The typical usage is to provide thumbnails or several versions of an image in different colour spaces.
+
+====Other extensions====
+
+According to TIFF 6.0 specification (Introduction), all TIFF files using proposed TIFF extensions that are not approved by Adobe as part of Baseline TIFF (typically for specialized uses of TIFF that do not fall within the domain of publishing or general graphics or picture interchange) should be either not called TIFF files or should be marked some way so that they will not be confused with mainstream TIFF files.
+
+===Private tags===
+
+Developers can apply for a block of "private tags" to enable them to include their own proprietary information inside a TIFF file without causing problems for file interchange. TIFF readers are required to ignore tags that they do not recognize, and a registered developer's private tags are guaranteed not to clash with anyone else's tags or with the standard set of tags defined in the specification.
+TIFF Tags numbered 32768 or higher, sometimes called private tags, are reserved for information meaningful only for some organization or for experiments with a new compression scheme within TIFF. Upon request, the TIFF administrator (Adobe) will allocate and register one or more private tags for an organization, to avoid possible conflicts with other organizations. Organizations and developers are discouraged from choosing their own tag numbers, because doing so could cause serious compatibility problems. However, if there is little or no chance that TIFF files will escape a private environment, organizations and developers are encouraged to consider using TIFF tags in the "reusable" 65000-65535 range. There is no need to contact Adobe when using numbers in this range.
+
+===Internet Media Type===
+
+The image/tiff MIME type (defined in RFC 3302) without an application parameter is used for Baseline TIFF 6.0 files or to indicate that it is not necessary to identify a specific subset of TIFF or TIFF extensions. The optional "application" parameter (Example: Content-type: image/tiff; application=foo) is defined for image/tiff to identify a particular subset of TIFF and TIFF extensions for the encoded image data, if it is known. According to RFC 3302, specific TIFF subsets or TIFF extensions used in the application parameter must be published as an RFC.
+MIME type image/tiff-fx (defined in RFC 3949 and RFC 3950) is based on TIFF 6.0 with TIFF Technical Notes TTN1 (Trees) and TTN2 (Replacement TIFF/JPEG specification). It is used for Internet fax compatible with the ITU-T Recommendations for Group 3 black-and-white, grayscale and color fax.
+
+===TIFF Compression Tag===
+
+The TIFF Tag 259 (010316) stores the information about the Compression method. The default value is 1 = no compression.
+Most of TIFF writers and TIFF readers support only some of existing TIFF compression schemes. Here are some examples of used TIFF compression schemes:
+
+===BigTIFF===
+
+The TIFF file formats use 32-bit offsets, which limits file size to 4 GiB (4,294,967,296 bytes). BigTIFF is a TIFF variant file format which uses 64-bit offsets and supports much larger files.[tpl]cite web |title=Extending LibTiff library with support for the new BigTIFF format |url=http://www.remotesensing.org/libtiff/bigtiffpr.html[/tpl] The BigTIFF file format specification was implemented in 2007 in development releases of LibTIFF version 4.0, which was finally released as stable in December 2011. Support for BigTIFF file formats by applications is limited.
+
+==Digital preservation==
+
+Adobe holds the copyright on the TIFF specification (aka TIFF 6.0) along with the two supplements that have been published.  All of these documents can be found on the Adobe TIFF Resources page. The Fax standard in RFC 3949 is based on these TIFF specifications.[tpl]cite web|url=http://www.digitalpreservation.gov/formats/fdd/fdd000022.shtml|title=TIFF, Revision 6.0|publisher=Library of Congress|work=Digital Preservation|date=2014-01-08|accessdate=2014-03-11[/tpl]
+TIFF files that strictly use the basic "tag sets" as defined in TIFF 6.0 along with restricting the compression technology to the methods identified in TIFF 6.0 and are adequately tested and verified by multiple sources for all documents being created can be used for storing documents.   Commonly seen issues encountered in the content and document management industry associated with the use of TIFF files arise when the structures contain proprietary headers, are not properly documented, and/or contain "wrappers" or other containers around the TIFF datasets, and/or include improper compression technologies, or those compression technologies are not properly implemented.
+Variants of the TIFF format can be used within document imaging and content/document management systems using CCITT Group IV 2D compression which supports black-and-white (bitonal, monochrome) images, among other compression technologies that support color. When storage capacity and network bandwidth was a greater issue than commonly seen in today's server environments, high-volume storage scanning, documents were scanned in black and white (not in color or in grayscale) to conserve storage capacity.
+The inclusion of the SampleFormat tag in TIFF 6.0 allows TIFF files to handle advanced pixel data types, including integer images with more than 8 bits per channel and floating point images. This tag made TIFF 6.0 a viable format for scientific image processing where extended precision is required. An example would be the use of TIFF to store images acquired using scientific CCD cameras that provide up to 16 bits per photosite of intensity resolution. Storing a sequence of images in a single TIFF file is also possible, and is allowed under TIFF 6.0, provided the rules for multi-page images are followed.
+
+==TIFF/IT==
+
+TIFF/IT is a file format structured to digitally send data for print ready pages that have been created on high-end prepress systems.[tpl]cite web |url=http://www.printingtips.com/glossary-term/t--2360/tiffit.asp |title=Glossary of Printing Terms - TIFF/IT |accessdate=2011-03-01[/tpl] The TIFF/IT specification (ISO 12639) describes a multiple-file format which can describe a single page per file set.[tpl]citation |url=http://www.cip4.org/documents/ppf_specifications/cip3embd_v1_0.pdf |title=CIP3 application note |accessdate=2011-03-01[/tpl] TIFF/IT files are different from common TIFF files and they are not interchangeable.[tpl]citation |url=http://www.rgmgraphics.com/Tiff-It.pdf |title=Tiff/It Questions and Answers |accessdate=2011-03-01[/tpl][tpl]citation |url=http://issuu.com/michaelejahn/docs/jahn_introtopdfx_fontsembed |title=Introduction to PDF/X |accessdate=2011-03-01[/tpl][tpl]cite web |url=http://www.interviewmagspecs.com/Pages/Tiff_It_P1_Specs.html |title=Tiff/It P1 Specifications |quote=Note: TIFF/IT-P1 is not equivalent to a Photoshop® Tiff! |accessdate=2011-03-03[/tpl]
+The goals in developing TIFF/IT were to carry forward the original IT8 magnetic tape formats into a media independent version. TIFF/IT is based on Adobe TIFF 6.0 specification and both extends TIFF 6 by adding additional tags and restricts it by limiting some tags and the values within tags. Not all valid TIFF/IT images are valid TIFF 6.0 images.
+TIFF/IT defines image file formats for encoding colour continuous tone picture images, colour line art images, high resolution continuous tone images, monochrome continuous tone images, binary picture images, binary line art images, screened data, and images of composite final pages.
+
+===TIFF/IT files===
+
+TIFF/IT consists of a number of different files and it cannot be created or opened by common desktop applications.[tpl]cite web |url=http://replay.waybackmachine.org/20050425150213/http://www.ddap.org/resource_center/tiffit_implementers.php |title=TIFF/IT Implementers |year=2003 |author=DDAP Association |accessdate=2011-03-03[/tpl] TIFF/IT-P1 file sets usually consist of the following files:[tpl]citation |url=http://www.xitron.com/downloads/support/technical_documents/plugin_manuals/tiffitp1out.pdf |title=Harlequin RIP - manual for a commercial TIFF/IT plugin |accessdate=2011-03-02[/tpl][tpl]dead link|date=January 2014[/tpl]
+TIFF/IT also defines the following files:
+Some of these data types are partly compatible with the corresponding definitions in the TIFF 6.0 specification. The Final Page (FP) allows the various files needed to define a complete page to be grouped together - it provides a mechanism for creating a package that includes separate image layers (of types CT, LW, etc.) to be combined to create the final printed image. Its use is recommended but not required. There must be at least one subfile in an FP file, but no more than one of each type. It typically contains a CT subfile and an LW subfile.[tpl]citation |url=http://www.rti-rips.com/LinkedDocuments/Version8Manuals/Harlequin_RIP_Manual_Mac.pdf |title=A software manual with information about TIFF/IT[/tpl][tpl]dead link|date=January 2014[/tpl]
+The primary color space for this standard is CMYK, but also other color spaces and the use of ICC Profiles are supported.
+
+====Compression====
+
+TIFF/IT makes no provision for compression within the file structure itself, but there are no restrictions. (For example, it is allowed to compress the whole file structure in a ZIP archive.)
+LW files use a specific compression scheme known as Run-length encoding for LW (Compression tag value is 808016). HC files also use a specific Run-length encoding for HC (Compression tag value is 808116). The TIFF/IT P1 specs do not allow use of compression within the CT file.
+The following is a list of defined TIFF/IT compression schemes:
+
+====Internet Media Type====
+
+There is no MIME type defined for TIFF/IT. The image/tiff MIME type should not be used for TIFF/IT files, because TIFF/IT does not conform to Baseline TIFF 6.0 and the widely deployed TIFF 6.0 readers are not able to read TIFF/IT. The image/tiff MIME type (defined in RFC 3302) without an application parameter is used for Baseline TIFF 6.0 files or to indicate that it is not necessary to identify a specific subset of TIFF or TIFF extensions. The application parameter should be used with the image/tiff to distinguish TIFF extensions or TIFF subsets. According to RFC 3302, specific TIFF subsets or TIFF extensions must be published as an RFC. There is no such RFC for TIFF/IT. There is also no plan by the ISO committee that oversees TIFF/IT standard to register TIFF/IT with either a parameter to image/tiff or as new separate MIME type.
+
+===TIFF/IT P1===
+
+The ISO 12639:1998 introduced TIFF/IT-P1 (Profile 1) - a direct subset of the full TIFF/IT standard (previously defined in ANSI IT8.8–1993). This subset was developed on the ground of the mutual realization by both the standards and the software development communities that an implementation of the full TIFF/IT standard by any one vendor was both unlikely (because of its complexity), and unnecessary (because Profile 1 would cover most applications for digital ad delivery). Almost all TIFF/IT files in digital advertising were distributed as TIFF/IT-P1 file sets in 2001.[tpl]citation |url=http://www.ddap.org/resource_center/tiffit_position_paper.php |title=DDAP Position Statement - TIFF/IT as a File Format for Delivery of Digital Advertising - October, 2001 |date=October 2001 |accessdate=2011-03-03 |archiveurl=http://web.archive.org/web/20040111002537/http://www.ddap.org/resource_center/tiffit_position_paper.php |archivedate=2004-01-11[/tpl][tpl]citation |url=http://replay.waybackmachine.org/20030321070342/http://www.ddap.org/resources/white_papers/TIFFITPosition.pdf |title=DDAP Position Statement - TIFF/IT as a File Format for Delivery of Digital Advertising - October, 2001 |date=October 2001 |format=PDF |accessdate=2011-03-03[/tpl] When people talk about TIFF/IT, they usually mean the P1 standard.
+Here are some of the restrictions on TIFF/IT-P1 (compared to TIFF/IT):
+TIFF/IT-P1 is a simplified conformance level of TIFF/IT and it maximizes the compatibility between Color Electronic Prepress Systems (CEPS) and Desk Top Publishing (DTP) worlds.[tpl]citation |url=http://www.ipa.org/pdf/bulletin/ddap_tiff_pdf.pdf |title=DDAP, TIFF/IT-P1, PDF-X/1 |year=1998 |accessdate=2011-03-01[/tpl][tpl]dead link|date=January 2014[/tpl][tpl]cite web |url=http://tiffit-online.com/about.html |title=TIFF/IT-P1 |accessdate=2011-03-01[/tpl] It provides a clean interface for the proprietary CEPS formats such as the Scitex CT/LW format.
+
+===TIFF/IT P2===
+
+Because TIFF/IT P1 had a number of limitations, an extended format was developed. The ISO 12639:2004 introduced a new extended conformance level - TIFF/IT-P2 (Profile 2). TIFF/IT-P2 added a number of functions to TIFF/IT-P1 like:
+This format was not widely used.
+
+===Private tags===
+
+The TIFF/IT specification preserved the TIFF possibility for developers to utilize private tags. The TIFF/IT specification is very precise regarding how these private tags should be treated - they should be parsed, but ignored.[tpl]cite web |url=http://replay.waybackmachine.org/20030428202922/http://www.ddap.com/resources/privatetags_faqs.html |title=TIFF/IT Private Tags |author=DDAP Association |year=2002 |accessdate=2011-03-03[/tpl]
+Private tags in the TIFF/IT-P1 specification were originally intended to provide developers with ways to add specific functionality for specific applications. Private tags can be used by developers (e.g. Scitex) to preserve specific printing values or other functionality. Private tags are typically labelled with tag numbers greater than or equal to 32768.
+All private tags must be requested from Adobe (the TIFF administrator) and registered.
+
+===History===
+
+In 1992 the DDAP (Digital Distribution of Advertising for Publication, later Digital Directions in Applications for Production) developed their requirement statement for digital ad delivery. This was presented to  ANSI-accredited CGATS (Committee for Graphic Arts Technology Standards) for development of an accredited file format standard for the delivery of digital ads. CGATS reviewed their alternatives for this purpose and TIFF format seemed like the ideal candidate, except for the fact that it could not handle certain required functionalities. CGATS asked Aldus (the TIFF administrator) for a block of their own TIFF private tags in order to implement what eventually became TIFF/IT. For example, the ability to identify the sequence of the colors is handled by tag 34017 - the Color Sequence Tag.
+TIFF/IT was created to satisfy the need for a transport-independent method of encoding raster data in the IT8.1,
+IT8.2 and IT8.5 standards.
+
+====Standards====
+
+TIFF/IT was defined in ANSI IT8.8–1993 standard in 1993 and later revised in the International Standard ISO 12639:1998 - Prepress digital data exchange – Tag image file format for image technology (TIFF/IT). The ISO standard replaces ANSI IT8.8–1993. It specifies a media-independent means for prepress electronic data exchange.[tpl]cite web |url=http://www.printingtips.com/email-term/t--2361/tiffitp1.asp |title=Glossary of Printing Terms - TIFF/IT-P1 |accessdate=2011-03-01[/tpl]
+The ISO 12639:2004 (Second edition) standard for TIFF/IT superseded the ISO 12639:1998. It was also later extended in ISO 12639:2004 / Amd. 1:2007 - Use of JBIG2-Amd2 compression in TIFF/IT.
+
+==See also==
+
+==Notes==
+
+==External links==
+
+

@@ -1,0 +1,16 @@
+[[Horizon effect]]
+
+CATEGORIES: Game artificial intelligence
+
+The horizon effect is a problem in artificial intelligence where, in many games, the number of possible states or positions is immense and computers can only feasibly search a small portion of it, typically a few plies down the game tree. Thus, for a computer searching only five plies, there is a possibility that it will make a move which is detrimental, but the detrimental effect is not visible because it does not search to the depth of the error (i.e. beyond its horizon).
+When evaluating a large game tree using techniques such as minimax or alpha-beta pruning, search depth is limited for feasibility reasons. However, evaluating a partial tree may give a misleading result.  When a significant change exists just over the 'horizon' of the search depth, the computational device falls victim to the horizon effect.
+The horizon effect can be mitigated by extending the search algorithm with a quiescence search. This gives the search algorithm ability to look beyond its horizon for a certain class of moves of major importance to the game state, such as captures. 
+Rewriting the evaluation function for leaf nodes and/or analyzing sufficiently more nodes will solve many horizon effect problems.
+
+==Example==
+
+For example, in chess, assume a situation where black only searches the game tree to six plies, and from the current position, it determines that the queen is lost in the sixth ply.  Also, suppose there is a move in the search depth where the computer may sacrifice a rook, and the loss of the queen is pushed to the eighth ply. This is, of course, a worse move than sacrificing the queen, because it leads to losing a queen as well as a rook. Because the loss of the queen was pushed over the horizon of search, it is not discovered and evaluated by the search. Sacrificing of the rook seems to be better than losing the queen, so the sacrificing move is returned as the best option. Thus delaying moves, in this case the delaying move is the sacrifice of the queen has weakened the position in the game. Similarly there is a loss of rook, which is purely additional. The loss of additional material or unnecessary weakening of the position in the game is the result of the phenomena called Horizon Effect.
+
+==References==
+
+

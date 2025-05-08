@@ -1,0 +1,36 @@
+[[Mbox]]
+
+CATEGORIES: Email storage formats
+
+mbox is a generic term for a family of related file formats used for holding collections of electronic mail messages, first implemented for Sixth Edition Unix.mail manpage(21 Feb 1975)
+All messages in an mbox mailbox are concatenated and stored as plain text in a single file. The beginning of each message is indicated by a line whose first five characters consist of "From" followed by a space (the so named "From_ line" or "'From ' line" or simply "From line") and the sender's e-mail address.  A blank line is appended to the end of each message. For a while, the mbox format was popular because text processing tools can be readily used on the plain text files used to store the e-mail messages.
+Unlike the Internet protocols used for the exchange of e-mail, the format used for the storage of e-mail has never been formally defined through the RFC standardization mechanism and has been entirely left to the developer of an e-mail client.
+mbox (RFC 4155) stores mailbox messages in their original Internet Message (RFC 2822) format, usually in files directly accessible to users. A similar format is the MH Message Handling System. Other systems, such as Microsoft Exchange Server and the Cyrus IMAP server store mailboxes in centralised databases managed by the mail system and not directly accessible by individual users.
+The maildir mailbox format is often cited as an alternative to the mbox format for network e-mail storage systems.
+
+==Family==
+
+Four popular but incompatible variants on the same idea comprise a family of mbox formats: mboxo, mboxrd, mboxcl, and mboxcl2. The naming scheme was developed by Daniel J. Bernstein, Rahul Dhesi, and others in 1996. Each originated from a different version of Unix.  mboxcl and mboxcl2 originated from the file format used by Unix System V Release 4 mail tools. mboxrd was invented by Rahul Dhesi et al. as a rationalisation of mboxo and subsequently adopted by some Unix mail tools including qmail.
+mboxo and mboxrd locate the message start by scanning for From lines that are found before the e-mail message headers.  If a "From " string occurs at the beginning of a line in either the header or the body of a message (a mail standard violation for the former, but likely for the latter), the e-mail message must be modified before the message is stored in an mbox mailbox file or the line will be taken as a message boundary. This is typically done by prepending a greater-than sign:
+    >From my point of view...
+In the mboxo format, this can lead to corruption of the message.  If a line already contained >From  at the beginning (such as in a quotation), it is unchanged when written.  When subsequently read by the mail software, the leading > is erroneously removed.  The mboxrd format solves this by converting From  to >From  and converting >From  to >>From , etc.  The transformation is then always reversible.http://homepage.ntlworld.com./jonathan.deboynepollard/FGA/mail-mbox-formats.html
+Example:
+The mboxcl and mboxcl2 formats use a Content-Length: header to determine the messages’ lengths and thereby the next real From line. mboxcl still quotes From  lines in the messages themselves as mboxrd does, while mboxcl2 doesn’t.
+
+===Modified mbox===
+
+Some e-mail clients use a modification of the mbox format for their mail folders.
+
+==File locking==
+
+Various mutually incompatible mechanisms have been used by different mbox formats to enable message file locking, including fcntl(), lockf(), and "dot locking". This does not work well with network mounted file systems, such as the Network File System (NFS).[tpl]Citation needed|date=February 2011[/tpl]
+Because more than one message is stored in a single file, some form of file locking is needed to avoid the corruption that can result from two or more processes modifying the mailbox simultaneously. This could happen if a network e-mail delivery program delivers a new message at the same time as a mail reader is deleting an existing message.
+mbox files should be locked also while they are being read. Otherwise the reader may see corrupted message contents if another process is modifying the mbox at the same time, even though no actual file corruption occurs.
+
+==See also==
+
+==References==
+
+==Further reading==
+
+

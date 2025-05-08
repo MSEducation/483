@@ -1,0 +1,10 @@
+    --[[ When we refer to the variable x, which is outside of the current
+         scope and whose lifetime would be shorter than that of this anonymous
+         function, Lua creates a closure.]]
+    return x + y
+  end
+end
+fourplus = addto(4)
+print(fourplus(3))  -- Prints 7
+--This can also be achieved by calling the function in the following way:
+print(addto(4)(3))

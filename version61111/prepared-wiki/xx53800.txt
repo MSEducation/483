@@ -1,0 +1,82 @@
+[[Implicit function]]
+
+CATEGORIES: Differential calculus, Theorems in analysis, Multivariable calculus, Differential topology, Algebraic geometry
+
+In mathematics, an implicit equation is a relation  of the form R(x1,..., xn) = 0, where R is a function of several variables (often a polynomial). The set of the values of the variables that satisfy this relation is called an implicit curve if n = 2 and an implicit surface if n=3. The implicit equations are the basis of algebraic geometry, whose basic subjects of study are the simultaneous solutions of several implicit equations whose left-hand sides are polynomials. These sets of simultaneous solutions are called affine algebraic sets.
+The qualification of implicit for the equation defining a curve or a surface is often used for emphasizing the difference with the definition of a curve or a surface through a parametric equation. Passing from one kind of equation to the other one (for the same curve or surface) is called "implicitization" and "parametrization".
+An implicit function is a function that is defined implicitly by an implicit equation, by associating one of the variables (the value) to the others (the arguments). 
+For most implicit functions, there is no formula which define them explicitly. Even when such a formula may exist, one must often restrict the domain of definition and the target to have a well defined function. For the example, the implicit equation of the unit circle defines y as a function of x only, if -1 ≤ x ≤ 1 and one considers only non-negative (or non-positive) values for the values of the function.
+The implicit function theorem provides a condition under which a relation defines an implicit function. It states that if the left hand side of the equation  R(x, y) = 0 is differentiable and satisfies some mild condition on its partial derivatives at some point (a, b) such that R(a, b) = 0, then it defines a function y = f(x) over some interval containing a. Geometrically, the graph defined by  R(x,y) = 0 will overlap locally with the graph of some equation y = f(x).
+
+==Examples==
+
+===Inverse functions===
+
+A common type of implicit function is an inverse function. If  f is a function, then the inverse function of f, called f−1, is the function giving a solution of the equation
+for y in terms of x. This solution is
+Intuitively, an inverse function is obtained from f by interchanging the roles of the dependent and independent variables. Stated another way, the inverse function gives the solution for  y of the equation
+Examples.
+
+===Algebraic functions===
+
+An algebraic function is a function that satisfies a polynomial equation whose coefficients are themselves polynomials. For example, an algebraic function in one variable x gives a solution for y of an equation
+where the coefficients ai(x) are polynomial functions of x.  Algebraic functions play an important role in mathematical analysis and algebraic geometry.  A simple example of an algebraic function is given by the unit circle equation:
+Solving for y gives an explicit solution:
+But even without specifying this explicit solution, it is possible to refer to the implicit solution of the unit circle equation.
+While explicit solutions can be found for equations that are quadratic, cubic, and quartic in y, the same is not in general true for quintic and higher degree equations, such as 
+Nevertheless, one can still refer to the implicit solution y = g(x) involving the multi-valued implicit function g.
+
+==Caveats==
+
+Not every equation R(x, y) = 0 implies a graph of a single-valued function, the circle equation being one prominent example. Another example is an implicit function given by  x − C(y) = 0 where C is a cubic polynomial having a "hump" in its graph. Thus, for an implicit function to be a  true (single-valued) function it might be necessary to use just part of the graph. An implicit function can sometimes be successfully defined as a true function only after "zooming in" on some part of the  x-axis and "cutting away" some unwanted function branches. Then an equation expressing  y as an implicit function of the other variable(s) can be written.
+The defining equation R(x, y) = 0 can also have other pathologies. For example, the equation  x = 0 does not imply a function f(x) giving solutions for y at all; it is a vertical line.  In order to avoid a problem like this, various constraints are frequently imposed on the allowable sorts of equations or on the domain. The implicit function theorem provides a uniform way of handling these sorts of pathologies.
+
+==Implicit differentiation==
+
+In calculus, a method called implicit differentiation makes use of the chain rule to differentiate implicitly defined functions. 
+As explained in the introduction, y can be given as a function of x implicitly rather than explicitly. When we have an equation  R(x, y) = 0, we may be able to solve it for y and then 
+differentiate. However, sometimes it is simpler to differentiate  R(x, y) with respect to x and y and then solve for dy/dx.
+
+===Examples===
+
+1.  Consider for example
+This function normally can be manipulated by using algebra to change this equation to one expressing y in terms of an explicit function: 
+where the right side is the explicit function whose output value is y. Differentiation then gives dy/dx = −1. Alternatively, one can totally differentiate the original equation:
+Solving for dy/dx gives:
+the same answer as obtained previously.
+2.  An example of an implicit function, for which implicit differentiation might be easier than attempting to use explicit differentiation, is 
+In order to differentiate this explicitly with respect to x, one would have to obtain (via algebra) 
+and then differentiate this function. This creates two derivatives: one for y > 0 and another for y One might find it substantially easier to implicitly differentiate the original function: 
+giving, 
+3.  Sometimes standard explicit differentiation cannot be used and, in order to obtain the derivative, implicit differentiation must be employed. An example of such a case is the equation
+It is impossible to express y explicitly as a function of x and  therefore dy/dx cannot be found by explicit differentiation. Using the implicit method, dy/dx can be expressed: 
+where dx/dx = 1. Factoring out dy/dx shows that
+which yields the final answer
+
+===Formula for two variables===
+
+"The Implicit Function Theorem states that if F is defined on an open disk containing (a, b), where F(a, b) = 0, Fy(a, b) ≠ 0, and Fx and Fy are continuous on the disk, then the equation F(x, y) = 0 defines y as a function of x near the point (a, b) and the derivative of this function is given by"[ref]
+</ref>[tpl]rp|§ 11.5[/tpl]
+where Fx and Fy indicate the derivatives of F with respect to x and y.
+The above formula comes from using the generalized chain rule to obtain the total derivative—with respect to x—of both sides of F(x, y) = 0:
+and hence
+
+==Implicit function theorem==
+
+It can be shown that if R(x, y) is given by a smooth submanifold M in R2, and (a, b) is a point of this submanifold such that the tangent space there is not vertical  
+the condition on R can be checked by means of partial derivatives.[tpl]rp|§ 11.5[/tpl]
+
+==Applications in economics==
+
+===Marginal rate of substitution===
+
+In economics, when the level set R(x, y) = 0 is an indifference curve for the quantities x and y consumed of two goods, the absolute value of the implicit derivative is interpreted as the marginal rate of substitution of the two goods: how much more of y one must receive in order to be indifferent to a loss of 1 unit of x.
+
+==See also==
+
+==References==
+
+ | last=Rudin
+ | first=Walter
+ | authorlink=Walter Rudin
+ | title=Principles of Mathematical Analysis

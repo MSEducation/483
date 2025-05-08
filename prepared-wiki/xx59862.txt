@@ -1,0 +1,27 @@
+[[Perfect hash function]]
+
+CATEGORIES: Hashing, Hash functions, Search algorithms
+
+A perfect hash function for a set S is a hash function that maps distinct elements in S to a set of integers, with no collisions. A perfect hash function has many of the same applications as other hash functions, but with the advantage that no collision resolution has to be implemented. In mathematical terms, it is a total injective function.
+
+==Properties and uses==
+
+A perfect hash function for a specific set S that can be evaluated in constant time, and with values in a small range, can be found by a randomized algorithm in a number of operations that is proportional to the size of S.[tpl]cite doi|10.1145/828.1884[/tpl] Any perfect hash functions suitable for use with a hash table require at least a number of bits that is proportional to the size of S.
+A perfect hash function with values in a limited range can be used for efficient lookup operations, by placing keys from S (or other associated values) in a table indexed by the output of the function. Using a perfect hash function is best in situations where there is a frequently queried large set, S, which is seldom updated. Efficient solutions to performing updates are known as dynamic perfect hashing, but these methods are relatively complicated to implement. A simple alternative to perfect hashing, which also allows dynamic updates, is cuckoo hashing.
+
+==Minimal perfect hash function==
+
+A minimal perfect hash function is a perfect hash function that maps n keys to n consecutive integers—usually 0..n−1 or 1..n.  A more formal way of expressing this is:  Let j and k be elements of some finite set K.  F is a minimal perfect hash function iff F(j) =F(k) implies j=k (injectivity) and there exists an integer a such that the range of F is a..a+|K|−1. It has been proved that a general purpose minimal perfect hash scheme requires at least 1.44 bits/key.[tpl]Cite doi|10.1007/978-3-642-04128-0_61[/tpl] The best currently known minimal perfect hashing schemes use around 2.6 bits/key.[tpl]citation|contribution=Searching|first1=Ricardo|last1=Baeza-Yates|author1-link=Ricardo Baeza-Yates|first2=Patricio V.|last2=Poblete|title=Algorithms and Theory of Computation Handbook: General Concepts and Techniques|edition=2nd|editor1-first=Mikhail J.|editor1-last=Atallah|editor1-link=Mikhail Atallah|editor2-first=Marina|editor2-last=Blanton|publisher=CRC Press|year=2010|isbn=9781584888239[/tpl]. See in particular p. 2-10.
+A minimal perfect hash function F is order preserving if keys are given in some order a1, a2, ..., an and for any keys aj and ak, j<k implies F(aj)<F(ak).[tpl]Citation |first=Bob |last=Jenkins |contribution=order-preserving minimal perfect hashing |title=Dictionary of Algorithms and Data Structures |editor-first=Paul E. |editor-last=Black |publisher=U.S. National Institute of Standards and Technology |date=14 April 2009 |accessdate=2013-03-05 |url=http://www.nist.gov/dads/HTML/orderPreservMinPerfectHash.html[/tpl] Order-preserving minimal perfect hash functions require necessarily Ω(n log n) bits to be represented.[tpl]Cite doi|10.1145/96749.98233[/tpl]
+A minimal perfect hash function F is monotone if it preserves the lexicographical order of the keys. In this case, the function value is just the position of each key in the sorted ordering of all of the keys. If the keys to be hashed are themselves stored in a sorted array, it is possible to store a small number of additional bits per key in a data structure that can be used to compute hash values quickly.[ref]
+.</ref>
+
+==See also==
+
+==References==
+
+==Further reading==
+
+==External links==
+
+

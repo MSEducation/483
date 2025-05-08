@@ -1,0 +1,42 @@
+[[Warren Abstract Machine]]
+
+CATEGORIES: Logic programming, Virtual machines, SRI International software
+
+In 1983, David H. D. Warren designed an abstract machine for the execution of Prolog consisting of a memory architecture and an instruction set.[tpl]cite book | author = David H. D. Warren | title = An abstract Prolog instruction set | publisher = Artificial Intelligence Center at SRI International | location = Menlo Park, CA, USA | date = October 1983 | url = http://www.ai.sri.com/pubs/files/641.pdf | format = PDF[/tpl]
+[tpl]cite book | author = Hassan Aït-Kaci | title = Warren's Abstract Machine: A Tutorial Reconstruction | date = February 18, 1999 | url = http://www.vanx.org/archive/wam/wambook.pdf | archiveurl = http://web.archive.org/web/20030213072337/http://www.vanx.org/archive/wam/wambook.pdf | archivedate = 2003-02-13 | format = PDF[/tpl][tpl]cite web | author = Hassan Aït-Kaci | title = Warren's Abstract Machine: A Tutorial Reconstruction; the book, errata and slides | url = http://wambook.sourceforge.net/ | accessdate=7 March 2011[/tpl] This design became known as the Warren Abstract Machine (WAM) and has become the de facto standard target for Prolog compilers.
+
+==Purpose==
+
+The purpose of compiling Prolog code to the more low-level WAM code is to make subsequent interpretation of the Prolog program more efficient. Prolog code is reasonably easy to translate to WAM instructions which can be more efficiently interpreted. Also, subsequent code improvements and compilation to native code are often easier to perform on the more low-level representation.
+In order to write efficient Prolog programs, a basic understanding of how the WAM works can be advantageous. Some of the most important WAM concepts are first argument indexing and its relation to choice-points, tail call optimization and memory reclamation on failure.
+
+==Memory areas==
+
+The WAM has the following memory areas:
+
+==Example==
+
+Here is a piece of Prolog code:
+ girl(sally).
+ girl(jane).
+ boy(B) :- \+ girl(B).
+A WAM-based Prolog compiler will compile this into WAM instructions similar to the following:
+ predicate(girl/1):
+    switch_on_term(2,1,fail,fail,fail),
+ label(1): switch_on_atom([(sally,3),(jane,5)])
+ label(2): try_me_else(4)
+ label(3): get_atom(sally,0)
+           proceed
+ label(4): trust_me_else_fail
+ label(5): get_atom(jane,0)
+           proceed
+ predicate(boy/1):
+    get_variable(x(1),0)
+    put_structure(girl/1,0)
+    unify_local_value(x(1))
+    execute((\+)/1)])
+An important characteristic of this code is its ability to cope with the various modes in which the predicates can be evoked: Any argument might be a variable, a ground term, or a partly instantiated term. The "switch" instructions handle the different cases.
+
+==References==
+
+
